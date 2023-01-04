@@ -1,3 +1,5 @@
+//https://github.com/vercel/next.js/tree/canary/examples/with-redux
+
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
 import counterReducer from "../features/counter/counterSlice";

@@ -1,0 +1,11 @@
+.nav {
+	/* set basic content padding sass - should change according to screen size*/
+	padding: 0 0;
+}
+
+@media screen and (min-width: 900px) {
+	.nav {
+		/* set basic content padding sass - should change according to screen size*/
+		padding: 0 6rem;
+	}
+}

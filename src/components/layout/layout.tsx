@@ -10,7 +10,7 @@ export const Layout: FC<Props> = (props) => {
 	return (
 		<>
 			<MainHeader />
-			<main>{props.children}</main>
+			<>{props.children}</>
 			<MainFooter />
 		</>
 	);

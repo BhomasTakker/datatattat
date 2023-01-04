@@ -7,13 +7,14 @@ import {
 	Stack,
 	Typography,
 } from "@mui/material";
+import styles from "./MainHeader.module.css";
 import { CatchingPokemon } from "@mui/icons-material";
 import Link from "next/link";
 
 export const MainHeader = () => {
 	return (
 		<AppBar position="static">
-			<nav>
+			<nav className={styles.nav}>
 				<Toolbar>
 					<IconButton
 						size="large"
