@@ -10,7 +10,8 @@
 		"storybook": "storybook dev -p 6006 -s ./public",
 		"build-storybook": "storybook build -s ./public",
 		"test:dev": "jest --watch",
-		"test": "jest"
+		"test": "jest",
+		"coverage": "npx jest --coverage --collectCoverageFrom='src/**/*.{ts,tsx}'"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.10.5",

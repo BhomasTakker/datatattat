@@ -1,10 +1,10 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import Counter from "../src/features/counter/Counter";
-import Display1 from "../src/components/layout/content/Display1";
-import Display2 from "../src/components/layout/content/Display2";
+import styles from "../../styles/Home.module.css";
+import Counter from "../features/counter/Counter";
+import Display1 from "../components/layout/content/Display1";
+import Display2 from "../components/layout/content/Display2";
 import { Stack } from "@mui/material";
-import Display3 from "../src/components/layout/content/Display3";
+import Display3 from "../components/layout/content/Display3";
 export default function Home() {
 	return (
 		<>
