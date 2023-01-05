@@ -23,6 +23,9 @@ const BasicArticleCard = ({
 	height,
 	width = "inherit",
 }: BasicArticleCardProps) => {
+	const onClickHandler = () => {
+		console.log("clicked");
+	};
 	return (
 		<Card
 			sx={{
@@ -30,7 +33,7 @@ const BasicArticleCard = ({
 				width,
 			}}
 		>
-			<CardActionArea>
+			<CardActionArea onClick={onClickHandler}>
 				<CardMedia
 					component="img"
 					alt="green iguana"

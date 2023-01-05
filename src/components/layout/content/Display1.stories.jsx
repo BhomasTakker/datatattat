@@ -1,4 +1,4 @@
-import Display1 from "../../../../components/layout/content/Display1";
+import Display1 from "./Display1";
 
 export default {
 	title: "Components/content/display/Display1",

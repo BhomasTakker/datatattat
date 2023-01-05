@@ -8,12 +8,13 @@ import { Layout } from "../../components/layout/layout";
 export default {
 	title: "Pages/Home",
 	component: Home,
+	decorators: [
+		(story) => (
+			<Provider store={store}>
+				<Layout>{story()}</Layout>
+			</Provider>
+		),
+	],
 };
 
-export const HomePage = () => (
-	<Provider store={store}>
-		<Layout>
-			<Home />
-		</Layout>
-	</Provider>
-);
+export const HomePage = () => <Home />;
