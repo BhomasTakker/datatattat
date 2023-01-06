@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 export const MainFooter = () => {
 	return (
@@ -10,7 +10,9 @@ export const MainFooter = () => {
 				height={"100px"}
 				// width="100"
 				bgcolor={"primary.main"}
-			></Box>
+			>
+				<Container>{/* Container gives us our basic 'body' area */}</Container>
+			</Box>
 		</footer>
 	);
 };

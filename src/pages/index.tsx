@@ -20,7 +20,7 @@ export default function Home() {
 					<Display1 />
 					<Display2 />
 					{/* Mui Grid is a little too simplistic */}
-					{/* <Display3 /> */}
+					<Display3 />
 				</Stack>
 			</main>
 		</>
