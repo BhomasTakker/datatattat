@@ -31,15 +31,15 @@ export interface CounterState {
 	size: Size;
 }
 
-const dimensions = {
-	width: window.innerWidth,
-	height: window.innerHeight,
-};
+const dimensions = () => ({
+	width: 0,
+	height: 0,
+});
 
 const initialState: CounterState = {
-	dimensions,
+	dimensions: dimensions(),
 	orientation: "portrait",
-	size: determineSize(dimensions),
+	size: determineSize(dimensions()),
 };
 
 export const screenSlice = createSlice({

@@ -13,6 +13,14 @@ export const ScreenController: FC<Props> = ({ children }) => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
+		//need to set here since values are initialised to 0, 0 and size defaults to sm
+		//in useEffect tho lol
+		dispatch(
+			setDimensions({
+				width: window.innerWidth,
+				height: window.innerHeight,
+			})
+		);
 		const resizeHandler = () => {
 			dispatch(
 				setDimensions({

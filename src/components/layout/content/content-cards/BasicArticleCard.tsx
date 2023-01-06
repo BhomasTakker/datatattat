@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
 	Box,
 	Typography,
@@ -20,37 +20,37 @@ type BasicArticleCardProps = {
 //props width
 const BasicArticleCard = ({ height }: BasicArticleCardProps) => {
 	//need mui types
-	const targetRef = useRef<any>(null);
+	// const targetRef = useRef<any>(null);
 
 	//custom hook give ref get dimensions
-	const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-	const cardHeight = dimensions.height || "inherited";
-	const halfHeight =
-		typeof cardHeight === "number" ? cardHeight / 2 : "inherited";
+	// const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+	// const cardHeight = dimensions.height || "inherited";
+	// const halfHeight =
+	// 	typeof cardHeight === "number" ? cardHeight / 2 : "inherited";
 
-	useLayoutEffect(() => {
-		if (targetRef.current) {
-			setDimensions({
-				width: targetRef.current.offsetWidth,
-				height: targetRef.current.offsetHeight,
-			});
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (targetRef.current) {
+	// 		setDimensions({
+	// 			width: targetRef.current.offsetWidth,
+	// 			height: targetRef.current.offsetHeight,
+	// 		});
+	// 	}
+	// }, []);
 	///////////////////////////////////
 	// console.log({ dimensions });
 	const onClickHandler = () => {
 		console.log("clicked");
-		console.log({ height: dimensions.height });
-		console.log({ cardHeight });
-		console.log({ halfHeight });
+		// console.log({ height: dimensions.height });
+		// console.log({ cardHeight });
+		// console.log({ halfHeight });
 	};
-	console.log("render");
+	// console.log("render");
 	return (
 		<Card
-			ref={targetRef}
-			// sx={{
-			// 	height: cardHeight,
-			// }}
+		// ref={targetRef}
+		// sx={{
+		// 	height: cardHeight,
+		// }}
 		>
 			<CardActionArea onClick={onClickHandler}>
 				<Box height={"50%"}>
