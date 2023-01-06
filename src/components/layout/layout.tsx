@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { MainFooter } from "./MainFooter";
-import { MainHeader } from "./MainHeader";
+import { MainFooter } from "../MainFooter";
+import { MainHeader } from "../MainHeader";
 import { Container } from "@mui/material";
 
 type Props = {

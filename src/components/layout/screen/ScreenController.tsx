@@ -6,7 +6,7 @@ type Props = {
 	children: React.ReactNode;
 };
 
-//This is the wrong aproach?
+//Is this is the wrong aproach?
 //I mean it works kinda well and is react based ???
 //Would prefer out of react perhaps as not technically specific
 export const ScreenController: FC<Props> = ({ children }) => {
@@ -14,6 +14,7 @@ export const ScreenController: FC<Props> = ({ children }) => {
 
 	useEffect(() => {
 		//need to set here since values are initialised to 0, 0 and size defaults to sm
+		//This may be a problem in testing?
 		//in useEffect tho lol
 		dispatch(
 			setDimensions({

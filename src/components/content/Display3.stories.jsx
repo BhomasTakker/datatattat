@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
-import store from "../../../store/store";
-import { ScreenController } from "../screen/ScreenController";
+import store from "../../store/store";
+import { ScreenController } from "../layout/screen/ScreenController";
 import Display3 from "./Display3";
 
 export default {
