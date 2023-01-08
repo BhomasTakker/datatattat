@@ -1,11 +1,11 @@
 import React from "react";
-import { Box, Container } from "@mui/material";
+import { Box, Paper, Container } from "@mui/material";
 
 export const MainFooter = () => {
 	return (
 		<footer>
 			<Box
-				p={2}
+				// p={2}
 				display="flex"
 				height={"100px"}
 				// width="100"

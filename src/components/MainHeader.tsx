@@ -1,4 +1,5 @@
-import React from "react";
+import React, { FC, ReactComponentElement } from "react";
+import { useSession, signOut } from "next-auth/react";
 import {
 	AppBar,
 	Button,
@@ -11,8 +12,43 @@ import {
 import styles from "./MainHeader.module.css";
 import { CatchingPokemon } from "@mui/icons-material";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export const MainHeader = () => {
+	//perhaps better got from user store then user getAuthenticated
+	const { data: session, status } = useSession();
+	const router = useRouter();
+	const isAuthenticated = status === "authenticated";
+	//so stuff only on authenticated
+	// if (status === "authenticated") {
+	// 	console.log({ user: session.user });
+	// }
+	// console.log({ status });
+
+	//Obviously use link
+	const tempProfileHandler = () => {
+		router.replace("/profile");
+	};
+
+	const logoutHandler = () => {
+		//because we are using useSession here we will automatically re-render
+		//https://next-auth.js.org/getting-started/client#signout
+		signOut({
+			redirect: false,
+		});
+	};
+
+	const showAuthButton = (userAuthenticated: boolean) => {
+		if (userAuthenticated) {
+			return (
+				<Button color="inherit" onClick={logoutHandler}>
+					Logout
+				</Button>
+			);
+		}
+		return <Button color="inherit">Login</Button>;
+	};
+
 	return (
 		<AppBar position="static">
 			<Container>
@@ -30,10 +66,13 @@ export const MainHeader = () => {
 							POKEMONAPP
 						</Typography>
 						<Stack direction={"row"} spacing={2}>
-							<Button color="inherit">Features</Button>
+							{/* <Button color="inherit">Features</Button>
 							<Button color="inherit">Pricing</Button>
-							<Button color="inherit">About</Button>
-							<Button color="inherit">Login</Button>
+							<Button color="inherit">About</Button> */}
+							<Button color="inherit" onClick={tempProfileHandler}>
+								Profile
+							</Button>
+							{showAuthButton(isAuthenticated)}
 						</Stack>
 					</Toolbar>
 				</nav>
