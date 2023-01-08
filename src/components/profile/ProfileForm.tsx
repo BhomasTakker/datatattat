@@ -21,10 +21,10 @@ function ProfileForm(props: any) {
 		//V temp / need create a user details edit page
 		<form onSubmit={submitHandler}>
 			<Box>
-				<PasswordInput ref={newPasswordRef} />
+				<PasswordInput ref={oldPasswordRef} label="Current password" />
 			</Box>
 			<Box>
-				<PasswordInput ref={oldPasswordRef} />
+				<PasswordInput ref={newPasswordRef} label="New password" />
 			</Box>
 			<Box>
 				<Button type="submit">Change Password</Button>
