@@ -4,18 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { authOptions } from "../auth/[...nextauth]";
 import { connectToDatabase } from "../../../lib/db";
 import { hashPassword, verifyPassword } from "../../../lib/auth";
-import { use } from "react";
-
-function withApiAuthentication(func: Function): Function | void {
-	return async function (req: NextApiRequest, res: NextApiResponse) {
-		const session = await getServerSession(req, res, authOptions);
-		if (!session) {
-			res.status(401).json({ message: "You must be logged in." });
-			return;
-		}
-		return func(req, res);
-	};
-}
+import { withApiAuthentication } from "../../../api/auth/WithAPIAuthentication";
 
 async function changePassword(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== "PATCH") {
@@ -24,11 +13,6 @@ async function changePassword(req: NextApiRequest, res: NextApiResponse) {
 
 	//this could be decorator / higher order
 	const session = await getServerSession(req, res, authOptions);
-	// if (!session) {
-	// 	res.status(401).json({ message: "You must be logged in." });
-	// 	return;
-	// }
-	// console.log({ session });
 
 	const userEmail = session!.user?.email;
 	const oldPassword = req.body.oldPassword;
@@ -46,11 +30,8 @@ async function changePassword(req: NextApiRequest, res: NextApiResponse) {
 		return;
 	}
 
-	console.log({ password: user.password });
 	const currenPassword = user.password;
-	console.log({ oldPassword });
-	console.log({ newPassword });
-	console.log({ currenPassword });
+
 	const arePasswordsEqual = await verifyPassword(oldPassword, currenPassword);
 	if (!arePasswordsEqual) {
 		//should be notifying if password incorrect
@@ -58,7 +39,7 @@ async function changePassword(req: NextApiRequest, res: NextApiResponse) {
 		client.close();
 		return;
 	}
-	console.log({ newPassword });
+
 	const hashedPassword = await hashPassword(newPassword);
 
 	//need error handlng all over!
@@ -70,11 +51,10 @@ async function changePassword(req: NextApiRequest, res: NextApiResponse) {
 			},
 		}
 	);
-	console.log({ result });
+
 	client.close();
 	res.status(200).json({ message: "Password updated!" });
 	//flash a message on success
 }
 
-//this looks like it works - it's perhaps a  little superfluous in this instance
 export default withApiAuthentication(changePassword);

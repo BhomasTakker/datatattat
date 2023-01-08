@@ -1,17 +1,10 @@
 //NextAuth strategies
 //https://next-auth.js.org/tutorials/securing-pages-and-api-routes#using-gettoken
-//
-//HOC for page authentication
-//needs wild refactor
-//potentially use redux for storing authenticated?
-//but this does work simply
-
-//This would be the prefered way to secure static pages
-//
 
 import { useSession } from "next-auth/react";
-import { Stack, Typography } from "@mui/material";
 import { FC, useEffect } from "react";
+import { LoadingSpinner } from "../../../components/loading/LoadingSpinner";
+import { renderLabel } from "../RenderLabel";
 
 type Props = {
 	children: React.ReactNode;
@@ -23,26 +16,22 @@ const WithAuth: FC<Props> = ({ children }: Props) => {
 	const isAuthenticated = status === "authenticated";
 	const isLoading = status === "loading";
 
-	console.log({ status });
-	console.log({ isAuthenticated });
-	console.log({ isLoading });
-	//create a simple little hook for this
-	//could HOC withAuthentication
 	useEffect(() => {
 		if (!isAuthenticated && !isLoading) {
-			//is this the correct way?
-			// it will wipe state / so seems so
-			window.location.href = "/auth";
+			// redirect with reload - will wipe any current state
+			window.location.href = "/auth"; //pass from somewhere / const - props.redirect?
 		}
 	}, [isAuthenticated, isLoading]);
 
-	//this all seems sluggish need test around
-	//withLoading? - no - would surely be as/in above
 	if (isLoading) {
-		return <Typography variant="h3">Loading...</Typography>;
+		return (
+			<LoadingSpinner renderLabel={renderLabel({ label: "Loading..." })} />
+		);
 	}
 	if (!isAuthenticated) {
-		return <Typography variant="h3">Redirecting...</Typography>;
+		return (
+			<LoadingSpinner renderLabel={renderLabel({ label: "Redirecting..." })} />
+		);
 	}
 
 	return <>{children}</>;
@@ -59,5 +48,3 @@ export const withAuth =
 				<Component {...props} />
 			</WithAuth>
 		);
-
-// export default withLogin

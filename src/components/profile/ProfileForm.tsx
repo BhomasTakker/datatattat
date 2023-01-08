@@ -1,4 +1,6 @@
+import { Box, Button } from "@mui/material";
 import { useRef } from "react";
+import { PasswordInput } from "../input/PasswordInput";
 
 function ProfileForm(props: any) {
 	const oldPasswordRef = useRef<any>();
@@ -9,9 +11,6 @@ function ProfileForm(props: any) {
 		const enteredOldPassword = oldPasswordRef.current.value;
 		const enteredNewPassword = newPasswordRef.current.value;
 
-		console.log({ enteredOldPassword });
-		console.log({ enteredNewPassword });
-
 		//check valid
 		props.onChangePassword({
 			oldPassword: enteredOldPassword,
@@ -19,18 +18,17 @@ function ProfileForm(props: any) {
 		});
 	};
 	return (
+		//V temp / need create a user details edit page
 		<form onSubmit={submitHandler}>
-			<div>
-				<label htmlFor="new-password">New Password</label>
-				<input type="password" id="new-password" ref={newPasswordRef} />
-			</div>
-			<div>
-				<label htmlFor="old-password">Old Password</label>
-				<input type="password" id="old-password" ref={oldPasswordRef} />
-			</div>
-			<div>
-				<button>Change Password</button>
-			</div>
+			<Box>
+				<PasswordInput ref={newPasswordRef} />
+			</Box>
+			<Box>
+				<PasswordInput ref={oldPasswordRef} />
+			</Box>
+			<Box>
+				<Button type="submit">Change Password</Button>
+			</Box>
 		</form>
 	);
 }

@@ -1,3 +1,5 @@
+//redux effetively logging for every pixel move on resize
+//Should come back to this and sort out
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import type { AppState, AppThunk } from "../store";
@@ -50,6 +52,10 @@ export const screenSlice = createSlice({
 			const { width, height } = action.payload;
 			//don't actually store dimensions - every pixel change getting stored is not okay!
 			// state.dimensions = action.payload;
+			//this check does not help!
+			if (state.size === determineSize(action.payload)) {
+				return;
+			}
 			state.size = determineSize(action.payload);
 			//orientation is really just if width > height === landscape
 			state.orientation = width >= height ? "landscape" : "portrait";
@@ -60,7 +66,8 @@ export const screenSlice = createSlice({
 
 export const { setDimensions, setOrientation } = screenSlice.actions;
 
-export const screenDimensions = (state: AppState) => state.screen.dimensions;
+//Can we just return current dimensions?
+// export const screenDimensions = (state: AppState) => state.screen.dimensions;
 export const screenOrientation = (state: AppState) => state.screen.orientation;
 export const screenSize = (state: AppState) => state.screen.size;
 

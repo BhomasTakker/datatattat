@@ -4,7 +4,7 @@ import { unstable_getServerSession } from "next-auth/next";
 import { useSession } from "next-auth/react";
 import { Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import { withAuth } from "../../components/auth/withAuth";
+import { withAuth } from "../../hoc/components/auth/withAuth";
 import ProfileForm from "../../components/profile/ProfileForm";
 import { json } from "stream/consumers";
 
@@ -46,40 +46,8 @@ function Profile() {
 }
 
 //We need to decide upon a proper authentication strategy
+//What we have works and is simple
+//There are almost certainly better ways but for currently statically rendered pages aproach is fine
 //https://next-auth.js.org/configuration/nextjs#in-getserversideprops
-// export async function getServerSideProps(context: any) {
-// 	const session = await unstable_getServerSession(
-// 		context.req,
-// 		context.res,
-// 		authOptions
-// 	);
-
-// 	if (!session || !session.user) {
-// 		return {
-// 			redirect: {
-// 				destination: "/auth",
-// 				permanent: false,
-// 			},
-// 		};
-// 	}
-
-// 	console.log({ session });
-
-// 	return {
-// 		props: {
-// 			session: {
-// 				user: {
-// 					email: session.user.email,
-// 				},
-// 				expires: session.expires,
-// 			},
-// 		},
-// 	};
-// }
-
-// export default Profile;
-
-//Use for static pages - better ways with SSR?
-//Still 'half' required for redirecting if already on page and logout
 
 export default withAuth(Profile);
