@@ -30,7 +30,7 @@ export interface CounterState {
 	orientation: Orientation;
 	size: Size;
 }
-
+//why is this a function
 const dimensions = () => ({
 	width: 0,
 	height: 0,
@@ -47,8 +47,12 @@ export const screenSlice = createSlice({
 	initialState,
 	reducers: {
 		setDimensions: (state, action: PayloadAction<Dimensions>) => {
-			state.dimensions = action.payload;
+			const { width, height } = action.payload;
+			//don't actually store dimensions - every pixel change getting stored is not okay!
+			// state.dimensions = action.payload;
 			state.size = determineSize(action.payload);
+			//orientation is really just if width > height === landscape
+			state.orientation = width >= height ? "landscape" : "portrait";
 		},
 		setOrientation: () => {},
 	},
