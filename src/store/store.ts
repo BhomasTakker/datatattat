@@ -4,10 +4,15 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
 import counterReducer from "../features/counter/counterSlice";
 import screenReducer from "./screen/screenSlice";
+import notificationReducer from "./notifications/notificationSlice";
 
 export function makeStore() {
 	return configureStore({
-		reducer: { counter: counterReducer, screen: screenReducer },
+		reducer: {
+			counter: counterReducer,
+			screen: screenReducer,
+			notification: notificationReducer,
+		},
 	});
 }
 

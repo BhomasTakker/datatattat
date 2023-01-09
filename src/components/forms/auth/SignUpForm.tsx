@@ -1,6 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { createUser } from "../../../queries/auth/createUser";
@@ -9,6 +9,12 @@ import { EmailInput } from "../../input/EmailInput";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
+import {
+	addNotification,
+	notificationTypes,
+} from "../../../store/notifications/notificationSlice";
+import { useAppDispatch } from "../../../store/hooks";
 
 //need schemas and individual rules in a forms/validation lib
 const schema = yup.object().shape({
@@ -29,6 +35,8 @@ export const SignUpSignInForm = () => {
 
 	const [isLogin, setIsLogin] = useState(true);
 
+	const dispatch = useAppDispatch();
+
 	function switchAuthModeHandler() {
 		setIsLogin((prevState) => !prevState);
 	}
@@ -46,14 +54,38 @@ export const SignUpSignInForm = () => {
 			if (!result!.error) {
 				//create a redirect call in a router lib?
 				router.replace("/profile");
+
+				dispatch(
+					addNotification({
+						id: "login-successful",
+						message: "log in successful",
+						type: notificationTypes.success,
+					})
+				);
 			}
 		} else {
 			//create user#
 			try {
 				const result = await createUser(data.email, data.password);
+
+				dispatch(
+					addNotification({
+						id: "account-creation-successful",
+						message: "Account Created. Welcome!",
+						type: notificationTypes.success,
+					})
+				);
 			} catch (err) {
 				//TODO error handling
+
 				console.log({ err });
+				dispatch(
+					addNotification({
+						id: "account-creation-failed",
+						message: "Account Creation Failed. ",
+						type: notificationTypes.error,
+					})
+				);
 			}
 		}
 	}
