@@ -6,6 +6,13 @@ import { connectToDatabase } from "../../../lib/db";
 import { hashPassword, verifyPassword } from "../../../lib/auth";
 import { withApiAuthentication } from "../../../api/auth/WithAPIAuthentication";
 
+//TODO - look into the below as a possible solution - good to play around regardless
+//just musing here , and it might be my lack of understanding of what RxJS does
+//but we could use the sequence building functionality of RxJS to build queries out of component parts?
+//get user or error / pass user / get password / check password or error
+
+//ultimately get data / perform modifications to return / return finished or error
+
 async function changePassword(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== "PATCH") {
 		return;
@@ -21,6 +28,7 @@ async function changePassword(req: NextApiRequest, res: NextApiResponse) {
 	const client = await connectToDatabase();
 	const usersCollection = client.db().collection("users");
 
+	//get user - again mongoose
 	const user = await usersCollection.findOne({ email: userEmail });
 
 	//list of erros/response messages in a central place

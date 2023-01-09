@@ -3,9 +3,8 @@ import { Typography } from "@mui/material";
 import { ElementType } from "react";
 import { Variant } from "@mui/material/styles/createTypography";
 
-//we should have a renderprops folder perhaps and then labels sub folder? etc
-
 //Types folder would get extremely busy no?
+//Keep where used / refactor if need be?
 export type RenderLabelPropsType = {
 	label: string;
 	visualWeight?: Variant;
