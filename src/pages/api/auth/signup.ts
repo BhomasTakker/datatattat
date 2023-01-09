@@ -46,10 +46,12 @@ export default async function signUpAPI(
 
 	//mongoose would be a better step - even if as simple as just user
 	//it IS the better aproach
-	const result = db.collection("users").insertOne({
+	const result = await db.collection("users").insertOne({
 		email,
 		password: hashedPassword,
 	});
+
+	//automatically log in lol
 
 	client.close();
 

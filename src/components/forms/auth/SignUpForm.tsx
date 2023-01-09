@@ -6,11 +6,26 @@ import { signIn } from "next-auth/react";
 import { createUser } from "../../../queries/auth/createUser";
 import { PasswordInput } from "../../input/PasswordInput";
 import { EmailInput } from "../../input/EmailInput";
+import { useForm, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+//need schemas and individual rules in a forms/validation lib
+const schema = yup.object().shape({
+	email: yup
+		.string()
+		.email("Please enter a valid email")
+		.required("Email is required"),
+	password: yup
+		.string()
+		.min(6, "Password must be at least 6 characters")
+		.max(15, "Password must be at most 15 characters")
+		.required("Password is required"),
+});
 
 export const SignUpSignInForm = () => {
-	const emailRef = useRef<HTMLInputElement | null>(); //Correct Types?
-	const passwordRef = useRef<HTMLInputElement | null>();
 	const router = useRouter();
+	const methods = useForm({ resolver: yupResolver(schema) });
 
 	const [isLogin, setIsLogin] = useState(true);
 
@@ -18,22 +33,14 @@ export const SignUpSignInForm = () => {
 		setIsLogin((prevState) => !prevState);
 	}
 
-	async function submitHandler(event: any) {
-		event.preventDefault();
-
-		const enteredEmail = emailRef.current?.value;
-		const enteredPassword = passwordRef.current?.value;
-		//sort this out - fairly sure we don't need it / plus return msg
-		if (!enteredEmail || !enteredPassword) {
-			return;
-		}
+	async function submitHandler(data: any) {
+		console.log({ data });
 
 		if (isLogin) {
-			//login
+			//login / call function here
 			const result = await signIn("credentials", {
 				redirect: false,
-				email: enteredEmail,
-				password: enteredPassword,
+				...data,
 			});
 
 			if (!result!.error) {
@@ -43,7 +50,7 @@ export const SignUpSignInForm = () => {
 		} else {
 			//create user#
 			try {
-				const result = await createUser(enteredEmail, enteredPassword);
+				const result = await createUser(data.email, data.password);
 			} catch (err) {
 				//TODO error handling
 				console.log({ err });
@@ -55,32 +62,33 @@ export const SignUpSignInForm = () => {
 			<Typography variant="h3" component="h1">
 				{isLogin ? "Login" : "Sign Up"}
 			</Typography>
-
-			<form onSubmit={submitHandler}>
-				<Box>
-					<EmailInput ref={emailRef} />
-				</Box>
-				{/* 
+			<FormProvider {...methods}>
+				<form onSubmit={methods.handleSubmit(submitHandler)}>
+					<Box>
+						<EmailInput />
+					</Box>
+					{/* 
 					TODO
 					Confirm password box 
 					*/}
-				<Box>
-					<PasswordInput ref={passwordRef} />
-				</Box>
+					<Box>
+						<PasswordInput />
+					</Box>
 
-				<Box>
-					<Button variant="contained" color="primary" type="submit">
-						{isLogin ? "Login" : "Create Account"}
-					</Button>
-					<Button
-						variant="outlined"
-						color="primary"
-						onClick={switchAuthModeHandler}
-					>
-						{isLogin ? "Create new account" : "Login with existing account"}
-					</Button>
-				</Box>
-			</form>
+					<Box>
+						<Button variant="contained" color="primary" type="submit">
+							{isLogin ? "Login" : "Create Account"}
+						</Button>
+						<Button
+							variant="outlined"
+							color="primary"
+							onClick={switchAuthModeHandler}
+						>
+							{isLogin ? "Create new account" : "Login with existing account"}
+						</Button>
+					</Box>
+				</form>
+			</FormProvider>
 		</section>
 	);
 };

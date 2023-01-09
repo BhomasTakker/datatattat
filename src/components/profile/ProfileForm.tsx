@@ -1,35 +1,60 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { useRef } from "react";
 import { PasswordInput } from "../input/PasswordInput";
+import { useForm, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+//identifiers here HAVE to match the name field of your input
+const schema = yup.object().shape({
+	oldPassword: yup
+		.string()
+		.min(6, "Password must be at least 6 characters")
+		.max(15, "Password must be at most 15 characters")
+		.required("Current password is required"),
+	newPassword: yup
+		.string()
+		.min(6, "Password must be at least 6 characters")
+		.max(15, "Password must be at most 15 characters")
+		.required("New password is required"),
+});
+// newPassword: yup
+// 		.string()
+// 		.oneOf([yup.ref("oldPassword"), "Passwords must match"])
+// 		.required("New password must match existing password"),
+// confirmPassword: Yup.string()
+//       .when('password', (password, schema) => {
+//         if (password || isAddMode) return schema.required('Confirm Password is required');
+//       })
+//       .oneOf([Yup.ref('password')], 'Passwords must match')
 
 function ProfileForm(props: any) {
-	const oldPasswordRef = useRef<any>();
-	const newPasswordRef = useRef<any>();
+	const methods = useForm({ resolver: yupResolver(schema) });
 
-	const submitHandler = (event: any) => {
-		event.preventDefault();
-		const enteredOldPassword = oldPasswordRef.current.value;
-		const enteredNewPassword = newPasswordRef.current.value;
+	const submitHandler = (data: any) => {
+		console.log({ data });
+		const { oldPassword, newPassword } = data;
 
-		//check valid
-		props.onChangePassword({
-			oldPassword: enteredOldPassword,
-			newPassword: enteredNewPassword,
-		});
+		props.onChangePassword(data);
 	};
+
 	return (
 		//V temp / need create a user details edit page
-		<form onSubmit={submitHandler}>
-			<Box>
-				<PasswordInput ref={oldPasswordRef} label="Current password" />
-			</Box>
-			<Box>
-				<PasswordInput ref={newPasswordRef} label="New password" />
-			</Box>
-			<Box>
-				<Button type="submit">Change Password</Button>
-			</Box>
-		</form>
+		<FormProvider {...methods}>
+			<form onSubmit={methods.handleSubmit(submitHandler)}>
+				<Box>
+					<PasswordInput name="oldPassword" label="Current password" />
+				</Box>
+				<br />
+				<br />
+				<Box>
+					<PasswordInput name="newPassword" label="New password" />
+				</Box>
+				<Box>
+					<Button type="submit">Change Password</Button>
+				</Box>
+			</form>
+		</FormProvider>
 	);
 }
 

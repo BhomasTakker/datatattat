@@ -1,43 +1,47 @@
 import { TextField } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
+import { Controller, useFormContext } from "react-hook-form";
 
+//'extend' a type
 type PasswordInputProps = {
 	label?: string;
+	name?: string;
+	defaultValue?: string;
 };
 
-export const PasswordInput = React.forwardRef(
-	(props: PasswordInputProps, ref) => {
-		//We would probably want something more like this for finer grained control
-		const [value, setValue] = useState<string>("");
-		const [edited, setEdited] = useState<boolean>(false);
-		return (
-			<TextField
-				label={props.label || "password"}
-				// helperText={
-				// 	!value && edited
-				// 		? "Required"
-				// 		: "Do not share your password with anyone"
-				// }
-				type="password"
-				required
-				variant="outlined"
-				inputRef={ref}
-				// value={value}
-				// onChange={(e) => {
-				// 	setValue(e.target.value);
-				// 	setEdited(true);
-				// }}
-				// error={!value && edited}
-				// InputProps={{
-				// 	endAdornment: (
-				// 		<InputAdornment position="end">
-				// 			<VisibilityIcon onClick={() => {}} />
-				// 		</InputAdornment>
-				// 	),
-				// }}
-			></TextField>
-		);
-	}
-);
+export const PasswordInput = ({
+	label = "password",
+	name = "password",
+	defaultValue = "",
+}: PasswordInputProps) => {
+	const {
+		control,
+		formState: { errors },
+	} = useFormContext();
+
+	return (
+		//This is a withComponent
+		//TextField withFormController
+		<Controller
+			name={name}
+			control={control}
+			defaultValue={defaultValue}
+			render={({ field }) => (
+				<TextField
+					{...field}
+					// name={props.name || "password"}
+					label={label}
+					type="password"
+					required
+					variant="outlined"
+					error={!!errors[name]}
+					// possibly render undefined in a situation or just typescript blah
+					helperText={errors[name] ? `${errors[name]?.message}` : ""}
+					// helperText="I dunno man"
+				></TextField>
+			)}
+		></Controller>
+	);
+};
 
 PasswordInput.displayName = "PasswordInput";
