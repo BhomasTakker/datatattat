@@ -23,6 +23,7 @@ export default async function signUpAPI(
 	) {
 		//Need do proper responses
 		res.json({ message: "There was a problem with the details provided" });
+		return;
 	}
 
 	//single call
