@@ -19,6 +19,7 @@ import {
 	notificationTypes,
 } from "../../store/notifications/notificationSlice";
 import { useAppDispatch } from "../../store/hooks";
+import { NOTIFICATIONS } from "../../../config/notifications/notifications";
 
 export const MainHeader = () => {
 	const dispatch = useAppDispatch();
@@ -45,13 +46,7 @@ export const MainHeader = () => {
 			redirect: false,
 		});
 
-		dispatch(
-			addNotification({
-				id: "logout-success",
-				message: "User has been logged out successfully",
-				type: notificationTypes.success,
-			})
-		);
+		dispatch(addNotification(NOTIFICATIONS.userLoggedOut));
 		//assume logout successful!
 	};
 

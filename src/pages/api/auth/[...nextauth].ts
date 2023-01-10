@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { verifyPassword } from "../../../lib/auth";
 import type { NextAuthOptions } from "next-auth";
 import User from "../../../../models/User";
+import { ERRORS } from "../../../../config/errors/error-messages";
 
 export const authOptions: NextAuthOptions = {
 	session: {
@@ -21,7 +22,8 @@ export const authOptions: NextAuthOptions = {
 				const user = await User.findOne({ email: credentials!.email });
 
 				if (!user) {
-					throw new Error("No user found with that email");
+					//would actually go with something like throw createError(error.id)
+					throw new Error(ERRORS.noUser);
 				}
 
 				const isValid = await verifyPassword(
@@ -30,7 +32,7 @@ export const authOptions: NextAuthOptions = {
 				);
 
 				if (!isValid) {
-					throw new Error("Could not log you in");
+					throw new Error(ERRORS.invalidPassword);
 				}
 
 				return {

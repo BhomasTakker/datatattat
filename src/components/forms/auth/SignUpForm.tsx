@@ -15,6 +15,7 @@ import {
 	notificationTypes,
 } from "../../../store/notifications/notificationSlice";
 import { useAppDispatch } from "../../../store/hooks";
+import { NOTIFICATIONS } from "../../../../config/notifications/notifications";
 
 //need schemas and individual rules in a forms/validation lib
 const schema = yup.object().shape({
@@ -55,37 +56,21 @@ export const SignUpSignInForm = () => {
 				//create a redirect call in a router lib?
 				router.replace("/profile");
 
-				dispatch(
-					addNotification({
-						id: "login-successful",
-						message: "log in successful",
-						type: notificationTypes.success,
-					})
-				);
+				dispatch(addNotification(NOTIFICATIONS.signInSuccess));
+			} else {
+				dispatch(addNotification(NOTIFICATIONS.signInError));
 			}
 		} else {
 			//create user#
 			try {
 				const result = await createUser(data.email, data.password);
 
-				dispatch(
-					addNotification({
-						id: "account-creation-successful",
-						message: "Account Created. Welcome!",
-						type: notificationTypes.success,
-					})
-				);
+				dispatch(addNotification(NOTIFICATIONS.signUpSuccess));
 			} catch (err) {
 				//TODO error handling
 
 				console.log({ err });
-				dispatch(
-					addNotification({
-						id: "account-creation-failed",
-						message: "Account Creation Failed. ",
-						type: notificationTypes.error,
-					})
-				);
+				dispatch(addNotification(NOTIFICATIONS.signUpError));
 			}
 		}
 	}

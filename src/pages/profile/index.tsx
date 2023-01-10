@@ -12,6 +12,7 @@ import {
 	notificationTypes,
 } from "../../store/notifications/notificationSlice";
 import { useAppDispatch } from "../../store/hooks";
+import { NOTIFICATIONS } from "../../../config/notifications/notifications";
 
 function Profile() {
 	//not sure why thisa is here - probably move into form / is form specific rather than page
@@ -23,15 +24,10 @@ function Profile() {
 			//We could just call a disapatchNotification(Notification.changePasswordError) which is way better
 			//look into this - it is outside of react
 			//At least put the notification objects into a lib so all in one place
-			dispatch(
-				addNotification({
-					id: "change-password-error",
-					message: "Error changing password - password not changed",
-					type: notificationTypes.error,
-				})
-			);
+			dispatch(addNotification(NOTIFICATIONS.passwordUpdatedError));
 			return;
 		}
+		dispatch(addNotification(NOTIFICATIONS.passwordUpdatedSuccess));
 		//clear inputs
 	};
 	return (

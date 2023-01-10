@@ -1,3 +1,5 @@
+import { ERRORS } from "../../../config/errors/error-messages";
+
 export type ChangePasswordData = {
 	oldPassword: string;
 	newPassword: string;
@@ -22,7 +24,7 @@ export async function changePassword(passwordData: ChangePasswordData) {
 		return data;
 	} catch (error) {
 		//I feel like this is a better aproach?
-		return { error: true, msg: "Error chnaging user password." };
+		return { error: true, msg: ERRORS.updatePassword };
 		// throw new Error("Error chnaging user password.");
 	}
 }

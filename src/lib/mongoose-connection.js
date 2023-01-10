@@ -1,13 +1,12 @@
 //https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/lib/dbConnect.js
 
 import mongoose from "mongoose";
+import { ERRORS } from "../../config/errors/error-messages";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
-	throw new Error(
-		"Please define the MONGODB_URI environment variable inside .env.local"
-	);
+	throw new Error(ERRORS.mongoUri);
 }
 
 /**

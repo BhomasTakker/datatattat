@@ -1,3 +1,5 @@
+import { ERRORS } from "../../../config/errors/error-messages";
+
 export async function createUser(email: string, password: string) {
 	let response;
 
@@ -12,13 +14,8 @@ export async function createUser(email: string, password: string) {
 
 	const data = await response.json();
 
-	//TODO
-	//improve responses etc
 	if (!response.ok) {
-		throw new Error(data.message || "Something went wrong");
+		throw new Error(data.message || ERRORS.createUser);
 	}
-	// } catch (error) {
-	// 	console.log({ error });
-	// }
 	return data;
 }
