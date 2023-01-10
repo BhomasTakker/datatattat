@@ -5,16 +5,22 @@ import Display1 from "../components/content/Display1";
 import Display2 from "../components/content/Display2";
 import { Stack } from "@mui/material";
 import Display3 from "../components/content/Display3";
-export default function Home() {
+
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
+export default function Home(props: any) {
+	const { t } = useTranslation();
 	return (
 		<>
 			<Head>
-				<title>Bad Dog Digital</title>
+				<title>{t("common:page-title")}</title>
 				<meta name="description" content="First rendition" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className={styles.main}>
+				<h1>{t("common:page-title")}</h1>
 				<Stack spacing={2}>
 					<Counter />
 					<Display1 />
@@ -25,4 +31,17 @@ export default function Home() {
 			</main>
 		</>
 	);
+}
+
+export async function getStaticProps({ locale }: { locale: string }) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, [
+				"Home",
+				"Header",
+				"common",
+				"Notifications",
+			])),
+		},
+	};
 }

@@ -6,8 +6,9 @@ import type { AppProps } from "next/app";
 import store from "../store/store";
 import { Layout } from "../components/layout/layout";
 import { ScreenController } from "../components/layout/screen/ScreenController";
+import { appWithTranslation } from "next-i18next";
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
 	const { session } = pageProps;
 	return (
 		<SessionProvider
@@ -28,3 +29,5 @@ export default function App({ Component, pageProps }: AppProps) {
 		</SessionProvider>
 	);
 }
+
+export default appWithTranslation(App);
