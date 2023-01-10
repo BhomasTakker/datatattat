@@ -35,6 +35,7 @@ function ProfileForm(props: any) {
 		const { oldPassword, newPassword } = data;
 
 		props.onChangePassword(data);
+		//if return true clear inputs? / or just clear
 	};
 
 	return (

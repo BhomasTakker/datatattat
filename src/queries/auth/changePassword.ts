@@ -5,16 +5,24 @@ export type ChangePasswordData = {
 
 //Probably create a file of headers, of endpoints, etc, and use constants
 export async function changePassword(passwordData: ChangePasswordData) {
-	console.log({ passwordData });
-	const response = await fetch("/api/user/change-password", {
-		method: "PATCH",
-		body: JSON.stringify(passwordData),
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
+	try {
+		const response = await fetch("/api/user/change-password", {
+			method: "PATCH",
+			body: JSON.stringify(passwordData),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
 
-	const data = await response.json();
-	console.log({ data });
-	return data;
+		//we should seperate responses here?
+		//Assume if here password got changed
+
+		const data = await response.json();
+		console.log({ data });
+		return data;
+	} catch (error) {
+		//I feel like this is a better aproach?
+		return { error: true, msg: "Error chnaging user password." };
+		// throw new Error("Error chnaging user password.");
+	}
 }

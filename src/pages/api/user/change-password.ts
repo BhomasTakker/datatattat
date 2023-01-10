@@ -18,6 +18,7 @@ async function changePassword(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== "PATCH") {
 		return;
 	}
+	//how are we going to deal with an error here?
 	await mongooseConnect();
 
 	// return;

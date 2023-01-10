@@ -14,7 +14,14 @@ import { CatchingPokemon } from "@mui/icons-material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import {
+	addNotification,
+	notificationTypes,
+} from "../../store/notifications/notificationSlice";
+import { useAppDispatch } from "../../store/hooks";
+
 export const MainHeader = () => {
+	const dispatch = useAppDispatch();
 	//perhaps better got from user store then user getAuthenticated
 	const { data: session, status } = useSession();
 	const router = useRouter();
@@ -30,12 +37,22 @@ export const MainHeader = () => {
 		router.replace("/profile");
 	};
 
-	const logoutHandler = () => {
+	const logoutHandler = async () => {
 		//because we are using useSession here we will automatically re-render
 		//https://next-auth.js.org/getting-started/client#signout
-		signOut({
+		//Prob have all NextAuth calls in a lib?? So we're not all oer the place
+		const response = await signOut({
 			redirect: false,
 		});
+
+		dispatch(
+			addNotification({
+				id: "logout-success",
+				message: "User has been logged out successfully",
+				type: notificationTypes.success,
+			})
+		);
+		//assume logout successful!
 	};
 
 	const showAuthButton = (userAuthenticated: boolean) => {
