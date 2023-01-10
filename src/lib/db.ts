@@ -1,3 +1,5 @@
+//Redundant now with mongoose
+
 //rename to mongo / and or add to mongo lib folder
 
 import { MongoClient } from "mongodb";

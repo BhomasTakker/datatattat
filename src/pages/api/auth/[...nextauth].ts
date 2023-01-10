@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { verifyPassword } from "../../../lib/auth";
-import { connectToDatabase } from "../../../lib/db";
 import type { NextAuthOptions } from "next-auth";
+import User from "../../../../models/User";
 
 export const authOptions: NextAuthOptions = {
 	session: {
@@ -10,6 +10,7 @@ export const authOptions: NextAuthOptions = {
 	},
 	secret: process.env.NEXTAUTH_SECRET,
 	providers: [
+		//We want to import this because ultimately we are going to have a number of login/signup strategies
 		CredentialsProvider({
 			name: "Email",
 			credentials: {
@@ -17,14 +18,9 @@ export const authOptions: NextAuthOptions = {
 				password: { label: "Password", type: "password" },
 			},
 			async authorize(credentials, req) {
-				const client = await connectToDatabase();
-				const usersCollection = client.db().collection("users");
-				const user = await usersCollection.findOne({
-					email: credentials!.email,
-				});
+				const user = await User.findOne({ email: credentials!.email });
 
 				if (!user) {
-					client.close();
 					throw new Error("No user found with that email");
 				}
 
@@ -34,12 +30,9 @@ export const authOptions: NextAuthOptions = {
 				);
 
 				if (!isValid) {
-					client.close();
 					throw new Error("Could not log you in");
 				}
 
-				client.close();
-				//return user data here (creates json web token)
 				return {
 					email: user.email,
 					id: user._id.toString(),

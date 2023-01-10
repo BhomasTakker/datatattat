@@ -43,7 +43,6 @@ async function changePassword(req: NextApiRequest, res: NextApiResponse) {
 	if (!arePasswordsEqual) {
 		//should be notifying if password incorrect
 		res.status(403).json({ message: "Something went wrong" });
-		// client.close();
 		return;
 	}
 
