@@ -31,7 +31,6 @@ async function changePassword(req: NextApiRequest, res: NextApiResponse) {
 	const newPassword = req.body.newPassword;
 
 	const user = await User.findOne({ email: userEmail });
-	console.log({ user });
 	//list of erros/response messages in a central place
 	if (!user) {
 		res.status(404).json({ message: "User not found." });

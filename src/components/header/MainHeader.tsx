@@ -19,13 +19,16 @@ import {
 	notificationTypes,
 } from "../../store/notifications/notificationSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { NOTIFICATIONS } from "../../../config/notifications/notifications";
+import { NOTIFICATIONS } from "../../lib/notifications/notifications";
+import { useTranslation } from "next-i18next";
 
 export const MainHeader = () => {
 	const dispatch = useAppDispatch();
+	const { i18n } = useTranslation();
+
 	//perhaps better got from user store then user getAuthenticated
 	const { data: session, status } = useSession();
-	const router = useRouter();
+	const { replace, locale, locales, push, pathname } = useRouter();
 	const isAuthenticated = status === "authenticated";
 	//so stuff only on authenticated
 	// if (status === "authenticated") {
@@ -35,7 +38,7 @@ export const MainHeader = () => {
 
 	//Obviously use link
 	const tempProfileHandler = () => {
-		router.replace("/profile");
+		replace("/profile");
 	};
 
 	const logoutHandler = async () => {
@@ -61,6 +64,11 @@ export const MainHeader = () => {
 		return <Button color="inherit">Login</Button>;
 	};
 
+	const changeLanguage = (lng: string) => {
+		// i18n.changeLanguage(lng);/not in next - or next-118 one of
+		replace(pathname, undefined, { locale: lng });
+	};
+
 	return (
 		<AppBar position="static">
 			<Container>
@@ -77,10 +85,15 @@ export const MainHeader = () => {
 						<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 							POKEMONAPP
 						</Typography>
+						<Typography>{`Locale ${locale}`}</Typography>
 						<Stack direction={"row"} spacing={2}>
-							{/* <Button color="inherit">Features</Button>
-							<Button color="inherit">Pricing</Button>
-							<Button color="inherit">About</Button> */}
+							{/* <Button color="inherit">Features</Button>*/}
+							<Button color="inherit" onClick={() => changeLanguage("en")}>
+								EN &#9872;
+							</Button>
+							<Button color="inherit" onClick={() => changeLanguage("es")}>
+								SV &#127462;
+							</Button>
 							<Button color="inherit" onClick={tempProfileHandler}>
 								Profile
 							</Button>

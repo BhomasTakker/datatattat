@@ -10,7 +10,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 
 export default function Home(props: any) {
-	const { t } = useTranslation();
+	const { t } = useTranslation(); //pass a prameter of 'Home' for a particular namespace / array?
 	return (
 		<>
 			<Head>
@@ -41,6 +41,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 				"Header",
 				"common",
 				"Notifications",
+				"Validation",
 			])),
 		},
 	};

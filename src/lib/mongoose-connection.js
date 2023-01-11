@@ -1,7 +1,7 @@
 //https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/lib/dbConnect.js
 
 import mongoose from "mongoose";
-import { ERRORS } from "../../config/errors/error-messages";
+import { ERRORS } from "./errors/error-messages";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 

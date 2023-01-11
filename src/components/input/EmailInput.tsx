@@ -1,6 +1,7 @@
 import { TextField } from "@mui/material";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { useTranslation } from "next-i18next";
 
 type EmailInputProps = {
 	label?: string;
@@ -20,6 +21,8 @@ export const EmailInput = ({
 		control,
 		formState: { errors },
 	} = useFormContext();
+	const { t } = useTranslation();
+
 	return (
 		<Controller
 			name={name}
@@ -35,7 +38,8 @@ export const EmailInput = ({
 					variant="outlined"
 					error={!!errors[name]}
 					// possibly render undefined in a situation or just typescript blah
-					helperText={errors[name] ? `${errors[name]?.message}` : ""}
+					// helperText={errors[name] ? `${errors[name]?.message}` : ""}
+					helperText={errors[name] ? t(`${errors[name]?.message}`) : ""}
 				></TextField>
 			)}
 		/>

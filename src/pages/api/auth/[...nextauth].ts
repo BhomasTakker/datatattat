@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { verifyPassword } from "../../../lib/auth";
 import type { NextAuthOptions } from "next-auth";
 import User from "../../../../models/User";
-import { ERRORS } from "../../../../config/errors/error-messages";
+import { ERRORS } from "../../../lib/errors/error-messages";
 
 export const authOptions: NextAuthOptions = {
 	session: {

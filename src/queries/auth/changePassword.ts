@@ -1,4 +1,4 @@
-import { ERRORS } from "../../../config/errors/error-messages";
+import { ERRORS } from "../../lib/errors/error-messages";
 
 export type ChangePasswordData = {
 	oldPassword: string;
@@ -20,7 +20,7 @@ export async function changePassword(passwordData: ChangePasswordData) {
 		//Assume if here password got changed
 
 		const data = await response.json();
-		console.log({ data });
+
 		return data;
 	} catch (error) {
 		//I feel like this is a better aproach?

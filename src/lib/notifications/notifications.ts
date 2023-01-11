@@ -1,6 +1,12 @@
 //Not really a config but... where to go?
 
-import { notificationTypes } from "../../src/store/notifications/notificationSlice";
+import { notificationTypes } from "../../store/notifications/notificationSlice";
+
+export type NotificationType = {
+	id: string;
+	message: string;
+	type: notificationTypes;
+};
 
 export const NOTIFICATIONS = {
 	//Auth

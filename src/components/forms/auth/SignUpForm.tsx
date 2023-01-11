@@ -15,22 +15,18 @@ import {
 	notificationTypes,
 } from "../../../store/notifications/notificationSlice";
 import { useAppDispatch } from "../../../store/hooks";
-import { NOTIFICATIONS } from "../../../../config/notifications/notifications";
-
+import { NOTIFICATIONS } from "../../../lib/notifications/notifications";
+import { useTranslation, i18n, I18nContext } from "next-i18next";
+import { validate } from "../../../lib/validation/form-input-validators";
 //need schemas and individual rules in a forms/validation lib
+
 const schema = yup.object().shape({
-	email: yup
-		.string()
-		.email("Please enter a valid email")
-		.required("Email is required"),
-	password: yup
-		.string()
-		.min(6, "Password must be at least 6 characters")
-		.max(15, "Password must be at most 15 characters")
-		.required("Password is required"),
+	email: validate.email,
+	password: validate.password,
 });
 
 export const SignUpSignInForm = () => {
+	const { t } = useTranslation();
 	const router = useRouter();
 	const methods = useForm({ resolver: yupResolver(schema) });
 
@@ -43,8 +39,6 @@ export const SignUpSignInForm = () => {
 	}
 
 	async function submitHandler(data: any) {
-		console.log({ data });
-
 		if (isLogin) {
 			//login / call function here
 			const result = await signIn("credentials", {
@@ -77,7 +71,7 @@ export const SignUpSignInForm = () => {
 	return (
 		<section>
 			<Typography variant="h3" component="h1">
-				{isLogin ? "Login" : "Sign Up"}
+				{isLogin ? t("Auth:login") : t("Auth:sign-up")}
 			</Typography>
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(submitHandler)}>
@@ -94,14 +88,16 @@ export const SignUpSignInForm = () => {
 
 					<Box>
 						<Button variant="contained" color="primary" type="submit">
-							{isLogin ? "Login" : "Create Account"}
+							{isLogin ? t("Auth:login") : t("Auth:create-account")}
 						</Button>
 						<Button
 							variant="outlined"
 							color="primary"
 							onClick={switchAuthModeHandler}
 						>
-							{isLogin ? "Create new account" : "Login with existing account"}
+							{isLogin
+								? t("Auth:create-new-account")
+								: t("Auth:login-with-existing")}
 						</Button>
 					</Box>
 				</form>

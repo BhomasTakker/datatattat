@@ -12,7 +12,8 @@ import {
 	notificationTypes,
 } from "../../store/notifications/notificationSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { NOTIFICATIONS } from "../../../config/notifications/notifications";
+import { NOTIFICATIONS } from "../../lib/notifications/notifications";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 function Profile() {
 	//not sure why thisa is here - probably move into form / is form specific rather than page
@@ -45,6 +46,20 @@ function Profile() {
 			</main>
 		</>
 	);
+}
+
+export async function getStaticProps({ locale }: { locale: string }) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, [
+				"Profile",
+				"Header",
+				"common",
+				"Notifications",
+				"Validation",
+			])),
+		},
+	};
 }
 
 //We need to decide upon a proper authentication strategy
