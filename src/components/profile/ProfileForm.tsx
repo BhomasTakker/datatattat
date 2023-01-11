@@ -4,6 +4,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { validate } from "../../lib/validation/form-input-validators";
+import { useTranslation } from "next-i18next";
 
 const { oldPassword, newPassword } = validate;
 
@@ -14,6 +15,7 @@ const schema = yup.object().shape({
 });
 
 function ProfileForm(props: any) {
+	const { t } = useTranslation();
 	const methods = useForm({ resolver: yupResolver(schema) });
 
 	const submitHandler = (data: any) => {
@@ -26,15 +28,21 @@ function ProfileForm(props: any) {
 		<FormProvider {...methods}>
 			<form onSubmit={methods.handleSubmit(submitHandler)}>
 				<Box>
-					<PasswordInput name="oldPassword" label="Current password" />
+					<PasswordInput
+						name="oldPassword"
+						label={t("Profile:current-password") as string}
+					/>
 				</Box>
 				<br />
 				<br />
 				<Box>
-					<PasswordInput name="newPassword" label="New password" />
+					<PasswordInput
+						name="newPassword"
+						label={t("Profile:new-password") as string}
+					/>
 				</Box>
 				<Box>
-					<Button type="submit">Change Password</Button>
+					<Button type="submit">{t("Profile:change-password")}</Button>
 				</Box>
 			</form>
 		</FormProvider>

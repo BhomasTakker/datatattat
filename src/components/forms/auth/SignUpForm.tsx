@@ -46,6 +46,9 @@ export const SignUpSignInForm = () => {
 				...data,
 			});
 
+			console.log({ data });
+			console.log({ result });
+
 			if (!result!.error) {
 				//create a redirect call in a router lib?
 				router.replace("/profile");

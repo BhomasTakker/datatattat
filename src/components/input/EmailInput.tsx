@@ -13,7 +13,8 @@ type EmailInputProps = {
 //Is a simple input for timebeing
 //verbose is better than generic sometimes
 export const EmailInput = ({
-	label = "email",
+	//we're going to need a way better way of managing this
+	label = "Auth:email",
 	name = "email",
 	defaultValue = "",
 }: EmailInputProps) => {
@@ -32,7 +33,7 @@ export const EmailInput = ({
 				<TextField
 					{...field}
 					name={name}
-					label={label}
+					label={t(label)}
 					type="email"
 					required
 					variant="outlined"

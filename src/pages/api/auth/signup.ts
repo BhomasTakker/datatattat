@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import User from "../../../../models/User";
 import { hashPassword } from "../../../lib/auth";
+import mongooseConnect from "../../../lib/mongoose-connection";
 
 export default async function signUpAPI(
 	req: NextApiRequest,
@@ -24,11 +25,17 @@ export default async function signUpAPI(
 		return;
 	}
 
-	const existingUser = await User.findOne({ email });
+	await mongooseConnect();
 
-	if (existingUser) {
-		res.status(422).json({ message: "Email exists" });
-		return;
+	try {
+		const existingUser = await User.findOne({ email });
+
+		if (existingUser) {
+			res.status(422).json({ message: "Email exists" });
+			return;
+		}
+	} catch (err) {
+		console.log("error finding user");
 	}
 
 	const hashedPassword = await hashPassword(password);

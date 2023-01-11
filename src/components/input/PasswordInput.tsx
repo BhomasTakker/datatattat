@@ -11,7 +11,7 @@ type PasswordInputProps = {
 };
 
 export const PasswordInput = ({
-	label = "password",
+	label = "Auth:password",
 	name = "password",
 	defaultValue = "",
 }: PasswordInputProps) => {
@@ -21,6 +21,8 @@ export const PasswordInput = ({
 	} = useFormContext();
 
 	const { t } = useTranslation();
+
+	console.log({ p: t(label) });
 
 	return (
 		//This is a withComponent
@@ -33,7 +35,7 @@ export const PasswordInput = ({
 				<TextField
 					{...field}
 					// name={props.name || "password"}
-					label={label}
+					label={t(label)}
 					type="password"
 					required
 					variant="outlined"
