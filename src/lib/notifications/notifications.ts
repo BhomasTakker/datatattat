@@ -2,11 +2,13 @@
 
 import { notificationTypes } from "../../store/notifications/notificationSlice";
 
-export type NotificationType = {
-	id: string;
-	message: string;
-	type: notificationTypes;
-};
+//in slice
+// export type NotificationType = {
+// 	id: string;
+// 	message: string;
+// 	type: notificationTypes;
+// 	i18n: string;
+// };
 
 export const NOTIFICATIONS = {
 	//Auth

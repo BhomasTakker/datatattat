@@ -18,9 +18,12 @@ import {
 	addNotification,
 	notificationTypes,
 } from "../../store/notifications/notificationSlice";
+
 import { useAppDispatch } from "../../store/hooks";
 import { NOTIFICATIONS } from "../../lib/notifications/notifications";
 import { useTranslation } from "next-i18next";
+import { setLocale } from "../../store/locale/localeSlice";
+import { LanguageType } from "../../types/locale";
 
 export const MainHeader = () => {
 	const dispatch = useAppDispatch();
@@ -64,9 +67,15 @@ export const MainHeader = () => {
 		return <Button color="inherit">Login</Button>;
 	};
 
-	const changeLanguage = (lng: string) => {
+	const changeLanguage = (lng: LanguageType) => {
 		// i18n.changeLanguage(lng);/not in next - or next-118 one of
-		replace(pathname, undefined, { locale: lng });
+		// if (lng !== "en") {
+		// 	document.dir = "rtl";
+		// } else {
+		// 	document.dir = "ltr";
+		// }
+		dispatch(setLocale(lng));
+		// replace(pathname, undefined, { locale: lng });
 	};
 
 	return (
@@ -88,11 +97,17 @@ export const MainHeader = () => {
 						<Typography>{`Locale ${locale}`}</Typography>
 						<Stack direction={"row"} spacing={2}>
 							{/* <Button color="inherit">Features</Button>*/}
-							<Button color="inherit" onClick={() => changeLanguage("en")}>
+							<Button
+								color="inherit"
+								onClick={() => changeLanguage(LanguageType.EN)}
+							>
 								EN &#9872;
 							</Button>
-							<Button color="inherit" onClick={() => changeLanguage("es")}>
-								SV &#127462;
+							<Button
+								color="inherit"
+								onClick={() => changeLanguage(LanguageType.AR)}
+							>
+								AR &#127462;
 							</Button>
 							<Button color="inherit" onClick={tempProfileHandler}>
 								Profile

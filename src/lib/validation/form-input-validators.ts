@@ -9,7 +9,10 @@ import * as yup from "yup";
 //       })
 //       .oneOf([Yup.ref('password')], 'Passwords must match')
 //export validate auth
+
+///////////////////////////////////////////////
 //ultimately going to be a very large number?
+//need split
 export const validate = {
 	email: yup
 		.string()

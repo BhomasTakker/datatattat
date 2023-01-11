@@ -7,6 +7,7 @@ import store from "../store/store";
 import { Layout } from "../components/layout/layout";
 import { ScreenController } from "../components/layout/screen/ScreenController";
 import { appWithTranslation } from "next-i18next";
+import { LocaleProvider } from "../components/layout/locale/LocaleProvider";
 
 function App({ Component, pageProps }: AppProps) {
 	const { session } = pageProps;
@@ -20,10 +21,13 @@ function App({ Component, pageProps }: AppProps) {
 		>
 			<Provider store={store}>
 				{/* Layout or behaviours etc */}
+				{/* Have a behaviours and a layout so we don't end up with 100s of nesting? */}
 				<ScreenController>
-					<Layout>
-						<Component {...pageProps} />
-					</Layout>
+					<LocaleProvider>
+						<Layout>
+							<Component {...pageProps} />
+						</Layout>
+					</LocaleProvider>
 				</ScreenController>
 			</Provider>
 		</SessionProvider>
