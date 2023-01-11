@@ -4,11 +4,13 @@ import { removeActiveNotification } from "../../../store/notifications/notificat
 import { useAppDispatch } from "../../../store/hooks";
 import { useAppSelector } from "../../../store/hooks";
 import { activeNotification } from "../../../store/notifications/notificationSlice";
+import { useTranslation } from "next-i18next";
 
 //Revisit this - we want notifications to 'stack'
 export const Notification = () => {
 	const currentNotification = useAppSelector(activeNotification);
 	const dispatch = useAppDispatch();
+	const { t } = useTranslation("Notifications");
 
 	const onClose = (e: React.SyntheticEvent | Event, reason?: string) => {
 		if (reason === "clickaway") {
@@ -23,7 +25,7 @@ export const Notification = () => {
 		notification = (
 			<Snackbar open={true} autoHideDuration={3000} onClose={onClose}>
 				<SnackbarAlert onClose={onClose} severity={currentNotification.type}>
-					{currentNotification.message}
+					{t(currentNotification.i18n)}
 				</SnackbarAlert>
 			</Snackbar>
 		);

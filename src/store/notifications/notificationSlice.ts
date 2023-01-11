@@ -13,6 +13,7 @@ export type Notification = {
 	id: string;
 	message: string;
 	type: notificationTypes;
+	i18n: string;
 };
 
 export interface NavigationState {

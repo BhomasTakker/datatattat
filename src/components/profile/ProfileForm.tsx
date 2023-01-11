@@ -15,7 +15,8 @@ const schema = yup.object().shape({
 });
 
 function ProfileForm(props: any) {
-	const { t } = useTranslation();
+	//probably nicer to use
+	const { t } = useTranslation("Profile");
 	const methods = useForm({ resolver: yupResolver(schema) });
 
 	const submitHandler = (data: any) => {
@@ -30,7 +31,7 @@ function ProfileForm(props: any) {
 				<Box>
 					<PasswordInput
 						name="oldPassword"
-						label={t("Profile:current-password") as string}
+						label={t("current-password") as string}
 					/>
 				</Box>
 				<br />
@@ -38,11 +39,11 @@ function ProfileForm(props: any) {
 				<Box>
 					<PasswordInput
 						name="newPassword"
-						label={t("Profile:new-password") as string}
+						label={t("new-password") as string}
 					/>
 				</Box>
 				<Box>
-					<Button type="submit">{t("Profile:change-password")}</Button>
+					<Button type="submit">{t("change-password")}</Button>
 				</Box>
 			</form>
 		</FormProvider>
