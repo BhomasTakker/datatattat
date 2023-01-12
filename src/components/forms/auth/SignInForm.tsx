@@ -18,7 +18,6 @@ import { validate } from "../../../lib/validation/form-input-validators";
 import { AuthInputs } from "./AuthInputs";
 //need schemas and individual rules in a forms/validation lib
 
-//get these all from somewhere
 const schema = yup.object().shape({
 	email: validate.email,
 	password: validate.password,

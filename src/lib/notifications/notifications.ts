@@ -1,7 +1,6 @@
-//Not really a config but... where to go?
-
 import { notificationTypes } from "../../store/notifications/notificationSlice";
 
+//Split up into files and null export pattern
 //in slice
 // export type NotificationType = {
 // 	id: string;

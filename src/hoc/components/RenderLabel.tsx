@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import { Typography } from "@mui/material";
 import { ElementType } from "react";
 import { Variant } from "@mui/material/styles/createTypography";
@@ -17,7 +16,7 @@ export const renderLabel = ({
 	visualWeight = "h6",
 	semanticWeight = "h6",
 }: RenderLabelPropsType) => {
-	return () => {
+	return function renderLabelHOC() {
 		return (
 			<Typography variant={visualWeight} component={semanticWeight}>
 				{label}

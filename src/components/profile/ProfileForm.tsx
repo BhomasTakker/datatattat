@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { validate } from "../../lib/validation/form-input-validators";
 import { useTranslation } from "next-i18next";
+import { ChangePasswordData } from "../../queries/auth/changePassword";
 
 const { oldPassword, newPassword } = validate;
 
@@ -14,7 +15,11 @@ const schema = yup.object().shape({
 	newPassword,
 });
 
-function ProfileForm(props: any) {
+type Props = {
+	onChangePassword: (passwordData: ChangePasswordData) => Promise<void>;
+};
+
+function ProfileForm(props: Props) {
 	//probably nicer to use
 	const { t } = useTranslation("Profile");
 	const methods = useForm({ resolver: yupResolver(schema) });

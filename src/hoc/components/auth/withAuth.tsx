@@ -2,15 +2,15 @@
 //https://next-auth.js.org/tutorials/securing-pages-and-api-routes#using-gettoken
 
 import { useSession } from "next-auth/react";
-import { FC, useEffect } from "react";
+import { useEffect, ReactNode } from "react";
 import { LoadingSpinner } from "../../../components/loading/LoadingSpinner";
 import { renderLabel } from "../RenderLabel";
 
 type Props = {
-	children: React.ReactNode;
+	children: ReactNode;
 };
 
-const WithAuth: FC<Props> = ({ children }: Props) => {
+const WithAuth = ({ children }: Props) => {
 	//TODO - use redux to store/update user status - seems like a better way??
 	const { data: session, status } = useSession();
 	const isAuthenticated = status === "authenticated";
@@ -39,12 +39,11 @@ const WithAuth: FC<Props> = ({ children }: Props) => {
 
 //better way to do in Typescript?
 //Is it just classes?
-export const withAuth =
-	(Component: any) =>
-	// eslint-disable-next-line react/display-name
-	({ ...props }) =>
-		(
+export const withAuth = (Component: any) =>
+	function WithAuthHOC({ ...props }) {
+		return (
 			<WithAuth>
 				<Component {...props} />
 			</WithAuth>
 		);
+	};

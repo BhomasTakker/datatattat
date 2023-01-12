@@ -1,21 +1,19 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, ReactNode } from "react";
 import { useAppDispatch } from "../../../store/hooks";
 import { setDimensions } from "../../../store/screen/screenSlice";
 
 type Props = {
-	children: React.ReactNode;
+	children: ReactNode;
 };
 
-//Is this is the wrong aproach?
-//I mean it works kinda well and is react based ???
-//Would prefer out of react perhaps as not technically specific
-export const ScreenController: FC<Props> = ({ children }) => {
+export const ScreenController = ({ children }: Props): ReactElement => {
 	const dispatch = useAppDispatch();
 
+	//We should check dimensions against set breakpoints here and only update redux when we have to
+	//i.e. sm, md, lg, etc
+	//at the moment we are just polluting redux
+
 	useEffect(() => {
-		//need to set here since values are initialised to 0, 0 and size defaults to sm
-		//This may be a problem in testing?
-		//in useEffect tho lol
 		dispatch(
 			setDimensions({
 				width: window.innerWidth,
