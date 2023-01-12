@@ -1,0 +1,3 @@
+https://www.youtube.com/watch?v=L8_98i_bMMA
+
+Seems like create a layout and add fonts to class name as per the tutorial and those fonts will be available to all children 

@@ -14,6 +14,7 @@ import {
 import { useAppDispatch } from "../../store/hooks";
 import { NOTIFICATIONS } from "../../lib/notifications/notifications";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { i18namespace } from "../../lib/i18n/namespace-sets";
 
 function Profile() {
 	//not sure why thisa is here - probably move into form / is form specific rather than page
@@ -52,11 +53,8 @@ export async function getStaticProps({ locale }: { locale: string }) {
 	return {
 		props: {
 			...(await serverSideTranslations(locale, [
-				"Profile",
-				"Header",
-				"common",
-				"Notifications",
-				"Validation",
+				i18namespace.profile,
+				...i18namespace.common,
 			])),
 		},
 	};

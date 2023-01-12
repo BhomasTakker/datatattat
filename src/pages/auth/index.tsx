@@ -3,6 +3,7 @@ import React from "react";
 import { SignUpSignInForm } from "../../components/forms/auth/SignUpForm";
 import { withoutAuth } from "../../hoc/components/auth/withoutAuth";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { i18namespace } from "../../lib/i18n/namespace-sets";
 
 function AuthForm() {
 	return (
@@ -16,11 +17,8 @@ export async function getStaticProps({ locale }: { locale: string }) {
 	return {
 		props: {
 			...(await serverSideTranslations(locale, [
-				"Auth",
-				"Header",
-				"common",
-				"Notifications",
-				"Validation",
+				i18namespace.auth,
+				...i18namespace.common,
 			])),
 		},
 	};

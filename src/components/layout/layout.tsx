@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, ReactElement, ReactNode } from "react";
 import { MainFooter } from "../footer/MainFooter";
 import { MainHeader } from "../header/MainHeader";
 import { Container } from "@mui/material";
@@ -6,14 +6,14 @@ import { Container } from "@mui/material";
 import { Notification } from "./notifications/Notification";
 
 type Props = {
-	children: React.ReactNode;
+	children: ReactNode;
 };
 
-export const Layout: FC<Props> = (props) => {
+export const Layout = ({ children }: Props): ReactElement => {
 	return (
 		<>
 			<MainHeader />
-			<Container>{props.children}</Container>
+			<Container>{children}</Container>
 			<Notification />
 			<MainFooter />
 		</>

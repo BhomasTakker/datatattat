@@ -8,6 +8,7 @@ import Display3 from "../components/content/Display3";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { i18namespace } from "../lib/i18n/namespace-sets";
 
 export default function Home(props: any) {
 	const { t } = useTranslation(); //pass a prameter of 'Home' for a particular namespace / array?
@@ -37,11 +38,8 @@ export async function getStaticProps({ locale }: { locale: string }) {
 	return {
 		props: {
 			...(await serverSideTranslations(locale, [
-				"Home",
-				"Header",
-				"common",
-				"Notifications",
-				"Validation",
+				i18namespace.home,
+				...i18namespace.common,
 			])),
 		},
 	};

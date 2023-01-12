@@ -31,12 +31,13 @@ export const EmailInput = ({
 			defaultValue={defaultValue}
 			render={({ field }) => (
 				<TextField
+					fullWidth={true}
 					{...field}
 					name={name}
 					label={t(label)}
 					type="email"
 					required
-					variant="outlined"
+					variant="standard"
 					error={!!errors[name]}
 					// possibly render undefined in a situation or just typescript blah
 					// helperText={errors[name] ? `${errors[name]?.message}` : ""}

@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField, Input } from "@mui/material";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
@@ -33,12 +33,13 @@ export const PasswordInput = ({
 			defaultValue={defaultValue}
 			render={({ field }) => (
 				<TextField
+					fullWidth={true}
 					{...field}
 					// name={props.name || "password"}
 					label={t(label)}
 					type="password"
 					required
-					variant="outlined"
+					variant="standard"
 					error={!!errors[name]}
 					// possibly render undefined in a situation or just typescript blah
 					helperText={errors[name] ? t(`${errors[name]?.message}`) : ""}

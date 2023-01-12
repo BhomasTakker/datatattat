@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { FC, useEffect, useLayoutEffect } from "react";
+import React, { FC, useCallback, useEffect, useLayoutEffect } from "react";
 import { useAppSelector } from "../../../store/hooks";
 import { locale, rtl, dir } from "../../../store/locale/localeSlice";
 
@@ -12,17 +12,17 @@ type Props = {
 //if add router, etc, then infinite loop
 //because updating router and updating on router update
 export const LocaleProvider: FC<Props> = ({ children }) => {
-	const router = useRouter();
 	const lang = useAppSelector(locale);
+	const router = useRouter();
+
 	const direction = useAppSelector(dir);
 	const { replace, pathname } = router;
 	//Is this correct or layout effect, etc
 	useEffect(() => {
-		replace(pathname, undefined, { locale: lang });
+		const res = replace(pathname, undefined, { locale: lang })
+			.then(() => (document.dir = direction))
+			.catch((err) => console.log("try catch this " + err));
 
-		//better way to do this by specifying rtl in html header
-		//maybe make this change
-		document.dir = direction;
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [lang, direction]);
 
