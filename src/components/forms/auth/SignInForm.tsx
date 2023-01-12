@@ -2,7 +2,7 @@ import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { useRouter } from "next/router";
-import { createUser } from "../../../queries/auth/createUser";
+import { signIn } from "next-auth/react";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -18,13 +18,13 @@ import { validate } from "../../../lib/validation/form-input-validators";
 import { AuthInputs } from "./AuthInputs";
 //need schemas and individual rules in a forms/validation lib
 
-//load from somewhere
+//get these all from somewhere
 const schema = yup.object().shape({
 	email: validate.email,
 	password: validate.password,
 });
 
-export const SignUpForm = () => {
+export const SignInForm = () => {
 	const { t } = useTranslation();
 	const router = useRouter();
 	const methods = useForm({ resolver: yupResolver(schema) });
@@ -32,22 +32,30 @@ export const SignUpForm = () => {
 	const dispatch = useAppDispatch();
 
 	function switchAuthModeHandler() {
-		router.replace("/auth/signin");
+		router.replace("/auth/signup");
 	}
 
 	async function submitHandler(data: any) {
-		try {
-			const result = await createUser(data.email, data.password);
+		//login / call function here
+		const result = await signIn("credentials", {
+			redirect: false,
+			...data,
+		});
 
-			dispatch(addNotification(NOTIFICATIONS.signUpSuccess));
-		} catch (err) {
-			dispatch(addNotification(NOTIFICATIONS.signUpError));
+		//this needs a way better check what the hell is this>#?
+		if (!result!.error) {
+			//create a redirect call in a router lib?
+			router
+				.replace("/profile")
+				.then(() => dispatch(addNotification(NOTIFICATIONS.signInSuccess)));
+		} else {
+			dispatch(addNotification(NOTIFICATIONS.signInError));
 		}
 	}
 	return (
 		<section>
 			<Typography variant="h3" component="h1">
-				{t("Auth:sign-up")}
+				{t("Auth:login")}
 			</Typography>
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(submitHandler)}>
@@ -55,14 +63,14 @@ export const SignUpForm = () => {
 
 					<Box>
 						<Button variant="contained" color="primary" type="submit">
-							{t("Auth:create-account")}
+							{t("Auth:login")}
 						</Button>
 						<Button
 							variant="outlined"
 							color="primary"
 							onClick={switchAuthModeHandler}
 						>
-							{t("Auth:login-with-existing")}
+							{t("Auth:create-new-account")}
 						</Button>
 					</Box>
 				</form>

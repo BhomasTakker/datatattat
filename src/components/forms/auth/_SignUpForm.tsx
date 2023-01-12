@@ -1,7 +1,8 @@
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 import { createUser } from "../../../queries/auth/createUser";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,36 +19,61 @@ import { validate } from "../../../lib/validation/form-input-validators";
 import { AuthInputs } from "./AuthInputs";
 //need schemas and individual rules in a forms/validation lib
 
-//load from somewhere
 const schema = yup.object().shape({
 	email: validate.email,
 	password: validate.password,
 });
 
-export const SignUpForm = () => {
+export const SignUpSignInForm = () => {
 	const { t } = useTranslation();
 	const router = useRouter();
 	const methods = useForm({ resolver: yupResolver(schema) });
 
+	const [isLogin, setIsLogin] = useState(true);
+
 	const dispatch = useAppDispatch();
 
 	function switchAuthModeHandler() {
-		router.replace("/auth/signin");
+		setIsLogin((prevState) => !prevState);
 	}
 
 	async function submitHandler(data: any) {
-		try {
-			const result = await createUser(data.email, data.password);
+		if (isLogin) {
+			//login / call function here
+			const result = await signIn("credentials", {
+				redirect: false,
+				...data,
+			});
 
-			dispatch(addNotification(NOTIFICATIONS.signUpSuccess));
-		} catch (err) {
-			dispatch(addNotification(NOTIFICATIONS.signUpError));
+			console.log({ data });
+			console.log({ result });
+
+			if (!result!.error) {
+				//create a redirect call in a router lib?
+				router.replace("/profile");
+
+				dispatch(addNotification(NOTIFICATIONS.signInSuccess));
+			} else {
+				dispatch(addNotification(NOTIFICATIONS.signInError));
+			}
+		} else {
+			//create user#
+			try {
+				const result = await createUser(data.email, data.password);
+
+				dispatch(addNotification(NOTIFICATIONS.signUpSuccess));
+			} catch (err) {
+				//TODO error handling
+
+				console.log({ err });
+				dispatch(addNotification(NOTIFICATIONS.signUpError));
+			}
 		}
 	}
 	return (
 		<section>
 			<Typography variant="h3" component="h1">
-				{t("Auth:sign-up")}
+				{isLogin ? t("Auth:login") : t("Auth:sign-up")}
 			</Typography>
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(submitHandler)}>
@@ -55,14 +81,16 @@ export const SignUpForm = () => {
 
 					<Box>
 						<Button variant="contained" color="primary" type="submit">
-							{t("Auth:create-account")}
+							{isLogin ? t("Auth:login") : t("Auth:create-account")}
 						</Button>
 						<Button
 							variant="outlined"
 							color="primary"
 							onClick={switchAuthModeHandler}
 						>
-							{t("Auth:login-with-existing")}
+							{isLogin
+								? t("Auth:create-new-account")
+								: t("Auth:login-with-existing")}
 						</Button>
 					</Box>
 				</form>

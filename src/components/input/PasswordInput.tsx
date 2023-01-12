@@ -3,7 +3,8 @@ import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 
-//'extend' a type
+//look at a withController? We won't always be using TextField
+//'extend' a type and all should be required
 type PasswordInputProps = {
 	label?: string;
 	name?: string;
@@ -22,11 +23,7 @@ export const PasswordInput = ({
 
 	const { t } = useTranslation();
 
-	console.log({ p: t(label) });
-
 	return (
-		//This is a withComponent
-		//TextField withFormController
 		<Controller
 			name={name}
 			control={control}

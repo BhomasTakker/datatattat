@@ -1,8 +1,11 @@
 import { TextField } from "@mui/material";
-import React from "react";
+import React, { ReactElement } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 
+//these components need properly thinking about
+//withController works
+//TextField can be stripped down - no real distinction between email and password but props
 type EmailInputProps = {
 	label?: string;
 	name?: string;
@@ -17,7 +20,7 @@ export const EmailInput = ({
 	label = "Auth:email",
 	name = "email",
 	defaultValue = "",
-}: EmailInputProps) => {
+}: EmailInputProps): ReactElement => {
 	const {
 		control,
 		formState: { errors },
