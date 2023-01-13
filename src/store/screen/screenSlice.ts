@@ -1,74 +1,38 @@
 //redux effetively logging for every pixel move on resize
 //Should come back to this and sort out
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import type { AppState, AppThunk } from "../store";
+import type { AppState } from "../store";
 
-//pefix all with screen and export from a types file/folder
-type Dimensions = {
-	width: number;
-	height: number;
-};
-//create enums
-type Orientation = "portrait" | "landscape";
 type Size = "xs" | "sm" | "md" | "lg" | "xl";
-
-const determineSize = ({ width }: Dimensions): Size => {
-	if (width < 600) {
-		return "xs";
-	} else if (width < 900) {
-		return "sm";
-	} else if (width < 1200) {
-		return "md";
-	} else if (width < 1536) {
-		return "lg";
-	} else {
-		return "xl";
-	}
-};
+export enum ScreenWidth {
+	XS = "xs",
+	SM = "sm",
+	MD = "md",
+	LG = "lg",
+	XL = "xl",
+}
 
 export interface CounterState {
-	dimensions: Dimensions;
-	orientation: Orientation;
 	size: Size;
 }
-//why is this a function
-const dimensions = () => ({
-	width: 0,
-	height: 0,
-});
 
 const initialState: CounterState = {
-	dimensions: dimensions(),
-	orientation: "portrait",
-	size: determineSize(dimensions()),
+	size: ScreenWidth.XS,
 };
 
 export const screenSlice = createSlice({
 	name: "screen",
 	initialState,
 	reducers: {
-		setDimensions: (state, action: PayloadAction<Dimensions>) => {
-			const { width, height } = action.payload;
-			//don't actually store dimensions - every pixel change getting stored is not okay!
-			// state.dimensions = action.payload;
-			//this check does not help!
-			if (state.size === determineSize(action.payload)) {
-				return;
-			}
-			state.size = determineSize(action.payload);
-			//orientation is really just if width > height === landscape
-			state.orientation = width >= height ? "landscape" : "portrait";
+		setScreenSize: (state, action: PayloadAction<ScreenWidth>) => {
+			state.size = action.payload;
 		},
-		setOrientation: () => {},
 	},
 });
 
-export const { setDimensions, setOrientation } = screenSlice.actions;
+export const { setScreenSize } = screenSlice.actions;
 
-//Can we just return current dimensions?
-// export const screenDimensions = (state: AppState) => state.screen.dimensions;
-export const screenOrientation = (state: AppState) => state.screen.orientation;
 export const screenSize = (state: AppState) => state.screen.size;
 
 export default screenSlice.reducer;

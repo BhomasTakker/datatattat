@@ -1,6 +1,7 @@
+import { useMediaQuery, useTheme } from "@mui/material";
 import React, { ReactElement, useEffect, ReactNode } from "react";
 import { useAppDispatch } from "../../../store/hooks";
-import { setDimensions } from "../../../store/screen/screenSlice";
+import { ScreenWidth, setScreenSize } from "../../../store/screen/screenSlice";
 
 type Props = {
 	children: ReactNode;
@@ -8,31 +9,23 @@ type Props = {
 
 export const ScreenController = ({ children }: Props): ReactElement => {
 	const dispatch = useAppDispatch();
+	const theme = useTheme();
+	//this works perfectly if a little verbose
+	const xs = useMediaQuery(theme.breakpoints.down("sm"));
+	const sm = useMediaQuery(theme.breakpoints.down("md"));
+	const md = useMediaQuery(theme.breakpoints.down("lg"));
+	const lg = useMediaQuery(theme.breakpoints.down("xl"));
+	const xl = !xs && !sm && !md && !lg;
 
-	//We should check dimensions against set breakpoints here and only update redux when we have to
-	//i.e. sm, md, lg, etc
-	//at the moment we are just polluting redux
+	let size = ScreenWidth.XS;
 
-	useEffect(() => {
-		dispatch(
-			setDimensions({
-				width: window.innerWidth,
-				height: window.innerHeight,
-			})
-		);
-		const resizeHandler = () => {
-			dispatch(
-				setDimensions({
-					width: window.innerWidth,
-					height: window.innerHeight,
-				})
-			);
-		};
-		window.addEventListener("resize", resizeHandler);
+	if (xs) size = ScreenWidth.XS;
+	if (sm) size = ScreenWidth.SM;
+	if (md) size = ScreenWidth.MD;
+	if (lg) size = ScreenWidth.LG;
+	if (xl) size = ScreenWidth.XL;
 
-		return () => {
-			window.removeEventListener("resize", resizeHandler);
-		};
-	}, [dispatch]);
+	dispatch(setScreenSize(size));
+
 	return <>{children}</>;
 };
