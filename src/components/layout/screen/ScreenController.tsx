@@ -10,6 +10,7 @@ type Props = {
 export const ScreenController = ({ children }: Props): ReactElement => {
 	const dispatch = useAppDispatch();
 	const theme = useTheme();
+
 	//this works perfectly if a little verbose
 	const xs = useMediaQuery(theme.breakpoints.down("sm"));
 	const sm = useMediaQuery(theme.breakpoints.down("md"));
@@ -20,10 +21,10 @@ export const ScreenController = ({ children }: Props): ReactElement => {
 	let size = ScreenWidth.XS;
 
 	if (xs) size = ScreenWidth.XS;
-	if (sm) size = ScreenWidth.SM;
-	if (md) size = ScreenWidth.MD;
-	if (lg) size = ScreenWidth.LG;
-	if (xl) size = ScreenWidth.XL;
+	else if (sm) size = ScreenWidth.SM;
+	else if (md) size = ScreenWidth.MD;
+	else if (lg) size = ScreenWidth.LG;
+	else size = ScreenWidth.XL;
 
 	dispatch(setScreenSize(size));
 
