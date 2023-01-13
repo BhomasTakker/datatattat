@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { useRouter } from "next/router";
@@ -53,25 +53,24 @@ export const SignInForm = () => {
 	}
 	return (
 		<section>
-			<Typography variant="h3" component="h1">
-				{t("Auth:login")}
-			</Typography>
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(submitHandler)}>
-					<AuthInputs />
+					<Stack spacing={2}>
+						<AuthInputs />
 
-					<Box>
-						<Button variant="contained" color="primary" type="submit">
-							{t("Auth:login")}
-						</Button>
-						<Button
-							variant="outlined"
-							color="primary"
-							onClick={switchAuthModeHandler}
-						>
-							{t("Auth:create-new-account")}
-						</Button>
-					</Box>
+						<Stack spacing={3}>
+							<Button variant="contained" color="primary" type="submit">
+								{t("Auth:login")}
+							</Button>
+							<Button
+								variant="text"
+								color="primary"
+								onClick={switchAuthModeHandler}
+							>
+								{t("Auth:create-new-account")}
+							</Button>
+						</Stack>
+					</Stack>
 				</form>
 			</FormProvider>
 		</section>

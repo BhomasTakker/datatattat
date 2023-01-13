@@ -3,19 +3,25 @@ import React from "react";
 import { EmailInput } from "../../input/EmailInput";
 import { PasswordInput } from "../../input/PasswordInput";
 
-export const AuthInputs = () => {
+type AuthInputsProps = {
+	confirmPassword?: boolean;
+};
+
+export const AuthInputs = ({ confirmPassword = false }) => {
 	return (
 		<>
 			<Box>
 				<EmailInput />
 			</Box>
-			{/* 
-					TODO
-					Confirm password box 
-					*/}
+
 			<Box>
 				<PasswordInput />
 			</Box>
+			{confirmPassword && (
+				<Box>
+					<PasswordInput label="Auth:confirm-password" name="confirm" />
+				</Box>
+			)}
 		</>
 	);
 };

@@ -1,1 +1,1 @@
-{"email-required":"需要一个有效的电子邮件","email-valid":"请输入有效电子邮件","password-current":"需要当前密码","password-max":"密码不得超过 15 个字符","password-min":"密码必须至少6个字符","password-new":"需要新密码","password-required":"密码是必需的"}
+{"email-required":"需要一个有效的电子邮件","email-valid":"请输入有效电子邮件","password-confirm":"确认密码是必需的","password-current":"需要当前密码","password-match":"密码必须匹配","password-max":"密码不得超过 15 个字符","password-min":"密码必须至少6个字符","password-new":"需要新密码","password-required":"密码是必需的"}

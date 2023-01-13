@@ -1,5 +1,6 @@
 import React, { FC, ReactComponentElement } from "react";
 import { useSession, signOut } from "next-auth/react";
+import styles from "./main-header.module.css";
 import {
 	AppBar,
 	Button,
@@ -9,7 +10,6 @@ import {
 	Typography,
 	Container,
 } from "@mui/material";
-import styles from "./MainHeader.module.css";
 import { CatchingPokemon } from "@mui/icons-material";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -79,44 +79,46 @@ export const MainHeader = () => {
 	};
 
 	return (
-		<AppBar position="static">
-			<Container>
-				<nav>
-					<Toolbar>
-						<IconButton
-							size="large"
-							edge="start"
-							color="inherit"
-							aria-label="logo"
-						>
-							<CatchingPokemon />
-						</IconButton>
-						<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-							POKEMONAPP
-						</Typography>
-						<Typography>{`Locale ${locale}`}</Typography>
-						<Stack direction={"row"} spacing={2}>
-							{/* <Button color="inherit">Features</Button>*/}
-							<Button
+		<header>
+			<AppBar position="static">
+				<Container>
+					<nav>
+						<Toolbar className={styles.toolbar}>
+							<IconButton
+								size="large"
+								edge="start"
 								color="inherit"
-								onClick={() => changeLanguage(LanguageType.EN)}
+								aria-label="logo"
 							>
-								EN &#9872;
-							</Button>
-							<Button
-								color="inherit"
-								onClick={() => changeLanguage(LanguageType.AR)}
-							>
-								AR &#127462;
-							</Button>
-							<Button color="inherit" onClick={tempProfileHandler}>
-								Profile
-							</Button>
-							{showAuthButton(isAuthenticated)}
-						</Stack>
-					</Toolbar>
-				</nav>
-			</Container>
-		</AppBar>
+								<CatchingPokemon />
+							</IconButton>
+							<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+								POKEMONAPP
+							</Typography>
+							<Typography>{`Locale ${locale}`}</Typography>
+							<Stack direction={"row"} spacing={2}>
+								{/* <Button color="inherit">Features</Button>*/}
+								<Button
+									color="inherit"
+									onClick={() => changeLanguage(LanguageType.EN)}
+								>
+									EN &#9872;
+								</Button>
+								<Button
+									color="inherit"
+									onClick={() => changeLanguage(LanguageType.AR)}
+								>
+									AR &#127462;
+								</Button>
+								<Button color="inherit" onClick={tempProfileHandler}>
+									Profile
+								</Button>
+								{showAuthButton(isAuthenticated)}
+							</Stack>
+						</Toolbar>
+					</nav>
+				</Container>
+			</AppBar>
+		</header>
 	);
 };

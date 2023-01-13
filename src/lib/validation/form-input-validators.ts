@@ -36,4 +36,12 @@ export const validate = {
 		.min(6, "Validation:password-min")
 		.max(15, "Validation:password-max")
 		.required("Validation:password-new"),
+
+	confirmPassword: yup
+		.string()
+		.when("password", (password, schema) => {
+			//this if is wrong
+			if (password) return schema.required("Validation:password-confirm");
+		})
+		.oneOf([yup.ref("password")], "Validation:password-match"),
 };
