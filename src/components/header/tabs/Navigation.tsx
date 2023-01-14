@@ -4,6 +4,10 @@ import { TabLink } from "../../navigation/TabLink";
 
 //dynamic list from props
 export const Navigation = () => {
+	//Would a stack work better?
+	//For main BBC like header yes?
+	//would we have a sideways scroll?
+	//Even if - should have a menu or more icon
 	return (
 		<Tabs
 			value={0}

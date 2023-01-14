@@ -3,15 +3,23 @@ import { Box, Divider, Icon, IconButton, Menu, MenuItem } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import React from "react";
 import SettingsIcon from "@mui/icons-material/SettingsOutlined";
+import { logout } from "../../../lib/auth";
+import { useRouter } from "next/router";
 
 export const UserButton = () => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+	const router = useRouter();
+
 	const open = Boolean(anchorEl);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
 	const handleClose = () => {
 		setAnchorEl(null);
+	};
+	const routeHandler = (route: string) => {
+		router.push(route);
+		handleClose(); //no wait just close?
 	};
 
 	//list should be elsewhere perhaps
@@ -41,15 +49,15 @@ export const UserButton = () => {
 				open={open}
 				onClose={handleClose}
 			>
-				<MenuItem onClick={handleClose} disableRipple>
+				<MenuItem onClick={() => routeHandler("/profile")} disableRipple>
 					Profile
 				</MenuItem>
-				<MenuItem onClick={handleClose} disableRipple>
+				<MenuItem onClick={() => routeHandler("/user/settings")} disableRipple>
 					Settings
 					<SettingsIcon />
 				</MenuItem>
 				<Divider sx={{ my: 0.5 }} />
-				<MenuItem onClick={handleClose} disableRipple>
+				<MenuItem onClick={() => logout(handleClose)} disableRipple>
 					Logout
 				</MenuItem>
 			</Menu>

@@ -13,6 +13,7 @@ import { LogInButton } from "../auth/LogInButton";
 import { SearchButton } from "../search/SearchButton";
 import { UserButton } from "../user/UserButton";
 import { LanguageSelector } from "../../navigation/language-select/LanguageSelector";
+import { MoreButton } from "../more/MoreButton";
 
 export const MainHeader = () => {
 	const dispatch = useAppDispatch();
@@ -49,7 +50,8 @@ export const MainHeader = () => {
 							<Navigation />
 
 							<Stack direction={"row"} spacing={2}>
-								<LanguageSelector />
+								<MoreButton />
+								{/* <LanguageSelector /> */}
 								{!isAuthenticated && <LogInButton />}
 								{isAuthenticated && <UserButton />}
 							</Stack>

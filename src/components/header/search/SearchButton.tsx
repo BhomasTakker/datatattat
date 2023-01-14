@@ -17,7 +17,7 @@ export const SearchButton = () => {
 		push("/auth/search");
 	};
 
-	if (size === ScreenWidth.XS) {
+	if (size === ScreenWidth.SM || size === ScreenWidth.XS) {
 		return (
 			<IconButton color="inherit" aria-label="search" onClick={searchHandler}>
 				<SearchIcon />
