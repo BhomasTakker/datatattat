@@ -26,7 +26,9 @@ export const ScreenController = ({ children }: Props): ReactElement => {
 	else if (lg) size = ScreenWidth.LG;
 	else size = ScreenWidth.XL;
 
-	dispatch(setScreenSize(size));
+	useEffect(() => {
+		dispatch(setScreenSize(size));
+	}, [size, dispatch]);
 
 	return <>{children}</>;
 };

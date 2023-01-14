@@ -1,0 +1,18 @@
+.icon {
+	height: 1rem;
+}
+
+/* .item {
+	display: flex;
+	justify-content: space-between;
+} */
+
+.control {
+	background-color: rgba(255, 255, 255, 0.2);
+	border-radius: 5%;
+	padding-top: 0.5rem;
+}
+
+.input {
+	padding-top: 0;
+}

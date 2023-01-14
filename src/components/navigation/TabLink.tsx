@@ -15,7 +15,6 @@ export const TabLink = ({
 }) => {
 	const theme = useTheme();
 
-	console.log({ theme });
 	//we need to underline like selected on hover
 	return (
 		<Link href={href}>
