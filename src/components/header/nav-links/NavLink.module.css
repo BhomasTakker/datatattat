@@ -1,0 +1,12 @@
+.container {
+	/* min-width: 80px;
+	width: 80px; */
+}
+
+.link {
+	color: white;
+	opacity: 1;
+	border-radius: 5%;
+	white-space: nowrap;
+	text-align: center;
+}
