@@ -8,7 +8,14 @@ import Collapse from "@mui/material/Collapse";
 ////////////////////////////////////////////////////////////////////
 import { useSession } from "next-auth/react";
 import styles from "./main-header.module.css";
-import { AppBar, Toolbar, Stack, Container, Box } from "@mui/material";
+import {
+	AppBar,
+	Toolbar,
+	Stack,
+	Container,
+	Box,
+	ClickAwayListener,
+} from "@mui/material";
 import { DTALogo } from "../../layout/logo/DTALogo";
 import { Navigation } from "../nav-links/Navigation";
 import { LogInButton } from "../auth/LogInButton";
@@ -17,8 +24,7 @@ import { UserButton } from "../user/UserButton";
 import { LanguageSelector } from "../../navigation/language-select/LanguageSelector";
 import { MoreButton } from "../more/MoreButton";
 import { NavLink, NavLinkData } from "../nav-links/NavLink";
-import Menu from "@mui/icons-material/Menu";
-import { BaseLink } from "../nav-links/BaseLink";
+import { DropdownMenu } from "../dropdown/DropdownMenu";
 
 const LINKS: NavLinkData[] = [
 	{
@@ -63,30 +69,23 @@ export const MainHeader = () => {
 		setShowMore(menuList.length > 0);
 	};
 
-	const renderSubMenu = (): ReactElement[] => {
-		return LINKS.map((link) => (
-			<BaseLink
-				key={link.label}
-				link={link.link}
-				label={link.label}
-				color="primary"
-			/>
-		));
+	//required because if you click the menu button to close
+	//two events will be fired cancelling the close...
+	const showMenuHandler = () => {
+		const debounce = setInterval(() => {
+			clearInterval(debounce);
+			setIsMenuShowing(!isMenuShowing);
+		}, 100);
 	};
 
-	///////////////////////////////
-	//We need / or do we?
-	//css in modules
-	//Begs question what css should be in a module file what shouldn't
-	//or is it blanket should unless a dynamic value
-	//Overflow hidden in this instance is a requirement or the dynamic nav just won't work
-	//And is that the line that answers the question?
-	//p.s. language selectr doesn't live here - also needs redoing
-	/////////////////////////////////////
-	const menuClass = isMenuShowing
-		? styles.subMenuClosed + " " + styles.subMenuOpen
-		: styles.subMenuClosed;
-	// let menuClass = styles.subMenuClosed;
+	const clickAwayHandler = () => {
+		if (!isMenuShowing) {
+			return;
+		}
+
+		showMenuHandler();
+	};
+
 	return (
 		<header>
 			<AppBar position="static">
@@ -107,11 +106,7 @@ export const MainHeader = () => {
 							</Box>
 
 							<Stack direction={"row"} spacing={2}>
-								{showMore && (
-									<MoreButton
-										onClickHandler={() => setIsMenuShowing(!isMenuShowing)}
-									/>
-								)}
+								{showMore && <MoreButton onClickHandler={showMenuHandler} />}
 								{/* <LanguageSelector /> */}
 								{!isAuthenticated && <LogInButton />}
 								{isAuthenticated && <UserButton />}
@@ -120,21 +115,21 @@ export const MainHeader = () => {
 					</nav>
 				</Container>
 			</AppBar>
-
-			{/* Effectively unable to get this working as intended  */}
-			{/* <Transition in={isMenuShowing} timeout={500} mountOnEnter unmountOnExit>
-				{(state) => (
-					<> */}
-			<Box className={menuClass}>
-				{/* withAnimation  */}
-
-				{renderSubMenu()}
-
-				{/* <TransitionGroup>{renderSubMenu()}</TransitionGroup> */}
-			</Box>
-			{/* </>
-				)}
-			</Transition> */}
+			{/* Perhaps needs extracting as expected to change - also is here the best place or pass onClose handler? */}
+			<ClickAwayListener
+				mouseEvent="onMouseDown"
+				touchEvent="onTouchStart"
+				onClickAway={clickAwayHandler}
+			>
+				<Box>
+					{/* better name */}
+					<DropdownMenu
+						links={LINKS}
+						isShowing={isMenuShowing}
+						onClose={showMenuHandler}
+					/>
+				</Box>
+			</ClickAwayListener>
 		</header>
 	);
 };
