@@ -3,13 +3,13 @@
 }
 
 .header {
-	position: absolute;
+	/* position: absolute; */
 	width: 100vw;
 }
 
 .content {
 	min-height: 89vh;
-	height: 89vh;
+	/* height: 89vh; */
 }
 
 .footer {
