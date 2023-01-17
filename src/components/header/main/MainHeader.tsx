@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 //http://reactcommunity.org/react-transition-group/transition-group
 //I'd say abstract to something / need go over
 //Example from
 //https://mui.com/material-ui/transitions/
-import { TransitionGroup } from "react-transition-group";
+import { Transition, TransitionGroup } from "react-transition-group";
 import Collapse from "@mui/material/Collapse";
 ////////////////////////////////////////////////////////////////////
 import { useSession } from "next-auth/react";
@@ -20,12 +20,37 @@ import { NavLink, NavLinkData } from "../nav-links/NavLink";
 import Menu from "@mui/icons-material/Menu";
 import { BaseLink } from "../nav-links/BaseLink";
 
+const LINKS: NavLinkData[] = [
+	{
+		label: "Home",
+		link: "/",
+	},
+	{
+		label: "Profile",
+		link: "/profile",
+	},
+	{
+		label: "404",
+		link: "/404",
+	},
+	{
+		label: "Sign Up",
+		link: "/auth/signup",
+	},
+	{
+		label: "Sign In",
+		link: "/auth/signin",
+	},
+	{
+		label: "Auth",
+		link: "/auth",
+	},
+];
+
 //this re-renders a lot...
 export const MainHeader = () => {
 	const [showMore, setShowMore] = useState(false);
-	const [isOverflowVisible, setIsOverflowVisible] = useState(false);
-	const [overflowMenuList, setOverflowMenuList] = useState<NavLinkData[]>([]);
-	// let overflowMenuList: NavLinkData[] = [];
+	const [isMenuShowing, setIsMenuShowing] = useState(false);
 
 	//perhaps better got from user store then user getAuthenticated
 	const { data: session, status } = useSession();
@@ -34,25 +59,20 @@ export const MainHeader = () => {
 	//This should possibly all be useContext
 	//It all works now but think about it
 	const subMenuUpdatedHandler = (menuList: NavLinkData[]) => {
-		// console.log({ menuList });
+		console.log({ menuList });
 		setShowMore(menuList.length > 0);
-		// // setOverflowMenuList(menuList);
-		// console.log({ overflowMenuList });
 	};
 
-	// const createOverflowMenu = () => {
-	// 	return overflowMenuList.map((link) => (
-	// 		<BaseLink link={link.link} label={link.label} key={link.label}></BaseLink>
-	// 	));
-	// };
-
-	// const renderOverflowMenu = () => {
-	// 	const menu = isOverflowVisible ? createOverflowMenu() : [];
-	// 	console.log({ menu });
-	// 	console.log({ overflowMenuList });
-	// 	console.log({ isOverflowVisible });
-	// 	return <Collapse key="Overflow-Menu">{menu}</Collapse>;
-	// };
+	const renderSubMenu = (): ReactElement[] => {
+		return LINKS.map((link) => (
+			<BaseLink
+				key={link.label}
+				link={link.link}
+				label={link.label}
+				color="primary"
+			/>
+		));
+	};
 
 	///////////////////////////////
 	//We need / or do we?
@@ -63,6 +83,10 @@ export const MainHeader = () => {
 	//And is that the line that answers the question?
 	//p.s. language selectr doesn't live here - also needs redoing
 	/////////////////////////////////////
+	const menuClass = isMenuShowing
+		? styles.subMenuClosed + " " + styles.subMenuOpen
+		: styles.subMenuClosed;
+	// let menuClass = styles.subMenuClosed;
 	return (
 		<header>
 			<AppBar position="static">
@@ -76,13 +100,16 @@ export const MainHeader = () => {
 							</Stack>
 
 							<Box sx={{ overflow: "hidden" }}>
-								<Navigation onMenuUpdate={subMenuUpdatedHandler} />
+								<Navigation
+									navLinks={LINKS}
+									onMenuUpdate={subMenuUpdatedHandler}
+								/>
 							</Box>
 
 							<Stack direction={"row"} spacing={2}>
 								{showMore && (
 									<MoreButton
-										onClickHandler={() => console.log("menu clicked")}
+										onClickHandler={() => setIsMenuShowing(!isMenuShowing)}
 									/>
 								)}
 								{/* <LanguageSelector /> */}
@@ -93,9 +120,21 @@ export const MainHeader = () => {
 					</nav>
 				</Container>
 			</AppBar>
-			{/* <Box sx={{ mt: 1, width: "100%", backgroundColor: "white" }}>
-				<TransitionGroup>{renderOverflowMenu()}</TransitionGroup>
-			</Box> */}
+
+			{/* Effectively unable to get this working as intended  */}
+			{/* <Transition in={isMenuShowing} timeout={500} mountOnEnter unmountOnExit>
+				{(state) => (
+					<> */}
+			<Box className={menuClass}>
+				{/* withAnimation  */}
+
+				{renderSubMenu()}
+
+				{/* <TransitionGroup>{renderSubMenu()}</TransitionGroup> */}
+			</Box>
+			{/* </>
+				)}
+			</Transition> */}
 		</header>
 	);
 };
