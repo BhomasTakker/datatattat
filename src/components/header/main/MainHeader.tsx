@@ -75,7 +75,7 @@ export const MainHeader = () => {
 		const debounce = setInterval(() => {
 			clearInterval(debounce);
 			setIsMenuShowing(!isMenuShowing);
-		}, 100);
+		}, 200);
 	};
 
 	const clickAwayHandler = () => {
