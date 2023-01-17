@@ -8,16 +8,7 @@ import Collapse from "@mui/material/Collapse";
 ////////////////////////////////////////////////////////////////////
 import { useSession } from "next-auth/react";
 import styles from "./main-header.module.css";
-import {
-	AppBar,
-	Toolbar,
-	Stack,
-	Container,
-	Box,
-	Accordion,
-	AccordionSummary,
-	AccordionDetails,
-} from "@mui/material";
+import { AppBar, Toolbar, Stack, Container, Box } from "@mui/material";
 import { DTALogo } from "../../layout/logo/DTALogo";
 import { Navigation } from "../nav-links/Navigation";
 import { LogInButton } from "../auth/LogInButton";
@@ -33,7 +24,8 @@ import { BaseLink } from "../nav-links/BaseLink";
 export const MainHeader = () => {
 	const [showMore, setShowMore] = useState(false);
 	const [isOverflowVisible, setIsOverflowVisible] = useState(false);
-	let overflowMenuList: NavLinkData[] = [];
+	const [overflowMenuList, setOverflowMenuList] = useState<NavLinkData[]>([]);
+	// let overflowMenuList: NavLinkData[] = [];
 
 	//perhaps better got from user store then user getAuthenticated
 	const { data: session, status } = useSession();
@@ -42,25 +34,25 @@ export const MainHeader = () => {
 	//This should possibly all be useContext
 	//It all works now but think about it
 	const subMenuUpdatedHandler = (menuList: NavLinkData[]) => {
-		console.log({ menuList });
+		// console.log({ menuList });
 		setShowMore(menuList.length > 0);
-		overflowMenuList = menuList;
-		console.log({ overflowMenuList });
+		// // setOverflowMenuList(menuList);
+		// console.log({ overflowMenuList });
 	};
 
-	const createOverflowMenu = () => {
-		return overflowMenuList.map((link) => (
-			<BaseLink link={link.link} label={link.label} key={link.label}></BaseLink>
-		));
-	};
+	// const createOverflowMenu = () => {
+	// 	return overflowMenuList.map((link) => (
+	// 		<BaseLink link={link.link} label={link.label} key={link.label}></BaseLink>
+	// 	));
+	// };
 
-	const renderOverflowMenu = () => {
-		const menu = isOverflowVisible ? createOverflowMenu() : [];
-		console.log({ menu });
-		console.log({ overflowMenuList });
-		console.log({ isOverflowVisible });
-		return <Collapse key="Overflow-Menu">{menu}</Collapse>;
-	};
+	// const renderOverflowMenu = () => {
+	// 	const menu = isOverflowVisible ? createOverflowMenu() : [];
+	// 	console.log({ menu });
+	// 	console.log({ overflowMenuList });
+	// 	console.log({ isOverflowVisible });
+	// 	return <Collapse key="Overflow-Menu">{menu}</Collapse>;
+	// };
 
 	///////////////////////////////
 	//We need / or do we?
@@ -90,7 +82,7 @@ export const MainHeader = () => {
 							<Stack direction={"row"} spacing={2}>
 								{showMore && (
 									<MoreButton
-										onClickHandler={() => setIsOverflowVisible(true)}
+										onClickHandler={() => console.log("menu clicked")}
 									/>
 								)}
 								{/* <LanguageSelector /> */}
@@ -101,9 +93,9 @@ export const MainHeader = () => {
 					</nav>
 				</Container>
 			</AppBar>
-			<Box sx={{ mt: 1, width: "100%", backgroundColor: "white" }}>
+			{/* <Box sx={{ mt: 1, width: "100%", backgroundColor: "white" }}>
 				<TransitionGroup>{renderOverflowMenu()}</TransitionGroup>
-			</Box>
+			</Box> */}
 		</header>
 	);
 };
