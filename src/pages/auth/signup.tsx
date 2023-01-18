@@ -14,12 +14,12 @@ function SignUp() {
 		<>
 			<DTAHead />
 			<main className={styles.layout}>
-				<Box className={styles.content}>
+				{/* <Box className={styles.content}>
 					<Typography variant="h4" component="h1">
 						{t("Auth:sign-up")}
-					</Typography>
-					<SignUpForm />
-				</Box>
+					</Typography> */}
+				<SignUpForm />
+				{/* </Box> */}
 			</main>
 		</>
 	);

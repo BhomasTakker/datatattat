@@ -14,13 +14,12 @@ function SignIn() {
 		<>
 			<DTAHead />
 			<main className={styles.layout}>
-				<Box className={styles.content}>
-					{/* create title */}
+				{/* <Box className={styles.content}>
 					<Typography variant="h4" component="h1">
 						{t("Auth:login")}
-					</Typography>
-					<SignInForm />
-				</Box>
+					</Typography> */}
+				<SignInForm />
+				{/* </Box> */}
 			</main>
 		</>
 	);

@@ -1,3 +1,4 @@
+import styles from "./Auth.module.css";
 import { Button, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
@@ -46,30 +47,35 @@ export const SignUpForm = () => {
 		}
 	}
 	return (
-		<section>
-			{/* <Typography variant="h3" component="h1">
+		<Box className={styles.content}>
+			<Typography variant="h4" component="h1">
+				{t("Auth:sign-up")}
+			</Typography>
+			<section>
+				{/* <Typography variant="h3" component="h1">
 				{t("Auth:sign-up")}
 			</Typography> */}
-			<FormProvider {...methods}>
-				<form onSubmit={methods.handleSubmit(submitHandler)}>
-					<Stack spacing={2}>
-						<AuthInputs confirmPassword />
-						{/* buttons the same but for labels and onClick */}
-						<Stack spacing={3}>
-							<Button variant="contained" color="primary" type="submit">
-								{t("Auth:create-account")}
-							</Button>
-							<Button
-								variant="text"
-								color="primary"
-								onClick={switchAuthModeHandler}
-							>
-								{t("Auth:login-with-existing")}
-							</Button>
+				<FormProvider {...methods}>
+					<form onSubmit={methods.handleSubmit(submitHandler)}>
+						<Stack spacing={2}>
+							<AuthInputs confirmPassword />
+							{/* buttons the same but for labels and onClick */}
+							<Stack spacing={3}>
+								<Button variant="contained" color="primary" type="submit">
+									{t("Auth:create-account")}
+								</Button>
+								<Button
+									variant="text"
+									color="primary"
+									onClick={switchAuthModeHandler}
+								>
+									{t("Auth:login-with-existing")}
+								</Button>
+							</Stack>
 						</Stack>
-					</Stack>
-				</form>
-			</FormProvider>
-		</section>
+					</form>
+				</FormProvider>
+			</section>
+		</Box>
 	);
 };

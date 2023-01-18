@@ -4,12 +4,14 @@ import { Provider } from "react-redux";
 import store from "../../../store/store";
 import { Meta, StoryObj } from "@storybook/react";
 import { ScreenController } from "../../layout/screen/ScreenController";
-import { SignInForm } from "./SignInForm";
+
 import { Center } from "../../layout/center/Center";
+import { LanguageSelector } from "./LanguageSelector";
+import { Box } from "@mui/material";
 
 export default {
-	title: "Auth/SignInForm",
-	component: SignInForm,
+	title: "Components/LanguageSelector",
+	component: LanguageSelector,
 	decorators: [
 		(story) => (
 			<Provider store={store}>
@@ -19,8 +21,21 @@ export default {
 			</Provider>
 		),
 	],
+	parameters: {
+		//set backgrounds for just this story
+		// backgrounds: {
+		// 	default: "light",
+		// 	values: [
+		// 		{ name: "light", value: "#00aced" },
+		// 		{ name: "dark", value: "#3b5998" },
+		// 	],
+		// },
+	},
 } as Meta;
 
-export const Primary: StoryObj = () => <SignInForm />;
+export const Primary: StoryObj = () => <LanguageSelector />;
 Primary.args = {};
-Primary.storyName = "Sign In";
+Primary.storyName = "Language Selector";
+Primary.parameters = {
+	backgrounds: { default: "light" },
+};

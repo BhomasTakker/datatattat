@@ -13,6 +13,20 @@ export const parameters = {
 			date: /Date$/,
 		},
 	},
+	//https://storybook.js.org/docs/react/essentials/backgrounds
+	backgrounds: {
+		default: "light",
+		values: [
+			{
+				name: "light",
+				value: "#ddd",
+			},
+			{
+				name: "dark",
+				value: "#333",
+			},
+		],
+	},
 };
 
 const withI18next = (Story) => {

@@ -4,12 +4,12 @@ import { Provider } from "react-redux";
 import store from "../../../store/store";
 import { Meta, StoryObj } from "@storybook/react";
 import { ScreenController } from "../../layout/screen/ScreenController";
-import { SignInForm } from "./SignInForm";
+import { SignUpForm } from "./SignUpForm";
 import { Center } from "../../layout/center/Center";
 
 export default {
-	title: "Auth/SignInForm",
-	component: SignInForm,
+	title: "Auth/SignUpForm",
+	component: SignUpForm,
 	decorators: [
 		(story) => (
 			<Provider store={store}>
@@ -21,6 +21,6 @@ export default {
 	],
 } as Meta;
 
-export const Primary: StoryObj = () => <SignInForm />;
+export const Primary: StoryObj = () => <SignUpForm />;
 Primary.args = {};
-Primary.storyName = "Sign In";
+Primary.storyName = "Sign Up";

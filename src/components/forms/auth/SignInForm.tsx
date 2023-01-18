@@ -1,3 +1,4 @@
+import styles from "./Auth.module.css";
 import { Button, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
@@ -52,27 +53,33 @@ export const SignInForm = () => {
 		}
 	}
 	return (
-		<section>
-			<FormProvider {...methods}>
-				<form onSubmit={methods.handleSubmit(submitHandler)}>
-					<Stack spacing={2}>
-						<AuthInputs />
+		<Box className={styles.content}>
+			{/* create title */}
+			<Typography variant="h4" component="h1">
+				{t("Auth:login")}
+			</Typography>
+			<section>
+				<FormProvider {...methods}>
+					<form onSubmit={methods.handleSubmit(submitHandler)}>
+						<Stack spacing={2}>
+							<AuthInputs />
 
-						<Stack spacing={3}>
-							<Button variant="contained" color="primary" type="submit">
-								{t("Auth:login")}
-							</Button>
-							<Button
-								variant="text"
-								color="primary"
-								onClick={switchAuthModeHandler}
-							>
-								{t("Auth:create-new-account")}
-							</Button>
+							<Stack spacing={3}>
+								<Button variant="contained" color="primary" type="submit">
+									{t("Auth:login")}
+								</Button>
+								<Button
+									variant="text"
+									color="primary"
+									onClick={switchAuthModeHandler}
+								>
+									{t("Auth:create-new-account")}
+								</Button>
+							</Stack>
 						</Stack>
-					</Stack>
-				</form>
-			</FormProvider>
-		</section>
+					</form>
+				</FormProvider>
+			</section>
+		</Box>
 	);
 };
