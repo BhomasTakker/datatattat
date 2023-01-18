@@ -1,5 +1,5 @@
 import BasicArticleCard from "./BasicArticleCard";
-import { Center } from "../../center/Center";
+import { Center } from "../../layout/center/Center";
 
 export default {
 	title: "Components/content/card/BasicArticleCard",

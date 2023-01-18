@@ -130,6 +130,8 @@ export const MainHeader = () => {
 					/>
 				</Box>
 			</ClickAwayListener>
+			{/* Would content header go here - or layout? */}
+			{/* Abstract some compoennts away from here - to simplify a little  */}
 		</header>
 	);
 };
