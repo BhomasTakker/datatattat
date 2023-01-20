@@ -1,6 +1,12 @@
+//This all needs work...
+//massive go through
+//no way this is the best approach
 import { TextField } from "@mui/material";
 import React, { ReactElement } from "react";
 import { Controller, useFormContext } from "react-hook-form";
+
+//shouldn't be here / pass trnslation in
+//We actually have to since error ??
 import { useTranslation } from "next-i18next";
 
 //these components need properly thinking about
@@ -25,6 +31,7 @@ export const EmailInput = ({
 		control,
 		formState: { errors },
 	} = useFormContext();
+
 	const { t } = useTranslation();
 
 	return (

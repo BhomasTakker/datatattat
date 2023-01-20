@@ -4,14 +4,10 @@ import { Box, Container } from "@mui/material";
 export const MainFooter = () => {
 	return (
 		<footer>
-			<Box
-				// p={2}
-				display="flex"
-				height={"100px"}
-				// width="100"
-				bgcolor={"primary.main"}
-			>
-				<Container>{/* Container gives us our basic 'body' area */}</Container>
+			<Box display="flex" height={"100px"} bgcolor={"primary.main"}>
+				<Container sx={{ color: "white", textAlign: "center", margin: "auto" }}>
+					Footer
+				</Container>
 			</Box>
 		</footer>
 	);
