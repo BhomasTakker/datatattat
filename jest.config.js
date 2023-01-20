@@ -10,6 +10,8 @@ const createJestConfig = nextJest({
 // Add any custom config to be passed to Jest
 /** @type {import('jest').Config} */
 const customJestConfig = {
+	//look into this - it isn't working
+	setupTestFrameworkScriptFile: "setup.ts",
 	setupFilesAfterEnv: ["<rootDir>/setup.ts"],
 	// Add more setup options before each test is run
 	// setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],

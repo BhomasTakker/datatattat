@@ -19,7 +19,8 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		"src/lib/mongoose-connection.js"
+		"src/lib/mongoose-connection.js",
+		"setup.ts"
 	],
 	"exclude": ["node_modules"]
 }

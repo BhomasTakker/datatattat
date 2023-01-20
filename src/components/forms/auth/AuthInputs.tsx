@@ -7,7 +7,7 @@ type AuthInputsProps = {
 	confirmPassword?: boolean;
 };
 
-export const AuthInputs = ({ confirmPassword = false }) => {
+export const AuthInputs = ({ confirmPassword = false }: AuthInputsProps) => {
 	return (
 		<>
 			<Box>
