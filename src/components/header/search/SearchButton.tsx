@@ -12,6 +12,7 @@ export const SearchButton = () => {
 	//This is just an icon button
 	//that displays differently on small screen
 	//props label, href, and icon, makes this generic
+	//could be an HOC but is it necessary? Simplicity rules no?
 
 	const searchHandler = () => {
 		push("/auth/search");

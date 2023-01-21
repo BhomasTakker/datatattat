@@ -19,6 +19,9 @@ export const AuthInputs = ({ confirmPassword = false }: AuthInputsProps) => {
 			</Box>
 			{confirmPassword && (
 				<Box>
+					{/* We really need to sort out how we manage text ids for translation
+					feels like trans.auth.confirmPassword
+					*/}
 					<PasswordInput label="Auth:confirm-password" name="confirm" />
 				</Box>
 			)}
