@@ -1,50 +1,28 @@
-import { TextField, Input } from "@mui/material";
+import { TextField } from "@mui/material";
 import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import { useTranslation } from "next-i18next";
+import { withControl } from "../../hoc/components/forms/withControl";
 
-//look at a withController? We won't always be using TextField
-//'extend' a type and all should be required
-type PasswordInputProps = {
-	label?: string;
-	name?: string;
-	defaultValue?: string;
-};
-
-export const PasswordInput = ({
+//Way better
+export const NewPasswordInput = ({
 	label = "Auth:password",
 	name = "password",
-	defaultValue = "",
-}: PasswordInputProps) => {
-	const {
-		control,
-		formState: { errors },
-	} = useFormContext();
-
-	const { t } = useTranslation();
-
+	field = {},
+	error = false,
+	helperText = "",
+}) => {
 	return (
-		<Controller
+		<TextField
+			fullWidth={true}
+			{...field}
 			name={name}
-			control={control}
-			defaultValue={defaultValue}
-			render={({ field }) => (
-				<TextField
-					fullWidth={true}
-					{...field}
-					// name={props.name || "password"}
-					label={t(label)}
-					type="password"
-					required
-					variant="standard"
-					error={!!errors[name]}
-					// possibly render undefined in a situation or just typescript blah
-					helperText={errors[name] ? t(`${errors[name]?.message}`) : ""}
-					// helperText="I dunno man"
-				></TextField>
-			)}
-		></Controller>
+			label={label}
+			type="password"
+			required
+			variant="standard"
+			error={error}
+			helperText={helperText}
+		></TextField>
 	);
 };
 
-PasswordInput.displayName = "PasswordInput";
+export const PasswordInputWithControl = withControl(NewPasswordInput);
