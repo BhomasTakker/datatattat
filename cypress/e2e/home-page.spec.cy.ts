@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe("Home Page", () => {
 	it("Should load homepage", () => {
 		cy.visit("/");
@@ -12,12 +14,14 @@ describe("Home Page", () => {
 		cy.get("h1").contains("Sign In");
 	});
 	it("Should sign in ", () => {
-		cy.visit("/auth/signin");
+		// cy.visit("/auth/signin");
 
-		cy.get("input[name='email']").type("thomas@thomas.com", { force: true });
-		cy.get("input[name='password']").type("thomas123");
+		// cy.get("input[name='email']").type("thomas@thomas.com", { force: true });
+		// cy.get("input[name='password']").type("thomas123");
 
-		cy.get("button[type='submit']").click();
+		// cy.get("button[type='submit']").click();
+
+		cy.login("thomas@thomas.com", "thomas123");
 
 		cy.url().should("include", "profile");
 

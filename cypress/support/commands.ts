@@ -35,3 +35,14 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add("login", (email: string, passwprd: string) => {
+	cy.visit("/auth/signin");
+
+	cy.get("input[name='email']").type(email);
+	cy.get("input[name='password']").type(passwprd);
+
+	cy.get("button[type='submit']").click();
+});
+
+export {};
