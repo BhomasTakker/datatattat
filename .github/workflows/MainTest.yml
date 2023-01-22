@@ -41,6 +41,9 @@ jobs:
       - run: npm i
       - run: npm test
 
+  # basic cypress tests - we have modified mongo to allow github access
+  # We need to improve the complexity of user and password
+  # create one for this
   cypress-integration-test:
     runs-on: ubuntu-latest
 
