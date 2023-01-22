@@ -55,3 +55,6 @@ jobs:
         with:
           build: npm run build
           start: npm start
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
