@@ -60,6 +60,12 @@ export const UserButton = () => {
 				<MenuItem onClick={() => logout(handleClose)} disableRipple>
 					Logout
 				</MenuItem>
+				<MenuItem
+					onClick={() => routeHandler("/auth/delete-account")}
+					disableRipple
+				>
+					Delete Account
+				</MenuItem>
 			</Menu>
 		</Box>
 	);

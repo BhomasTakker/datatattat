@@ -41,7 +41,18 @@ export const NOTIFICATIONS = {
 		i18n: "logout-success",
 		type: notificationTypes.success,
 	},
-
+	accountDeletedSuccess: {
+		id: "user-deleted-successful",
+		message: "Account Deleted.",
+		i18n: "account-deletion-successful",
+		type: notificationTypes.success,
+	},
+	accountDeletedError: {
+		id: "user-deleted-unsuccessful",
+		message: "There has been an error deleting your account.",
+		i18n: "account-deletion-unsuccessful",
+		type: notificationTypes.error,
+	},
 	//User
 	passwordUpdatedSuccess: {
 		id: "change-password-success",

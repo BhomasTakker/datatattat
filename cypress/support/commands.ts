@@ -36,11 +36,45 @@
 //   }
 // }
 
-Cypress.Commands.add("login", (email: string, passwprd: string) => {
+//Need to 'add' these in an auth commands file?
+//this could get very big
+Cypress.Commands.add("login", (email: string, password: string) => {
 	cy.visit("/auth/signin");
 
 	cy.get("input[name='email']").type(email);
-	cy.get("input[name='password']").type(passwprd);
+	cy.get("input[name='password']").type(password);
+
+	cy.get("button[type='submit']").click();
+});
+
+Cypress.Commands.add("signup", (email: string, password: string) => {
+	cy.visit("/auth/signup");
+
+	cy.get("input[name='email']").type(email);
+	cy.get("input[name='password']").type(password);
+	cy.get("input[name='confirm']").type(password);
+
+	cy.get("button[type='submit']").click();
+});
+
+Cypress.Commands.add("delete", (email: string, password: string) => {
+	cy.login(email, password);
+
+	//we actually need to close this notification
+	//or make sure we can add multiple
+	//or a new notification removes the existing one...
+	cy.get("button[title=Close]").click();
+
+	//open user menu and click delete account
+	cy.get("button[aria-label=user]").click();
+	cy.contains("Delete Account").click();
+
+	// cy.visit("/auth/delete-account");
+
+	//these are all the same could create a command for this?
+	cy.get("input[name='email']").type(email);
+	cy.get("input[name='password']").type(password);
+	cy.get("input[name='confirm']").type(password);
 
 	cy.get("button[type='submit']").click();
 });

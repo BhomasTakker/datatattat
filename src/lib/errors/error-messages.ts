@@ -6,5 +6,6 @@ export const ERRORS = {
 	noUser: "No user found with that email",
 	invalidPassword: "Could not log you in",
 	updatePassword: "Error chnaging user password.",
-	createUser: "Could not create user",
+	createUser: "Could not create user.",
+	deleteUser: "There was an error deleting user.",
 };
