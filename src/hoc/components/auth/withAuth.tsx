@@ -3,7 +3,7 @@
 
 import { useSession } from "next-auth/react";
 import { useEffect, ReactNode } from "react";
-import { LoadingSpinner } from "../../../components/loading/LoadingSpinner";
+import { LoadingSpinner } from "@/components/loading/LoadingSpinner";
 import { renderLabel } from "../RenderLabel";
 
 type Props = {

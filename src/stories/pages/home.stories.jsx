@@ -1,11 +1,11 @@
 // /stories/pages/home.stories.jsx
 
 import Home from "../../pages/index";
-import { LocaleProvider } from "../../components/layout/locale/LocaleProvider";
+import { LocaleProvider } from "@/components/layout/locale/LocaleProvider";
 import { Provider } from "react-redux";
 import store from "../../store/store";
-import { Layout } from "../../components/layout/page/layout";
-import { ScreenController } from "../../components/layout/screen/ScreenController";
+import { Layout } from "@/components/layout/page/layout";
+import { ScreenController } from "@/components/layout/screen/ScreenController";
 import { SessionProvider } from "next-auth/react";
 import { useSession } from "next-auth/react";
 export default {

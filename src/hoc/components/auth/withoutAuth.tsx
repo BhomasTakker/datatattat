@@ -5,7 +5,7 @@ import { useEffect, ReactNode } from "react";
 
 import { useRouter } from "next/router";
 import { getSession, useSession } from "next-auth/react";
-import { LoadingSpinner } from "../../../components/loading/LoadingSpinner";
+import { LoadingSpinner } from "@/components/loading/LoadingSpinner";
 import { renderLabel } from "../RenderLabel";
 type Props = {
 	children: ReactNode;

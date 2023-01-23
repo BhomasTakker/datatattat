@@ -1,10 +1,10 @@
 import Head from "next/head";
 import styles from "../../styles/Home.module.css";
 import Counter from "../features/counter/Counter";
-import Display1 from "../components/content/Display1";
-import Display2 from "../components/content/Display2";
+import Display1 from "@/components/content/Display1";
+import Display2 from "@/components/content/Display2";
 import { Stack } from "@mui/material";
-import Display3 from "../components/content/Display3";
+import Display3 from "@/components/content/Display3";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
