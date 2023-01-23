@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Typography } from "@mui/material";
 import React from "react";
 import { withAuth } from "../../hoc/components/auth/withAuth";
-import ProfileForm from "../../components/profile/ProfileForm";
+import ProfileForm from "@/components/profile/ProfileForm";
 import {
 	changePassword,
 	ChangePasswordData,

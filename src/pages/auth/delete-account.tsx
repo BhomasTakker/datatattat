@@ -4,7 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { i18namespace } from "../../lib/i18n/namespace-sets";
 import { DTAHead } from "../../head/DTAHead";
 import { withAuth } from "../../hoc/components/auth/withAuth";
-import { DeleteAccountForm } from "../../components/forms/auth/DeleteAccountForm";
+import { DeleteAccountForm } from "@/components/forms/auth/DeleteAccountForm";
 
 function DeleteAccount() {
 	return (
