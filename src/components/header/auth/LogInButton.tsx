@@ -24,7 +24,12 @@ export const LogInButton = () => {
 	}
 
 	return (
-		<Button startIcon={<PersonIcon />} color="inherit" onClick={loginHandler}>
+		<Button
+			startIcon={<PersonIcon />}
+			color="inherit"
+			onClick={loginHandler}
+			className="Login"
+		>
 			Sign in
 		</Button>
 	);
