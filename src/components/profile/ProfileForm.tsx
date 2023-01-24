@@ -6,6 +6,7 @@ import { validate } from "@/lib/validation/form-input-validators";
 import { useTranslation } from "next-i18next";
 import { ChangePasswordData } from "@/queries/auth/changePassword";
 import { PasswordInputWithControl } from "@/components/input/PasswordInput";
+import { Profile } from "@/src/lib/i18n/translation";
 
 const { oldPassword, newPassword } = validate;
 
@@ -21,7 +22,7 @@ type Props = {
 
 function ProfileForm(props: Props) {
 	//probably nicer to use
-	const { t } = useTranslation("Profile");
+	const { t } = useTranslation();
 	const methods = useForm({ resolver: yupResolver(schema) });
 
 	const submitHandler = (data: any) => {
@@ -36,7 +37,7 @@ function ProfileForm(props: Props) {
 				<Box>
 					<PasswordInputWithControl
 						name="oldPassword"
-						label={t("current-password") as string}
+						label={t(Profile.currentPassword) as string}
 					/>
 				</Box>
 				<br />
@@ -44,11 +45,11 @@ function ProfileForm(props: Props) {
 				<Box>
 					<PasswordInputWithControl
 						name="newPassword"
-						label={t("new-password") as string}
+						label={t(Profile.newPassword) as string}
 					/>
 				</Box>
 				<Box>
-					<Button type="submit">{t("change-password")}</Button>
+					<Button type="submit">{t(Profile.changePassword)}</Button>
 				</Box>
 			</form>
 		</FormProvider>

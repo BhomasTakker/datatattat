@@ -29,7 +29,9 @@
 			"@/hooks/*": ["src/hooks/*"],
 			"@/head/*": ["src/head/*"],
 			"@/types/*": ["src/types/*"],
-			"@/pages/*": ["src/pages/*"]
+			"@/pages/*": ["src/pages/*"],
+
+			"@/translation/*": ["src/lib/i18n/translation/*"]
 		}
 	},
 	"include": [

@@ -17,6 +17,7 @@ import { NOTIFICATIONS } from "@/lib/notifications/notifications";
 import { useTranslation } from "next-i18next";
 import { validate } from "@/lib/validation/form-input-validators";
 import { AuthInputs } from "@/components/forms/auth/AuthInputs";
+import { Auth } from "@/src/lib/i18n/translation";
 //need schemas and individual rules in a forms/validation lib
 
 //load from somewhere
@@ -49,12 +50,9 @@ export const SignUpForm = () => {
 	return (
 		<Box className={styles.content}>
 			<Typography variant="h4" component="h1">
-				{t("Auth:sign-up")}
+				{t(Auth.signUp)}
 			</Typography>
 			<section>
-				{/* <Typography variant="h3" component="h1">
-				{t("Auth:sign-up")}
-			</Typography> */}
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(submitHandler)}>
 						<Stack spacing={2}>
@@ -62,14 +60,14 @@ export const SignUpForm = () => {
 							{/* buttons the same but for labels and onClick */}
 							<Stack spacing={3}>
 								<Button variant="contained" color="primary" type="submit">
-									{t("Auth:create-account")}
+									{t(Auth.createAccount)}
 								</Button>
 								<Button
 									variant="text"
 									color="primary"
 									onClick={switchAuthModeHandler}
 								>
-									{t("Auth:login-with-existing")}
+									{t(Auth.loginWithExisting)}
 								</Button>
 							</Stack>
 						</Stack>

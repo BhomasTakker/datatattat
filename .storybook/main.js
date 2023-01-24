@@ -39,14 +39,16 @@ module.exports = {
 				"@/src": path.resolve(__dirname, "../src"),
 
 				"@/components": path.resolve(__dirname, "../src/components"),
-				"@/lib": path.resolve(__dirname, "../lib"),
-				"@/store": path.resolve(__dirname, "../store"),
-				"@/queries": path.resolve(__dirname, "../queries"),
-				"@/hoc": path.resolve(__dirname, "../hoc"),
-				"@/hooks": path.resolve(__dirname, "../hooks"),
-				"@/head": path.resolve(__dirname, "../head"),
-				"@/types": path.resolve(__dirname, "../types"),
-				"@/pages": path.resolve(__dirname, "../pages"),
+				"@/lib": path.resolve(__dirname, "../src/lib"),
+				"@/store": path.resolve(__dirname, "../src/store"),
+				"@/queries": path.resolve(__dirname, "../src/queries"),
+				"@/hoc": path.resolve(__dirname, "../src/hoc"),
+				"@/hooks": path.resolve(__dirname, "../src/hooks"),
+				"@/head": path.resolve(__dirname, "../src/head"),
+				"@/types": path.resolve(__dirname, "../src/types"),
+				"@/pages": path.resolve(__dirname, "../src/pages"),
+
+				"@/translation": path.resolve(__dirname, "../src/lib/i18n/translation"),
 			},
 		};
 

@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { Validation } from "../i18n/translation";
 // newPassword: yup
 // 		.string()
 // 		.oneOf([yup.ref("oldPassword"), "Passwords must match"])
@@ -16,32 +17,32 @@ import * as yup from "yup";
 export const validate = {
 	email: yup
 		.string()
-		.email("Validation:email-valid")
-		.required("Validation:email-required"),
+		.email(Validation.emailValid)
+		.required(Validation.emailRequired),
 
 	password: yup
 		.string()
-		.min(6, "Validation:password-min")
-		.max(15, "Validation:password-max")
-		.required("Validation:password-required"),
+		.min(6, Validation.passwordMin)
+		.max(15, Validation.passwordMax)
+		.required(Validation.passwordRequired),
 
 	oldPassword: yup
 		.string()
-		.min(6, "Validation:password-min")
-		.max(15, "Validation:password-max")
-		.required("Validation:password-current"),
+		.min(6, Validation.passwordMin)
+		.max(15, Validation.passwordMax)
+		.required(Validation.passwordCurrent),
 
 	newPassword: yup
 		.string()
-		.min(6, "Validation:password-min")
-		.max(15, "Validation:password-max")
-		.required("Validation:password-new"),
+		.min(6, Validation.passwordMin)
+		.max(15, Validation.passwordMax)
+		.required(Validation.passwordNew),
 
 	confirmPassword: yup
 		.string()
 		.when("password", (password, schema) => {
 			//this if is wrong
-			if (password) return schema.required("Validation:password-confirm");
+			if (password) return schema.required(Validation.passwordConfirm);
 		})
-		.oneOf([yup.ref("password")], "Validation:password-match"),
+		.oneOf([yup.ref("password")], Validation.passwordMatch),
 };

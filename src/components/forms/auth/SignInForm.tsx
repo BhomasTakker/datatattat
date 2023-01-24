@@ -17,6 +17,7 @@ import { NOTIFICATIONS } from "@/lib/notifications/notifications";
 import { useTranslation } from "next-i18next";
 import { validate } from "@/lib/validation/form-input-validators";
 import { AuthInputs } from "@/components/forms/auth/AuthInputs";
+import { Auth } from "@/src/lib/i18n/translation";
 //need schemas and individual rules in a forms/validation lib
 
 const schema = yup.object().shape({
@@ -56,7 +57,7 @@ export const SignInForm = () => {
 		<Box className={styles.content}>
 			{/* create title */}
 			<Typography variant="h4" component="h1">
-				{t("Auth:login")}
+				{t(Auth.login)}
 			</Typography>
 			<section>
 				<FormProvider {...methods}>
@@ -66,14 +67,14 @@ export const SignInForm = () => {
 
 							<Stack spacing={3}>
 								<Button variant="contained" color="primary" type="submit">
-									{t("Auth:login")}
+									{t(Auth.login)}
 								</Button>
 								<Button
 									variant="text"
 									color="primary"
 									onClick={switchAuthModeHandler}
 								>
-									{t("Auth:create-new-account")}
+									{t(Auth.createNewAccount)}
 								</Button>
 							</Stack>
 						</Stack>

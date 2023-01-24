@@ -19,6 +19,7 @@ import { validate } from "@/lib/validation/form-input-validators";
 import { AuthInputs } from "@/components/forms/auth/AuthInputs";
 import { deleteUser } from "@/queries/auth/deleteUser";
 import { logout } from "@/lib/auth";
+import { Auth } from "@/src/lib/i18n/translation";
 //need schemas and individual rules in a forms/validation lib
 
 //load from somewhere
@@ -53,7 +54,7 @@ export const DeleteAccountForm = () => {
 	return (
 		<Box className={styles.content}>
 			<Typography variant="h4" component="h1">
-				{t("Auth:delete-account-title")}
+				{t(Auth.deleteAccountTitle)}
 			</Typography>
 			<section>
 				<FormProvider {...methods}>
@@ -63,7 +64,7 @@ export const DeleteAccountForm = () => {
 
 							<Stack spacing={3}>
 								<Button variant="contained" color="primary" type="submit">
-									{t("Auth:delete-account")}
+									{t(Auth.deleteAccountButton)}
 								</Button>
 							</Stack>
 						</Stack>

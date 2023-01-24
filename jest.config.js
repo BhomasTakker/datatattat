@@ -38,6 +38,8 @@ const customJestConfig = {
 		"^@/head/(.*)$": "<rootDir>/src/head/$1",
 		"^@/types/(.*)$": "<rootDir>/src/types/$1",
 		"^@/pages/(.*)$": "<rootDir>/src/pages/$1",
+
+		"^@/translation/(.*)$": "<rootDir>/src/lib/i18n/translation/$1",
 	},
 };
 
