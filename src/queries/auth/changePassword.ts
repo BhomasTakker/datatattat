@@ -1,4 +1,4 @@
-import { ERRORS } from "../../lib/errors/error-messages";
+import { ERRORS } from "@/lib/errors/error-messages";
 
 export type ChangePasswordData = {
 	oldPassword: string;

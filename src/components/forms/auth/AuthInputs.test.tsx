@@ -3,7 +3,7 @@
 
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { AuthInputs } from "./AuthInputs";
+import { AuthInputs } from "@/components/forms/auth/AuthInputs";
 
 describe("Auth Inputs", () => {
 	test("renders AuthInputs", () => {

@@ -1,4 +1,4 @@
-import { ERRORS } from "../../lib/errors/error-messages";
+import { ERRORS } from "@/lib/errors/error-messages";
 
 export async function createUser(email: string, password: string) {
 	let response;

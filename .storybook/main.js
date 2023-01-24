@@ -32,6 +32,22 @@ module.exports = {
 				stream: false,
 				os: false,
 			},
+			alias: {
+				...config.resolve.alias,
+				"@/styles": path.resolve(__dirname, "../styles"),
+				"@/models": path.resolve(__dirname, "../models"),
+				"@/src": path.resolve(__dirname, "../src"),
+
+				"@/components": path.resolve(__dirname, "../src/components"),
+				"@/lib": path.resolve(__dirname, "../lib"),
+				"@/store": path.resolve(__dirname, "../store"),
+				"@/queries": path.resolve(__dirname, "../queries"),
+				"@/hoc": path.resolve(__dirname, "../hoc"),
+				"@/hooks": path.resolve(__dirname, "../hooks"),
+				"@/head": path.resolve(__dirname, "../head"),
+				"@/types": path.resolve(__dirname, "../types"),
+				"@/pages": path.resolve(__dirname, "../pages"),
+			},
 		};
 
 		// Return the altered config

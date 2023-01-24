@@ -5,8 +5,8 @@
 
 import { compare, hash } from "bcryptjs";
 import { signOut } from "next-auth/react";
-import { addNotification } from "../store/notifications/notificationSlice";
-import store from "../store/store";
+import { addNotification } from "@/store/notifications/notificationSlice";
+import store from "@/store/store";
 import { NOTIFICATIONS } from "./notifications/notifications";
 
 export async function hashPassword(password: string): Promise<string> {

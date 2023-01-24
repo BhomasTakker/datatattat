@@ -3,7 +3,7 @@ import { Button, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { useRouter } from "next/router";
-import { createUser } from "../../../queries/auth/createUser";
+import { createUser } from "@/queries/auth/createUser";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -11,12 +11,12 @@ import * as yup from "yup";
 //convert to seperate pages for sign in and join
 //They are two seperate processes etc
 
-import { addNotification } from "../../../store/notifications/notificationSlice";
-import { useAppDispatch } from "../../../store/hooks";
-import { NOTIFICATIONS } from "../../../lib/notifications/notifications";
+import { addNotification } from "@/store/notifications/notificationSlice";
+import { useAppDispatch } from "@/store/hooks";
+import { NOTIFICATIONS } from "@/lib/notifications/notifications";
 import { useTranslation } from "next-i18next";
-import { validate } from "../../../lib/validation/form-input-validators";
-import { AuthInputs } from "./AuthInputs";
+import { validate } from "@/lib/validation/form-input-validators";
+import { AuthInputs } from "@/components/forms/auth/AuthInputs";
 //need schemas and individual rules in a forms/validation lib
 
 //load from somewhere

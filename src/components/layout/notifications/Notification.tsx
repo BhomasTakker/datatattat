@@ -1,9 +1,9 @@
 import { Alert, AlertProps, Snackbar } from "@mui/material";
 import React, { forwardRef } from "react";
-import { removeActiveNotification } from "../../../store/notifications/notificationSlice";
-import { useAppDispatch } from "../../../store/hooks";
-import { useAppSelector } from "../../../store/hooks";
-import { activeNotification } from "../../../store/notifications/notificationSlice";
+import { removeActiveNotification } from "@/store/notifications/notificationSlice";
+import { useAppDispatch } from "@/store/hooks";
+import { useAppSelector } from "@/store/hooks";
+import { activeNotification } from "@/store/notifications/notificationSlice";
 import { useTranslation } from "next-i18next";
 
 //Revisit this - we want notifications to 'stack'

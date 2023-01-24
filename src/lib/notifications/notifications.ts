@@ -1,4 +1,4 @@
-import { notificationTypes } from "../../store/notifications/notificationSlice";
+import { notificationTypes } from "@/store/notifications/notificationSlice";
 
 //Split up into files and null export pattern
 //in slice

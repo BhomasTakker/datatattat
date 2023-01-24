@@ -1,13 +1,9 @@
 //https://mui.com/material-ui/guides/right-to-left/
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-	LanguageType,
-	LocaleDir,
-	rightToLeftLanguages,
-} from "../../types/locale";
+import { LanguageType, LocaleDir, rightToLeftLanguages } from "@/types/locale";
 
-import type { AppState, AppThunk } from "../store";
+import type { AppState, AppThunk } from "@/store/store";
 
 export interface LocaleState {
 	language: LanguageType;

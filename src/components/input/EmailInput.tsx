@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import React from "react";
-import { withControl } from "../../hoc/components/forms/withControl";
+import { withControl } from "@/hoc/components/forms/withControl";
 
 //Way better
 export const NewEmailInput = ({

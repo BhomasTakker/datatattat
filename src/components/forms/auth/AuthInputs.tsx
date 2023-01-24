@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
-import { EmailInputWithControl } from "../../input/EmailInput";
-import { PasswordInputWithControl } from "../../input/PasswordInput";
+import { EmailInputWithControl } from "@/components/input/EmailInput";
+import { PasswordInputWithControl } from "@/components/input/PasswordInput";
 
 type AuthInputsProps = {
 	confirmPassword?: boolean;

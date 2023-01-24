@@ -2,8 +2,8 @@ import { Button, IconButton } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import { useRouter } from "next/router";
 import React from "react";
-import { useAppSelector } from "../../../store/hooks";
-import { screenSize, ScreenWidth } from "../../../store/screen/screenSlice";
+import { useAppSelector } from "@/store/hooks";
+import { screenSize, ScreenWidth } from "@/store/screen/screenSlice";
 
 export const LogInButton = () => {
 	const { push } = useRouter();

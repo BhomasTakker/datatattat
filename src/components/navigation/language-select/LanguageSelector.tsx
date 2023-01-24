@@ -8,15 +8,15 @@ import { styled } from "@mui/material/styles";
 import styles from "./LanguageSelector.module.css";
 import { Box, TextField, Autocomplete } from "@mui/material";
 import React, { SyntheticEvent, useState } from "react";
-import { useAppDispatch } from "../../../store/hooks";
-import { setLocale } from "../../../store/locale/localeSlice";
+import { useAppDispatch } from "@/store/hooks";
+import { setLocale } from "@/store/locale/localeSlice";
 import {
 	LanguageType,
 	languagesList,
 	ILanguageData,
 	languageData,
 	LanguageName,
-} from "../../../types/locale";
+} from "@/types/locale";
 import Image from "next/image";
 
 //I mean jesus - on mobile devices this will need a complete overhaul too

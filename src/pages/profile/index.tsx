@@ -1,20 +1,20 @@
 import Head from "next/head";
 import { Typography } from "@mui/material";
 import React from "react";
-import { withAuth } from "../../hoc/components/auth/withAuth";
+import { withAuth } from "@/hoc/components/auth/withAuth";
 import ProfileForm from "@/components/profile/ProfileForm";
 import {
 	changePassword,
 	ChangePasswordData,
-} from "../../queries/auth/changePassword";
+} from "@/queries/auth/changePassword";
 import {
 	addNotification,
 	notificationTypes,
-} from "../../store/notifications/notificationSlice";
-import { useAppDispatch } from "../../store/hooks";
-import { NOTIFICATIONS } from "../../lib/notifications/notifications";
+} from "@/store/notifications/notificationSlice";
+import { useAppDispatch } from "@/store/hooks";
+import { NOTIFICATIONS } from "@/lib/notifications/notifications";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { i18namespace } from "../../lib/i18n/namespace-sets";
+import { i18namespace } from "@/lib/i18n/namespace-sets";
 
 function Profile() {
 	//not sure why thisa is here - probably move into form / is form specific rather than page

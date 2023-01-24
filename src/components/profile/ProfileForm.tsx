@@ -2,10 +2,10 @@ import { Box, Button } from "@mui/material";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { validate } from "../../lib/validation/form-input-validators";
+import { validate } from "@/lib/validation/form-input-validators";
 import { useTranslation } from "next-i18next";
-import { ChangePasswordData } from "../../queries/auth/changePassword";
-import { PasswordInputWithControl } from "../input/PasswordInput";
+import { ChangePasswordData } from "@/queries/auth/changePassword";
+import { PasswordInputWithControl } from "@/components/input/PasswordInput";
 
 const { oldPassword, newPassword } = validate;
 

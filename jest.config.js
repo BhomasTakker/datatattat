@@ -24,6 +24,21 @@ const customJestConfig = {
 			statements: -10,
 		},
 	},
+	moduleNameMapper: {
+		"^@/styles/(.*)$": "<rootDir>/styles/$1",
+		"^@/models/(.*)$": "<rootDir>/models/$1",
+		"^@/src/(.*)$": "<rootDir>/src/$1",
+
+		"^@/components/(.*)$": "<rootDir>/src/components/$1",
+		"^@/lib/(.*)$": "<rootDir>/src/lib/$1",
+		"^@/store/(.*)$": "<rootDir>/src/store/$1",
+		"^@/queries/(.*)$": "<rootDir>/src/queries/$1",
+		"^@/hoc/(.*)$": "<rootDir>/src/hoc/$1",
+		"^@/hooks/(.*)$": "<rootDir>/src/hooks/$1",
+		"^@/head/(.*)$": "<rootDir>/src/head/$1",
+		"^@/types/(.*)$": "<rootDir>/src/types/$1",
+		"^@/pages/(.*)$": "<rootDir>/src/pages/$1",
+	},
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

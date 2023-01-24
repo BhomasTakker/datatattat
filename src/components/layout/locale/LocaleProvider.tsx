@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, ReactNode, ReactElement } from "react";
-import { useAppSelector } from "../../../store/hooks";
-import { locale, dir } from "../../../store/locale/localeSlice";
+import { useAppSelector } from "@/store/hooks";
+import { locale, dir } from "@/store/locale/localeSlice";
 
 type Props = {
 	children: ReactNode;

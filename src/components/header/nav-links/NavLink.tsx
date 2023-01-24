@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./NavLink.module.css";
 import Link from "next/link";
 import { Button } from "@mui/material";
-import { useElementOnScreen } from "../../../hooks/useElementOnScreen";
+import { useElementOnScreen } from "@/hooks/useElementOnScreen";
 import { BaseLink } from "./BaseLink";
 
 export type NavLinkData = {

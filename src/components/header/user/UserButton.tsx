@@ -3,7 +3,7 @@ import { Box, Divider, Icon, IconButton, Menu, MenuItem } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import React from "react";
 import SettingsIcon from "@mui/icons-material/SettingsOutlined";
-import { logout } from "../../../lib/auth";
+import { logout } from "@/lib/auth";
 import { useRouter } from "next/router";
 
 export const UserButton = () => {

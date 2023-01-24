@@ -1,10 +1,10 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { verifyPassword } from "../../../lib/auth";
+import { verifyPassword } from "@/lib/auth";
 import type { NextAuthOptions } from "next-auth";
-import User from "../../../../models/User";
-import { ERRORS } from "../../../lib/errors/error-messages";
-import mongooseConnect from "../../../lib/mongoose-connection";
+import User from "@/models/User";
+import { ERRORS } from "@/lib/errors/error-messages";
+import mongooseConnect from "@/lib/mongoose-connection";
 
 export const authOptions: NextAuthOptions = {
 	session: {

@@ -16,15 +16,15 @@ import {
 	Box,
 	ClickAwayListener,
 } from "@mui/material";
-import { DTALogo } from "../../layout/logo/DTALogo";
-import { Navigation } from "../nav-links/Navigation";
-import { LogInButton } from "../auth/LogInButton";
-import { SearchButton } from "../search/SearchButton";
-import { UserButton } from "../user/UserButton";
-import { LanguageSelector } from "../../navigation/language-select/LanguageSelector";
-import { MoreButton } from "../more/MoreButton";
-import { NavLink, NavLinkData } from "../nav-links/NavLink";
-import { DropdownMenu } from "../dropdown/DropdownMenu";
+import { DTALogo } from "@/components/layout/logo/DTALogo";
+import { Navigation } from "@/components/header/nav-links/Navigation";
+import { LogInButton } from "@/components/header/auth/LogInButton";
+import { SearchButton } from "@/components/header/search/SearchButton";
+import { UserButton } from "@/components/header/user/UserButton";
+import { LanguageSelector } from "@/components/navigation/language-select/LanguageSelector";
+import { MoreButton } from "@/components/header/more/MoreButton";
+import { NavLink, NavLinkData } from "@/components/header/nav-links/NavLink";
+import { DropdownMenu } from "@/components/header/dropdown/DropdownMenu";
 
 const LINKS: NavLinkData[] = [
 	{

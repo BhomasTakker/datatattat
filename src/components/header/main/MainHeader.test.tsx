@@ -4,8 +4,8 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { createMockRouter } from "../../../../test-utils/createMockRouter";
-import store from "../../../store/store";
-import { MainHeader } from "./MainHeader";
+import store from "@/store/store";
+import { MainHeader } from "@/components/header/main/MainHeader";
 
 //this is not a 'public' import this could change
 //perhaps wrap etc

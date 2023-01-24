@@ -2,10 +2,10 @@
 import { unstable_getServerSession as getServerSession } from "next-auth/next";
 import { NextApiRequest, NextApiResponse } from "next";
 import { authOptions } from "../auth/[...nextauth]";
-import { hashPassword, verifyPassword } from "../../../lib/auth";
-import { withApiAuthentication } from "../../../api/auth/WithAPIAuthentication";
-import mongooseConnect from "../../../lib/mongoose-connection";
-import User from "../../../../models/User";
+import { hashPassword, verifyPassword } from "@/lib/auth";
+import { withApiAuthentication } from "@/src/api/auth/WithAPIAuthentication";
+import mongooseConnect from "@/lib/mongoose-connection";
+import User from "@/models/User";
 
 //TODO - look into the below as a possible solution - good to play around regardless
 //just musing here , and it might be my lack of understanding of what RxJS does

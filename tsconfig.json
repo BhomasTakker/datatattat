@@ -16,7 +16,20 @@
 		"incremental": true,
 		"baseUrl": ".",
 		"paths": {
-			"@/components/*": ["src/components/*"]
+			"@/styles/*": ["styles/*"],
+			"@/models/*": ["models/*"],
+
+			"@/src/*": ["src/*"],
+
+			"@/components/*": ["src/components/*"],
+			"@/lib/*": ["src/lib/*"],
+			"@/store/*": ["src/store/*"],
+			"@/queries/*": ["src/queries/*"],
+			"@/hoc/*": ["src/hoc/*"],
+			"@/hooks/*": ["src/hooks/*"],
+			"@/head/*": ["src/head/*"],
+			"@/types/*": ["src/types/*"],
+			"@/pages/*": ["src/pages/*"]
 		}
 	},
 	"include": [

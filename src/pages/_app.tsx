@@ -1,9 +1,9 @@
-import "../../styles/globals.css";
+import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import { Provider } from "react-redux";
 import type { AppProps } from "next/app";
 
-import store from "../store/store";
+import store from "@/store/store";
 import { Layout } from "@/components/layout/page/layout";
 import { ScreenController } from "@/components/layout/screen/ScreenController";
 import { appWithTranslation } from "next-i18next";

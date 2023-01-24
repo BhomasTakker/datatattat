@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import User from "../../../../models/User";
-import { hashPassword } from "../../../lib/auth";
-import mongooseConnect from "../../../lib/mongoose-connection";
+import User from "@/models/User";
+import { hashPassword } from "@/lib/auth";
+import mongooseConnect from "@/lib/mongoose-connection";
 
 export default async function signUpAPI(
 	req: NextApiRequest,

@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./auth.module.css";
-import { withoutAuth } from "../../hoc/components/auth/withoutAuth";
+import { withoutAuth } from "@/hoc/components/auth/withoutAuth";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { i18namespace } from "../../lib/i18n/namespace-sets";
+import { i18namespace } from "@/lib/i18n/namespace-sets";
 import { SignInForm } from "@/components/forms/auth/SignInForm";
-import { DTAHead } from "../../head/DTAHead";
+import { DTAHead } from "@/head/DTAHead";
 
 function SignIn() {
 	return (

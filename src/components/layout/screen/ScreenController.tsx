@@ -1,7 +1,7 @@
 import { useMediaQuery, useTheme } from "@mui/material";
 import React, { ReactElement, useEffect, ReactNode } from "react";
-import { useAppDispatch } from "../../../store/hooks";
-import { ScreenWidth, setScreenSize } from "../../../store/screen/screenSlice";
+import { useAppDispatch } from "@/store/hooks";
+import { ScreenWidth, setScreenSize } from "@/store/screen/screenSlice";
 
 type Props = {
 	children: ReactNode;

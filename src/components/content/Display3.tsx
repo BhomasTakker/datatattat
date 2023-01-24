@@ -28,8 +28,8 @@ import {
 } from "@mui/material";
 import BasicArticleCard from "./content-cards/BasicArticleCard";
 import styles from "./Display3.module.css";
-import { screenSize } from "../../store/screen/screenSlice";
-import { useAppSelector } from "../../store/hooks";
+import { screenSize } from "@/store/screen/screenSlice";
+import { useAppSelector } from "@/store/hooks";
 
 const Display3 = () => {
 	const size = useAppSelector(screenSize);

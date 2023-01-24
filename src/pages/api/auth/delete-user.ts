@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import User from "../../../../models/User";
-import { withApiAuthentication } from "../../../api/auth/WithAPIAuthentication";
-import { hashPassword, verifyPassword } from "../../../lib/auth";
-import mongooseConnect from "../../../lib/mongoose-connection";
+import User from "@/models/User";
+import { withApiAuthentication } from "@/src/api/auth/WithAPIAuthentication";
+import { hashPassword, verifyPassword } from "@/lib/auth";
+import mongooseConnect from "@/lib/mongoose-connection";
 import { authOptions } from "./[...nextauth]";
 import { unstable_getServerSession as getServerSession } from "next-auth/next";
 

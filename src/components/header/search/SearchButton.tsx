@@ -2,8 +2,8 @@ import { Button, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useRouter } from "next/router";
 import React from "react";
-import { useAppSelector } from "../../../store/hooks";
-import { screenSize, ScreenWidth } from "../../../store/screen/screenSlice";
+import { useAppSelector } from "@/store/hooks";
+import { screenSize, ScreenWidth } from "@/store/screen/screenSlice";
 
 export const SearchButton = () => {
 	const { push } = useRouter();
