@@ -22,7 +22,7 @@ const WithoutAuth = ({ children }: Props) => {
 			}
 		});
 	}, [router]);
-
+	return <LoadingSpinner renderLabel={renderLabel({ label: "Loading..." })} />;
 	if (status === "loading") {
 		return (
 			<LoadingSpinner renderLabel={renderLabel({ label: "Loading..." })} />
