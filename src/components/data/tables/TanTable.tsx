@@ -8,6 +8,7 @@ import {
 	TableRow,
 	TableFooter,
 	Paper,
+	Typography,
 } from "@mui/material";
 import {
 	useReactTable,
@@ -89,7 +90,9 @@ export const TanTable = () => {
 
 	return (
 		<>
-			<h1>Data Table</h1>
+			<Typography variant="h4" component="h1">
+				Data Table
+			</Typography>
 			<TableContainer component={Paper} className={styles.container}>
 				<Table
 					sx={{ minWidth: 700 }}
