@@ -7,12 +7,33 @@
 
 .row {
 }
+.row:nth-child(even) {
+	background-color: #eeeeee;
+}
+.row:nth-child(even):hover {
+	background-color: #82c5fc;
+}
+.row:nth-child(odd) {
+	background-color: #f5f5f5;
+}
+.row:nth-child(odd):hover {
+	background-color: #acd8fc;
+}
 .cell {
 }
+/* .cell:nth-child(even):hover {
+	background-color: #b3f107;
+} */
 
 .head {
 }
 .headRow {
+}
+.headRow:nth-child(odd) {
+	background-color: #1565c0;
+}
+.headRow:nth-child(odd):hover {
+	background-color: #1565c0;
 }
 .headCell {
 }
