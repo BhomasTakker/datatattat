@@ -1,6 +1,11 @@
 import styles from "./TanTable.module.css";
 import { Table, TableContainer, Paper, Typography } from "@mui/material";
-import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
+import {
+	useReactTable,
+	getCoreRowModel,
+	SortingState,
+	getSortedRowModel,
+} from "@tanstack/react-table";
 import React from "react";
 import defaultData from "../../../../mockData/table/MOCK_DATA.json";
 import { TanTableHeader } from "./TanTableHeader";
@@ -23,6 +28,7 @@ const list = ["id", "first_name", "last_name", "email", "gender", "ip_address"];
 
 //TanTable of Generic TableData
 export const TanTable = () => {
+	const [sorting, setSorting] = React.useState<SortingState>([]);
 	//We need to pass in a data type
 	const [data, setData] = React.useState((): any[] => [...defaultData]);
 	const rerender = React.useReducer(() => ({}), {})[1];
@@ -34,7 +40,13 @@ export const TanTable = () => {
 	const table = useReactTable({
 		data,
 		columns,
+		state: {
+			sorting,
+		},
 		getCoreRowModel: getCoreRowModel(),
+		//sorting
+		onSortingChange: setSorting,
+		getSortedRowModel: getSortedRowModel(),
 	});
 
 	return (
