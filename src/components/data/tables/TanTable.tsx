@@ -1,3 +1,4 @@
+import styles from "./TanTable.module.css";
 import {
 	Table,
 	TableBody,
@@ -89,13 +90,23 @@ export const TanTable = () => {
 	return (
 		<>
 			<h1>Data Table</h1>
-			<TableContainer component={Paper}>
-				<Table sx={{ minWidth: 700 }} aria-label="customized table">
-					<TableHead>
+			<TableContainer component={Paper} className={styles.container}>
+				<Table
+					sx={{ minWidth: 700 }}
+					aria-label="customized table"
+					className={styles.table}
+				>
+					<TableHead className={styles.head}>
 						{table.getHeaderGroups().map((headerGroup) => (
-							<TableRow key={headerGroup.id}>
+							<TableRow
+								key={headerGroup.id}
+								className={`${styles.row} ${styles.headRow}`}
+							>
 								{headerGroup.headers.map((header) => (
-									<TableCell key={header.id}>
+									<TableCell
+										key={header.id}
+										className={`${styles.cell} ${styles.headCell}`}
+									>
 										{header.isPlaceholder
 											? null
 											: flexRender(
@@ -107,22 +118,34 @@ export const TanTable = () => {
 							</TableRow>
 						))}
 					</TableHead>
-					<TableBody>
+					<TableBody className={styles.body}>
 						{table.getRowModel().rows.map((row) => (
-							<TableRow key={row.id}>
+							<TableRow
+								key={row.id}
+								className={`${styles.row} ${styles.bodyRow}`}
+							>
 								{row.getVisibleCells().map((cell) => (
-									<TableCell key={cell.id}>
+									<TableCell
+										key={cell.id}
+										className={`${styles.cell} ${styles.bodyCell}`}
+									>
 										{flexRender(cell.column.columnDef.cell, cell.getContext())}
 									</TableCell>
 								))}
 							</TableRow>
 						))}
 					</TableBody>
-					<TableFooter>
+					<TableFooter className={styles.foot}>
 						{table.getFooterGroups().map((footerGroup) => (
-							<TableRow key={footerGroup.id}>
+							<TableRow
+								key={footerGroup.id}
+								className={`${styles.row} ${styles.footRow}`}
+							>
 								{footerGroup.headers.map((header) => (
-									<TableCell key={header.id}>
+									<TableCell
+										key={header.id}
+										className={`${styles.cell} ${styles.footCell}`}
+									>
 										{header.isPlaceholder
 											? null
 											: flexRender(
