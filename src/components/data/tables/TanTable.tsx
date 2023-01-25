@@ -5,6 +5,7 @@ import {
 	getCoreRowModel,
 	SortingState,
 	getSortedRowModel,
+	getFilteredRowModel,
 } from "@tanstack/react-table";
 import React from "react";
 import defaultData from "../../../../mockData/table/MOCK_DATA.json";
@@ -47,6 +48,8 @@ export const TanTable = () => {
 		//sorting
 		onSortingChange: setSorting,
 		getSortedRowModel: getSortedRowModel(),
+		//Filter
+		getFilteredRowModel: getFilteredRowModel(),
 	});
 
 	return (
@@ -54,6 +57,7 @@ export const TanTable = () => {
 			<Typography variant="h4" component="h1">
 				Data Table
 			</Typography>
+			{/* We can put a column toggle here */}
 			<TableContainer component={Paper} className={styles.container}>
 				<Table
 					sx={{ minWidth: 700 }}
