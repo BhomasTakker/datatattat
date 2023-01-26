@@ -6,6 +6,7 @@ import {
 	SortingState,
 	getSortedRowModel,
 	getFilteredRowModel,
+	getPaginationRowModel,
 } from "@tanstack/react-table";
 import React from "react";
 import defaultData from "../../../../mockData/table/MOCK_DATA.json";
@@ -14,6 +15,7 @@ import { TanTableFooter } from "./TanTableFooter";
 import { TanTableBody } from "./TanTableBody";
 import { useColumns } from "./useColumns";
 import { TanTableColumnsToggle } from "./TanTableColumnsToggle";
+import { TanTablePagination } from "./TanTablePagination";
 
 //This needs to be a generic
 type DataType = {
@@ -51,6 +53,9 @@ export const TanTable = () => {
 		getSortedRowModel: getSortedRowModel(),
 		//Filter
 		getFilteredRowModel: getFilteredRowModel(),
+
+		//Big data pagination
+		getPaginationRowModel: getPaginationRowModel(),
 	});
 
 	return (
@@ -71,6 +76,8 @@ export const TanTable = () => {
 					<TanTableBody rows={table.getRowModel().rows} />
 					<TanTableFooter footerGroups={table.getFooterGroups()} />
 				</Table>
+				{/* pass in isQuery? i.e. isPaginatedQuery */}
+				<TanTablePagination table={table} />
 			</TableContainer>
 		</>
 	);
