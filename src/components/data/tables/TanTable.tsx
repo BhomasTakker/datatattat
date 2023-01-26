@@ -13,6 +13,7 @@ import { TanTableHeader } from "./TanTableHeader";
 import { TanTableFooter } from "./TanTableFooter";
 import { TanTableBody } from "./TanTableBody";
 import { useColumns } from "./useColumns";
+import { TanTableColumnsToggle } from "./TanTableColumnsToggle";
 
 //This needs to be a generic
 type DataType = {
@@ -59,6 +60,7 @@ export const TanTable = () => {
 			</Typography>
 			{/* We can put a column toggle here */}
 			<TableContainer component={Paper} className={styles.container}>
+				<TanTableColumnsToggle table={table} />
 				<Table
 					sx={{ minWidth: 700 }}
 					aria-label="customized table"
