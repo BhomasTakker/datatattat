@@ -44,21 +44,29 @@ const TextFilter = ({ column }: { column: Column<any, any> }) => {
 	);
 };
 
-//Need to be able to turn sorting on or off
-//Is a click have click or no is the easiest
-//Need to set sort from settings / beginning
-
-//if you can find a better way to handle all of these
-
 const HeaderCell = ({ header }: { header: Header<unknown, unknown> }) => {
 	const { id, column, isPlaceholder } = header;
 	const canSort = column.getCanSort();
 	const canFilter = column.getCanFilter();
 
+	//need sort this out
 	const pointerClass = canSort ? "cursor-pointer" : "";
+
+	//need manage how to sort - at the moment is just text
 	const isSorted = column.getIsSorted();
 	const toggleSortHnd = column.getToggleSortingHandler();
 	//set class according to Can be sorted or not
+
+	const drawSortIcon = () => {
+		//need better
+		return (
+			{
+				//this 8 oof - I actually am wah!
+				asc: " 🔼",
+				desc: " 🔽",
+			}[isSorted as string] ?? null
+		);
+	};
 
 	return (
 		<TableCell key={id} className={`${styles.cell} ${styles.headCell} `}>
@@ -67,14 +75,10 @@ const HeaderCell = ({ header }: { header: Header<unknown, unknown> }) => {
 					? null
 					: flexRender(column.columnDef.header, header.getContext())}
 				{/* Show something to symbolise sort direction - create a component or something */}
-				{{
-					//this 8 oof - I actually am wah!
-					asc: " 🔼",
-					desc: " 🔽",
-				}[isSorted as string] ?? null}
+				{drawSortIcon()}
 			</Box>
 			{/* If filterOn - need select correct filter - either simple or ... */}
-			<TextFilter column={column} />
+			{canFilter && <TextFilter column={column} />}
 		</TableCell>
 	);
 };

@@ -17,6 +17,7 @@ import {
 	PaginationState,
 	TableState,
 	TableOptions,
+	HeaderGroup,
 } from "@tanstack/react-table";
 import React from "react";
 import defaultData from "../../../../mockData/table/MOCK_DATA.json";
@@ -70,15 +71,11 @@ export const TanTable = ({
 	canSort = false,
 }: TanTableProps) => {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
-	//We need to pass in a data type
-	// const [data, setData] = React.useState((): any[] => [...defaultData]);
+
+	//call as a function to rerender
 	const rerender = React.useReducer(() => ({}), {})[1]; //need understand this properly and if required
 
 	const { data, pageCount } = queryData;
-
-	console.log({ manualPagination });
-	console.log("REDRAW");
-	// const manualPagination = true;
 
 	//Stupid question perhaps but is there a way to memoise list in this instance?
 	//We absolutely need to put some focus into memoisation, etc
@@ -109,6 +106,8 @@ export const TanTable = ({
 		};
 	}
 
+	//There are a lot of available options
+	//We need to go over in detail
 	const table = useReactTable({
 		data,
 		columns,
@@ -117,6 +116,16 @@ export const TanTable = ({
 			sorting,
 			...tableState,
 		},
+
+		enableSorting: canSort,
+
+		//works in combination with column.getCanFilter(); in header
+		enableColumnFilters: showColumnFilters,
+
+		//these are global filters - I suppose affecting all results
+		// enableFilters: showColumnFilters,
+		// enableColumnFilters: showColumnFilters,
+		// enableGlobalFilter: showColumnFilters,
 
 		getCoreRowModel: getCoreRowModel(),
 		//sorting
@@ -143,11 +152,7 @@ export const TanTable = ({
 				<Table aria-label="customized table" className={styles.table}>
 					{/* Probably memoise */}
 					{showHeader && (
-						<TanTableHeader
-							headerGroups={table.getHeaderGroups()}
-							canSort={canSort}
-							showFilter={showColumnFilters}
-						/>
+						<TanTableHeader headerGroups={table.getHeaderGroups()} />
 					)}
 					<TanTableBody rows={table.getRowModel().rows} />
 					{showFooter && (
@@ -157,7 +162,7 @@ export const TanTable = ({
 				{/* need set show 5, 10, 20, accordingly */}
 				{/* need set goto page limits - 0 - number of pages */}
 				{showPagination && <TanTablePagination table={table} />}
-				<Button onClick={() => rerender()}>Redraw</Button>
+				{/* <Button onClick={() => rerender()}>Redraw</Button> */}
 			</TableContainer>
 		</>
 	);

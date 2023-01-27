@@ -1,5 +1,5 @@
 import { TanTable } from "./TanTable";
-import { withQuery } from "./withQuery";
+import { withQuery } from "@/hoc/query/withQuery";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fetchPokemon } from "@/src/api/pokeapi/pokemon";
@@ -16,11 +16,11 @@ const componentObject = {
 	component: TanTable,
 	props: {
 		showHeader: true,
-		showFooter: false,
+		showFooter: true,
 		manualPagination: true,
-		showColumnToggles: false,
+		showColumnToggles: true,
 		showColumnFilters: true,
-		showPagination: false,
+		showPagination: true,
 		canSort: true,
 	},
 };
