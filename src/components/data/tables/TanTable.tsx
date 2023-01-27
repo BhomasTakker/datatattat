@@ -44,15 +44,30 @@ type TanTableProps = {
 	onPageUpdate: OnChangeFn<PaginationState>;
 	queryState: any & PaginationType;
 
-	manualPagination: boolean;
+	showHeader: boolean;
+	showFooter: boolean;
+	manualPagination?: boolean;
+	showColumnToggles?: boolean;
+	showColumnFilters?: boolean;
+	showPagination?: boolean;
+	canSort?: boolean;
 };
 
+//We should be using useContext for table properties / sortable, etc
 //TanTable of Generic TableData
 export const TanTable = ({
+	//really need if and manage better
 	queryData,
 	onPageUpdate,
 	queryState,
-	manualPagination,
+	//these are the actual table props
+	showHeader = true,
+	showFooter = false,
+	manualPagination = false,
+	showColumnToggles = false,
+	showColumnFilters = false,
+	showPagination = false,
+	canSort = false,
 }: TanTableProps) => {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	//We need to pass in a data type
@@ -74,7 +89,7 @@ export const TanTable = ({
 	const { columns } = useColumns(list);
 
 	let tableState: Partial<TableState> = {};
-	if (manualPagination) tableState.pagination = queryState;
+	// if (manualPagination) tableState.pagination = queryState;
 
 	//default table options
 	//thenspread manualPagination table options over the top
@@ -83,6 +98,7 @@ export const TanTable = ({
 	};
 
 	if (manualPagination) {
+		tableState.pagination = queryState;
 		tableOptions = {
 			getPaginationRowModel: undefined,
 			// getPaginationRowModel: getPaginationRowModel(),
@@ -96,10 +112,10 @@ export const TanTable = ({
 	const table = useReactTable({
 		data,
 		columns,
+		//This is where we can set column visibility, default ordering, etc
 		state: {
 			sorting,
 			...tableState,
-			// pagination: manualPagination ? pagination : undefined,
 		},
 
 		getCoreRowModel: getCoreRowModel(),
@@ -110,15 +126,6 @@ export const TanTable = ({
 		getFilteredRowModel: getFilteredRowModel(),
 
 		...tableOptions,
-
-		// getPaginationRowModel: !manualPagination
-		// 	? getPaginationRowModel()
-		// 	: undefined,
-		// // getPaginationRowModel: getPaginationRowModel(),
-		// //query pagination / set false for use above
-		// manualPagination,
-		// pageCount: manualPagination ? pageCount : undefined,
-		// onPaginationChange: manualPagination ? onPageUpdate : undefined,
 	});
 
 	return (
@@ -132,16 +139,24 @@ export const TanTable = ({
 				Data Table
 			</Typography>
 			<TableContainer component={Paper} className={styles.container}>
-				<TanTableColumnsToggle table={table} />
+				{showColumnToggles && <TanTableColumnsToggle table={table} />}
 				<Table aria-label="customized table" className={styles.table}>
 					{/* Probably memoise */}
-					<TanTableHeader headerGroups={table.getHeaderGroups()} />
+					{showHeader && (
+						<TanTableHeader
+							headerGroups={table.getHeaderGroups()}
+							canSort={canSort}
+							showFilter={showColumnFilters}
+						/>
+					)}
 					<TanTableBody rows={table.getRowModel().rows} />
-					<TanTableFooter footerGroups={table.getFooterGroups()} />
+					{showFooter && (
+						<TanTableFooter footerGroups={table.getFooterGroups()} />
+					)}
 				</Table>
 				{/* need set show 5, 10, 20, accordingly */}
 				{/* need set goto page limits - 0 - number of pages */}
-				<TanTablePagination table={table} />
+				{showPagination && <TanTablePagination table={table} />}
 				<Button onClick={() => rerender()}>Redraw</Button>
 			</TableContainer>
 		</>
