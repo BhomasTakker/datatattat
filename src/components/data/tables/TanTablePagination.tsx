@@ -16,6 +16,7 @@ import React from "react";
 import { Table } from "@tanstack/react-table";
 
 export const TanTablePagination = ({ table }: { table: Table<any> }) => {
+	console.log({ tablePag: table.getState().pagination });
 	return (
 		<Stack direction="row">
 			{/* Split to component */}

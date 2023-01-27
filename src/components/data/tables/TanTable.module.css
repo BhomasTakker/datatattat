@@ -3,6 +3,7 @@
 .container {
 }
 .table {
+	min-width: 700px;
 }
 
 .row {

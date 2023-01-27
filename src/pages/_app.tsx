@@ -8,6 +8,10 @@ import { Layout } from "@/components/layout/page/layout";
 import { ScreenController } from "@/components/layout/screen/ScreenController";
 import { appWithTranslation } from "next-i18next";
 import { LocaleProvider } from "@/components/layout/locale/LocaleProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+//Create a Controller
+const queryClient = new QueryClient();
 
 function App({ Component, pageProps }: AppProps) {
 	const { session } = pageProps;
@@ -19,17 +23,19 @@ function App({ Component, pageProps }: AppProps) {
 			// Re-fetches session when window is focused
 			refetchOnWindowFocus={true}
 		>
-			<Provider store={store}>
-				{/* Layout or behaviours etc */}
-				{/* Have a behaviours and a layout so we don't end up with 100s of nesting? */}
-				<ScreenController>
-					<LocaleProvider>
-						<Layout>
-							<Component {...pageProps} />
-						</Layout>
-					</LocaleProvider>
-				</ScreenController>
-			</Provider>
+			<QueryClientProvider client={queryClient}>
+				<Provider store={store}>
+					{/* Layout or behaviours etc */}
+					{/* Have a behaviours and a layout so we don't end up with 100s of nesting? */}
+					<ScreenController>
+						<LocaleProvider>
+							<Layout>
+								<Component {...pageProps} />
+							</Layout>
+						</LocaleProvider>
+					</ScreenController>
+				</Provider>
+			</QueryClientProvider>
 		</SessionProvider>
 	);
 }
