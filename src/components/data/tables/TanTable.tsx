@@ -52,6 +52,9 @@ type TanTableProps = {
 	showColumnFilters?: boolean;
 	showPagination?: boolean;
 	canSort?: boolean;
+
+	//do we offset the
+	// pageOffset?: boolean;
 };
 
 //We should be using useContext for table properties / sortable, etc
@@ -139,15 +142,10 @@ export const TanTable = ({
 
 	return (
 		<>
-			{/* 
-        Render props for each component?
-        If provided then render
-        You 'could' pass in table as props and then whatever goes 
-    */}
-			<Typography variant="h4" component="h1">
-				Data Table
-			</Typography>
 			<TableContainer component={Paper} className={styles.container}>
+				<Typography variant="h4" component="h1">
+					Data Table
+				</Typography>
 				{showColumnToggles && <TanTableColumnsToggle table={table} />}
 				<Table aria-label="customized table" className={styles.table}>
 					{/* Probably memoise */}

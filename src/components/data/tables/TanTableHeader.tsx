@@ -6,10 +6,6 @@ import { Box, TableCell, TableHead, TableRow, TextField } from "@mui/material";
 import React from "react";
 import { Column, flexRender, Header, HeaderGroup } from "@tanstack/react-table";
 
-//Is this overkill?
-//It 'feels' a lot better but is there a cost?
-//After transpiling, can there be?
-//Nah - look how complicated this would get
 const HeaderRow = ({ headerGroup }: { headerGroup: HeaderGroup<unknown> }) => {
 	return (
 		<TableRow
@@ -82,6 +78,11 @@ const HeaderCell = ({ header }: { header: Header<unknown, unknown> }) => {
 		</TableCell>
 	);
 };
+
+//Add better styling
+//font, size, colour
+//shaded/white alpha background colour for filters
+//700px width is too much - need think about more responsive / mobile view
 
 export const TanTableHeader = ({
 	headerGroups,

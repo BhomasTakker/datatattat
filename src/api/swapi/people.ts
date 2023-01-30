@@ -1,13 +1,14 @@
 import { PaginationType } from "@/src/components/data/tables/types";
 
-export const fetchPokemonInitialState = {
-	pageIndex: 0,
-	pageSize: 10,
-};
+//Way slower than pokeapi
 
-export const fetchPokemon = async ({ pageIndex, pageSize }: PaginationType) => {
+//not sure how we would manage no pageSize option ?
+export const fetchCharacters = async ({
+	pageIndex,
+	pageSize,
+}: PaginationType) => {
 	const response = await fetch(
-		`https://pokeapi.co/api/v2/pokemon?offset=${pageIndex}&limit=${pageSize}`
+		`https://swapi.dev/api/people?page=${pageIndex + 1}`
 	);
 
 	const result = await response.json();

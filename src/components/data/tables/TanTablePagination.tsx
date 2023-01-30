@@ -13,6 +13,15 @@ import DoubleRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import React from "react";
 import { Table } from "@tanstack/react-table";
 
+//Certainly needs work / but the work is likely simple
+//spread the elements equally a la flex space-between
+//primary colour background
+//improve styling
+//need goto page to have min 0 max == max
+//need show per page to be passed in as a set/array
+//need on/off set number per page
+//some apis won't have the option
+
 export const TanTablePagination = ({ table }: { table: Table<any> }) => {
 	console.log({ tablePag: table.getState().pagination });
 	return (
