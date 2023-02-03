@@ -1,0 +1,8 @@
+//At this moment we need to copy the mui default style colours
+
+$primary-color: #64ff00;
+
+:export {
+	primaryColor: $primary-color;
+	textColor: white;
+}

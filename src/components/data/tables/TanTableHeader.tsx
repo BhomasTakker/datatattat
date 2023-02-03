@@ -2,6 +2,7 @@
 //https://tanstack.com/table/v8/docs/examples/react/sorting
 
 import styles from "./TanTable.module.css";
+import variables from "@/styles/variables.module.scss";
 import { Box, TableCell, TableHead, TableRow, TextField } from "@mui/material";
 import React from "react";
 import { Column, flexRender, Header, HeaderGroup } from "@tanstack/react-table";
@@ -29,6 +30,8 @@ const TextFilter = ({ column }: { column: Column<any, any> }) => {
 
 	return (
 		<TextField
+			// color="primary"
+
 			type="text"
 			fullWidth={true}
 			// name={}
@@ -64,9 +67,14 @@ const HeaderCell = ({ header }: { header: Header<unknown, unknown> }) => {
 		);
 	};
 
+	// drawIcon needs to be inline
 	return (
 		<TableCell key={id} className={`${styles.cell} ${styles.headCell} `}>
-			<Box onClick={toggleSortHnd} className={pointerClass}>
+			<Box
+				onClick={toggleSortHnd}
+				className={pointerClass}
+				sx={{ color: variables.textColor }}
+			>
 				{isPlaceholder
 					? null
 					: flexRender(column.columnDef.header, header.getContext())}
