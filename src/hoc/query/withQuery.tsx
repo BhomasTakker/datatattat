@@ -32,7 +32,7 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 		...options,
 	});
 
-	console.log("Redraw Query");
+	// console.log("Redraw Query");
 
 	//loading / error / etc
 	if (!data) {

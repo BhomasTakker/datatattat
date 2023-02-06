@@ -13,7 +13,8 @@ export const LogInButton = () => {
 		push("/auth/signin");
 	};
 
-	console.log({ size });
+	// Check the rerenders on this thing
+	// console.log({ size });
 
 	if (size === ScreenWidth.XS) {
 		return (

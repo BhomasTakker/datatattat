@@ -1,5 +1,6 @@
 //I think this should just be Auth
 //User would be a seperate set of data
+//this is almost undeniably true
 
 import mongoose from "mongoose";
 

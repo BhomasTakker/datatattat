@@ -24,14 +24,14 @@ export const clientsideFetch = async ({
 		endpoint.searchParams.set(param, searchParams[param]);
 	}
 
-	console.log({ searchParams: searchParams });
-	console.log({ params: endpoint.search });
+	// console.log({ searchParams: searchParams });
+	// console.log({ params: endpoint.search });
 
 	//try catch
 	const response = await fetch(`${url}${endpoint.search}`);
 	const result = await response.json();
 
-	console.log({ result });
+	// console.log({ result });
 
 	return returnFn(result);
 };

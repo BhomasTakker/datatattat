@@ -54,9 +54,11 @@ const LINKS: NavLinkData[] = [
 ];
 
 //this re-renders a lot...
-export const MainHeader = () => {
+export const MainHeader = ({ headerData }: any) => {
 	const [showMore, setShowMore] = useState(false);
 	const [isMenuShowing, setIsMenuShowing] = useState(false);
+
+	console.log({ headerData });
 
 	//perhaps better got from user store then user getAuthenticated
 	const { data: session, status } = useSession();
@@ -65,7 +67,7 @@ export const MainHeader = () => {
 	//This should possibly all be useContext
 	//It all works now but think about it
 	const subMenuUpdatedHandler = (menuList: NavLinkData[]) => {
-		console.log({ menuList });
+		// console.log({ menuList });
 		setShowMore(menuList.length > 0);
 	};
 

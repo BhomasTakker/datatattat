@@ -11,9 +11,14 @@ import { useTranslation } from "next-i18next";
 import { i18namespace } from "@/lib/i18n/namespace-sets";
 import { Common } from "../lib/i18n/translation";
 import { Test } from "../components/content/tempComponent";
+import mongooseConnect from "../lib/mongoose-connection";
+import Page from "@/models/Page";
 
 export default function Home(props: any) {
 	const { t } = useTranslation(); //pass a prameter of 'Home' for a particular namespace / array?
+	const { pageData } = props;
+
+	console.log({ pageData });
 
 	return (
 		<>
@@ -39,12 +44,36 @@ export default function Home(props: any) {
 }
 
 export async function getStaticProps({ locale }: { locale: string }) {
+	//get pageData <- middleware!!!!
+	//this has to be middleware?
+	//We surely don't want to add to every page
+	//I dunno man just do for now - is dynamic pages so a function call will do it
+
+	await mongooseConnect();
+
+	//Okay what is the proper return?
+	//I shouldn'y need to JSONify
+	//lean() strips any function stuff because we just want data but we will need to jsonify it to pass as porps
+	const pageData = await Page.findOne({ route: "/" }).lean();
+
+	console.log({ pageData });
+
+	if (!pageData) {
+		//would actually go with something like throw createError(error.id)
+		console.log("ERROR");
+	}
+
+	// const pageData = { data: "Hello World!" };
+
 	return {
 		props: {
+			//confusing blind copy - do properly
 			...(await serverSideTranslations(locale, [
 				i18namespace.home,
 				...i18namespace.common,
 			])),
+
+			pageData: JSON.parse(JSON.stringify(pageData)),
 		},
 	};
 }
