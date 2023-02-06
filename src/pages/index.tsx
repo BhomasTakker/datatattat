@@ -13,13 +13,16 @@ import { Common } from "../lib/i18n/translation";
 import { Test } from "../components/content/tempComponent";
 import mongooseConnect from "../lib/mongoose-connection";
 import Page from "@/models/Page";
+import Header from "@/models/Header";
+import Footer from "@/models/Footer";
 
 export default function Home(props: any) {
 	const { t } = useTranslation(); //pass a prameter of 'Home' for a particular namespace / array?
-	const { pageData } = props;
+	const { pageData, headerData, footerData } = props;
 
 	console.log({ pageData });
-
+	console.log({ headerData });
+	console.log({ footerData });
 	return (
 		<>
 			<Head>
@@ -56,7 +59,12 @@ export async function getStaticProps({ locale }: { locale: string }) {
 	//lean() strips any function stuff because we just want data but we will need to jsonify it to pass as porps
 	const pageData = await Page.findOne({ route: "/" }).lean();
 
-	console.log({ pageData });
+	//Why can't I populate!!!
+	const headerData = await Header.findById(pageData.header.id).lean();
+	const footerData = await Footer.findById(pageData.footer.id).lean();
+
+	console.log({ headerData });
+	console.log({ footerData });
 
 	if (!pageData) {
 		//would actually go with something like throw createError(error.id)
@@ -74,6 +82,8 @@ export async function getStaticProps({ locale }: { locale: string }) {
 			])),
 
 			pageData: JSON.parse(JSON.stringify(pageData)),
+			headerData: JSON.parse(JSON.stringify(headerData)),
+			footerData: JSON.parse(JSON.stringify(footerData)),
 		},
 	};
 }

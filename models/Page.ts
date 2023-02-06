@@ -8,14 +8,46 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
+const PageHeaderSchema = new Schema({
+	id: {
+		type: Schema.Types.ObjectId,
+		ref: "Header",
+		required: true,
+	},
+	active: Schema.Types.String,
+	visible: Boolean,
+});
+const PageFooterSchema = new Schema({
+	id: {
+		type: Schema.Types.ObjectId,
+		ref: "Footer",
+		required: true,
+	},
+	visible: Boolean,
+});
+
 const QuerySchema = new Schema({});
-const ComponentSchema = new Schema({});
-const ContainerSchema = new Schema({});
+const ComponentSchema = new Schema({
+	componentType: {
+		type: String,
+		required: true,
+	},
+	with: String,
+});
+const ContainerSchema = new Schema({
+	containerType: {
+		type: String,
+		required: true,
+	},
+	initData: Object,
+});
+
+const ContentSchema = new Schema({
+	container: ContainerSchema,
+	components: [ComponentSchema],
+});
 
 const PageSchema = new Schema({
-	// header: {
-	//   type: ObjectID
-	// }
 	//status: {} / state? private, public, published
 	//creator, etc
 
@@ -24,46 +56,14 @@ const PageSchema = new Schema({
 	//   ref: 'User',
 	//   required: true,
 	// }
-	/////////////////////////////////////
-	//A list of components is all it is
-	//Or grid of components
-	//A component of components
 	route: {
 		type: String,
 		required: true,
 	},
 
-	// A Container of Components
-	container: {
-		containerType: {
-			type: String,
-			required: true,
-		},
-		initData: Object, // Provide initialisation data?
-		// i.e. Stack direction - horizontal
-		// Props basically
-	},
-
-	components: [
-		{
-			componentType: {
-				type: String,
-				required: true,
-			},
-			//withQuery, withData, withPaginationQuery, string or array?
-			//withRSS, withCSV, etc, etc
-			//withMergedQuery - i.e. multiple sources?
-			with: String,
-			//If no with, you must provide data - i.e. a saved data id?
-			//Surely that would just be withData?
-			// data: Object,
-
-			//would need a query if withQuery
-			// query: QuerySchema,
-			//queries if multiple
-			// queries: [QuerySchema],
-		},
-	],
+	header: PageHeaderSchema,
+	footer: PageFooterSchema,
+	content: ContentSchema,
 });
 
 export default mongoose.models.Page || mongoose.model("Page", PageSchema);

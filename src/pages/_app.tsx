@@ -17,8 +17,8 @@ import { isConstructorDeclaration } from "typescript";
 const queryClient = new QueryClient();
 
 function App({ Component, pageProps }: AppProps) {
-	const { session, pageData } = pageProps;
-	const { headerData, footerData } = pageData;
+	const { session, pageData, headerData, footerData } = pageProps;
+	// const { header, footer } = pageData;
 
 	console.log({ session });
 
