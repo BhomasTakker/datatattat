@@ -14,6 +14,11 @@ export const fetchPokemon = async ({ pageIndex, pageSize }: PaginationType) => {
 
 	//how to return data?
 	//We need to be uniform no?
+	//do we do expected objects
+	//i.e. data, pagination, and meta???
+	//everything has data
+	//not everything has pagination
+	//meta - dunno
 	return {
 		data: result.results,
 		pageCount: Math.ceil(result.count / pageSize),

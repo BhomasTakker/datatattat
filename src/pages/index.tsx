@@ -10,9 +10,11 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { i18namespace } from "@/lib/i18n/namespace-sets";
 import { Common } from "../lib/i18n/translation";
+import { Test } from "../components/content/test";
 
 export default function Home(props: any) {
 	const { t } = useTranslation(); //pass a prameter of 'Home' for a particular namespace / array?
+
 	return (
 		<>
 			<Head>
@@ -29,6 +31,7 @@ export default function Home(props: any) {
 					<Display2 />
 					{/* Mui Grid is a little too simplistic */}
 					<Display3 />
+					<Test />
 				</Stack>
 			</main>
 		</>

@@ -44,6 +44,7 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 	return (
 		<Component
 			queryData={data}
+			//withPaginatedQuery?
 			queryState={queryState}
 			onPageUpdate={setQueryState}
 			//pass in
