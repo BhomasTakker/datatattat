@@ -4,6 +4,6 @@ import { DTAStack } from "@/components/containers/stack/DTAStack";
 // 	STACK = "STACK",
 // }
 
-export const CONTAINERS = {
+export const CONTAINERS: any = {
 	["DTAStack"]: DTAStack, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
 };
