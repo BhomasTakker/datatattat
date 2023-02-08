@@ -14,7 +14,7 @@ export const Test = () => {
 	const componentObject = {
 		component: SimpleList,
 		props: {
-			Component: ArticleStub,
+			componentId: "ArticleStub",
 		},
 	};
 

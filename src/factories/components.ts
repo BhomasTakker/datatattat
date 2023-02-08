@@ -1,4 +1,6 @@
 import { Test } from "@/components/content/tempComponent";
+import { ArticleStub } from "../components/data/articles/ArticleStub";
+import { SimpleList } from "../components/data/list/SimpleList";
 
 // export enum COMPONENT_TYPES {
 // 	STACK = "STACK",
@@ -9,4 +11,6 @@ import { Test } from "@/components/content/tempComponent";
 //data led somehow
 export const COMPONENTS = {
 	["Test"]: Test, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
+	["SimpleList"]: SimpleList,
+	["ArticleStub"]: ArticleStub,
 };

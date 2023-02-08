@@ -22,9 +22,9 @@ export default function Home(props: any) {
 	const { pageData, headerData, footerData } = props;
 	const { content } = pageData;
 
-	console.log({ pageData });
-	console.log({ headerData });
-	console.log({ footerData });
+	// console.log({ pageData });
+	// console.log({ headerData });
+	// console.log({ footerData });
 
 	const Container = containerFactory(content);
 
@@ -43,14 +43,13 @@ export default function Home(props: any) {
 			<main className={styles.main}>
 				<h1>{t(Common.pageTitle)}</h1>
 				<Container data={content} />
-				<Stack spacing={2}>
+				{/* <Stack spacing={2}>
 					<Counter />
 					<Display1 />
 					<Display2 />
-					{/* Mui Grid is a little too simplistic */}
 					<Display3 />
 					<Test />
-				</Stack>
+				</Stack> */}
 			</main>
 		</>
 	);
@@ -74,8 +73,8 @@ export async function getStaticProps({ locale }: { locale: string }) {
 	const headerData = await Header.findById(pageData.header.id).lean();
 	const footerData = await Footer.findById(pageData.footer.id).lean();
 
-	console.log({ headerData });
-	console.log({ footerData });
+	// console.log({ headerData });
+	// console.log({ footerData });
 
 	if (!pageData) {
 		//would actually go with something like throw createError(error.id)

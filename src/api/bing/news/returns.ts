@@ -25,6 +25,10 @@ export const toArticleList = (data: BingNewsSearchResponse) => {
 	};
 };
 
+export const returns = {
+	toArticleList,
+};
+
 export const toPaginatedArticleList = (data: BingNewsSearchResponse) => {};
 
 export const toInfiniteScrollArticleList = (data: BingNewsSearchResponse) => {};

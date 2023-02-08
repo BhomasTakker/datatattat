@@ -1,3 +1,4 @@
+import { componentFactory } from "@/src/factories/component-factory";
 import { List } from "@mui/material";
 import React, { FC } from "react";
 
@@ -12,14 +13,21 @@ import React, { FC } from "react";
 // A paginated List will also expect pagination data from a WithPaginationQuery
 // Whatever goes with InfiniteScrollList and WithInfiniteScrollQuery ????
 // OR is this effectively the same a different component using the same pagination component?
+
+//We need this to take a componentId and losd the component from a factory
 export const SimpleList = ({
-	queryData,
-	Component,
+	queryData = {},
+	componentId,
 }: {
 	queryData: any;
-	Component: FC<any>;
+	componentId: string;
 }) => {
-	const { data } = queryData;
+	const { data = [] } = queryData;
+	////////////////////////
+	//doesn't feel okay?
+	//Right in theory perhaps just need to overload input perhaps - pass Id and nothing else surely?
+	const Component = componentFactory(componentId);
+
 	const items = data.map((item: any) => (
 		<Component key={item.url} data={item} />
 	));

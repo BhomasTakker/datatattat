@@ -1,4 +1,5 @@
 import { componentFactory } from "@/src/factories/component-factory";
+import { withFactory } from "@/src/factories/with-factory";
 import Stack from "@mui/material/Stack";
 import React from "react";
 
@@ -9,8 +10,20 @@ type DTAStackProps = {
 
 const createComponentsList = (components: any[]) => {
 	return components.map((component, index) => {
-		const Component = componentFactory(component);
-		return <Component key={index} />;
+		const { componentType, componentProps, _with = {} } = component;
+		const Component = componentFactory(componentType);
+
+		//helpers or something
+		const componentObject = {
+			component: Component,
+			props: componentProps,
+		};
+
+		console.log({ componentType });
+
+		const RenderElement = withFactory(componentObject, _with);
+
+		return <RenderElement key={index} />;
 	});
 };
 
