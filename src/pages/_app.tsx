@@ -11,7 +11,16 @@ import { LocaleProvider } from "@/components/layout/locale/LocaleProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MainHeader } from "../components/header/main/MainHeader";
 import { MainFooter } from "../components/footer/MainFooter";
-import { isConstructorDeclaration } from "typescript";
+import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
+import { green, orange } from "@mui/material/colors";
+
+const theme = createTheme({
+	palette: {
+		primary: {
+			main: orange[500],
+		},
+	},
+});
 
 //Create a Controller
 const queryClient = new QueryClient();
@@ -39,13 +48,17 @@ function App({ Component, pageProps }: AppProps) {
 					{/* Have a behaviours and a layout so we don't end up with 100s of nesting? */}
 					<ScreenController>
 						<LocaleProvider>
-							{/* Here something - we need to pass pageProps to header */}
-							{/* You could well argue that we should use a context here */}
-							{/* Then body, header, and footer can all have access to page data without props */}
-							{/* Or render props for each */}
-							<Layout renderHeader={renderHeader} renderFooter={renderFooter}>
-								<Component {...pageProps} />
-							</Layout>
+							{/* Theme manager - manage themes - we will need to change theme - light/dark/dyslexia/colorBlind mode etc */}
+							{/* Argument for nested themes eventually - i.e. a user to brand there own pages/content */}
+							<ThemeProvider theme={theme}>
+								{/* Here something - we need to pass pageProps to header */}
+								{/* You could well argue that we should use a context here */}
+								{/* Then body, header, and footer can all have access to page data without props */}
+								{/* Or render props for each */}
+								<Layout renderHeader={renderHeader} renderFooter={renderFooter}>
+									<Component {...pageProps} />
+								</Layout>
+							</ThemeProvider>
 						</LocaleProvider>
 					</ScreenController>
 				</Provider>
