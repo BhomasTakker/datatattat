@@ -13,6 +13,7 @@ import { MainHeader } from "../components/header/main/MainHeader";
 import { MainFooter } from "../components/footer/MainFooter";
 import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 import { green, orange } from "@mui/material/colors";
+import { CssBaseline } from "@mui/material";
 
 const theme = createTheme({
 	palette: {
@@ -51,6 +52,7 @@ function App({ Component, pageProps }: AppProps) {
 							{/* Theme manager - manage themes - we will need to change theme - light/dark/dyslexia/colorBlind mode etc */}
 							{/* Argument for nested themes eventually - i.e. a user to brand there own pages/content */}
 							<ThemeProvider theme={theme}>
+								<CssBaseline />
 								{/* Here something - we need to pass pageProps to header */}
 								{/* You could well argue that we should use a context here */}
 								{/* Then body, header, and footer can all have access to page data without props */}
