@@ -8,4 +8,7 @@ export const Validation = {
 	passwordRequired: "Validation:password-required",
 	passwordNew: "Validation:password-new",
 	passwordCurrent: "Validation:password-current",
+	usernameMin: "Validation:username-min",
+	usernameMax: "Validation:username-max",
+	usernameRequired: "Validation:username-required",
 };

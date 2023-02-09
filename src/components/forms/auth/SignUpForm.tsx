@@ -1,5 +1,5 @@
 import styles from "./Auth.module.css";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, InputAdornment, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { useRouter } from "next/router";
@@ -18,6 +18,7 @@ import { useTranslation } from "next-i18next";
 import { validate } from "@/lib/validation/form-input-validators";
 import { AuthInputs } from "@/components/forms/auth/AuthInputs";
 import { Auth } from "@/src/lib/i18n/translation";
+import { UsernameInputWithControl } from "../../input/UsernameInput";
 //need schemas and individual rules in a forms/validation lib
 
 //load from somewhere
@@ -25,6 +26,8 @@ const schema = yup.object().shape({
 	email: validate.email,
 	password: validate.password,
 	confirm: validate.confirmPassword,
+	//need add regex pattern etc, translations
+	username: validate.username,
 });
 
 export const SignUpForm = () => {
@@ -56,6 +59,13 @@ export const SignUpForm = () => {
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(submitHandler)}>
 						<Stack spacing={2}>
+							<Box>
+								{/* Need add check if taken */}
+								<UsernameInputWithControl
+									label={"select username"}
+									name="username"
+								/>
+							</Box>
 							<AuthInputs confirmPassword />
 							{/* buttons the same but for labels and onClick */}
 							<Stack spacing={3}>

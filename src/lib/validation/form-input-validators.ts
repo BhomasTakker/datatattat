@@ -20,6 +20,8 @@ export const validate = {
 		.email(Validation.emailValid)
 		.required(Validation.emailRequired),
 
+	username: yup.string().min(2).max(15).required(),
+
 	password: yup
 		.string()
 		.min(6, Validation.passwordMin)
