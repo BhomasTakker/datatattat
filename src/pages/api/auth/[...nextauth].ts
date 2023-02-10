@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { verifyPassword } from "@/lib/auth";
 import type { NextAuthOptions } from "next-auth";
-import User from "@/models/User";
+import { Auth } from "@/models/Auth";
 import { ERRORS } from "@/lib/errors/error-messages";
 import mongooseConnect from "@/lib/mongoose-connection";
 
@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
 				await mongooseConnect();
 				// console.log("authorize");
 				// console.log({ email: credentials!.email });
-				const user = await User.findOne({ email: credentials!.email });
+				const user = await Auth.findOne({ email: credentials!.email });
 				// console.log({ user });
 				if (!user) {
 					//would actually go with something like throw createError(error.id)

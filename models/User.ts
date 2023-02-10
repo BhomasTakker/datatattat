@@ -1,18 +1,11 @@
-//I think this should just be Auth
-//User would be a seperate set of data
-//this is almost undeniably true
-
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-	email: {
+	username: {
 		type: String,
-		required: [true, "Please provide your email."],
-	},
-	password: {
-		type: String,
-		required: [true, "Please provide a hashed password"],
+		// unique: [true, "Username must be unique"],
+		required: [true, "Please provide your username."],
 	},
 });
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+export const User = mongoose.models.User || mongoose.model("User", UserSchema);

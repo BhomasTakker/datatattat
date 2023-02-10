@@ -19,6 +19,7 @@ import { validate } from "@/lib/validation/form-input-validators";
 import { AuthInputs } from "@/components/forms/auth/AuthInputs";
 import { Auth } from "@/src/lib/i18n/translation";
 import { UsernameInputWithControl } from "../../input/UsernameInput";
+import { signIn } from "next-auth/react";
 //need schemas and individual rules in a forms/validation lib
 
 //load from somewhere
@@ -37,15 +38,37 @@ export const SignUpForm = () => {
 
 	const dispatch = useAppDispatch();
 
+	//stupid question - this function needs to be shared between SignUp and SignIn
+	//is there a way without passing the router in so this can just be a function
+	//I mean return true or false and you have to notify
+	//although we want like a partial component
+	async function signUserIn(data: any) {
+		//login / call function here / we will need to wrap and mock wrapper for storybook...
+		const result = await signIn("credentials", {
+			redirect: false,
+			...data,
+		});
+
+		//this needs a way better check what the hell is this>#?
+		if (!result!.error) {
+			//create a redirect call in a router lib?
+			router
+				.replace("/profile")
+				.then(() => dispatch(addNotification(NOTIFICATIONS.signInSuccess)));
+		} else {
+			dispatch(addNotification(NOTIFICATIONS.signInError));
+		}
+	}
 	function switchAuthModeHandler() {
 		router.replace("/auth/signin");
 	}
 
 	async function submitHandler(data: any) {
 		try {
-			const result = await createUser(data.email, data.password);
+			const result = await createUser(data.email, data.password, data.username);
 
 			dispatch(addNotification(NOTIFICATIONS.signUpSuccess));
+			signUserIn(data);
 		} catch (err) {
 			dispatch(addNotification(NOTIFICATIONS.signUpError));
 		}

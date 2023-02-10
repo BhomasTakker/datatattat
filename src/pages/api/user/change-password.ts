@@ -5,7 +5,7 @@ import { authOptions } from "../auth/[...nextauth]";
 import { hashPassword, verifyPassword } from "@/lib/auth";
 import { withApiAuthentication } from "@/src/api/auth/WithAPIAuthentication";
 import mongooseConnect from "@/lib/mongoose-connection";
-import User from "@/models/User";
+import { Auth } from "@/models/Auth";
 
 //TODO - look into the below as a possible solution - good to play around regardless
 //just musing here , and it might be my lack of understanding of what RxJS does
@@ -30,7 +30,7 @@ async function changePassword(req: NextApiRequest, res: NextApiResponse) {
 	const oldPassword = req.body.oldPassword;
 	const newPassword = req.body.newPassword;
 
-	const user = await User.findOne({ email: userEmail });
+	const user = await Auth.findOne({ email: userEmail });
 	//list of erros/response messages in a central place
 	if (!user) {
 		res.status(404).json({ message: "User not found." });

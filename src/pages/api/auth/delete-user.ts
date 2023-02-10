@@ -1,10 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import User from "@/models/User";
+import { Auth } from "@/models/Auth";
 import { withApiAuthentication } from "@/src/api/auth/WithAPIAuthentication";
 import { hashPassword, verifyPassword } from "@/lib/auth";
 import mongooseConnect from "@/lib/mongoose-connection";
-import { authOptions } from "./[...nextauth]";
-import { unstable_getServerSession as getServerSession } from "next-auth/next";
+import { User } from "@/models/User";
 
 async function deleteUserAPI(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== "DELETE") {
@@ -34,20 +33,24 @@ async function deleteUserAPI(req: NextApiRequest, res: NextApiResponse) {
 	// const  = req.body.oldPassword;
 
 	//type!!
-	const user = await User.findOne({ email });
+	const auth = await Auth.findOne({ email });
+	const user = await User.findById(auth.userId);
 	//list of erros/response messages in a central place
-	if (!user) {
+	if (!auth || !user) {
+		//should seperate
 		res.status(404).json({ message: "User not found." });
 		return;
 	}
-	const arePasswordsEqual = await verifyPassword(password, user.password);
+	const arePasswordsEqual = await verifyPassword(password, auth.password);
 	if (!arePasswordsEqual) {
 		//should be notifying if password incorrect
 		res.status(403).json({ message: "Something went wrong" });
 		return;
 	}
 
-	await user.deleteOne({ email: user.email });
+	//if one fails?
+	await Auth.deleteOne({ email: auth.email });
+	await User.deleteOne({ _id: auth.userId });
 
 	res.status(200).json({ message: "User deleted!" });
 }

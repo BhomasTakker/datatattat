@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import User from "@/models/User";
+import { Auth } from "@/models/Auth";
 import { hashPassword } from "@/lib/auth";
 import mongooseConnect from "@/lib/mongoose-connection";
+import { User } from "@/models/User";
 
 export default async function signUpAPI(
 	req: NextApiRequest,
@@ -12,7 +13,7 @@ export default async function signUpAPI(
 	}
 
 	const data = req.body;
-	const { email, password } = data;
+	const { email, password, username } = data;
 	//We need to validate the input properly / create seperate auth validation so we can easily update
 	//check password for characters etc
 	if (
@@ -28,30 +29,60 @@ export default async function signUpAPI(
 	await mongooseConnect();
 
 	try {
-		const existingUser = await User.findOne({ email });
+		const existingAuth = await Auth.findOne({ email });
 
-		if (existingUser) {
+		if (existingAuth) {
 			res.status(422).json({ message: "Email exists" });
 			return;
 		}
 	} catch (err) {
+		//this is more of a db failure
 		console.log("error finding user");
+	}
+
+	//Surely this can be a function
+	try {
+		const existingUser = await User.findOne({ username });
+
+		if (existingUser) {
+			res.status(422).json({ message: "Username exists" });
+			return;
+		}
+	} catch (err) {
+		console.log("error checking user");
 	}
 
 	const hashedPassword = await hashPassword(password);
 
 	const newUser = new User({
-		email,
-		password: hashedPassword,
+		username,
 	});
 
+	let userId = null;
 	try {
-		const result = await newUser.save();
+		const userResult = await newUser.save();
+		userId = userResult._id;
 	} catch (error) {
 		res.status(500).json({ message: "Problem creating user" });
 	}
 
+	console.log({ newUserId: newUser._id });
+	console.log({ userId });
+
+	//if no userId / respond and jump
+
+	const newAuth = new Auth({
+		email,
+		password: hashedPassword,
+		userId,
+	});
+	try {
+		const result = await newAuth.save();
+	} catch (error) {
+		res.status(500).json({ message: "Problem creating user authentication" });
+	}
+
 	res.status(201).json({
-		message: "Created user successfully.",
+		message: "Created user and auth successfully.",
 	});
 }
