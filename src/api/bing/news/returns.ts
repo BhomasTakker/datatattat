@@ -13,7 +13,7 @@ export const toArticleList = (data: BingNewsSearchResponse) => {
 		return {
 			title: article.headline || article.name,
 			url: article.url,
-			image: article.image.thumbnail.contentUrl,
+			image: article.image ? article.image.thumbnail.contentUrl : "", //need better working of all this / no image killed me
 			description: article.description,
 			author: article.provider["0"]?.name, //should drop all if
 			published: article.datePublished,

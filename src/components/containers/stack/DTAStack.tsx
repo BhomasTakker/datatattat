@@ -19,8 +19,8 @@ const createComponentsList = (components: any[]) => {
 			props: componentProps,
 		};
 
-		// console.log({ componentType });
-
+		console.log({ componentType });
+		console.log({ componentProps });
 		const RenderElement = withFactory(componentObject, _with);
 
 		return <RenderElement key={index} />;
@@ -34,5 +34,6 @@ export const DTAStack = ({ data }: DTAStackProps) => {
 
 	const componentsList = createComponentsList(components);
 
+	console.log({ data });
 	return <Stack>{componentsList}</Stack>;
 };

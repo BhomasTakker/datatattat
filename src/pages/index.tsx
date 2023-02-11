@@ -16,6 +16,7 @@ export default function Home(props: any) {
 	const { pageData } = props;
 	const { content } = pageData;
 
+	console.log({ content });
 	//get? / use is interesting because that suggests that it could change
 	const Container = containerFactory(content);
 

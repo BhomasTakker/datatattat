@@ -7,7 +7,7 @@ type useUserReturn = {
 };
 
 export const useUser = (): useUserReturn => {
-	const [user, setUser] = useState({});
+	const [user, setUser] = useState<any>({});
 	const [userLoading, setUserLoading] = useState(false);
 	const { data: session, status } = useSession();
 	const isAuthenticated = status === "authenticated";
@@ -52,7 +52,7 @@ export const useUser = (): useUserReturn => {
 
 	//returning user.user ...
 	return {
-		user,
+		user: user.user,
 		isLoading: false,
 	};
 };

@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { Typography } from "@mui/material";
 import React from "react";
-import { withAuth } from "@/hoc/components/auth/withAuth";
 import ProfileForm from "@/components/profile/ProfileForm";
 import {
 	changePassword,
@@ -19,7 +18,6 @@ import mongooseConnect from "@/src/lib/mongoose-connection";
 import { User } from "@/models/User";
 
 import { useSession } from "next-auth/react";
-import { useUser } from "@/src/hooks/useUser";
 
 function UserProfile({ user }: any) {
 	//not sure why thisa is here - probably move into form / is form specific rather than page
@@ -96,6 +94,8 @@ export async function getStaticProps({
 	//We may want to strip msome data from here
 	//i.e. just send page data
 	const user = await User.findOne({ username: userId }).lean();
+
+	//We need to trim this data / surely?
 
 	if (!user) {
 		return {

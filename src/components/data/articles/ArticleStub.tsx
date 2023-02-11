@@ -12,8 +12,8 @@ export const ArticleStub = ({ data }: any) => {
 
 	const { id, name } = source;
 
-	// console.log({ image });
-	// console.log({ data });
+	console.log({ image });
+	console.log({ data });
 	return (
 		<>
 			<ListItem>

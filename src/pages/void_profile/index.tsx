@@ -15,6 +15,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { NOTIFICATIONS } from "@/lib/notifications/notifications";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { i18namespace } from "@/lib/i18n/namespace-sets";
+import { DTAHead } from "@/src/head/DTAHead";
 
 function Profile() {
 	//not sure why thisa is here - probably move into form / is form specific rather than page
@@ -34,13 +35,7 @@ function Profile() {
 	};
 	return (
 		<>
-			<Head>
-				{/* This needs storing and doing properly */}
-				<title>Bad Dog Digital</title>
-				<meta name="description" content="First rendition" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
+			<DTAHead />
 			<main>
 				<Typography variant="h1">User Profile Page</Typography>
 				<ProfileForm onChangePassword={changePasswordHandler} />

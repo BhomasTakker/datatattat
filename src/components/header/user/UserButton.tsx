@@ -13,7 +13,7 @@ export const UserButton = () => {
 	const { user, isLoading } = useUser();
 	// const {pathname, query} = router;
 
-	console.log({ USER: user?.user });
+	console.log({ USER: user });
 
 	const open = Boolean(anchorEl);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -55,9 +55,9 @@ export const UserButton = () => {
 				onClose={handleClose}
 			>
 				{/* Not correct like this but works - need update to proper use  */}
-				{user && user.user && user.user.username && (
+				{user && user.username && (
 					<MenuItem
-						onClick={() => routeHandler(`/${user.user.username}/profile`)}
+						onClick={() => routeHandler(`/${user.username}/profile`)}
 						disableRipple
 					>
 						Profile
@@ -66,6 +66,13 @@ export const UserButton = () => {
 				<MenuItem onClick={() => routeHandler("/user/settings")} disableRipple>
 					Settings
 					<SettingsIcon />
+				</MenuItem>
+				<MenuItem onClick={() => routeHandler("/user/cookies")} disableRipple>
+					Cookies
+				</MenuItem>
+				<Divider sx={{ my: 0.5 }} />
+				<MenuItem onClick={() => routeHandler("/edit")} disableRipple>
+					Edit
 				</MenuItem>
 				<Divider sx={{ my: 0.5 }} />
 				<MenuItem onClick={() => logout(handleClose)} disableRipple>
