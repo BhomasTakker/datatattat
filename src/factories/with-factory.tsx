@@ -37,17 +37,17 @@ const createQueryObject = (queryObject: any) => {
 //Probably convert to a hash
 export const withFactory = (componentObject: any, withObject: any) => {
 	// partial
-	console.log({ type: withObject.type });
+	// console.log({ type: withObject.type });
 	//if error return Component as given and display error
 	switch (withObject.type) {
 		case "query":
 			//queryObject = createQueryObject()
-			console.log("IN QUERY");
+			// console.log("IN QUERY");
 			const _queryObject = createQueryObject(withObject.query);
 			return withQuery(componentObject, _queryObject);
 
 		default:
-			console.log("IN DEFAULT");
+			// console.log("IN DEFAULT");
 			const { component: Component, props } = componentObject;
 			return Component;
 	}

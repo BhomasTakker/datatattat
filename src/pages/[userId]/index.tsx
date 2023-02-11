@@ -62,6 +62,14 @@ export async function getStaticProps({
 	}
 
 	console.log({ user });
+	const pages = user.pages || [];
+	if (pages.length === 0) {
+		return {
+			redirect: {
+				destination: `/${userId}/profile`,
+			},
+		};
+	}
 
 	return {
 		props: {

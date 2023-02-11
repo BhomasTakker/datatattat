@@ -17,6 +17,7 @@ import { ReactElement, useEffect, useRef, useState } from "react";
 //   threshold: number;//
 // }
 
+//Need change! - element not overlapping something!
 export const useElementOnScreen = (options: IntersectionObserverInit) => {
 	//I should not have to do this
 	const containerRef = useRef<HTMLDivElement>(null);

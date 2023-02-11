@@ -5,10 +5,15 @@ import React from "react";
 import SettingsIcon from "@mui/icons-material/SettingsOutlined";
 import { logout } from "@/lib/auth";
 import { useRouter } from "next/router";
+import { useUser } from "@/src/hooks/useUser";
 
 export const UserButton = () => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const router = useRouter();
+	const { user, isLoading } = useUser();
+	// const {pathname, query} = router;
+
+	console.log({ USER: user?.user });
 
 	const open = Boolean(anchorEl);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -49,9 +54,15 @@ export const UserButton = () => {
 				open={open}
 				onClose={handleClose}
 			>
-				<MenuItem onClick={() => routeHandler("/profile")} disableRipple>
-					Profile
-				</MenuItem>
+				{/* Not correct like this but works - need update to proper use  */}
+				{user && user.user && user.user.username && (
+					<MenuItem
+						onClick={() => routeHandler(`/${user.user.username}/profile`)}
+						disableRipple
+					>
+						Profile
+					</MenuItem>
+				)}
 				<MenuItem onClick={() => routeHandler("/user/settings")} disableRipple>
 					Settings
 					<SettingsIcon />

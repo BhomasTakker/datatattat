@@ -19,7 +19,7 @@ const createComponentsList = (components: any[]) => {
 			props: componentProps,
 		};
 
-		console.log({ componentType });
+		// console.log({ componentType });
 
 		const RenderElement = withFactory(componentObject, _with);
 
@@ -29,7 +29,7 @@ const createComponentsList = (components: any[]) => {
 
 export const DTAStack = ({ data }: DTAStackProps) => {
 	//Take in content data
-	console.log({ data });
+	// console.log({ data });
 	const { components } = data;
 
 	const componentsList = createComponentsList(components);

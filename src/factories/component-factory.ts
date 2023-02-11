@@ -7,7 +7,7 @@ export const componentFactory = (componentType: string) => {
 	//Fix the squiggly
 	const componentElement = COMPONENTS[componentType];
 
-	console.log({ componentElement });
+	// console.log({ componentElement });
 
 	return componentElement;
 };
