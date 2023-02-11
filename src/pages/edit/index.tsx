@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import React from "react";
 import { withAuth } from "@/hoc/components/auth/withAuth";
+import { useRouter } from "next/router";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { i18namespace } from "@/lib/i18n/namespace-sets";
@@ -11,10 +12,20 @@ import { LoadingSpinner } from "@/src/components/loading/LoadingSpinner";
 function EditPage() {
 	//Should return error
 	const { user, isLoading } = useUser();
+	const router = useRouter();
 
 	console.log({ user });
 	if (!user && isLoading) {
 		return <LoadingSpinner />;
+	}
+	if (!user && !isLoading) {
+		return <>Error. We should flag and redirect</>;
+	}
+
+	if (!user.page) {
+		//User has no landing page
+		//redirect for walkthrough
+		router.replace("/edit/landing");
 	}
 
 	//if(user.pages.length === 0)//i.e. if no landing page then create landing page

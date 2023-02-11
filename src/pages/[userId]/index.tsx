@@ -4,18 +4,29 @@ import { i18namespace } from "@/lib/i18n/namespace-sets";
 import { DTAHead } from "@/head/DTAHead";
 import { User } from "@/models/User";
 import mongooseConnect from "@/src/lib/mongoose-connection";
+import Page from "@/models/Page";
+import Header from "@/models/Header";
+import Footer from "@/models/Footer";
+import { containerFactory } from "@/src/factories/container-factory";
 
-function UserLanding({ user }: any) {
-	console.log({ user });
+function UserLanding({ username, pageData, headerData, footerData }: any) {
+	console.log({ username });
 
-	if (!user) {
+	if (!pageData) {
 		return <div>Loading...</div>;
 	}
+	const { content } = pageData;
+
+	console.log({ content });
+	//get? / use is interesting because that suggests that it could change
+	const Container = containerFactory(content);
+
 	return (
 		<>
 			<DTAHead />
 			<main>
-				<div>User Landing Page</div>
+				<h1>{`${username} Landing Page`}</h1>
+				<Container data={content} />
 			</main>
 		</>
 	);
@@ -61,15 +72,22 @@ export async function getStaticProps({
 		};
 	}
 
+	//user.page
 	console.log({ user });
-	const pages = user.pages || [];
-	if (pages.length === 0) {
+	const page = user.page;
+	if (!page) {
 		return {
 			redirect: {
 				destination: `/${userId}/profile`,
 			},
 		};
 	}
+
+	const pageData = await Page.findById(page).lean();
+
+	//Why can't I populate!!!
+	const headerData = await Header.findById(pageData.header.id).lean();
+	const footerData = await Footer.findById(pageData.footer.id).lean();
 
 	return {
 		props: {
@@ -78,7 +96,11 @@ export async function getStaticProps({
 				i18namespace.auth,
 				...i18namespace.common,
 			])),
-			user: JSON.parse(JSON.stringify(user)),
+			// user: JSON.parse(JSON.stringify(user)),
+			username: user.username,
+			pageData: JSON.parse(JSON.stringify(pageData)),
+			headerData: JSON.parse(JSON.stringify(headerData)),
+			footerData: JSON.parse(JSON.stringify(footerData)),
 		},
 	};
 }

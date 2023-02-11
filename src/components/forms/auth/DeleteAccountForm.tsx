@@ -2,8 +2,8 @@ import styles from "./Auth.module.css";
 import { Button, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { useRouter } from "next/router";
-import { createUser } from "@/queries/auth/createUser";
+// import { useRouter } from "next/router";
+// import { createUser } from "@/queries/auth/createUser";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -31,7 +31,7 @@ const schema = yup.object().shape({
 
 export const DeleteAccountForm = () => {
 	const { t } = useTranslation();
-	const router = useRouter();
+	// const router = useRouter();
 	const methods = useForm({ resolver: yupResolver(schema) });
 
 	const dispatch = useAppDispatch();
