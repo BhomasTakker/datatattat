@@ -25,6 +25,7 @@ function UserLanding({ username, pageData, headerData, footerData }: any) {
 		<>
 			<DTAHead />
 			<main>
+				{/* Does page have a title and a pre-amble */}
 				<h1>{`${username} Landing Page`}</h1>
 				<Container data={content} />
 			</main>

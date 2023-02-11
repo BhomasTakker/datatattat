@@ -25,5 +25,5 @@ export default async function getUser(
 	// await mongooseConnect();
 
 	// const user = User.findOne
-	res.status(200).json({ user: JSON.parse(JSON.stringify(user)) });
+	res.status(200).json(JSON.parse(JSON.stringify(user)));
 }

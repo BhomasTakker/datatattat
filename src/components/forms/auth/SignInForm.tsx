@@ -45,9 +45,14 @@ export const SignInForm = () => {
 
 		//this needs a way better check what the hell is this>#?
 		if (!result!.error) {
+			const { email } = data;
+			const response = await fetch(`/api/user/get-user?email=${email}`);
+			const user = await response.json();
+			const { username } = user;
+			console.log({ user });
 			//create a redirect call in a router lib?
 			router
-				.replace("/profile")
+				.replace(`/${username}`)
 				.then(() => dispatch(addNotification(NOTIFICATIONS.signInSuccess)));
 		} else {
 			dispatch(addNotification(NOTIFICATIONS.signInError));

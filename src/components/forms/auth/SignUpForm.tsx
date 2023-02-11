@@ -44,6 +44,7 @@ export const SignUpForm = () => {
 	//although we want like a partial component
 	async function signUserIn(data: any) {
 		//login / call function here / we will need to wrap and mock wrapper for storybook...
+		//We really need to get username from here?
 		const result = await signIn("credentials", {
 			redirect: false,
 			...data,
@@ -52,8 +53,12 @@ export const SignUpForm = () => {
 		//this needs a way better check what the hell is this>#?
 		if (!result!.error) {
 			//create a redirect call in a router lib?
+			const { username } = data;
+			// const response = await fetch(`/api/user/get-user?email=${email}`);
+			// const user = await response.json();
+			// const { username } = user;
 			router
-				.replace("/profile")
+				.replace(`/${username}`) //how to actually get username here
 				.then(() => dispatch(addNotification(NOTIFICATIONS.signInSuccess)));
 		} else {
 			dispatch(addNotification(NOTIFICATIONS.signInError));
