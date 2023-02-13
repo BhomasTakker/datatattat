@@ -1,5 +1,10 @@
 import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import {
+	Controller,
+	ControllerRenderProps,
+	FieldValues,
+	useFormContext,
+} from "react-hook-form";
 import { useTranslation } from "next-i18next";
 
 type FormInputControl = {
@@ -8,12 +13,15 @@ type FormInputControl = {
 	defaultValue?: string;
 };
 
+//TYPING
+//we need withControl to work with all input types...
+//With spreading props (We need to TYPE)
+//I think this is okay?
+//We need access to the props we need but the rest can be anything
 export const withControl = (Component: any) => {
-	return function InputWithFormControl({
-		label,
-		name,
-		defaultValue = "",
-	}: FormInputControl) {
+	//We need specify prop types to include
+	return function InputWithFormControl(props: FormInputControl & any) {
+		const { label, name, defaultValue = "" } = props;
 		const {
 			control,
 			formState: { errors },
@@ -29,6 +37,7 @@ export const withControl = (Component: any) => {
 				defaultValue={defaultValue}
 				render={({ field }) => (
 					<Component
+						{...props}
 						field={field}
 						name={name}
 						label={t(label)}
