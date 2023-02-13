@@ -14,3 +14,9 @@ export const COMPONENTS: any = {
 	["SimpleList"]: SimpleList,
 	["ArticleStub"]: ArticleStub,
 };
+
+export const EDIT_COMPONENTS: any = {
+	["Test"]: Test, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
+	["SimpleList"]: SimpleList,
+	["ArticleStub"]: ArticleStub,
+};

@@ -20,6 +20,7 @@ type SelectInputType = {
 	variant?: InputVariant;
 	disabled?: boolean;
 	children: ReactNode;
+	// onChange: (e: unknown) => void;
 };
 
 //Way better
@@ -34,7 +35,8 @@ export const SelectInput = ({
 	variant = "standard",
 	disabled = false,
 	children = [],
-}: SelectInputType) => {
+}: // onChange = (e: unknown) => {},
+SelectInputType) => {
 	return (
 		<TextField
 			select
@@ -47,6 +49,7 @@ export const SelectInput = ({
 			error={error}
 			helperText={helperText}
 			disabled={disabled}
+			// onChange={onChange}
 		>
 			{children}
 		</TextField>

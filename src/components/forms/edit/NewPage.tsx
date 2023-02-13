@@ -15,6 +15,7 @@ import { EditContainer } from "./EditContainer";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validate } from "@/lib/validation/form-input-validators";
 import * as yup from "yup";
+import { EditComponents } from "./EditComponents";
 const schema = yup.object().shape({
 	endpoint: validate.username,
 	containerSelect: validate.username,
@@ -80,6 +81,7 @@ export const NewPage = () => {
 					</Box>
 					{/* pass in name - fieldArray? */}
 					<EditContainer />
+					<EditComponents />
 					<Box>
 						<Button variant="contained" color="primary">
 							Create Footer

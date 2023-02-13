@@ -1,5 +1,5 @@
 import { withQuery } from "../hoc/query/withQuery";
-import { COMPONENTS } from "./components";
+import { COMPONENTS, EDIT_COMPONENTS } from "./components";
 
 //We just need type at the moment
 export const componentFactory = (componentType: string) => {
@@ -11,4 +11,12 @@ export const componentFactory = (componentType: string) => {
 	console.log({ componentType });
 
 	return componentElement;
+};
+
+export const componentEditFactory = (id: string) => {
+	const componentEditElement = EDIT_COMPONENTS[id];
+
+	console.log({ componentEditElement });
+
+	return componentEditElement;
 };
