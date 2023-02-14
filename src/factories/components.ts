@@ -1,6 +1,9 @@
 import { Test } from "@/components/content/tempComponent";
+import { TempComponentEdit } from "../components/content/TempComponent.edit";
 import { ArticleStub } from "../components/data/articles/ArticleStub";
+import { ArticleStubEdit } from "../components/data/articles/ArticleStubEdit";
 import { SimpleList } from "../components/data/list/SimpleList";
+import { SimpleListEdit } from "../components/data/list/SimpleListEdit";
 
 // export enum COMPONENT_TYPES {
 // 	STACK = "STACK",
@@ -16,7 +19,7 @@ export const COMPONENTS: any = {
 };
 
 export const EDIT_COMPONENTS: any = {
-	["Test"]: Test, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
-	["SimpleList"]: SimpleList,
-	["ArticleStub"]: ArticleStub,
+	["Test"]: TempComponentEdit, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
+	["SimpleList"]: SimpleListEdit,
+	["ArticleStub"]: ArticleStubEdit,
 };
