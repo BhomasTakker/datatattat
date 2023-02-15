@@ -1,4 +1,4 @@
-import { InputAdornment, TextField } from "@mui/material";
+import { InputAdornment, MenuItem, TextField } from "@mui/material";
 import React, { ReactElement } from "react";
 import { withControl } from "@/hoc/components/forms/withControl";
 import { Auth } from "@/src/lib/i18n/translation";
@@ -59,3 +59,11 @@ export const TextInput = ({
 
 //We can type it here with a generic no? / <TextInputType>
 export const TextInputWithControl = withControl(TextInput);
+
+export const createSelectInputList = (hash: {}) => {
+	return Object.keys(hash).map((key) => (
+		<MenuItem key={key} value={key}>
+			{key}
+		</MenuItem>
+	));
+};
