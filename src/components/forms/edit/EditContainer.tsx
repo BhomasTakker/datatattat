@@ -1,30 +1,21 @@
-import React, { ChangeEvent, ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import { Box, MenuItem } from "@mui/material";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import { CONTAINERS } from "@/src/factories/containers";
-import {
-	useFormContext,
-	useFieldArray,
-	useForm,
-	useWatch,
-} from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import { containerEditFactory } from "@/src/factories/container-factory";
+import { BaseEditProps } from "./types/BaseEdit";
 
 //Need provide description for each
-export const EditContainer = () => {
+export const EditContainer = ({ objectKey }: BaseEditProps) => {
+	const containerTypeKey = `${objectKey}.containerType`;
 	//need actually set enum of containers keys?
 	// const [container, setContainer] = useState<string | undefined>(undefined);
 	const { control } = useFormContext();
 	const container = useWatch({
 		control,
-		name: "containerSelect",
+		name: containerTypeKey,
 	});
-	// const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
-	// 	{
-	// 		control, // control props comes from useForm (optional: if you are using FormContext)
-	// 		name: "container", // unique name for your Field Array
-	// 	}
-	// );
 
 	const createContainerList = () => {
 		return Object.keys(CONTAINERS).map((container) => (
@@ -33,12 +24,6 @@ export const EditContainer = () => {
 			</MenuItem>
 		));
 	};
-
-	// const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-	// 	console.log("CHOSEN");
-	// 	console.log({ value: e.target.value });
-	// 	setContainer(e.target.value);
-	// };
 
 	const createContainer = (container: any): ReactElement => {
 		if (!container) {
@@ -59,7 +44,7 @@ export const EditContainer = () => {
 		<Box>
 			<SelectInputWithControl
 				label="Select Container"
-				name="containerSelect"
+				name={containerTypeKey}
 				fullWidth={true}
 				required
 				// onChange={changeHandler}

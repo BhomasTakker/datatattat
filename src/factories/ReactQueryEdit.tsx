@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import React, { ReactElement } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { API_EDIT_LIST } from "../api";
+import { BaseEditProps } from "../components/forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../components/input/SelectInput";
 import {
 	createSelectInputList,
@@ -11,7 +12,10 @@ import {
 
 //Also this ??
 //Create factory component?
-const createAPIComponent = (component: any): ReactElement => {
+const createAPIComponent = (
+	component: any,
+	objectKey: string
+): ReactElement => {
 	console.log({ COMPONENTID: component });
 	if (!component) {
 		return <></>;
@@ -26,21 +30,21 @@ const createAPIComponent = (component: any): ReactElement => {
 		return <div>{component}</div>;
 	}
 
-	return <ApiComponent />;
+	return <ApiComponent objectKey={objectKey} />;
 };
 
-export const ReactQueryEdit = () => {
+export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
 	const { control } = useFormContext();
 	const apiComponent = useWatch({
 		control,
-		name: `apiComponent`,
+		name: `${objectKey}.apiId`,
 	});
 	return (
 		<Container>
 			<Typography variant="h4">Query Object</Typography>
 			<TextInputWithControl
 				label={"queryId"}
-				name={"queryId"}
+				name={`${objectKey}.queryId`}
 				fullWidth={true}
 				variant="outlined"
 				disabled={false}
@@ -53,7 +57,7 @@ export const ReactQueryEdit = () => {
 
 			<SelectInputWithControl
 				label="apiComponent"
-				name="apiComponent"
+				name={`${objectKey}.apiId`}
 				fullWidth={true}
 				required
 				// onChange={changeHandler}
@@ -62,7 +66,7 @@ export const ReactQueryEdit = () => {
 			</SelectInputWithControl>
 			{/* Load API Edit Component */}
 			{/* {createAPIComponent} */}
-			{createAPIComponent(apiComponent)}
+			{createAPIComponent(apiComponent, `${objectKey}.query`)}
 		</Container>
 	);
 };

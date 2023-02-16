@@ -4,6 +4,7 @@ import { withEditFactory } from "@/src/factories/with-factory";
 import { Typography, Container, MenuItem } from "@mui/material";
 import React, { ReactElement } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
+import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import { createSelectInputList } from "../../input/TextInput";
 
@@ -20,7 +21,10 @@ import { createSelectInputList } from "../../input/TextInput";
 
 //Also this ??
 //Create factory component?
-const createWithEditComponent = (component: any): ReactElement => {
+const createWithEditComponent = (
+	component: any,
+	objectKey: string
+): ReactElement => {
 	console.log({ COMPONENTID: component });
 	if (!component) {
 		return <></>;
@@ -30,20 +34,32 @@ const createWithEditComponent = (component: any): ReactElement => {
 
 	if (!EditComponent) {
 		//Error
-		return <div>{component}</div>;
+		return (
+			<div>
+				There was an error
+				{/* {component} */}
+			</div>
+		);
 	}
 
-	return <EditComponent />;
+	console.log({ WITH_COMPONENT: objectKey });
+	return <EditComponent objectKey={objectKey} />;
 };
 
 // We need to pass an id through
 // a for unique id b
-export const SimpleListEdit = () => {
+export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 	const { control } = useFormContext();
+	//These are dangerous
+	//When set as i.e. an object (_with)
+	//if subsequently the _with object checges it counts as this _with changing!
+	//Clever but dumb!
 	const withComponent = useWatch({
 		control,
-		name: `componentWith`,
+		name: `${objectKey}.selectWithComponent`,
 	});
+
+	console.log({ ONJECT_KEY: objectKey });
 	return (
 		<Container>
 			<Typography variant="h3">SimpleList</Typography>
@@ -51,7 +67,7 @@ export const SimpleListEdit = () => {
 			<Container>
 				<SelectInputWithControl
 					label="Component Id"
-					name="componentId"
+					name={`${objectKey}.componentProps.componentId`}
 					fullWidth={true}
 					required
 					// onChange={changeHandler}
@@ -62,14 +78,14 @@ export const SimpleListEdit = () => {
 			<Typography>With (Select behaviour)</Typography>
 			<SelectInputWithControl
 				// label="Component Id"
-				name="componentWith"
+				name={`${objectKey}.selectWithComponent`}
 				fullWidth={true}
 				required
 				// onChange={changeHandler}
 			>
 				{createSelectInputList(EDIT_WITH)}
 			</SelectInputWithControl>
-			{createWithEditComponent(withComponent)}
+			{createWithEditComponent(withComponent, `${objectKey}._with`)}
 		</Container>
 	);
 };

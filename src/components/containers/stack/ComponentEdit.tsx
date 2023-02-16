@@ -3,17 +3,14 @@ import { EDIT_COMPONENTS } from "@/src/factories/components";
 import { MenuItem, Container } from "@mui/material";
 import React, { ReactElement } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
+import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
 
-type ComponentEditProps = {
-	id: string;
-};
-
-export const ComponentEdit = ({ id }: ComponentEditProps) => {
+export const ComponentEdit = ({ objectKey }: BaseEditProps) => {
 	const { control } = useFormContext();
 	const component = useWatch({
 		control,
-		name: `${id}`,
+		name: `${objectKey}.selectComponent`,
 	});
 	const createComponentList = () => {
 		return Object.keys(EDIT_COMPONENTS).map((container) => (
@@ -35,13 +32,13 @@ export const ComponentEdit = ({ id }: ComponentEditProps) => {
 			return <div>{component}</div>;
 		}
 
-		return <EditComponent />;
+		return <EditComponent objectKey={objectKey} />;
 	};
 	return (
 		<Container>
 			<SelectInputWithControl
 				label="Select Component"
-				name={id}
+				name={`${objectKey}.selectComponent`}
 				fullWidth={true}
 				required
 			>
