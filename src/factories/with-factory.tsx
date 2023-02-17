@@ -1,6 +1,4 @@
 import { API_LIST } from "../api";
-import { HEADERS, PATH } from "../api/bing/news/constants";
-import { toArticleList } from "../api/bing/news/returns";
 import { clientsideFetch, ClientSideFetchType } from "../api/clientside-fetch";
 import { SimpleList } from "../components/data/list/SimpleList";
 import { withQuery } from "../hoc/query/withQuery";

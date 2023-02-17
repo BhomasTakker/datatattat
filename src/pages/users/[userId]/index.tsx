@@ -66,7 +66,8 @@ export async function getStaticProps({
 	//We may want to strip msome data from here
 	//i.e. just send page data
 	const user = await User.findOne({ username: userId }).lean();
-
+	console.log("HERE!");
+	console.log({ user });
 	if (!user) {
 		return {
 			notFound: true,
@@ -74,12 +75,13 @@ export async function getStaticProps({
 	}
 
 	//user.page
+	console.log("HERE!");
 	console.log({ user });
 	const page = user.page;
 	if (!page) {
 		return {
 			redirect: {
-				destination: `/${userId}/profile`,
+				destination: `/users/${userId}/profile`,
 			},
 		};
 	}

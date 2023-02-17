@@ -10,7 +10,7 @@ export const ComponentEdit = ({ objectKey }: BaseEditProps) => {
 	const { control } = useFormContext();
 	const component = useWatch({
 		control,
-		name: `${objectKey}.selectComponent`,
+		name: `${objectKey}.componentType`,
 	});
 	const createComponentList = () => {
 		return Object.keys(EDIT_COMPONENTS).map((container) => (
@@ -38,7 +38,7 @@ export const ComponentEdit = ({ objectKey }: BaseEditProps) => {
 		<Container>
 			<SelectInputWithControl
 				label="Select Component"
-				name={`${objectKey}.selectComponent`}
+				name={`${objectKey}.componentType`}
 				fullWidth={true}
 				required
 			>

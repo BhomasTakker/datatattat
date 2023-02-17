@@ -3,6 +3,7 @@ import { SelectInputWithControl } from "@/src/components/input/SelectInput";
 import {
 	createSelectInputList,
 	TextInputWithControl,
+	TextInputWithControlAndToggle,
 } from "@/src/components/input/TextInput";
 import { FormContext } from "@/src/context/form-context";
 import { Container, Typography } from "@mui/material";
@@ -10,6 +11,7 @@ import React, { useCallback, useContext, useEffect } from "react";
 import { BING_NEWS_SEARCH_API_OBJECT } from "./constants";
 import * as yup from "yup";
 import { validate } from "@/src/lib/validation/form-input-validators";
+import { withToggleCheck } from "@/src/hoc/actions/withToggleCheck";
 
 //Search
 export const BingNewsSearchEdit = ({ objectKey }: BaseEditProps) => {
@@ -29,77 +31,78 @@ export const BingNewsSearchEdit = ({ objectKey }: BaseEditProps) => {
 
 	return (
 		<Container>
-			{/* Select Return Conversion */}
-			{/* Create query parameteres */}
 			<Typography variant="h3">Query Parameters</Typography>
 			<Container>
+				{/* We need to wrap in a toggle HOC */}
 				<TextInputWithControl
 					label="q"
 					name={`${paramsRoute}.q`}
 					fullWidth={true}
 					required
 				/>
-				<TextInputWithControl
+				<TextInputWithControlAndToggle
 					label="cc"
 					name={`${paramsRoute}.cc`}
 					fullWidth={true}
+					isChecked={true}
 				/>
-				<TextInputWithControl
+
+				<TextInputWithControlAndToggle
 					label="category"
 					name={`${paramsRoute}.category`}
 					fullWidth={true}
 				/>
-				<TextInputWithControl
+				<TextInputWithControlAndToggle
 					label="count"
 					name={`${paramsRoute}.count`}
 					fullWidth={true}
 				/>
-				<TextInputWithControl
+				<TextInputWithControlAndToggle
 					label="freshness"
 					name={`${paramsRoute}.freshness`}
 					fullWidth={true}
 				/>
-				<TextInputWithControl
+				<TextInputWithControlAndToggle
 					label="mkt"
 					name={`${paramsRoute}.mkt`}
 					fullWidth={true}
 				/>
-				<TextInputWithControl
+				<TextInputWithControlAndToggle
 					label="offset"
 					name={`${paramsRoute}.offset`}
 					fullWidth={true}
 				/>
-				<TextInputWithControl
+				<TextInputWithControlAndToggle
 					label="originalImg"
 					name={`${paramsRoute}.originalImg`}
 					fullWidth={true}
 				/>
-				<TextInputWithControl
+				<TextInputWithControlAndToggle
 					label="safeSearch"
 					name={`${paramsRoute}.safeSearch`}
 					fullWidth={true}
 				/>
-				<TextInputWithControl
+				<TextInputWithControlAndToggle
 					label="setLang"
 					name={`${paramsRoute}.setLang`}
 					fullWidth={true}
 				/>
-				<TextInputWithControl
+				<TextInputWithControlAndToggle
 					label="since"
 					name={`${paramsRoute}.since`}
 					fullWidth={true}
 				/>
-				<TextInputWithControl
+				<TextInputWithControlAndToggle
 					label="sortBy"
 					name={`${paramsRoute}.sortBy`}
 					fullWidth={true}
 				/>
-				<TextInputWithControl
+				<TextInputWithControlAndToggle
 					label="textDecorations"
 					name={`${paramsRoute}.textDecorations`}
 					fullWidth={true}
 				/>
-				<TextInputWithControl
+				<TextInputWithControlAndToggle
 					label="textFormat"
 					name={`${paramsRoute}.textFormat`}
 					fullWidth={true}
@@ -107,7 +110,7 @@ export const BingNewsSearchEdit = ({ objectKey }: BaseEditProps) => {
 			</Container>
 			<SelectInputWithControl
 				label="response conversion"
-				name={`${objectKey}.responseConversion`}
+				name={`${objectKey}.response`}
 				fullWidth={true}
 				required
 				// onChange={changeHandler}

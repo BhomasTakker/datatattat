@@ -57,7 +57,7 @@ export const UserButton = () => {
 				{/* Not correct like this but works - need update to proper use  */}
 				{user && user.username && (
 					<MenuItem
-						onClick={() => routeHandler(`/${user.username}/profile`)}
+						onClick={() => routeHandler(`/users/${user.username}/profile`)}
 						disableRipple
 					>
 						Profile

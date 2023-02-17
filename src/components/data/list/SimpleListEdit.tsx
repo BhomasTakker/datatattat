@@ -56,7 +56,7 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 	//Clever but dumb!
 	const withComponent = useWatch({
 		control,
-		name: `${objectKey}.selectWithComponent`,
+		name: `${objectKey}._with.type`,
 	});
 
 	console.log({ ONJECT_KEY: objectKey });
@@ -78,7 +78,7 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 			<Typography>With (Select behaviour)</Typography>
 			<SelectInputWithControl
 				// label="Component Id"
-				name={`${objectKey}.selectWithComponent`}
+				name={`${objectKey}._with.type`}
 				fullWidth={true}
 				required
 				// onChange={changeHandler}

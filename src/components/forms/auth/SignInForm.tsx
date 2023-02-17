@@ -52,7 +52,7 @@ export const SignInForm = () => {
 			console.log({ user });
 			//create a redirect call in a router lib?
 			router
-				.replace(`/${username}`)
+				.replace(`/users/${username}`)
 				.then(() => dispatch(addNotification(NOTIFICATIONS.signInSuccess)));
 		} else {
 			dispatch(addNotification(NOTIFICATIONS.signInError));

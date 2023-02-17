@@ -58,7 +58,7 @@ export const SignUpForm = () => {
 			// const user = await response.json();
 			// const { username } = user;
 			router
-				.replace(`/${username}`) //how to actually get username here
+				.replace(`/users/${username}`) //how to actually get username here
 				.then(() => dispatch(addNotification(NOTIFICATIONS.signInSuccess)));
 		} else {
 			dispatch(addNotification(NOTIFICATIONS.signInError));

@@ -9,6 +9,7 @@ import { notificationTypes } from "@/store/notifications/notificationSlice";
 // 	i18n: string;
 // };
 
+//How to manage this
 export const NOTIFICATIONS = {
 	//Auth
 	signInSuccess: {
@@ -64,6 +65,20 @@ export const NOTIFICATIONS = {
 		id: "change-password-error",
 		message: "Error changing password - password not changed",
 		i18n: "change-password-error",
+		type: notificationTypes.error,
+	},
+
+	//Page creation
+	pageCreationSuccess: {
+		id: "create-page-success",
+		message: "Page created successfully",
+		i18n: "create-page-success",
+		type: notificationTypes.success,
+	},
+	pageCreationError: {
+		id: "create-page-error",
+		message: "Error creating page - unable to save",
+		i18n: "create-page-error",
 		type: notificationTypes.error,
 	},
 };

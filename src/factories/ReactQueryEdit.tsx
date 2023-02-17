@@ -37,14 +37,14 @@ export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
 	const { control } = useFormContext();
 	const apiComponent = useWatch({
 		control,
-		name: `${objectKey}.apiId`,
+		name: `${objectKey}.query.apiId`,
 	});
 	return (
 		<Container>
 			<Typography variant="h4">Query Object</Typography>
 			<TextInputWithControl
 				label={"queryId"}
-				name={`${objectKey}.queryId`}
+				name={`${objectKey}.query.queryId`}
 				fullWidth={true}
 				variant="outlined"
 				disabled={false}
@@ -55,9 +55,10 @@ export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
 				{/* Should have an include/don't include checkbox for the option (With) */}
 			</Container>
 
+			{/* Do not use WithControl here - we do not need to store this id here */}
 			<SelectInputWithControl
 				label="apiComponent"
-				name={`${objectKey}.apiId`}
+				name={`${objectKey}.query.apiId`}
 				fullWidth={true}
 				required
 				// onChange={changeHandler}

@@ -3,6 +3,7 @@ import React, { ReactElement } from "react";
 import { withControl } from "@/hoc/components/forms/withControl";
 import { Auth } from "@/src/lib/i18n/translation";
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
+import { withToggleCheck } from "@/src/hoc/actions/withToggleCheck";
 
 type InputVariant = "standard" | "outlined" | undefined;
 
@@ -59,6 +60,9 @@ export const TextInput = ({
 
 //We can type it here with a generic no? / <TextInputType>
 export const TextInputWithControl = withControl(TextInput);
+
+export const TextInputWithControlAndToggle =
+	withToggleCheck(TextInputWithControl);
 
 export const createSelectInputList = (hash: {}) => {
 	return Object.keys(hash).map((key) => (

@@ -13,6 +13,7 @@ function EditHomePage() {
 	//Should return error
 	const { user, isLoading } = useUser();
 
+	console.log("EditHomePage");
 	console.log({ user });
 	if (!user && isLoading) {
 		return <LoadingSpinner />;

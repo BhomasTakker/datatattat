@@ -14,7 +14,6 @@ function EditPage() {
 	const { user, isLoading } = useUser();
 	const router = useRouter();
 
-	console.log({ user });
 	if (!user && isLoading) {
 		return <LoadingSpinner />;
 	}
@@ -22,9 +21,9 @@ function EditPage() {
 		return <>Error. We should flag and redirect</>;
 	}
 
+	//default value of {} is not null right
+	//We slipped through
 	if (!user.page) {
-		//User has no landing page
-		//redirect for walkthrough
 		router.replace("/edit/landing");
 	}
 

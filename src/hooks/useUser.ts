@@ -7,7 +7,7 @@ type useUserReturn = {
 };
 
 export const useUser = (): useUserReturn => {
-	const [user, setUser] = useState<any>({});
+	const [user, setUser] = useState<any>(null);
 	const [userLoading, setUserLoading] = useState(false);
 	const { data: session, status } = useSession();
 	const isAuthenticated = status === "authenticated";
@@ -26,8 +26,9 @@ export const useUser = (): useUserReturn => {
 			const response = await fetch(`/api/user/get-user?email=${email}`);
 			const user = await response.json();
 			console.log({ setUser: user });
-			setUserLoading(false);
+			//We should join these states
 			setUser(user);
+			setUserLoading(false);
 		};
 		if (session && isAuthenticated && !isLoading) {
 			//dispatch request
@@ -36,6 +37,7 @@ export const useUser = (): useUserReturn => {
 		}
 	}, [isAuthenticated, isLoading, session]);
 
+	//This one is erroneous / if user exists return
 	if (!isAuthenticated && !isLoading) {
 		return {
 			user: null,

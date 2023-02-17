@@ -21,7 +21,13 @@ type FormInputControl = {
 export const withControl = (Component: any) => {
 	//We need specify prop types to include
 	return function InputWithFormControl(props: FormInputControl & any) {
-		const { label, name, defaultValue = "" } = props;
+		const {
+			label,
+			name,
+			defaultValue = "",
+			disabled = false,
+			required = false, //try this in rules / currently we are using default mui
+		} = props;
 		const {
 			control,
 			formState: { errors },
@@ -33,8 +39,14 @@ export const withControl = (Component: any) => {
 		return (
 			<Controller
 				name={name}
-				control={control}
+				control={control} //potentially picked up because form proovider use?
 				defaultValue={defaultValue}
+				//We may be stuck with basic validation ??
+				//You can pass a validation function or just options into rules.validate
+				//So we can bypass our overly complicated yupe situation
+				// the below works but needs ignoring / apparently it just hasn't been typed?
+				// @ts-expect-error / find a way around
+				rules={{ disabled }}
 				render={({ field }) => (
 					<Component
 						{...props}

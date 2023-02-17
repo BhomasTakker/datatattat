@@ -27,25 +27,44 @@ const PageFooterSchema = new Schema({
 });
 
 const QuerySchema = new Schema({});
-const ComponentSchema = new Schema({
-	componentType: {
-		type: String,
-		required: true,
+//Each are getting saved with _ids
+const ComponentSchema = new Schema(
+	{
+		componentType: {
+			type: String,
+			required: true,
+		},
+		// Schema these
+		//Can props i.e. be schemered?
+		//Potentially different for each component
+		//Can you use i.e. union types in mongoose
+		//that would require a schema for every component
+		//every api, etc, for types sake it would be good but
+		//Massive overhead for little gain
+		//define overarching shapes
+		componentProps: Object,
+		_with: Object,
 	},
-	with: String,
-});
-const ContainerSchema = new Schema({
-	containerType: {
-		type: String,
-		required: true,
+	{ _id: false }
+);
+const ContainerSchema = new Schema(
+	{
+		containerType: {
+			type: String,
+			required: true,
+		},
+		initData: Object,
 	},
-	initData: Object,
-});
+	{ _id: false }
+);
 
-const ContentSchema = new Schema({
-	container: ContainerSchema,
-	components: [ComponentSchema],
-});
+const ContentSchema = new Schema(
+	{
+		container: ContainerSchema,
+		components: [ComponentSchema],
+	},
+	{ _id: false }
+);
 
 const PageSchema = new Schema({
 	//status: {} / state? private, public, published
@@ -58,6 +77,11 @@ const PageSchema = new Schema({
 	// }
 	route: {
 		type: String,
+		required: true,
+	},
+
+	creator: {
+		type: Schema.Types.ObjectId,
 		required: true,
 	},
 
