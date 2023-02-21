@@ -8,6 +8,7 @@ import { DTAHead } from "@/src/head/DTAHead";
 import { useUser } from "@/src/hooks/useUser";
 import { LoadingSpinner } from "@/src/components/loading/LoadingSpinner";
 import { NewPage } from "@/src/components/forms/edit/NewPage";
+import { getMainHeader } from "@/src/headers/get-headers";
 
 function EditHomePage() {
 	//Should return error
@@ -44,12 +45,14 @@ function EditHomePage() {
 }
 
 export async function getStaticProps({ locale }: { locale: string }) {
+	const headerData = await getMainHeader();
 	return {
 		props: {
 			...(await serverSideTranslations(locale, [
 				i18namespace.profile,
 				...i18namespace.common,
 			])),
+			headerData,
 		},
 	};
 }

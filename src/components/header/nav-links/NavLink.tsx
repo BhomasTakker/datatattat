@@ -9,7 +9,7 @@ import { useElementOnScreen } from "@/hooks/useElementOnScreen";
 import { BaseLink } from "./BaseLink";
 
 export type NavLinkData = {
-	link: string;
+	route: string;
 	label: string;
 };
 
@@ -19,9 +19,9 @@ type NavLinkProps = {
 } & NavLinkData;
 //need styles, etc
 //on hover underline
-
+//looks like a withIntersection to me <- behaviour
 export const NavLink = ({
-	link,
+	route,
 	label,
 	container, //should be optional / default to null
 	onIntersect,
@@ -34,7 +34,8 @@ export const NavLink = ({
 		threshold: 1.0,
 	});
 
-	const king = label === "Home";
+	//All items disappear on scroll - even the tiniest bit of scroll...
+	const king = label === "News";
 
 	useEffect(() => {
 		//this is v hacky //first render is 0 dimensions.width
@@ -47,10 +48,12 @@ export const NavLink = ({
 		}
 	}, [containerRef, isVisible]);
 
-	//Go over / rendering to often
+	//Go over / rendering too often / better but flicker on scroll - when off screen it's flickering...
+	//don't remove when off screen by scroll
+	//only check when resizing? - oof
 	useEffect(() => {
-		onIntersect({ link, label }, isVisible as boolean); //? !!
-	}, [onIntersect, isVisible, label, link]);
+		onIntersect({ route, label }, isVisible as boolean); //? !!
+	}, [onIntersect]);
 
 	////////////////////////////////////////////////////////////////////////////
 	//We are setting width and min-width to a dynamic value(on second render :|)
@@ -65,7 +68,7 @@ export const NavLink = ({
 	return (
 		<div ref={containerRef} style={style}>
 			{(isVisible || king) && (
-				<BaseLink link={link} label={label} />
+				<BaseLink link={route} label={label} />
 				// <Link href={link}>
 				// 	<Button className={styles.link} color="inherit">
 				// 		{label}

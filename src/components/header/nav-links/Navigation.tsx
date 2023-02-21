@@ -3,10 +3,6 @@ import { Box, Stack } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { NavLink, NavLinkData } from "./NavLink";
 
-// type LinkData = {
-// 	isVisible: boolean;
-// } & NavLinkData;
-
 type NavigationProps = {
 	navLinks: NavLinkData[];
 	onMenuUpdate: (menuList: NavLinkData[]) => void;
@@ -38,7 +34,7 @@ export const Navigation = ({ onMenuUpdate, navLinks }: NavigationProps) => {
 		return links.map((link) => {
 			const element = (
 				<NavLink
-					link={link.link}
+					route={link.route}
 					label={link.label}
 					key={link.label}
 					container={boxRef.current}

@@ -10,6 +10,7 @@ import Page from "@/models/Page";
 import Header from "@/models/Header";
 import Footer from "@/models/Footer";
 import { containerFactory } from "../factories/container-factory";
+import { getHeaders, getMainHeader } from "../headers/get-headers";
 
 export default function Home(props: any) {
 	const { t } = useTranslation(); //pass a prameter of 'Home' for a particular namespace / array?
@@ -55,11 +56,14 @@ export async function getStaticProps({ locale }: { locale: string }) {
 	const pageData = await Page.findOne({ route: "/" }).lean();
 
 	//Why can't I populate!!!
-	const headerData = await Header.findById(pageData.header.id).lean();
+	// const headerData = await Header.findById(pageData.header.id).lean();
 	const footerData = await Footer.findById(pageData.footer.id).lean();
 
-	// console.log({ headerData });
-	// console.log({ footerData });
+	//This feels unneccessary as we'll be calling this on sign in etc, and it will rarely change
+	//It's a dynamic site / unless you want full SSR you have to or load clientside
+	//We have to/want to load the nav data dynamically but
+	//but then maybe you wan't different options etc???
+	const headerData = await getMainHeader();
 
 	if (!pageData) {
 		//would actually go with something like throw createError(error.id)
@@ -77,7 +81,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 			])),
 
 			pageData: JSON.parse(JSON.stringify(pageData)),
-			headerData: JSON.parse(JSON.stringify(headerData)),
+			headerData,
 			footerData: JSON.parse(JSON.stringify(footerData)),
 		},
 	};

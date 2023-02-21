@@ -8,6 +8,7 @@ import Page from "@/models/Page";
 import Header from "@/models/Header";
 import Footer from "@/models/Footer";
 import { containerFactory } from "@/src/factories/container-factory";
+import { getMainHeader } from "@/src/headers/get-headers";
 
 function UserLanding({ username, pageData, headerData, footerData }: any) {
 	console.log({ username });
@@ -66,17 +67,13 @@ export async function getStaticProps({
 	//We may want to strip msome data from here
 	//i.e. just send page data
 	const user = await User.findOne({ username: userId }).lean();
-	console.log("HERE!");
-	console.log({ user });
+
 	if (!user) {
 		return {
 			notFound: true,
 		};
 	}
 
-	//user.page
-	console.log("HERE!");
-	console.log({ user });
 	const page = user.page;
 	if (!page) {
 		return {
@@ -89,7 +86,8 @@ export async function getStaticProps({
 	const pageData = await Page.findById(page).lean();
 
 	//Why can't I populate!!!
-	const headerData = await Header.findById(pageData.header.id).lean();
+	// const headerData = await Header.findById(pageData.header.id).lean();
+	const headerData = await getMainHeader();
 	const footerData = await Footer.findById(pageData.footer.id).lean();
 
 	return {
@@ -102,7 +100,7 @@ export async function getStaticProps({
 			// user: JSON.parse(JSON.stringify(user)),
 			username: user.username,
 			pageData: JSON.parse(JSON.stringify(pageData)),
-			headerData: JSON.parse(JSON.stringify(headerData)),
+			headerData,
 			footerData: JSON.parse(JSON.stringify(footerData)),
 		},
 	};

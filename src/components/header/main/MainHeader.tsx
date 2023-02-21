@@ -3,8 +3,6 @@ import React, { ReactElement, useState } from "react";
 //I'd say abstract to something / need go over
 //Example from
 //https://mui.com/material-ui/transitions/
-import { Transition, TransitionGroup } from "react-transition-group";
-import Collapse from "@mui/material/Collapse";
 ////////////////////////////////////////////////////////////////////
 import { useSession } from "next-auth/react";
 import styles from "./main-header.module.css";
@@ -26,37 +24,12 @@ import { MoreButton } from "@/components/header/more/MoreButton";
 import { NavLink, NavLinkData } from "@/components/header/nav-links/NavLink";
 import { DropdownMenu } from "@/components/header/dropdown/DropdownMenu";
 
-const LINKS: NavLinkData[] = [
-	{
-		label: "Home",
-		link: "/",
-	},
-	{
-		label: "Profile",
-		link: "/profile",
-	},
-	{
-		label: "404",
-		link: "/404",
-	},
-	{
-		label: "Sign Up",
-		link: "/auth/signup",
-	},
-	{
-		label: "Sign In",
-		link: "/auth/signin",
-	},
-	{
-		label: "Auth",
-		link: "/auth",
-	},
-];
-
 //this re-renders a lot...
 export const MainHeader = ({ headerData }: any) => {
 	const [showMore, setShowMore] = useState(false);
 	const [isMenuShowing, setIsMenuShowing] = useState(false);
+
+	const { nav } = headerData;
 
 	console.log({ headerData });
 
@@ -64,6 +37,7 @@ export const MainHeader = ({ headerData }: any) => {
 	const { data: session, status } = useSession();
 	const isAuthenticated = status === "authenticated";
 
+	//Is causing a number of re-renders - one per button minus one I think
 	//This should possibly all be useContext
 	//It all works now but think about it
 	const subMenuUpdatedHandler = (menuList: NavLinkData[]) => {
@@ -102,7 +76,7 @@ export const MainHeader = ({ headerData }: any) => {
 
 							<Box sx={{ overflow: "hidden" }}>
 								<Navigation
-									navLinks={LINKS}
+									navLinks={nav}
 									onMenuUpdate={subMenuUpdatedHandler}
 								/>
 							</Box>
@@ -126,7 +100,7 @@ export const MainHeader = ({ headerData }: any) => {
 				<Box>
 					{/* better name */}
 					<DropdownMenu
-						links={LINKS}
+						links={nav}
 						isShowing={isMenuShowing}
 						onClose={showMenuHandler}
 					/>

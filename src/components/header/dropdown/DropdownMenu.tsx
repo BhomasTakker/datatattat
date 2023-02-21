@@ -23,7 +23,7 @@ export const DropdownMenu = ({
 		return links.map((link) => (
 			<BaseLink
 				key={link.label}
-				link={link.link}
+				link={link.route}
 				label={link.label}
 				color="primary"
 			/>
