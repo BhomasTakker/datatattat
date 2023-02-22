@@ -34,6 +34,8 @@ async function search(req: NextApiRequest, res: NextApiResponse) {
 	const response = await fetch(endpoint, options);
 	const result = await response.json();
 
+	// console.log({ BING: result });
+
 	res.status(200).json(result);
 }
 

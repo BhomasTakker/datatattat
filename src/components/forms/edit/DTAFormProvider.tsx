@@ -25,7 +25,7 @@ export const DTAFormProvider = ({
 	const methods = useForm({ resolver: yupResolver(stateSchema) });
 
 	const updateSchema = (newFields: ObjectShape) => {
-		console.log({ newFields });
+		// console.log({ newFields });
 		const newSchema = yup.object().shape({
 			...stateSchema.fields,
 			...newFields,
@@ -38,10 +38,9 @@ export const DTAFormProvider = ({
 	};
 
 	const debugHandler = () => {
-		console.log("DEBUG HANDLER");
-
-		console.log({ values: methods.getValues() });
-		console.log({ errors: methods.formState.errors });
+		// console.log("DEBUG HANDLER");
+		// console.log({ values: methods.getValues() });
+		// console.log({ errors: methods.formState.errors });
 	};
 
 	return (

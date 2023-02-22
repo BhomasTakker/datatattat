@@ -18,8 +18,8 @@ export default async function getUser(
 	const auth = await Auth.findOne({ email });
 	const user = await User.findById(auth.userId).lean();
 
-	console.log("Get User");
-	console.log({ query: req.query });
+	// console.log("Get User");
+	// console.log({ query: req.query });
 	// console.log({params});
 
 	// await mongooseConnect();

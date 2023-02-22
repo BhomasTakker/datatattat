@@ -8,17 +8,17 @@ import Page from "@/models/Page";
 import Header from "@/models/Header";
 import Footer from "@/models/Footer";
 import { containerFactory } from "@/src/factories/container-factory";
-import { getMainHeader } from "@/src/headers/get-headers";
+import { getHeaders, getMainHeader } from "@/src/headers/get-headers";
 
 function UserLanding({ username, pageData, headerData, footerData }: any) {
-	console.log({ username });
+	// console.log({ username });
 
 	if (!pageData) {
 		return <div>Loading...</div>;
 	}
 	const { content } = pageData;
 
-	console.log({ content });
+	// console.log({ content });
 	//get? / use is interesting because that suggests that it could change
 	const Container = containerFactory(content);
 
@@ -88,6 +88,9 @@ export async function getStaticProps({
 	//Why can't I populate!!!
 	// const headerData = await Header.findById(pageData.header.id).lean();
 	const headerData = await getMainHeader();
+	// console.log({ headerData });
+	const headerAndSubHeader = await getHeaders(pageData.header.id);
+	// console.log({ headerAndSubHeader });
 	const footerData = await Footer.findById(pageData.footer.id).lean();
 
 	return {
@@ -100,7 +103,7 @@ export async function getStaticProps({
 			// user: JSON.parse(JSON.stringify(user)),
 			username: user.username,
 			pageData: JSON.parse(JSON.stringify(pageData)),
-			headerData,
+			headerData: headerAndSubHeader,
 			footerData: JSON.parse(JSON.stringify(footerData)),
 		},
 	};

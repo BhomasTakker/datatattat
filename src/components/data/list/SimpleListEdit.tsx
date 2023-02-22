@@ -25,7 +25,7 @@ const createWithEditComponent = (
 	component: any,
 	objectKey: string
 ): ReactElement => {
-	console.log({ COMPONENTID: component });
+	// console.log({ COMPONENTID: component });
 	if (!component) {
 		return <></>;
 	}
@@ -42,7 +42,7 @@ const createWithEditComponent = (
 		);
 	}
 
-	console.log({ WITH_COMPONENT: objectKey });
+	// console.log({ WITH_COMPONENT: objectKey });
 	return <EditComponent objectKey={objectKey} />;
 };
 
@@ -59,7 +59,7 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 		name: `${objectKey}._with.type`,
 	});
 
-	console.log({ ONJECT_KEY: objectKey });
+	// console.log({ ONJECT_KEY: objectKey });
 	return (
 		<Container>
 			<Typography variant="h3">SimpleList</Typography>

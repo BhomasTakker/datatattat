@@ -58,7 +58,7 @@ export const withFactory = (componentObject: any, withObject: any) => {
 export const withEditFactory = (id: string) => {
 	const withEditElement = EDIT_WITH[id];
 
-	console.log({ withEditElement });
+	// console.log({ withEditElement });
 
 	return withEditElement;
 };

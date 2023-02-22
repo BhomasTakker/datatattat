@@ -9,7 +9,7 @@ export const containerFactory = (containerData: any) => {
 
 	const containerElement = CONTAINERS[containerType];
 
-	console.log({ containerElement });
+	// console.log({ containerElement });
 
 	return containerElement;
 };
@@ -17,7 +17,7 @@ export const containerFactory = (containerData: any) => {
 export const containerEditFactory = (id: string) => {
 	const containerEditElement = EDIT_CONTAINERS[id];
 
-	console.log({ containerEditElement });
+	// console.log({ containerEditElement });
 
 	return containerEditElement;
 };

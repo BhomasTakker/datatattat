@@ -25,7 +25,7 @@ export const useUser = (): useUserReturn => {
 			//if error
 			const response = await fetch(`/api/user/get-user?email=${email}`);
 			const user = await response.json();
-			console.log({ setUser: user });
+			// console.log({ setUser: user });
 			//We should join these states
 			setUser(user);
 			setUserLoading(false);

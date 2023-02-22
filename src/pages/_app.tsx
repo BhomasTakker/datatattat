@@ -30,7 +30,9 @@ function App({ Component, pageProps }: AppProps) {
 	const { session, pageData, headerData, footerData } = pageProps;
 	// const { header, footer } = pageData;
 
-	console.log({ session });
+	// console.log({ session });
+	// console.log({ headerData });
+	// console.log({ pageData });
 
 	const renderHeader = () => <MainHeader headerData={headerData} />;
 	const renderFooter = () => <MainFooter footerData={footerData} />;

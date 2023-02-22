@@ -49,7 +49,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 				i18namespace.profile,
 				...i18namespace.common,
 			])),
-			headerData,
+			headerData: [headerData],
 		},
 	};
 }

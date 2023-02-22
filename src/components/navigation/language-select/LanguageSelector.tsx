@@ -31,7 +31,7 @@ export const LanguageSelector = () => {
 			const data = languageData[id];
 			setLang(data.language);
 			dispatch(setLocale(id));
-			console.log({ val: data });
+			// console.log({ val: data });
 		}
 	};
 

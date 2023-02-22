@@ -16,7 +16,7 @@ const createAPIComponent = (
 	component: any,
 	objectKey: string
 ): ReactElement => {
-	console.log({ COMPONENTID: component });
+	// console.log({ COMPONENTID: component });
 	if (!component) {
 		return <></>;
 	}

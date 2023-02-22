@@ -20,7 +20,7 @@ export const ComponentEdit = ({ objectKey }: BaseEditProps) => {
 		));
 	};
 	const createComponent = (component: any): ReactElement => {
-		console.log({ COMPONENTID: component });
+		// console.log({ COMPONENTID: component });
 		if (!component) {
 			return <></>;
 		}

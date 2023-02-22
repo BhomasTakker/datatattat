@@ -17,7 +17,7 @@ export default function Home(props: any) {
 	const { pageData } = props;
 	const { content } = pageData;
 
-	console.log({ content });
+	// console.log({ content });
 	//get? / use is interesting because that suggests that it could change
 	const Container = containerFactory(content);
 
@@ -81,7 +81,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 			])),
 
 			pageData: JSON.parse(JSON.stringify(pageData)),
-			headerData,
+			headerData: [headerData],
 			footerData: JSON.parse(JSON.stringify(footerData)),
 		},
 	};

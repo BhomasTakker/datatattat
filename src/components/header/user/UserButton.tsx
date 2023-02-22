@@ -13,7 +13,7 @@ export const UserButton = () => {
 	const { user, isLoading } = useUser();
 	// const {pathname, query} = router;
 
-	console.log({ USER: user });
+	// console.log({ USER: user });
 
 	const open = Boolean(anchorEl);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {

@@ -3,7 +3,7 @@ import styles from "./LanguageItem.module.css";
 import React from "react";
 
 export const LanguageItem = ({ data, onChange }: any) => {
-	console.log({ data });
+	// console.log({ data });
 	const Icon = data.icon;
 
 	return (

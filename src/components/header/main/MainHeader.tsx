@@ -23,16 +23,18 @@ import { LanguageSelector } from "@/components/navigation/language-select/Langua
 import { MoreButton } from "@/components/header/more/MoreButton";
 import { NavLink, NavLinkData } from "@/components/header/nav-links/NavLink";
 import { DropdownMenu } from "@/components/header/dropdown/DropdownMenu";
+import { SubHeader } from "../sub/SubHeader";
 
 //this re-renders a lot...
 export const MainHeader = ({ headerData }: any) => {
 	const [showMore, setShowMore] = useState(false);
 	const [isMenuShowing, setIsMenuShowing] = useState(false);
 
-	const { nav } = headerData;
+	const [mainHeader, subnav] = headerData;
+	const { nav } = mainHeader;
 
-	console.log({ headerData });
-
+	// console.log({ subnav });
+	// console.log({ nav });
 	//perhaps better got from user store then user getAuthenticated
 	const { data: session, status } = useSession();
 	const isAuthenticated = status === "authenticated";
@@ -106,6 +108,7 @@ export const MainHeader = ({ headerData }: any) => {
 					/>
 				</Box>
 			</ClickAwayListener>
+			<SubHeader headersArray={subnav} />
 			{/* Would content header go here - or layout? */}
 			{/* Abstract some compoennts away from here - to simplify a little  */}
 		</header>

@@ -26,7 +26,7 @@ function UserProfile({ user }: any) {
 	const { data: session, status } = useSession();
 	// const {user, isLoading} = useUser();
 
-	console.log({ session });
+	// console.log({ session });
 
 	if (!user) {
 		return <div>Loading...</div>;
@@ -112,7 +112,7 @@ export async function getStaticProps({
 				...i18namespace.common,
 			])),
 			user: JSON.parse(JSON.stringify(user)),
-			headerData,
+			headerData: [headerData],
 		},
 	};
 }

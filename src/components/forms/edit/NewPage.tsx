@@ -53,10 +53,10 @@ export const NewPage = () => {
 	}
 
 	const submitHandler = async (data: any) => {
-		console.log("SUBMIT HANDLER");
-		console.log({ data });
+		// console.log("SUBMIT HANDLER");
+		// console.log({ data });
 		const { _id } = user;
-		console.log({ user });
+		// console.log({ user });
 		if (!user) {
 			//Error something went wrong
 			return;

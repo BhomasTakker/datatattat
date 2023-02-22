@@ -16,7 +16,6 @@ type IntersectionObserverOptions = {
 	intersectionFunction: (entries: IntersectionObserverEntry[]) => boolean;
 };
 
-//Need change! - element not overlapping something!
 export const useElementOnScreen = (
 	options: IntersectionObserverInit & IntersectionObserverOptions
 ) => {
@@ -29,19 +28,6 @@ export const useElementOnScreen = (
 	) => {
 		setIsVisible(options.intersectionFunction(entries));
 		//understand the array -
-		// const [entry] = entries;
-		// console.log({ entries });
-
-		// //we should pass this as a function to set visible or not / return vis, etc
-		// const { boundingClientRect: client, intersectionRect: mask } = entry;
-
-		// if (mask.width < client.width) {
-		// 	setIsVisible(false);
-		// 	return;
-		// }
-
-		// setIsVisible(true);
-		//there is something you can do with entries to check if it is an intersection with x or y here
 	};
 
 	useEffect(() => {

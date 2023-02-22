@@ -66,8 +66,8 @@ export default async function signUpAPI(
 		res.status(500).json({ message: "Problem creating user" });
 	}
 
-	console.log({ newUserId: newUser._id });
-	console.log({ userId });
+	// console.log({ newUserId: newUser._id });
+	// console.log({ userId });
 
 	//if no userId / respond and jump
 

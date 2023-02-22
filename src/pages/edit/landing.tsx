@@ -14,8 +14,8 @@ function EditHomePage() {
 	//Should return error
 	const { user, isLoading } = useUser();
 
-	console.log("EditHomePage");
-	console.log({ user });
+	// console.log("EditHomePage");
+	// console.log({ user });
 	if (!user && isLoading) {
 		return <LoadingSpinner />;
 	}
@@ -52,7 +52,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 				i18namespace.profile,
 				...i18namespace.common,
 			])),
-			headerData,
+			headerData: [headerData],
 		},
 	};
 }

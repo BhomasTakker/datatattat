@@ -7,8 +7,8 @@ export const componentFactory = (componentType: string) => {
 	//Fix the squiggly
 	const componentElement = COMPONENTS[componentType];
 
-	console.log({ componentElement });
-	console.log({ componentType });
+	// console.log({ componentElement });
+	// console.log({ componentType });
 
 	return componentElement;
 };
@@ -16,7 +16,7 @@ export const componentFactory = (componentType: string) => {
 export const componentEditFactory = (id: string) => {
 	const componentEditElement = EDIT_COMPONENTS[id];
 
-	console.log({ componentEditElement });
+	// console.log({ componentEditElement });
 
 	return componentEditElement;
 };
