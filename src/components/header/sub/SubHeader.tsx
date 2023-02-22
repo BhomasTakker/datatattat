@@ -1,26 +1,17 @@
-import { AppBar, Box, Container, Toolbar } from "@mui/material";
-import { Navigation } from "@/components/header/nav-links/Navigation";
 import React from "react";
-import styles from "./sub-header.module.scss";
+import { NavigationMenu } from "../navigation-menu/NavigationMenu";
 
-//Need be an array
+//Need be an array of these / show only the last two unless expand all
+//This is effectively 90% the same as MainHeader
+//We should find a way of re-using
+//It feels like pass in an element to render before nav and after nav
+//That is the only difference
 export const SubHeader = ({ headersArray }: any) => {
 	if (!headersArray) {
 		return <></>;
 	}
 	const data = headersArray[0];
 	const { nav } = data;
-	return (
-		<AppBar position="static">
-			<Container>
-				<nav>
-					<Toolbar className={styles.toolbar}>
-						<Box sx={{ overflow: "hidden" }}>
-							<Navigation navLinks={nav} onMenuUpdate={() => {}} />
-						</Box>
-					</Toolbar>
-				</nav>
-			</Container>
-		</AppBar>
-	);
+
+	return <NavigationMenu navigationItems={nav} />;
 };
