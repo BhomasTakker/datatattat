@@ -11,14 +11,15 @@
 
 import { ReactElement, useEffect, useRef, useState } from "react";
 
-// type Args = { //IntersectionObserverInit
-//   root: null; // if null use the viewport
-//   rootMargin: string; //'offset'
-//   threshold: number;//
-// }
+//really need to return isIntersecting if null
+type IntersectionObserverOptions = {
+	intersectionFunction: (entries: IntersectionObserverEntry[]) => boolean;
+};
 
 //Need change! - element not overlapping something!
-export const useElementOnScreen = (options: IntersectionObserverInit) => {
+export const useElementOnScreen = (
+	options: IntersectionObserverInit & IntersectionObserverOptions
+) => {
 	//I should not have to do this
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -26,8 +27,21 @@ export const useElementOnScreen = (options: IntersectionObserverInit) => {
 	const callbackFunction: IntersectionObserverCallback = (
 		entries: IntersectionObserverEntry[]
 	) => {
-		const [entry] = entries;
-		setIsVisible(entry.isIntersecting);
+		setIsVisible(options.intersectionFunction(entries));
+		//understand the array -
+		// const [entry] = entries;
+		// console.log({ entries });
+
+		// //we should pass this as a function to set visible or not / return vis, etc
+		// const { boundingClientRect: client, intersectionRect: mask } = entry;
+
+		// if (mask.width < client.width) {
+		// 	setIsVisible(false);
+		// 	return;
+		// }
+
+		// setIsVisible(true);
+		//there is something you can do with entries to check if it is an intersection with x or y here
 	};
 
 	useEffect(() => {

@@ -13,6 +13,15 @@ export type NavLinkData = {
 	label: string;
 };
 
+const intersectionFunction = (
+	entries: IntersectionObserverEntry[]
+): boolean => {
+	const [entry] = entries;
+	const { boundingClientRect: client, intersectionRect: mask } = entry;
+
+	return mask.width >= client.width;
+};
+
 type NavLinkProps = {
 	container: HTMLDivElement | null;
 	onIntersect: (data: NavLinkData, isVisible: boolean) => void;
@@ -32,6 +41,8 @@ export const NavLink = ({
 		root: container,
 		rootMargin: "0px",
 		threshold: 1.0,
+		intersectionFunction,
+		//pass intersection function
 	});
 
 	//All items disappear on scroll - even the tiniest bit of scroll...
@@ -53,7 +64,7 @@ export const NavLink = ({
 	//only check when resizing? - oof
 	useEffect(() => {
 		onIntersect({ route, label }, isVisible as boolean); //? !!
-	}, [onIntersect]);
+	}, [onIntersect, isVisible, label, route]);
 
 	////////////////////////////////////////////////////////////////////////////
 	//We are setting width and min-width to a dynamic value(on second render :|)
