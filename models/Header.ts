@@ -12,6 +12,10 @@ const NavItemSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		parent: {
+			type: Schema.Types.ObjectId,
+			ref: "Header",
+		},
 	},
 	{ _id: false }
 );

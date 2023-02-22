@@ -28,6 +28,7 @@ export const NavigationMenu = ({
 		setShowMore(menuList.length > 0);
 	};
 
+	//These should all be wrapped in a useCallback
 	const showMenuHandler = () => {
 		const debounce = setInterval(() => {
 			clearInterval(debounce);

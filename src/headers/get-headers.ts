@@ -12,19 +12,24 @@ export async function getHeaders(
 export async function getMainHeader(): Promise<HeaderDataType> {
 	//Perhaps not the best?
 	const header = await Header.findOne({ id: "Main" }).lean();
-	//if error return default data
-
-	// console.log({ MAINHEADER: header });
 
 	return JSON.parse(JSON.stringify(header));
+}
+
+//We should really just figure out why populate doesn't work
+//(I mean it probably works I'm just using it wrong)
+async function populateSubHeaders(id: string): Promise<any[]> {
+	let header = await Header.findById(id);
+	header = JSON.parse(JSON.stringify(header));
+	const sub = header.parent ? await populateSubHeaders(header.parent) : [];
+
+	return [header, ...sub];
 }
 
 //How/should type ObjectId?
 export async function getSubHeaders(
 	headerId: string
 ): Promise<HeaderDataType[]> {
-	const subHeaders = await Header.findById(headerId).lean();
-	const serialized = JSON.parse(JSON.stringify(subHeaders));
-	//get given and loop all parents until main
-	return [serialized];
+	const subHeaders = await populateSubHeaders(headerId);
+	return subHeaders;
 }

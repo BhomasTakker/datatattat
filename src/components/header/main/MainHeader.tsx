@@ -10,10 +10,11 @@ import { DTALogo } from "@/components/layout/logo/DTALogo";
 import { LogInButton } from "@/components/header/auth/LogInButton";
 import { SearchButton } from "@/components/header/search/SearchButton";
 import { UserButton } from "@/components/header/user/UserButton";
-import { SubHeader } from "../sub/SubHeader";
 import { NavigationMenu } from "../navigation-menu/NavigationMenu";
+import { SubHeadersList } from "../sub/SubHeadersList";
 
-//this re-renders a lot...
+//Question perhaps in should we use context
+//doesn't quite seem required yet
 export const MainHeader = ({ headerData }: any) => {
 	const [mainHeader, subnav] = headerData;
 	const { nav } = mainHeader;
@@ -37,7 +38,7 @@ export const MainHeader = ({ headerData }: any) => {
 				postfix={menuPostfix}
 				styles={styles}
 			/>
-			<SubHeader headersArray={subnav} />
+			<SubHeadersList headersArray={subnav} />
 		</header>
 	);
 };
