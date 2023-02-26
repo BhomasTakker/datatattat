@@ -12,30 +12,35 @@ export const useUser = (): useUserReturn => {
 	const { data: session, status } = useSession();
 	const isAuthenticated = status === "authenticated";
 	const isLoading = status === "loading";
-
+	const email = session?.user?.email || undefined;
 	const isUserLoading = false;
 
 	//seperate function no
 
+	//This feels useless as is  - problematic
+	//We need to simplify this massively
+	//We just need to get user
 	useEffect(() => {
 		const fetchUser = async () => {
 			// console.log(session!.user);
 			setUserLoading(true);
-			const { email } = session!.user!;
+
 			//if error
 			const response = await fetch(`/api/user/get-user?email=${email}`);
-			const user = await response.json();
+			const fetchedUser = await response.json();
 			// console.log({ setUser: user });
 			//We should join these states
-			setUser(user);
+			setUser(fetchedUser);
 			setUserLoading(false);
 		};
-		if (session && isAuthenticated && !isLoading) {
+		if (email && isAuthenticated && !isLoading) {
 			//dispatch request
 			fetchUser();
 			//setUser on return
 		}
-	}, [isAuthenticated, isLoading, session]);
+		//What in session do we need to check?? (email)
+		//Session refresh was killing edit screen
+	}, [email, isAuthenticated, isLoading]);
 
 	//This one is erroneous / if user exists return
 	if (!isAuthenticated && !isLoading) {

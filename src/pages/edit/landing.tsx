@@ -5,24 +5,10 @@ import { withAuth } from "@/hoc/components/auth/withAuth";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { i18namespace } from "@/lib/i18n/namespace-sets";
 import { DTAHead } from "@/src/head/DTAHead";
-import { useUser } from "@/src/hooks/useUser";
-import { LoadingSpinner } from "@/src/components/loading/LoadingSpinner";
 import { NewPage } from "@/src/components/forms/edit/NewPage";
 import { getMainHeader } from "@/src/headers/get-headers";
 
 function EditHomePage() {
-	//Should return error
-	const { user, isLoading } = useUser();
-
-	// console.log("EditHomePage");
-	// console.log({ user });
-	if (!user && isLoading) {
-		return <LoadingSpinner />;
-	}
-
-	// if user already has a landing page redirect to edit
-	//perhaps unneccessary - in edit just default to create page or something
-
 	return (
 		<>
 			<DTAHead />

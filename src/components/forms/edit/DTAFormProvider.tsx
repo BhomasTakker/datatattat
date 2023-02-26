@@ -11,6 +11,7 @@ type Props = {
 	children: ReactNode;
 	defaultSchema: ObjectShape; // | Lazy<any, unknown>;
 	submitHandler: (data: FieldValues) => void;
+	debug?: boolean;
 	//Pass in a debug handler
 };
 
@@ -18,12 +19,17 @@ export const DTAFormProvider = ({
 	children,
 	defaultSchema,
 	submitHandler,
+	debug = false, //should pass in a debug function or use log
 }: Props): ReactElement => {
 	const schema = yup.object().shape(defaultSchema);
 	const [stateSchema, setSchema] = useState<AnyObjectSchema>(schema);
 
 	const methods = useForm({ resolver: yupResolver(stateSchema) });
 
+	//I think we have walked away from this aproach for the timebeing
+	//Use default react-hook-forms validation until a suitable alternative can be found?
+	//Or validate and output on submit
+	//More likely a way via useFormContext, dunno
 	const updateSchema = (newFields: ObjectShape) => {
 		// console.log({ newFields });
 		const newSchema = yup.object().shape({
@@ -38,9 +44,9 @@ export const DTAFormProvider = ({
 	};
 
 	const debugHandler = () => {
-		// console.log("DEBUG HANDLER");
-		// console.log({ values: methods.getValues() });
-		// console.log({ errors: methods.formState.errors });
+		console.log("DEBUG HANDLER");
+		console.log({ values: methods.getValues() });
+		console.log({ errors: methods.formState.errors });
 	};
 
 	return (
@@ -56,7 +62,7 @@ export const DTAFormProvider = ({
 				<form onSubmit={methods.handleSubmit((data) => submitHandler(data))}>
 					{children}
 				</form>
-				<Button onClick={debugHandler}>Debug</Button>
+				{debug ? <Button onClick={debugHandler}>Debug</Button> : <></>}
 			</FormContext.Provider>
 		</FormProvider>
 	);

@@ -6,10 +6,7 @@ import {
 	changePassword,
 	ChangePasswordData,
 } from "@/queries/auth/changePassword";
-import {
-	addNotification,
-	notificationTypes,
-} from "@/store/notifications/notificationSlice";
+import { addNotification } from "@/store/notifications/notificationSlice";
 import { useAppDispatch } from "@/store/hooks";
 import { NOTIFICATIONS } from "@/lib/notifications/notifications";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -96,6 +93,8 @@ export async function getStaticProps({
 	//i.e. just send page data
 	const user = await User.findOne({ username: userId }).lean();
 	const headerData = await getMainHeader();
+
+	console.log({ headerData });
 
 	//We need to trim this data / surely?
 

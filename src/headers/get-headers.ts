@@ -1,4 +1,5 @@
 import Header from "@/models/Header";
+import mongooseConnect from "../lib/mongoose-connection";
 import { GetHeadersParameters, HeaderDataType } from "./types";
 
 export async function getHeaders(
@@ -10,6 +11,8 @@ export async function getHeaders(
 }
 
 export async function getMainHeader(): Promise<HeaderDataType> {
+	mongooseConnect();
+
 	//Perhaps not the best?
 	const header = await Header.findOne({ id: "Main" }).lean();
 

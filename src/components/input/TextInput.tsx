@@ -1,7 +1,6 @@
-import { InputAdornment, MenuItem, TextField } from "@mui/material";
+import { MenuItem, TextField } from "@mui/material";
 import React, { ReactElement } from "react";
 import { withControl } from "@/hoc/components/forms/withControl";
-import { Auth } from "@/src/lib/i18n/translation";
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
 import { withToggleCheck } from "@/src/hoc/actions/withToggleCheck";
 
@@ -19,8 +18,8 @@ type TextInputType = {
 	fullWidth?: boolean;
 	variant?: InputVariant;
 	disabled?: boolean;
-	startAdornment: ReactElement | undefined;
-	endAdornment: ReactElement | undefined;
+	startAdornment?: ReactElement | undefined;
+	endAdornment?: ReactElement | undefined;
 };
 
 //This could effectively replace the password, username, and email inputs we have
@@ -54,6 +53,9 @@ export const TextInput = ({
 				startAdornment,
 				endAdornment,
 			}}
+			//TextField seems like it cannot properly be used on it's own
+			//investigate this
+			// defaultValue={defaultValue} / this breaks withControl
 		></TextField>
 	);
 };

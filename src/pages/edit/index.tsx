@@ -25,6 +25,8 @@ function EditPage() {
 	//default value of {} is not null right
 	//We slipped through
 	if (!user.page) {
+		console.log("Called Again?");
+		// Looks like this may be the cause of an intermittant error(non-fatal) protect from being called twice
 		router.replace("/edit/landing");
 	}
 

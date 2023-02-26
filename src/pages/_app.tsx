@@ -34,14 +34,17 @@ function App({ Component, pageProps }: AppProps) {
 	// console.log({ headerData });
 	// console.log({ pageData });
 
-	const renderHeader = () => <MainHeader headerData={headerData} />;
+	const renderHeader = () =>
+		headerData ? <MainHeader headerData={headerData} /> : <></>;
 	const renderFooter = () => <MainFooter footerData={footerData} />;
 
 	return (
 		<SessionProvider
 			session={session}
 			// Re-fetch session every 5 minutes
-			refetchInterval={5 * 60}
+			//This is what resets our edit periodically
+			//Would it be any component that is using useUser and you just don't notice elsewhere?
+			refetchInterval={10}
 			// Re-fetches session when window is focused
 			refetchOnWindowFocus={true}
 		>
