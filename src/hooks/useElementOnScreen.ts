@@ -15,7 +15,7 @@ import { ReactElement, useEffect, useRef, useState } from "react";
 type IntersectionObserverOptions = {
 	intersectionFunction: (entries: IntersectionObserverEntry[]) => boolean;
 };
-
+//useIntersectionObserver
 export const useElementOnScreen = (
 	options: IntersectionObserverInit & IntersectionObserverOptions
 ) => {

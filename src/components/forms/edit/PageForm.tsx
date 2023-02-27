@@ -56,20 +56,7 @@ export const PageForm = () => {
 			submitHandler={submitHandler}
 			debug={true}
 		>
-			{/* This is set from header - if changeable it needs double binding with it's corresponding link route */}
-			{/* Reactive - we need to check & load page on this changing - but only when nav button pressed  */}
-			{/* <TextInputWithControl
-				label={"endpoint"}
-				name={"route"}
-				fullWidth={true}
-				variant="outlined"
-				disabled={true}
-				// defaultValue passed in from header
-			/>
-			<EditContainer objectKey={`content.container`} />
-			<EditComponents objectKey={"content"} /> */}
 			<PageEdit />
-
 			<Box>
 				<Button type="submit" variant="contained" color="primary">
 					Submit

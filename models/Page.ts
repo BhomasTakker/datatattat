@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
+// Split to folders and add types for each Schema
+// We need a PageData type and this is the best place for it
+
 // this is where we ask / is a header a part of the header
 // or a part of the page?
 // that's a tomorrow question

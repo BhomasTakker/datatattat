@@ -44,7 +44,7 @@ function App({ Component, pageProps }: AppProps) {
 			// Re-fetch session every 5 minutes
 			//This is what resets our edit periodically
 			//Would it be any component that is using useUser and you just don't notice elsewhere?
-			refetchInterval={10}
+			refetchInterval={5 * 60}
 			// Re-fetches session when window is focused
 			refetchOnWindowFocus={true}
 		>

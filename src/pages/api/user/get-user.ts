@@ -11,6 +11,9 @@ export default async function getUser(
 	if (req.method !== "GET") {
 		// return; //return error
 	}
+
+	mongooseConnect();
+
 	const { query } = req;
 	const { email } = query;
 

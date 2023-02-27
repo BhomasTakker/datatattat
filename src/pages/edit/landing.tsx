@@ -23,7 +23,7 @@ function EditHomePage() {
 				It may be something that you keep updating, because life will never stay the same. 
 				Welcome to Datatattat, we hope you learn, teach, and enjoy yourself!
 				`}</Typography>
-				{/* FORM */}
+				{/* This is just EditPage */}
 				<NewPage />
 			</main>
 		</>
