@@ -3,6 +3,7 @@ import React, { ReactElement } from "react";
 import { withControl } from "@/hoc/components/forms/withControl";
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
 import { withToggleCheck } from "@/src/hoc/actions/withToggleCheck";
+import { withInputBlocker } from "@/src/hoc/components/forms/withInputBlocker";
 
 type InputVariant = "standard" | "outlined" | undefined;
 
@@ -62,6 +63,8 @@ export const TextInput = ({
 
 //We can type it here with a generic no? / <TextInputType>
 export const TextInputWithControl = withControl(TextInput);
+export const TextInputWithControlAndInputBlocker =
+	withInputBlocker(TextInputWithControl);
 
 export const TextInputWithControlAndToggle =
 	withToggleCheck(TextInputWithControl);

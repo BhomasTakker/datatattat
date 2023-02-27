@@ -9,7 +9,7 @@ export default async function getUser(
 	if (req.method !== "GET") {
 		// return; //return error
 	}
-	mongooseConnect();
+	await mongooseConnect();
 
 	const { query } = req;
 	const { route } = query; //as routeId

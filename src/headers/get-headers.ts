@@ -11,7 +11,7 @@ export async function getHeaders(
 }
 
 export async function getMainHeader(): Promise<HeaderDataType> {
-	mongooseConnect();
+	await mongooseConnect();
 
 	//Perhaps not the best?
 	const header = await Header.findOne({ id: "Main" }).lean();

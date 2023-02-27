@@ -14,7 +14,7 @@ export default async function createNewPage(
 	const { body } = req;
 	const { creator } = body;
 
-	mongooseConnect();
+	await mongooseConnect();
 
 	const user = await User.findById(creator);
 

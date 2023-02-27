@@ -1,5 +1,8 @@
 import React, { useContext, useEffect } from "react";
-import { TextInputWithControl } from "../../input/TextInput";
+import {
+	TextInputWithControl,
+	TextInputWithControlAndInputBlocker,
+} from "../../input/TextInput";
 import { EditComponents } from "./EditComponents";
 import { EditContainer } from "./EditContainer";
 import { useFormContext } from "react-hook-form";
@@ -35,6 +38,7 @@ export const PageEdit = () => {
 			const page = pageData?.page || {};
 			console.log({ pageData });
 			console.log({ page });
+			//Actually working as a set too
 			reset(
 				{
 					...page,
@@ -77,7 +81,7 @@ export const PageEdit = () => {
 	// console.log({ fieldState });
 	return (
 		<>
-			<TextInputWithControl
+			<TextInputWithControlAndInputBlocker
 				label={"endpoint"}
 				name={"route"}
 				fullWidth={true}

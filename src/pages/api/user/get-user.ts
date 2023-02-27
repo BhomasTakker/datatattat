@@ -12,7 +12,7 @@ export default async function getUser(
 		// return; //return error
 	}
 
-	mongooseConnect();
+	await mongooseConnect();
 
 	const { query } = req;
 	const { email } = query;

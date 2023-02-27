@@ -1,10 +1,8 @@
 import { useUser } from "@/src/hooks/useUser";
-import { Box, Stack } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import React, { memo } from "react";
-import { TextInput, TextInputWithControl } from "../../input/TextInput";
+import { Stack } from "@mui/material";
+import React from "react";
+import { TextInputWithControl } from "../../input/TextInput";
 import { NavLinkData } from "../nav-links/NavLink";
-import { HeaderDataType } from "../sub/types";
 
 type NavigationProps = {
 	nav: NavLinkData[];
