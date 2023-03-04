@@ -10,6 +10,8 @@ export function withApiAuthentication(func: Function): Function | void {
 			res.status(401).json({ message: "You must be logged in." });
 			return;
 		}
-		return func(req, res);
+		//Is returning session from here an ok thing to do?
+		//We could get user and add to the req object, etc
+		return func(req, res, session);
 	};
 }

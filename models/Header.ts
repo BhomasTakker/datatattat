@@ -21,6 +21,14 @@ const NavItemSchema = new Schema(
 );
 
 const HeaderSchema = new Schema({
+	route: {
+		type: String,
+		required: true,
+	},
+	creator: {
+		type: Schema.Types.ObjectId,
+		required: true,
+	},
 	nav: [NavItemSchema],
 });
 

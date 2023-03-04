@@ -81,4 +81,16 @@ export const NOTIFICATIONS = {
 		i18n: "create-page-error",
 		type: notificationTypes.error,
 	},
+	headerSavedSuccess: {
+		id: "header-saved-success",
+		message: "Header Saved successfully",
+		i18n: "header-saved-success",
+		type: notificationTypes.success,
+	},
+	haederSavedError: {
+		id: "header-saved-error",
+		message: "Error saving header",
+		i18n: "save-header-error",
+		type: notificationTypes.error,
+	},
 };

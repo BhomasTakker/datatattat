@@ -2,11 +2,13 @@ import Header from "@/models/Header";
 import mongooseConnect from "../lib/mongoose-connection";
 import { GetHeadersParameters, HeaderDataType } from "./types";
 
+//just pass in route
 export async function getHeaders(
-	headersData: GetHeadersParameters
+	route: GetHeadersParameters
 ): Promise<HeaderDataType[]> {
+	await mongooseConnect();
 	const mainHeader = await getMainHeader();
-	const subHeaders = await getSubHeaders(headersData);
+	const subHeaders = await getSubHeaders(route);
 	return [mainHeader, subHeaders];
 }
 
@@ -14,25 +16,39 @@ export async function getMainHeader(): Promise<HeaderDataType> {
 	await mongooseConnect();
 
 	//Perhaps not the best?
-	const header = await Header.findOne({ id: "Main" }).lean();
+	//route!!! '/'
+	const header = await Header.findOne({ route: "/" }).lean();
 
 	return JSON.parse(JSON.stringify(header));
 }
 
-//We should really just figure out why populate doesn't work
-//(I mean it probably works I'm just using it wrong)
-async function populateSubHeaders(id: string): Promise<any[]> {
-	let header = await Header.findById(id);
-	header = JSON.parse(JSON.stringify(header));
-	const sub = header.parent ? await populateSubHeaders(header.parent) : [];
+//This is all a bit ugly / since change from parent id for headers
+//we need to refactor this and uses
+async function populateSubHeaders(route: string): Promise<any[]> {
+	//This isn't great?
+	//missed a thing and got into an infinite loop
+	//We CANNOT do this on Vercel!!
+	if (!route || route === "/" || route === "/users") {
+		return [];
+	}
+	//if not found we'll return null...
+	//Works but ugly
+	let header = [await Header.findOne({ route })] || []; //check
+	let parentHeader = route.split("/");
 
-	return [header, ...sub];
+	parentHeader.pop(); //why
+
+	const sub = parentHeader
+		? await populateSubHeaders(parentHeader.join("/"))
+		: [];
+
+	header = JSON.parse(JSON.stringify(header));
+
+	return [...header, ...sub];
 }
 
 //How/should type ObjectId?
-export async function getSubHeaders(
-	headerId: string
-): Promise<HeaderDataType[]> {
-	const subHeaders = await populateSubHeaders(headerId);
+export async function getSubHeaders(route: string): Promise<HeaderDataType[]> {
+	const subHeaders = await populateSubHeaders(route);
 	return subHeaders;
 }

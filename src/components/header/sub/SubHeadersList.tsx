@@ -5,6 +5,7 @@ import { SubHeader } from "./SubHeader";
 //Here is a very good answer
 //https://stackoverflow.com/questions/46138145/where-should-functions-in-function-components-go
 const renderSubMenu = (item: any, i: number): ReactElement => {
+	console.log({ item });
 	return <SubHeader key={`SubHeader${i}`} headerData={item} />;
 };
 

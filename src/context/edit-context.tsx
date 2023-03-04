@@ -1,18 +1,28 @@
 import React, { useState } from "react";
 
+type EditContextType = {
+	currentPage: string | null;
+	setCurrentPageHandler: (route: string) => void;
+};
+
 const initiallContext = {
-	currentPage: "",
+	currentPage: null,
 	setCurrentPageHandler: (route: string) => {},
 };
 
-export const EditContext = React.createContext(initiallContext);
+export const EditContext =
+	React.createContext<EditContextType>(initiallContext);
 
+//Pass in available options via props
+//i.e. currentPage
+//Page Data
 export const EditContextProvider = (props: any) => {
-	const [currentPage, setCurrentPage] = useState<string>(
-		initiallContext.currentPage
+	const [currentPage, setCurrentPage] = useState<string | null>(
+		initiallContext.currentPage || props.currentPage
 	);
 	const setCurrentPageHandler = (route: string) => {
-		console.log({ route });
+		// console.log("SET CURRENT PAGE " + route);
+		// console.log({ route });
 		setCurrentPage(route);
 	};
 
@@ -27,3 +37,6 @@ export const EditContextProvider = (props: any) => {
 		</EditContext.Provider>
 	);
 };
+function useUser(): { user: any } {
+	throw new Error("Function not implemented.");
+}

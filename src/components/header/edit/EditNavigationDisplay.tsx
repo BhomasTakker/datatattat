@@ -1,6 +1,6 @@
-import { useUser } from "@/src/hooks/useUser";
 import { Stack } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { useFormContext } from "react-hook-form";
 import { TextInputWithControl } from "../../input/TextInput";
 import { NavLinkData } from "../nav-links/NavLink";
 
@@ -13,13 +13,15 @@ type NavLinkProps = {
 };
 
 const NavLink = ({ link, name }: NavLinkProps & { name: string }) => {
-	//Thi is probably terribly inefficient / It wasn't/isn't good
-	//We could simplify it
-	const { user } = useUser();
-	//nicer than ternary / get on the tip of tongue
-	const username = user?.username || "";
+	const { setValue } = useFormContext();
 
-	console.log({ name: `${name}.label` });
+	//We are getting rendered too many times 3*2
+	const route = link.route.split("/").filter(Boolean).join("/"); //remove beginning/trailing slashes
+
+	useEffect(() => {
+		setValue(`${name}.label`, link.label);
+		setValue(`${name}.route`, `/${route}`);
+	}, [link.label, name, route, setValue]);
 
 	return (
 		<Stack direction="row">
@@ -33,8 +35,9 @@ const NavLink = ({ link, name }: NavLinkProps & { name: string }) => {
 			<TextInputWithControl
 				label={"route"}
 				name={`${name}.route`}
-				defaultValue={link.route}
-				startAdornment={`users/${username}/`}
+				defaultValue={`/${route}`}
+				// startAdornment={`users/${username}/`} / we don't need this / when create new ad as default
+				// You are allowed to link to someone elses page
 				required
 			/>
 			{/* Add remove / move up, down, etc */}
@@ -42,13 +45,7 @@ const NavLink = ({ link, name }: NavLinkProps & { name: string }) => {
 	);
 };
 
-//Better name navigationDisplay??
-//EditNavigationDisplay
-//
-//We need to re-render whenever the order changes
-//note - if we are watching the nav array
-//then any change in that array will re-render everything?
-export const EditNavigationDisplay = ({ nav }: NavigationProps) => {
+export const EditNavigationDisplay = ({ nav = [] }: NavigationProps) => {
 	const navLinks = nav.map((link, i) => {
 		return <NavLink link={link} name={`nav.${i}`} key={`nav.${i}`} />;
 	});

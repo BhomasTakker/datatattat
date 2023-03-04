@@ -1,43 +1,32 @@
 import { Typography } from "@mui/material";
 import React from "react";
 import { withAuth } from "@/hoc/components/auth/withAuth";
-import { useRouter } from "next/router";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { i18namespace } from "@/lib/i18n/namespace-sets";
 import { DTAHead } from "@/src/head/DTAHead";
-import { useUser } from "@/src/hooks/useUser";
-import { LoadingSpinner } from "@/src/components/loading/LoadingSpinner";
+import { NewPage } from "@/src/components/forms/edit/NewPage";
 import { getMainHeader } from "@/src/headers/get-headers";
 
-function EditPage() {
-	//Should return error
-	const { user, isLoading } = useUser();
-	const router = useRouter();
-
-	if (!user && isLoading) {
-		return <LoadingSpinner />;
-	}
-	if (!user && !isLoading) {
-		return <>Error. We should flag and redirect</>;
-	}
-
-	//default value of {} is not null right
-	//We slipped through
-	if (!user.page) {
-		console.log("Called Again?");
-		// Looks like this may be the cause of an intermittant error(non-fatal) protect from being called twice
-		router.replace("/edit/landing");
-	}
-
-	//if(user.pages.length === 0)//i.e. if no landing page then create landing page
-	//redirect to Edit Home page
-
+function EditHomePage() {
 	return (
 		<>
 			<DTAHead />
 			<main>
-				<Typography variant="h1">Edit Pages</Typography>
+				<Typography variant="h1">Edit Page</Typography>
+				{/* if no pages  */}
+				<Typography variant="body1">{`
+				Here you can create a landing page unique to you.
+				You can shout about yur accomplishements, express your interests, or shout about the things that matter to you. 
+				Whatever you want to broadcast we're here to help.
+				We have created guides to take you through the process, and don't worry if things aren't perfect first time round, 
+				you can always come back to edit in future.
+				It may be something that you keep updating, because life will never stay the same. 
+				Welcome to Datatattat, we hope you learn, teach, and enjoy yourself!
+				`}</Typography>
+				{/* This is just EditPage */}
+				<NewPage />
+				{/* If exists then go to page - perhaps demo page */}
 			</main>
 		</>
 	);
@@ -56,4 +45,4 @@ export async function getStaticProps({ locale }: { locale: string }) {
 	};
 }
 
-export default withAuth(EditPage);
+export default withAuth(EditHomePage);

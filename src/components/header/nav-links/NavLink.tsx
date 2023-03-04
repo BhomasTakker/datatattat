@@ -1,12 +1,14 @@
 //component width
 //https://newdevzone.com/posts/how-to-get-a-react-components-size-heightwidth-before-render
 
-import React, { useEffect, useState } from "react";
-import styles from "./NavLink.module.css";
-import Link from "next/link";
-import { Button } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
 import { useElementOnScreen } from "@/hooks/useElementOnScreen";
 import { BaseLink } from "./BaseLink";
+
+//
+import { EditContext } from "@/src/context/edit-context";
+import { Button } from "@mui/material";
+import { useUser } from "@/src/hooks/useUser";
 
 export type NavLinkData = {
 	route: string;
@@ -45,8 +47,12 @@ export const NavLink = ({
 		//pass intersection function
 	});
 
+	const editCtx = useContext(EditContext);
+	const { user } = useUser();
+	const username = user?.username || "";
+
 	//All items disappear on scroll - even the tiniest bit of scroll...
-	const king = label === "News";
+	const king = label === "News"; //immovable / set as prop
 
 	useEffect(() => {
 		//this is v hacky //first render is 0 dimensions.width
@@ -76,16 +82,43 @@ export const NavLink = ({
 	const width = `${dimensions.width}px`;
 	const style = dimensions.width ? { width, minWidth: width } : {};
 
+	//Does seem very wrong!
+	const editClickHandler = (route: string) => {
+		console.log("Clicked " + route);
+		//temporary alert - you will lose any unsaved information
+		//Or if route does not == currentRoute?
+		//repeat need to outsource the function
+		const usernameIndex = route.indexOf(`/users/${username}`);
+		if (usernameIndex === 0) {
+			editCtx.setCurrentPageHandler(route);
+		}
+	};
+
+	//If Edit Context exists replace BaseLink with an EditLink
+	//That just passes route to context
+	//Not the greatest thing to do but it is the simplest
+	//Then edit subheaders will 'navigate' correctly
+	//refactor
+	if (editCtx.currentPage) {
+		// console.log({ editCtx });
+		return (
+			<div ref={containerRef} style={style}>
+				{(isVisible || king) && (
+					<Button
+						sx={{ color: "black" }}
+						onClick={() => editClickHandler(route)}
+						key={label}
+					>
+						{label}
+					</Button>
+				)}
+			</div>
+		);
+	}
+	//////////////////////////////////
 	return (
 		<div ref={containerRef} style={style}>
-			{(isVisible || king) && (
-				<BaseLink link={route} label={label} />
-				// <Link href={link}>
-				// 	<Button className={styles.link} color="inherit">
-				// 		{label}
-				// 	</Button>
-				// </Link>
-			)}
+			{(isVisible || king) && <BaseLink link={route} label={label} />}
 		</div>
 	);
 };

@@ -4,7 +4,11 @@ import { SubHeaderProps } from "./types";
 
 //Need to take data and prefix post fix any titles, icons, extra functionality, etc
 export const SubHeader = ({ headerData }: SubHeaderProps) => {
-	const { nav, homeIcon: HomeIcon } = headerData;
+	// if(!headerData){
+	// 	return <></>;
+	// }
+	//We're returning null if no header found
+	const { nav = [], homeIcon: HomeIcon } = headerData || {};
 
 	const prefix = useCallback((): ReactElement => {
 		//This is getting called quite high number of times

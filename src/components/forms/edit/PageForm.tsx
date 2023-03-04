@@ -27,7 +27,7 @@ export const PageForm = () => {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 
-	console.log({ user });
+	// console.log({ user });
 
 	const submitHandler = async (data: any) => {
 		const { _id } = user;
@@ -42,9 +42,10 @@ export const PageForm = () => {
 
 		try {
 			const result = await createLandingPage(pageData);
-			router
-				.replace(`/users/${user.username}`) //how to actually get username here
-				.then(() => dispatch(addNotification(NOTIFICATIONS.signInSuccess)));
+			//No redirect
+			// router
+			// 	.replace(`/users/${user.username}`) //how to actually get username here
+			// 	.then(() => dispatch(addNotification(NOTIFICATIONS.signInSuccess)));
 			dispatch(addNotification(NOTIFICATIONS.pageCreationSuccess));
 		} catch (err) {
 			dispatch(addNotification(NOTIFICATIONS.pageCreationError));

@@ -1,15 +1,22 @@
-import { NavigationMenuProps } from "./types";
 import { AppBar, Box, Container, Stack, Toolbar } from "@mui/material";
-import React from "react";
-import classes from "./NavigationMenu.module.scss";
-import { EditNavigation } from "../nav-links/EditNavigation";
+import React, { ReactElement } from "react";
+import classes from "./EditNavigationMenu.module.scss";
+import { EditNavigation } from "./EditNavigation";
+
+export type EditNavigationMenuProps = {
+	prefix?: () => ReactElement | ReactElement[];
+	postfix?: () => ReactElement | ReactElement[];
+	styles?: {
+		readonly [key: string]: string;
+	};
+};
 
 //This is not really up to standard - not going to work as the main header in mobile - i.e. desktop only
 export const EditNavigationMenu = ({
 	prefix = () => <></>,
 	postfix = () => <></>,
 	styles = classes,
-}: NavigationMenuProps) => {
+}: EditNavigationMenuProps) => {
 	//Edit Navigation Props - not including nav
 	return (
 		<AppBar position="static">
