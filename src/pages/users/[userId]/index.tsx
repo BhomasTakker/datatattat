@@ -74,7 +74,10 @@ export async function getStaticProps({
 		};
 	}
 
-	const page = user.page;
+	//fin page by route
+	const page = await Page.findOne({ route: `/users/${userId}` }).lean();
+
+	// const page = user.page;
 	if (!page) {
 		return {
 			redirect: {
@@ -83,7 +86,7 @@ export async function getStaticProps({
 		};
 	}
 
-	const pageData = await Page.findById(page).lean();
+	// const pageData = await Page.findById(page).lean();
 
 	//Why can't I populate!!!
 	// const headerData = await Header.findById(pageData.header.id).lean();
@@ -91,7 +94,8 @@ export async function getStaticProps({
 	// console.log({ headerData });
 	const headerAndSubHeader = await getHeaders(`/users/${userId}`); //pageData.header.id
 	// console.log({ headerAndSubHeader });
-	const footerData = await Footer.findById(pageData.footer.id).lean();
+	//just get by route or user?
+	// const footerData = await Footer.findById(page.footer.id).lean();
 
 	return {
 		props: {
@@ -102,9 +106,9 @@ export async function getStaticProps({
 			])),
 			// user: JSON.parse(JSON.stringify(user)),
 			username: user.username,
-			pageData: JSON.parse(JSON.stringify(pageData)),
+			pageData: JSON.parse(JSON.stringify(page)),
 			headerData: headerAndSubHeader,
-			footerData: JSON.parse(JSON.stringify(footerData)),
+			// footerData: JSON.parse(JSON.stringify(footerData)),
 		},
 	};
 }
