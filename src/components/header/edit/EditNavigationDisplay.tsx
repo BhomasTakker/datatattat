@@ -18,9 +18,10 @@ const NavLink = ({ link, name }: NavLinkProps & { name: string }) => {
 	//We are getting rendered too many times 3*2
 	const route = link.route.split("/").filter(Boolean).join("/"); //remove beginning/trailing slashes
 
+	//Removed / prefix on route
 	useEffect(() => {
 		setValue(`${name}.label`, link.label);
-		setValue(`${name}.route`, `/${route}`);
+		setValue(`${name}.route`, `${route}`);
 	}, [link.label, name, route, setValue]);
 
 	return (
@@ -32,10 +33,11 @@ const NavLink = ({ link, name }: NavLinkProps & { name: string }) => {
 				name={`${name}.label`}
 				defaultValue={link.label}
 			/>
+			{/* Removed / prefix on route */}
 			<TextInputWithControl
 				label={"route"}
 				name={`${name}.route`}
-				defaultValue={`/${route}`}
+				defaultValue={`${route}`}
 				// startAdornment={`users/${username}/`} / we don't need this / when create new ad as default
 				// You are allowed to link to someone elses page
 				required

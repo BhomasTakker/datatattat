@@ -7,6 +7,7 @@ import { NavLinkData } from "../nav-links/NavLink";
 import { useFormContext } from "react-hook-form";
 import { EditContext } from "@/src/context/edit-context";
 import { useUser } from "@/src/hooks/useUser";
+import edit from "@/src/pages/edit";
 
 type NavigationProps = {
 	navLinks: NavLinkData[];
@@ -24,13 +25,32 @@ export const EditNavigation = () => {
 
 	const onClick = (route: string) => {
 		console.log("Clicked " + route);
+		const currentPage = editCtx.currentPage;
+		const trimmedRoute = route; //.slice(1);// no need / removed from initial value
+		console.log("Clicked currentPage " + currentPage);
 		//temporary alert - you will lose any unsaved information
 		//Or if route does not == currentRoute?
 		//repeat need to outsource the function
-		const usernameIndex = route.indexOf(`/users/${username}`);
-		if (usernameIndex === 0) {
-			editCtx.setCurrentPageHandler(route);
+
+		//Need check for spaces??
+
+		if (!route) {
+			//show warning alert - no route provided
+			return;
 		}
+
+		editCtx.setCurrentPageHandler(`${currentPage}/${trimmedRoute}`);
+
+		// const usernameIndex = route.indexOf(`/users/${username}`);
+
+		// console.log(usernameIndex);
+		// if (usernameIndex === 0) {
+		// 	// Why this here?
+		// 	console.log(usernameIndex);
+		// 	editCtx.setCurrentPageHandler(route);
+		// } else {
+		// 	editCtx.setCurrentPageHandler(`/users/${username}${route}`);
+		// }
 	};
 
 	const drawNavLinks = () => {

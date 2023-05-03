@@ -31,17 +31,23 @@ export const HeaderEdit = () => {
 			const headers = await response.json();
 
 			//if null
-			const showEdit = !!headers[0];
+			const showHeader = !!headers[0];
 
 			const filteredHeaders = headers.filter(
 				(header: HeaderDataType | null) => header !== null
 			);
 
-			setHeaderData(showEdit ? { ...filteredHeaders[0] } : null);
+			//create empty object here
+			const defaultHeader = {
+				route: `/${currentPage}`,
+				nav: [],
+			};
+			setHeaderData(showHeader ? { ...filteredHeaders[0] } : defaultHeader);
 
-			if (showEdit) {
-				filteredHeaders.shift();
-			}
+			// if (showHeader) {
+			// 	filteredHeaders.shift();
+			// }
+			filteredHeaders.shift();
 			setHeadersArray([...filteredHeaders]);
 			//Create and call a proper reset function
 			//We'll need to reset more than nav
