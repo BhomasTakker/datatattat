@@ -41,7 +41,7 @@ async function saveHeaderAPI(
 	const { userId } = authUser;
 	const user = await User.findById(userId);
 
-	const { username } = user;
+	const { username, role = "standard" } = user;
 	// const splitRoute = route.split("/").filter(Boolean);
 
 	//////////////////////////////////////
@@ -51,10 +51,17 @@ async function saveHeaderAPI(
 	// if (splitRoute[0] !== "users" || splitRoute[1] !== username) {
 	// 	return res.status(400).json({ msg: "Nefarious operation" });
 	// }
-	const usernameIndex = route.indexOf(`/users/${username}`);
-	if (usernameIndex !== 0) {
-		return res.status(400).json({ msg: "Nefarious operation" });
+	//dirty check
+	if (role !== "admin") {
+		const usernameIndex = route.indexOf(`/users/${username}`);
+		if (usernameIndex !== 0) {
+			return res.status(400).json({ msg: "Nefarious operation" });
+		}
 	}
+
+	///**********************************************/
+	//if admin need check save route against allowed
+
 	//////////////////////////////
 
 	//Update if exists create if not

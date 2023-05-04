@@ -1,8 +1,9 @@
+import { IUser } from "@/models/User";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 type useUserReturn = {
-	user: any;
+	user: IUser | null;
 	isLoading: boolean;
 };
 

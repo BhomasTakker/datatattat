@@ -30,19 +30,23 @@ export const HeaderForm = () => {
 	};
 
 	const submitHandler = async (data: FieldValues) => {
-		const { _id } = user;
 		if (!user) {
 			//Error something went wrong
 			return;
 		}
+
+		const { _id } = user;
 		//loop nav in data and add outer route to each route
 		//This doesn't allow for linking to other pages but that can be changed
 		//basics first
 
 		const navData = data.nav.map((item: NavItem) => {
+			//if homepage - probably do something better
+			const route =
+				currentPage !== "/" ? `${currentPage}/${item.route}` : `/${item.route}`;
 			return {
 				label: item.label,
-				route: `${currentPage}/${item.route}`, //function - i.e. save typepass type and link and figure it out - for non nested links etc
+				route, //function - i.e. save typepass type and link and figure it out - for non nested links etc
 			};
 		});
 		const saveData = {

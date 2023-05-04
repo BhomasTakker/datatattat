@@ -30,11 +30,13 @@ export const PageForm = () => {
 	// console.log({ user });
 
 	const submitHandler = async (data: any) => {
-		const { _id } = user;
 		if (!user) {
 			//Error something went wrong
 			return;
 		}
+
+		const { _id } = user;
+
 		const pageData = {
 			...data,
 			creator: _id,

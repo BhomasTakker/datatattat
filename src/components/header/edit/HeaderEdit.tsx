@@ -27,6 +27,7 @@ export const HeaderEdit = () => {
 	//Clean all this the hell up!
 	useEffect(() => {
 		const fetchHeaderData = async () => {
+			//try catch
 			const response = await fetch(`../api/header${currentPage}`);
 			const headers = await response.json();
 
@@ -62,7 +63,7 @@ export const HeaderEdit = () => {
 			);
 		};
 		fetchHeaderData();
-	}, [currentPage]); //headersArray,
+	}, [currentPage, reset]); //headersArray,
 
 	//////////////////////////////////////////////
 	// useEffect();

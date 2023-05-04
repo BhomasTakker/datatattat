@@ -1,8 +1,14 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId, Schema, model } from "mongoose";
 
-const Schema = mongoose.Schema;
+// const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+export interface IUser {
+	username: string;
+	role: string;
+	_id: ObjectId;
+}
+
+const UserSchema = new Schema<IUser>({
 	username: {
 		type: String,
 		// unique: [true, "Username must be unique"],
@@ -15,9 +21,9 @@ const UserSchema = new Schema({
 	},
 
 	//page is no longer required
-	page: {
-		type: Schema.Types.ObjectId,
-	},
+	// page: {
+	// 	type: Schema.Types.ObjectId,
+	// },
 });
 
-export const User = mongoose.models.User || mongoose.model("User", UserSchema);
+export const User = mongoose.models.User || model("User", UserSchema);
