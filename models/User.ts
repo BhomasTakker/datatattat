@@ -8,6 +8,13 @@ const UserSchema = new Schema({
 		// unique: [true, "Username must be unique"],
 		required: [true, "Please provide your username."],
 	},
+
+	role: {
+		type: String,
+		default: "standard",
+	},
+
+	//page is no longer required
 	page: {
 		type: Schema.Types.ObjectId,
 	},
