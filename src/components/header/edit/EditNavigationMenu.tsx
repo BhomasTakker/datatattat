@@ -26,6 +26,11 @@ const BackButton = () => {
 		if (currentPage === `/users/${username}`) {
 			return;
 		}
+
+		if (currentPage === `/`) {
+			return;
+		}
+
 		let pages = currentPage?.split("/");
 		pages?.pop();
 		// pages?.join('/');
