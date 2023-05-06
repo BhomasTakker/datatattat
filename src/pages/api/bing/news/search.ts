@@ -1,4 +1,5 @@
 import { BASE_URL, ENDPOINTS, HEADERS } from "@/src/api/bing/news/constants";
+import { redisApiFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next";
 
 //We should initially form the data into a 'shape' we want?
@@ -30,9 +31,22 @@ async function search(req: NextApiRequest, res: NextApiResponse) {
 		endpoint.searchParams.set(param, query[param] as string);
 	}
 
+	//Here we need inject Redis
+	//but also a generic function - pass in jazz
+	//i.e. endpoint + searchParams
+	//In this instance it should just be endpoint
+	//i.e. you don't have a body on GET
+
+	//This aproach we would have to add for every api
+	//We need lookit and better
+	//Call an API fetch helper that returns either the api response or the redis response
+
 	//try catch response
-	const response = await fetch(endpoint, options);
-	const result = await response.json();
+	// const response = await fetch(endpoint, options);
+	// const result = await response.json();
+
+	//On fail get stuck in a loop
+	const result = await redisApiFetch(endpoint, options);
 
 	// console.log({ BING: result });
 
