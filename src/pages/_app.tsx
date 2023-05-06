@@ -28,12 +28,8 @@ const queryClient = new QueryClient();
 
 function App({ Component, pageProps }: AppProps) {
 	const { session, pageData, headerData, footerData } = pageProps;
-	// const { header, footer } = pageData;
 
-	// console.log({ session });
-	// console.log({ headerData });
-	// console.log({ pageData });
-
+	//Why have we done this?
 	const renderHeader = () =>
 		headerData ? <MainHeader headerData={headerData} /> : <></>;
 	const renderFooter = () => <MainFooter footerData={footerData} />;
