@@ -4,11 +4,15 @@ import { EditContext } from "@/src/context/edit-context";
 
 export const EditRouteForm = () => {
 	const { user } = useUser();
-	const { setCurrentPageHandler } = useContext(EditContext);
+	const { setCurrentPageHandler, currentPage } = useContext(EditContext);
 
 	useEffect(() => {
+		//this thing
+
 		if (user && user.role === "admin") {
-			setCurrentPageHandler("/");
+			if (currentPage?.includes(user.username)) {
+				setCurrentPageHandler("/");
+			}
 		}
 	}, [user, setCurrentPageHandler]);
 

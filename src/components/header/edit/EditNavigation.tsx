@@ -39,7 +39,12 @@ export const EditNavigation = () => {
 			return;
 		}
 
-		editCtx.setCurrentPageHandler(`${currentPage}/${trimmedRoute}`);
+		const updateRoute =
+			currentPage === "/"
+				? `/${trimmedRoute}`
+				: `${currentPage}/${trimmedRoute}`;
+
+		editCtx.setCurrentPageHandler(updateRoute);
 
 		// const usernameIndex = route.indexOf(`/users/${username}`);
 

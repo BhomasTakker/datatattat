@@ -4,9 +4,9 @@ export async function getPageById(id: string): Promise<any> {
 }
 export async function getPageByRoute(route: string): Promise<any> {
 	if (!route) {
-		return {};
+		return {}; //as a response
 	}
-	console.log({ route });
+	console.log({ THISroute: route });
 	const response = await fetch(`/api/page/route/${route}`);
 	return await response.json();
 }

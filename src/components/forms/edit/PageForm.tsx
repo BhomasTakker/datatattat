@@ -42,6 +42,8 @@ export const PageForm = () => {
 			creator: _id,
 		};
 
+		console.log({ data });
+
 		try {
 			const result = await createLandingPage(pageData);
 			//No redirect

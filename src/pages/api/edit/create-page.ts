@@ -30,7 +30,7 @@ async function createNewPage(
 	const { userId } = authUser;
 
 	const user = await User.findById(creator);
-	const { username } = user;
+	const { username, role } = user;
 
 	if (!user) {
 		return res.status(400).json({ msg: "Incorrect creator" });
@@ -43,9 +43,12 @@ async function createNewPage(
 	//////////////////////////////////////
 	// const splitRoute = route.split("/").filter(Boolean);
 	// const trimmedRoute = route.replace('/users/', '');
-	const usernameIndex = route.indexOf(`/users/${username}`);
-	if (usernameIndex !== 0) {
-		return res.status(400).json({ msg: "Nefarious operation" });
+	//dirty check TODO change
+	if (role !== "admin") {
+		const usernameIndex = route.indexOf(`/users/${username}`);
+		if (usernameIndex !== 0) {
+			return res.status(400).json({ msg: "Nefarious operation" });
+		}
 	}
 
 	let page;

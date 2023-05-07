@@ -6,7 +6,7 @@ import { Redis } from "ioredis";
 const getEnvVar = (id: string) => process.env[id];
 
 export const redis = new Redis({
-	host: getEnvVar("REEDIS_HOST"),
+	host: getEnvVar("REDIS_HOST"),
 	port: Number(getEnvVar("REDIS_PORT")),
 	password: getEnvVar("REDIS_PASSWORD"),
 });

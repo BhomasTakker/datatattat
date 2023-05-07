@@ -51,7 +51,7 @@ async function saveHeaderAPI(
 	// if (splitRoute[0] !== "users" || splitRoute[1] !== username) {
 	// 	return res.status(400).json({ msg: "Nefarious operation" });
 	// }
-	//dirty check
+	//dirty check TODO change
 	if (role !== "admin") {
 		const usernameIndex = route.indexOf(`/users/${username}`);
 		if (usernameIndex !== 0) {

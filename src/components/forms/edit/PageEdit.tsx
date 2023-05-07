@@ -19,17 +19,22 @@ export const PageEdit = () => {
 	useEffect(() => {
 		//If we are just updating the endpoint??
 		//We will need to mention that there will be a disconnect - but that might be what the user wants
+		console.log("GET PAGE DATA CALLED");
 
 		const route = `${currentPage}`;
 		// editCtx.setCurrentPageHandler(route);
 		async function getPageData() {
 			let pageData;
 			try {
+				console.log({ getRoute: route });
 				pageData = await getPageByRoute(route);
 			} catch (error) {
 				console.log(error);
 			}
 			const page = pageData?.page || {};
+
+			console.log({ route });
+			console.log({ pageData });
 
 			reset(
 				{

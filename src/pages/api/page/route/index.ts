@@ -2,7 +2,7 @@ import Page from "@/models/Page";
 import mongooseConnect from "@/src/lib/mongoose-connection";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function getPage(
+export default async function getHomePage(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
@@ -11,19 +11,8 @@ export default async function getPage(
 	}
 	await mongooseConnect();
 
-	const { query } = req;
-	const { route } = query; //as routeId
-	let routeId;
-	if (typeof route === "string") {
-		routeId = `/${route}`;
-	} else {
-		routeId = `/${route?.join("/")}`;
-	}
-
-	console.log({ route });
-	console.log({ routeId });
 	//try catch
-	const page = routeId ? await Page.findOne({ route: routeId }).lean() : null;
+	const page = await Page.findOne({ route: "/" }).lean();
 
 	console.log({ page });
 	const pageData = {
