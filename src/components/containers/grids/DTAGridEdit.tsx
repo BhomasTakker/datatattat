@@ -46,6 +46,14 @@ const createWithEditComponent = (
 	return <EditComponent objectKey={objectKey} />;
 };
 
+//GRID IS NOT A CONTAINER !!!!
+//NOT THIS GRID ANYHOW
+//WE NEED TO DISTINGUISH THIS
+//Containers are top level - i.e. DTAStack
+//Sub containers are simple grid etc
+//Side scrollers, etc
+//Then content level i.e. article
+
 // We need to pass an id through
 // a for unique id b
 export const DTAGridEdit = ({ objectKey }: BaseEditProps) => {

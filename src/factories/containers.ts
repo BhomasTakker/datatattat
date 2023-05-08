@@ -7,12 +7,15 @@ import { DTAGridEdit } from "../components/containers/grids/DTAGridEdit";
 // 	STACK = "STACK",
 // }
 
+//We should call these dislay containers
 export const CONTAINERS: any = {
 	["DTAStack"]: DTAStack, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
-	["DTAGrid"]: DTAGrid,
+
+	//NOT HERE
+	// ["DTAGrid"]: DTAGrid,
 };
 
 export const EDIT_CONTAINERS: any = {
 	["DTAStack"]: DTAStackEdit, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
-	["DTAGrid"]: DTAGridEdit,
+	// ["DTAGrid"]: DTAGridEdit,
 };
