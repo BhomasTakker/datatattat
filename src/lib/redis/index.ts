@@ -28,6 +28,7 @@ export const redisApiFetch = async (endpoint: URL, options: RequestInit) => {
 	const result = await response.json();
 
 	console.log("SAVE CACHE");
+	console.log({ result });
 	await redis.set(endpoint.toString(), JSON.stringify(result));
 
 	return result;

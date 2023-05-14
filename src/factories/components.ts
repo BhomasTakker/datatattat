@@ -14,6 +14,10 @@ import { TwitterList } from "../components/data/social-media/twitter/list";
 import { Tweet } from "../components/data/social-media/twitter/tweet";
 import { TwitterListEdit } from "../components/data/social-media/twitter/TwitterListEdit";
 import { TweetEdit } from "../components/data/social-media/twitter/TwitterTweetEdit";
+import { TikTokCreator } from "../components/data/social-media/tiktok/TikTokCreator";
+import { TikTokVideo } from "../components/data/social-media/tiktok/TikTokVideo";
+import { TikTokCreatorEdit } from "../components/data/social-media/tiktok/TikTokCreatorEdit";
+import { TikTokVideoEdit } from "../components/data/social-media/tiktok/TikTokVideoEdit";
 
 // export enum COMPONENT_TYPES {
 // 	STACK = "STACK",
@@ -36,6 +40,10 @@ export const COMPONENTS: any = {
 	["TwitterProfile"]: TwitterProfile,
 	["TwitterList"]: TwitterList,
 	["Tweet"]: Tweet,
+
+	//TikTok
+	["TikTokCreator"]: TikTokCreator,
+	["TikTokVideo"]: TikTokVideo,
 };
 
 export const EDIT_COMPONENTS: any = {
@@ -49,4 +57,8 @@ export const EDIT_COMPONENTS: any = {
 	["TwitterProfile"]: TwitterProfileEdit,
 	["TwitterList"]: TwitterListEdit,
 	["Tweet"]: TweetEdit,
+
+	//TikTok
+	["TikTokCreator"]: TikTokCreatorEdit,
+	["TikTokVideo"]: TikTokVideoEdit,
 };

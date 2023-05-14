@@ -1,6 +1,13 @@
 //Get from same file - barren export
 import { BingNewsSearchEdit } from "./bing/news/BingNewsSearchEdit";
 import { BING_NEWS_SEARCH_API_OBJECT } from "./bing/news/constants";
+//import from constants
+import { TikTokCreatorOembedEdit } from "./social-media/tik-tok/CreatorEdit";
+import { TikTokVideoOembedEdit } from "./social-media/tik-tok/VideoEdit";
+import {
+	TIKTOK_CREATOR_OEMBED_OBJECT,
+	TIKTOK_VIDEO_OEMBED_OBJECT,
+} from "./social-media/tik-tok/constants";
 import { TwitterListOembedEdit } from "./social-media/twitter/ListEdit";
 import { TwitterProfileOembedEdit } from "./social-media/twitter/ProfileEdit";
 import { TwitterTweetOembedEdit } from "./social-media/twitter/TweetEdit";
@@ -14,10 +21,14 @@ import {
 export const API_LIST: any = {
 	bingNewsSearch: BING_NEWS_SEARCH_API_OBJECT,
 
-	//
+	//Twitter
 	twitterProfileOembed: TWITTER_PROFILE_OEMBED_OBJECT,
 	twitterListOembed: TWITTER_LIST_OEMBED_OBJECT,
 	twitterTweetOembed: TWITTER_TWEET_OEMBED_OBJECT,
+
+	//TikTok
+	tiktokCreatorOembed: TIKTOK_CREATOR_OEMBED_OBJECT,
+	tiktokVideoOembed: TIKTOK_VIDEO_OEMBED_OBJECT,
 };
 
 export const API_EDIT_LIST: any = {
@@ -28,4 +39,8 @@ export const API_EDIT_LIST: any = {
 	twitterProfileOembed: TwitterProfileOembedEdit,
 	twitterListOembed: TwitterListOembedEdit,
 	twitterTweetOembed: TwitterTweetOembedEdit,
+
+	//tiktok
+	tiktokCreatorOembed: TikTokCreatorOembedEdit,
+	tiktokVideoOembed: TikTokVideoOembedEdit,
 };
