@@ -8,6 +8,12 @@ import { BasicArticle } from "../components/data/articles/BasicArticle";
 import { BasicArticleEdit } from "../components/data/articles/BasicArticleEdit";
 import { DTAGrid } from "../components/containers/grids/DTAGrid";
 import { DTAGridEdit } from "../components/containers/grids/DTAGridEdit";
+import { TwitterProfile } from "../components/data/social-media/twitter/profile";
+import { TwitterProfileEdit } from "../components/data/social-media/twitter/TwitterProfileEdit";
+import { TwitterList } from "../components/data/social-media/twitter/list";
+import { Tweet } from "../components/data/social-media/twitter/tweet";
+import { TwitterListEdit } from "../components/data/social-media/twitter/TwitterListEdit";
+import { TweetEdit } from "../components/data/social-media/twitter/TwitterTweetEdit";
 
 // export enum COMPONENT_TYPES {
 // 	STACK = "STACK",
@@ -25,6 +31,11 @@ export const COMPONENTS: any = {
 	["ArticleStub"]: ArticleStub,
 	["DTAGrid"]: DTAGrid,
 	["BasicArticle"]: BasicArticle,
+
+	//Twitter / load and spread twitter object
+	["TwitterProfile"]: TwitterProfile,
+	["TwitterList"]: TwitterList,
+	["Tweet"]: Tweet,
 };
 
 export const EDIT_COMPONENTS: any = {
@@ -33,4 +44,9 @@ export const EDIT_COMPONENTS: any = {
 	["ArticleStub"]: ArticleStubEdit,
 	["DTAGrid"]: DTAGridEdit,
 	["BasicArticle"]: BasicArticleEdit,
+
+	//Twitter / load and spread twitter object
+	["TwitterProfile"]: TwitterProfileEdit,
+	["TwitterList"]: TwitterListEdit,
+	["Tweet"]: TweetEdit,
 };

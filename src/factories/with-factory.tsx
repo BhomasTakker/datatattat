@@ -13,6 +13,7 @@ const createQueryObject = (queryObject: any) => {
 	const { queryId, apiId, url, response, params, options } = queryObject;
 
 	//API 'config'
+	//If not found return error or whatever
 	const config = API_LIST[apiId];
 	const returnFn = config.returns[response];
 
