@@ -13,9 +13,14 @@ async function getList(req: NextApiRequest, res: NextApiResponse) {
 	}
 	const endpoint = new URL(TWITTER_BASE_URL);
 	const { query } = req;
-	query.url = `https://twitter.com/i/lists/${query.url}`;
-	for (let param in query) {
-		endpoint.searchParams.set(param, query[param] as string);
+	// query.url = `https://twitter.com/i/lists/${query.url}`;
+
+	const updatedQuery = { ...query };
+	updatedQuery.url = `https://www.twitter.com/i/lists/${query.listId}`;
+	delete updatedQuery.listId;
+
+	for (let param in updatedQuery) {
+		endpoint.searchParams.set(param, updatedQuery[param] as string);
 	}
 
 	// const response = await fetch(endpoint);

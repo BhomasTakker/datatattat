@@ -38,8 +38,8 @@ export const TwitterListOembedEdit = ({ objectKey }: BaseEditProps) => {
 			<Typography variant="h3">Twitter List Oembed parameters</Typography>
 			<Container>
 				<TextInputWithControl
-					label="url"
-					name={`${paramsRoute}.url`}
+					label="listId"
+					name={`${paramsRoute}.listId`}
 					fullWidth={true}
 					required
 				/>

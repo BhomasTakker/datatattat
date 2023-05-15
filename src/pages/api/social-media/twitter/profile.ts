@@ -10,9 +10,13 @@ async function getProfile(req: NextApiRequest, res: NextApiResponse) {
 	}
 	const endpoint = new URL(TWITTER_BASE_URL);
 	const { query } = req;
-	query.url = `https://twitter.com/${query.url}`;
-	for (let param in query) {
-		endpoint.searchParams.set(param, query[param] as string);
+
+	const updatedQuery = { ...query };
+	updatedQuery.url = `https://www.twitter.com/${query.user}`;
+	delete updatedQuery.user;
+
+	for (let param in updatedQuery) {
+		endpoint.searchParams.set(param, updatedQuery[param] as string);
 	}
 
 	// const response = await fetch(endpoint);

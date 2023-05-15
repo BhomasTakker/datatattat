@@ -28,8 +28,8 @@ export const TwitterProfileOembedEdit = ({ objectKey }: BaseEditProps) => {
 			<Typography variant="h3">Twitter Profile Oembed parameters</Typography>
 			<Container>
 				<TextInputWithControl
-					label="url"
-					name={`${paramsRoute}.url`}
+					label="user"
+					name={`${paramsRoute}.user`}
 					fullWidth={true}
 					required
 				/>

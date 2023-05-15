@@ -11,9 +11,15 @@ async function getTweet(req: NextApiRequest, res: NextApiResponse) {
 	//Not setup for this yet
 	const endpoint = new URL(TWITTER_BASE_URL);
 	const { query } = req;
-	query.url = `https://twitter.com/${query.user}/status/${query.url}`;
-	for (let param in query) {
-		endpoint.searchParams.set(param, query[param] as string);
+	// query.url = `https://twitter.com/${query.user}/status/${query.url}`;
+
+	const updatedQuery = { ...query };
+	updatedQuery.url = `https://www.twitter.com/${query.user}/status/${query.tweetId}`;
+	delete updatedQuery.user;
+	delete updatedQuery.tweetId;
+
+	for (let param in updatedQuery) {
+		endpoint.searchParams.set(param, updatedQuery[param] as string);
 	}
 
 	// const response = await fetch(endpoint);
