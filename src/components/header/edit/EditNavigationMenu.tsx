@@ -50,7 +50,7 @@ const BackButton = () => {
 	);
 };
 
-//This is not really up to standard - not going to work as the main header in mobile - i.e. desktop only
+//This is not really up to standard - not going to work as the main edit header in mobile - i.e. desktop only
 export const EditNavigationMenu = ({
 	prefix = () => <></>,
 	postfix = () => <></>,

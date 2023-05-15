@@ -23,6 +23,7 @@ export const EditNavigation = () => {
 
 	// console.log({ watchNav });
 
+	//navlink clicked
 	const onClick = (route: string) => {
 		console.log("Clicked " + route);
 		const currentPage = editCtx.currentPage;
