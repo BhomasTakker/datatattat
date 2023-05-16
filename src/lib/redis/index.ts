@@ -1,9 +1,7 @@
 //https://www.youtube.com/watch?v=-5RTyEim384
 
+import { getEnvVar } from "@/src/utils/env";
 import { Redis } from "ioredis";
-
-//Could log || error
-const getEnvVar = (id: string) => process.env[id];
 
 export const redis = new Redis({
 	host: getEnvVar("REDIS_HOST"),
@@ -29,6 +27,9 @@ export const redisApiFetch = async (endpoint: URL, options: RequestInit) => {
 
 	console.log("SAVE CACHE");
 	console.log({ result });
+	//redis.set('key', 100, 'ex', 10) // where ex is seconds
+	//we need take or use default
+	//some way of managing how long this will be cached for
 	await redis.set(endpoint.toString(), JSON.stringify(result));
 
 	return result;

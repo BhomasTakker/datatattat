@@ -45,7 +45,7 @@ async function search(req: NextApiRequest, res: NextApiResponse) {
 	// const response = await fetch(endpoint, options);
 	// const result = await response.json();
 
-	//On fail get stuck in a loop
+	//On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	const result = await redisApiFetch(endpoint, options);
 
 	// console.log({ BING: result });
