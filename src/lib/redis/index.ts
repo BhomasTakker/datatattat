@@ -22,12 +22,18 @@ export const redisApiFetch = async (endpoint: URL, options: RequestInit) => {
 	}
 
 	const response = await fetch(endpoint, options);
-	//Probably not here unless?
+	//Probably not here unless? / keep as is - we can specify return type or none
 	const result = await response.json();
 
 	console.log("SAVE CACHE");
 	console.log({ result });
-	//redis.set('key', 100, 'ex', 10) // where ex is seconds
+
+	/////////////////////////////////////////////////////////////////////////
+	//redis.set('key', 100, 'ex', 10) // where ex is seconds / px for milliseconds
+	// We need pass in a default for that api / fetch
+	// We need pass in a value for important searches i.e. news - and user specification -> if paying or cookies on allow x amount refetch otherwise ...
+	// we need a fallback default of say a day as forever doesn't cut it
+	// We need to have user data / page data loaded via redis with a fast(er) update time
 	//we need take or use default
 	//some way of managing how long this will be cached for
 	await redis.set(endpoint.toString(), JSON.stringify(result));
