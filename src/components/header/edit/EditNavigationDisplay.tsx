@@ -10,6 +10,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 type FunctionsProp = {
 	onDelete: (item: any) => void;
 	onMove: (item: any, dir: number) => void;
+	onUpdate: (oldItem: any, newItem: any) => void;
 };
 
 type NavigationProps = {
@@ -27,8 +28,8 @@ const NavLink = ({
 	name,
 	functions,
 }: NavLinkProps & { name: string; functions: FunctionsProp }) => {
-	const { setValue } = useFormContext();
-	const { onDelete, onMove } = functions;
+	const { setValue, getValues } = useFormContext();
+	const { onDelete, onMove, onUpdate } = functions;
 
 	//We are getting rendered too many times 3*2
 	const route = link.route.split("/").filter(Boolean).join("/"); //remove beginning/trailing slashes
@@ -39,6 +40,10 @@ const NavLink = ({
 	useEffect(() => {
 		setValue(`${name}.label`, link.label);
 		setValue(`${name}.route`, `${routeToShow}`); //route is wildly incorrect?
+		// onUpdate(link, {
+		// 	link: getValues(`${name}.label`),
+		// 	route: getValues(`${name}.route`),
+		// });
 	}, [link.label, name, routeToShow, setValue]);
 
 	console.log({ route });

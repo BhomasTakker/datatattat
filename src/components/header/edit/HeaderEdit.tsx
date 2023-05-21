@@ -8,7 +8,7 @@ import { EditContext } from "@/src/context/edit-context";
 import { SubHeadersList } from "../sub/SubHeadersList";
 import { useFormContext } from "react-hook-form";
 import AddIcon from "@mui/icons-material/Add";
-import { move, remove } from "@/src/utils/array";
+import { move, remove, replace } from "@/src/utils/array";
 
 let count = 0;
 
@@ -120,13 +120,18 @@ export const HeaderEdit = () => {
 	//temp
 	const funcs = {
 		onDelete: (item: any) => {
-			console.log("onDelete");
+			// console.log("onDelete");
 			const updatedNav = remove(headerData.nav, item);
 			setHeaderData({ ...headerData, nav: [...updatedNav] });
 		},
 		onMove: (item: any, dir: number) => {
-			console.log("onMove");
+			// console.log("onMove");
 			const updatedNav = move(headerData.nav, item, dir);
+			setHeaderData({ ...headerData, nav: [...updatedNav] });
+		},
+		// this is because I'm a poor programmer :(
+		onUpdate: (oldItem: any, newItem: any) => {
+			const updatedNav = replace(headerData.nav, oldItem, newItem);
 			setHeaderData({ ...headerData, nav: [...updatedNav] });
 		},
 	};
