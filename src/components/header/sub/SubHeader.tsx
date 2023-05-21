@@ -8,6 +8,7 @@ export const SubHeader = ({ headerData }: SubHeaderProps) => {
 	// 	return <></>;
 	// }
 	//We're returning null if no header found
+	//get passed pre and post fix element arrays
 	const { nav = [], homeIcon: HomeIcon } = headerData || {};
 
 	const prefix = useCallback((): ReactElement => {
@@ -15,5 +16,17 @@ export const SubHeader = ({ headerData }: SubHeaderProps) => {
 		return HomeIcon ? HomeIcon : <></>;
 	}, [HomeIcon]);
 
-	return <NavigationMenu navigationItems={nav} prefix={prefix} />;
+	//if nav === [] show <></>
+	//But maybe we want if title show
+	//if prefix/postfix, etc shen show
+	//easy enough no?
+
+	if (nav.length > 0) {
+		return <NavigationMenu navigationItems={nav} prefix={prefix} />;
+	}
+
+	//if prefix
+	//if postfix
+
+	return <></>;
 };

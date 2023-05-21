@@ -13,7 +13,7 @@ const renderList = (list: any[]): ReactElement => {
 	//@ts-ignore / would you wrap just for the sake of it / can you add a key to fragments
 	return list.map(renderSubMenu);
 };
-
+//header utils perhaps
 //should pass a limit / curry a function if you want to fake reusabiloity
 const trimList = (list: any[]) => {
 	const { length } = list;
