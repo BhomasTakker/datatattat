@@ -1,4 +1,4 @@
-import { MenuItem, TextField } from "@mui/material";
+import { InputProps, MenuItem, TextField } from "@mui/material";
 import React, { ReactElement } from "react";
 import { withControl } from "@/hoc/components/forms/withControl";
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
@@ -21,6 +21,8 @@ type TextInputType = {
 	disabled?: boolean;
 	startAdornment?: ReactElement | undefined;
 	endAdornment?: ReactElement | undefined;
+	//Probably sort this out properly
+	inputProps?: InputProps;
 };
 
 //This could effectively replace the password, username, and email inputs we have
@@ -37,6 +39,7 @@ export const TextInput = ({
 	disabled = false,
 	startAdornment = undefined,
 	endAdornment = undefined,
+	inputProps = {},
 }: TextInputType) => {
 	return (
 		<TextField
@@ -53,6 +56,7 @@ export const TextInput = ({
 			InputProps={{
 				startAdornment,
 				endAdornment,
+				...inputProps,
 			}}
 			//TextField seems like it cannot properly be used on it's own
 			//investigate this

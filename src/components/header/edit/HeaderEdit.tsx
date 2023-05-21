@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { EditSubHeader } from "./EditSubHeader";
 import { HeaderDataType } from "../sub/types";
@@ -7,6 +7,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { EditContext } from "@/src/context/edit-context";
 import { SubHeadersList } from "../sub/SubHeadersList";
 import { useFormContext } from "react-hook-form";
+import AddIcon from "@mui/icons-material/Add";
 
 let count = 0;
 
@@ -119,8 +120,6 @@ export const HeaderEdit = () => {
 			{/* List */}
 			{/* EditSubHeaderList - minus current header */}
 			{/* We don't want to edit them just allow 'navigation' */}
-
-			{/* <SubHeadersList headersArray={headers} /> */}
 			{headersArray ? (
 				<SubHeadersList headersArray={[...headersArray]} />
 			) : (
@@ -129,17 +128,23 @@ export const HeaderEdit = () => {
 			{/* CurrentHeader */}
 
 			{headerData ? (
-				<>
+				<Stack gap="1rem">
 					<EditSubHeader headerData={{ ...headerData }} />
 					<EditNavigationDisplay nav={[...headerData.nav]} />
-					<Button onClick={addLinkHandler}>Add Link</Button>
-					<Button type="submit" variant="contained" color="primary">
-						Save Header
-					</Button>
-				</>
+					<Stack maxWidth={"20rem"}>
+						<Button onClick={addLinkHandler} startIcon={<AddIcon />}>
+							Add Link
+						</Button>
+						<Button type="submit" variant="contained" color="primary">
+							Save Header
+						</Button>
+					</Stack>
+				</Stack>
 			) : (
 				<></>
 			)}
+
+			{/* no longer required - remove along with any associated */}
 			{!headerData ? (
 				<Button
 					variant="contained"
@@ -151,14 +156,6 @@ export const HeaderEdit = () => {
 			) : (
 				<></>
 			)}
-			{/* {headerData ? <EditSubHeader headerData={headerData} /> : <></>} */}
-			{/* <SubHeadersList headersArray={subnav} /> */}
-			{/* Where we again need an array management component */}
-			{/* {headerData ? <EditNavigationDisplay nav={headerData.nav} /> : <></>}
-			<Button onClick={addLinkHandler}>Add Link</Button>
-			<Button type="submit" variant="contained" color="primary">
-				Save Header
-			</Button> */}
 		</>
 	);
 };

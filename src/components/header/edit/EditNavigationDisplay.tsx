@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { TextInputWithControl } from "../../input/TextInput";
@@ -12,6 +12,7 @@ type NavLinkProps = {
 	link: NavLinkData;
 };
 
+//own component / more descriptive name
 const NavLink = ({ link, name }: NavLinkProps & { name: string }) => {
 	const { setValue } = useFormContext();
 
@@ -31,23 +32,31 @@ const NavLink = ({ link, name }: NavLinkProps & { name: string }) => {
 	return (
 		<Stack direction="row">
 			<TextInputWithControl
-				label={"Label"}
+				// label={"Label"}
+				inputProps={{
+					disableUnderline: true,
+				}}
 				// Name needs to be react-hook-form identifier name
 				// which feels traumatic
 				name={`${name}.label`}
 				defaultValue={link.label}
 			/>
 			{/* Removed / prefix on route */}
-			<TextInputWithControl
-				label={"route"}
-				name={`${name}.route`}
-				// Probably shouldn't even be route as a default
-				defaultValue={`${routeToShow}`}
-				// startAdornment={`users/${username}/`} / we don't need this / when create new ad as default
-				// You are allowed to link to someone elses page / will need say a specifier to change
-				// i.e. toggle this to allow?
-				required
-			/>
+			<Box bgcolor={"primary.light"} marginLeft={"0.4rem"}>
+				<TextInputWithControl
+					// label={"route"}
+					name={`${name}.route`}
+					inputProps={{
+						disableUnderline: true,
+					}}
+					// Probably shouldn't even be route as a default
+					defaultValue={`${routeToShow}`}
+					// startAdornment={`users/${username}/`} / we don't need this / when create new ad as default
+					// You are allowed to link to someone elses page / will need say a specifier to change
+					// i.e. toggle this to allow?
+					required
+				/>
+			</Box>
 			{/* Add remove / move up, down, etc */}
 		</Stack>
 	);
@@ -59,5 +68,13 @@ export const EditNavigationDisplay = ({ nav = [] }: NavigationProps) => {
 		//This will cause issues probably use name - but name could clash...
 		return <NavLink link={link} name={`nav.${i}`} key={`nav.${i}`} />;
 	});
-	return <Stack>{navLinks}</Stack>;
+	return (
+		<Stack direction="column">
+			<Stack direction="row">
+				<Typography minWidth={"200px"}>Label</Typography>
+				<Typography minWidth={"200px"}>Endpoint</Typography>
+			</Stack>
+			<Stack gap="0.5rem">{navLinks}</Stack>
+		</Stack>
+	);
 };
