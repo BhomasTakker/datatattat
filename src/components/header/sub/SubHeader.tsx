@@ -3,10 +3,9 @@ import { NavigationMenu } from "../navigation-menu/NavigationMenu";
 import { SubHeaderProps } from "./types";
 
 //Need to take data and prefix post fix any titles, icons, extra functionality, etc
+//we are passed the actual mongo document at this point so all data should be available
+//logo id? / title - show / don't show
 export const SubHeader = ({ headerData }: SubHeaderProps) => {
-	// if(!headerData){
-	// 	return <></>;
-	// }
 	//We're returning null if no header found
 	//get passed pre and post fix element arrays
 	const { nav = [], homeIcon: HomeIcon } = headerData || {};

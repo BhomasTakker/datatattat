@@ -13,9 +13,9 @@ function EditHomePage() {
 		<>
 			<DTAHead />
 			<main>
-				<Typography variant="h1">Edit Page</Typography>
+				{/* <Typography variant="h1">Edit Page</Typography> */}
 				{/* if no pages  */}
-				<Typography variant="body1">{`
+				{/* <Typography variant="body1">{`
 				Here you can create a landing page unique to you.
 				You can shout about yur accomplishements, express your interests, or shout about the things that matter to you. 
 				Whatever you want to broadcast we're here to help.
@@ -23,7 +23,7 @@ function EditHomePage() {
 				you can always come back to edit in future.
 				It may be something that you keep updating, because life will never stay the same. 
 				Welcome to Datatattat, we hope you learn, teach, and enjoy yourself!
-				`}</Typography>
+				`}</Typography> */}
 				{/* This is just EditPage */}
 				<NewPage />
 				{/* If exists then go to page - perhaps demo page */}

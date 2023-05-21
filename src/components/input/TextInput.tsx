@@ -63,6 +63,7 @@ export const TextInput = ({
 
 //We can type it here with a generic no? / <TextInputType>
 export const TextInputWithControl = withControl(TextInput);
+export const TextInputWithBlocker = withInputBlocker(TextInput);
 export const TextInputWithControlAndInputBlocker =
 	withInputBlocker(TextInputWithControl);
 

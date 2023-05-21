@@ -6,6 +6,7 @@ import { EditContextProvider } from "@/src/context/edit-context";
 import { useUser } from "@/src/hooks/useUser";
 import { LoadingSpinner } from "../../loading/LoadingSpinner";
 import { EditRouteForm } from "./EditRouteForm";
+import { CurrentEndpoint } from "./CurrentEndpoint";
 
 //Rename just to edit pages
 //The concept of a 'new' page should be somewhat meaningless? - !!
@@ -20,13 +21,15 @@ export const NewPage = () => {
 	}
 
 	if (!user) {
-		//redirect
+		//redirect / make an account
 		return <div>You are in the wrong place jebrony</div>;
 	}
 
 	return (
 		<Box>
 			<EditContextProvider currentPage={`/users/${username}`}>
+				{/* Current endpoint */}
+				<CurrentEndpoint />
 				{/* Show available admin routes and change on select */}
 				<EditRouteForm />
 				{/* Header Edit would be a better name - show create header button if no header exists  */}

@@ -5,7 +5,7 @@ import { SubHeader } from "./SubHeader";
 //Here is a very good answer
 //https://stackoverflow.com/questions/46138145/where-should-functions-in-function-components-go
 const renderSubMenu = (item: any, i: number): ReactElement => {
-	console.log({ item });
+	// console.log({ item });
 	return <SubHeader key={`SubHeader${i}`} headerData={item} />;
 };
 
@@ -30,6 +30,7 @@ export const SubHeadersList = ({ headersArray }: { headersArray: any[] }) => {
 	}
 
 	//Take in list and reverse
+	//prob header utils function to return formatted list
 	const reversedList = headersArray.reverse();
 	//Show last 2 by default / check if more than 2
 	//renderList or split and renderList

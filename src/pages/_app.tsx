@@ -11,14 +11,16 @@ import { LocaleProvider } from "@/components/layout/locale/LocaleProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MainHeader } from "../components/header/main/MainHeader";
 import { MainFooter } from "../components/footer/MainFooter";
-import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
+import { alpha, createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 import { green, orange } from "@mui/material/colors";
 import { CssBaseline } from "@mui/material";
 
+//Dude create an actual theme already
 const theme = createTheme({
 	palette: {
 		primary: {
 			main: orange[500],
+			light: alpha(orange[300], 0.3),
 		},
 	},
 });

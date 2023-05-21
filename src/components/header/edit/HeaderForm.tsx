@@ -24,6 +24,7 @@ export const HeaderForm = () => {
 
 	const { user } = useUser();
 
+	//header types
 	type NavItem = {
 		label: string;
 		route: string;
@@ -70,38 +71,20 @@ export const HeaderForm = () => {
 		// This means that we cannot differentiate between POST and PATCH/PUT
 		// If we know _id we can PUT if exists and POST if not
 
+		// thi could just be a function
 		try {
 			const savedHeader = await saveHeader(saveData);
-			console.log({ saveData });
-			console.log({ savedHeader });
+			// console.log({ saveData });
+			// console.log({ savedHeader });
 			dispatch(addNotification(NOTIFICATIONS.headerSavedSuccess));
 		} catch (error) {
 			dispatch(addNotification(NOTIFICATIONS.haederSavedError));
 		}
 	};
 
-	// if (!isShowing) {
-	// 	//Create header or create sub header
-	// 	//If page has no header
-	// 	//then create header/create subheader
-	// 	//If page has a header then show it
-	// 	/////////////////////////////////////////
-	// 	//Header button should be in page edit
-	// 	//since we will need to set the header _id
-	// 	return (
-	// 		<Button
-	// 			variant="contained"
-	// 			color="primary"
-	// 			onClick={() => setIsShowing(true)}
-	// 		>
-	// 			Create Header
-	// 		</Button>
-	// 	);
-	// }
-
 	return (
 		<Box>
-			<Typography>Create Header</Typography>
+			{/* <Typography>Create Header</Typography> */}
 
 			<DTAFormProvider
 				defaultSchema={defaultSchema}
