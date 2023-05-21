@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Stack } from "@mui/material";
+import { Box, Divider, Stack } from "@mui/material";
 import { HeaderForm } from "../../header/edit/HeaderForm";
 import { PageForm } from "./PageForm";
 import { EditContextProvider } from "@/src/context/edit-context";
@@ -36,7 +36,7 @@ export const NewPage = () => {
 					{/* Header Edit would be a better name - show create header button if no header exists  */}
 					<HeaderForm />
 					{/* Show what route this is - if no associated page data then create new - ?? */}
-
+					<Divider variant="middle" />
 					{/* Pass route in - Or create a temporary hash/map of pages with a key of the endpoint */}
 					<PageForm />
 				</Stack>

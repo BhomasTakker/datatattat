@@ -8,6 +8,7 @@ import { EditContext } from "@/src/context/edit-context";
 import { SubHeadersList } from "../sub/SubHeadersList";
 import { useFormContext } from "react-hook-form";
 import AddIcon from "@mui/icons-material/Add";
+import { move, remove } from "@/src/utils/array";
 
 let count = 0;
 
@@ -77,6 +78,8 @@ export const HeaderEdit = () => {
 	//(We need to have a disabled input that still works as part of a form)
 	//Create a with - we don't want to edit
 	//////////////////////////////////////////////////
+	//pass in delete, moveUp, moveDown functions
+	//on so update /setHeaderData({ ...headerData, nav: [...nav, newLink] });
 
 	const addLinkHandler = () => {
 		const { nav } = headerData;
@@ -114,6 +117,20 @@ export const HeaderEdit = () => {
 		setHeaderData({ ...initialHeaderData, nav: [newLink] });
 	};
 
+	//temp
+	const funcs = {
+		onDelete: (item: any) => {
+			console.log("onDelete");
+			const updatedNav = remove(headerData.nav, item);
+			setHeaderData({ ...headerData, nav: [...updatedNav] });
+		},
+		onMove: (item: any, dir: number) => {
+			console.log("onMove");
+			const updatedNav = move(headerData.nav, item, dir);
+			setHeaderData({ ...headerData, nav: [...updatedNav] });
+		},
+	};
+
 	return (
 		<>
 			{/* Not suitable for mobile at the moment (just the current edit sub headr) - just went for the easy route - there is no responsivity */}
@@ -130,7 +147,7 @@ export const HeaderEdit = () => {
 			{headerData ? (
 				<Stack gap="1rem">
 					<EditSubHeader headerData={{ ...headerData }} />
-					<EditNavigationDisplay nav={[...headerData.nav]} />
+					<EditNavigationDisplay nav={[...headerData.nav]} functions={funcs} />
 					<Stack maxWidth={"20rem"}>
 						<Button onClick={addLinkHandler} startIcon={<AddIcon />}>
 							Add Link

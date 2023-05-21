@@ -27,8 +27,6 @@ export const PageForm = () => {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 
-	// console.log({ user });
-
 	const submitHandler = async (data: any) => {
 		if (!user) {
 			//Error something went wrong
