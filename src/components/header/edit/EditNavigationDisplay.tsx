@@ -29,20 +29,28 @@ const NavLink = ({ link, name }: NavLinkProps & { name: string }) => {
 
 	console.log({ route });
 
+	//Probably want all of these added to a grid
+	//just headers and columns
 	return (
 		<Stack direction="row">
-			<TextInputWithControl
-				// label={"Label"}
-				inputProps={{
-					disableUnderline: true,
-				}}
-				// Name needs to be react-hook-form identifier name
-				// which feels traumatic
-				name={`${name}.label`}
-				defaultValue={link.label}
-			/>
+			<Box paddingLeft={"0.5rem"}>
+				<TextInputWithControl
+					// label={"Label"}
+					inputProps={{
+						disableUnderline: true,
+					}}
+					// Name needs to be react-hook-form identifier name
+					// which feels traumatic
+					name={`${name}.label`}
+					defaultValue={link.label}
+				/>
+			</Box>
 			{/* Removed / prefix on route */}
-			<Box bgcolor={"primary.light"} marginLeft={"0.4rem"}>
+			<Box
+				bgcolor={"highlights.light"}
+				marginLeft={"0.4rem"}
+				paddingLeft={"0.5rem"}
+			>
 				<TextInputWithControl
 					// label={"route"}
 					name={`${name}.route`}

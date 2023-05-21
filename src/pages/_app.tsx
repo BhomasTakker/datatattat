@@ -15,12 +15,24 @@ import { alpha, createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 import { green, orange } from "@mui/material/colors";
 import { CssBaseline } from "@mui/material";
 
+interface highlightsColor {
+	main: string;
+	light?: string;
+	dark?: string;
+}
+
 //Dude create an actual theme already
+//Need use theme augmentation
+// https://mui.com/material-ui/customization/theming/#custom-variables
 const theme = createTheme({
 	palette: {
 		primary: {
 			main: orange[500],
-			light: alpha(orange[300], 0.3),
+			light: orange[300],
+		},
+		highlights: {
+			main: alpha(orange[300], 0.3),
+			light: alpha(orange[300], 0.1),
 		},
 	},
 });

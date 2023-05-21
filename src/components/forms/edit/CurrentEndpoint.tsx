@@ -11,7 +11,7 @@ export function CurrentEndpoint() {
 			<Typography>Current Endpoint</Typography>
 			<Box
 				borderRadius={"5%"}
-				bgcolor={"primary.light"}
+				bgcolor={"highlights.light"}
 				marginLeft={"0.5rem"}
 				paddingLeft={"0.5rem"}
 				minWidth={"200px"}
