@@ -1,6 +1,6 @@
 import { useUser } from "@/src/hooks/useUser";
 import { NOTIFICATIONS } from "@/src/lib/notifications/notifications";
-import { createLandingPage } from "@/src/queries/pages/createLandingPage";
+import { createPage } from "@/src/queries/pages/create-page";
 import { useAppDispatch } from "@/src/store/hooks";
 import { addNotification } from "@/src/store/notifications/notificationSlice";
 import { Box, Button } from "@mui/material";
@@ -33,6 +33,9 @@ export const PageForm = () => {
 			return;
 		}
 
+		//pass user / get user from elsewhere
+		//This is just a function
+
 		const { _id } = user;
 
 		const pageData = {
@@ -43,7 +46,7 @@ export const PageForm = () => {
 		console.log({ data });
 
 		try {
-			const result = await createLandingPage(pageData);
+			const result = await createPage(pageData);
 			//No redirect
 			// router
 			// 	.replace(`/users/${user.username}`) //how to actually get username here

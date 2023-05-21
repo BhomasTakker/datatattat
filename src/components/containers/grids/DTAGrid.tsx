@@ -3,6 +3,9 @@ import { componentFactory } from "@/src/factories/component-factory";
 import { withFactory } from "@/src/factories/with-factory";
 import { BasicArticle } from "../../data/articles/BasicArticle";
 
+//This is a mini content grid
+//DTA GRID would be the page container
+
 //need 9 items
 
 //title

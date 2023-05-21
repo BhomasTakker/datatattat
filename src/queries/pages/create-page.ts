@@ -1,6 +1,7 @@
 import { ERRORS } from "@/lib/errors/error-messages";
 
-export async function createLandingPage(
+//Create/Update page / no distinction as yet
+export async function createPage(
 	pageData: any //create type
 ) {
 	let response;
@@ -14,7 +15,7 @@ export async function createLandingPage(
 		},
 	});
 
-	console.log("createLandingPage??");
+	console.log("createPage??");
 
 	const data = await response.json();
 

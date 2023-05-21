@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import Container from "@mui/material/Container";
 import React from "react";
+import { EditComponents } from "../../forms/edit/EditComponents";
 
 //Just a blank Component until DTAStack is given some props say
 //We don't mirror the component structure
@@ -9,8 +10,10 @@ import React from "react";
 export const DTAStackEdit = () => {
 	return (
 		<Container>
-			<Typography variant="h3">DTAStack</Typography>
+			{/* <Typography variant="h3">DTAStack</Typography> */}
 			{/* We can provide an explanation/visual representation of what DTAStack is  */}
+			{/* Should pass what the name is from above no? */}
+			<EditComponents objectKey={"content"} />
 		</Container>
 	);
 };

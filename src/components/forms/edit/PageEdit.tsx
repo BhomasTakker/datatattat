@@ -33,8 +33,8 @@ export const PageEdit = () => {
 			}
 			const page = pageData?.page || {};
 
-			console.log({ route });
-			console.log({ pageData });
+			// console.log({ route });
+			// console.log({ pageData });
 
 			reset(
 				{
@@ -53,7 +53,7 @@ export const PageEdit = () => {
 	//Need a better way of calling withs HOCs
 	return (
 		<>
-			<TextInputWithControlAndInputBlocker
+			{/* <TextInputWithControlAndInputBlocker
 				label={"endpoint"}
 				name={"route"}
 				fullWidth={true}
@@ -61,9 +61,13 @@ export const PageEdit = () => {
 				defaultValue={`/users/${username}${currentPage}`}
 				required={true}
 				value={`/users/${username}${currentPage}`}
-			/>
+			/> */}
+			{/* Every page has a content container */}
+			{/* Argument to be made to have the components within the container edit */}
 			<EditContainer objectKey={`content.container`} />
-			<EditComponents objectKey={"content"} />
+			{/* Every page has a list of components */}
+			{/* Very Big Argument to be made to have the components within the container edit - can then specify say 9 */}
+			{/* <EditComponents objectKey={"content"} /> */}
 		</>
 	);
 };

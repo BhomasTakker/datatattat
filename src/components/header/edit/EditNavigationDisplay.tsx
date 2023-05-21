@@ -8,6 +8,11 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 type FunctionsProp = {
+	//We update the array but the form leads
+	//need to update form name /values - name={`nav.${i}`} !!!
+	//We 'probably' want the ability to get and update the form data more easily
+	//utils / lib class/interface for react-hook-forms
+	//We have the form wrapper we use - DTAFormProvider
 	onDelete: (item: any) => void;
 	onMove: (item: any, dir: number) => void;
 	onUpdate: (oldItem: any, newItem: any) => void;

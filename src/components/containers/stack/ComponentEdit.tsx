@@ -6,6 +6,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
 
+//Move out of DTAStack folder
 export const ComponentEdit = ({ objectKey }: BaseEditProps) => {
 	const { control } = useFormContext();
 	const component = useWatch({
