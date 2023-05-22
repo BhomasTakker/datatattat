@@ -56,7 +56,7 @@ export const ComponentEdit = ({
 	};
 	return (
 		//replace all/most containers with bax marginLeft - but use a 'config' for values
-		<Box marginLeft={"2rem"}>
+		<Box marginLeft={"2rem"} width={"100%"}>
 			{/* I don't really like the label for our purposes 
 			I want something more label box then input box
 			*/}
@@ -67,7 +67,7 @@ export const ComponentEdit = ({
 					aria-controls="panel1a-content"
 					id="panel1a-header"
 				>
-					<Stack direction={"row"}>
+					<Stack direction={"row"} width={"100%"}>
 						<SelectInputWithControl
 							label="Select Component"
 							name={`${objectKey}.componentType`}
