@@ -2,19 +2,19 @@ import { componentEditFactory } from "@/src/factories/component-factory";
 import { EDIT_COMPONENTS } from "@/src/factories/components";
 import {
 	MenuItem,
-	Container,
 	Box,
 	Stack,
 	Accordion,
-	AccordionSummary,
 	AccordionDetails,
+	IconButton,
 } from "@mui/material";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { BaseEditProps } from "./types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import { ArrayControls } from "./ArrayControls";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 type inputFuncs = {
 	onDelete: () => void;
@@ -28,6 +28,7 @@ export const ComponentEdit = ({
 	onMove,
 }: BaseEditProps & inputFuncs) => {
 	const { control } = useFormContext();
+	const [isCollapsed, setIsCollapsed] = useState(false);
 	const component = useWatch({
 		control,
 		name: `${objectKey}.componentType`,
@@ -61,26 +62,26 @@ export const ComponentEdit = ({
 			I want something more label box then input box
 			*/}
 			{/* Should be a with - HOC */}
-			<Accordion defaultExpanded>
-				<AccordionSummary
-					expandIcon={<ExpandMoreIcon />}
-					aria-controls="panel1a-content"
-					id="panel1a-header"
-				>
-					<Stack direction={"row"} width={"100%"}>
-						<SelectInputWithControl
-							label="Select Component"
-							name={`${objectKey}.componentType`}
-							fullWidth={true}
-							required
-						>
-							{createComponentList()}
-						</SelectInputWithControl>
+			<Accordion defaultExpanded expanded={!isCollapsed}>
+				<Stack direction={"row"} width={"100%"}>
+					<SelectInputWithControl
+						label="Select Component"
+						name={`${objectKey}.componentType`}
+						fullWidth={true}
+						required
+					>
+						{createComponentList()}
+					</SelectInputWithControl>
 
-						<ArrayControls onDelete={onDelete} onMove={onMove} />
-					</Stack>
-				</AccordionSummary>
-				{/*  */}
+					<ArrayControls onDelete={onDelete} onMove={onMove} />
+					{/* Maybe not here & isCollapsed is the wrong term - should be isExpanded */}
+					<IconButton
+						aria-label="expand or collapse"
+						onClick={() => setIsCollapsed((currentState) => !currentState)}
+					>
+						{isCollapsed ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+					</IconButton>
+				</Stack>
 				<AccordionDetails>{createComponent(component)}</AccordionDetails>
 			</Accordion>
 		</Box>
