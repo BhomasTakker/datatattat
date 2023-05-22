@@ -117,29 +117,6 @@ export const HeaderEdit = () => {
 		setHeaderData({ ...initialHeaderData, nav: [newLink] });
 	};
 
-	//temp
-	const funcs = {
-		onDelete: (item: any) => {
-			////
-			// Move functions into EditNavigationDisplay we can set the form value from there
-			//remove from [...watchComponents]
-			//then set content.components to be new array ?
-			// console.log("onDelete");
-			const updatedNav = remove(headerData.nav, item);
-			setHeaderData({ ...headerData, nav: [...updatedNav] });
-		},
-		onMove: (item: any, dir: number) => {
-			// console.log("onMove");
-			const updatedNav = move(headerData.nav, item, dir);
-			setHeaderData({ ...headerData, nav: [...updatedNav] });
-		},
-		// this is because I'm a poor programmer :(
-		onUpdate: (oldItem: any, newItem: any) => {
-			const updatedNav = replace(headerData.nav, oldItem, newItem);
-			setHeaderData({ ...headerData, nav: [...updatedNav] });
-		},
-	};
-
 	return (
 		<>
 			{/* Not suitable for mobile at the moment (just the current edit sub headr) - just went for the easy route - there is no responsivity */}
@@ -156,7 +133,7 @@ export const HeaderEdit = () => {
 			{headerData ? (
 				<Stack gap="1rem">
 					<EditSubHeader headerData={{ ...headerData }} />
-					<EditNavigationDisplay nav={[...headerData.nav]} functions={funcs} />
+					<EditNavigationDisplay nav={[...headerData.nav]} />
 					<Stack maxWidth={"20rem"}>
 						<Button onClick={addLinkHandler} startIcon={<AddIcon />}>
 							Add Link

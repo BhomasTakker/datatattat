@@ -19,7 +19,7 @@ export const EditComponents = ({ objectKey }: BaseEditProps) => {
 	};
 	const onMove = (id: number, dir: number) => {
 		const updatedWatchComponents = [...watchComponents];
-		const item = updatedWatchComponents.splice(id, 1);
+		updatedWatchComponents.splice(id, 1);
 
 		const formItem = getValues(`content.components.${id}`);
 

@@ -1,26 +1,20 @@
-import { Box, IconButton, Stack, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import { Box, Stack, Typography } from "@mui/material";
+import React, { ReactElement, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { TextInputWithControl } from "../../input/TextInput";
 import { NavLinkData } from "../nav-links/NavLink";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { ArrayControls } from "../../forms/edit/ArrayControls";
 
 type FunctionsProp = {
-	//We update the array but the form leads
-	//need to update form name /values - name={`nav.${i}`} !!!
 	//We 'probably' want the ability to get and update the form data more easily
 	//utils / lib class/interface for react-hook-forms
 	//We have the form wrapper we use - DTAFormProvider
 	onDelete: (item: any) => void;
 	onMove: (item: any, dir: number) => void;
-	onUpdate: (oldItem: any, newItem: any) => void;
 };
 
 type NavigationProps = {
 	nav: NavLinkData[];
-	functions: FunctionsProp;
 };
 
 type NavLinkProps = {
@@ -34,7 +28,7 @@ const NavLink = ({
 	functions,
 }: NavLinkProps & { name: string; functions: FunctionsProp }) => {
 	const { setValue, getValues } = useFormContext();
-	const { onDelete, onMove, onUpdate } = functions;
+	const { onDelete, onMove } = functions;
 
 	//We are getting rendered too many times 3*2
 	const route = link.route.split("/").filter(Boolean).join("/"); //remove beginning/trailing slashes
@@ -45,10 +39,6 @@ const NavLink = ({
 	useEffect(() => {
 		setValue(`${name}.label`, link.label);
 		setValue(`${name}.route`, `${routeToShow}`); //route is wildly incorrect?
-		// onUpdate(link, {
-		// 	link: getValues(`${name}.label`),
-		// 	route: getValues(`${name}.route`),
-		// });
 	}, [link.label, name, routeToShow, setValue]);
 
 	console.log({ route });
@@ -76,51 +66,70 @@ const NavLink = ({
 				paddingLeft={"0.5rem"}
 			>
 				<TextInputWithControl
-					// label={"route"}
 					name={`${name}.route`}
 					inputProps={{
 						disableUnderline: true,
 					}}
-					// Probably shouldn't even be route as a default
 					defaultValue={`${routeToShow}`}
-					// startAdornment={`users/${username}/`} / we don't need this / when create new ad as default
-					// You are allowed to link to someone elses page / will need say a specifier to change
-					// i.e. toggle this to allow?
 					required
 				/>
 			</Box>
 			{/* Add remove / move up, down, etc / load array controls */}
-			<Stack direction="row">
-				<IconButton aria-label="delete" onClick={() => onDelete(link)}>
-					<DeleteIcon />
-				</IconButton>
-				<IconButton aria-label="moveUp" onClick={() => onMove(link, -1)}>
-					<ArrowUpwardIcon />
-				</IconButton>
-				<IconButton aria-label="moveDown" onClick={() => onMove(link, 1)}>
-					<ArrowDownwardIcon />
-				</IconButton>
-			</Stack>
+			<ArrayControls onDelete={onDelete} onMove={onMove} />
 		</Stack>
 	);
 };
 
-export const EditNavigationDisplay = ({
-	nav = [],
-	functions,
-}: NavigationProps) => {
-	const navLinks = nav.map((link, i) => {
-		//We may not want to use index (in name) here - if/when we come to allow moving of the position
-		//This will cause issues probably use name - but name could clash...
-		return (
-			<NavLink
-				link={link}
-				name={`nav.${i}`}
-				key={`nav.${i}`}
-				functions={functions}
-			/>
-		);
-	});
+//Absolutely split these two components
+//This where
+export const EditNavigationDisplay = ({ nav = [] }: NavigationProps) => {
+	const { setValue, getValues, watch } = useFormContext();
+	const navFormComponents = watch("nav") || [];
+
+	useEffect(() => {
+		setValue("nav", nav);
+		//nav itself blows up in a never ending
+		//setValue nav will create a new nav blowing us up
+	}, [setValue, nav.length]);
+	console.log({ navFormComponents });
+
+	const navLinks: ReactElement[] = navFormComponents.map(
+		(link: NavLinkData, i: number) => {
+			//We may not want to use index (in name) here - if/when we come to allow moving of the position
+			//This will cause issues probably use name - but name could clash...
+
+			const onDelete = () => {
+				const updatedNavFormComponents = navFormComponents; //form
+				// const
+				console.log({ navFormComponents });
+				updatedNavFormComponents.splice(i, 1);
+				setValue("nav", updatedNavFormComponents);
+				console.log({ updatedNavFormComponents });
+			};
+			const onMove = (id: number, dir: number) => {
+				// const updatedNav = move(nav, link, dir);
+				// setHeaderData({ ...headerData, nav: [...updatedNav] });
+				const updatedNavFormComponents = [...navFormComponents];
+				console.log({ navFormComponents });
+				updatedNavFormComponents.splice(id, 1);
+
+				const formItem = getValues(`nav.${id}`);
+
+				updatedNavFormComponents.splice(id + dir, 0, formItem);
+				setValue("nav", updatedNavFormComponents);
+				console.log({ updatedNavFormComponents });
+			};
+
+			return (
+				<NavLink
+					link={link}
+					name={`nav.${i}`}
+					key={`nav.${i}`}
+					functions={{ onDelete, onMove: (dir: number) => onMove(i, dir) }}
+				/>
+			);
+		}
+	);
 	return (
 		<Stack direction="column">
 			<Stack direction="row">
