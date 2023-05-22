@@ -89,7 +89,7 @@ const NavLink = ({
 					required
 				/>
 			</Box>
-			{/* Add remove / move up, down, etc */}
+			{/* Add remove / move up, down, etc / load array controls */}
 			<Stack direction="row">
 				<IconButton aria-label="delete" onClick={() => onDelete(link)}>
 					<DeleteIcon />

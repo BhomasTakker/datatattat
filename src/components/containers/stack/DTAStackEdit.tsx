@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Container from "@mui/material/Container";
 import React from "react";
 import { EditComponents } from "../../forms/edit/EditComponents";
@@ -9,11 +9,11 @@ import { EditComponents } from "../../forms/edit/EditComponents";
 //At this point - better to create a blank component
 export const DTAStackEdit = () => {
 	return (
-		<Container>
+		<Box>
 			{/* <Typography variant="h3">DTAStack</Typography> */}
 			{/* We can provide an explanation/visual representation of what DTAStack is  */}
 			{/* Should pass what the name is from above no? */}
 			<EditComponents objectKey={"content"} />
-		</Container>
+		</Box>
 	);
 };

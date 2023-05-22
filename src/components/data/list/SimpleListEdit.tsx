@@ -1,7 +1,7 @@
 import { COMPONENTS } from "@/src/factories/components";
 import { EDIT_WITH } from "@/src/factories/with";
 import { withEditFactory } from "@/src/factories/with-factory";
-import { Typography, Container, MenuItem } from "@mui/material";
+import { Typography, Container, MenuItem, Box } from "@mui/material";
 import React, { ReactElement } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
@@ -61,10 +61,10 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 
 	// console.log({ ONJECT_KEY: objectKey });
 	return (
-		<Container>
+		<Box marginLeft={"2rem"}>
 			<Typography variant="h3">SimpleList</Typography>
 			<Typography variant="h4">Component Props</Typography>
-			<Container>
+			<Box marginLeft={"2rem"}>
 				<SelectInputWithControl
 					label="Component Id"
 					name={`${objectKey}.componentProps.componentId`}
@@ -72,9 +72,11 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 					required
 					// onChange={changeHandler}
 				>
+					{/* //This needs to be item components - i.e. article list item, article card, article stub, etc */}
+					{/* Would you / Could you distinguish between list and say layout components - should you */}
 					{createSelectInputList(COMPONENTS)}
 				</SelectInputWithControl>
-			</Container>
+			</Box>
 			<Typography>With (Select behaviour)</Typography>
 			<SelectInputWithControl
 				// label="Component Id"
@@ -86,6 +88,6 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 				{createSelectInputList(EDIT_WITH)}
 			</SelectInputWithControl>
 			{createWithEditComponent(withComponent, `${objectKey}._with`)}
-		</Container>
+		</Box>
 	);
 };

@@ -120,6 +120,10 @@ export const HeaderEdit = () => {
 	//temp
 	const funcs = {
 		onDelete: (item: any) => {
+			////
+			// Move functions into EditNavigationDisplay we can set the form value from there
+			//remove from [...watchComponents]
+			//then set content.components to be new array ?
 			// console.log("onDelete");
 			const updatedNav = remove(headerData.nav, item);
 			setHeaderData({ ...headerData, nav: [...updatedNav] });
