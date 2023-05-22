@@ -1,11 +1,20 @@
 import { componentEditFactory } from "@/src/factories/component-factory";
 import { EDIT_COMPONENTS } from "@/src/factories/components";
-import { MenuItem, Container, Box, Stack } from "@mui/material";
+import {
+	MenuItem,
+	Container,
+	Box,
+	Stack,
+	Accordion,
+	AccordionSummary,
+	AccordionDetails,
+} from "@mui/material";
 import React, { ReactElement } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { BaseEditProps } from "./types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import { ArrayControls } from "./ArrayControls";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 type inputFuncs = {
 	onDelete: () => void;
@@ -51,19 +60,29 @@ export const ComponentEdit = ({
 			{/* I don't really like the label for our purposes 
 			I want something more label box then input box
 			*/}
-			<Stack direction={"row"}>
-				<SelectInputWithControl
-					label="Select Component"
-					name={`${objectKey}.componentType`}
-					fullWidth={true}
-					required
+			{/* Should be a with - HOC */}
+			<Accordion defaultExpanded>
+				<AccordionSummary
+					expandIcon={<ExpandMoreIcon />}
+					aria-controls="panel1a-content"
+					id="panel1a-header"
 				>
-					{createComponentList()}
-				</SelectInputWithControl>
-				<ArrayControls onDelete={onDelete} onMove={onMove} />
-			</Stack>
-			{/*  */}
-			{createComponent(component)}
+					<Stack direction={"row"}>
+						<SelectInputWithControl
+							label="Select Component"
+							name={`${objectKey}.componentType`}
+							fullWidth={true}
+							required
+						>
+							{createComponentList()}
+						</SelectInputWithControl>
+
+						<ArrayControls onDelete={onDelete} onMove={onMove} />
+					</Stack>
+				</AccordionSummary>
+				{/*  */}
+				<AccordionDetails>{createComponent(component)}</AccordionDetails>
+			</Accordion>
 		</Box>
 	);
 };
