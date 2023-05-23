@@ -57,7 +57,12 @@ export const ComponentEdit = ({
 	};
 	return (
 		//replace all/most containers with bax marginLeft - but use a 'config' for values
-		<Box marginLeft={"2rem"} width={"100%"}>
+		<Box
+			marginLeft={"2rem"}
+			width={"100%"}
+			marginTop={"1rem"}
+			marginBottom={"1rem"}
+		>
 			{/* I don't really like the label for our purposes 
 			I want something more label box then input box
 			*/}

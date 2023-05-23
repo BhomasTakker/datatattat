@@ -33,9 +33,6 @@ export const PageEdit = () => {
 			}
 			const page = pageData?.page || {};
 
-			// console.log({ route });
-			// console.log({ pageData });
-
 			reset(
 				{
 					...page,

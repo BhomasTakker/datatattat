@@ -65,7 +65,7 @@ export const PageForm = () => {
 			<PageEdit />
 			<Box>
 				<Button type="submit" variant="contained" color="primary">
-					Submit
+					Save Page
 				</Button>
 			</Box>
 		</DTAFormProvider>

@@ -4,12 +4,13 @@ import { useFormContext } from "react-hook-form";
 import { ComponentEdit } from "./ComponentEdit";
 import { BaseEditProps } from "./types/BaseEdit";
 import { ArrayControls } from "./ArrayControls";
+import AddIcon from "@mui/icons-material/Add";
 
 //We need to create a Compound Component
 //That is a managed array
 //So we can manage the created components
 export const EditComponents = ({ objectKey }: BaseEditProps) => {
-	const { watch, getValues, setValue } = useFormContext();
+	const { watch, getValues, setValue, resetField } = useFormContext();
 	const watchComponents = watch("content.components") || [];
 
 	const onDelete = (id: number) => {
@@ -27,6 +28,7 @@ export const EditComponents = ({ objectKey }: BaseEditProps) => {
 		setValue("content.components", updatedWatchComponents);
 	};
 
+	//argument to be just create a component
 	const renderComponents = watchComponents.map((component: any, i: number) => {
 		return (
 			<Stack direction="row" key={i}>
@@ -42,14 +44,25 @@ export const EditComponents = ({ objectKey }: BaseEditProps) => {
 
 	//We have to let the form context lead
 	//Modify form context to re-order list
-	const addComponentHandler = () => {
-		const components = getValues("content.components") || [];
-		setValue("content.components", [...components, ""]);
+	const addComponentHandlerAtEnd = () => {
+		// const components = getValues("content.components") || [];
+		setValue("content.components", [...watchComponents, ""]);
+	};
+	const addComponentHandlerAtBeginning = () => {
+		// const components = getValues("content.components") || [];
+		// resetField("content.components");
+		setValue("content.components", ["", ...watchComponents]);
+		// setValue("content.components.0", "");
 	};
 	return (
-		<Box>
+		<Box paddingTop="1rem" paddingBottom="1rem">
+			<Button onClick={addComponentHandlerAtBeginning} startIcon={<AddIcon />}>
+				Add Component
+			</Button>
 			{renderComponents}
-			<Button onClick={addComponentHandler}>Add Component</Button>
+			<Button onClick={addComponentHandlerAtEnd} startIcon={<AddIcon />}>
+				Add Component
+			</Button>
 		</Box>
 	);
 };
