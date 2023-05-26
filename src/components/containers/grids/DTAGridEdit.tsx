@@ -1,50 +1,12 @@
 import { COMPONENTS } from "@/src/factories/components";
 import { EDIT_WITH } from "@/src/factories/with";
-import { withEditFactory } from "@/src/factories/with-factory";
-import { Typography, Container, MenuItem } from "@mui/material";
-import React, { ReactElement } from "react";
+import { Typography, Container } from "@mui/material";
+import React from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import { createSelectInputList } from "../../input/TextInput";
-
-//3rd time use need to create a helper, etc somewhere sensible
-//pass in array of values
-//At the moment export from SelectInput seems best place
-// const createComponentsList = (hash: {}) => {
-// 	return Object.keys(hash).map((key) => (
-// 		<MenuItem key={key} value={key}>
-// 			{key}
-// 		</MenuItem>
-// 	));
-// };
-
-//Also this ??
-//Create factory component?
-const createWithEditComponent = (
-	component: any,
-	objectKey: string
-): ReactElement => {
-	// console.log({ COMPONENTID: component });
-	if (!component) {
-		return <></>;
-	}
-
-	const EditComponent = withEditFactory(component);
-
-	if (!EditComponent) {
-		//Error
-		return (
-			<div>
-				There was an error
-				{/* {component} */}
-			</div>
-		);
-	}
-
-	// console.log({ WITH_COMPONENT: objectKey });
-	return <EditComponent objectKey={objectKey} />;
-};
+import { createWithEditComponent } from "../../edit/with-edit-component";
 
 //GRID IS NOT A CONTAINER !!!!
 //NOT THIS GRID ANYHOW
