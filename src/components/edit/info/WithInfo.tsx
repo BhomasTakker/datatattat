@@ -8,7 +8,7 @@ import { MARGINS } from "config/styles/styles.config";
 
 export const WithInfo = ({ children }: InfoProps): ReactElement => {
 	return (
-		<Stack direction={"row"} justifyContent="space-between">
+		<Stack direction={"row"} justifyContent="space-between" alignItems="center">
 			{children}
 			<Box height={MARGINS.MID}>
 				<IconButton aria-label="Info" onClick={() => {}} color="info">
