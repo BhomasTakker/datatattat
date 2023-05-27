@@ -7,6 +7,10 @@ import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import { createSelectInputList } from "../../input/TextInput";
 import { createWithEditComponent } from "../../edit/with-edit-component";
+import { Title } from "../../edit/ui/edit-title";
+import { TitleVariant } from "../../edit/types/ui";
+import { WithInfo } from "../../edit/info/WithInfo";
+import { MARGINS } from "config/styles/styles.config";
 
 // We need to pass an id through
 // a for unique id b
@@ -23,10 +27,18 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 
 	// console.log({ ONJECT_KEY: objectKey });
 	return (
-		<Box marginLeft={"2rem"}>
-			<Typography variant="h3">SimpleList</Typography>
-			<Typography variant="h4">Component Props</Typography>
-			<Box marginLeft={"2rem"}>
+		<Box marginLeft={MARGINS.MIDLARGE}>
+			{/* At most use a title component - options can then say - turn all off */}
+			{/* <Typography variant="h3">SimpleList</Typography> */}
+			{/* If we have a title for Simple list etc then we can easily add an info tag and expand that to show info text */}
+			<WithInfo>
+				<Title variant={TitleVariant.EDIT_COMPONENT} text="Simple List" />
+			</WithInfo>
+
+			{/* Header or title / same thing - different? */}
+			<Title variant={TitleVariant.SUB} text="Component Properties" />
+			<Box marginLeft={MARGINS.MIDLARGE}>
+				{/* With Info add an info button and link to data  */}
 				<SelectInputWithControl
 					label="Component Id"
 					name={`${objectKey}.componentProps.componentId`}
@@ -39,7 +51,7 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 					{createSelectInputList(COMPONENTS)}
 				</SelectInputWithControl>
 			</Box>
-			<Typography>With (Select behaviour)</Typography>
+			<Title variant={TitleVariant.SUB} text="With (Select behaviour)" />
 			<SelectInputWithControl
 				// label="Component Id"
 				name={`${objectKey}._with.type`}

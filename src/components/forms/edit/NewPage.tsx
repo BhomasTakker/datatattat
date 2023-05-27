@@ -7,6 +7,7 @@ import { useUser } from "@/src/hooks/useUser";
 import { LoadingSpinner } from "../../loading/LoadingSpinner";
 import { EditRouteForm } from "./EditRouteForm";
 import { CurrentEndpoint } from "./CurrentEndpoint";
+import { MARGINS } from "config/styles/styles.config";
 
 //Rename just to edit pages
 //The concept of a 'new' page should be somewhat meaningless? - !!
@@ -28,7 +29,7 @@ export const NewPage = () => {
 	return (
 		<Box>
 			<EditContextProvider currentPage={`/users/${username}`}>
-				<Stack gap={"1rem"}>
+				<Stack gap={MARGINS.MIDSMALL}>
 					{/* Current endpoint */}
 					<CurrentEndpoint />
 					{/* Show available admin routes and change on select */}

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { EditContext } from "@/src/context/edit-context";
 import { Box, Stack, Typography } from "@mui/material";
+import { MARGINS } from "config/styles/styles.config";
 
 export function CurrentEndpoint() {
 	const editCtx = useContext(EditContext);
@@ -12,8 +13,8 @@ export function CurrentEndpoint() {
 			<Box
 				borderRadius={"5%"}
 				bgcolor={"highlights.light"}
-				marginLeft={"0.5rem"}
-				paddingLeft={"0.5rem"}
+				marginLeft={MARGINS.SMALL}
+				paddingLeft={MARGINS.SMALL}
 				minWidth={"200px"}
 			>
 				<Typography>{currentPage}</Typography>

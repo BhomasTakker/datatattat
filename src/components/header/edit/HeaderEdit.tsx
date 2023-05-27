@@ -9,6 +9,7 @@ import { SubHeadersList } from "../sub/SubHeadersList";
 import { useFormContext } from "react-hook-form";
 import AddIcon from "@mui/icons-material/Add";
 import { move, remove, replace } from "@/src/utils/array";
+import { MARGINS } from "config/styles/styles.config";
 
 let count = 0;
 
@@ -131,7 +132,7 @@ export const HeaderEdit = () => {
 			{/* CurrentHeader */}
 
 			{headerData ? (
-				<Stack gap="1rem">
+				<Stack gap={MARGINS.MIDSMALL}>
 					<EditSubHeader headerData={{ ...headerData }} />
 					<EditNavigationDisplay nav={[...headerData.nav]} />
 					<Stack maxWidth={"20rem"}>

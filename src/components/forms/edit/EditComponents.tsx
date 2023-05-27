@@ -1,10 +1,10 @@
-import { Box, Button, IconButton, Stack } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import { ComponentEdit } from "./ComponentEdit";
 import { BaseEditProps } from "./types/BaseEdit";
-import { ArrayControls } from "./ArrayControls";
 import AddIcon from "@mui/icons-material/Add";
+import { MARGINS } from "config/styles/styles.config";
 
 //We need to create a Compound Component
 //That is a managed array
@@ -55,7 +55,7 @@ export const EditComponents = ({ objectKey }: BaseEditProps) => {
 		// setValue("content.components.0", "");
 	};
 	return (
-		<Box paddingTop="1rem" paddingBottom="1rem">
+		<Box paddingTop={MARGINS.MIDSMALL} paddingBottom={MARGINS.MIDSMALL}>
 			<Button onClick={addComponentHandlerAtBeginning} startIcon={<AddIcon />}>
 				Add Component
 			</Button>

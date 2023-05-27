@@ -15,6 +15,7 @@ import { SelectInputWithControl } from "../../input/SelectInput";
 import { ArrayControls } from "./ArrayControls";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import { MARGINS } from "config/styles/styles.config";
 
 type inputFuncs = {
 	onDelete: () => void;
@@ -58,10 +59,10 @@ export const ComponentEdit = ({
 	return (
 		//replace all/most containers with bax marginLeft - but use a 'config' for values
 		<Box
-			marginLeft={"2rem"}
+			marginLeft={MARGINS.MIDLARGE}
 			width={"100%"}
-			marginTop={"1rem"}
-			marginBottom={"1rem"}
+			marginTop={MARGINS.MIDSMALL}
+			marginBottom={MARGINS.MIDSMALL}
 		>
 			{/* I don't really like the label for our purposes 
 			I want something more label box then input box

@@ -4,6 +4,7 @@ import { useFormContext } from "react-hook-form";
 import { TextInputWithControl } from "../../input/TextInput";
 import { NavLinkData } from "../nav-links/NavLink";
 import { ArrayControls } from "../../forms/edit/ArrayControls";
+import { MARGINS } from "config/styles/styles.config";
 
 type FunctionsProp = {
 	//We 'probably' want the ability to get and update the form data more easily
@@ -47,7 +48,7 @@ const NavLink = ({
 	//just headers and columns
 	return (
 		<Stack direction="row">
-			<Box paddingLeft={"0.5rem"}>
+			<Box paddingLeft={MARGINS.SMALL}>
 				<TextInputWithControl
 					// label={"Label"}
 					inputProps={{
@@ -62,8 +63,8 @@ const NavLink = ({
 			{/* Removed / prefix on route */}
 			<Box
 				bgcolor={"highlights.light"}
-				marginLeft={"0.4rem"}
-				paddingLeft={"0.5rem"}
+				marginLeft={MARGINS.SMALL}
+				paddingLeft={MARGINS.SMALL}
 			>
 				<TextInputWithControl
 					name={`${name}.route`}
@@ -137,7 +138,7 @@ export const EditNavigationDisplay = ({ nav = [] }: NavigationProps) => {
 				<Typography minWidth={"200px"}>Label</Typography>
 				<Typography minWidth={"200px"}>Endpoint</Typography>
 			</Stack>
-			<Stack gap="0.5rem">{navLinks}</Stack>
+			<Stack gap={MARGINS.SMALL}>{navLinks}</Stack>
 		</Stack>
 	);
 };
