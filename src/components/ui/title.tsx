@@ -1,14 +1,17 @@
 import React from "react";
-import { EditTitleProps, TitleVariant } from "../types/ui";
+import { TitleProps, TitleVariant } from "../types/ui";
 import Typography from "@mui/material/Typography";
+import { MARGINS } from "config/styles/styles.config";
+
+//Should just be Title / not just Edit
 
 const Page = ({ children }: { children: string }) => {
 	return (
 		<Typography
 			variant="h1"
 			component="h1"
-			marginTop="2rem"
-			marginBottom="2rem"
+			marginTop={MARGINS.MIDLARGE}
+			marginBottom={MARGINS.MIDLARGE}
 		>
 			{children}
 		</Typography>
@@ -20,8 +23,8 @@ const EditComponent = ({ children }: { children: string }) => {
 		<Typography
 			variant="h3"
 			component="h3"
-			marginTop="1.5rem"
-			marginBottom="1.5rem"
+			marginTop={MARGINS.MIDSMALL}
+			marginBottom={MARGINS.MIDSMALL}
 		>
 			{children}
 		</Typography>
@@ -33,8 +36,8 @@ const Sub = ({ children }: { children: string }) => {
 		<Typography
 			variant="h5"
 			component="h5"
-			marginTop="1rem"
-			marginBottom="1rem"
+			marginTop={MARGINS.MIDSMALL}
+			marginBottom={MARGINS.MIDSMALL}
 		>
 			{children}
 		</Typography>
@@ -45,12 +48,11 @@ const ComponantHash = {
 	Sub,
 	EditComponent,
 };
-//Our variants should be main, sub, article, etc
+// Our variants should be main, sub, article, etc
 // Should be able to pass down overides for component say
-export const Title = ({
-	variant = TitleVariant.PAGE,
-	text,
-}: EditTitleProps) => {
+// Definitely overides for margin
+export const Title = ({ variant = TitleVariant.PAGE, text }: TitleProps) => {
 	const Component = ComponantHash[variant];
+	//if typeof Component ... else <></>
 	return <Component>{text}</Component>;
 };

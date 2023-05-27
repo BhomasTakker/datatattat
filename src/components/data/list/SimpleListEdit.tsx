@@ -7,8 +7,8 @@ import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import { createSelectInputList } from "../../input/TextInput";
 import { createWithEditComponent } from "../../edit/with-edit-component";
-import { Title } from "../../edit/ui/edit-title";
-import { TitleVariant } from "../../edit/types/ui";
+import { Title } from "../../ui/title";
+import { TitleVariant } from "../../types/ui";
 import { WithInfo } from "../../edit/info/WithInfo";
 import { MARGINS } from "config/styles/styles.config";
 
@@ -31,7 +31,7 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 			{/* At most use a title component - options can then say - turn all off */}
 			{/* <Typography variant="h3">SimpleList</Typography> */}
 			{/* If we have a title for Simple list etc then we can easily add an info tag and expand that to show info text */}
-			<WithInfo>
+			<WithInfo infoId="SimpleList">
 				<Title variant={TitleVariant.EDIT_COMPONENT} text="Simple List" />
 			</WithInfo>
 
