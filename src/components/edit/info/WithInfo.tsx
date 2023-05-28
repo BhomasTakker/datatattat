@@ -43,26 +43,31 @@ export const WithInfo = ({
 	const onClickHandler = () => setIsOpen((currentState) => !currentState);
 
 	return (
-		<Accordion expanded={isOpen}>
+		<Accordion expanded={isOpen} elevation={0}>
 			<Stack
+				// width={"100%"}
 				direction={"row"}
 				justifyContent="space-between"
 				alignItems="center"
 			>
 				{children}
-				<Box height={MARGINS.MID}>
-					<IconButton
-						aria-label="Info"
-						onClick={() => onClickHandler()}
-						color="primary"
-					>
-						<InfoIcon />
-					</IconButton>
-				</Box>
+				{/* <Box height={MARGINS.MID}> */}
+				<IconButton
+					aria-label="Info"
+					onClick={() => onClickHandler()}
+					color="primary"
+				>
+					<InfoIcon />
+				</IconButton>
+				{/* </Box> */}
 			</Stack>
 			<AccordionDetails>
-				<Text variant={TextVariant.DESCIPTION} text={infoDisplay} />
+				<Box padding={MARGINS.MIDSMALL}>
+					<Text variant={TextVariant.DESCIPTION} text={infoDisplay} />
+				</Box>
 			</AccordionDetails>
 		</Accordion>
 	);
 };
+
+//should export hoc too?

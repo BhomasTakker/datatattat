@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 //import all from overides? - this should be a temp solution
 import "@/styles/overides/SelectInput.styles.css";
+import "@/styles/overides/AccordionDetails.styles.css";
 import { SessionProvider } from "next-auth/react";
 import { Provider } from "react-redux";
 import type { AppProps } from "next/app";

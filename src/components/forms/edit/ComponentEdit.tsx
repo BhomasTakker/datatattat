@@ -16,6 +16,7 @@ import { ArrayControls } from "./ArrayControls";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { MARGINS } from "config/styles/styles.config";
+import { WithInfo } from "../../edit/info/WithInfo";
 
 type inputFuncs = {
 	onDelete: () => void;
@@ -41,6 +42,7 @@ export const ComponentEdit = ({
 			</MenuItem>
 		));
 	};
+	//This feels utilsy - DRY bollocks
 	const createComponent = (component: any): ReactElement => {
 		// console.log({ COMPONENTID: component });
 		if (!component) {
@@ -59,7 +61,6 @@ export const ComponentEdit = ({
 	return (
 		//replace all/most containers with bax marginLeft - but use a 'config' for values
 		<Box
-			marginLeft={MARGINS.MIDLARGE}
 			width={"100%"}
 			marginTop={MARGINS.MIDSMALL}
 			marginBottom={MARGINS.MIDSMALL}
@@ -68,26 +69,36 @@ export const ComponentEdit = ({
 			I want something more label box then input box
 			*/}
 			{/* Should be a with - HOC */}
-			<Accordion defaultExpanded expanded={!isCollapsed}>
-				<Stack direction={"row"} width={"100%"}>
-					<SelectInputWithControl
-						label="Select Component"
-						name={`${objectKey}.componentType`}
-						fullWidth={true}
-						required
-					>
-						{createComponentList()}
-					</SelectInputWithControl>
 
-					<ArrayControls onDelete={onDelete} onMove={onMove} />
-					{/* Maybe not here & isCollapsed is the wrong term - should be isExpanded */}
-					<IconButton
-						aria-label="expand or collapse"
-						onClick={() => setIsCollapsed((currentState) => !currentState)}
+			<Accordion defaultExpanded expanded={!isCollapsed} elevation={0}>
+				<WithInfo info="Nothing here currently!">
+					<Stack
+						direction={"row"}
+						paddingLeft={MARGINS.LARGE}
+						width={"100%"}
+						justifyContent="space-between"
 					>
-						{isCollapsed ? <ExpandMoreIcon /> : <ExpandLessIcon />}
-					</IconButton>
-				</Stack>
+						<SelectInputWithControl
+							label="Select Component"
+							name={`${objectKey}.componentType`}
+							fullWidth={true}
+							required
+						>
+							{createComponentList()}
+						</SelectInputWithControl>
+						{/* Controls? */}
+						<Stack direction="row">
+							<ArrayControls onDelete={onDelete} onMove={onMove} />
+							{/* Maybe not here & isCollapsed is the wrong term - should be isExpanded */}
+							<IconButton
+								aria-label="expand or collapse"
+								onClick={() => setIsCollapsed((currentState) => !currentState)}
+							>
+								{isCollapsed ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+							</IconButton>
+						</Stack>
+					</Stack>
+				</WithInfo>
 				<AccordionDetails>{createComponent(component)}</AccordionDetails>
 			</Accordion>
 		</Box>

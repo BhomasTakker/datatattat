@@ -21,8 +21,8 @@ const Page = ({ children }: { children: string }) => {
 const EditComponent = ({ children }: { children: string }) => {
 	return (
 		<Typography
-			variant="h3"
-			component="h3"
+			variant="h4"
+			component="h4"
 			marginTop={MARGINS.MIDSMALL}
 			marginBottom={MARGINS.MIDSMALL}
 		>

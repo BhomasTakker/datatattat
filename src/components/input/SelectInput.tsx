@@ -42,7 +42,12 @@ export const SelectInput = ({
 }: // onChange = (e: unknown) => {},
 SelectInputType) => {
 	return (
-		<Stack direction="row" alignItems="center" gap={`${MARGINS.MIDSMALL}`}>
+		<Stack
+			width="100%"
+			direction="row"
+			alignItems="center"
+			gap={`${MARGINS.MIDSMALL}`}
+		>
 			<label className={classes.label} htmlFor="Select Container">
 				{label}
 			</label>

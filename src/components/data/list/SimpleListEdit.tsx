@@ -27,7 +27,8 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 
 	// console.log({ ONJECT_KEY: objectKey });
 	return (
-		<Box marginLeft={MARGINS.MIDLARGE}>
+		//  marginLeft={MARGINS.MIDLARGE}
+		<Box>
 			{/* At most use a title component - options can then say - turn all off */}
 			{/* <Typography variant="h3">SimpleList</Typography> */}
 			{/* If we have a title for Simple list etc then we can easily add an info tag and expand that to show info text */}
@@ -36,8 +37,9 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 			</WithInfo>
 
 			{/* Header or title / same thing - different? */}
-			<Title variant={TitleVariant.SUB} text="Component Properties" />
-			<Box marginLeft={MARGINS.MIDLARGE}>
+			{/* <Title variant={TitleVariant.SUB} text="Component Properties" /> */}
+			{/* marginLeft={MARGINS.MIDLARGE} */}
+			<Box>
 				{/* With Info add an info button and link to data  */}
 				<SelectInputWithControl
 					label="Component Id"

@@ -1,3 +1,23 @@
 .MuiInputBase-root {
 	background-color: rgba(255, 255, 255, 0);
 }
+
+.MuiInputBase-root:hover {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+/* .MuiInputBase-root:active {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.MuiInputBase-root:focus {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.MuiInputBase-root:focus-visible {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.MuiInputBase-root:focus-within {
+	background-color: rgba(255, 255, 255, 0);
+} */
