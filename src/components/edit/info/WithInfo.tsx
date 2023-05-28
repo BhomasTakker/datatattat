@@ -54,7 +54,7 @@ export const WithInfo = ({
 					<IconButton
 						aria-label="Info"
 						onClick={() => onClickHandler()}
-						color="info"
+						color="primary"
 					>
 						<InfoIcon />
 					</IconButton>
