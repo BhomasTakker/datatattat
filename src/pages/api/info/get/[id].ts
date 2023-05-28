@@ -30,8 +30,11 @@ export default async function getInfo(
 	const { id = "" } = query; //as routeId
 	const endpoint = getEndpoint(id);
 
+	//This data should be in Redis no?
+	//We don't want th sweaty public coming to our dbs all willy nilly
 	//try catch
 	const info = await Info.findOne({ name: endpoint }).lean();
 
+	//utils for parsify
 	res.status(200).json(JSON.parse(JSON.stringify(info)));
 }

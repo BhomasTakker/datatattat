@@ -22,12 +22,15 @@ export const WithInfo = ({
 	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
+		//perhaps manage better / bur seems to work well
+		//We need a loading spinner and a timeout
 		const fetchInfo = async () => {
-			if (!infoId) return;
+			if (!infoId || !isOpen) return;
 			const result = await fetch(`api/info/get/${infoId}`);
 			const response = await result.json();
 
 			//error check
+			// console.log({ response });
 
 			setInfoDisplay(
 				response?.description ||
@@ -35,7 +38,7 @@ export const WithInfo = ({
 			);
 		};
 		if (!info && !infoDisplay) fetchInfo();
-	}, [info, infoDisplay, infoId]);
+	}, [info, infoDisplay, infoId, isOpen]);
 
 	const onClickHandler = () => setIsOpen((currentState) => !currentState);
 
