@@ -1,4 +1,6 @@
 import "@/styles/globals.css";
+//import all from overides? - this should be a temp solution
+import "@/styles/overides/SelectInput.styles.css";
 import { SessionProvider } from "next-auth/react";
 import { Provider } from "react-redux";
 import type { AppProps } from "next/app";
@@ -11,8 +13,8 @@ import { LocaleProvider } from "@/components/layout/locale/LocaleProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MainHeader } from "../components/header/main/MainHeader";
 import { MainFooter } from "../components/footer/MainFooter";
-import { alpha, createTheme, Theme, ThemeProvider } from "@mui/material/styles";
-import { green, orange } from "@mui/material/colors";
+import { alpha, createTheme, ThemeProvider } from "@mui/material/styles";
+import { orange } from "@mui/material/colors";
 import { CssBaseline } from "@mui/material";
 
 interface highlightsColor {

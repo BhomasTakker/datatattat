@@ -1,6 +1,4 @@
-import { Auth } from "@/models/Auth";
 import Info from "@/models/Info";
-import { User } from "@/models/User";
 import mongooseConnect from "@/src/lib/mongoose-connection";
 import { NextApiRequest, NextApiResponse } from "next";
 

@@ -1,11 +1,13 @@
-import { InputAdornment, TextField } from "@mui/material";
-import React, { ReactElement, ReactNode } from "react";
+import { Stack, TextField } from "@mui/material";
+import React, { ReactNode } from "react";
 import { withControl } from "@/hoc/components/forms/withControl";
-import { Auth } from "@/src/lib/i18n/translation";
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
+import { MARGINS } from "config/styles/styles.config";
+import classes from "./SelectInput.module.scss";
 
 //Type this somewhere
-type InputVariant = "standard" | "outlined" | undefined;
+// TypographyTypeMap["props"]["variant"];
+type InputVariant = "standard" | "outlined" | "filled" | undefined;
 
 //TextInputProps
 type SelectInputType = {
@@ -20,39 +22,52 @@ type SelectInputType = {
 	variant?: InputVariant;
 	disabled?: boolean;
 	children: ReactNode;
+	id: string | undefined;
 	// onChange: (e: unknown) => void;
 };
 
 //Way better
 export const SelectInput = ({
 	label, //Auth.email,
+	id,
 	name,
 	field = {},
 	error = false,
 	helperText = "",
 	required = false,
 	fullWidth = false,
-	variant = "standard",
+	variant = "filled",
 	disabled = false,
 	children = [],
 }: // onChange = (e: unknown) => {},
 SelectInputType) => {
 	return (
-		<TextField
-			select
-			fullWidth={fullWidth}
-			{...field}
-			name={name}
-			label={label}
-			required={required}
-			variant={variant}
-			error={error}
-			helperText={helperText}
-			disabled={disabled}
-			// onChange={onChange}
-		>
-			{children}
-		</TextField>
+		<Stack direction="row" alignItems="center" gap={`${MARGINS.MIDSMALL}`}>
+			<label className={classes.label} htmlFor="Select Container">
+				{label}
+			</label>
+			<TextField
+				// color="primary"
+				id={id}
+				hiddenLabel
+				select
+				fullWidth={fullWidth}
+				{...field}
+				name={name}
+				// label={label}
+				required={required}
+				variant={variant}
+				error={error}
+				helperText={helperText}
+				disabled={disabled}
+				// onChange={onChange}
+				defaultValue="Small"
+				size="small"
+				className={classes.textfield}
+			>
+				{children}
+			</TextField>
+		</Stack>
 	);
 };
 
