@@ -1,17 +1,23 @@
-import { Container } from "@mui/material";
+import { Box, Container, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import React, { ReactElement } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { API_EDIT_LIST } from "../api";
-import { BaseEditProps } from "../components/forms/edit/types/BaseEdit";
+import { BaseEditProps } from "@/components/forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../components/input/SelectInput";
 import {
 	createSelectInputList,
 	TextInputWithControl,
 } from "../components/input/TextInput";
+import { WithInfo } from "@/components/edit/info/WithInfo";
+import { Title } from "@/components/ui/title";
+import { TitleVariant } from "@/components/types/ui";
+import { MARGINS } from "config/styles/styles.config";
 
 //Also this ??
 //Create factory component?
+// args componentId, componentList, objectKey
+//Create Factory Component
 const createAPIComponent = (
 	component: any,
 	objectKey: string
@@ -40,34 +46,47 @@ export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
 		name: `${objectKey}.query.apiId`,
 	});
 	return (
-		<Container>
-			<Typography variant="h4">Query Object</Typography>
-			<TextInputWithControl
-				label={"queryId"}
-				name={`${objectKey}.query.queryId`}
-				fullWidth={true}
-				variant="outlined"
-				disabled={false}
-			/>
-			<Container>
+		<Box>
+			<WithInfo info="Query ">
+				<Title variant={TitleVariant.EDIT_COMPONENT} text="Query" />
+			</WithInfo>
+			<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
+				<WithInfo info="Query Id blurb">
+					<TextInputWithControl
+						label={"queryId"}
+						name={`${objectKey}.query.queryId`}
+						fullWidth={true}
+						// variant="outlined"
+						disabled={false}
+					/>
+				</WithInfo>
+				{/* Seperate component - 'should' be EditSelectInput? - It is already - password etc are their own beast  */}
+				{/* Add these to Edit/input */}
+
+				<WithInfo info="API Component blurb">
+					<SelectInputWithControl
+						label="apiComponent"
+						name={`${objectKey}.query.apiId`}
+						fullWidth={true}
+						required
+						// onChange={changeHandler}
+					>
+						{createSelectInputList(API_EDIT_LIST)}
+					</SelectInputWithControl>
+				</WithInfo>
+			</Stack>
+
+			{/* <Box>
 				<Typography variant="h5">Query Options</Typography>
-				{/* KeepPreviousData checkbox */}
-				{/* Should have an include/don't include checkbox for the option (With) */}
-			</Container>
+			</Box> */}
+			{/* KeepPreviousData checkbox */}
+			{/* Should have an include/don't include checkbox for the option (With) */}
 
 			{/* Do not use WithControl here - we do not need to store this id here */}
-			<SelectInputWithControl
-				label="apiComponent"
-				name={`${objectKey}.query.apiId`}
-				fullWidth={true}
-				required
-				// onChange={changeHandler}
-			>
-				{createSelectInputList(API_EDIT_LIST)}
-			</SelectInputWithControl>
+
 			{/* Load API Edit Component */}
 			{/* {createAPIComponent} */}
 			{createAPIComponent(apiComponent, `${objectKey}.query`)}
-		</Container>
+		</Box>
 	);
 };

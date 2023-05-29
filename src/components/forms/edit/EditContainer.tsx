@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, memo } from "react";
 import { Box, MenuItem, Stack } from "@mui/material";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import { CONTAINERS } from "@/src/factories/containers";
@@ -42,6 +42,8 @@ export const EditContainer = ({ objectKey }: BaseEditProps) => {
 
 		return <EditContainer />;
 	};
+
+	console.log("RE-RENDER");
 
 	return (
 		<Box>

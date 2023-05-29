@@ -1,6 +1,6 @@
 import { COMPONENTS } from "@/src/factories/components";
 import { EDIT_WITH } from "@/src/factories/with";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Stack } from "@mui/material";
 import React from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
@@ -28,7 +28,7 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 	// console.log({ ONJECT_KEY: objectKey });
 	return (
 		//  marginLeft={MARGINS.MIDLARGE}
-		<Box>
+		<Stack gap={MARGINS.SMALL}>
 			{/* At most use a title component - options can then say - turn all off */}
 			{/* <Typography variant="h3">SimpleList</Typography> */}
 			{/* If we have a title for Simple list etc then we can easily add an info tag and expand that to show info text */}
@@ -39,31 +39,38 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 			{/* Header or title / same thing - different? */}
 			{/* <Title variant={TitleVariant.SUB} text="Component Properties" /> */}
 			{/* marginLeft={MARGINS.MIDLARGE} */}
-			<Box>
-				{/* With Info add an info button and link to data  */}
-				<SelectInputWithControl
-					label="Component Id"
-					name={`${objectKey}.componentProps.componentId`}
-					fullWidth={true}
-					required
-					// onChange={changeHandler}
-				>
-					{/* //This needs to be item components - i.e. article list item, article card, article stub, etc */}
-					{/* Would you / Could you distinguish between list and say layout components - should you */}
-					{createSelectInputList(COMPONENTS)}
-				</SelectInputWithControl>
+			<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
+				<WithInfo info="Component blurb">
+					{/* With Info add an info button and link to data  */}
+
+					<SelectInputWithControl
+						label="Component Id"
+						name={`${objectKey}.componentProps.componentId`}
+						fullWidth={true}
+						required
+						// onChange={changeHandler}
+					>
+						{/* //This needs to be item components - i.e. article list item, article card, article stub, etc */}
+						{/* Would you / Could you distinguish between list and say layout components - should you */}
+						{createSelectInputList(COMPONENTS)}
+					</SelectInputWithControl>
+				</WithInfo>
 			</Box>
-			<Title variant={TitleVariant.SUB} text="With (Select behaviour)" />
-			<SelectInputWithControl
-				// label="Component Id"
-				name={`${objectKey}._with.type`}
-				fullWidth={true}
-				required
-				// onChange={changeHandler}
-			>
-				{createSelectInputList(EDIT_WITH)}
-			</SelectInputWithControl>
+			{/* <Title variant={TitleVariant.SUB} text="With (Select behaviour)" /> */}
+			<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
+				<WithInfo info="With blurb">
+					<SelectInputWithControl
+						label="With Behaviour"
+						name={`${objectKey}._with.type`}
+						fullWidth={true}
+						required
+						// onChange={changeHandler}
+					>
+						{createSelectInputList(EDIT_WITH)}
+					</SelectInputWithControl>
+				</WithInfo>
+			</Box>
 			{createWithEditComponent(withComponent, `${objectKey}._with`)}
-		</Box>
+		</Stack>
 	);
 };

@@ -4,12 +4,15 @@ import { withControl } from "@/hoc/components/forms/withControl";
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
 import { withToggleCheck } from "@/src/hoc/actions/withToggleCheck";
 import { withInputBlocker } from "@/src/hoc/components/forms/withInputBlocker";
+import { WithLabel } from "../forms/edit/input/WithLabel";
+import classes from "./Input.module.scss";
 
-type InputVariant = "standard" | "outlined" | undefined;
+type InputVariant = "standard" | "outlined" | "filled" | undefined;
 
 //TextInputProps
 type TextInputType = {
 	label: string;
+	id: string | undefined;
 	name: string;
 	field?: ControllerRenderProps<FieldValues, string> | {};
 	error?: boolean;
@@ -29,39 +32,47 @@ type TextInputType = {
 //Way better
 export const TextInput = ({
 	label, //Auth.email,
+	id = label,
 	name,
 	field = {},
 	error = false,
 	helperText = "",
 	required = false,
 	fullWidth = false,
-	variant = "standard",
+	variant = "filled",
 	disabled = false,
 	startAdornment = undefined,
 	endAdornment = undefined,
 	inputProps = {},
 }: TextInputType) => {
 	return (
-		<TextField
-			fullWidth={fullWidth}
-			{...field}
-			name={name}
-			label={label}
-			type="text"
-			required={required}
-			variant={variant}
-			error={error}
-			helperText={helperText}
-			disabled={disabled}
-			InputProps={{
-				startAdornment,
-				endAdornment,
-				...inputProps,
-			}}
-			//TextField seems like it cannot properly be used on it's own
-			//investigate this
-			// defaultValue={defaultValue} / this breaks withControl
-		></TextField>
+		<WithLabel label={label} htmlFor={id}>
+			<TextField
+				id={id}
+				hiddenLabel
+				fullWidth={fullWidth}
+				{...field}
+				name={name}
+				// label={label}
+				type="text"
+				required={required}
+				variant={variant}
+				error={error}
+				helperText={helperText}
+				disabled={disabled}
+				defaultValue="Small"
+				size="small"
+				className={classes.textfield}
+				InputProps={{
+					startAdornment,
+					endAdornment,
+					...inputProps,
+				}}
+				//TextField seems like it cannot properly be used on it's own
+				//investigate this
+				// defaultValue={defaultValue} / this breaks withControl
+			></TextField>
+		</WithLabel>
 	);
 };
 

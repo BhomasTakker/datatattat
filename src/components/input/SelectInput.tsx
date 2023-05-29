@@ -3,7 +3,8 @@ import React, { ReactNode } from "react";
 import { withControl } from "@/hoc/components/forms/withControl";
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
 import { MARGINS } from "config/styles/styles.config";
-import classes from "./SelectInput.module.scss";
+import classes from "./Input.module.scss";
+import { WithLabel } from "../forms/edit/input/WithLabel";
 
 //Type this somewhere
 // TypographyTypeMap["props"]["variant"];
@@ -26,10 +27,12 @@ type SelectInputType = {
 	// onChange: (e: unknown) => void;
 };
 
+// Should have label variants?
+//hidden label etc
 //Way better
 export const SelectInput = ({
 	label, //Auth.email,
-	id,
+	id = label,
 	name,
 	field = {},
 	error = false,
@@ -42,15 +45,20 @@ export const SelectInput = ({
 }: // onChange = (e: unknown) => {},
 SelectInputType) => {
 	return (
-		<Stack
-			width="100%"
-			direction="row"
-			alignItems="center"
-			gap={`${MARGINS.MIDSMALL}`}
-		>
-			<label className={classes.label} htmlFor="Select Container">
-				{label}
-			</label>
+		// <Stack
+		// 	width="100%"
+		// 	direction="row"
+		// 	alignItems="center"
+		// 	gap={`${MARGINS.MIDSMALL}`}
+		// >
+		// 	{label ? (
+		// 		<label className={classes.label} htmlFor="Select Container">
+		// 			{label}
+		// 		</label>
+		// 	) : (
+		// 		<></>
+		// 	)}
+		<WithLabel label={label} htmlFor="Select Container">
 			<TextField
 				// color="primary"
 				id={id}
@@ -72,7 +80,8 @@ SelectInputType) => {
 			>
 				{children}
 			</TextField>
-		</Stack>
+		</WithLabel>
+		// </Stack>
 	);
 };
 
