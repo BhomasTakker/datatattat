@@ -74,7 +74,7 @@ SelectInputType) => {
 				helperText={helperText}
 				disabled={disabled}
 				// onChange={onChange}
-				defaultValue="Small"
+				// defaultValue="Small"
 				size="small"
 				className={classes.textfield}
 			>
