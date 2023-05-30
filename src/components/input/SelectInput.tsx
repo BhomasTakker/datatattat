@@ -1,8 +1,7 @@
-import { Stack, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import React, { ReactNode } from "react";
 import { withControl } from "@/hoc/components/forms/withControl";
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
-import { MARGINS } from "config/styles/styles.config";
 import classes from "./Input.module.scss";
 import { WithLabel } from "../forms/edit/input/WithLabel";
 
@@ -42,22 +41,8 @@ export const SelectInput = ({
 	variant = "filled",
 	disabled = false,
 	children = [],
-}: // onChange = (e: unknown) => {},
-SelectInputType) => {
+}: SelectInputType) => {
 	return (
-		// <Stack
-		// 	width="100%"
-		// 	direction="row"
-		// 	alignItems="center"
-		// 	gap={`${MARGINS.MIDSMALL}`}
-		// >
-		// 	{label ? (
-		// 		<label className={classes.label} htmlFor="Select Container">
-		// 			{label}
-		// 		</label>
-		// 	) : (
-		// 		<></>
-		// 	)}
 		<WithLabel label={label} htmlFor="Select Container">
 			<TextField
 				// color="primary"
@@ -81,7 +66,6 @@ SelectInputType) => {
 				{children}
 			</TextField>
 		</WithLabel>
-		// </Stack>
 	);
 };
 

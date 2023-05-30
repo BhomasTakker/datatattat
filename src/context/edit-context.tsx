@@ -37,6 +37,3 @@ export const EditContextProvider = (props: any) => {
 		</EditContext.Provider>
 	);
 };
-function useUser(): { user: any } {
-	throw new Error("Function not implemented.");
-}

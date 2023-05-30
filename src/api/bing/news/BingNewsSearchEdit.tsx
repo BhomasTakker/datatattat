@@ -21,18 +21,6 @@ import { MARGINS } from "config/styles/styles.config";
 export const BingNewsSearchEdit = ({ objectKey }: BaseEditProps) => {
 	const paramsRoute = `${objectKey}.params`;
 
-	// const validationContext = useContext(FormContext);
-
-	//dependencies here?
-	//We perhaps need to wrap in a callback?
-	// useEffect(() => {
-	// 	const { updateValidation } = validationContext;
-	// 	const apiValidation = {
-	// 		[`${paramsRoute}.q`]: validate.email,
-	// 	};
-	// 	updateValidation(apiValidation);
-	// }, [paramsRoute]);
-
 	return (
 		<Box>
 			<WithInfo info="Bing News Search Info blurb ">
