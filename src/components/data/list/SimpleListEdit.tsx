@@ -1,7 +1,7 @@
 import { COMPONENTS } from "@/src/factories/components";
 import { EDIT_WITH } from "@/src/factories/with";
-import { Typography, Box, Stack } from "@mui/material";
-import React from "react";
+import { Box, Stack } from "@mui/material";
+import React, { useCallback, useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
@@ -12,10 +12,21 @@ import { TitleVariant } from "../../types/ui";
 import { WithInfo } from "../../edit/info/WithInfo";
 import { MARGINS } from "config/styles/styles.config";
 
+// const componentsSelectInputList = createSelectInputList(COMPONENTS);
+// const withSelectInputList = createSelectInputList(EDIT_WITH);
 // We need to pass an id through
 // a for unique id b
+// So whenever form updates / this component and all children will be re-rendered because that is how context works
+// We need to use emo on children to protect them from unnecessary re-renders
+// we will re-render regardless
 export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 	const { control } = useFormContext();
+	const componentsSelectInputList = createSelectInputList(COMPONENTS);
+	const withSelectInputList = createSelectInputList(EDIT_WITH);
+
+	const [withEditComponent, setWithEditComponent] = useState(<></>);
+	// createWithEditComponent(withComponent, `${objectKey}._with`)
+
 	//These are dangerous
 	//When set as i.e. an object (_with)
 	//if subsequently the _with object checges it counts as this _with changing!
@@ -24,6 +35,14 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 		control,
 		name: `${objectKey}._with.type`,
 	});
+
+	useEffect(() => {
+		setWithEditComponent(
+			createWithEditComponent(withComponent, `${objectKey}._with`)
+		);
+	}, [withComponent, objectKey]);
+
+	console.log("SIMPLE LIST RE-RENDER");
 
 	// console.log({ ONJECT_KEY: objectKey });
 	return (
@@ -52,7 +71,8 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 					>
 						{/* //This needs to be item components - i.e. article list item, article card, article stub, etc */}
 						{/* Would you / Could you distinguish between list and say layout components - should you */}
-						{createSelectInputList(COMPONENTS)}
+						{/* {createSelectInputList(COMPONENTS)} */}
+						{componentsSelectInputList}
 					</SelectInputWithControl>
 				</WithInfo>
 			</Box>
@@ -66,11 +86,13 @@ export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
 						required
 						// onChange={changeHandler}
 					>
-						{createSelectInputList(EDIT_WITH)}
+						{/* {createSelectInputList(EDIT_WITH)} */}
+						{withSelectInputList}
 					</SelectInputWithControl>
 				</WithInfo>
 			</Box>
-			{createWithEditComponent(withComponent, `${objectKey}._with`)}
+			{withEditComponent}
+			{/* {createWithEditComponent(withComponent, `${objectKey}._with`)} */}
 		</Stack>
 	);
 };

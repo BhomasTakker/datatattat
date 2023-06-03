@@ -47,10 +47,11 @@ export const withControl = (Component: any) => {
 				// the below works but needs ignoring / apparently it just hasn't been typed?
 				// @ts-expect-error / find a way around
 				rules={{ disabled }}
-				render={({ field }) => (
+				render={({ field, fieldState }) => (
 					<Component
 						{...props}
 						field={field}
+						fieldState={fieldState}
 						name={name}
 						label={t(label)}
 						error={!!errors[name]}

@@ -29,44 +29,48 @@ type SelectInputType = {
 // Should have label variants?
 //hidden label etc
 //Way better
-export const SelectInput = ({
-	label, //Auth.email,
-	id = label,
-	name,
-	field = {},
-	error = false,
-	helperText = "",
-	required = false,
-	fullWidth = false,
-	variant = "filled",
-	disabled = false,
-	children = [],
-}: SelectInputType) => {
-	return (
-		<WithLabel label={label} htmlFor="Select Container">
-			<TextField
-				// color="primary"
-				id={id}
-				hiddenLabel
-				select
-				fullWidth={fullWidth}
-				{...field}
-				name={name}
-				// label={label}
-				required={required}
-				variant={variant}
-				error={error}
-				helperText={helperText}
-				disabled={disabled}
-				// onChange={onChange}
-				// defaultValue="Small"
-				size="small"
-				className={classes.textfield}
-			>
-				{children}
-			</TextField>
-		</WithLabel>
-	);
-};
-
+export const SelectInput = React.memo(
+	({
+		label, //Auth.email,
+		id = label,
+		name,
+		field = {},
+		error = false,
+		helperText = "",
+		required = false,
+		fullWidth = false,
+		variant = "filled",
+		disabled = false,
+		children = [],
+	}: SelectInputType) => {
+		console.log("SELECT INPUT RE-RENDER");
+		return (
+			<WithLabel label={label} htmlFor="Select Container">
+				<TextField
+					// color="primary"
+					id={id}
+					hiddenLabel
+					select
+					fullWidth={fullWidth}
+					{...field}
+					name={name}
+					// label={label}
+					required={required}
+					variant={variant}
+					error={error}
+					helperText={helperText}
+					disabled={disabled}
+					// onChange={onChange}
+					// defaultValue="Small"
+					size="small"
+					className={classes.textfield}
+				>
+					{children}
+				</TextField>
+			</WithLabel>
+		);
+	},
+	(prevProps, nextProps) => prevProps.field.value === nextProps.field.value
+);
+SelectInput.displayName = "SelectInput";
 export const SelectInputWithControl = withControl(SelectInput);

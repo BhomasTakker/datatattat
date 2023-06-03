@@ -1,6 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { TextInputWithControlAndInputBlocker } from "../../input/TextInput";
-import { EditComponents } from "./EditComponents";
 import { EditContainer } from "./EditContainer";
 import { useFormContext } from "react-hook-form";
 import { EditContext } from "@/src/context/edit-context";
@@ -46,7 +44,7 @@ export const PageEdit = () => {
 
 		getPageData();
 	}, [currentPage, reset, username]); //, username, pageRoute, reset, editCtx
-
+	console.log("RE-RENDER!!");
 	//Need a better way of calling withs HOCs
 	return (
 		<>

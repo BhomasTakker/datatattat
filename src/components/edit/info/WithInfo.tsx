@@ -7,19 +7,21 @@ import {
 	Accordion,
 	AccordionDetails,
 } from "@mui/material";
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, memo, useEffect, useState } from "react";
 import InfoIcon from "@mui/icons-material/Info";
 import { InfoProps, TextVariant } from "../../types/ui";
 import { MARGINS } from "config/styles/styles.config";
 import { Text } from "../../ui/text";
 
-export const WithInfo = ({
+const WithInfo = ({
 	children,
 	info = "",
 	infoId = "",
 }: InfoProps): ReactElement => {
 	const [infoDisplay, setInfoDisplay] = useState(info);
 	const [isOpen, setIsOpen] = useState(false);
+
+	console.log("WILD RE-RENDER");
 
 	useEffect(() => {
 		//perhaps manage better / bur seems to work well
@@ -73,3 +75,5 @@ export const WithInfo = ({
 };
 
 //should export hoc too?
+
+export { WithInfo }; // = memo(_WithInfo);

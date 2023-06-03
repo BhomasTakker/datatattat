@@ -51,8 +51,13 @@ const ComponantHash = {
 // Our variants should be main, sub, article, etc
 // Should be able to pass down overides for component say
 // Definitely overides for margin
-export const Title = ({ variant = TitleVariant.PAGE, text }: TitleProps) => {
-	const Component = ComponantHash[variant];
-	//if typeof Component ... else <></>
-	return <Component>{text}</Component>;
-};
+const Title = React.memo(
+	({ variant = TitleVariant.PAGE, text }: TitleProps) => {
+		console.log("RE-RENDER TITLE");
+		const Component = ComponantHash[variant];
+		//if typeof Component ... else <></>
+		return <Component>{text}</Component>;
+	}
+);
+Title.displayName = "Title";
+export { Title };

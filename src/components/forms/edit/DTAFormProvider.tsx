@@ -49,21 +49,23 @@ export const DTAFormProvider = ({
 		console.log({ errors: methods.formState.errors });
 	};
 
+	console.log("WE RE-RENDER");
+
 	return (
 		<FormProvider {...methods}>
 			{/* Error validation did not work for me this way - need think */}
 			{/* Is possible we'll just need to manually 'watch' and check i.e. trigger error for each but??  */}
-			<FormContext.Provider
+			{/* <FormContext.Provider
 				value={{
 					validationSchema: stateSchema,
 					updateValidation: updateSchema,
 				}}
-			>
-				<form onSubmit={methods.handleSubmit((data) => submitHandler(data))}>
-					{children}
-				</form>
-				{debug ? <Button onClick={debugHandler}>Debug</Button> : <></>}
-			</FormContext.Provider>
+			> */}
+			<form onSubmit={methods.handleSubmit((data) => submitHandler(data))}>
+				{children}
+			</form>
+			{debug ? <Button onClick={debugHandler}>Debug</Button> : <></>}
+			{/* </FormContext.Provider> */}
 		</FormProvider>
 	);
 };
