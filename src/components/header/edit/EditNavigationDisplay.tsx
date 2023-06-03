@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import React, { ReactElement, useCallback, useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import { NavLinkData } from "../nav-links/NavLink";
 import { MARGINS } from "config/styles/styles.config";
 import { EditNavLink, EditNavLinks } from "./EditNavLink";
@@ -11,9 +11,16 @@ type NavigationProps = {
 
 //This where
 export const EditNavigationDisplay = ({ nav = [] }: NavigationProps) => {
-	const { setValue, getValues, watch } = useFormContext();
+	const { setValue } = useFormContext();
 	// const [navLinks2, setNavLinks] = useState([]);
-	const navFormComponents = watch("nav") || [];
+	// const navFormComponents = watch("nav") || [];
+
+	const navFormComponents =
+		useWatch({
+			name: `nav`,
+		}) || [];
+
+	console.log({ navFormComponents });
 
 	useEffect(() => {
 		setValue("nav", nav);
@@ -31,7 +38,7 @@ export const EditNavigationDisplay = ({ nav = [] }: NavigationProps) => {
 				<Typography minWidth={"200px"}>Endpoint</Typography>
 			</Stack>
 			{/* <Stack gap={MARGINS.SMALL}>{navLinks()}</Stack> */}
-			<EditNavLinks components={navFormComponents} />
+			<EditNavLinks components={navFormComponents || []} />
 		</Stack>
 	);
 };

@@ -60,6 +60,8 @@ export const ComponentEdit = ({
 
 		return <EditComponent objectKey={objectKey} />;
 	};
+
+	console.log("RERERENDER - ", `${objectKey}.componentType`);
 	return (
 		//replace all/most containers with bax marginLeft - but use a 'config' for values
 

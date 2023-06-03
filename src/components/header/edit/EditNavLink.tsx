@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo } from "react";
+import React, { memo, useCallback, useEffect, useMemo } from "react";
 import { NavLinkData } from "../nav-links/NavLink";
 import { Stack, Box } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
@@ -23,38 +23,48 @@ export const EditNavLinks = memo(
 	({ components }: any) => {
 		const { setValue, getValues } = useFormContext();
 
-		const onDelete = (i: number) => {
-			const updatedNavFormComponents = components; //form
+		const onDelete = useCallback(
+			(i: number) => {
+				const updatedNavFormComponents = components; //form
 
-			updatedNavFormComponents.splice(i, 1);
-			setValue("nav", updatedNavFormComponents);
-		};
-		const onMove = (id: number, dir: number) => {
-			const updatedNavFormComponents = [...components];
+				updatedNavFormComponents.splice(i, 1);
+				setValue("nav", updatedNavFormComponents);
+			},
+			[components, setValue]
+		);
+		const onMove = useCallback(
+			(id: number, dir: number) => {
+				const updatedNavFormComponents = [...components];
 
-			updatedNavFormComponents.splice(id, 1);
+				updatedNavFormComponents.splice(id, 1);
 
-			const formItem = getValues(`nav.${id}`);
+				const formItem = getValues(`nav.${id}`);
 
-			updatedNavFormComponents.splice(id + dir, 0, formItem);
-			setValue("nav", updatedNavFormComponents);
-		};
+				updatedNavFormComponents.splice(id + dir, 0, formItem);
+				setValue("nav", updatedNavFormComponents);
+			},
+			[components, getValues, setValue]
+		);
 
-		const navLinks = components.map((link: NavLinkData, i: number) => {
-			console.log("DRAW COMPONENT");
-			return (
-				<EditNavLink
-					link={link}
-					name={`nav.${i}`}
-					key={`nav.${i}`}
-					functions={{
-						setValue,
-						onDelete: () => onDelete(i),
-						onMove: (dir: number) => onMove(i, dir),
-					}}
-				/>
-			);
-		});
+		const createNavLinks = useCallback(() => {
+			return components.map((link: NavLinkData, i: number) => {
+				console.log("DRAW COMPONENT");
+				return (
+					<EditNavLink
+						link={link}
+						name={`nav.${i}`}
+						key={`nav.${i}`}
+						functions={{
+							setValue,
+							onDelete: () => onDelete(i),
+							onMove: (dir: number) => onMove(i, dir),
+						}}
+					/>
+				);
+			});
+		}, [components, onDelete, onMove, setValue]);
+
+		const navLinks = useMemo(() => createNavLinks(), [createNavLinks]);
 
 		return <Stack gap={MARGINS.SMALL}>{navLinks}</Stack>;
 	},
@@ -124,7 +134,9 @@ export const EditNavLink = React.memo(
 			</Stack>
 		);
 	},
-	(prevProps, nextProps) => prevProps.link === nextProps.link
+	(prevProps, nextProps) =>
+		prevProps.link.label === nextProps.link.label &&
+		prevProps.link.route === nextProps.link.route
 );
 
 EditNavLink.displayName = "EditNavLink";

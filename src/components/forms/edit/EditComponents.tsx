@@ -1,6 +1,6 @@
 import { Box, Button, Stack } from "@mui/material";
 import React from "react";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import { ComponentEdit } from "./ComponentEdit";
 import { BaseEditProps } from "./types/BaseEdit";
 import AddIcon from "@mui/icons-material/Add";
@@ -11,7 +11,8 @@ import { MARGINS } from "config/styles/styles.config";
 //So we can manage the created components
 export const EditComponents = ({ objectKey }: BaseEditProps) => {
 	const { watch, getValues, setValue, resetField } = useFormContext();
-	const watchComponents = watch("content.components") || [];
+	// const watchComponents = watch("content.components") || [];
+	const watchComponents = useWatch({ name: "content.components" }) || [];
 
 	const onDelete = (id: number) => {
 		const updatedWatchComponents = [...watchComponents];

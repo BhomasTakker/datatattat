@@ -1,7 +1,7 @@
 import { COMPONENTS } from "@/src/factories/components";
 import { EDIT_WITH } from "@/src/factories/with";
 import { Box, Stack } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
@@ -19,80 +19,88 @@ import { MARGINS } from "config/styles/styles.config";
 // So whenever form updates / this component and all children will be re-rendered because that is how context works
 // We need to use emo on children to protect them from unnecessary re-renders
 // we will re-render regardless
-export const SimpleListEdit = ({ objectKey }: BaseEditProps) => {
-	const { control } = useFormContext();
-	const componentsSelectInputList = createSelectInputList(COMPONENTS);
-	const withSelectInputList = createSelectInputList(EDIT_WITH);
+export const SimpleListEdit = memo(
+	({ objectKey }: BaseEditProps) => {
+		// const { control } = useFormContext();
+		const componentsSelectInputList = createSelectInputList(COMPONENTS);
+		const withSelectInputList = createSelectInputList(EDIT_WITH);
 
-	const [withEditComponent, setWithEditComponent] = useState(<></>);
-	// createWithEditComponent(withComponent, `${objectKey}._with`)
+		const [withEditComponent, setWithEditComponent] = useState(<></>);
+		// createWithEditComponent(withComponent, `${objectKey}._with`)
 
-	//These are dangerous
-	//When set as i.e. an object (_with)
-	//if subsequently the _with object checges it counts as this _with changing!
-	//Clever but dumb!
-	const withComponent = useWatch({
-		control,
-		name: `${objectKey}._with.type`,
-	});
+		//These are dangerous
+		//When set as i.e. an object (_with)
+		//if subsequently the _with object checges it counts as this _with changing!
+		//Clever but dumb!
+		const withComponent = useWatch({
+			// control,
+			name: `${objectKey}._with.type`,
+		});
 
-	useEffect(() => {
-		setWithEditComponent(
-			createWithEditComponent(withComponent, `${objectKey}._with`)
+		useEffect(() => {
+			setWithEditComponent(
+				createWithEditComponent(withComponent, `${objectKey}._with`)
+			);
+		}, [withComponent, objectKey]);
+
+		console.log("SIMPLE LIST RE-RENDER");
+
+		// console.log({ ONJECT_KEY: objectKey });
+		return (
+			//  marginLeft={MARGINS.MIDLARGE}
+			<Stack gap={MARGINS.SMALL}>
+				{/* At most use a title component - options can then say - turn all off */}
+				{/* <Typography variant="h3">SimpleList</Typography> */}
+				{/* If we have a title for Simple list etc then we can easily add an info tag and expand that to show info text */}
+				<WithInfo infoId="SimpleList">
+					<Title variant={TitleVariant.EDIT_COMPONENT} text="Simple List" />
+				</WithInfo>
+
+				{/* Header or title / same thing - different? */}
+				{/* <Title variant={TitleVariant.SUB} text="Component Properties" /> */}
+				{/* marginLeft={MARGINS.MIDLARGE} */}
+				<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
+					<WithInfo info="Component blurb">
+						{/* With Info add an info button and link to data  */}
+
+						<SelectInputWithControl
+							label="Component Id"
+							name={`${objectKey}.componentProps.componentId`}
+							fullWidth={true}
+							required
+							// onChange={changeHandler}
+						>
+							{/* //This needs to be item components - i.e. article list item, article card, article stub, etc */}
+							{/* Would you / Could you distinguish between list and say layout components - should you */}
+							{/* {createSelectInputList(COMPONENTS)} */}
+							{componentsSelectInputList}
+						</SelectInputWithControl>
+					</WithInfo>
+				</Box>
+				{/* <Title variant={TitleVariant.SUB} text="With (Select behaviour)" /> */}
+				<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
+					<WithInfo info="With blurb">
+						<SelectInputWithControl
+							label="With Behaviour"
+							name={`${objectKey}._with.type`}
+							fullWidth={true}
+							required
+							// onChange={changeHandler}
+						>
+							{/* {createSelectInputList(EDIT_WITH)} */}
+							{withSelectInputList}
+						</SelectInputWithControl>
+					</WithInfo>
+				</Box>
+				{withEditComponent}
+				{/* {createWithEditComponent(withComponent, `${objectKey}._with`)} */}
+			</Stack>
 		);
-	}, [withComponent, objectKey]);
+	},
+	// Effectively don't ever re-render me
+	// I look after myself
+	// My parent might get re-rendered and that is how I get deleted, moved etc
+	() => true
+);
 
-	console.log("SIMPLE LIST RE-RENDER");
-
-	// console.log({ ONJECT_KEY: objectKey });
-	return (
-		//  marginLeft={MARGINS.MIDLARGE}
-		<Stack gap={MARGINS.SMALL}>
-			{/* At most use a title component - options can then say - turn all off */}
-			{/* <Typography variant="h3">SimpleList</Typography> */}
-			{/* If we have a title for Simple list etc then we can easily add an info tag and expand that to show info text */}
-			<WithInfo infoId="SimpleList">
-				<Title variant={TitleVariant.EDIT_COMPONENT} text="Simple List" />
-			</WithInfo>
-
-			{/* Header or title / same thing - different? */}
-			{/* <Title variant={TitleVariant.SUB} text="Component Properties" /> */}
-			{/* marginLeft={MARGINS.MIDLARGE} */}
-			<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
-				<WithInfo info="Component blurb">
-					{/* With Info add an info button and link to data  */}
-
-					<SelectInputWithControl
-						label="Component Id"
-						name={`${objectKey}.componentProps.componentId`}
-						fullWidth={true}
-						required
-						// onChange={changeHandler}
-					>
-						{/* //This needs to be item components - i.e. article list item, article card, article stub, etc */}
-						{/* Would you / Could you distinguish between list and say layout components - should you */}
-						{/* {createSelectInputList(COMPONENTS)} */}
-						{componentsSelectInputList}
-					</SelectInputWithControl>
-				</WithInfo>
-			</Box>
-			{/* <Title variant={TitleVariant.SUB} text="With (Select behaviour)" /> */}
-			<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
-				<WithInfo info="With blurb">
-					<SelectInputWithControl
-						label="With Behaviour"
-						name={`${objectKey}._with.type`}
-						fullWidth={true}
-						required
-						// onChange={changeHandler}
-					>
-						{/* {createSelectInputList(EDIT_WITH)} */}
-						{withSelectInputList}
-					</SelectInputWithControl>
-				</WithInfo>
-			</Box>
-			{withEditComponent}
-			{/* {createWithEditComponent(withComponent, `${objectKey}._with`)} */}
-		</Stack>
-	);
-};
+SimpleListEdit.displayName = "SimpleListEdit";

@@ -90,7 +90,9 @@ export const TextInput = React.memo(
 	//is *** the same as ***
 	//return true to ok false to re-render
 	//fix me
-	(prevProps, nextProps) => prevProps.field.value === nextProps.field.value
+	(prevProps, nextProps) =>
+		prevProps.field.value === nextProps.field.value &&
+		prevProps.disabled === nextProps.disabled
 );
 
 TextInput.displayName = "TextInput";
