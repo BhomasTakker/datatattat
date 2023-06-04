@@ -46,13 +46,19 @@ export const COMPONENTS: any = {
 	["TikTokVideo"]: TikTokVideo,
 };
 
+// We need to organise these better
+// This is Coillections and Components say?
+
+// ?? We aren't sure of this
+// Containers -> Collections -> Components
+// DTAStack -> SimpleList -> ArticleStub
 export const EDIT_COMPONENTS: any = {
 	["Test"]: TempComponentEdit, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
-	["SimpleList"]: SimpleListEdit,
-	["ArticleStub"]: ArticleStubEdit,
-	["DTAGrid"]: DTAGridEdit,
-	["BasicArticle"]: BasicArticleEdit,
 
+	["SimpleList"]: SimpleListEdit,
+	["DTAGrid"]: DTAGridEdit,
+
+	//Should perhaps be SocialMedia/Twitter/these
 	//Twitter / load and spread twitter object
 	["TwitterProfile"]: TwitterProfileEdit,
 	["TwitterList"]: TwitterListEdit,
@@ -61,4 +67,8 @@ export const EDIT_COMPONENTS: any = {
 	//TikTok
 	["TikTokCreator"]: TikTokCreatorEdit,
 	["TikTokVideo"]: TikTokVideoEdit,
+
+	// Not here
+	["ArticleStub"]: ArticleStubEdit,
+	["BasicArticle"]: BasicArticleEdit,
 };

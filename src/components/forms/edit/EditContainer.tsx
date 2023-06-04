@@ -5,6 +5,7 @@ import { CONTAINERS } from "@/src/factories/containers";
 import { useWatch } from "react-hook-form";
 import { containerEditFactory } from "@/src/factories/container-factory";
 import { BaseEditProps } from "./types/BaseEdit";
+import { WithInfo } from "../../edit/info/WithInfo";
 
 //EditPageContainer
 //Need provide description for each
@@ -42,21 +43,21 @@ export const EditContainer = ({ objectKey }: BaseEditProps) => {
 		return <EditContainer />;
 	};
 
-	console.log("RE-RENDER");
-
 	return (
 		<Box>
-			<SelectInputWithControl
-				id="Select Container"
-				label="Select Container"
-				name={containerTypeKey}
-				fullWidth={true}
-				variant="filled"
-				required
-				// onChange={changeHandler}
-			>
-				{createContainerList()}
-			</SelectInputWithControl>
+			<WithInfo info="Much Info">
+				<SelectInputWithControl
+					id="Select Container"
+					label="Select Container"
+					name={containerTypeKey}
+					fullWidth={true}
+					variant="filled"
+					required
+					// onChange={changeHandler}
+				>
+					{createContainerList()}
+				</SelectInputWithControl>
+			</WithInfo>
 			{/* </Stack> */}
 			{createContainer(container)}
 		</Box>
