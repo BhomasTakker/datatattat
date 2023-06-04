@@ -1,9 +1,8 @@
 import { Stack, Typography } from "@mui/material";
-import React, { ReactElement, useCallback, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { NavLinkData } from "../nav-links/NavLink";
-import { MARGINS } from "config/styles/styles.config";
-import { EditNavLink, EditNavLinks } from "./EditNavLink";
+import { EditNavLinks } from "./EditNavLink";
 
 type NavigationProps = {
 	nav: NavLinkData[];
@@ -12,8 +11,6 @@ type NavigationProps = {
 //This where
 export const EditNavigationDisplay = ({ nav = [] }: NavigationProps) => {
 	const { setValue } = useFormContext();
-	// const [navLinks2, setNavLinks] = useState([]);
-	// const navFormComponents = watch("nav") || [];
 
 	const navFormComponents =
 		useWatch({
@@ -28,7 +25,6 @@ export const EditNavigationDisplay = ({ nav = [] }: NavigationProps) => {
 		//setValue nav will create a new nav blowing us up
 		//correcter way would be to check length within the effect
 	}, [setValue, nav.length]);
-	console.log({ navFormComponents });
 
 	return (
 		<Stack direction="column">

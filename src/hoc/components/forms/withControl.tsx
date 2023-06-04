@@ -1,10 +1,5 @@
 import React from "react";
-import {
-	Controller,
-	ControllerRenderProps,
-	FieldValues,
-	useFormContext,
-} from "react-hook-form";
+import { Controller, useFormContext, useFormState } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 
 type FormInputControl = {
@@ -28,10 +23,9 @@ export const withControl = (Component: any) => {
 			disabled = false,
 			required = false, //try this in rules / currently we are using default mui
 		} = props;
-		const {
-			control,
-			formState: { errors },
-		} = useFormContext();
+		const { control } = useFormContext();
+
+		const { errors } = useFormState();
 
 		//pass translated labels in?
 		const { t } = useTranslation();
