@@ -13,9 +13,9 @@ export const EditContainer = ({ objectKey }: BaseEditProps) => {
 	const containerTypeKey = `${objectKey}.containerType`;
 	//need actually set enum of containers keys?
 	// const [container, setContainer] = useState<string | undefined>(undefined);
-	const { control } = useFormContext();
+	// const { control } = useFormContext();
 	const container = useWatch({
-		control,
+		// control,
 		name: containerTypeKey,
 	});
 

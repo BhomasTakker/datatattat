@@ -4,7 +4,7 @@ import React, { useCallback, useContext } from "react";
 import { NavLinkData } from "../nav-links/NavLink";
 
 //has to be within the context to use
-import { useFormContext, useWatch } from "react-hook-form";
+import { useWatch } from "react-hook-form";
 import { EditContext } from "@/src/context/edit-context";
 // import { useUser } from "@/src/hooks/useUser";
 // import edit from "@/src/pages/edit";

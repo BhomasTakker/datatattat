@@ -40,9 +40,9 @@ const createAPIComponent = (
 };
 
 export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
-	const { control } = useFormContext();
+	// const { control } = useFormContext();
 	const apiComponent = useWatch({
-		control,
+		// control,
 		name: `${objectKey}.query.apiId`,
 	});
 	return (

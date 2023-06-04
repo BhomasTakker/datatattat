@@ -10,7 +10,7 @@ import {
 	Paper,
 } from "@mui/material";
 import React, { ReactElement, useState } from "react";
-import { useFormContext, useWatch } from "react-hook-form";
+import { useWatch } from "react-hook-form";
 import { BaseEditProps } from "./types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import { ArrayControls } from "./ArrayControls";
@@ -31,10 +31,10 @@ export const ComponentEdit = ({
 	onDelete,
 	onMove,
 }: BaseEditProps & inputFuncs) => {
-	const { control } = useFormContext();
+	// const { control } = useFormContext();
 	const [isCollapsed, setIsCollapsed] = useState(false);
 	const component = useWatch({
-		control,
+		// control,
 		name: `${objectKey}.componentType`,
 	});
 	const createComponentList = () => {

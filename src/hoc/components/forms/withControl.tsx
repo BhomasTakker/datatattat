@@ -1,5 +1,5 @@
 import React from "react";
-import { Controller, useFormContext, useFormState } from "react-hook-form";
+import { Controller, useFormState } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 
 type FormInputControl = {
@@ -23,7 +23,7 @@ export const withControl = (Component: any) => {
 			disabled = false,
 			required = false, //try this in rules / currently we are using default mui
 		} = props;
-		const { control } = useFormContext();
+		// const { control } = useFormContext();
 
 		const { errors } = useFormState();
 
@@ -33,7 +33,7 @@ export const withControl = (Component: any) => {
 		return (
 			<Controller
 				name={name}
-				control={control} //potentially picked up because form proovider use?
+				// control={control} //potentially picked up because form proovider use?
 				defaultValue={defaultValue}
 				//We may be stuck with basic validation ??
 				//You can pass a validation function or just options into rules.validate
