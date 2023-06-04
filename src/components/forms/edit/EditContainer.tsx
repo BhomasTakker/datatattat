@@ -1,11 +1,10 @@
-import React, { ReactElement, memo } from "react";
-import { Box, MenuItem, Stack } from "@mui/material";
+import React, { ReactElement } from "react";
+import { Box, MenuItem } from "@mui/material";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import { CONTAINERS } from "@/src/factories/containers";
-import { useFormContext, useWatch } from "react-hook-form";
+import { useWatch } from "react-hook-form";
 import { containerEditFactory } from "@/src/factories/container-factory";
 import { BaseEditProps } from "./types/BaseEdit";
-import { MARGINS } from "config/styles/styles.config";
 
 //EditPageContainer
 //Need provide description for each
