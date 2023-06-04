@@ -45,7 +45,7 @@ export const EditContainer = ({ objectKey }: BaseEditProps) => {
 
 	return (
 		<Box>
-			<WithInfo info="Much Info">
+			<WithInfo infoId="SelectContainer">
 				<SelectInputWithControl
 					id="Select Container"
 					label="Select Container"

@@ -14,6 +14,7 @@ const defaultReturn = (data: unknown) => data;
 export const clientsideFetch = async ({
 	url,
 	searchParams = {},
+	//This is for modifying the returned data
 	returnFn = defaultReturn,
 	options = {}, //perhaps options_id
 }: ClientSideFetchType) => {
@@ -34,9 +35,11 @@ export const clientsideFetch = async ({
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_API_PATH}/${url}${endpoint.search}`
 	);
-	const result = await response.json();
+	if (!response.ok) {
+		throw new Error("Network response was not ok");
+	}
 
-	// console.log({ result });
+	const result = await response.json();
 
 	return returnFn(result);
 };

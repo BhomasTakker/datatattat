@@ -11,6 +11,8 @@ import { Title } from "../../ui/title";
 import { TitleVariant } from "../../types/ui";
 import { WithInfo } from "../../edit/info/WithInfo";
 import { MARGINS } from "config/styles/styles.config";
+import { useQuery } from "@tanstack/react-query";
+import { clientsideFetch } from "@/src/api/clientside-fetch";
 
 // const componentsSelectInputList = createSelectInputList(COMPONENTS);
 // const withSelectInputList = createSelectInputList(EDIT_WITH);
@@ -21,6 +23,12 @@ import { MARGINS } from "config/styles/styles.config";
 // we will re-render regardless
 export const SimpleListEdit = memo(
 	({ objectKey }: BaseEditProps) => {
+		// This would re-render the whole component when info loaded
+		// not sure that would be the correct aproach
+		// const { status, data, error } = useQuery({
+		// 	queryKey: ['todos'],
+		// 	queryFn: () => clientsideFetch({url: 'api/info/get/SimpleList'}),
+		// })
 		// const { control } = useFormContext();
 		const componentsSelectInputList = createSelectInputList(COMPONENTS);
 		const withSelectInputList = createSelectInputList(EDIT_WITH);
@@ -60,7 +68,8 @@ export const SimpleListEdit = memo(
 				{/* <Title variant={TitleVariant.SUB} text="Component Properties" /> */}
 				{/* marginLeft={MARGINS.MIDLARGE} */}
 				<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
-					<WithInfo info="Component blurb">
+					{/* Could/Should we update infoId on the choice made? */}
+					<WithInfo infoId="SimpleList.ComponentId">
 						{/* With Info add an info button and link to data  */}
 
 						<SelectInputWithControl
@@ -79,7 +88,7 @@ export const SimpleListEdit = memo(
 				</Box>
 				{/* <Title variant={TitleVariant.SUB} text="With (Select behaviour)" /> */}
 				<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
-					<WithInfo info="With blurb">
+					<WithInfo infoId="withBehaviour">
 						<SelectInputWithControl
 							label="With Behaviour"
 							name={`${objectKey}._with.type`}

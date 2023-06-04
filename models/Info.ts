@@ -19,6 +19,9 @@ const InfoSchema = new Schema({
 		type: String,
 		required: [true, "You must include a description."],
 	},
+	items: {
+		type: Object,
+	},
 });
 
 export default mongoose.models.Info || mongoose.model("Info", InfoSchema);

@@ -47,11 +47,11 @@ export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
 	});
 	return (
 		<Box>
-			<WithInfo info="Query ">
-				<Title variant={TitleVariant.EDIT_COMPONENT} text="Query" />
+			<WithInfo infoId="APIQuery">
+				<Title variant={TitleVariant.EDIT_COMPONENT} text="API Query" />
 			</WithInfo>
 			<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
-				<WithInfo info="Query Id blurb">
+				<WithInfo infoId="ReactQueryId">
 					<TextInputWithControl
 						label={"queryId"}
 						name={`${objectKey}.query.queryId`}
@@ -63,7 +63,7 @@ export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
 				{/* Seperate component - 'should' be EditSelectInput? - It is already - password etc are their own beast  */}
 				{/* Add these to Edit/input */}
 
-				<WithInfo info="API Component blurb">
+				<WithInfo infoId="apiComponent">
 					<SelectInputWithControl
 						label="apiComponent"
 						name={`${objectKey}.query.apiId`}

@@ -83,7 +83,7 @@ export const ComponentEdit = ({
 			<Paper elevation={1} className={classes.container}>
 				<Accordion defaultExpanded expanded={!isCollapsed} elevation={0}>
 					<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
-						<WithInfo info="Nothing here currently!">
+						<WithInfo infoId="selectComponent">
 							<Stack
 								direction={"row"}
 								// paddingLeft={MARGINS.LARGE}

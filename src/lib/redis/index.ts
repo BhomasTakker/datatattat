@@ -2,6 +2,7 @@
 
 import { getEnvVar } from "@/src/utils/env";
 import { Redis } from "ioredis";
+import { RedisCacheTime } from "./types";
 
 export const redis = new Redis({
 	host: getEnvVar("REDIS_HOST"),
@@ -12,7 +13,11 @@ export const redis = new Redis({
 //should be using generics to provide type
 //redisApiFetch ?
 //should be potentially in a seperate file
-export const redisApiFetch = async (endpoint: URL, options: RequestInit) => {
+export const redisApiFetch = async (
+	endpoint: URL,
+	options: RequestInit,
+	cacheExpire: RedisCacheTime = RedisCacheTime.DAY
+) => {
 	const cachedValue = await redis.get(endpoint.toString());
 
 	//not sure we should be parsing?
@@ -37,6 +42,8 @@ export const redisApiFetch = async (endpoint: URL, options: RequestInit) => {
 	//we need take or use default
 	//some way of managing how long this will be cached for
 	await redis.set(endpoint.toString(), JSON.stringify(result));
+	//need to set cache expire to a provided value or use a default / not integrated into edit yet
+	await redis.expire(endpoint.toString(), cacheExpire);
 
 	return result;
 	//new Response(result);
