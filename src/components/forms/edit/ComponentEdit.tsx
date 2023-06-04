@@ -9,7 +9,7 @@ import {
 	IconButton,
 	Paper,
 } from "@mui/material";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useCallback, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { BaseEditProps } from "./types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
@@ -25,7 +25,10 @@ type inputFuncs = {
 	onMove: (dir: number) => void;
 };
 
-//Move out of DTAStack folder
+// We should ultimately add another component / select input
+// So when a user selects they select a collection forst THEN a component
+// i.e. LISTS -> SimpleList
+
 export const ComponentEdit = ({
 	objectKey,
 	onDelete,
@@ -37,29 +40,32 @@ export const ComponentEdit = ({
 		// control,
 		name: `${objectKey}.componentType`,
 	});
-	const createComponentList = () => {
+	const createComponentList = useCallback(() => {
 		return Object.keys(EDIT_COMPONENTS).map((container) => (
 			<MenuItem key={container} value={container}>
 				{container}
 			</MenuItem>
 		));
-	};
+	}, []);
 	//This feels utilsy - DRY bollocks
-	const createComponent = (component: any): ReactElement => {
-		// console.log({ COMPONENTID: component });
-		if (!component) {
-			return <></>;
-		}
+	const createComponent = useCallback(
+		(component: any): ReactElement => {
+			// console.log({ COMPONENTID: component });
+			if (!component) {
+				return <></>;
+			}
 
-		const EditComponent = componentEditFactory(component);
+			const EditComponent = componentEditFactory(component);
 
-		if (!EditComponent) {
-			//Error
-			return <div>{component}</div>;
-		}
+			if (!EditComponent) {
+				//Error
+				return <div>{component}</div>;
+			}
 
-		return <EditComponent objectKey={objectKey} />;
-	};
+			return <EditComponent objectKey={objectKey} />;
+		},
+		[objectKey]
+	);
 
 	console.log("RERERENDER - ", `${objectKey}.componentType`);
 	return (
