@@ -45,7 +45,7 @@ export const SelectInput = React.memo(
 	}: SelectInputType) => {
 		console.log("SELECT INPUT RE-RENDER");
 		return (
-			<WithLabel label={label} htmlFor="Select Container">
+			<WithLabel label={label} htmlFor={id}>
 				<TextField
 					// color="primary"
 					id={id}
