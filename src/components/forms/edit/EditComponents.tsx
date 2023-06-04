@@ -10,7 +10,7 @@ import { MARGINS } from "config/styles/styles.config";
 //That is a managed array
 //So we can manage the created components
 export const EditComponents = ({ objectKey }: BaseEditProps) => {
-	const { watch, getValues, setValue, resetField } = useFormContext();
+	const { getValues, setValue } = useFormContext();
 	// const watchComponents = watch("content.components") || [];
 	const watchComponents = useWatch({ name: "content.components" }) || [];
 

@@ -70,7 +70,9 @@ export const SelectInput = React.memo(
 			</WithLabel>
 		);
 	},
-	(prevProps, nextProps) => prevProps === nextProps
+	(prevProps, nextProps) =>
+		prevProps.field.value === nextProps.field.value &&
+		prevProps.disabled === nextProps.disabled
 );
 SelectInput.displayName = "SelectInput";
 export const SelectInputWithControl = withControl(SelectInput);
