@@ -13,66 +13,68 @@ import { InfoProps, TextVariant } from "../../types/ui";
 import { MARGINS } from "config/styles/styles.config";
 import { Text } from "../../ui/text";
 
-const WithInfo = ({
-	children,
-	info = "",
-	infoId = "",
-}: InfoProps): ReactElement => {
-	const [infoDisplay, setInfoDisplay] = useState(info);
-	const [isOpen, setIsOpen] = useState(false);
+const WithInfo = memo(
+	({ children, info = "", infoId = "" }: InfoProps): ReactElement => {
+		const [infoDisplay, setInfoDisplay] = useState(info);
+		const [isOpen, setIsOpen] = useState(false);
 
-	console.log("WILD RE-RENDER");
+		// console.log("WILD RE-RENDER");
 
-	useEffect(() => {
-		//perhaps manage better / bur seems to work well
-		//We need a loading spinner and a timeout
-		const fetchInfo = async () => {
-			if (!infoId || !isOpen) return;
-			const result = await fetch(`api/info/get/${infoId}`);
-			const response = await result.json();
+		useEffect(() => {
+			//perhaps manage better / bur seems to work well
+			//We need a loading spinner and a timeout
+			const fetchInfo = async () => {
+				if (!infoId || !isOpen) return;
+				const result = await fetch(`api/info/get/${infoId}`);
+				const response = await result.json();
 
-			//error check
-			// console.log({ response });
+				//error check
+				// console.log({ response });
 
-			setInfoDisplay(
-				response?.description ||
-					"No Description available - Why don't you create some? Go to ***** and submit your description you could earn credits for doing so"
-			);
-		};
-		if (!info && !infoDisplay) fetchInfo();
-	}, [info, infoDisplay, infoId, isOpen]);
+				setInfoDisplay(
+					response?.description ||
+						"No Description available - Why don't you create some? Go to ***** and submit your description you could earn credits for doing so"
+				);
+			};
+			if (!info && !infoDisplay) fetchInfo();
+		}, [info, infoDisplay, infoId, isOpen]);
 
-	const onClickHandler = () => setIsOpen((currentState) => !currentState);
+		const onClickHandler = () => setIsOpen((currentState) => !currentState);
 
-	return (
-		<Box>
-			<Accordion expanded={isOpen} elevation={0}>
-				<Stack
-					// width={"100%"}
-					direction={"row"}
-					justifyContent="space-between"
-					alignItems="center"
-				>
-					{children}
-					{/* <Box height={MARGINS.MID}> */}
-					<IconButton
-						aria-label="Info"
-						onClick={() => onClickHandler()}
-						color="primary"
+		return (
+			<Box>
+				<Accordion expanded={isOpen} elevation={0}>
+					<Stack
+						// width={"100%"}
+						direction={"row"}
+						justifyContent="space-between"
+						alignItems="center"
 					>
-						<InfoIcon />
-					</IconButton>
-					{/* </Box> */}
-				</Stack>
-				<AccordionDetails>
-					<Box padding={MARGINS.MIDSMALL}>
-						<Text variant={TextVariant.DESCIPTION} text={infoDisplay} />
-					</Box>
-				</AccordionDetails>
-			</Accordion>
-		</Box>
-	);
-};
+						{children}
+						{/* <Box height={MARGINS.MID}> */}
+						<IconButton
+							aria-label="Info"
+							onClick={() => onClickHandler()}
+							color="primary"
+						>
+							<InfoIcon />
+						</IconButton>
+						{/* </Box> */}
+					</Stack>
+					<AccordionDetails>
+						<Box padding={MARGINS.MIDSMALL}>
+							<Text variant={TextVariant.DESCIPTION} text={infoDisplay} />
+						</Box>
+					</AccordionDetails>
+				</Accordion>
+			</Box>
+		);
+	},
+	(oldProps, newProps) =>
+		oldProps.info === newProps.info && oldProps.infoId === newProps.infoId
+);
+
+WithInfo.displayName = "WithInfo";
 
 //should export hoc too?
 
