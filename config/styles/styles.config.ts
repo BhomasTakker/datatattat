@@ -8,3 +8,10 @@ export enum MARGINS {
 	MIDLARGE = "2rem",
 	LARGE = "2.5rem",
 }
+
+export enum INFO_MARGINS {
+	STANDARD_LEFT = "11rem",
+	STANDARD_RIGHT = "3rem",
+	TOGGLE_RIGHT = "6rem",
+	ARRAY_CONTROLS_RIGHT = "15rem",
+}

@@ -1,7 +1,7 @@
 import { COMPONENTS } from "@/src/factories/components";
 import { EDIT_WITH } from "@/src/factories/with";
 import { Box, Stack } from "@mui/material";
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
@@ -23,15 +23,30 @@ import { clientsideFetch } from "@/src/api/clientside-fetch";
 // we will re-render regardless
 export const SimpleListEdit = memo(
 	({ objectKey }: BaseEditProps) => {
+		////////////////////////////////////////////////////
+		// You could type simpleListInfo / need to really
 		// This would re-render the whole component when info loaded
-		// not sure that would be the correct aproach
-		// const { status, data, error } = useQuery({
-		// 	queryKey: ['todos'],
-		// 	queryFn: () => clientsideFetch({url: 'api/info/get/SimpleList'}),
-		// })
+		// not sure that would be the correct aproach / here maybe not / or use useMemo for the function uses
+		/////////////////////////////////////////////////////////
+		// Sure it could be better / should be neater but it works
+		// Arguably create a hook for this - sure it's small but it'll be repeated {data, errors, status} = useClientQuery(key, url, params)
+		const { data: simpleListInfo } = useQuery({
+			queryKey: ["SimpleListInfo"],
+			queryFn: () => clientsideFetch({ url: "api/info/get/SimpleList" }),
+		});
+
+		// console.log("RENDER ME AGAIN ", {
+		// 	description: simpleListInfo?.description,
+		// });
 		// const { control } = useFormContext();
-		const componentsSelectInputList = createSelectInputList(COMPONENTS);
-		const withSelectInputList = createSelectInputList(EDIT_WITH);
+		const componentsSelectInputList = useMemo(() => {
+			// console.log("WE SHOULD RENDER ONCE");
+			return createSelectInputList(COMPONENTS);
+		}, []);
+		const withSelectInputList = useMemo(
+			() => createSelectInputList(EDIT_WITH),
+			[]
+		);
 
 		const [withEditComponent, setWithEditComponent] = useState(<></>);
 		// createWithEditComponent(withComponent, `${objectKey}._with`)
@@ -51,7 +66,7 @@ export const SimpleListEdit = memo(
 			);
 		}, [withComponent, objectKey]);
 
-		console.log("SIMPLE LIST RE-RENDER");
+		// console.log("SIMPLE LIST RE-RENDER");
 
 		// console.log({ ONJECT_KEY: objectKey });
 		return (
@@ -60,7 +75,7 @@ export const SimpleListEdit = memo(
 				{/* At most use a title component - options can then say - turn all off */}
 				{/* <Typography variant="h3">SimpleList</Typography> */}
 				{/* If we have a title for Simple list etc then we can easily add an info tag and expand that to show info text */}
-				<WithInfo infoId="SimpleList">
+				<WithInfo info={simpleListInfo?.description || "loading"}>
 					<Title variant={TitleVariant.EDIT_COMPONENT} text="Simple List" />
 				</WithInfo>
 
@@ -69,7 +84,7 @@ export const SimpleListEdit = memo(
 				{/* marginLeft={MARGINS.MIDLARGE} */}
 				<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
 					{/* Could/Should we update infoId on the choice made? */}
-					<WithInfo infoId="SimpleList.ComponentId">
+					<WithInfo info={simpleListInfo?.items?.componentId}>
 						{/* With Info add an info button and link to data  */}
 
 						<SelectInputWithControl

@@ -6,6 +6,7 @@ import { useWatch } from "react-hook-form";
 import { containerEditFactory } from "@/src/factories/container-factory";
 import { BaseEditProps } from "./types/BaseEdit";
 import { WithInfo } from "../../edit/info/WithInfo";
+import { INFO_MARGINS } from "config/styles/styles.config";
 
 //EditPageContainer
 //Need provide description for each
@@ -45,7 +46,10 @@ export const EditContainer = ({ objectKey }: BaseEditProps) => {
 
 	return (
 		<Box>
-			<WithInfo infoId="SelectContainer">
+			<WithInfo
+				infoId="SelectContainer"
+				marginLeft={INFO_MARGINS.STANDARD_LEFT}
+			>
 				<SelectInputWithControl
 					id="Select Container"
 					label="Select Container"

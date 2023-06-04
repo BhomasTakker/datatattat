@@ -12,7 +12,7 @@ import {
 import { WithInfo } from "@/components/edit/info/WithInfo";
 import { Title } from "@/components/ui/title";
 import { TitleVariant } from "@/components/types/ui";
-import { MARGINS } from "config/styles/styles.config";
+import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
 
 //Also this ??
 //Create factory component?
@@ -63,7 +63,7 @@ export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
 				{/* Seperate component - 'should' be EditSelectInput? - It is already - password etc are their own beast  */}
 				{/* Add these to Edit/input */}
 
-				<WithInfo infoId="apiComponent">
+				<WithInfo infoId="apiComponent" marginLeft={INFO_MARGINS.STANDARD_LEFT}>
 					<SelectInputWithControl
 						label="apiComponent"
 						name={`${objectKey}.query.apiId`}

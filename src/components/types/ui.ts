@@ -37,4 +37,6 @@ export type InfoProps = {
 	children: ReactNode;
 	info?: string;
 	infoId?: string;
+	marginLeft?: string;
+	marginRight?: string;
 };

@@ -18,6 +18,8 @@ const WithInfo = ({
 	children,
 	info = "",
 	infoId = "",
+	marginLeft = "",
+	marginRight = "",
 }: InfoProps): ReactElement => {
 	const [infoDisplay, setInfoDisplay] = useState(info);
 	const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +29,11 @@ const WithInfo = ({
 	useEffect(() => {
 		//perhaps manage better / bur seems to work well
 		//We need a loading spinner and a timeout
+		if (info) {
+			//What if we used some default data?
+			//Or if we just expect undefined?
+			setInfoDisplay(info);
+		}
 		const fetchInfo = async () => {
 			if (!infoId || !isOpen) return;
 			const result = await fetch(`api/info/get/${infoId}`);
@@ -66,7 +73,12 @@ const WithInfo = ({
 					{/* </Box> */}
 				</Stack>
 				<AccordionDetails>
-					<Box padding={MARGINS.MIDSMALL}>
+					<Box
+						paddingTop={MARGINS.MIDSMALL}
+						paddingBottom={MARGINS.MIDSMALL}
+						paddingLeft={marginLeft || MARGINS.MIDSMALL}
+						paddingRight={marginRight || MARGINS.MIDSMALL}
+					>
 						<Text variant={TextVariant.DESCIPTION} text={infoDisplay} />
 					</Box>
 				</AccordionDetails>
