@@ -100,7 +100,7 @@ export const SimpleListEdit = memo(
 	// Effectively don't ever re-render me
 	// I look after myself
 	// My parent might get re-rendered and that is how I get deleted, moved etc
-	() => true
+	(prev, next) => prev.objectKey === next.objectKey
 );
 
 SimpleListEdit.displayName = "SimpleListEdit";
