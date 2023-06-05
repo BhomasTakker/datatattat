@@ -10,7 +10,7 @@ import { createWithEditComponent } from "../../edit/with-edit-component";
 import { Title } from "../../ui/title";
 import { TitleVariant } from "../../types/ui";
 import { WithInfo } from "../../edit/info/WithInfo";
-import { MARGINS } from "config/styles/styles.config";
+import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
 import { useQuery } from "@tanstack/react-query";
 import { clientsideFetch } from "@/src/api/clientside-fetch";
 
@@ -84,7 +84,11 @@ export const SimpleListEdit = memo(
 				{/* marginLeft={MARGINS.MIDLARGE} */}
 				<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
 					{/* Could/Should we update infoId on the choice made? */}
-					<WithInfo info={simpleListInfo?.items?.componentId}>
+					<WithInfo
+						info={simpleListInfo?.items?.componentId}
+						marginLeft={INFO_MARGINS.STANDARD_LEFT}
+						marginRight={INFO_MARGINS.STANDARD_RIGHT}
+					>
 						{/* With Info add an info button and link to data  */}
 
 						<SelectInputWithControl
@@ -103,7 +107,11 @@ export const SimpleListEdit = memo(
 				</Box>
 				{/* <Title variant={TitleVariant.SUB} text="With (Select behaviour)" /> */}
 				<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
-					<WithInfo infoId="withBehaviour">
+					<WithInfo
+						infoId="withBehaviour"
+						marginLeft={INFO_MARGINS.STANDARD_LEFT}
+						marginRight={INFO_MARGINS.STANDARD_RIGHT}
+					>
 						<SelectInputWithControl
 							label="With Behaviour"
 							name={`${objectKey}._with.type`}

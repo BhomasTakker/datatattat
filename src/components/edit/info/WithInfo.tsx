@@ -13,6 +13,8 @@ import { InfoProps, TextVariant } from "../../types/ui";
 import { MARGINS } from "config/styles/styles.config";
 import { Text } from "../../ui/text";
 
+// We probably want to take html so we can have links, etc
+
 //memoising here if children change we won't be re-rendered meaning they won't either...
 const WithInfo = ({
 	children,

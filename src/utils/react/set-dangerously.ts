@@ -1,6 +1,10 @@
 // Convert html into react / better to use if possible
 // https://www.npmjs.com/package/html-react-parser
 
+// look at setHTML() - new method
+
+// We may want to use this for info etc
+
 // You can also use DOMPurify on the server - which we probably should do?
 import DOMPurify from "dompurify";
 

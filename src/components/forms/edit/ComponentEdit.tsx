@@ -16,7 +16,7 @@ import { SelectInputWithControl } from "../../input/SelectInput";
 import { ArrayControls } from "./ArrayControls";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { MARGINS } from "config/styles/styles.config";
+import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
 import { WithInfo } from "../../edit/info/WithInfo";
 import classes from "./ComponentEdit.module.scss";
 
@@ -83,7 +83,12 @@ export const ComponentEdit = ({
 			<Paper elevation={1} className={classes.container}>
 				<Accordion defaultExpanded expanded={!isCollapsed} elevation={0}>
 					<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
-						<WithInfo infoId="selectComponent">
+						<WithInfo
+							infoId="selectComponent"
+							info="WordPress taxonomies (categories, tags, and other custom taxonomies) make it easy for your visitors to find the content they are looking for on your website, and there are many ways in which they can do that. You could, for instance, add a most popular tag cloud to your website, allow your visitors to search by category, display recent posts from a category, and more. In this tutorial, we will be showing you how to set up RSS"
+							marginLeft={INFO_MARGINS.STANDARD_LEFT}
+							marginRight={INFO_MARGINS.ARRAY_CONTROLS_RIGHT}
+						>
 							<Stack
 								direction={"row"}
 								// paddingLeft={MARGINS.LARGE}

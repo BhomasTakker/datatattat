@@ -51,7 +51,11 @@ export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
 				<Title variant={TitleVariant.EDIT_COMPONENT} text="API Query" />
 			</WithInfo>
 			<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
-				<WithInfo infoId="ReactQueryId">
+				<WithInfo
+					infoId="ReactQueryId"
+					marginLeft={INFO_MARGINS.STANDARD_LEFT}
+					marginRight={INFO_MARGINS.STANDARD_RIGHT}
+				>
 					<TextInputWithControl
 						label={"queryId"}
 						name={`${objectKey}.query.queryId`}
