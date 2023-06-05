@@ -78,8 +78,8 @@ const WithInfo = ({
 					<Box
 						paddingTop={MARGINS.MIDSMALL}
 						paddingBottom={MARGINS.MIDSMALL}
-						paddingLeft={marginLeft || MARGINS.MIDSMALL}
-						paddingRight={marginRight || MARGINS.MIDSMALL}
+						marginLeft={marginLeft || MARGINS.MIDSMALL}
+						marginRight={marginRight || MARGINS.MIDSMALL}
 					>
 						<Text variant={TextVariant.DESCIPTION} text={infoDisplay} />
 					</Box>
