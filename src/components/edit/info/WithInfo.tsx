@@ -14,6 +14,7 @@ import { MARGINS } from "config/styles/styles.config";
 import { Text } from "../../ui/text";
 
 // We probably want to take html so we can have links, etc
+// We really need to - links, lists, emphasis, and graphical representation of anything via html
 
 //memoising here if children change we won't be re-rendered meaning they won't either...
 const WithInfo = ({

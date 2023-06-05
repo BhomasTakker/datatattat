@@ -200,7 +200,11 @@ export const BingNewsSearchEdit = ({ objectKey }: BaseEditProps) => {
 				</WithInfo>
 				{/* Needs a bigger gap - fundementally different  */}
 				{/* Should we add this above query parameters? */}
-				<WithInfo>
+				<WithInfo
+					infoId="ResponseConversion"
+					marginLeft={INFO_MARGINS.STANDARD_LEFT}
+					marginRight={INFO_MARGINS.STANDARD_RIGHT}
+				>
 					<SelectInputWithControl
 						label="response conversion"
 						name={`${objectKey}.response`}
