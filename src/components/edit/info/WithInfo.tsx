@@ -79,8 +79,18 @@ const WithInfo = ({
 					<Box
 						paddingTop={MARGINS.MIDSMALL}
 						paddingBottom={MARGINS.MIDSMALL}
-						marginLeft={marginLeft || MARGINS.MIDSMALL}
-						marginRight={marginRight || MARGINS.MIDSMALL}
+						marginLeft={{
+							lg: marginLeft || MARGINS.MIDSMALL,
+							md: marginLeft || MARGINS.MIDSMALL,
+							sm: MARGINS.MIDSMALL,
+							xs: MARGINS.MIDSMALL,
+						}}
+						marginRight={{
+							lg: marginRight || MARGINS.MIDSMALL,
+							md: marginRight || MARGINS.MIDSMALL,
+							sm: MARGINS.MIDSMALL,
+							xs: MARGINS.MIDSMALL,
+						}}
 					>
 						<Text variant={TextVariant.DESCIPTION} text={infoDisplay} />
 					</Box>

@@ -13,7 +13,8 @@ export enum MARGINS {
 
 //On mobile STANDARD_LEFT, etc needs to be 0
 export enum INFO_MARGINS {
-	STANDARD_LEFT = "11rem",
+	STANDARD_LEFT = "22%", //"11rem", / this is dirty but it looks good! / not quite % very variable! / vw would be more stable
+	//
 	STANDARD_RIGHT = "3rem",
 	TOGGLE_RIGHT = "6rem",
 	ARRAY_CONTROLS_RIGHT = "13rem",
