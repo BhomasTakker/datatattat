@@ -68,7 +68,8 @@ export const SimpleListEdit = memo(
 
 		// console.log("SIMPLE LIST RE-RENDER");
 
-		// console.log({ ONJECT_KEY: objectKey });
+		// We need to add a TITLE
+		// ignore if you want but a title and a blurb and a link etc???
 		return (
 			//  marginLeft={MARGINS.MIDLARGE}
 			<Stack gap={MARGINS.SMALL}>
