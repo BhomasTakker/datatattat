@@ -6,6 +6,11 @@ export const testReturn = (data: BingNewsSearchResponse) => {
 	};
 };
 
+//just create a mod or whatever
+//input obj
+//label='My Title' ref = 'title'
+//take the rest as a {} or dispose
+
 //string identifier for an array value works
 //which makes it easier to dynamically apply a value to a return
 export const toArticleList = (data: BingNewsSearchResponse) => {

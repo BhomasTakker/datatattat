@@ -1,6 +1,10 @@
 //Get from same file - barren export
 import { BingNewsSearchEdit } from "./bing/news/BingNewsSearchEdit";
-import { BING_NEWS_SEARCH_API_OBJECT } from "./bing/news/constants";
+import {
+	BING_NEWS_HEADLINES_API_OBJECT,
+	BING_NEWS_SEARCH_API_OBJECT,
+	BING_NEWS_TRENDING_API_OBJECT,
+} from "./bing/news/constants";
 //import from constants
 import { TikTokCreatorOembedEdit } from "./social-media/tik-tok/CreatorEdit";
 import { TikTokVideoOembedEdit } from "./social-media/tik-tok/VideoEdit";
@@ -19,7 +23,10 @@ import {
 
 //api configs
 export const API_LIST: any = {
+	//bing
 	bingNewsSearch: BING_NEWS_SEARCH_API_OBJECT,
+	bingNewsHeadlines: BING_NEWS_HEADLINES_API_OBJECT,
+	bingNewsTrending: BING_NEWS_TRENDING_API_OBJECT,
 
 	//Twitter
 	twitterProfileOembed: TWITTER_PROFILE_OEMBED_OBJECT,
@@ -34,6 +41,9 @@ export const API_LIST: any = {
 export const API_EDIT_LIST: any = {
 	//load news objects and spread
 	bingNewsSearch: BingNewsSearchEdit,
+	bingNewsHeadlines: BingNewsSearchEdit,
+	bingNewsTrending: BingNewsSearchEdit,
+
 	//Social-media
 	//twitter - load twitter object and spread
 	twitterProfileOembed: TwitterProfileOembedEdit,

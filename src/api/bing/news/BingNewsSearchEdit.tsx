@@ -15,8 +15,19 @@ import { TitleVariant } from "@/src/components/types/ui";
 import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
 import { clientsideFetch } from "../../clientside-fetch";
 import { useQuery } from "@tanstack/react-query";
-
-//Search
+///////////////////////////////////////////////////
+//Search / Is all the bing news endpoints
+// search without e appears to be trending
+//a better explanation of each perhaps required
+// but theoretically
+//With a conversion - that is it
+////////////////////////////////////////////////
+// Absolutely 100% can 'automate' this
+// Create a json representation
+// and can cycle through
+// Create one for apis
+// Then potentially create for other stuff....
+///////////////////////////////////////////////
 export const BingNewsSearchEdit = ({ objectKey }: BaseEditProps) => {
 	const paramsRoute = `${objectKey}.params`;
 	const { data: BingNewsSearchInfo } = useQuery({
@@ -51,7 +62,6 @@ export const BingNewsSearchEdit = ({ objectKey }: BaseEditProps) => {
 						label="q"
 						name={`${paramsRoute}.q`}
 						fullWidth={true}
-						required
 					/>
 				</WithInfo>
 				<WithInfo
