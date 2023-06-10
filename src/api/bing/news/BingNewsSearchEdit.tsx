@@ -53,6 +53,8 @@ export const BingNewsSearchEdit = ({ objectKey }: BaseEditProps) => {
 						<TextInput></TextInput>
 					</WithToggle>
 				</WithInfo> */}
+				{/* not required but not 'removed' will result in an empty q being sent
+				    this results in headlines / trending being returned for whichever endpoint */}
 				<WithInfo
 					info={items?.q}
 					marginLeft={marginLeft}
