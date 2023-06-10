@@ -37,15 +37,16 @@ const createQueryObject = (queryObject: any) => {
 };
 
 const createRssQueryObject = (queryObject: any) => {
-	const { queryId, rssId, url, response, params, options } = queryObject;
+	const { queryId, rssId, url, response, params, options, route } = queryObject;
 
+	console.log({ rssQuery: queryObject });
 	//API 'config'
 	//If not found return error or whatever
 	const config = RSS_LIST[rssId];
-	const returnFn = config.returns[response];
+	const returnFn = (data) => data; // config.returns[response];
 	const searchObject = {
-		url: config.url,
-		searchParams: params,
+		url: "api/rss", //add news etc
+		searchParams: { url: route },
 		returnFn,
 		options: {},
 	};
@@ -82,6 +83,7 @@ export const withFactory = (componentObject: any, withObject: any) => {
 
 		case "rss-query":
 			//return rssWithQueryComponent();//
+			console.log({ withObject });
 			return withQuery(componentObject, createRssQueryObject(withObject.query));
 
 		default:

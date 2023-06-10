@@ -33,9 +33,9 @@ async function query(req: NextApiRequest, res: NextApiResponse) {
 	// );
 
 	console.log("hare");
-	console.log({ feed });
+	// console.log({ feed });
 	const { items } = feed;
-	console.log({ items });
+	// console.log({ items });
 	res.status(200).json(feed);
 }
 

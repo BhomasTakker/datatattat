@@ -6,16 +6,19 @@ import { Box } from "@mui/material";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
-export const BBCRssNewsFeedEdit = ({ objectKey }: BaseEditProps) => {
+export const SkyRssNewsFeedEdit = ({ objectKey }: BaseEditProps) => {
 	const { getValues, setValue } = useFormContext();
 
 	useEffect(() => {
-		setValue(`${objectKey}.route`, "http://feeds.bbci.co.uk/news/rss.xml");
+		setValue(
+			`${objectKey}.route`,
+			"https://feeds.skynews.com/feeds/rss/home.xml"
+		);
 	}, [objectKey, setValue]);
 	return (
 		<Box>
 			<WithInfo info={"description"}>
-				<Title variant={TitleVariant.EDIT_COMPONENT} text="BBC RSS Feed" />
+				<Title variant={TitleVariant.EDIT_COMPONENT} text="Sky RSS Feed" />
 			</WithInfo>
 		</Box>
 	);
