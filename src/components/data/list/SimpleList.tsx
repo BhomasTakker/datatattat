@@ -22,17 +22,17 @@ export const SimpleList = ({
 	queryData: any;
 	componentId: string;
 }) => {
-	const { data = [] } = queryData;
+	const { items = [] } = queryData;
 	////////////////////////
 	//doesn't feel okay?
 	//Right in theory perhaps just need to overload input perhaps - pass Id and nothing else surely?
 	const Component = componentFactory(componentId);
 
-	// console.log("SimpleList");
-	// console.log({ data });
-
-	const items = data.map((item: any) => (
+	console.log("SimpleList");
+	console.log({ SimpleListdata: items });
+	console.log({ SimpleList_queryData: queryData });
+	const componentList = items.map((item: any) => (
 		<Component key={item.url} data={item} />
 	));
-	return <List>{items}</List>;
+	return <List>{componentList}</List>;
 };

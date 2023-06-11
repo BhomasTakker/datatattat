@@ -1,5 +1,5 @@
 const BASE_URL = "http://feeds.bbci.co.uk/";
-const POSTFIX = "rss.xml";
+const POSTFIX = "/rss.xml";
 
 // not a config but rss initialisation object or something??
 

@@ -26,7 +26,7 @@ export const toArticleList = (data: BingNewsSearchResponse) => {
 		};
 	});
 	return {
-		data: articleList,
+		items: articleList,
 	};
 };
 

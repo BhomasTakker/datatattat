@@ -112,8 +112,16 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 	const { endpointInput } = config;
 
 	useEffect(() => {
-		setValue(`${objectKey}.route`, selectedEndpoint);
-	}, [objectKey, selectedEndpoint, setValue]);
+		const { baseUrl, postfix, endpoints } = config;
+		// For select or text - bit of a hack
+		// perhaps don't wan't to set this here
+		// argument for context perhaps
+
+		const endpoint =
+			(endpoints && endpoints[selectedEndpoint]) || selectedEndpoint;
+		const url = `${baseUrl}${endpoint}${postfix}`;
+		setValue(`${objectKey}.route`, url);
+	}, [config, objectKey, selectedEndpoint, setValue]);
 
 	useEffect(() => {
 		setSelectedEndpoint(config.defaultEndpoint || "");

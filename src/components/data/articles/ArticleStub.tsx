@@ -14,10 +14,10 @@ import React from "react";
 export const ArticleStub = ({ data }: any) => {
 	const { title, url, image, description, author, published, source } = data;
 
-	const { id, name } = source;
+	const { id = "", name = "" } = source || {};
 
 	// console.log({ image });
-	// console.log({ data });
+	console.log({ ArticleStubData: data });
 	return (
 		<>
 			{/* 100% this shouldn't be a list item... - unless absolutely specified as ListItems  */}
