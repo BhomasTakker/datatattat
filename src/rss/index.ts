@@ -1,3 +1,4 @@
+import { CUSTOM_RSS_CONFIG_OBJECT } from "./custom/config";
 import { BBCRssNewsFeedEdit } from "./news/BBC/RssFeedEdit";
 import { BBC_RSS_CONFIG_OBJECT } from "./news/BBC/config";
 import { BBC_NEWS_RSS_OBJECT } from "./news/BBC/constants";
@@ -25,5 +26,5 @@ export const RSS_CONFIG_LIST: any = {
 	bbcNews: BBC_RSS_CONFIG_OBJECT,
 	skyNews: SKY_NEWS_RSS_CONFIG_OBJECT,
 	googleNews: BBC_RSS_CONFIG_OBJECT,
-	custom: BBC_RSS_CONFIG_OBJECT,
+	custom: CUSTOM_RSS_CONFIG_OBJECT,
 };

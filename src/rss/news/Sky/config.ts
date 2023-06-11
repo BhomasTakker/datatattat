@@ -15,9 +15,17 @@ enum ENDPOINTS {
 	strange = "strange",
 }
 
+const inputObject = {
+	type: "select",
+	endpoints: ENDPOINTS,
+	default: ENDPOINTS.home,
+	params: [],
+};
+
 export const SKY_NEWS_RSS_CONFIG_OBJECT = {
 	baseUrl: BASE_URL,
 	endpoints: ENDPOINTS,
 	defaultEndpoint: ENDPOINTS.home,
 	postfix: POSTFIX,
+	endpointInput: inputObject,
 };
