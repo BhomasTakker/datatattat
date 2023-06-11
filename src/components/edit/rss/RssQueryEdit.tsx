@@ -1,7 +1,10 @@
 import { Box, Stack } from "@mui/material";
 import React, { ReactElement, useEffect, useState } from "react";
 import { BaseEditProps } from "@/components/forms/edit/types/BaseEdit";
-import { createSelectInputList } from "../../input/TextInput";
+import {
+	TextInputWithControl,
+	createSelectInputList,
+} from "../../input/TextInput";
 import { WithInfo } from "@/components/edit/info/WithInfo";
 import { Title } from "@/components/ui/title";
 import { TitleVariant } from "@/components/types/ui";
@@ -9,21 +12,31 @@ import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
 import { RSS_CONFIG_LIST, RSS_EDIT_LIST } from "../../../rss";
 import { BasicSelectInput } from "../../input/BasicSelectInput";
 import { BasicTextInput } from "../../input/BasicTextInput";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
+import { SelectInputWithControl } from "../../input/SelectInput";
 
 // Probably move these components into their own file
 // Not one each just all in one for now
 const EndpointSelectInput = ({ endpoints, onSelect, value, id }: any) => {
 	return (
 		<WithInfo infoId="RssEndpoint">
-			<BasicSelectInput
+			<SelectInputWithControl
+				label="Endpoint"
+				name={id}
+				fullWidth={true}
+				required
+				// onChange={changeHandler}
+			>
+				{createSelectInputList(endpoints)}
+			</SelectInputWithControl>
+			{/* <BasicSelectInput
 				label="Endpoint"
 				id={id}
 				value={value}
 				onChange={(e) => onSelect(e.target.value)}
 			>
 				{createSelectInputList(endpoints)}
-			</BasicSelectInput>
+			</BasicSelectInput> */}
 		</WithInfo>
 	);
 };
@@ -31,12 +44,19 @@ const EndpointSelectInput = ({ endpoints, onSelect, value, id }: any) => {
 const EndpointTextInput = ({ onSelect, id, value }: any) => {
 	return (
 		<WithInfo infoId="RssEndpoint">
-			<BasicTextInput
+			<TextInputWithControl
+				label={"Endpoint"}
+				name={id}
+				fullWidth={true}
+				// variant="outlined"
+				disabled={false}
+			/>
+			{/* <BasicTextInput
 				onChange={(e) => onSelect(e.target.value)}
 				label="Endpoint"
 				value={value}
 				id={id}
-			/>
+			/> */}
 		</WithInfo>
 	);
 };
@@ -51,7 +71,7 @@ const EndPointInputComponent = ({ data, onSelect, value, objectKey }: any) => {
 					endpoints={data.endpoints}
 					onSelect={onSelect}
 					value={value}
-					id={`${objectKey}.query.rssId`}
+					id={`${objectKey}.query.endpoint`}
 				/>
 			);
 
@@ -60,7 +80,7 @@ const EndPointInputComponent = ({ data, onSelect, value, objectKey }: any) => {
 			return (
 				<EndpointTextInput
 					onSelect={onSelect}
-					id={`${objectKey}.query.rssId`}
+					id={`${objectKey}.query.endpoint`}
 					value={value}
 				/>
 			);
@@ -72,16 +92,19 @@ const EndPointInputComponent = ({ data, onSelect, value, objectKey }: any) => {
 // THEN useState updates - after the new 'initial' render
 const RSSComponent = ({ componentId, objectKey }: any) => {
 	const { setValue } = useFormContext();
+	const selectedEndpoint = useWatch({
+		name: `${objectKey}.query.endpoint`,
+	});
 
 	const config = RSS_CONFIG_LIST[componentId] || {};
-	const [selectedEndpoint, setSelectedEndpoint] = useState<string>(
-		config.defaultEndpoint || ""
-	);
+	const { baseUrl, postfix, endpoints } = config;
+	// const [selectedEndpoint, setSelectedEndpoint] = useState<string>(
+	// 	config.defaultEndpoint || ""
+	// );
 
 	const { endpointInput } = config;
 
 	useEffect(() => {
-		const { baseUrl, postfix, endpoints } = config;
 		// For select or text - bit of a hack
 		// perhaps don't wan't to set this here
 		// argument for context perhaps
@@ -90,11 +113,11 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 			(endpoints && endpoints[selectedEndpoint]) || selectedEndpoint;
 		const url = `${baseUrl}${endpoint}${postfix}`;
 		setValue(`${objectKey}.route`, url);
-	}, [config, objectKey, selectedEndpoint, setValue]);
+	}, [baseUrl, endpoints, objectKey, postfix, selectedEndpoint, setValue]);
 
-	useEffect(() => {
-		setSelectedEndpoint(config.defaultEndpoint || "");
-	}, [componentId, config.defaultEndpoint]);
+	// useEffect(() => {
+	// 	setSelectedEndpoint(config.defaultEndpoint || "");
+	// }, [componentId, config.defaultEndpoint]);
 
 	if (!componentId) {
 		return <></>; //errorComponent
@@ -115,7 +138,7 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 	const enpointInputComponent = (
 		<EndPointInputComponent
 			data={endpointInput}
-			onSelect={setSelectedEndpoint}
+			// onSelect={setSelectedEndpoint}
 			value={selectedEndpoint}
 			objectKey={objectKey}
 		/>
@@ -125,8 +148,11 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 };
 
 export const RssQueryEdit = ({ objectKey }: BaseEditProps) => {
-	const [rssComponent, setRssComponent] = useState<string>("custom"); //custom as default
-
+	// const [rssComponent, setRssComponent] = useState<string>("custom"); //custom as default
+	const rssComponent = useWatch({
+		// control,
+		name: `${objectKey}.query.rssFeed`,
+	});
 	return (
 		<Box>
 			<WithInfo infoId="RssQuery">
@@ -134,14 +160,24 @@ export const RssQueryEdit = ({ objectKey }: BaseEditProps) => {
 			</WithInfo>
 			<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
 				<WithInfo infoId="rssComponent" marginLeft={INFO_MARGINS.STANDARD_LEFT}>
-					<BasicSelectInput
+					{/* <BasicSelectInput
 						label="RSS Feed"
-						id={`${objectKey}.query.rssId`}
+						//change to rssQuery or whatever
+						id={`${objectKey}.query.rssFeed`}
 						value={rssComponent}
 						onChange={(e) => setRssComponent(e.target.value)}
 					>
 						{createSelectInputList(RSS_CONFIG_LIST)}
-					</BasicSelectInput>
+					</BasicSelectInput> */}
+					<SelectInputWithControl
+						label="RSS Feed"
+						name={`${objectKey}.query.rssFeed`}
+						fullWidth={true}
+						required
+						// onChange={changeHandler}
+					>
+						{createSelectInputList(RSS_CONFIG_LIST)}
+					</SelectInputWithControl>
 				</WithInfo>
 				<RSSComponent
 					componentId={rssComponent}
