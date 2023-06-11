@@ -11,39 +11,8 @@ import { BasicSelectInput } from "../../input/BasicSelectInput";
 import { BasicTextInput } from "../../input/BasicTextInput";
 import { useFormContext } from "react-hook-form";
 
-//Also this ??
-//Create factory component?
-// args componentId, componentList, objectKey
-//Create Factory Component
-
-//Don't load an edit component
-//get config and build one off of it
-// const createRSSComponent = (
-// 	component: any,
-// 	objectKey: string
-// ): ReactElement => {
-// 	// console.log({ COMPONENTID: component });
-// 	if (!component) {
-// 		return <></>;
-// 	}
-
-// 	const config = RSS_CONFIG_LIST[component];
-
-// 	//Okay our factories aren't exactly doing anything
-// 	// const ApiComponent = withEditFactory(component);
-// 	const RssComponent = RSS_EDIT_LIST[component];
-
-// 	if (!RssComponent) {
-// 		//Error
-// 		return <div>{component}</div>;
-// 	}
-
-// 	return <></>;
-// 	//  <RssComponent objectKey={objectKey} />;
-// };
-
-//WithInfo away from here?
-// Probably doesn't really matter much
+// Probably move these components into their own file
+// Not one each just all in one for now
 const EndpointSelectInput = ({ endpoints, onSelect, value, id }: any) => {
 	return (
 		<WithInfo infoId="RssEndpoint">
@@ -130,11 +99,6 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 	if (!componentId) {
 		return <></>; //errorComponent
 	}
-
-	console.log({ RSS_CONFIG_LIST });
-	console.log({ componentId });
-	console.log({ config });
-
 	///////////////////////////////////////
 	// There has to be an endpoint input
 	// if select provide available endpoints and default
@@ -142,16 +106,11 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 	// if params are available provide an array
 	////////////////////////////
 	// createEndpointInput
-	// pass in setEndpoint & inputObject - see BBC
 	// if params then create inputs / string, number, select
 	// form the rss feed url
 	// theoretically params only available with with certain endpoints
 	// check if endpoint object for 'sub' object
 	////////////////////////////
-	// All rss feeds will just require a 'config'
-	/////////////////////
-	// Need a response conversion
-	///////////////////////////////////////////////
 
 	const enpointInputComponent = (
 		<EndPointInputComponent
@@ -161,22 +120,6 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 			objectKey={objectKey}
 		/>
 	);
-	// const endpoints = (
-	// 	// <Box marginLeft={MARGINS.LARGE}>
-	// 	<WithInfo infoId="RssEndpoint">
-	// 		<BasicSelectInput
-	// 			label="Endpoint"
-	// 			// name={`${objectKey}.query.rssId`}
-	// 			id={`${objectKey}.query.rssId`}
-	// 			// defaultValue=
-	// 			value={selectedEndpoint}
-	// 			onChange={(e) => setSelectedEndpoint(e.target.value)}
-	// 		>
-	// 			{createSelectInputList(config.endpoints)}
-	// 		</BasicSelectInput>
-	// 	</WithInfo>
-	// 	// </Box>
-	// );
 
 	return enpointInputComponent;
 };
@@ -184,51 +127,16 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 export const RssQueryEdit = ({ objectKey }: BaseEditProps) => {
 	const [rssComponent, setRssComponent] = useState<string>("custom"); //custom as default
 
-	// const { control } = useFormContext();
-	// const rssComponent = useWatch({
-	// 	// control,
-	// 	name: `${objectKey}.query.rssId`,
-	// });
-	console.log({ rssComponent });
 	return (
 		<Box>
 			<WithInfo infoId="RssQuery">
 				<Title variant={TitleVariant.EDIT_COMPONENT} text="RSS Query" />
 			</WithInfo>
 			<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
-				{/* <WithInfo
-					infoId="RssQueryId"
-					marginLeft={INFO_MARGINS.STANDARD_LEFT}
-					marginRight={INFO_MARGINS.STANDARD_RIGHT}
-				>
-					<TextInputWithControl
-						label={"rssId"}
-						name={`${objectKey}.query.queryId`}
-						fullWidth={true}
-						// variant="outlined"
-						disabled={false}
-					/>
-				</WithInfo> */}
-				{/* Seperate component - 'should' be EditSelectInput? - It is already - password etc are their own beast  */}
-				{/* Add these to Edit/input */}
-
-				{/* Select input withOUT control */}
-				{/* Within the given edit component set `${objectKey}.query.rssId`  */}
 				<WithInfo infoId="rssComponent" marginLeft={INFO_MARGINS.STANDARD_LEFT}>
-					{/* <SelectInputWithControl
-						label="rssComponent"
-						name={`${objectKey}.query.rssId`}
-						fullWidth={true}
-						required
-						// onChange={changeHandler}
-					>
-						{createSelectInputList(RSS_EDIT_LIST)}
-					</SelectInputWithControl> */}
 					<BasicSelectInput
 						label="RSS Feed"
-						// name={`${objectKey}.query.rssId`}
 						id={`${objectKey}.query.rssId`}
-						// defaultValue=
 						value={rssComponent}
 						onChange={(e) => setRssComponent(e.target.value)}
 					>
@@ -240,8 +148,6 @@ export const RssQueryEdit = ({ objectKey }: BaseEditProps) => {
 					objectKey={`${objectKey}.query`}
 				/>
 			</Stack>
-
-			{/* {createRSSComponent(rssComponent, `${objectKey}.query`)} */}
 		</Box>
 	);
 };
