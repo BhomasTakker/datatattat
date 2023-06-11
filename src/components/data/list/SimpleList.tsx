@@ -28,11 +28,11 @@ export const SimpleList = ({
 	//Right in theory perhaps just need to overload input perhaps - pass Id and nothing else surely?
 	const Component = componentFactory(componentId);
 
-	console.log("SimpleList");
-	console.log({ SimpleListdata: items });
-	console.log({ SimpleList_queryData: queryData });
+	// console.log("SimpleList");
+	// console.log({ SimpleListdata: items });
+	// console.log({ SimpleList_queryData: queryData });
 	const componentList = items.map((item: any) => (
-		<Component key={item.url} data={item} />
+		<Component key={item.link} data={item} />
 	));
 	return <List>{componentList}</List>;
 };

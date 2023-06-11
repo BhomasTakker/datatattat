@@ -5,6 +5,25 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import React from "react";
+import { RSSEnclosure, RSSImage } from "@/src/rss/types";
+
+const CreateAvatar = ({
+	image,
+	enclosure,
+	title,
+}: {
+	image?: RSSImage;
+	enclosure?: RSSEnclosure;
+	title?: string;
+}) => {
+	if (image) return <Avatar alt={image.title} src={image.url} />;
+
+	if (enclosure && enclosure?.type.includes("image"))
+		return <Avatar alt={title || ""} src={enclosure.url} />;
+
+	// no image image?
+	return <></>;
+};
 
 //
 //this is still dependent upon being used with a list though
@@ -12,12 +31,31 @@ import React from "react";
 //Technically anything could go here
 //if an image, title, and misc data
 export const ArticleStub = ({ data }: any) => {
-	const { title, url, image, description, author, published, source } = data;
+	const {
+		title,
+		image,
+		description,
+		author,
+		pubDate,
+		source,
+		link,
+		category,
+		guid,
+		enclosure,
+	} = data;
+	// const {
+	// 	url: enclosureUrl,
+	// 	title: enclosureTitle,
+	// 	link: enclosureLink,
+	// } = enclosure || {};
+	// const { url: imageUrl, title: imageTitle, link: imageLink } = image || {};
 
-	const { id = "", name = "" } = source || {};
+	const { url: sourceUrl = "" } = source || {};
+
+	//really need to mush enclosure into image if it is an image
 
 	// console.log({ image });
-	console.log({ ArticleStubData: data });
+	// console.log({ ArticleStubData: data });
 	return (
 		<>
 			{/* 100% this shouldn't be a list item... - unless absolutely specified as ListItems  */}
@@ -25,7 +63,8 @@ export const ArticleStub = ({ data }: any) => {
 			{/* Really just take the component - or the content and add to a ListItem -> stanndardHOC */}
 			<ListItem>
 				<ListItemAvatar>
-					<Avatar alt={description} src={image} />
+					<CreateAvatar image={image} enclosure={enclosure} title={title} />
+					{/* <Avatar alt={imageTitle} src={imageUrl} /> */}
 				</ListItemAvatar>
 				<ListItemText
 					primary={title}
@@ -39,8 +78,8 @@ export const ArticleStub = ({ data }: any) => {
 							>
 								{description}
 							</Typography>
-							{published}
-							{name}
+							{pubDate}
+							{author || sourceUrl}
 						</React.Fragment>
 					}
 				/>
