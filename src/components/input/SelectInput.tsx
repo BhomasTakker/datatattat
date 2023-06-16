@@ -69,10 +69,10 @@ export const SelectInput = React.memo(
 				</TextField>
 			</WithLabel>
 		);
-	},
-	(prevProps, nextProps) =>
-		prevProps.field.value === nextProps.field.value &&
-		prevProps.disabled === nextProps.disabled
+	}
+	// (prevProps, nextProps) =>
+	// 	prevProps.field.value === nextProps.field.value &&
+	// 	prevProps.disabled === nextProps.disabled
 );
 SelectInput.displayName = "SelectInput";
 export const SelectInputWithControl = withControl(SelectInput);

@@ -12,7 +12,7 @@ const POSTFIX = "/rss.xml";
 // Recursive components
 /////////////////////////
 enum ENDPOINTS {
-	News = "news",
+	"Top Stories" = "news",
 	World = "news/world",
 	Uk = "news/uk",
 	Africa = "news/africa",
@@ -41,17 +41,21 @@ enum ENDPOINTS {
 }
 
 const inputObject = {
+	id: "bbc_endpoint",
+	label: "BBC Select Endpoint",
+	baseUrl: BASE_URL,
+	postfix: POSTFIX,
 	type: "select",
 	endpoints: ENDPOINTS,
-	default: ENDPOINTS["News"],
+	defaultEndpoint: "Top Stories",
 	params: [],
 };
 
 export const BBC_RSS_CONFIG_OBJECT = {
-	baseUrl: BASE_URL,
+	// baseUrl: BASE_URL,
 	endpoints: ENDPOINTS,
-	defaultEndpoint: ["News"],
-	postfix: POSTFIX,
+	// defaultEndpoint: ["News"],
+	// postfix: POSTFIX,
 
 	endpointInput: inputObject,
 };
