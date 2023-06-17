@@ -29,14 +29,6 @@ const EndpointSelectInput = ({ endpoints, id, label }: any) => {
 			>
 				{createSelectInputList(endpoints)}
 			</SelectInputWithControl>
-			{/* <BasicSelectInput
-				label="Endpoint"
-				id={id}
-				value={value}
-				onChange={(e) => onSelect(e.target.value)}
-			>
-				{createSelectInputList(endpoints)}
-			</BasicSelectInput> */}
 		</WithInfo>
 	);
 };
@@ -51,12 +43,6 @@ const EndpointTextInput = ({ id, label }: any) => {
 				// variant="outlined"
 				disabled={false}
 			/>
-			{/* <BasicTextInput
-				onChange={(e) => onSelect(e.target.value)}
-				label="Endpoint"
-				value={value}
-				id={id}
-			/> */}
 		</WithInfo>
 	);
 };
@@ -69,7 +55,7 @@ const EndpointTextInput = ({ id, label }: any) => {
 // N.B /////////////////////////
 // We need to set value to new default if data object changes
 const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
-	const { setValue, resetField, unregister } = useFormContext();
+	const { setValue, getValues, resetField, unregister } = useFormContext();
 	const [RecursiveComponent, setRecursiveComponent] = useState(<></>);
 	const {
 		type,
@@ -82,13 +68,18 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 		label,
 		defaultEndpoint,
 	} = data;
+	const formId = `${objectKey}.${id}`;
+
 	// console.log({ data });
-	// better name
+	// better name / is not component
 	const inputComponent = useWatch({
-		name: `${objectKey}.${id}`,
+		name: formId,
 		// defaultValue,
 	});
 
+	const selectedEndpointObject = endpointObjects[inputComponent];
+
+	//////////////////////////////////////////////////////
 	// Okay this is all a little messy
 	// currently value can be from a select or text input
 	// Value will either be the endpoint or an endpoints id
@@ -101,57 +92,40 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 				endpoints && typeof endpoints[val] == "string" ? endpoints[val] : val;
 			const selectedEndpoint = `${baseUrl}${directory}${postfix}`;
 
-			console.log({ MUG: id });
-			// console.log({ ARRGGGHH: typeof endpoints[val] });
-			// console.log({ OOOOHHH: endpoints[val] });
-			console.log({ YEEEAAAA: directory });
-			console.log({ PAH: selectedEndpoint });
-			console.log({ SET_routeId: routeId });
 			setValue(routeId, selectedEndpoint);
 		},
 		[routeId, setValue]
 	);
 
 	useEffect(() => {
-		// console.log("NEW RENDER THING ");
-		// console.log("data.defaultValue ", data.defaultEndpoint);
-		// console.log({ data });
+		// Tests to set input to default value on change
+		// Checks if current value exists in current endpoints
+		// if both choices share a field/endpoint then I believe it won't pick default
+		if (!inputComponent || typeof endpoints?.[inputComponent] !== "string") {
+			setValue(formId, defaultEndpoint);
+		}
+	}, [formId, defaultEndpoint, setValue, inputComponent, endpoints]);
 
-		setValue(`${objectKey}.${id}`, defaultEndpoint);
-
-		// This works for this but we probably need it on our actual inputs?
-		// This works but...
-		// We may well need it on every thing registered / which would be inputs and custom
+	useEffect(() => {
+		// unregister the form input when its id changes
+		// Might require this elsewhere i.e. closer to the input object itself
 		return () => {
-			unregister(`${objectKey}.${id}`);
+			unregister(formId);
 		};
-	}, [defaultEndpoint, id, objectKey, setValue, unregister]);
+	}, [formId, unregister]);
 
+	// always set a route value for a default route
+	// We should probably specify if an input is required
 	useEffect(() => {
 		setRouteValue({ baseUrl, endpoints, postfix }, inputComponent);
 	}, [baseUrl, endpoints, inputComponent, postfix, setRouteValue]);
 
-	// console.log("UPDATED outer ", endpointObjects);
+	// Create recursive component IF there is an endpointObject for our current chosen endpoint
 	useEffect(() => {
-		// console.log("UPDATED ", id);
-
-		// setRouteValue({ baseUrl, endpoints, postfix }, inputComponent);
-		// const selectedEndpoint = `${baseUrl}${inputComponent}${postfix}`;
-		// setValue(routeId, selectedEndpoint);
-
-		// For select or text - bit of a hack
-		// perhaps don't wan't to set this here
-		// argument for context perhaps
-		if (endpointObjects[inputComponent]) {
-			const newData = endpointObjects[inputComponent];
-			//need check new endpoint object
-
-			//just added for now - it makes sense
-			// setValue(routeId, "");
-			//recurse
+		if (selectedEndpointObject) {
 			setRecursiveComponent(
 				<EndPointInputComponent
-					data={newData}
+					data={selectedEndpointObject}
 					routeId={routeId}
 					objectKey={objectKey}
 				/>
@@ -159,11 +133,7 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 		} else {
 			setRecursiveComponent(<></>);
 		}
-
-		//data object getting updated every change
-		// parent components re-rendered when they shouldn't have been?
-		// should really check the data required to be passed
-	}, [inputComponent, objectKey, routeId]);
+	}, [inputComponent, objectKey, routeId, selectedEndpointObject]);
 
 	// endpointObjects,
 	// objectKey,
@@ -184,9 +154,7 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 	// Actual switch elsewhere
 	// We need add params here?
 
-	// console.log("RENDER SELECT OUTER");
-	// console.log({ endpoint: data.endpoints });
-
+	//At least move to a function
 	switch (type) {
 		//We don't update / because endpoint object stays the same?
 		case "select":

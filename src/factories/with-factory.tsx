@@ -25,6 +25,9 @@ const createQueryObject = (queryObject: any) => {
 		options: {},
 	};
 
+	// query id should probably just be url
+	// remove the option from users
+
 	const query = {
 		queryFn: () => clientsideFetch(searchObject),
 		queryId,
@@ -52,7 +55,7 @@ const createRssQueryObject = (queryObject: any) => {
 	};
 	const query = {
 		queryFn: () => clientsideFetch(searchObject),
-		queryId,
+		queryId: route,
 		//this is seperate to pagination state but includes
 		state: params,
 		options,

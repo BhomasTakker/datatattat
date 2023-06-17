@@ -12,15 +12,14 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 
 	//Just create the url and pass as a query param
 	const { url } = query;
-
 	// create an Rss redis database and redisRssFetch function
 	// const result = await redisApiFetch(endpoint, options);
 
 	const feed = await parser.parseURL(url as string);
 
 	const { items } = feed;
-	console.log({ items });
-	console.log("WAH WAH WAH");
+	// console.log({ items });
+	// console.log("WAH WAH WAH");
 	//return default
 
 	res.status(200).json(feed);
