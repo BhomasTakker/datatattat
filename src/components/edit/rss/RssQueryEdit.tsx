@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { BaseEditProps } from "@/components/forms/edit/types/BaseEdit";
 import {
 	TextInputWithControl,
@@ -69,7 +69,7 @@ const EndpointTextInput = ({ id, label }: any) => {
 // N.B /////////////////////////
 // We need to set value to new default if data object changes
 const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
-	const { setValue, resetField } = useFormContext();
+	const { setValue, resetField, unregister } = useFormContext();
 	const [RecursiveComponent, setRecursiveComponent] = useState(<></>);
 	const {
 		type,
@@ -78,6 +78,7 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 		baseUrl,
 		postfix = "",
 		endpointObjects = {},
+		endpoints,
 		label,
 		defaultEndpoint,
 	} = data;
@@ -88,16 +89,56 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 		// defaultValue,
 	});
 
-	useEffect(() => {
-		console.log("NEW RENDER THING ");
-		console.log("data.defaultValue ", data.defaultEndpoint);
-		console.log({ data });
-		setValue(`${objectKey}.${id}`, data.defaultEndpoint);
-	}, [id]);
+	// Okay this is all a little messy
+	// currently value can be from a select or text input
+	// Value will either be the endpoint or an endpoints id
+	// alternative perhaps
+	// each select value is an object containing its full url
+	const setRouteValue = useCallback(
+		(data: any, val: string) => {
+			const { baseUrl, endpoints, postfix } = data;
+			const directory =
+				endpoints && typeof endpoints[val] == "string" ? endpoints[val] : val;
+			const selectedEndpoint = `${baseUrl}${directory}${postfix}`;
 
-	console.log("UPDATED outer ", endpointObjects);
+			console.log({ MUG: id });
+			// console.log({ ARRGGGHH: typeof endpoints[val] });
+			// console.log({ OOOOHHH: endpoints[val] });
+			console.log({ YEEEAAAA: directory });
+			console.log({ PAH: selectedEndpoint });
+			console.log({ SET_routeId: routeId });
+			setValue(routeId, selectedEndpoint);
+		},
+		[routeId, setValue]
+	);
+
 	useEffect(() => {
-		console.log("UPDATED ", inputComponent);
+		// console.log("NEW RENDER THING ");
+		// console.log("data.defaultValue ", data.defaultEndpoint);
+		// console.log({ data });
+
+		setValue(`${objectKey}.${id}`, defaultEndpoint);
+
+		// This works for this but we probably need it on our actual inputs?
+		// This works but...
+		// We may well need it on every thing registered / which would be inputs and custom
+		return () => {
+			unregister(`${objectKey}.${id}`);
+		};
+	}, [defaultEndpoint, id, objectKey, setValue, unregister]);
+
+	useEffect(() => {
+		setRouteValue({ baseUrl, endpoints, postfix }, inputComponent);
+	}, [baseUrl, endpoints, inputComponent, postfix, setRouteValue]);
+
+	// console.log("UPDATED outer ", endpointObjects);
+	useEffect(() => {
+		// console.log("UPDATED ", id);
+
+		// setRouteValue({ baseUrl, endpoints, postfix }, inputComponent);
+		// const selectedEndpoint = `${baseUrl}${inputComponent}${postfix}`;
+		// setValue(routeId, selectedEndpoint);
+
 		// For select or text - bit of a hack
 		// perhaps don't wan't to set this here
 		// argument for context perhaps
@@ -106,7 +147,7 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 			//need check new endpoint object
 
 			//just added for now - it makes sense
-			setValue(routeId, "");
+			// setValue(routeId, "");
 			//recurse
 			setRecursiveComponent(
 				<EndPointInputComponent
@@ -117,35 +158,12 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 			);
 		} else {
 			setRecursiveComponent(<></>);
-			//Assume end of line
-			console.log("UPDATED Recursive <></>");
-			const selectedEndpoint = `${baseUrl}${inputComponent}${postfix}`;
-			// 	(endpoints && endpoints[selectedEndpoint]) || selectedEndpoint;
-			// const url = `${baseUrl}${endpoint}${postfix}`;
-			//how to set this
-			//On select we should wipe any existing
-			setValue(routeId, selectedEndpoint);
 		}
-		// return () => {
-		// 	resetField(`${objectKey}.${id}`);
-		// };
-		// How we set route would need to change
-		// const endpoint =
-		// 	(endpoints && endpoints[selectedEndpoint]) || selectedEndpoint;
-		// const url = `${baseUrl}${endpoint}${postfix}`;
-		// setValue(`${objectKey}.route`, url);
-	}, [
-		data,
-		baseUrl,
-		endpoint,
-		inputComponent,
-		objectKey,
-		postfix,
-		routeId,
-		setValue,
-		id,
-		// endpointObjects,
-	]);
+
+		//data object getting updated every change
+		// parent components re-rendered when they shouldn't have been?
+		// should really check the data required to be passed
+	}, [inputComponent, objectKey, routeId]);
 
 	// endpointObjects,
 	// objectKey,
@@ -166,15 +184,15 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 	// Actual switch elsewhere
 	// We need add params here?
 
-	console.log("RENDER SELECT OUTER");
-	console.log({ endpoint: data.endpoints });
+	// console.log("RENDER SELECT OUTER");
+	// console.log({ endpoint: data.endpoints });
 
 	switch (type) {
 		//We don't update / because endpoint object stays the same?
 		case "select":
 			Component = (
 				<EndpointSelectInput
-					endpoints={data.endpoints}
+					endpoints={endpoints}
 					label={label}
 					// onSelect={onSelect}
 					// value={value}

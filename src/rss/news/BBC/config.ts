@@ -70,7 +70,7 @@ enum ENGLAND_ENDPOINTS {
 const englandDirectoryObject = {
 	id: "bbc_england_directory",
 	label: "Region",
-	baseUrl: `${BASE_URL}/news/england`,
+	baseUrl: `${BASE_URL}news/england`,
 	postfix: POSTFIX,
 	type: "select",
 	endpoints: ENGLAND_ENDPOINTS,
@@ -81,7 +81,7 @@ const englandDirectoryObject = {
 const ukDirectoryObject = {
 	id: "bbc_uk_directory",
 	label: "UK News",
-	baseUrl: `${BASE_URL}/news/uk`,
+	baseUrl: `${BASE_URL}news/uk`,
 	postfix: POSTFIX,
 	type: "select",
 	endpoints: UK_ENDPOINTS,
