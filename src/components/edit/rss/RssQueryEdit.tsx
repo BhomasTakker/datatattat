@@ -14,6 +14,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import { Parameters } from "./parameters/Parameters";
 import { EditSelectInput, EditTextInput } from "./RssInputComponents";
+import { useUnregisterForm } from "../hooks/useUnregisterForm";
 
 /////////////////////////////////////////////////////////
 // We are the recursive component
@@ -41,13 +42,6 @@ const RSSQueryComponent = ({
 	const parameterFormState = useWatch({
 		name: parameterId,
 	});
-
-	// useEffect(() => {
-	// 	const parameterValue = options
-	// 		? options[parameterFormState]
-	// 		: parameterFormState;
-	// 	updateParameters({ id: key, value: parameterValue });
-	// }, [id, key, options, parameterFormState, updateParameters]);
 
 	switch (type) {
 		case "text":
@@ -89,6 +83,10 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 		// defaultValue,
 	});
 
+	// is there any reason why we would return a value?
+	// Even if error etc - i.e. nope nothing registered by that name?
+	useUnregisterForm(formId);
+
 	const selectedEndpointObject = endpointObjects[inputComponent];
 
 	//////////////////////////////////////////////////////
@@ -122,13 +120,15 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 		}
 	}, [formId, defaultEndpoint, setValue, inputComponent, endpoints]);
 
-	useEffect(() => {
-		// unregister the form input when its id changes
-		// Might require this elsewhere i.e. closer to the input object itself
-		return () => {
-			unregister(formId);
-		};
-	}, [formId, unregister]);
+	// Should probably convert into a hook
+	// we need this elsewhere
+	// useEffect(() => {
+	// 	// unregister the form input when its id changes
+	// 	// Might require this elsewhere i.e. closer to the input object itself
+	// 	return () => {
+	// 		unregister(formId);
+	// 	};
+	// }, [formId, unregister]);
 
 	// always set a route value for a default route
 	// We should probably specify if an input is required
@@ -211,6 +211,7 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 // We get a warning when we change feed
 // selectedEndpoint doesn't exist on new thing
 // THEN useState updates - after the new 'initial' render
+// RSS Query Component
 const RSSComponent = ({ componentId, objectKey }: any) => {
 	const config = RSS_CONFIG_LIST[componentId] || {};
 
@@ -243,6 +244,7 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 	return enpointInputComponent;
 };
 
+// RSS Query Select
 export const RssQueryEdit = ({ objectKey }: BaseEditProps) => {
 	const rssComponent = useWatch({
 		// control,
