@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { BaseEditProps } from "@/components/forms/edit/types/BaseEdit";
 import {
 	TextInputWithControl,
@@ -12,40 +12,8 @@ import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
 import { RSS_CONFIG_LIST } from "../../../rss";
 import { useFormContext, useWatch } from "react-hook-form";
 import { SelectInputWithControl } from "../../input/SelectInput";
-
-// Probably move these components into their own file
-// Not one each just all in one for now
-const EndpointSelectInput = ({ endpoints, id, label }: any) => {
-	console.log("EndpointSelectInput RENDER!");
-
-	return (
-		<WithInfo infoId="RssEndpoint">
-			<SelectInputWithControl
-				label={label}
-				name={id}
-				fullWidth={true}
-				required
-				// onChange={changeHandler}
-			>
-				{createSelectInputList(endpoints)}
-			</SelectInputWithControl>
-		</WithInfo>
-	);
-};
-
-const EndpointTextInput = ({ id, label }: any) => {
-	return (
-		<WithInfo infoId="RssEndpoint">
-			<TextInputWithControl
-				label={label}
-				name={id}
-				fullWidth={true}
-				// variant="outlined"
-				disabled={false}
-			/>
-		</WithInfo>
-	);
-};
+import { Parameters } from "./parameters/Parameters";
+import { EditSelectInput, EditTextInput } from "./RssInputComponents";
 
 /////////////////////////////////////////////////////////
 // We are the recursive component
@@ -55,8 +23,9 @@ const EndpointTextInput = ({ id, label }: any) => {
 // N.B /////////////////////////
 // We need to set value to new default if data object changes
 const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
-	const { setValue, getValues, resetField, unregister } = useFormContext();
-	const [RecursiveComponent, setRecursiveComponent] = useState(<></>);
+	const { setValue, unregister } = useFormContext();
+	const [RecursiveComponent, setRecursiveComponent] =
+		useState<ReactElement | null>(null);
 	const {
 		type,
 		id,
@@ -67,6 +36,7 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 		endpoints,
 		label,
 		defaultEndpoint,
+		params,
 	} = data;
 	const formId = `${objectKey}.${id}`;
 
@@ -131,7 +101,7 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 				/>
 			);
 		} else {
-			setRecursiveComponent(<></>);
+			setRecursiveComponent(null);
 		}
 	}, [inputComponent, objectKey, routeId, selectedEndpointObject]);
 
@@ -159,11 +129,9 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 		//We don't update / because endpoint object stays the same?
 		case "select":
 			Component = (
-				<EndpointSelectInput
+				<EditSelectInput
 					endpoints={endpoints}
 					label={label}
-					// onSelect={onSelect}
-					// value={value}
 					id={`${objectKey}.${id}`}
 				/>
 			);
@@ -171,21 +139,18 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 
 		case "text":
 		default:
-			Component = (
-				<EndpointTextInput
-					label={label}
-					// onSelect={onSelect}
-					id={`${objectKey}.${id}`}
-					// value={value}
-				/>
-			);
+			Component = <EditTextInput label={label} id={`${objectKey}.${id}`} />;
 			break;
 	}
 
 	return (
 		<Stack>
 			{Component}
-			{RecursiveComponent}
+			{RecursiveComponent ? (
+				RecursiveComponent
+			) : (
+				<Parameters params={params} objectKey={objectKey} />
+			)}
 		</Stack>
 	);
 };
@@ -194,40 +159,9 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 // selectedEndpoint doesn't exist on new thing
 // THEN useState updates - after the new 'initial' render
 const RSSComponent = ({ componentId, objectKey }: any) => {
-	// const { setValue } = useFormContext();
-	// create a route form property and set it to ''
-	// how then do we set it??
-	// if we are a designated end point then set route <- just set id as route / evrything else has a unique id
-	// otherwise don't worry about it
-	// we at that level will have the relevant inputObject
-
-	// const selectedEndpoint = useWatch({
-	// 	name: `${objectKey}.query.endpoint`,
-	// });
-
 	const config = RSS_CONFIG_LIST[componentId] || {};
-	// const { baseUrl, postfix, endpoints } = config;
-	// const [selectedEndpoint, setSelectedEndpoint] = useState<string>(
-	// 	config.defaultEndpoint || ""
-	// );
 
 	const { endpointInput } = config;
-
-	// useEffect(() => {
-	// 	// For select or text - bit of a hack
-	// 	// perhaps don't wan't to set this here
-	// 	// argument for context perhaps
-
-	// 	// How we set route would need to change
-	// 	const endpoint =
-	// 		(endpoints && endpoints[selectedEndpoint]) || selectedEndpoint;
-	// 	const url = `${baseUrl}${endpoint}${postfix}`;
-	// 	setValue(`${objectKey}.route`, url);
-	// }, [baseUrl, endpoints, objectKey, postfix, selectedEndpoint, setValue]);
-
-	// useEffect(() => {
-	// 	setSelectedEndpoint(config.defaultEndpoint || "");
-	// }, [componentId, config.defaultEndpoint]);
 
 	if (!componentId) {
 		return <></>; //errorComponent
@@ -244,18 +178,10 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 	// theoretically params only available with with certain endpoints
 	// check if endpoint object for 'sub' object
 	////////////////////////////
-	console.log("RSS Component Re-render");
-	console.log({ componentId });
 
 	const enpointInputComponent = (
 		<EndPointInputComponent
-			//////////////////////////////////////////////
-			// The bug is here - I think - log this out etc
-			// When data changes destroy object completely and rewrite!!!
-			//////////////////////////////////////////////////////
 			data={{ ...endpointInput }}
-			// onSelect={setSelectedEndpoint}
-			// value={selectedEndpoint}
 			objectKey={objectKey}
 			routeId={`${objectKey}.route`}
 		/>
@@ -265,7 +191,6 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 };
 
 export const RssQueryEdit = ({ objectKey }: BaseEditProps) => {
-	// const [rssComponent, setRssComponent] = useState<string>("custom"); //custom as default
 	const rssComponent = useWatch({
 		// control,
 		name: `${objectKey}.query.rssFeed`,
@@ -277,21 +202,11 @@ export const RssQueryEdit = ({ objectKey }: BaseEditProps) => {
 			</WithInfo>
 			<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
 				<WithInfo infoId="rssComponent" marginLeft={INFO_MARGINS.STANDARD_LEFT}>
-					{/* <BasicSelectInput
-						label="RSS Feed"
-						//change to rssQuery or whatever
-						id={`${objectKey}.query.rssFeed`}
-						value={rssComponent}
-						onChange={(e) => setRssComponent(e.target.value)}
-					>
-						{createSelectInputList(RSS_CONFIG_LIST)}
-					</BasicSelectInput> */}
 					<SelectInputWithControl
 						label="RSS Feed"
 						name={`${objectKey}.query.rssFeed`}
 						fullWidth={true}
 						required
-						// onChange={changeHandler}
 					>
 						{createSelectInputList(RSS_CONFIG_LIST)}
 					</SelectInputWithControl>

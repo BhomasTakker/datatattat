@@ -8,6 +8,9 @@ const POSTFIX = "";
 
 // if endpoint = text then text
 // if object do more
+
+// You shouldn't use enums like a hash
+// This is just an easy one of these
 enum ENDPOINTS {
 	Headlines = "",
 	Topics = "/headlines/section/topic/",
@@ -27,6 +30,52 @@ enum TOPICS {
 	HEALTH = "HEALTH",
 }
 
+// wider type
+// https://www.iban.com/country-codes
+enum COUNTRY_CODES {
+	"default (United Kingdom)" = "GB",
+	Afghanistan = "AF",
+	HAITI = "HT",
+	"United Kingdom" = "GB",
+	"USA" = "US",
+}
+
+//https://www.labnol.org/code/19899-google-translate-languages
+enum LANGUAGE_CODES {
+	"default (English)" = "en",
+	Afrikaans = "af",
+	Irish = "ga",
+	English = "en",
+	Welsh = "cy",
+	Esperanto = "eo",
+	"Haitian Creole" = "ht",
+}
+
+const baseParamsArray = [
+	{
+		type: "select",
+		id: "google_country_code",
+		label: "Country Code",
+		options: COUNTRY_CODES,
+		default: "default (United Kingdom)",
+		key: "hl",
+		prefix: "hl=",
+		postfix: "",
+		info: "",
+	},
+	{
+		type: "select",
+		id: "google_language_code",
+		label: "Language Code",
+		options: LANGUAGE_CODES,
+		default: "default (English)",
+		key: "gl",
+		prefix: "gl=",
+		postfix: "",
+		info: "",
+	},
+];
+
 // include baseUrl at the inputObject level
 // more flexible and scalable ??
 // include an id to use for form
@@ -43,7 +92,8 @@ const inputObject = {
 
 	info: "we need a description of what this does",
 
-	params: [],
+	params: baseParamsArray,
+
 	endpointObjects: {
 		Topics: {
 			id: "google_topics",
@@ -53,7 +103,7 @@ const inputObject = {
 			type: "select",
 			endpoints: TOPICS,
 			defaultEndpoint: "WORLD",
-			params: [],
+			params: baseParamsArray,
 		},
 		["Custom Topic"]: {
 			id: "google_topics",
@@ -61,7 +111,7 @@ const inputObject = {
 			baseUrl: "https://news.google.com/rss/topics/",
 			postfix: "",
 			type: "text",
-			params: [],
+			params: baseParamsArray,
 		},
 		Location: {
 			label: "Location",
@@ -69,7 +119,7 @@ const inputObject = {
 			baseUrl: "https://news.google.com/news/rss/headlines/section/geo/",
 			postfix: "",
 			type: "text",
-			params: [],
+			params: baseParamsArray,
 		},
 		Search: {
 			label: "Search",
@@ -78,7 +128,7 @@ const inputObject = {
 			baseUrl: "https://news.google.com/rss/search?q=",
 			postfix: "",
 			type: "text",
-			params: [],
+			params: baseParamsArray,
 		},
 	},
 };
