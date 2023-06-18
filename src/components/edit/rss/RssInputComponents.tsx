@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import {
 	TextInputWithControl,
@@ -20,21 +21,27 @@ type EditTextInputProps = {
 	infoId?: string;
 };
 
-export const EditSelectInput = ({
-	endpoints,
-	id,
-	label,
-}: EditSelectInputProps) => {
-	return (
-		<WithInfo infoId="RssEndpoint">
-			<SelectInputWithControl label={label} name={id} fullWidth={true} required>
-				{createSelectInputList(endpoints)}
-			</SelectInputWithControl>
-		</WithInfo>
-	);
-};
+export const EditSelectInput = memo(
+	({ endpoints, id, label }: EditSelectInputProps) => {
+		return (
+			<WithInfo infoId="RssEndpoint">
+				<SelectInputWithControl
+					label={label}
+					name={id}
+					fullWidth={true}
+					required
+				>
+					{createSelectInputList(endpoints)}
+				</SelectInputWithControl>
+			</WithInfo>
+		);
+	}
+);
 
-export const EditTextInput = ({ id, label }: EditTextInputProps) => {
+EditSelectInput.displayName = "EditSelectInput";
+
+export const EditTextInput = memo(({ id, label }: EditTextInputProps) => {
+	console.log("BUGGER RERENDERED ME HERE DAMMIT");
 	return (
 		<WithInfo infoId="RssEndpoint">
 			<TextInputWithControl
@@ -45,4 +52,6 @@ export const EditTextInput = ({ id, label }: EditTextInputProps) => {
 			/>
 		</WithInfo>
 	);
-};
+});
+
+EditTextInput.displayName = "EditTextInput";

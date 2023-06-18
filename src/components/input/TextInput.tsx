@@ -50,6 +50,7 @@ export const TextInput = React.memo(
 	}: TextInputType) => {
 		console.log(`TEXT INPUT RE-RENDER:${name}`);
 		console.log(`TEXT INPUT RE-RENDER:${field?.value}`);
+		console.log(`TEXT INPUT RE-RENDER:${id}`);
 		// const {
 		// 	control,
 		// 	formState: { errors },

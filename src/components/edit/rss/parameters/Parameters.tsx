@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect, useMemo } from "react";
 import { EditSelectInput, EditTextInput } from "../RssInputComponents";
 import {
 	ParametersContext,
@@ -37,6 +37,7 @@ const ParameterComponent = ({ data }: { data: ParametersType }) => {
 
 	switch (type) {
 		case "text":
+			console.log("RERENDERED THIS BUGGER");
 			return <EditTextInput id={parameterId} label={label} />;
 
 		case "select":
@@ -53,11 +54,17 @@ const ParametersList = ({
 }: {
 	parameters: ParametersType[];
 }) => {
+	const createParametersList = useCallback((parameters: ParametersType[]) => {
+		return parameters.map((param) => {
+			return <ParameterComponent key={param.id} data={param} />;
+		});
+	}, []);
 	return (
 		<Stack>
-			{parameters.map((param) => {
-				return <ParameterComponent key={param.id} data={param} />;
-			})}
+			{useMemo(
+				() => createParametersList(parameters),
+				[createParametersList, parameters]
+			)}
 		</Stack>
 	);
 };

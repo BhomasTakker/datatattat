@@ -20,6 +20,48 @@ import { EditSelectInput, EditTextInput } from "./RssInputComponents";
 // And we have parameters at this level
 /////////////////////////////////////////////////////////
 
+type RSSQueryComponentProps = {
+	id: string;
+	label: string;
+	type: string;
+	objectKey: string;
+	options: any[];
+};
+const RSSQueryComponent = ({
+	id,
+	label,
+	options,
+	type,
+	objectKey,
+}: RSSQueryComponentProps) => {
+	// const { type, id, label, options } = data;
+	// const { objectKey, updateParameters } = useContext(ParametersContext);
+	const parameterId = `${objectKey}.${id}`;
+
+	const parameterFormState = useWatch({
+		name: parameterId,
+	});
+
+	// useEffect(() => {
+	// 	const parameterValue = options
+	// 		? options[parameterFormState]
+	// 		: parameterFormState;
+	// 	updateParameters({ id: key, value: parameterValue });
+	// }, [id, key, options, parameterFormState, updateParameters]);
+
+	switch (type) {
+		case "text":
+			console.log("RERENDERED THIS BUGGER");
+			return <EditTextInput id={parameterId} label={label} />;
+
+		case "select":
+			return (
+				<EditSelectInput endpoints={options} id={parameterId} label={label} />
+			);
+		default:
+			return <></>;
+	}
+};
 // N.B /////////////////////////
 // We need to set value to new default if data object changes
 const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
@@ -71,7 +113,11 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 		// Tests to set input to default value on change
 		// Checks if current value exists in current endpoints
 		// if both choices share a field/endpoint then I believe it won't pick default
-		if (!inputComponent || typeof endpoints?.[inputComponent] !== "string") {
+		if (
+			!inputComponent ||
+			(endpoints && typeof endpoints?.[inputComponent] !== "string")
+		) {
+			console.log("DO WE HERE???");
 			setValue(formId, defaultEndpoint);
 		}
 	}, [formId, defaultEndpoint, setValue, inputComponent, endpoints]);
@@ -120,32 +166,39 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 	// If our chosen 'endpoint' has an endpoint object
 	// then create another EndpointInputComponent
 
-	let Component;
+	// let Component;
 	// Actual switch elsewhere
 	// We need add params here?
 
 	//At least move to a function
-	switch (type) {
-		//We don't update / because endpoint object stays the same?
-		case "select":
-			Component = (
-				<EditSelectInput
-					endpoints={endpoints}
-					label={label}
-					id={`${objectKey}.${id}`}
-				/>
-			);
-			break;
+	// switch (type) {
+	// 	//We don't update / because endpoint object stays the same?
+	// 	case "select":
+	// 		Component = (
+	// 			<EditSelectInput
+	// 				endpoints={endpoints}
+	// 				label={label}
+	// 				id={`${objectKey}.${id}`}
+	// 			/>
+	// 		);
+	// 		break;
 
-		case "text":
-		default:
-			Component = <EditTextInput label={label} id={`${objectKey}.${id}`} />;
-			break;
-	}
+	// 	case "text":
+	// 	default:
+	// 		Component = <EditTextInput label={label} id={`${objectKey}.${id}`} />;
+	// 		break;
+	// }
 
 	return (
 		<Stack>
-			{Component}
+			{/* {Component} */}
+			<RSSQueryComponent
+				id={id}
+				objectKey={objectKey}
+				label={label}
+				type={type}
+				options={endpoints}
+			/>
 			{RecursiveComponent ? (
 				RecursiveComponent
 			) : (
