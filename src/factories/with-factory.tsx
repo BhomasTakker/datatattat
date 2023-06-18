@@ -38,18 +38,23 @@ const createQueryObject = (queryObject: any) => {
 
 	return query;
 };
-
+// All needs a wild clean up and perhaps rethink
 const createRssQueryObject = (queryObject: any) => {
 	const { queryId, rssId, url, response, params, options, route } = queryObject;
 
 	console.log({ rssQuery: queryObject });
 	//API 'config'
 	//If not found return error or whatever
+	// Okay this is a dog - perhaps wrong way to do all of this
+	// We have a bug where params object is bleeding into this one
+	// unless we specify a params object string we get the prevvious
+	const searchUrl =
+		params && typeof params === "string" ? `${route}${params}` : route;
 	const config = RSS_LIST[rssId];
 	const returnFn = (data) => data; // config.returns[response];
 	const searchObject = {
 		url: "api/rss", //add news etc
-		searchParams: { url: route },
+		searchParams: { url: searchUrl },
 		returnFn,
 		options: {},
 	};
@@ -57,7 +62,7 @@ const createRssQueryObject = (queryObject: any) => {
 		queryFn: () => clientsideFetch(searchObject),
 		queryId: route,
 		//this is seperate to pagination state but includes
-		state: params,
+		state: {},
 		options,
 	};
 

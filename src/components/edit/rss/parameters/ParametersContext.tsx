@@ -52,6 +52,7 @@ export const ParametersContextProvider = ({
 		const parameterQueryString = createParametersList();
 		// write params out
 		// assign to params form string
+		const obj = Object.fromEntries(parameterList);
 		setValue(`${objectKey}.params`, parameterQueryString);
 	};
 
