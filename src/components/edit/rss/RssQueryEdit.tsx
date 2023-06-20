@@ -39,9 +39,9 @@ const RSSQueryComponent = ({
 	// const { objectKey, updateParameters } = useContext(ParametersContext);
 	const parameterId = `${objectKey}.${id}`;
 
-	const parameterFormState = useWatch({
-		name: parameterId,
-	});
+	// const parameterFormState = useWatch({
+	// 	name: parameterId,
+	// });
 
 	switch (type) {
 		case "text":
@@ -77,7 +77,7 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 	const formId = `${objectKey}.${id}`;
 
 	// console.log({ data });
-	// better name / is not component
+	// better name / is not component / is our value
 	const inputComponent = useWatch({
 		name: formId,
 		// defaultValue,
@@ -107,6 +107,7 @@ const EndPointInputComponent = ({ data, objectKey, routeId }: any) => {
 		[routeId, setValue]
 	);
 
+	// default Values need a big think over
 	useEffect(() => {
 		// Tests to set input to default value on change
 		// Checks if current value exists in current endpoints

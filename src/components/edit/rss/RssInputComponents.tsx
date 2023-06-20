@@ -41,7 +41,6 @@ export const EditSelectInput = memo(
 EditSelectInput.displayName = "EditSelectInput";
 
 export const EditTextInput = memo(({ id, label }: EditTextInputProps) => {
-	console.log("BUGGER RERENDERED ME HERE DAMMIT");
 	return (
 		<WithInfo infoId="RssEndpoint">
 			<TextInputWithControl

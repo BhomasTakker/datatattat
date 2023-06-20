@@ -12,32 +12,58 @@ type ParametersType = {
 	id: string;
 	label: string;
 	options: string[];
-	default: string;
+	defaultValue: string;
 	prefix: string; // should be void  - use key
 	postfix: string; // void??
 	info: string;
 	key: string;
 };
 
+// We can surely share this with api parameters?
+// at least component code is largely similar
 const ParameterComponent = ({ data }: { data: ParametersType }) => {
-	const { type, id, label, options, key } = data;
+	const { type, id, label, options, key, defaultValue } = data;
 	const { objectKey, updateParameters } = useContext(ParametersContext);
 	const parameterId = `${objectKey}.${id}`;
 
+	const { setValue } = useFormContext();
+
+	// better name needed - is our state value
 	const parameterFormState = useWatch({
 		name: parameterId,
 	});
 
 	useEffect(() => {
+		// We are checking this to find out type of input
+		// when we have type.
+		// type makes it easier
 		const parameterValue = options
 			? options[parameterFormState]
 			: parameterFormState;
 		updateParameters({ id: key, value: parameterValue });
 	}, [id, key, options, parameterFormState, updateParameters]);
 
+	useEffect(() => {
+		// Tests to set input to default value on change
+		// Checks if current value exists in current endpoints
+		// if both choices share a field/endpoint then I believe it won't pick default
+
+		// if no current value
+		// OR
+		// there are options
+		// AND options[value] is not a string i.e. illeagal value?
+		// provide the default value
+
+		if (
+			!parameterFormState ||
+			(options && typeof options?.[parameterFormState] !== "string")
+		) {
+			setValue(parameterId, defaultValue);
+		}
+	}, [parameterId, defaultValue, setValue, options, parameterFormState]);
+
 	switch (type) {
 		case "text":
-			console.log("RERENDERED THIS BUGGER");
 			return <EditTextInput id={parameterId} label={label} />;
 
 		case "select":
@@ -80,6 +106,7 @@ export const Parameters = ({
 }) => {
 	return (
 		<ParametersContextProvider value={{ objectKey }}>
+			{/* Why pass parameters when using context */}
 			<ParametersList parameters={params} />
 		</ParametersContextProvider>
 	);

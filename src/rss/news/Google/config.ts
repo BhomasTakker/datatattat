@@ -33,16 +33,14 @@ enum TOPICS {
 // wider type
 // https://www.iban.com/country-codes
 enum COUNTRY_CODES {
-	"default (United Kingdom)" = "GB",
 	Afghanistan = "AF",
 	HAITI = "HT",
-	"United Kingdom" = "GB",
-	"USA" = "US",
+	UK = "GB",
+	USA = "US",
 }
 
 //https://www.labnol.org/code/19899-google-translate-languages
 enum LANGUAGE_CODES {
-	"default (English)" = "en",
 	Afrikaans = "af",
 	Irish = "ga",
 	English = "en",
@@ -57,7 +55,7 @@ const baseParamsArray = [
 		id: "google_country_code",
 		label: "Country Code",
 		options: COUNTRY_CODES,
-		default: "default (United Kingdom)",
+		defaultValue: "UK",
 		key: "hl",
 		prefix: "hl=",
 		postfix: "",
@@ -68,7 +66,7 @@ const baseParamsArray = [
 		id: "google_language_code",
 		label: "Language Code",
 		options: LANGUAGE_CODES,
-		default: "default (English)",
+		defaultValue: "English",
 		key: "gl",
 		prefix: "gl=",
 		postfix: "",

@@ -13,6 +13,7 @@ import { WithInfo } from "../../edit/info/WithInfo";
 import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
 import { useQuery } from "@tanstack/react-query";
 import { clientsideFetch } from "@/src/api/clientside-fetch";
+// import { useUnregisterForm } from "../../edit/hooks/useUnregisterForm";
 
 // const componentsSelectInputList = createSelectInputList(COMPONENTS);
 // const withSelectInputList = createSelectInputList(EDIT_WITH);
@@ -34,6 +35,10 @@ export const SimpleListEdit = memo(
 			queryKey: ["SimpleListInfo"],
 			queryFn: () => clientsideFetch({ url: "api/info/get/SimpleList" }),
 		});
+
+		console.log(`Simple List Object Key:- ${objectKey}`);
+
+		// useUnregisterForm(objectKey);
 
 		// console.log("RENDER ME AGAIN ", {
 		// 	description: simpleListInfo?.description,
