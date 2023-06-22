@@ -2,13 +2,13 @@ import { Box, Container, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import React, { ReactElement } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
-import { API_EDIT_LIST } from "../api";
+import { API_EDIT_LIST } from "../../../api";
 import { BaseEditProps } from "@/components/forms/edit/types/BaseEdit";
-import { SelectInputWithControl } from "../components/input/SelectInput";
+import { SelectInputWithControl } from "../../input/SelectInput";
 import {
 	createSelectInputList,
 	TextInputWithControl,
-} from "../components/input/TextInput";
+} from "../../input/TextInput";
 import { WithInfo } from "@/components/edit/info/WithInfo";
 import { Title } from "@/components/ui/title";
 import { TitleVariant } from "@/components/types/ui";

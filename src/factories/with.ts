@@ -1,5 +1,5 @@
-import { ReactQueryEdit } from "./ReactQueryEdit";
-import { RssQueryEdit } from "../components/edit/rss/RssQueryEdit";
+import { ReactQueryEdit } from "../components/edit/api-query/ReactQueryEdit";
+import { RssQueryEdit } from "../components/edit/rss-query/RssQueryEdit";
 
 export const EDIT_WITH: any = {
 	// query is deprecated
