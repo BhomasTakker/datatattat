@@ -9,7 +9,8 @@ import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
 import { RSS_CONFIG_LIST } from "../../../rss";
 import { useWatch } from "react-hook-form";
 import { SelectInputWithControl } from "../../input/SelectInput";
-import { RecursiveEndpointInputComponent } from "./endpoint/RecursiveEndpointInputComponent";
+import { RecursiveEndpointSelectComponent } from "./endpoint/RecursiveEndpointSelectComponent";
+import { QueryEditProps } from "../types";
 
 // We get a warning when we change feed
 // selectedEndpoint doesn't exist on new thing
@@ -37,7 +38,7 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 	////////////////////////////
 
 	const enpointInputComponent = (
-		<RecursiveEndpointInputComponent
+		<RecursiveEndpointSelectComponent
 			data={{ ...endpointInput }}
 			objectKey={objectKey}
 			routeId={`${objectKey}.route`}
@@ -49,21 +50,30 @@ const RSSComponent = ({ componentId, objectKey }: any) => {
 
 //////////////////////////////////
 // RSS Query Select Component
-export const RssQuerySelect = ({ objectKey }: BaseEditProps) => {
+export const RssQuerySelect = ({
+	objectKey,
+	name,
+	title,
+	titleInfo,
+	inputInfo,
+	inputLabel,
+}: BaseEditProps & QueryEditProps) => {
 	const rssComponent = useWatch({
 		// control,
-		name: `${objectKey}.query.rssFeed`,
+		name: `${objectKey}.query.${name}`,
+		// name: `${objectKey}.query.rssFeed`,
 	});
 	return (
 		<Box>
-			<WithInfo infoId="RssQuery">
-				<Title variant={TitleVariant.EDIT_COMPONENT} text="RSS Query" />
+			{/* <WithInfo infoId="RssQuery"> */}
+			<WithInfo infoId={titleInfo}>
+				<Title variant={TitleVariant.EDIT_COMPONENT} text={title} />
 			</WithInfo>
 			<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
-				<WithInfo infoId="rssComponent" marginLeft={INFO_MARGINS.STANDARD_LEFT}>
+				<WithInfo infoId={inputInfo} marginLeft={INFO_MARGINS.STANDARD_LEFT}>
 					<SelectInputWithControl
-						label="RSS Feed"
-						name={`${objectKey}.query.rssFeed`}
+						label={inputLabel}
+						name={`${objectKey}.query.${name}`}
 						fullWidth={true}
 						required
 					>

@@ -7,7 +7,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 
 // How to make this more dynamic
 // abstract its use for RSS and standard queries?
-export const RecursiveEndpointInputComponent = ({
+export const RecursiveEndpointSelectComponent = ({
 	data,
 	objectKey,
 	routeId,
@@ -89,7 +89,7 @@ export const RecursiveEndpointInputComponent = ({
 	useEffect(() => {
 		if (selectedEndpointObject) {
 			setRecursiveComponent(
-				<RecursiveEndpointInputComponent
+				<RecursiveEndpointSelectComponent
 					data={selectedEndpointObject}
 					routeId={routeId}
 					objectKey={objectKey}
