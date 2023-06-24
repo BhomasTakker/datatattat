@@ -1,5 +1,6 @@
 //Get from same file - barren export
 import { BingNewsSearchEdit } from "./bing/news/BingNewsSearchEdit";
+import { BING_NEWS_RSS_CONFIG_OBJECT } from "./bing/news/config";
 import {
 	BING_NEWS_HEADLINES_API_OBJECT,
 	BING_NEWS_SEARCH_API_OBJECT,
@@ -53,4 +54,11 @@ export const API_EDIT_LIST: any = {
 	//tiktok
 	tiktokCreatorOembed: TikTokCreatorOembedEdit,
 	tiktokVideoOembed: TikTokVideoOembedEdit,
+};
+
+export const RSS_CONFIG_LIST: any = {
+	//need groups / here or prior to this set news / radio / etc
+	bing: BING_NEWS_RSS_CONFIG_OBJECT,
+	twitter: "",
+	tiktok: "",
 };

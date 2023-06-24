@@ -1,7 +1,7 @@
 import { Box, Stack } from "@mui/material";
 import React, { ReactElement } from "react";
 import { useWatch } from "react-hook-form";
-import { API_EDIT_LIST } from "../../../api";
+import { API_EDIT_LIST, RSS_CONFIG_LIST } from "../../../api";
 import { BaseEditProps } from "@/components/forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import {
@@ -12,6 +12,7 @@ import { WithInfo } from "@/components/edit/info/WithInfo";
 import { Title } from "@/components/ui/title";
 import { TitleVariant } from "@/components/types/ui";
 import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
+import { APIEndpointSelectComponent } from "./endpoint/APIEndpointSelectComponent";
 
 //Also this ??
 //Create factory component?
@@ -90,6 +91,66 @@ export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
 			{/* Load API Edit Component */}
 			{/* {createAPIComponent} */}
 			{createAPIComponent(apiComponent, `${objectKey}.query`)}
+		</Box>
+	);
+};
+
+const APIComponent = ({ componentId, objectKey }: any) => {
+	const config = RSS_CONFIG_LIST[componentId] || {};
+
+	const { endpointInput } = config;
+
+	if (!componentId) {
+		return <></>; //errorComponent
+	}
+
+	// The only difference I can see is instead of selecting route
+	// Select/Specify apiId and send that to the server
+	// Can then use to get url and header/api key
+	//
+	// go to a genric endpoint
+	// pass an apiId and parameters - get url and header object
+	// use of route could be final endpoint
+	const enpointInputComponent = (
+		<APIEndpointSelectComponent
+			data={{ ...endpointInput }}
+			objectKey={objectKey}
+			routeId={`${objectKey}.route`}
+		/>
+	);
+
+	return enpointInputComponent;
+};
+
+export const APIQuerySelect = ({ objectKey }: BaseEditProps) => {
+	const apiFormState = useWatch({
+		// control,
+		name: `${objectKey}.query.apiId`,
+		// name: `${objectKey}.query.rssFeed`,
+	});
+
+	return (
+		<Box>
+			{/* <WithInfo infoId="RssQuery"> */}
+			<WithInfo infoId={"apiQuery"}>
+				<Title variant={TitleVariant.EDIT_COMPONENT} text="API Query" />
+			</WithInfo>
+			<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
+				<WithInfo infoId="apiProvider" marginLeft={INFO_MARGINS.STANDARD_LEFT}>
+					<SelectInputWithControl
+						label="API Provider"
+						name={`${objectKey}.query.apiId`}
+						fullWidth={true}
+						required
+					>
+						{createSelectInputList(RSS_CONFIG_LIST)}
+					</SelectInputWithControl>
+				</WithInfo>
+				<APIComponent
+					componentId={apiFormState}
+					objectKey={`${objectKey}.query`}
+				/>
+			</Stack>
 		</Box>
 	);
 };

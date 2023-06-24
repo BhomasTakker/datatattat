@@ -1,14 +1,15 @@
 import { Stack } from "@mui/material";
-import { QueryInputFactoryComponent } from "../input/QueryInputFactoryComponent";
-import { Parameters } from "../parameters/Parameters";
+
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import { useUnregisterForm } from "../../hooks/useUnregisterForm";
 import { useFormContext, useWatch } from "react-hook-form";
+import { QueryInputFactoryComponent } from "../../rss-query/input/QueryInputFactoryComponent";
+import { Parameters } from "../../rss-query/parameters/Parameters";
 
 // How to make this more dynamic
 // abstract its use for RSS and standard queries?
 // Rename to RSSEndpointSelectComponent
-export const RecursiveEndpointSelectComponent = ({
+export const APIEndpointSelectComponent = ({
 	data,
 	objectKey,
 	routeId,
@@ -35,7 +36,6 @@ export const RecursiveEndpointSelectComponent = ({
 	// We should pass this in
 	const formId = `${objectKey}.${id}`;
 
-	// console.log({ data });
 	// better name / is not component / is our value
 	const inputComponent = useWatch({
 		name: formId,
@@ -90,7 +90,7 @@ export const RecursiveEndpointSelectComponent = ({
 	useEffect(() => {
 		if (selectedEndpointObject) {
 			setRecursiveComponent(
-				<RecursiveEndpointSelectComponent
+				<APIEndpointSelectComponent
 					data={selectedEndpointObject}
 					routeId={routeId}
 					objectKey={objectKey}
@@ -103,6 +103,7 @@ export const RecursiveEndpointSelectComponent = ({
 
 	return (
 		<Stack>
+			{/* Can be shared */}
 			<QueryInputFactoryComponent
 				id={id}
 				objectKey={objectKey}
