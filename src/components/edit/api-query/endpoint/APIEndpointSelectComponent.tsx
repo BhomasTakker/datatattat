@@ -10,25 +10,23 @@ import { MARGINS } from "config/styles/styles.config";
 // How to make this more dynamic
 // abstract its use for RSS and standard queries?
 // Rename to RSSEndpointSelectComponent
-export const APIEndpointSelectComponent = ({
-	data,
-	objectKey,
-	routeId,
-}: any) => {
+export const APIEndpointSelectComponent = ({ data, objectKey, apiId }: any) => {
 	const { setValue } = useFormContext();
 	const [RecursiveComponent, setRecursiveComponent] =
 		useState<ReactElement | null>(null);
 	const {
 		type,
 		id,
-		endpoint = false,
-		baseUrl,
-		postfix = "",
+		endpoint = false, // rem
+		baseUrl, // not needed in query
+		postfix = "", // not needed in query
+		setState = true, // record form state
 		endpointObjects = {},
 		endpoints,
 		label,
 		defaultEndpoint,
 		params,
+		apiId: api,
 	} = data;
 
 	// better name required
@@ -49,26 +47,13 @@ export const APIEndpointSelectComponent = ({
 
 	const selectedEndpointObject = endpointObjects[inputComponent];
 
-	//////////////////////////////////////////////////////
-	// Okay this is all a little messy
-	// currently value can be from a select or text input
-	// Value will either be the endpoint or an endpoints id
-	// alternative perhaps
-	// each select value is an object containing its full url
-	const setRouteValue = useCallback(
-		(data: any, val: string) => {
-			const { baseUrl, endpoints, postfix } = data;
-			const directory =
-				endpoints && typeof endpoints[val] == "string" ? endpoints[val] : val;
-			const selectedEndpoint = `${baseUrl}${directory}${postfix}`;
-
-			setValue(routeId, selectedEndpoint);
-		},
-		[routeId, setValue]
-	);
-
 	// default Values need a big think over
 	useEffect(() => {
+		// If we are not setting form state then duck out
+		if (!setState) {
+			//with useEffect an early return is not the same as return () => {} cleanup function
+			return;
+		}
 		// Tests to set input to default value on change
 		// Checks if current value exists in current endpoints
 		// if both choices share a field/endpoint then I believe it won't pick default
@@ -79,13 +64,15 @@ export const APIEndpointSelectComponent = ({
 			console.log("DO WE HERE???");
 			setValue(formId, defaultEndpoint);
 		}
-	}, [formId, defaultEndpoint, setValue, inputComponent, endpoints]);
+	}, [formId, defaultEndpoint, setValue, inputComponent, endpoints, setState]);
 
-	// always set a route value for a default route
-	// We should probably specify if an input is required
+	// always set an api id
 	useEffect(() => {
-		setRouteValue({ baseUrl, endpoints, postfix }, inputComponent);
-	}, [baseUrl, endpoints, inputComponent, postfix, setRouteValue]);
+		if (!api) {
+			return;
+		}
+		setValue(apiId, api);
+	}, [apiId, api, setValue]);
 
 	// Create recursive component IF there is an endpointObject for our current chosen endpoint
 	useEffect(() => {
@@ -93,14 +80,14 @@ export const APIEndpointSelectComponent = ({
 			setRecursiveComponent(
 				<APIEndpointSelectComponent
 					data={selectedEndpointObject}
-					routeId={routeId}
+					apiId={apiId}
 					objectKey={objectKey}
 				/>
 			);
 		} else {
 			setRecursiveComponent(null);
 		}
-	}, [inputComponent, objectKey, routeId, selectedEndpointObject]);
+	}, [inputComponent, objectKey, apiId, selectedEndpointObject]);
 
 	return (
 		<Stack>

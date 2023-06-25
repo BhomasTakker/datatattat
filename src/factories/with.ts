@@ -17,5 +17,6 @@ export const EDIT_WITH: any = {
 	// Intention was to wrap a generic query in rss or api, etc
 	// that seems a little too far for now
 	// potentially of dubious returns for the level of complexity
+	// api-query and rss-query are very close in front end functionality...
 	["rss-query"]: withRss(RssQuerySelect),
 };

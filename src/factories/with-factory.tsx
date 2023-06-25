@@ -5,6 +5,40 @@ import { withQuery } from "../hoc/query/withQuery";
 import { RSS_LIST } from "../rss";
 import { EDIT_WITH } from "./with";
 
+// temp
+const createNewQueryObject = (queryObject: any) => {
+	//type
+	//100% do away with query id - should be auto - at least for now/by default
+	const { queryId, apiId, url, response, params, options } = queryObject;
+
+	//API 'config'
+	//If not found return error or whatever
+	const config = API_LIST[apiId];
+	const returnFn = config.returns[response];
+
+	const searchObject = {
+		//url should be the same?
+		url: "api/query/get",
+		searchParams: { ...params, apiId },
+		returnFn,
+		options: {},
+	};
+
+	// query id should probably just be url + params
+	// remove the option from users
+
+	const query = {
+		queryFn: () => clientsideFetch(searchObject),
+		// just use the url+params to save this
+		queryId: `${config.url}:${JSON.stringify(params)}`,
+		//this is seperate to pagination state but includes
+		state: params,
+		options,
+	};
+
+	return query;
+};
+
 //Some helpers / utils / Query builder or something
 // We're going to have a lot of these?
 //We can union type or generic withObject
@@ -19,13 +53,14 @@ const createQueryObject = (queryObject: any) => {
 	const returnFn = config.returns[response];
 
 	const searchObject = {
+		//url should be the same?
 		url: config.url,
 		searchParams: params,
 		returnFn,
 		options: {},
 	};
 
-	// query id should probably just be url
+	// query id should probably just be url + params
 	// remove the option from users
 
 	const query = {
@@ -83,6 +118,9 @@ export const withFactory = (componentObject: any, withObject: any) => {
 	// Doesn't need to be a switch - do you match with a function
 	// else error
 	switch (withObject.type) {
+		case "new-api-query":
+			console.log("Did we come this way???");
+			return withQuery(componentObject, createNewQueryObject(withObject.query));
 		case "query":
 		case "api-query": // api-query or whatever API_QUERY
 			//queryObject = createQueryObject()

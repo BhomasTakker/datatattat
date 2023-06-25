@@ -18,7 +18,7 @@ export const clientsideFetch = async ({
 	returnFn = defaultReturn,
 	options = {}, //perhaps options_id
 }: ClientSideFetchType) => {
-	//This all seems like a hack
+	//This all seems like a hack / certainly feels like this shouldn't be like this!!
 	const endpoint = new URL(`https://${url}`); //url
 
 	for (let param in searchParams) {

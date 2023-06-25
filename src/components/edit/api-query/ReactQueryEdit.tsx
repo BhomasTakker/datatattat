@@ -115,7 +115,7 @@ const APIComponent = ({ componentId, objectKey }: any) => {
 		<APIEndpointSelectComponent
 			data={{ ...endpointInput }}
 			objectKey={objectKey}
-			routeId={`${objectKey}.route`}
+			apiId={`${objectKey}.apiId`}
 		/>
 	);
 
@@ -123,9 +123,9 @@ const APIComponent = ({ componentId, objectKey }: any) => {
 };
 
 export const APIQuerySelect = ({ objectKey }: BaseEditProps) => {
-	const apiFormState = useWatch({
+	const provider = useWatch({
 		// control,
-		name: `${objectKey}.query.apiId`,
+		name: `${objectKey}.query.provider`,
 		// name: `${objectKey}.query.rssFeed`,
 	});
 
@@ -143,7 +143,7 @@ export const APIQuerySelect = ({ objectKey }: BaseEditProps) => {
 					>
 						<SelectInputWithControl
 							label="API Provider"
-							name={`${objectKey}.query.apiId`}
+							name={`${objectKey}.query.provider`}
 							fullWidth={true}
 							required
 						>
@@ -151,10 +151,7 @@ export const APIQuerySelect = ({ objectKey }: BaseEditProps) => {
 						</SelectInputWithControl>
 					</WithInfo>
 				</Box>
-				<APIComponent
-					componentId={apiFormState}
-					objectKey={`${objectKey}.query`}
-				/>
+				<APIComponent componentId={provider} objectKey={`${objectKey}.query`} />
 			</Stack>
 		</Box>
 	);

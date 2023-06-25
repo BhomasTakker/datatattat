@@ -34,3 +34,35 @@ export const BING_NEWS_TRENDING_API_OBJECT = {
 	url: `${SEARCH}`,
 	returns: returns,
 };
+
+/////////////// Server Only /////////////
+const searchObject = {
+	url: `${BASE_URL}${ENDPOINTS.NEWS_SEARCH}`,
+	headers: HEADERS,
+	returns, // <- this needs a big work
+};
+const trendingObject = {
+	url: `${BASE_URL}${ENDPOINTS.TRENDING}`,
+	headers: HEADERS,
+	returns, // <- this needs a big work
+};
+const headlinesObject = {
+	url: `${BASE_URL}${ENDPOINTS.HEADLINES}`,
+	headers: HEADERS,
+	returns, // <- this needs a big work
+};
+
+const blah = {
+	wot: `${BASE_URL}${ENDPOINTS.HEADLINES}`,
+	never: HEADERS,
+	returns: {
+		fluff: {},
+	},
+};
+
+export const BING_NEWS_API_OBJECT = {
+	search: searchObject,
+	trending: trendingObject,
+	headlines: headlinesObject,
+	blah,
+};
