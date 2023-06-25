@@ -10,6 +10,9 @@ import {
 	ParametersContextProvider,
 } from "./ParametersContext";
 import { useFormContext, useWatch } from "react-hook-form";
+import { Title } from "@/src/components/ui/title";
+import { TitleVariant } from "@/src/components/types/ui";
+import { MARGINS } from "config/styles/styles.config";
 
 type ParametersType = {
 	type: string;
@@ -27,8 +30,7 @@ type ParametersType = {
 // at least component code is largely similar
 const ParameterComponent = ({ data }: { data: ParametersType }) => {
 	const { type, id, label, options, key, defaultValue } = data;
-	const { objectKey, updateParameters, shouldCreateParametersString } =
-		useContext(ParametersContext);
+	const { objectKey, updateParameters } = useContext(ParametersContext);
 	const parameterId = `${objectKey}.${id}`;
 
 	const { setValue } = useFormContext();
@@ -96,7 +98,7 @@ const ParametersList = ({
 		});
 	}, []);
 	return (
-		<Stack>
+		<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
 			{useMemo(
 				() => createParametersList(parameters),
 				[createParametersList, parameters]
@@ -111,16 +113,25 @@ export const Parameters = ({
 	params,
 	objectKey,
 	shouldCreateParametersString = true,
+	showTitle = false,
 }: {
+	// We can type this
+	// using the same in context
 	params: ParametersType[];
 	objectKey: string;
 	shouldCreateParametersString?: boolean;
+	showTitle?: boolean;
 }) => {
 	return (
 		<ParametersContextProvider
-			value={{ objectKey, shouldCreateParametersString }}
+			value={{ objectKey, shouldCreateParametersString, showTitle }}
 		>
 			{/* Why pass parameters when using context */}
+			{showTitle ? (
+				<Title text="Parameters" variant={TitleVariant.EDIT_COMPONENT}></Title>
+			) : (
+				<></>
+			)}
 			<ParametersList parameters={params} />
 		</ParametersContextProvider>
 	);

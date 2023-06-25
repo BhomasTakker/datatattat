@@ -1,10 +1,11 @@
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import { useUnregisterForm } from "../../hooks/useUnregisterForm";
 import { useFormContext, useWatch } from "react-hook-form";
 import { QueryInputFactoryComponent } from "../../rss-query/input/QueryInputFactoryComponent";
 import { Parameters } from "../../rss-query/parameters/Parameters";
+import { MARGINS } from "config/styles/styles.config";
 
 // How to make this more dynamic
 // abstract its use for RSS and standard queries?
@@ -104,13 +105,15 @@ export const APIEndpointSelectComponent = ({
 	return (
 		<Stack>
 			{/* Can be shared */}
-			<QueryInputFactoryComponent
-				id={id}
-				objectKey={objectKey}
-				label={label}
-				type={type}
-				options={endpoints}
-			/>
+			<Box marginLeft={MARGINS.LARGE}>
+				<QueryInputFactoryComponent
+					id={id}
+					objectKey={objectKey}
+					label={label}
+					type={type}
+					options={endpoints}
+				/>
+			</Box>
 			{RecursiveComponent ? (
 				RecursiveComponent
 			) : (
@@ -118,6 +121,7 @@ export const APIEndpointSelectComponent = ({
 					params={params}
 					objectKey={`${objectKey}.params`}
 					shouldCreateParametersString={false}
+					showTitle={true}
 				/>
 			)}
 		</Stack>

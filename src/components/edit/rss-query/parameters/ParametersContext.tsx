@@ -4,6 +4,7 @@ import { useFormContext } from "react-hook-form";
 type ParametersState = {
 	objectKey: null | string;
 	shouldCreateParametersString: boolean;
+	showTitle: boolean;
 };
 
 type ParametersInterface = {
@@ -14,6 +15,7 @@ const parametersInitialState: ParametersState & ParametersInterface = {
 	objectKey: null,
 	updateParameters: (param: any) => {},
 	shouldCreateParametersString: true,
+	showTitle: false,
 };
 
 const parameterList = new Map();

@@ -135,17 +135,22 @@ export const APIQuerySelect = ({ objectKey }: BaseEditProps) => {
 			<WithInfo infoId={"apiQuery"}>
 				<Title variant={TitleVariant.EDIT_COMPONENT} text="API Query" />
 			</WithInfo>
-			<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
-				<WithInfo infoId="apiProvider" marginLeft={INFO_MARGINS.STANDARD_LEFT}>
-					<SelectInputWithControl
-						label="API Provider"
-						name={`${objectKey}.query.apiId`}
-						fullWidth={true}
-						required
+			<Stack gap={MARGINS.SMALL}>
+				<Box marginLeft={MARGINS.LARGE}>
+					<WithInfo
+						infoId="apiProvider"
+						marginLeft={INFO_MARGINS.STANDARD_LEFT}
 					>
-						{createSelectInputList(API_CONFIG_LIST)}
-					</SelectInputWithControl>
-				</WithInfo>
+						<SelectInputWithControl
+							label="API Provider"
+							name={`${objectKey}.query.apiId`}
+							fullWidth={true}
+							required
+						>
+							{createSelectInputList(API_CONFIG_LIST)}
+						</SelectInputWithControl>
+					</WithInfo>
+				</Box>
 				<APIComponent
 					componentId={apiFormState}
 					objectKey={`${objectKey}.query`}
