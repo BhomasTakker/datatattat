@@ -21,7 +21,8 @@ async function saveHeaderAPI(
 	const { route, creator, nav } = body;
 	const { user: sessionUser } = session;
 
-	console.log({ session });
+	// console.log("post header SAVE");
+	// console.log({ session });
 	/*session: {
     user: {
       name: undefined,
@@ -55,6 +56,7 @@ async function saveHeaderAPI(
 	if (role !== "admin") {
 		const usernameIndex = route.indexOf(`/users/${username}`);
 		if (usernameIndex !== 0) {
+			// console.log("post header SAVE nefarious");
 			return res.status(400).json({ msg: "Nefarious operation" });
 		}
 	}
@@ -77,6 +79,7 @@ async function saveHeaderAPI(
 
 	console.log({ saveHeader: header });
 
+	// console.log("post header SAVED!!");
 	//should return header? - 201 is technically 'created'
 	res.status(201).json({ msg: "Header saved" });
 }

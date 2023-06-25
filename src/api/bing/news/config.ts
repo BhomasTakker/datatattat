@@ -1,20 +1,11 @@
 import { BASE_URL, ENDPOINTS } from "./constants";
+import { mainParams } from "./params";
 
 enum BING_ENDPOINTS {
 	search = "search",
 	headlines = "headlines",
 	trending = "trending",
 }
-
-const mainParams = [
-	{
-		type: "text",
-		id: "q",
-		label: "q",
-		key: "q",
-		info: "",
-	},
-];
 
 const searchObject = {
 	id: "bing_news_search_endpoint",
@@ -63,7 +54,7 @@ const inputObject = {
 	},
 };
 
-export const BING_NEWS_RSS_CONFIG_OBJECT = {
+export const BING_NEWS_API_CONFIG_OBJECT = {
 	// endpoints: ENDPOINTS,
 	endpointInput: inputObject,
 };

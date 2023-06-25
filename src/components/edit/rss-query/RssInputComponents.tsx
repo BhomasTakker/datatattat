@@ -2,6 +2,7 @@ import { memo } from "react";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import {
 	TextInputWithControl,
+	TextInputWithControlAndToggle,
 	createSelectInputList,
 } from "../../input/TextInput";
 import { WithInfo } from "../info/WithInfo";
@@ -54,3 +55,23 @@ export const EditTextInput = memo(({ id, label }: EditTextInputProps) => {
 });
 
 EditTextInput.displayName = "EditTextInput";
+
+type ToggleProps = {
+	isChecked?: boolean;
+};
+
+export const EditTextToggleInput = memo(
+	({ id, label, isChecked = false }: EditTextInputProps & ToggleProps) => {
+		return (
+			<WithInfo infoId="RssEndpoint">
+				<TextInputWithControlAndToggle
+					label={label}
+					name={id}
+					fullWidth={true}
+				/>
+			</WithInfo>
+		);
+	}
+);
+
+EditTextToggleInput.displayName = "EditTextToggleInput";

@@ -1,4 +1,8 @@
-import { EditSelectInput, EditTextInput } from "../RssInputComponents";
+import {
+	EditSelectInput,
+	EditTextInput,
+	EditTextToggleInput,
+} from "../RssInputComponents";
 
 type QueryInputFactoryComponentProps = {
 	id: string;
@@ -9,6 +13,7 @@ type QueryInputFactoryComponentProps = {
 };
 
 // Could just call this factory
+// need pass props
 export const QueryInputFactoryComponent = ({
 	id,
 	label,
@@ -24,13 +29,18 @@ export const QueryInputFactoryComponent = ({
 	// 	name: parameterId,
 	// });
 
+	console.log("TYPE", { type });
+
 	// We could should have many
 	// Convert to a Map
 	switch (type) {
 		case "text":
 			console.log("RERENDERED THIS BUGGER");
 			return <EditTextInput id={parameterId} label={label} />;
-
+		// should just be a behaviour / wrong place
+		case "text-toggle":
+			console.log("TEXT-TOGGLE");
+			return <EditTextToggleInput id={parameterId} label={label} />;
 		case "select":
 			return (
 				<EditSelectInput endpoints={options} id={parameterId} label={label} />

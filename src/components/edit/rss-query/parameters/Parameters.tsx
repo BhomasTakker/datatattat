@@ -1,6 +1,10 @@
 import { Stack } from "@mui/material";
 import React, { useCallback, useContext, useEffect, useMemo } from "react";
-import { EditSelectInput, EditTextInput } from "../RssInputComponents";
+import {
+	EditSelectInput,
+	EditTextInput,
+	EditTextToggleInput,
+} from "../RssInputComponents";
 import {
 	ParametersContext,
 	ParametersContextProvider,
@@ -66,6 +70,11 @@ const ParameterComponent = ({ data }: { data: ParametersType }) => {
 	switch (type) {
 		case "text":
 			return <EditTextInput id={parameterId} label={label} />;
+
+		// should just be a behaviour / wrong place
+		case "text-toggle":
+			console.log("TEXT-TOGGLE");
+			return <EditTextToggleInput id={parameterId} label={label} />;
 
 		case "select":
 			return (

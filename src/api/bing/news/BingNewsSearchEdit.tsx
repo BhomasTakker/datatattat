@@ -30,6 +30,7 @@ import { useQuery } from "@tanstack/react-query";
 ///////////////////////////////////////////////
 export const BingNewsSearchEdit = ({ objectKey }: BaseEditProps) => {
 	const paramsRoute = `${objectKey}.params`;
+	// should be a use groupInfo or something
 	const { data: BingNewsSearchInfo } = useQuery({
 		queryKey: ["BingNewsSearchInfo"],
 		queryFn: () => clientsideFetch({ url: "api/info/get/BingNewsSearch" }),

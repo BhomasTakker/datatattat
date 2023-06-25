@@ -1,7 +1,7 @@
 import { Box, Stack } from "@mui/material";
 import React, { ReactElement } from "react";
 import { useWatch } from "react-hook-form";
-import { API_EDIT_LIST, RSS_CONFIG_LIST } from "../../../api";
+import { API_EDIT_LIST, API_CONFIG_LIST } from "../../../api";
 import { BaseEditProps } from "@/components/forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
 import {
@@ -96,7 +96,7 @@ export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
 };
 
 const APIComponent = ({ componentId, objectKey }: any) => {
-	const config = RSS_CONFIG_LIST[componentId] || {};
+	const config = API_CONFIG_LIST[componentId] || {};
 
 	const { endpointInput } = config;
 
@@ -143,7 +143,7 @@ export const APIQuerySelect = ({ objectKey }: BaseEditProps) => {
 						fullWidth={true}
 						required
 					>
-						{createSelectInputList(RSS_CONFIG_LIST)}
+						{createSelectInputList(API_CONFIG_LIST)}
 					</SelectInputWithControl>
 				</WithInfo>
 				<APIComponent
