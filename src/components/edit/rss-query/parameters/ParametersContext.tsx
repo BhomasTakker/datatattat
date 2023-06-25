@@ -3,6 +3,7 @@ import { useFormContext } from "react-hook-form";
 
 type ParametersState = {
 	objectKey: null | string;
+	shouldCreateParametersString: boolean;
 };
 
 type ParametersInterface = {
@@ -12,6 +13,7 @@ type ParametersInterface = {
 const parametersInitialState: ParametersState & ParametersInterface = {
 	objectKey: null,
 	updateParameters: (param: any) => {},
+	shouldCreateParametersString: true,
 };
 
 const parameterList = new Map();
@@ -23,7 +25,7 @@ export const ParametersContextProvider = ({
 	value: ParametersState;
 	children: ReactNode;
 }) => {
-	const { objectKey } = value;
+	const { objectKey, shouldCreateParametersString } = value;
 	const { setValue } = useFormContext();
 
 	const addParameter = (param: any) => {
@@ -50,6 +52,15 @@ export const ParametersContextProvider = ({
 		// if value removed - remove parameter - we may need to specify empty params
 		addParameter(param);
 		const parameterQueryString = createParametersList();
+
+		//////////////////////////////////////////////////////////////////
+		// Probably pass a function to determine what to do when params change
+		// decouple fromsetValue / form
+		// Then can do nothing on change
+		if (!shouldCreateParametersString) {
+			return;
+		}
+
 		// write params out
 		// assign to params form string
 		const obj = Object.fromEntries(parameterList);

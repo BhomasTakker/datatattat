@@ -9,9 +9,9 @@ enum BING_ENDPOINTS {
 const mainParams = [
 	{
 		type: "text",
-		id: "bing_news_q",
+		id: "q",
 		label: "q",
-		key: "bing_news_q",
+		key: "q",
 		info: "",
 	},
 ];

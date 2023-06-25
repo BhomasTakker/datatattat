@@ -23,7 +23,8 @@ type ParametersType = {
 // at least component code is largely similar
 const ParameterComponent = ({ data }: { data: ParametersType }) => {
 	const { type, id, label, options, key, defaultValue } = data;
-	const { objectKey, updateParameters } = useContext(ParametersContext);
+	const { objectKey, updateParameters, shouldCreateParametersString } =
+		useContext(ParametersContext);
 	const parameterId = `${objectKey}.${id}`;
 
 	const { setValue } = useFormContext();
@@ -100,12 +101,16 @@ const ParametersList = ({
 export const Parameters = ({
 	params,
 	objectKey,
+	shouldCreateParametersString = true,
 }: {
 	params: ParametersType[];
 	objectKey: string;
+	shouldCreateParametersString?: boolean;
 }) => {
 	return (
-		<ParametersContextProvider value={{ objectKey }}>
+		<ParametersContextProvider
+			value={{ objectKey, shouldCreateParametersString }}
+		>
 			{/* Why pass parameters when using context */}
 			<ParametersList parameters={params} />
 		</ParametersContextProvider>

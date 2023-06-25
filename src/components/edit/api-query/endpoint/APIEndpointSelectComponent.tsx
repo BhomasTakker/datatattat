@@ -114,7 +114,11 @@ export const APIEndpointSelectComponent = ({
 			{RecursiveComponent ? (
 				RecursiveComponent
 			) : (
-				<Parameters params={params} objectKey={objectKey} />
+				<Parameters
+					params={params}
+					objectKey={`${objectKey}.params`}
+					shouldCreateParametersString={false}
+				/>
 			)}
 		</Stack>
 	);

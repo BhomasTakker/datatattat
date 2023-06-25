@@ -1,3 +1,4 @@
+// FIX:- https://stackoverflow.com/a/63726635/21968048
 import { TextField } from "@mui/material";
 import React, { ReactNode } from "react";
 import { withControl } from "@/hoc/components/forms/withControl";
@@ -64,6 +65,8 @@ export const SelectInput = React.memo(
 					// defaultValue="Small"
 					size="small"
 					className={classes.textfield}
+					// FIX:- This solves the select jumping glitch
+					SelectProps={{ MenuProps: { disableScrollLock: true } }}
 				>
 					{children}
 				</TextField>
