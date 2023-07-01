@@ -1,9 +1,11 @@
 import { API_LIST } from "../api";
-import { clientsideFetch, ClientSideFetchType } from "../api/clientside-fetch";
-import { SimpleList } from "../components/data/list/SimpleList";
+import { clientsideFetch } from "../api/clientside-fetch";
 import { withQuery } from "../hoc/query/withQuery";
-import { RSS_LIST } from "../rss";
 import { EDIT_WITH } from "./with";
+
+const API_QUERY_PATH = "api/query/get";
+const RSS_QUERY_PATH = "api/rss";
+const OEMBED_QUERY_PATH = "api/query/get";
 
 // temp
 const createNewQueryObject = (queryObject: any) => {
@@ -14,11 +16,11 @@ const createNewQueryObject = (queryObject: any) => {
 	//API 'config'
 	//If not found return error or whatever
 	const config = API_LIST[apiId];
-	const returnFn = config.returns[response];
+	const returnFn = config.returns[response]; // ??
 
 	const searchObject = {
 		//url should be the same?
-		url: "api/query/get",
+		url: API_QUERY_PATH,
 		searchParams: { ...params, apiId },
 		returnFn,
 		options: {},
@@ -30,7 +32,7 @@ const createNewQueryObject = (queryObject: any) => {
 	const query = {
 		queryFn: () => clientsideFetch(searchObject),
 		// just use the url+params to save this
-		queryId: `${config.url}:${JSON.stringify(params)}`,
+		queryId: `${API_QUERY_PATH}:${JSON.stringify(params)}`,
 		//this is seperate to pagination state but includes
 		state: params,
 		options,
@@ -42,6 +44,7 @@ const createNewQueryObject = (queryObject: any) => {
 //Some helpers / utils / Query builder or something
 // We're going to have a lot of these?
 //We can union type or generic withObject
+// DEPRECATED
 const createQueryObject = (queryObject: any) => {
 	//type
 	//100% do away with query id - should be auto - at least for now/by default
@@ -49,6 +52,7 @@ const createQueryObject = (queryObject: any) => {
 
 	//API 'config'
 	//If not found return error or whatever
+	// This shuldn't be required
 	const config = API_LIST[apiId];
 	const returnFn = config.returns[response];
 
@@ -76,6 +80,7 @@ const createQueryObject = (queryObject: any) => {
 };
 // All needs a wild clean up and perhaps rethink
 const createRssQueryObject = (queryObject: any) => {
+	// route instead of resourceId
 	const { queryId, rssId, url, response, params, options, route } = queryObject;
 
 	console.log({ rssQuery: queryObject });
@@ -86,10 +91,10 @@ const createRssQueryObject = (queryObject: any) => {
 	// unless we specify a params object string we get the prevvious
 	const searchUrl =
 		params && typeof params === "string" ? `${route}${params}` : route;
-	const config = RSS_LIST[rssId];
-	const returnFn = (data) => data; // config.returns[response];
+	// const config = RSS_LIST[rssId];
+	const returnFn = (data: any) => data; // config.returns[response];
 	const searchObject = {
-		url: "api/rss", //add news etc
+		url: RSS_QUERY_PATH, //add news etc
 		searchParams: { url: searchUrl },
 		returnFn,
 		options: {},
@@ -99,6 +104,35 @@ const createRssQueryObject = (queryObject: any) => {
 		queryId: route,
 		//this is seperate to pagination state but includes
 		state: {},
+		options,
+	};
+
+	return query;
+};
+
+// We need to go over these
+// they can definately be neater and more generic
+const createOembedObject = (queryObject: any) => {
+	// resourceId
+	const { oembedId, params, options } = queryObject;
+
+	const searchObject = {
+		//url should be the same?
+		url: OEMBED_QUERY_PATH,
+		searchParams: { ...params, oembedId },
+		returnFn: (data: any) => data,
+		options: {},
+	};
+
+	// query id should probably just be url + params
+	// remove the option from users
+
+	const query = {
+		queryFn: () => clientsideFetch(searchObject),
+		// just use the url+params to save this
+		queryId: `${OEMBED_QUERY_PATH}:${JSON.stringify(params)}`,
+		//this is seperate to pagination state but includes
+		state: params,
 		options,
 	};
 
@@ -119,7 +153,7 @@ export const withFactory = (componentObject: any, withObject: any) => {
 	// else error
 	switch (withObject.type) {
 		case "new-api-query":
-			console.log("Did we come this way???");
+			// console.log("Did we come this way???");
 			return withQuery(componentObject, createNewQueryObject(withObject.query));
 		case "query":
 		case "api-query": // api-query or whatever API_QUERY
@@ -130,9 +164,13 @@ export const withFactory = (componentObject: any, withObject: any) => {
 
 		case "rss-query":
 			//return rssWithQueryComponent();//
-			console.log({ withObject });
+			// console.log({ withObject });
 			return withQuery(componentObject, createRssQueryObject(withObject.query));
 
+		// We possibly wouldn't want or need oembed here
+		// You would only use oembeds with oembed ites?
+		case "oembed":
+			return withQuery(componentObject, createOembedObject(withObject.query));
 		default:
 			// console.log("IN DEFAULT");
 			const { component: Component, props } = componentObject;

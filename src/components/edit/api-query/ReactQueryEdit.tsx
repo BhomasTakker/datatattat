@@ -95,6 +95,7 @@ export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
 	);
 };
 
+// These are the new / obliterate the old
 const APIComponent = ({ componentId, objectKey }: any) => {
 	const config = API_CONFIG_LIST[componentId] || {};
 

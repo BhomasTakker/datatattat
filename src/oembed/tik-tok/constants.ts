@@ -17,17 +17,28 @@ export const TIKTOK_VIDEO_OEMBED_OBJECT = {
 
 ///////////////////////////////////////////
 // Update
-export const TIKTOK_OEMBED_CREATOR_OBJECT = (data: any) => ({
-	url: `https://www.tiktok.com/${data.endpoint}`,
-	returns: (data: any) => data,
-	data,
-});
+export const TIKTOK_OEMBED_CREATOR_OBJECT = (data: any) => {
+	const url = `https://tiktok.com/${data.user}`;
+	const returnData = { ...data, url };
+	delete returnData.user;
+	return {
+		url: `https://www.tiktok.com/oembed`,
+		returns: (data: any) => data,
+		data: returnData,
+	};
+};
 
-export const TIKTOK_OEMBED_VIDEO_OBJECT = (data: any) => ({
-	url: `https://www.tiktok.com/${data.user}/video/${data.videoId}`,
-	returns: (data: any) => data,
-	data,
-});
+export const TIKTOK_OEMBED_VIDEO_OBJECT = (data: any) => {
+	const url = `https://tiktok.com/${data.user}/video/${data.videoId}`;
+	const returnData = { ...data, url };
+	delete returnData.user;
+	delete returnData.videoId;
+	return {
+		url: `https://www.tiktok.com/oembed`,
+		returns: (data: any) => data,
+		data,
+	};
+};
 
 export const TIKTOK_OEMBED_OBJECT = {
 	creator: TIKTOK_OEMBED_CREATOR_OBJECT,

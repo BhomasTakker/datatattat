@@ -1,4 +1,4 @@
-import { TWITTER_BASE_URL } from "@/src/api/social-media/twitter/constants";
+import { TWITTER_BASE_URL } from "@/src/oembed/twitter/constants";
 import { redisApiFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next";
 

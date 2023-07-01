@@ -27,9 +27,9 @@ export const TWITTER_TWEET_OEMBED_OBJECT = {
 // if this is a function by default and we pass in the query, etc
 // we can do it easily
 export const TWITTER_OEMBED_PROFILE_OBJECT = (data: any) => {
-	const url = `https://twitter.com/${data.endpoint}`;
+	const url = `https://twitter.com/${data.profile}`;
 	const returnData = { ...data, url };
-	delete returnData.endpoint;
+	delete returnData.profile;
 	return {
 		url: "https://publish.twitter.com/oembed",
 		returns: (data: any) => data,
@@ -37,17 +37,29 @@ export const TWITTER_OEMBED_PROFILE_OBJECT = (data: any) => {
 	};
 };
 
-export const TWITTER_OEMBED_LIST_OBJECT = (data: any) => ({
-	url: `https://publish.twitter.com/oembed/i/lists/`,
-	returns: (data: any) => data,
-	data,
-});
+export const TWITTER_OEMBED_LIST_OBJECT = (data: any) => {
+	const url = `https://twitter.com/i/lists/${data.listId}`;
+	const returnData = { ...data, url };
+	delete returnData.listId;
+	return {
+		url: `https://publish.twitter.com/oembed/`,
+		returns: (data: any) => data,
+		data,
+	};
+};
 
-export const TWITTER_OEMBED_TWEET_OBJECT = (data: any) => ({
-	url: `https://publish.twitter.com/oembed/${data.user}/status/${data.tweetId}`,
-	returns: (data: any) => data,
-	data,
-});
+export const TWITTER_OEMBED_TWEET_OBJECT = (data: any) => {
+	const url = `https://twitter.com/${data.profile}/status/${data.tweetId}`;
+	const returnData = { ...data, url };
+	delete returnData.profile;
+	delete returnData.tweetId;
+
+	return {
+		url: `https://publish.twitter.com/oembed/`,
+		returns: (data: any) => data,
+		data,
+	};
+};
 
 export const TWITTER_OEMBED_OBJECT = {
 	profile: TWITTER_OEMBED_PROFILE_OBJECT,

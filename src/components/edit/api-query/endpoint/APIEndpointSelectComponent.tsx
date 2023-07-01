@@ -46,7 +46,7 @@ export const APIEndpointSelectComponent = ({ data, objectKey, apiId }: any) => {
 
 	// is there any reason why we would return a value?
 	// Even if error etc - i.e. nope nothing registered by that name?
-	useUnregisterForm(formId);
+	useUnregisterForm({ name: formId });
 
 	const selectedEndpointObject = endpointObjects[inputComponent];
 

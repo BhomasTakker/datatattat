@@ -5,9 +5,22 @@
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
+type UnregisterFormType = {
+	name: string;
+	options?: any;
+	dependencies?: any[];
+};
+
+const defaultDependencies: any[] = [];
+
 // A simple hook to deregister a form component when component removed at the end of its lifecycle
 // not as straightforward as use whenever
-export const useUnregisterForm = (name: string, options?: any) => {
+// pass array for 'unregister on'
+export const useUnregisterForm = ({
+	name,
+	options,
+	dependencies = defaultDependencies,
+}: UnregisterFormType) => {
 	const { unregister, register } = useFormContext();
 
 	useEffect(() => {
@@ -17,5 +30,6 @@ export const useUnregisterForm = (name: string, options?: any) => {
 			console.log("un-registered? " + name);
 			unregister(name);
 		};
-	}, [name, unregister]);
+		// Can we spread dependencies or get around spreading?
+	}, [name, unregister, dependencies]);
 };

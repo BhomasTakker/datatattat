@@ -18,6 +18,8 @@ import { TikTokCreator } from "../components/data/social-media/tiktok/TikTokCrea
 import { TikTokVideo } from "../components/data/social-media/tiktok/TikTokVideo";
 import { TikTokCreatorEdit } from "../components/data/social-media/tiktok/TikTokCreatorEdit";
 import { TikTokVideoEdit } from "../components/data/social-media/tiktok/TikTokVideoEdit";
+import { Oembed } from "../components/oembed/Oembed";
+import { OembedEdit } from "../components/oembed/OembedEdit";
 
 // export enum COMPONENT_TYPES {
 // 	STACK = "STACK",
@@ -36,14 +38,16 @@ export const COMPONENTS: any = {
 	["DTAGrid"]: DTAGrid,
 	["BasicArticle"]: BasicArticle,
 
-	//Twitter / load and spread twitter object
-	["TwitterProfile"]: TwitterProfile,
-	["TwitterList"]: TwitterList,
-	["Tweet"]: Tweet,
+	["Oembed"]: Oembed,
 
-	//TikTok
-	["TikTokCreator"]: TikTokCreator,
-	["TikTokVideo"]: TikTokVideo,
+	//Twitter / load and spread twitter object
+	// ["TwitterProfile"]: TwitterProfile,
+	// ["TwitterList"]: TwitterList,
+	// ["Tweet"]: Tweet,
+
+	// //TikTok
+	// ["TikTokCreator"]: TikTokCreator,
+	// ["TikTokVideo"]: TikTokVideo,
 };
 
 // We need to organise these better
@@ -58,15 +62,17 @@ export const EDIT_COMPONENTS: any = {
 	["SimpleList"]: SimpleListEdit,
 	["DTAGrid"]: DTAGridEdit,
 
+	["Oembed"]: OembedEdit,
+
 	//Should perhaps be SocialMedia/Twitter/these
 	//Twitter / load and spread twitter object
-	["TwitterProfile"]: TwitterProfileEdit,
-	["TwitterList"]: TwitterListEdit,
-	["Tweet"]: TweetEdit,
+	// ["TwitterProfile"]: TwitterProfileEdit,
+	// ["TwitterList"]: TwitterListEdit,
+	// ["Tweet"]: TweetEdit,
 
-	//TikTok
-	["TikTokCreator"]: TikTokCreatorEdit,
-	["TikTokVideo"]: TikTokVideoEdit,
+	// //TikTok
+	// ["TikTokCreator"]: TikTokCreatorEdit,
+	// ["TikTokVideo"]: TikTokVideoEdit,
 
 	// Not here
 	["ArticleStub"]: ArticleStubEdit,
