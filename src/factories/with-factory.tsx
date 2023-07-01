@@ -5,7 +5,7 @@ import { EDIT_WITH } from "./with";
 
 const API_QUERY_PATH = "api/query/get";
 const RSS_QUERY_PATH = "api/rss";
-const OEMBED_QUERY_PATH = "api/query/get";
+const OEMBED_QUERY_PATH = "api/oembed/get";
 
 // temp
 const createNewQueryObject = (queryObject: any) => {
@@ -13,10 +13,13 @@ const createNewQueryObject = (queryObject: any) => {
 	//100% do away with query id - should be auto - at least for now/by default
 	const { queryId, apiId, url, response, params, options } = queryObject;
 
+	console.log("API 1", { queryObject });
 	//API 'config'
 	//If not found return error or whatever
 	const config = API_LIST[apiId];
 	const returnFn = config.returns[response]; // ??
+
+	console.log("API 2", { config });
 
 	const searchObject = {
 		//url should be the same?
@@ -25,6 +28,8 @@ const createNewQueryObject = (queryObject: any) => {
 		returnFn,
 		options: {},
 	};
+
+	console.log("API 3", { searchObject });
 
 	// query id should probably just be url + params
 	// remove the option from users
@@ -37,6 +42,8 @@ const createNewQueryObject = (queryObject: any) => {
 		state: params,
 		options,
 	};
+
+	console.log("API 4", { query });
 
 	return query;
 };

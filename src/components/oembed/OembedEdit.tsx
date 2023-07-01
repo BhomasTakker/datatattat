@@ -51,17 +51,19 @@ export const OembedEdit = ({ objectKey }: BaseEditProps) => {
 	// if this changes we should be resetting _with.query
 	// which should initialise again when component rerenders
 	const resourceComponent = useWatch({
-		name: `${objectKey}.resource`,
+		name: `${objectKey}.componentProps.resource`,
 	});
 
-	//////////////////////////////
-	// this is how you unregister
+	// use unregister form is different to this
+	// it unregisters whenever the component is re-rendered...
 	// useUnregisterForm({
 	// 	name: `${objectKey}._with.query`,
 	// 	dependencies: resourceComponent,
 	// });
+	//////////////////////////////
+	// this is how you unregister
 	useEffect(() => {
-		unregister(`${objectKey}._with.query`);
+		// unregister(`${objectKey}._with.query`);
 	}, [objectKey, resourceComponent, unregister]);
 
 	return (
@@ -80,7 +82,7 @@ export const OembedEdit = ({ objectKey }: BaseEditProps) => {
 					>
 						<SelectInputWithControl
 							label="Select Resource"
-							name={`${objectKey}.resource`}
+							name={`${objectKey}.componentProps.resource`}
 							fullWidth={true}
 							required
 							// onChange={changeHandler}

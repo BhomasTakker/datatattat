@@ -13,6 +13,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { Title } from "@/src/components/ui/title";
 import { TitleVariant } from "@/src/components/types/ui";
 import { MARGINS } from "config/styles/styles.config";
+import { useUnregisterForm } from "../../hooks/useUnregisterForm";
 
 type ParametersType = {
 	type: string;
@@ -122,6 +123,15 @@ export const Parameters = ({
 	shouldCreateParametersString?: boolean;
 	showTitle?: boolean;
 }) => {
+	// const { unregister } = useFormContext();
+
+	// useEffect(() => {
+	// 	unregister(`${objectKey}`);
+	// }, [objectKey, unregister]);
+	// useUnregisterForm({ name: objectKey });
+
+	console.log("PARAMETERS", { params });
+
 	return (
 		<ParametersContextProvider
 			value={{ objectKey, shouldCreateParametersString, showTitle }}

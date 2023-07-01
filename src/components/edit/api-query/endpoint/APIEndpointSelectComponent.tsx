@@ -11,12 +11,14 @@ import { MARGINS } from "config/styles/styles.config";
 // abstract its use for RSS and standard queries?
 // Rename to RSSEndpointSelectComponent
 export const APIEndpointSelectComponent = ({ data, objectKey, apiId }: any) => {
-	const { setValue } = useFormContext();
+	const { setValue, unregister } = useFormContext();
 	const [RecursiveComponent, setRecursiveComponent] =
 		useState<ReactElement | null>(null);
 	const {
 		type,
 		id,
+		// should it be required in rss?
+		// Probab;y refactor that
 		endpoint = false, // rem
 		baseUrl, // not needed in query
 		postfix = "", // not needed in query
@@ -74,8 +76,11 @@ export const APIEndpointSelectComponent = ({ data, objectKey, apiId }: any) => {
 		if (!api) {
 			return;
 		}
+		//this clears params whenever apiId changes
+		// unregister(`${objectKey}.params`);
+
 		setValue(apiId, api);
-	}, [apiId, api, setValue]);
+	}, [apiId, api, setValue, unregister, objectKey]);
 
 	// Create recursive component IF there is an endpointObject for our current chosen endpoint
 	useEffect(() => {
