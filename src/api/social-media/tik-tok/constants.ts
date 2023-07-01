@@ -14,3 +14,22 @@ export const TIKTOK_VIDEO_OEMBED_OBJECT = {
 	url: `${TIKTOK_VIDEO_PATH}`,
 	returns: (data: any) => data,
 };
+
+///////////////////////////////////////////
+// Update
+export const TIKTOK_OEMBED_CREATOR_OBJECT = (data: any) => ({
+	url: `https://www.tiktok.com/${data.endpoint}`,
+	returns: (data: any) => data,
+	data,
+});
+
+export const TIKTOK_OEMBED_VIDEO_OBJECT = (data: any) => ({
+	url: `https://www.tiktok.com/${data.user}/video/${data.videoId}`,
+	returns: (data: any) => data,
+	data,
+});
+
+export const TIKTOK_OEMBED_OBJECT = {
+	creator: TIKTOK_OEMBED_CREATOR_OBJECT,
+	video: TIKTOK_OEMBED_VIDEO_OBJECT,
+};

@@ -75,3 +75,16 @@ export const EditTextToggleInput = memo(
 );
 
 EditTextToggleInput.displayName = "EditTextToggleInput";
+
+// export const EditEndpointTextInput =
+// 	({ id, label, isChecked = false }: EditTextInputProps & ToggleProps) => {
+// 		return (
+// 			<WithInfo infoId="RssEndpoint">
+// 				<TextInputWithControlAndToggle
+// 					label={label}
+// 					name={id}
+// 					fullWidth={true}
+// 				/>
+// 			</WithInfo>
+// 		);
+// 	};

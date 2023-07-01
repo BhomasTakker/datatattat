@@ -15,6 +15,9 @@ import { TitleVariant } from "@/src/components/types/ui";
 import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
 import { clientsideFetch } from "../../clientside-fetch";
 import { useQuery } from "@tanstack/react-query";
+//////////////////////////
+// Should be void
+///////////////////////////
 ///////////////////////////////////////////////////
 //Search / Is all the bing news endpoints
 // search without e appears to be trending

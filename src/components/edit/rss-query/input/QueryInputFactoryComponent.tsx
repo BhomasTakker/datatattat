@@ -31,8 +31,8 @@ export const QueryInputFactoryComponent = ({
 
 	console.log("TYPE", { type });
 
-	// We could should have many
-	// Convert to a Map
+	// We could / should have many
+	// Convert to a Map?
 	switch (type) {
 		case "text":
 			console.log("RERENDERED THIS BUGGER");
@@ -45,6 +45,9 @@ export const QueryInputFactoryComponent = ({
 			return (
 				<EditSelectInput endpoints={options} id={parameterId} label={label} />
 			);
+		case "select-endpoint":
+		case "text-endpoint":
+		case "none":
 		default:
 			return <></>;
 	}

@@ -20,7 +20,10 @@ export const APIEndpointSelectComponent = ({ data, objectKey, apiId }: any) => {
 		endpoint = false, // rem
 		baseUrl, // not needed in query
 		postfix = "", // not needed in query
+		//////////////////////////////////
+		// should just be if type === none
 		setState = true, // record form state
+		///////////////////////////////////////
 		endpointObjects = {},
 		endpoints,
 		label,

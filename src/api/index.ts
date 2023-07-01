@@ -9,6 +9,7 @@ import {
 //import from constants
 import { TikTokCreatorOembedEdit } from "./social-media/tik-tok/CreatorEdit";
 import { TikTokVideoOembedEdit } from "./social-media/tik-tok/VideoEdit";
+import { TIKTOK_OEMBED_CONFIG_OBJECT } from "./social-media/tik-tok/config";
 import {
 	TIKTOK_CREATOR_OEMBED_OBJECT,
 	TIKTOK_VIDEO_OEMBED_OBJECT,
@@ -16,6 +17,7 @@ import {
 import { TwitterListOembedEdit } from "./social-media/twitter/ListEdit";
 import { TwitterProfileOembedEdit } from "./social-media/twitter/ProfileEdit";
 import { TwitterTweetOembedEdit } from "./social-media/twitter/TweetEdit";
+import { TWITTER_OEMBED_CONFIG_OBJECT } from "./social-media/twitter/config";
 import {
 	TWITTER_LIST_OEMBED_OBJECT,
 	TWITTER_PROFILE_OEMBED_OBJECT,
@@ -59,6 +61,6 @@ export const API_EDIT_LIST: any = {
 export const API_CONFIG_LIST: any = {
 	//need groups / here or prior to this set news / radio / etc
 	bing: BING_NEWS_API_CONFIG_OBJECT,
-	twitter: "",
-	tiktok: "",
+	twitter: TWITTER_OEMBED_CONFIG_OBJECT,
+	tiktok: TIKTOK_OEMBED_CONFIG_OBJECT,
 };

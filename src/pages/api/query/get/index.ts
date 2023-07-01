@@ -1,7 +1,6 @@
 import { API_MAP, API_REQUEST_TYPE } from "@/src/api/api-map";
 import { redisApiFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next/types";
-import Parser from "rss-parser";
 
 async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== "GET") {
@@ -11,37 +10,54 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	console.log("apiQuery 1");
 
 	const { query } = req;
-	const { apiId = "" } = query;
+	const { apiId = "", endpoint = "" } = query;
 	const quearyData = { ...query };
 	delete quearyData.apiId;
 	console.log("apiQuery 2");
 	// when would apiId be an array?
 	// it just theoretically could be because it is a query parameter
 	// We are going to expect something -
-	const apiConfig: API_REQUEST_TYPE = API_MAP.get(
-		apiId.toString()
-	) as API_REQUEST_TYPE;
-	console.log("apiQuery 3");
+	const getConfigObject = API_MAP.get(apiId.toString()) as (
+		data: typeof quearyData
+	) => API_REQUEST_TYPE;
+
+	const apiConfig = getConfigObject(quearyData);
+
+	console.log("apiQuery 3", { apiId });
+	console.log("apiQuery 3", { apiConfig });
 	// need test if get returns undefined
 	if (!apiConfig) {
+		console.log("apiQuery 3.5");
 		return res.status(404).json("Bad request");
 	}
 
 	console.log("apiQuery 4");
 
-	const { url, headers, returns } = apiConfig;
+	const { url: configUrl, headers, returns, data: queryParams } = apiConfig;
 
-	const queryParams = quearyData; //JSON.parse(quearyData.toString());
+	// const queryParams = quearyData; //JSON.parse(quearyData.toString());
 
-	const endpoint = new URL(url);
+	///////////////////////////////////////////////////
+	// a bit nasty and potentially prone to issues?
+	// Need a cleaner way and low creep ??
+	// should wrk though
+	//////////////////////////////
+	// let searchUrl = configUrl;
+	// if (endpoint) {
+	// 	searchUrl = `${configUrl}/${endpoint}`;
+	// }
+	console.log("apiQuery 4.5", { apiConfig });
+	console.log("apiQuery 4.5", { configUrl });
+
+	const apiUrl = new URL(configUrl);
 
 	console.log("apiQuery 5");
 
 	for (let param in queryParams) {
-		endpoint.searchParams.set(param, query[param] as string);
+		apiUrl.searchParams.set(param, queryParams[param] as string);
 	}
 
-	console.log("apiQuery 6");
+	console.log("apiQuery 6", { apiUrl });
 
 	//Here we need inject Redis
 	//but also a generic function - pass in jazz
@@ -58,7 +74,7 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	// const result = await response.json();
 
 	//On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	const result = await redisApiFetch(endpoint, { ...headers });
+	const result = await redisApiFetch(apiUrl, { ...headers });
 
 	// console.log({ BING: result });
 	console.log("apiQuery 7");

@@ -1,5 +1,6 @@
 import { returns } from "./returns";
 
+// these should be deprecated
 export const SEARCH = "api/bing/news/search"; //LOCAL_PATH
 export const HEADLINES = "api/bing/news/headlines";
 export const TRENDING = "api/bing/news/trending";
@@ -17,10 +18,12 @@ requestHeaders.set("Ocp-Apim-Subscription-Key", process.env.BING_API_KEY || "");
 //sort out the error...
 //Is this protected from client side?
 //need check and remove to seperate file if need be
+// don't export directly?
 export const HEADERS: RequestInit = {
 	headers: requestHeaders,
 };
 
+//Should be deprecated now
 export const BING_NEWS_SEARCH_API_OBJECT = {
 	url: `${SEARCH}`,
 	returns: returns,
@@ -36,33 +39,27 @@ export const BING_NEWS_TRENDING_API_OBJECT = {
 };
 
 /////////////// Server Only /////////////
-const searchObject = {
+const searchObject = (data: any) => ({
 	url: `${BASE_URL}${ENDPOINTS.NEWS_SEARCH}`,
 	headers: HEADERS,
 	returns, // <- this needs a big work
-};
-const trendingObject = {
+	data,
+});
+const trendingObject = (data: any) => ({
 	url: `${BASE_URL}${ENDPOINTS.TRENDING}`,
 	headers: HEADERS,
 	returns, // <- this needs a big work
-};
-const headlinesObject = {
+	data,
+});
+const headlinesObject = (data: any) => ({
 	url: `${BASE_URL}${ENDPOINTS.HEADLINES}`,
 	headers: HEADERS,
 	returns, // <- this needs a big work
-};
-
-const blah = {
-	wot: `${BASE_URL}${ENDPOINTS.HEADLINES}`,
-	never: HEADERS,
-	returns: {
-		fluff: {},
-	},
-};
+	data,
+});
 
 export const BING_NEWS_API_OBJECT = {
 	search: searchObject,
 	trending: trendingObject,
 	headlines: headlinesObject,
-	blah,
 };

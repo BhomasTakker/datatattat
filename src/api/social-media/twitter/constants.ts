@@ -21,3 +21,36 @@ export const TWITTER_TWEET_OEMBED_OBJECT = {
 	url: `${TWEET_PATH}`,
 	returns: (data: any) => data,
 };
+
+// https://publish.twitter.com/oembed/url=?https://twitter.com/aoc
+////////////////////////////////
+// if this is a function by default and we pass in the query, etc
+// we can do it easily
+export const TWITTER_OEMBED_PROFILE_OBJECT = (data: any) => {
+	const url = `https://twitter.com/${data.endpoint}`;
+	const returnData = { ...data, url };
+	delete returnData.endpoint;
+	return {
+		url: "https://publish.twitter.com/oembed",
+		returns: (data: any) => data,
+		data: returnData,
+	};
+};
+
+export const TWITTER_OEMBED_LIST_OBJECT = (data: any) => ({
+	url: `https://publish.twitter.com/oembed/i/lists/`,
+	returns: (data: any) => data,
+	data,
+});
+
+export const TWITTER_OEMBED_TWEET_OBJECT = (data: any) => ({
+	url: `https://publish.twitter.com/oembed/${data.user}/status/${data.tweetId}`,
+	returns: (data: any) => data,
+	data,
+});
+
+export const TWITTER_OEMBED_OBJECT = {
+	profile: TWITTER_OEMBED_PROFILE_OBJECT,
+	list: TWITTER_OEMBED_LIST_OBJECT,
+	tweet: TWITTER_OEMBED_TWEET_OBJECT,
+};
