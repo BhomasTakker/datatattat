@@ -58,7 +58,7 @@ export const OembedEdit = ({ objectKey }: BaseEditProps) => {
 	// this is how you unregister
 	// useUnregisterForm({
 	// 	name: `${objectKey}._with.query`,
-	// 	dependencies: [resourceComponent],
+	// 	dependencies: resourceComponent,
 	// });
 	useEffect(() => {
 		unregister(`${objectKey}._with.query`);

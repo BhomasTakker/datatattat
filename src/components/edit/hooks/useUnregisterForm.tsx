@@ -8,10 +8,11 @@ import { useFormContext } from "react-hook-form";
 type UnregisterFormType = {
 	name: string;
 	options?: any;
-	dependencies?: any[];
+	//Didn't fix anything just caused a never ending loop!
+	// dependencies?: any[];
 };
 
-const defaultDependencies: any[] = [];
+const defaultDependencies: any = {};
 
 // A simple hook to deregister a form component when component removed at the end of its lifecycle
 // not as straightforward as use whenever
@@ -19,8 +20,8 @@ const defaultDependencies: any[] = [];
 export const useUnregisterForm = ({
 	name,
 	options,
-	dependencies = defaultDependencies,
-}: UnregisterFormType) => {
+}: // dependencies = defaultDependencies,
+UnregisterFormType) => {
 	const { unregister, register } = useFormContext();
 
 	useEffect(() => {
@@ -31,5 +32,5 @@ export const useUnregisterForm = ({
 			unregister(name);
 		};
 		// Can we spread dependencies or get around spreading?
-	}, [name, unregister, dependencies]);
+	}, [name, unregister]);
 };
