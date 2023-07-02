@@ -12,6 +12,20 @@ export const createComponentsList = (components: any[]) => {
 			props: componentProps,
 		};
 
+		/////////////////////////////////
+		// should be temp?
+		// IF NO type
+		// Do something better here
+		/////////////////////////////////
+		if (!_with?.type) {
+			return (
+				<Component
+					key={`${componentType}/${index}/${JSON.stringify(componentProps)}`}
+					{...componentProps}
+				/>
+			);
+		}
+
 		const RenderElement = withFactory(componentObject, _with);
 
 		return <RenderElement key={index} />;

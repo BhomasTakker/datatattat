@@ -44,7 +44,7 @@ export const TWITTER_OEMBED_LIST_OBJECT = (data: any) => {
 	return {
 		url: `https://publish.twitter.com/oembed/`,
 		returns: (data: any) => data,
-		data,
+		data: returnData,
 	};
 };
 
@@ -57,7 +57,7 @@ export const TWITTER_OEMBED_TWEET_OBJECT = (data: any) => {
 	return {
 		url: `https://publish.twitter.com/oembed/`,
 		returns: (data: any) => data,
-		data,
+		data: returnData,
 	};
 };
 

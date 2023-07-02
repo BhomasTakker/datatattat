@@ -1,5 +1,6 @@
 import { TIKTOK_OEMBED_OBJECT } from "./tik-tok/constants";
 import { TWITTER_OEMBED_OBJECT } from "./twitter/constants";
+import { YOUTUBE_OEMBED_OBJECT } from "../iframe-embeds/youtube/constants";
 
 export const OEMBED_MAP = new Map<string, object>([
 	["twitterProfileOembed", TWITTER_OEMBED_OBJECT.profile],
@@ -8,4 +9,6 @@ export const OEMBED_MAP = new Map<string, object>([
 
 	["tiktokCreatorOembed", TIKTOK_OEMBED_OBJECT.creator],
 	["tiktokVideoOembed", TIKTOK_OEMBED_OBJECT.video],
+
+	// ["youtubeWatchOembed", YOUTUBE_OEMBED_OBJECT.video],
 ]);

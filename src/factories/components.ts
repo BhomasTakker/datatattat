@@ -20,6 +20,8 @@ import { TikTokCreatorEdit } from "../components/data/social-media/tiktok/TikTok
 import { TikTokVideoEdit } from "../components/data/social-media/tiktok/TikTokVideoEdit";
 import { Oembed } from "../components/oembed/Oembed";
 import { OembedEdit } from "../components/oembed/OembedEdit";
+import { Iframe } from "../components/iframe-embeds/Iframe";
+import { IframeEdit } from "../components/iframe-embeds/IframeEdit";
 
 // export enum COMPONENT_TYPES {
 // 	STACK = "STACK",
@@ -39,6 +41,7 @@ export const COMPONENTS: any = {
 	["BasicArticle"]: BasicArticle,
 
 	["Oembed"]: Oembed,
+	["Iframe Embed"]: Iframe,
 
 	//Twitter / load and spread twitter object
 	// ["TwitterProfile"]: TwitterProfile,
@@ -63,6 +66,7 @@ export const EDIT_COMPONENTS: any = {
 	["DTAGrid"]: DTAGridEdit,
 
 	["Oembed"]: OembedEdit,
+	["Iframe Embed"]: IframeEdit,
 
 	//Should perhaps be SocialMedia/Twitter/these
 	//Twitter / load and spread twitter object

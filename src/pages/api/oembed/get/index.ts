@@ -17,6 +17,9 @@ async function oembedQuery(req: NextApiRequest, res: NextApiResponse) {
 		data: typeof quearyData
 	) => API_REQUEST_TYPE;
 
+	console.log({ oembedId });
+	console.log({ quearyData });
+
 	const oembedConfig = getConfigObject(quearyData);
 
 	if (!oembedConfig) {
@@ -30,6 +33,8 @@ async function oembedQuery(req: NextApiRequest, res: NextApiResponse) {
 	for (let param in queryParams) {
 		oembedUrl.searchParams.set(param, queryParams[param] as string);
 	}
+
+	console.log({ oembedUrl });
 
 	//On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	const result = await redisApiFetch(oembedUrl, { ...headers });
