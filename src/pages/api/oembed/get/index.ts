@@ -2,6 +2,10 @@ import { API_MAP, API_REQUEST_TYPE } from "@/src/api/api-map";
 import { redisApiFetch } from "@/src/lib/redis";
 import { OEMBED_MAP } from "@/src/oembed/oembed-map";
 import { NextApiRequest, NextApiResponse } from "next/types";
+import { env } from "process";
+
+// Putting all embeds through iframely
+// https://iframely.com/docs/iframely-api
 
 async function oembedQuery(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== "GET") {
@@ -28,10 +32,22 @@ async function oembedQuery(req: NextApiRequest, res: NextApiResponse) {
 
 	const { url: configUrl, headers, returns, data: queryParams } = oembedConfig;
 
-	const oembedUrl = new URL(configUrl);
+	// use key with hash in browser
+	const iframelyParams = {
+		api_key: `${process.env.IFRAMELY_API_KEY}`,
+		iframe: 1,
+		omit_script: 1,
+		// lazy: 1, // something killed it!
+		// consent: 1, //try 0
+		maxheight: 600,
+	};
+	console.log("API_KEY!!! ", { api_key: iframelyParams.api_key });
+	const iframelyReadyParams = { ...queryParams, ...iframelyParams };
 
-	for (let param in queryParams) {
-		oembedUrl.searchParams.set(param, queryParams[param] as string);
+	const oembedUrl = new URL("https://cdn.iframe.ly/api/iframely");
+
+	for (let param in iframelyReadyParams) {
+		oembedUrl.searchParams.set(param, iframelyReadyParams[param] as string);
 	}
 
 	console.log({ oembedUrl });

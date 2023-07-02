@@ -12,12 +12,13 @@ export const DTAHead = () => {
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
 			<link rel="icon" href="/favicon.ico" />
 			{/* Sort this/these can't really just have everywhere? */}
-			<script
+			{/* Void with Iframely  */}
+			{/* <script
 				async
 				src="https://platform.twitter.com/widgets.js"
 				// charSet="utf-8"
 			></script>
-			<script async src="https://www.tiktok.com/embed.js"></script>
+			<script async src="https://www.tiktok.com/embed.js"></script> */}
 		</Head>
 	);
 };
