@@ -44,6 +44,9 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 
 	//loading / error / etc
 	if (!data) {
+		console.log("NO DATA??", { queryId });
+		console.log("NO DATA??", { queryState });
+		console.log("NO DATA??", { options });
 		return <></>;
 	}
 

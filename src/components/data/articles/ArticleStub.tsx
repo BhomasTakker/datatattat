@@ -49,7 +49,7 @@ export const ArticleStub = ({ data }: any) => {
 	// 	link: enclosureLink,
 	// } = enclosure || {};
 	// const { url: imageUrl, title: imageTitle, link: imageLink } = image || {};
-
+	console.log({ data });
 	const { url: sourceUrl = "" } = source || {};
 
 	//really need to mush enclosure into image if it is an image

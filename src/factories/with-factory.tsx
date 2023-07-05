@@ -36,7 +36,7 @@ const createNewQueryObject = (queryObject: any) => {
 
 	const query = {
 		queryFn: () => clientsideFetch(searchObject),
-		// just use the url+params to save this
+		// just use the url+params to save this / wrong url
 		queryId: `${API_QUERY_PATH}:${JSON.stringify(params)}`,
 		//this is seperate to pagination state but includes
 		state: params,

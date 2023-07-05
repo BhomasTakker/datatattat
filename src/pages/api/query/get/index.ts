@@ -79,6 +79,8 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	// console.log({ BING: result });
 	console.log("apiQuery 7");
 
+	console.log({ result });
+
 	res.status(200).json(result);
 }
 

@@ -16,11 +16,18 @@ enum YOUTUBE_OEMBED_ENDPOINTS {
 // 	// default: json
 // 	// disabled: true
 // };
+const shortsTextInput = {
+	type: "text", // boolean
+	id: "videoId",
+	label: "video id",
+	key: "videoId",
+	info: "",
+};
 
 const watchTextInput = {
 	type: "text", // boolean
 	id: "v",
-	label: "video",
+	label: "video id",
 	key: "v",
 	info: "",
 };
@@ -35,9 +42,9 @@ const userTextInput = {
 
 const playlistTextInput = {
 	type: "text", // boolean
-	id: "listId",
+	id: "list",
 	label: "listId",
-	key: "listId",
+	key: "list",
 	info: "",
 };
 
@@ -62,8 +69,15 @@ const playlistObject = {
 	params: [playlistTextInput],
 };
 
+const shortsObject = {
+	id: "youtube_oembed_shorts_endpoint",
+	setState: false,
+	apiId: "youtubeShorts",
+	params: [shortsTextInput],
+};
+
 const youtubeObject = {
-	id: "youtube_iframe_embed_endpoint",
+	id: "youtube_oembed_embed_endpoint",
 	label: "Select Endpoint",
 	setState: true, //default
 
@@ -76,6 +90,7 @@ const youtubeObject = {
 		watch: watchObject,
 		playlist: playlistObject,
 		user: userObject,
+		shorts: shortsObject,
 	},
 };
 
