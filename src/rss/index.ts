@@ -5,6 +5,7 @@ import { BBC_NEWS_RSS_OBJECT } from "./news/BBC/constants";
 import { GOOGLE_RSS_CONFIG_OBJECT } from "./news/Google/config";
 import { SkyRssNewsFeedEdit } from "./news/Sky/RssFeedEdit";
 import { SKY_NEWS_RSS_CONFIG_OBJECT } from "./news/Sky/config";
+import { YOUTUBE_RSS_CONFIG_OBJECT } from "./youtube/config";
 
 // should be void
 export const RSS_LIST: any = {
@@ -27,5 +28,8 @@ export const RSS_CONFIG_LIST: any = {
 	bbcNews: BBC_RSS_CONFIG_OBJECT,
 	skyNews: SKY_NEWS_RSS_CONFIG_OBJECT,
 	googleNews: GOOGLE_RSS_CONFIG_OBJECT,
+
+	youtube: YOUTUBE_RSS_CONFIG_OBJECT,
+
 	custom: CUSTOM_RSS_CONFIG_OBJECT,
 };

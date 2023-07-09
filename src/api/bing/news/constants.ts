@@ -63,3 +63,28 @@ export const BING_NEWS_API_OBJECT = {
 	trending: trendingObject,
 	headlines: headlinesObject,
 };
+
+const search = (queryParams: any) => ({
+	url: `${BASE_URL}${ENDPOINTS.NEWS_SEARCH}`,
+	headers: HEADERS,
+	returns, // <- this needs a big work
+	queryParams,
+});
+const trending = (queryParams: any) => ({
+	url: `${BASE_URL}${ENDPOINTS.TRENDING}`,
+	headers: HEADERS,
+	returns, // <- this needs a big work
+	queryParams,
+});
+const headlines = (queryParams: any) => ({
+	url: `${BASE_URL}${ENDPOINTS.HEADLINES}`,
+	headers: HEADERS,
+	returns, // <- this needs a big work
+	queryParams,
+});
+
+export const BING_NEWS_API_CREATORS = {
+	search,
+	trending,
+	headlines,
+};

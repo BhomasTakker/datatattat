@@ -107,7 +107,12 @@ export const TextInputWithControlAndInputBlocker =
 export const TextInputWithControlAndToggle =
 	withToggleCheck(TextInputWithControl);
 
+// For Christs sake move this
 export const createSelectInputList = (hash: {}) => {
+	if (!hash) {
+		console.log("We error here but why?");
+		return <p>Error</p>;
+	}
 	return Object.keys(hash).map((key) => (
 		<MenuItem key={key} value={key}>
 			{key}

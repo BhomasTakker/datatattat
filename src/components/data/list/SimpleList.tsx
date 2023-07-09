@@ -23,6 +23,10 @@ export const SimpleList = ({
 	componentId: string;
 }) => {
 	const { items = [] } = queryData;
+
+	console.log({ queryData });
+	console.log("NO ITEMS!!!", { items });
+
 	////////////////////////
 	//doesn't feel okay?
 	//Right in theory perhaps just need to overload input perhaps - pass Id and nothing else surely?

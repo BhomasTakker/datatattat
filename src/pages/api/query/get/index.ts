@@ -76,6 +76,9 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	//On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	const result = await redisApiFetch(apiUrl, { ...headers });
 
+	// put result through transducers here
+	// ultimately if a good enough member
+
 	// console.log({ BING: result });
 	console.log("apiQuery 7");
 

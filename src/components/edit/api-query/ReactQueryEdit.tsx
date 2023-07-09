@@ -14,6 +14,8 @@ import { TitleVariant } from "@/components/types/ui";
 import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
 import { APIEndpointSelectComponent } from "./endpoint/APIEndpointSelectComponent";
 
+// VOID first solution deprecated / remove
+///////////////////////////////////////////////////
 //Also this ??
 //Create factory component?
 // args componentId, componentList, objectKey
@@ -95,6 +97,9 @@ export const ReactQueryEdit = ({ objectKey }: BaseEditProps) => {
 	);
 };
 
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
 // These are the new / obliterate the old
 const APIComponent = ({ componentId, objectKey }: any) => {
 	const config = API_CONFIG_LIST[componentId] || {};
@@ -112,16 +117,23 @@ const APIComponent = ({ componentId, objectKey }: any) => {
 	// go to a genric endpoint
 	// pass an apiId and parameters - get url and header object
 	// use of route could be final endpoint
-	const enpointInputComponent = (
+
+	return (
 		<APIEndpointSelectComponent
 			data={{ ...endpointInput }}
 			objectKey={objectKey}
 			apiId={`${objectKey}.apiId`}
 		/>
 	);
-
-	return enpointInputComponent;
 };
+
+// QuerySelect
+// Pass in ConfigList, title
+// call apiId queryId
+// Have a queryType -> queryType: api, queryId: bingNewsSearch
+// Could go further(not now) type: api, something: news, id: bing, endpoint: newsSearch
+// think about info ids later
+// That should be all we need
 
 export const APIQuerySelect = ({ objectKey }: BaseEditProps) => {
 	const provider = useWatch({

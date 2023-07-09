@@ -3,6 +3,8 @@ import { clientsideFetch } from "../api/clientside-fetch";
 import { withQuery } from "../hoc/query/withQuery";
 import { EDIT_WITH } from "./with";
 
+const NOUGET = "api/query/nouget";
+
 const API_QUERY_PATH = "api/query/get";
 const RSS_QUERY_PATH = "api/rss";
 const OEMBED_QUERY_PATH = "api/oembed/get";
@@ -17,7 +19,7 @@ const createNewQueryObject = (queryObject: any) => {
 	//API 'config'
 	//If not found return error or whatever
 	const config = API_LIST[apiId];
-	const returnFn = config.returns[response]; // ??
+	const returnFn = config?.returns[response]; // ??
 
 	console.log("API 2", { config });
 
@@ -146,6 +148,45 @@ const createOembedObject = (queryObject: any) => {
 	return query;
 };
 
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+const createNewestQueryObject = (queryObject: any) => {
+	const { queryId, conversion, params, options } = queryObject;
+	// conversionId needs to be string | string[] -> reducer or reducer[]
+
+	console.log({ CONVERSION: conversion });
+
+	const url = NOUGET;
+	// this feels a little dutty for some reason
+	const searchParams = {
+		...params,
+		queryId,
+		conversion: JSON.stringify(conversion),
+	};
+	// return fn - client side conversion
+	// we do want this - if some kind of member do on server side
+
+	// http query legth could be a problem
+	// if so we can arbitrarilly switch to POST to get around it
+	// Or potentially because we are sending the request to our own server
+	// configure the thing to allo over the 528 limit say
+	const query = {
+		// wrap client side fetch in a responseConversion
+		// if conversionIds and you are a member of ill repute
+		// client side conversion
+		queryFn: () => clientsideFetch({ url, searchParams }),
+		// convert to queryCacheId
+		queryId: `${API_QUERY_PATH}:${queryId}:${JSON.stringify(params)}`,
+
+		// conversion: JSON.stringify(conversion),
+		// need work with state
+		state: params,
+		options,
+	};
+
+	return query;
+};
+
 //////////////////////////////
 //Probably convert to a hash
 // Thnk about this area - why are we different
@@ -159,6 +200,13 @@ export const withFactory = (componentObject: any, withObject: any) => {
 	// Doesn't need to be a switch - do you match with a function
 	// else error
 	switch (withObject.type) {
+		case "update-rss-query":
+		case "update-api-query":
+			return withQuery(
+				componentObject,
+				createNewestQueryObject(withObject.query)
+			);
+
 		case "new-api-query":
 			// console.log("Did we come this way???");
 			return withQuery(componentObject, createNewQueryObject(withObject.query));

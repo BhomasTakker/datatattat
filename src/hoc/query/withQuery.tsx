@@ -51,6 +51,7 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 	}
 
 	console.log({ WITH_data: data });
+	console.log({ componentObject });
 
 	//if you have pagination you have to be expecting pagination props - i.e. setPagination
 	//We need to be passing props and adding queryState to that

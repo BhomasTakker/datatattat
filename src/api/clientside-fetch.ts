@@ -41,5 +41,6 @@ export const clientsideFetch = async ({
 
 	const result = await response.json();
 
+	// we do not want to this here
 	return returnFn(result);
 };
