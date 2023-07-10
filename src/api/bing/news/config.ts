@@ -53,9 +53,6 @@ const inputObject = {
 	},
 };
 
-export const BING_NEWS_API_CONFIG_OBJECT = {
-	endpointInput: inputObject,
-};
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 const search = {

@@ -2,7 +2,6 @@
 
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
-import counterReducer from "../features/counter/counterSlice";
 import screenReducer from "./screen/screenSlice";
 import notificationReducer from "./notifications/notificationSlice";
 import localeSlice from "./locale/localeSlice";
@@ -10,7 +9,6 @@ import localeSlice from "./locale/localeSlice";
 export function makeStore() {
 	return configureStore({
 		reducer: {
-			counter: counterReducer,
 			screen: screenReducer,
 			notification: notificationReducer,
 			locale: localeSlice,

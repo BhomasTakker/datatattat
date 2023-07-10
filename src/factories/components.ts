@@ -8,20 +8,6 @@ import { BasicArticle } from "../components/data/articles/BasicArticle";
 import { BasicArticleEdit } from "../components/data/articles/BasicArticleEdit";
 import { DTAGrid } from "../components/containers/grids/DTAGrid";
 import { DTAGridEdit } from "../components/containers/grids/DTAGridEdit";
-import { TwitterProfile } from "../components/data/social-media/twitter/profile";
-import { TwitterProfileEdit } from "../components/data/social-media/twitter/TwitterProfileEdit";
-import { TwitterList } from "../components/data/social-media/twitter/list";
-import { Tweet } from "../components/data/social-media/twitter/tweet";
-import { TwitterListEdit } from "../components/data/social-media/twitter/TwitterListEdit";
-import { TweetEdit } from "../components/data/social-media/twitter/TwitterTweetEdit";
-import { TikTokCreator } from "../components/data/social-media/tiktok/TikTokCreator";
-import { TikTokVideo } from "../components/data/social-media/tiktok/TikTokVideo";
-import { TikTokCreatorEdit } from "../components/data/social-media/tiktok/TikTokCreatorEdit";
-import { TikTokVideoEdit } from "../components/data/social-media/tiktok/TikTokVideoEdit";
-import { Oembed } from "../components/oembed/Oembed";
-import { OembedEdit } from "../components/oembed/OembedEdit";
-import { Iframe } from "../components/iframe-embeds/Iframe";
-import { IframeEdit } from "../components/iframe-embeds/IframeEdit";
 
 // export enum COMPONENT_TYPES {
 // 	STACK = "STACK",
@@ -39,18 +25,6 @@ export const COMPONENTS: any = {
 	["ArticleStub"]: ArticleStub,
 	["DTAGrid"]: DTAGrid,
 	["BasicArticle"]: BasicArticle,
-
-	["Oembed"]: Oembed,
-	["Iframe Embed"]: Iframe,
-
-	//Twitter / load and spread twitter object
-	// ["TwitterProfile"]: TwitterProfile,
-	// ["TwitterList"]: TwitterList,
-	// ["Tweet"]: Tweet,
-
-	// //TikTok
-	// ["TikTokCreator"]: TikTokCreator,
-	// ["TikTokVideo"]: TikTokVideo,
 };
 
 // We need to organise these better
@@ -64,19 +38,6 @@ export const EDIT_COMPONENTS: any = {
 
 	["SimpleList"]: SimpleListEdit,
 	["DTAGrid"]: DTAGridEdit,
-
-	["Oembed"]: OembedEdit,
-	["Iframe Embed"]: IframeEdit,
-
-	//Should perhaps be SocialMedia/Twitter/these
-	//Twitter / load and spread twitter object
-	// ["TwitterProfile"]: TwitterProfileEdit,
-	// ["TwitterList"]: TwitterListEdit,
-	// ["Tweet"]: TweetEdit,
-
-	// //TikTok
-	// ["TikTokCreator"]: TikTokCreatorEdit,
-	// ["TikTokVideo"]: TikTokVideoEdit,
 
 	// Not here
 	["ArticleStub"]: ArticleStubEdit,

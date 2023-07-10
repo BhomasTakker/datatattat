@@ -1,63 +1,71 @@
-import { API_MAP, API_REQUEST_TYPE } from "@/src/api/api-map";
+import {
+	API_CREATOR_MAP,
+	API_REQUEST_TYPE,
+	QueryCreator,
+} from "@/src/api/api-map";
 import { redisApiFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next/types";
 
+type QueryId = string | string[];
+type QueryData = {
+	[x: string]: string | string[] | undefined;
+};
+
+// not an acurate name
+const getQueryConfig = (queryId: QueryId, quearyData: QueryData) => {
+	// pass creatorMap in
+	const getConfigObject = API_CREATOR_MAP.get(queryId.toString()) as (
+		data: typeof quearyData
+	) => QueryCreator;
+
+	return getConfigObject(quearyData);
+};
+
+const createQuery = () => {};
+
+// This needs massively cleaning up
+// As most thins we've done do
+// but this is very messy
 async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== "GET") {
 		return;
 	}
 
-	console.log("apiQuery 1");
+	// console.log("apiQuery 1");
 
 	const { query } = req;
-	const { apiId = "", endpoint = "" } = query;
+	const { queryId = "", conversion = "{}" } = query;
+
+	const parsedConversion = JSON.parse(conversion as string);
+
+	console.log("apiQuery 1", { query });
+
+	if (!queryId) {
+		// log situation
+		return res.status(404).json("Bad request");
+	}
+	// do better
 	const quearyData = { ...query };
-	delete quearyData.apiId;
-	console.log("apiQuery 2");
-	// when would apiId be an array?
-	// it just theoretically could be because it is a query parameter
-	// We are going to expect something -
-	const getConfigObject = API_MAP.get(apiId.toString()) as (
-		data: typeof quearyData
-	) => API_REQUEST_TYPE;
+	delete quearyData.queryId;
+	delete quearyData.conversion;
 
-	const apiConfig = getConfigObject(quearyData);
+	console.log("apiQuery 2", { quearyData });
 
-	console.log("apiQuery 3", { apiId });
-	console.log("apiQuery 3", { apiConfig });
-	// need test if get returns undefined
-	if (!apiConfig) {
-		console.log("apiQuery 3.5");
+	// pass / get list by type
+	const queryConfig = getQueryConfig(queryId, quearyData);
+
+	if (!queryConfig) {
+		// log situation
 		return res.status(404).json("Bad request");
 	}
 
-	console.log("apiQuery 4");
+	const { url, headers, returns, queryParams } = queryConfig;
 
-	const { url: configUrl, headers, returns, data: queryParams } = apiConfig;
-
-	// const queryParams = quearyData; //JSON.parse(quearyData.toString());
-
-	///////////////////////////////////////////////////
-	// a bit nasty and potentially prone to issues?
-	// Need a cleaner way and low creep ??
-	// should wrk though
-	//////////////////////////////
-	// let searchUrl = configUrl;
-	// if (endpoint) {
-	// 	searchUrl = `${configUrl}/${endpoint}`;
-	// }
-	console.log("apiQuery 4.5", { apiConfig });
-	console.log("apiQuery 4.5", { configUrl });
-
-	const apiUrl = new URL(configUrl);
-
-	console.log("apiQuery 5");
+	const queryUrl = new URL(url);
 
 	for (let param in queryParams) {
-		apiUrl.searchParams.set(param, queryParams[param] as string);
+		queryUrl.searchParams.set(param, queryParams[param] as string);
 	}
-
-	console.log("apiQuery 6", { apiUrl });
 
 	//Here we need inject Redis
 	//but also a generic function - pass in jazz
@@ -73,18 +81,31 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	// const response = await fetch(endpoint, options);
 	// const result = await response.json();
 
-	//On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	const result = await redisApiFetch(apiUrl, { ...headers });
+	// On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	const result = await redisApiFetch(queryUrl, { ...headers });
 
 	// put result through transducers here
 	// ultimately if a good enough member
 
 	// console.log({ BING: result });
-	console.log("apiQuery 7");
+	console.log("apiQuery  ", { parsedConversion });
+
+	/////////////////////////////////////////////////
+	// pass conversion object into a function and return result
+	// wrap api call so we have user or whatever
+	// check has the chops
+	// run data through transducers
+	///////////////////////////////////////////////////
+	// @ts-ignore
+	const forNow = returns[`${parsedConversion?.id}`]
+		? // @ts-ignore
+		  returns[parsedConversion?.id]
+		: (data: any) => data;
+	///////////////////////////////////////////////
 
 	console.log({ result });
 
-	res.status(200).json(result);
+	res.status(200).json(forNow(result));
 }
 
 export default apiQuery;

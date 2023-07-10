@@ -1,4 +1,3 @@
-import { withQuery } from "../hoc/query/withQuery";
 import { COMPONENTS, EDIT_COMPONENTS } from "./components";
 
 //We just need type at the moment

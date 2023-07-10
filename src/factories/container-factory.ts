@@ -1,4 +1,3 @@
-import { ReactElement } from "react";
 import { CONTAINERS, EDIT_CONTAINERS } from "./containers";
 
 //We just need type at the moment
