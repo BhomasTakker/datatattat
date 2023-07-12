@@ -23,46 +23,7 @@ export const HEADERS: RequestInit = {
 	headers: requestHeaders,
 };
 
-//Should be deprecated now
-export const BING_NEWS_SEARCH_API_OBJECT = {
-	url: `${SEARCH}`,
-	returns: returns,
-};
-
-export const BING_NEWS_HEADLINES_API_OBJECT = {
-	url: `${HEADLINES}`,
-	returns: returns,
-};
-export const BING_NEWS_TRENDING_API_OBJECT = {
-	url: `${SEARCH}`,
-	returns: returns,
-};
-
 /////////////// Server Only /////////////
-const searchObject = (data: any) => ({
-	url: `${BASE_URL}${ENDPOINTS.NEWS_SEARCH}`,
-	headers: HEADERS,
-	returns, // <- this needs a big work
-	data,
-});
-const trendingObject = (data: any) => ({
-	url: `${BASE_URL}${ENDPOINTS.TRENDING}`,
-	headers: HEADERS,
-	returns, // <- this needs a big work
-	data,
-});
-const headlinesObject = (data: any) => ({
-	url: `${BASE_URL}${ENDPOINTS.HEADLINES}`,
-	headers: HEADERS,
-	returns, // <- this needs a big work
-	data,
-});
-
-export const BING_NEWS_API_OBJECT = {
-	search: searchObject,
-	trending: trendingObject,
-	headlines: headlinesObject,
-};
 
 const search = (queryParams: any) => ({
 	url: `${BASE_URL}${ENDPOINTS.NEWS_SEARCH}`,

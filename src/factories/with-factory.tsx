@@ -2,18 +2,20 @@ import { clientsideFetch } from "../api/clientside-fetch";
 import { withQuery } from "../hoc/query/withQuery";
 import { EDIT_WITH } from "./with";
 
-const QUERY_PATH = "api/query/get";
+const API_PATH = "api/query/get";
+const RSS_PATH = "api/query/rss/get";
+const OEMBED_PATH = "api/query/oembed/get";
 
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 // Move this somewhere
-const createNewestQueryObject = (queryObject: any) => {
+const createQueryObject = (queryObject: any, queryPath: string) => {
 	const { queryId, conversion, params, options } = queryObject;
 	// conversionId needs to be string | string[] -> reducer or reducer[]
 
 	console.log({ CONVERSION: conversion });
 
-	const url = QUERY_PATH;
+	const url = queryPath;
 	// this feels a little dutty for some reason
 	const searchParams = {
 		...params,
@@ -33,7 +35,7 @@ const createNewestQueryObject = (queryObject: any) => {
 		// client side conversion
 		queryFn: () => clientsideFetch({ url, searchParams }),
 		// convert to queryCacheId
-		queryId: `${QUERY_PATH}:${queryId}:${JSON.stringify(params)}`,
+		queryId: `${queryPath}:${queryId}:${JSON.stringify(params)}`,
 
 		// conversion: JSON.stringify(conversion),
 		// need work with state
@@ -52,11 +54,15 @@ const createNewestQueryObject = (queryObject: any) => {
 // withObject is the saved with data
 export const withFactory = (componentObject: any, withObject: any) => {
 	switch (withObject.type) {
-		case "#rss-query":
+		case "rss-query":
+			return withQuery(
+				componentObject,
+				createQueryObject(withObject.query, RSS_PATH)
+			);
 		case "api-query":
 			return withQuery(
 				componentObject,
-				createNewestQueryObject(withObject.query)
+				createQueryObject(withObject.query, API_PATH)
 			);
 
 		default:

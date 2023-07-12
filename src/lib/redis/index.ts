@@ -1,3 +1,5 @@
+import Parser from "rss-parser";
+
 //https://www.youtube.com/watch?v=-5RTyEim384
 
 import { getEnvVar } from "@/src/utils/env";
@@ -47,4 +49,30 @@ export const redisApiFetch = async (
 
 	return result;
 	//new Response(result);
+};
+
+export const redisRssFetch = async (
+	endpoint: URL,
+	options: RequestInit,
+	cacheExpire: RedisCacheTime = RedisCacheTime.DAY
+) => {
+	const parser = new Parser();
+	const cachedValue = await redis.get(endpoint.toString());
+
+	if (cachedValue) {
+		console.log("RETURN CACHE");
+		return JSON.parse(cachedValue);
+	}
+
+	console.log({ STRING: endpoint.toString() });
+	// const response = await fetch(endpoint, options);
+	const result = await parser.parseURL(endpoint.toString());
+	//Probably not here unless? / keep as is - we can specify return type or none
+	// const result = await response.json();
+
+	await redis.set(endpoint.toString(), JSON.stringify(result));
+	//need to set cache expire to a provided value or use a default / not integrated into edit yet
+	await redis.expire(endpoint.toString(), cacheExpire);
+
+	return result;
 };

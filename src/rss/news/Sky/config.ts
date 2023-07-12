@@ -15,39 +15,40 @@ enum ENDPOINTS {
 	strange = "strange",
 }
 
+const endpoint = {
+	type: "select",
+	id: "endpoint",
+	label: "endpoint",
+	key: "endpoint",
+	options: ENDPOINTS,
+	// need add
+	defaultEndpoint: "home",
+};
 //Not input but endpoint or something
 // whats the /middle-bit/ of a url called? - it is a subdirectory
 // type subdirectoryObject
 // topSubDirectoryObjetct, usSubDirectoryObject
-const inputObject = {
-	id: "sky_endpoint",
+
+export const SKY_NEWS_ROOT = {
+	id: "sky_news_endpoint",
 	label: "Select Endpoint",
 
-	baseUrl: BASE_URL,
-	postfix: POSTFIX,
+	queryId: "skyNews",
+	// type: "none",
+	// endpoints: ENDPOINTS,
 
-	type: "select",
-	endpoints: ENDPOINTS,
-	defaultEndpoint: "home",
-	params: [],
+	// defaultEndpoint: "home",
+	params: [endpoint], // required?
 
-	endpointObjects: {
-		us: {
-			id: "sky_us_endpoint",
-			baseUrl: BASE_URL,
-			postfix: POSTFIX,
-			type: "select",
-			endpoints: ENDPOINTS,
-			defaultEndpoint: "home",
-			params: [],
-		},
-	},
-};
+	info: "id or explanation - or just an explanation",
 
-export const SKY_NEWS_RSS_CONFIG_OBJECT = {
-	// baseUrl: BASE_URL,
-	endpoints: ENDPOINTS,
-	// defaultEndpoint: ENDPOINTS.home,
-	// postfix: POSTFIX,
-	endpointInput: inputObject,
+	// Our list of conversions
+	// object default conversion, & list
+	conversions: {},
+
+	// endpointObjects: {
+	// 	search,
+	// 	headlines,
+	// 	trending,
+	// },
 };

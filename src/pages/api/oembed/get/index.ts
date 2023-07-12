@@ -1,8 +1,7 @@
-import { API_MAP, API_REQUEST_TYPE } from "@/src/api/api-map";
+import { API_REQUEST_TYPE } from "@/src/api/api-map";
 import { redisApiFetch } from "@/src/lib/redis";
 import { OEMBED_MAP } from "@/src/oembed/oembed-map";
 import { NextApiRequest, NextApiResponse } from "next/types";
-import { env } from "process";
 
 // Putting all embeds through iframely
 // https://iframely.com/docs/iframely-api

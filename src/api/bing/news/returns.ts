@@ -16,7 +16,7 @@ export const testReturn = (data: BingNewsSearchResponse) => {
 //which makes it easier to dynamically apply a value to a return
 ////////////////////////////////////////////////
 // Effectivly we need a to A set object
-
+// need protections/defaults for data
 export const toArticleList = (data: BingNewsSearchResponse) => {
 	const articleList = data.value.map((article) => {
 		return {
@@ -33,7 +33,7 @@ export const toArticleList = (data: BingNewsSearchResponse) => {
 			category: article.category,
 			guid: article.id,
 			image: {
-				url: article.image.thumbnail.contentUrl,
+				url: article.image?.thumbnail?.contentUrl,
 				title: article.headline || article.name,
 				link: article.url,
 			},
