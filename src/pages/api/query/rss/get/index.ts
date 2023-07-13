@@ -27,7 +27,7 @@ const createQuery = () => {};
 // This needs massively cleaning up
 // As most thins we've done do
 // but this is very messy
-async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
+async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== "GET") {
 		return;
 	}
@@ -91,4 +91,4 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	res.status(200).json(forNow(result));
 }
 
-export default apiQuery;
+export default rssQuery;

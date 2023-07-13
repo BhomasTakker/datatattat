@@ -62,7 +62,7 @@ type QuerySelectProps = {
 // title, titleInfo,
 // type label, type info, type id
 // config list
-export const QuerySelect = ({
+const QuerySelect = ({
 	objectKey,
 	title,
 	titleInfo,

@@ -34,10 +34,7 @@ export const SKY_NEWS_ROOT = {
 	label: "Select Endpoint",
 
 	queryId: "skyNews",
-	// type: "none",
-	// endpoints: ENDPOINTS,
 
-	// defaultEndpoint: "home",
 	params: [endpoint], // required?
 
 	info: "id or explanation - or just an explanation",
@@ -45,10 +42,4 @@ export const SKY_NEWS_ROOT = {
 	// Our list of conversions
 	// object default conversion, & list
 	conversions: {},
-
-	// endpointObjects: {
-	// 	search,
-	// 	headlines,
-	// 	trending,
-	// },
 };

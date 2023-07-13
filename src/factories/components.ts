@@ -8,6 +8,8 @@ import { BasicArticle } from "../components/data/articles/BasicArticle";
 import { BasicArticleEdit } from "../components/data/articles/BasicArticleEdit";
 import { DTAGrid } from "../components/containers/grids/DTAGrid";
 import { DTAGridEdit } from "../components/containers/grids/DTAGridEdit";
+import { IframelyOembedEdit } from "../components/data/oembed/IframelyOembedEdit";
+import { Iframely } from "../components/data/oembed/IFramelyOembed";
 
 // export enum COMPONENT_TYPES {
 // 	STACK = "STACK",
@@ -20,8 +22,13 @@ import { DTAGridEdit } from "../components/containers/grids/DTAGridEdit";
 //These are Content Components - ArticleStub / BasicArticle
 //We need a seperate 'Content Containers' for SimpleList and Grid - i.e.
 export const COMPONENTS: any = {
-	["Test"]: Test, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
 	["SimpleList"]: SimpleList,
+	["Embedded Object"]: Iframely,
+
+	//rem from here
+
+	["Test"]: Test, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
+
 	["ArticleStub"]: ArticleStub,
 	["DTAGrid"]: DTAGrid,
 	["BasicArticle"]: BasicArticle,
@@ -34,10 +41,12 @@ export const COMPONENTS: any = {
 // Containers -> Collections -> Components
 // DTAStack -> SimpleList -> ArticleStub
 export const EDIT_COMPONENTS: any = {
-	["Test"]: TempComponentEdit, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
-
 	["SimpleList"]: SimpleListEdit,
+	["Embedded Object"]: IframelyOembedEdit,
+
 	["DTAGrid"]: DTAGridEdit,
+
+	["Test"]: TempComponentEdit, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
 
 	// Not here
 	["ArticleStub"]: ArticleStubEdit,

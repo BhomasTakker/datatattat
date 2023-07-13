@@ -20,6 +20,7 @@ export const SimpleList = ({
 	componentId,
 }: {
 	queryData: any;
+	// this seems wrong?
 	componentId: string;
 }) => {
 	const { items = [] } = queryData;

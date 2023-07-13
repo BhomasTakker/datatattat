@@ -65,6 +65,12 @@ export const withFactory = (componentObject: any, withObject: any) => {
 				createQueryObject(withObject.query, API_PATH)
 			);
 
+		case "iframely-oembed-query":
+			return withQuery(
+				componentObject,
+				createQueryObject(withObject.query, OEMBED_PATH)
+			);
+
 		default:
 			const { component: Component, props } = componentObject;
 			return Component;
