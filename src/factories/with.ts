@@ -1,6 +1,6 @@
 import { QuerySelector } from "../components/edit/query/query-select";
-import { RSS_CONFIG_LIST } from "../rss";
-import { API_CONFIG_LIST } from "../api";
+import { RSS_CONFIG_LIST } from "../query/rss";
+import { API_CONFIG_LIST } from "../query/api";
 import { IFRAMELY_OEMBED_CONFIG_LIST } from "../query/oembed";
 
 export const EDIT_WITH: any = {

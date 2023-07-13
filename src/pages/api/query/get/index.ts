@@ -2,7 +2,7 @@ import {
 	API_CREATOR_MAP,
 	API_REQUEST_TYPE,
 	QueryCreator,
-} from "@/src/api/api-map";
+} from "@/src/query/api/api-map";
 import { redisApiFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next/types";
 

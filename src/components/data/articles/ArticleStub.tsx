@@ -5,7 +5,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import { RSSEnclosure, RSSImage } from "@/src/rss/types";
+import { RSSEnclosure, RSSImage } from "@/src/query/rss/types";
 
 const CreateAvatar = ({
 	image,

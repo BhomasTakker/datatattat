@@ -1,5 +1,5 @@
-import { HEADERS, PATH } from "@/src/api/bing/news/constants";
-import { toArticleList } from "@/src/api/bing/news/returns";
+import { HEADERS, PATH } from "@/src/query/api/bing/news/constants";
+import { toArticleList } from "@/src/query/api/bing/news/returns";
 import {
 	clientsideFetch,
 	ClientSideFetchType,

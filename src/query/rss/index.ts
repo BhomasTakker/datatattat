@@ -1,10 +1,9 @@
-import { CUSTOM_RSS_CONFIG_OBJECT } from "./custom/config";
+import { CUSTOM_RSS_CONFIG_OBJECT } from "../../rss/custom/config";
+import { YOUTUBE_RSS_CONFIG_OBJECT } from "../../rss/youtube/config";
 import { BBC_RSS_CONFIG_OBJECT } from "./news/BBC/config";
-import { BBC_NEWS_RSS_OBJECT } from "./news/BBC/constants";
 import { GOOGLE_RSS_CONFIG_OBJECT } from "./news/Google/config";
 import { SKY_NEWS_ROOT } from "./news/Sky/config";
 import { ALJAZEERA_NEWS_ROOT } from "./news/aljazeera/config";
-import { YOUTUBE_RSS_CONFIG_OBJECT } from "./youtube/config";
 
 export const RSS_CONFIG_LIST: any = {
 	skyNews: SKY_NEWS_ROOT,

@@ -2,9 +2,9 @@ import {
 	API_CREATOR_MAP,
 	API_REQUEST_TYPE,
 	QueryCreator,
-} from "@/src/api/api-map";
+} from "@/src/query/api/api-map";
 import { redisApiFetch, redisRssFetch } from "@/src/lib/redis";
-import { RSS_CREATOR_MAP } from "@/src/rss/rss-map";
+import { RSS_CREATOR_MAP } from "@/src/query/rss/rss-map";
 import { NextApiRequest, NextApiResponse } from "next/types";
 
 type QueryId = string | string[];

@@ -1,4 +1,4 @@
-import { QueryCreator } from "@/src/api/api-map";
+import { QueryCreator } from "@/src/query/api/api-map";
 import { redisApiFetch } from "@/src/lib/redis";
 import { OEMBED_CREATOR_MAP } from "@/src/query/oembed/oembed-map";
 import { getEnvVar } from "@/src/utils/env";

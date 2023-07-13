@@ -1,4 +1,8 @@
-import { BASE_URL, ENDPOINTS, HEADERS } from "@/src/api/bing/news/constants";
+import {
+	BASE_URL,
+	ENDPOINTS,
+	HEADERS,
+} from "@/src/query/api/bing/news/constants";
 import { redisApiFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next";
 
