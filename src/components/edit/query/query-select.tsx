@@ -8,7 +8,6 @@ import { SelectInputWithControl } from "../../input/SelectInput";
 import { createSelectInputList } from "../../input/TextInput";
 import { TitleVariant } from "../../types/ui";
 import { QueryCreator } from "./creator/query-creator";
-import { Conversion } from "./conversion/conversion";
 
 // componentId
 // objectKey

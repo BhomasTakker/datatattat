@@ -1,0 +1,5 @@
+export const CONVERSION_TYPES = {
+	TRANSFORM: "TRANSFORM",
+	FILTER: "FILTER",
+	SORT: "SORT",
+} as const;

@@ -5,7 +5,7 @@ import { Box, Stack } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
 import { Parameters } from "../parameters/Parameters";
 import { EditSelectInput } from "../input/input-components";
-import { Conversion } from "../conversion/conversion";
+import { ConversionsContainer } from "../conversion/conversions-container";
 
 type QueryBluePrint = {
 	id: string;
@@ -21,6 +21,8 @@ type QueryCreatorProps = {
 	// we need typeObject select, text, etc all have different types
 };
 
+// Clean this guy up
+// He can be better
 export const QueryCreator = ({
 	blueprint,
 	objectKey,
@@ -143,7 +145,10 @@ export const QueryCreator = ({
 						// shouldCreateParametersString={false}
 						// showTitle={true}
 					/>
-					<Conversion objectKey={objectKey} responseList={conversions} />
+					<ConversionsContainer
+						objectKey={objectKey}
+						responseList={conversions}
+					/>
 				</>
 			)}
 		</Stack>

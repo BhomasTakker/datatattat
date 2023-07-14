@@ -1,63 +1,57 @@
-import { TitleVariant } from "@/src/components/types/ui";
-import { Title } from "@/src/components/ui/title";
-import { WithInfo } from "../../info/WithInfo";
-import { Box, Stack } from "@mui/material";
-import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
-import { SelectInputWithControl } from "@/src/components/input/SelectInput";
-import { createSelectInputList } from "@/src/components/input/TextInput";
+import { useWatch } from "react-hook-form";
+import { SelectComponent } from "./select-components/select-component";
+import { CONVERSION_TYPES } from "./types";
+import { SelectFilterConversion } from "./select-components/filter-conversion";
+import { SelectSortConversion } from "./select-components/sort-conversion";
+import { SelectTransformConversion } from "./select-components/transform-conversion";
+
+type SetConversionType = string | null;
 
 type ConversionProps = {
-	responseList: any;
-	objectKey: string;
+	conversion: any;
 };
 
-// Paying creators, blah blah blah
-// Paying, etc, users send a post request with all of this guff
-// Non paying etc, do all of this on the browser side?
+type ConversionTypeProps = {
+	conversionType: string;
+	objectKey: string;
+};
+export const ConversionType = ({
+	conversionType,
+	objectKey,
+}: ConversionTypeProps) => {
+	switch (conversionType) {
+		case CONVERSION_TYPES.FILTER:
+			return <SelectFilterConversion objectKey={objectKey} />;
+		case CONVERSION_TYPES.SORT:
+			return <SelectSortConversion objectKey={objectKey} />;
+		case CONVERSION_TYPES.TRANSFORM:
+			return <SelectTransformConversion objectKey={objectKey} />;
+		default:
+			return <>Error Component</>;
+	}
+};
 
-//////////////////////////////////////////////////////
-// Start with 0 conversions
-// Add conversion
-// Select conversion type
-//    sort, filter, map, convert
-//    select conversion and add any required parameters
-//    i.e. sort - select label to sort by, alphanumeric, ascending
-//    i.e. filter - topN return the first N - provide N
-/////////////////////////////////////////////////////////
+export const Conversion = ({ conversion }: ConversionProps) => {
+	// const [conversionType, setConversionType] = useState<SetConversionType>(null);
+	const { objectKey } = conversion;
+	const selectConversionTypeValue = useWatch({ name: `${objectKey}.id` });
+	console.log({ selectConversionTypeValue });
 
-export const Conversion = ({ objectKey, responseList }: ConversionProps) => {
+	if (!selectConversionTypeValue) {
+		return (
+			<SelectComponent
+				label="Conversion Id"
+				name={`${objectKey}.id`}
+				infoId="conversionProvider"
+				selectList={CONVERSION_TYPES}
+			/>
+		);
+	}
+
 	return (
-		// <ParametersContextProvider value={{ objectKey }}>
-		<Stack>
-			<WithInfo info="How to modify the data you receive from your query. You can filter, sort, and transform results to suit your needs. Select from a predefined list or create your own.">
-				<Title
-					text="Response Conversion"
-					variant={TitleVariant.EDIT_COMPONENT}
-				></Title>
-			</WithInfo>
-			{/* This should just be a component */}
-			<Stack gap={MARGINS.SMALL}>
-				<Box marginLeft={MARGINS.LARGE}>
-					<WithInfo
-						infoId="conversionProvider"
-						marginLeft={INFO_MARGINS.STANDARD_LEFT}
-					>
-						<SelectInputWithControl
-							label="Conversion Id"
-							name={`${objectKey}.conversion.id`}
-							fullWidth={true}
-							required
-						>
-							{createSelectInputList({
-								none: "none",
-								...responseList,
-								custom: "custom",
-							})}
-						</SelectInputWithControl>
-					</WithInfo>
-				</Box>
-				{/* <APIComponent componentId={provider} objectKey={`${objectKey}.query`} /> */}
-			</Stack>
-		</Stack>
+		<ConversionType
+			conversionType={selectConversionTypeValue}
+			objectKey={objectKey}
+		/>
 	);
 };
