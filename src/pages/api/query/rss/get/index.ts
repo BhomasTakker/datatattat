@@ -6,6 +6,7 @@ import {
 import { redisApiFetch, redisRssFetch } from "@/src/lib/redis";
 import { RSS_CREATOR_MAP } from "@/src/query/rss/rss-map";
 import { NextApiRequest, NextApiResponse } from "next/types";
+import { convertResponse } from "@/src/query/conversions/response-conversion";
 
 type QueryId = string | string[];
 type QueryData = {
@@ -33,9 +34,10 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 	}
 
 	const { query } = req;
-	const { queryId = "", conversion = "{}" } = query;
+	const { queryId = "", conversion = "{}", conversions = "[]" } = query;
 
 	const parsedConversion = JSON.parse(conversion as string);
+	const parsedConversions = JSON.parse(conversions as string);
 
 	if (!queryId) {
 		// log situation
@@ -87,6 +89,8 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 	///////////////////////////////////////////////
 
 	console.log({ result });
+
+	const newResponse = convertResponse(result, parsedConversions);
 
 	res.status(200).json(forNow(result));
 }

@@ -5,6 +5,7 @@ import {
 } from "@/src/query/api/api-map";
 import { redisApiFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next/types";
+import { convertResponse } from "@/src/query/conversions/response-conversion";
 
 type QueryId = string | string[];
 type QueryData = {
@@ -34,9 +35,10 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	// console.log("apiQuery 1");
 
 	const { query } = req;
-	const { queryId = "", conversion = "{}" } = query;
+	const { queryId = "", conversion = "{}", conversions = "[]" } = query;
 
 	const parsedConversion = JSON.parse(conversion as string);
+	const parsedConversions = JSON.parse(conversions as string);
 
 	console.log("apiQuery 1", { query });
 
@@ -104,6 +106,7 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	///////////////////////////////////////////////
 
 	console.log({ result });
+	const newResponse = convertResponse(result, parsedConversions);
 
 	res.status(200).json(forNow(result));
 }

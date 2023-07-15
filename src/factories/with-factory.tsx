@@ -10,10 +10,17 @@ const OEMBED_PATH = "api/query/oembed/get";
 //////////////////////////////////////////////////////
 // Move this somewhere
 const createQueryObject = (queryObject: any, queryPath: string) => {
-	const { queryId, conversion, params, options } = queryObject;
+	const {
+		queryId,
+		conversion = {},
+		params,
+		options,
+		conversions = [],
+	} = queryObject;
 	// conversionId needs to be string | string[] -> reducer or reducer[]
 
 	console.log({ CONVERSION: conversion });
+	console.log({ CONVERSIONS_ARRAY: conversions });
 
 	const url = queryPath;
 	// this feels a little dutty for some reason
@@ -21,6 +28,7 @@ const createQueryObject = (queryObject: any, queryPath: string) => {
 		...params,
 		queryId,
 		conversion: JSON.stringify(conversion),
+		conversions: JSON.stringify(conversions),
 	};
 	// return fn - client side conversion
 	// we do want this - if some kind of member do on server side
