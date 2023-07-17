@@ -13,6 +13,9 @@ type ParametersProps = {
 };
 
 export const Parameters = ({ params, objectKey }: ParametersProps) => {
+	if (params.length === 0) {
+		return <></>;
+	}
 	return (
 		<ParametersContextProvider value={{ objectKey }}>
 			<WithInfo info="Query parameters. Controls to modify the query sent to your chosen api.">
