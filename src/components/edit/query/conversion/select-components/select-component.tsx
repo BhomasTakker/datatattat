@@ -26,8 +26,8 @@ export const SelectComponent = ({
 	// const { objectKey } = useContext(ConversionsContext);
 	// temp - tight coupling - should pass these in
 	const { deleteConversion, moveConversion } = useContext(ConversionsContext);
-	console.log({ selectList });
-	console.log({ label }, { name });
+	// console.log({ selectList });
+	// console.log({ label }, { name });
 
 	return (
 		<Stack width={"100%"}>

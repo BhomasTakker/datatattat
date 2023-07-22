@@ -12,6 +12,8 @@ import { SearchButton } from "@/components/header/search/SearchButton";
 import { UserButton } from "@/components/header/user/UserButton";
 import { NavigationMenu } from "../navigation-menu/NavigationMenu";
 import { SubHeadersList } from "../sub/SubHeadersList";
+import link from "next/link";
+import Link from "next/link";
 
 //Question perhaps in should we use context
 //doesn't quite seem required yet
@@ -24,7 +26,13 @@ export const MainHeader = ({ headerData }: any) => {
 
 	//probably call a function from elsewheres same with generating postfix
 	const menuPrefix = () => {
-		return [<DTALogo key={"Logo"} />, <SearchButton key={"Search"} />];
+		return [
+			// Goto 'home' if logo exists
+			<Link href={"/"} key={"Logo"}>
+				<DTALogo />
+			</Link>,
+			<SearchButton key={"Search"} />,
+		];
 	};
 	const menuPostfix = () => {
 		return !isAuthenticated ? <LogInButton /> : <UserButton />;

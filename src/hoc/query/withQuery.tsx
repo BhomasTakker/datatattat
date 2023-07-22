@@ -27,7 +27,7 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 	//pass generic for state object type
 	const [queryState, setQueryState] = useState<unknown>(state);
 
-	console.log({ WITH_query: queryObject });
+	// console.log({ WITH_query: queryObject });
 
 	//update query data of id data when pagination changes?
 	const { data } = useQuery([queryId, queryState], () => queryFn(queryState), {
@@ -44,14 +44,14 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 
 	//loading / error / etc
 	if (!data) {
-		console.log("NO DATA??", { queryId });
-		console.log("NO DATA??", { queryState });
-		console.log("NO DATA??", { options });
+		// console.log("NO DATA??", { queryId });
+		// console.log("NO DATA??", { queryState });
+		// console.log("NO DATA??", { options });
 		return <></>;
 	}
 
-	console.log({ WITH_data: data });
-	console.log({ componentObject });
+	// console.log({ WITH_data: data });
+	// console.log({ componentObject });
 
 	//if you have pagination you have to be expecting pagination props - i.e. setPagination
 	//We need to be passing props and adding queryState to that

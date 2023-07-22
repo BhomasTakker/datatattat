@@ -9,52 +9,102 @@ enum BING_ENDPOINTS {
 
 const CONVERSIONS = {
 	toArticleList: "toArticleList",
+	toArticleList2: "toArticleList2",
+	toArticleList3: "toArticleList3",
 } as const;
 
-const searchObject = {
-	id: "bing_news_search_endpoint",
-	setState: false,
-	apiId: "bingNewsSearch",
-	params: mainParams,
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+const responseMap = {
+	id: "string",
+	totalEstimatedMatches: "number",
+	value: "array",
 };
 
-const headlinesObject = {
-	id: "bing_news_headlines_endpoint",
-	setState: false,
-	apiId: "bingNewsHeadlines",
-	params: mainParams,
+const articleMap = {
+	category: "string",
+	datePublished: "string",
+	description: "string",
+	headline: "string",
+	id: "string",
+	image: "object",
+	video: "object",
 };
 
-const trendingObject = {
-	id: "bing_news_trending_endpoint",
-	setState: false,
-	// instead of setState say
-	// use type: null || 'none'
-	// existing property, logical, easy to understand
+const searchConversion = {
+	conversionId: "BING",
+	response: {
+		map: responseMap,
+		defaultConversions: [{ id: "toArticlesList", type: "TRANSFORM" }],
 
-	apiId: "bingNewsTrending",
-	params: mainParams,
-};
+		transform: {
+			toArticlesList: "toArticlesList",
+		},
+	},
+	// really sub objects array
+	iterable: {
+		id: "value",
+		map: articleMap,
+		defaultConversions: [{ id: "toArticle", type: "TRANSFORM" }],
 
-const inputObject = {
-	id: "bing_news_endpoint",
-	label: "Select Endpoint",
-	setState: true, //default
-
-	type: "select",
-	endpoints: BING_ENDPOINTS,
-
-	defaultEndpoint: "search",
-
-	endpointObjects: {
-		search: searchObject,
-		headlines: headlinesObject,
-		trending: trendingObject,
+		sort: {},
+		filter: {},
+		transform: {
+			toArticle: "toArticle",
+		},
 	},
 };
 
-/////////////////////////////////////////////
-/////////////////////////////////////////////
+const headlinesConversion = {
+	conversionId: "BING",
+
+	response: {
+		map: responseMap,
+		defaultConversions: [{ id: "toArticlesList", type: "TRANSFORM" }],
+
+		transform: {
+			toArticlesList: "toArticlesList",
+		},
+	},
+	// really sub objects
+	iterable: {
+		id: "value",
+		map: articleMap,
+		defaultConversions: [{ id: "toArticle", type: "TRANSFORM" }],
+
+		sort: {},
+		filter: {},
+		transform: {
+			toArticle: "toArticle",
+		},
+	},
+};
+
+const trendingConversion = {
+	conversionId: "BING",
+
+	response: {
+		map: responseMap,
+		defaultConversions: [{ id: "toArticlesList", type: "TRANSFORM" }],
+
+		transform: {
+			toArticlesList: "toArticlesList",
+		},
+	},
+	// really sub objects
+	iterable: {
+		id: "value",
+		map: articleMap,
+		defaultConversions: [{ id: "toArticle", type: "TRANSFORM" }],
+
+		sort: {},
+		filter: {},
+		transform: {
+			toArticle: "toArticle",
+		},
+	},
+};
+
 const search = {
 	id: "bing_news_search_endpoint",
 	info: `Lorem ipsum dolor sit amet, 
@@ -65,8 +115,10 @@ const search = {
 	queryId: "bingNewsSearch",
 	params: mainParams,
 
+	conversions: searchConversion,
+
 	// notsure if should add to each but?
-	conversions: CONVERSIONS,
+	// conversions: CONVERSIONS,
 };
 
 const headlines = {
@@ -79,7 +131,7 @@ const headlines = {
 	queryId: "bingNewsHeadlines",
 	params: mainParams,
 
-	conversions: CONVERSIONS,
+	conversions: headlinesConversion,
 };
 
 const trending = {
@@ -92,7 +144,7 @@ const trending = {
 	queryId: "bingNewsTrending",
 	params: mainParams,
 
-	conversions: CONVERSIONS,
+	conversions: trendingConversion,
 };
 
 export const BING_NEWS_ROOT = {
@@ -108,6 +160,7 @@ export const BING_NEWS_ROOT = {
 
 	// Our list of conversions
 	// object default conversion, & list
+	// technically shouldn't be one here as no endpoint?
 	conversions: CONVERSIONS,
 
 	endpointObjects: {

@@ -40,7 +40,7 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	const parsedConversion = JSON.parse(conversion as string);
 	const parsedConversions = JSON.parse(conversions as string);
 
-	console.log("apiQuery 1", { query });
+	// console.log("apiQuery 1", { query });
 
 	if (!queryId) {
 		// log situation
@@ -51,7 +51,7 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	delete quearyData.queryId;
 	delete quearyData.conversion;
 
-	console.log("apiQuery 2", { quearyData });
+	// console.log("apiQuery 2", { quearyData });
 
 	// pass / get list by type
 	const queryConfig = getQueryConfig(queryId, quearyData);
@@ -89,26 +89,15 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	// put result through transducers here
 	// ultimately if a good enough member
 
-	// console.log({ BING: result });
-	console.log("apiQuery  ", { parsedConversion });
-
 	/////////////////////////////////////////////////
 	// pass conversion object into a function and return result
 	// wrap api call so we have user or whatever
 	// check has the chops
 	// run data through transducers
-	///////////////////////////////////////////////////
-	// @ts-ignore
-	const forNow = returns[`${parsedConversion?.id}`]
-		? // @ts-ignore
-		  returns[parsedConversion?.id]
-		: (data: any) => data;
-	///////////////////////////////////////////////
 
-	console.log({ result });
 	const newResponse = convertResponse(result, parsedConversions);
-
-	res.status(200).json(forNow(result));
+	return res.status(200).json(newResponse);
+	// res.status(200).json(forNow(result));
 }
 
 export default apiQuery;

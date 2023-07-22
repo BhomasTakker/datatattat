@@ -32,7 +32,7 @@ export const QueryCreator = ({
 	const [RecursiveComponent, setRecursiveComponent] =
 		useState<ReactElement | null>(null);
 
-	console.log({ blueprint });
+	// console.log({ blueprint });
 
 	const {
 		id,
@@ -80,7 +80,7 @@ export const QueryCreator = ({
 			!formInputValue ||
 			(endpoints && typeof endpoints?.[formInputValue] !== "string")
 		) {
-			console.log("DO WE HERE???", { defaultEndpoint }, { formInputId });
+			// console.log("DO WE HERE???", { defaultEndpoint }, { formInputId });
 			setValue(formInputId, defaultEndpoint);
 		}
 	}, [formInputId, defaultEndpoint, setValue, formInputValue, endpoints, type]);
@@ -138,16 +138,10 @@ export const QueryCreator = ({
 				RecursiveComponent
 			) : (
 				<>
-					<Parameters
-						params={params}
-						objectKey={`${objectKey}.params`}
-						// never create parameter string
-						// shouldCreateParametersString={false}
-						// showTitle={true}
-					/>
+					<Parameters params={params} objectKey={`${objectKey}.params`} />
 					<ConversionsContainer
 						objectKey={objectKey}
-						responseList={conversions}
+						conversion={conversions}
 					/>
 				</>
 			)}

@@ -1,3 +1,6 @@
+// probably not here but...
+// dynamic imports https://www.youtube.com/watch?v=ddVm53j80vc
+
 import { clientsideFetch } from "../api/clientside-fetch";
 import { withQuery } from "../hoc/query/withQuery";
 import { EDIT_WITH } from "./with";

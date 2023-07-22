@@ -48,7 +48,7 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 	delete quearyData.queryId;
 	delete quearyData.conversion;
 
-	console.log("apiQuery 2", { quearyData });
+	// console.log("apiQuery 2", { quearyData });
 
 	// pass / get list by type
 	const queryConfig = getQueryConfig(queryId, quearyData);
@@ -73,26 +73,19 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 	// ultimately if a good enough member
 
 	// console.log({ BING: result });
-	console.log("apiQuery  ", { parsedConversion });
+	// console.log("apiQuery  ", { parsedConversion });
 
 	/////////////////////////////////////////////////
 	// pass conversion object into a function and return result
 	// wrap api call so we have user or whatever
 	// check has the chops
 	// run data through transducers
-	///////////////////////////////////////////////////
-	// @ts-ignore
-	const forNow = returns[`${parsedConversion?.id}`]
-		? // @ts-ignore
-		  returns[parsedConversion?.id]
-		: (data: any) => data;
-	///////////////////////////////////////////////
 
-	console.log({ result });
+	// console.log({ result });
 
 	const newResponse = convertResponse(result, parsedConversions);
-
-	res.status(200).json(forNow(result));
+	return res.status(200).json(newResponse);
+	// res.status(200).json(forNow(result));
 }
 
 export default rssQuery;

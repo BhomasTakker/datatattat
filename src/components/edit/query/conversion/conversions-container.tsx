@@ -1,117 +1,83 @@
-import { TitleVariant } from "@/src/components/types/ui";
-import { Title } from "@/src/components/ui/title";
+import { Stack } from "@mui/material";
+import { ConversionGroup } from "./group/conversion-group";
 import { WithInfo } from "../../info/WithInfo";
-import { Box, Button, Paper, Stack } from "@mui/material";
-import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
-import { SelectInputWithControl } from "@/src/components/input/SelectInput";
-import { createSelectInputList } from "@/src/components/input/TextInput";
-import { useState } from "react";
-import AddIcon from "@mui/icons-material/Add";
-import { Conversion } from "./conversion";
-import { ConversionsContextProvider } from "./context/ConversionsContext";
-import { useFormContext, useWatch } from "react-hook-form";
+import { Title } from "@/src/components/ui/title";
+import { TitleVariant } from "@/src/components/types/ui";
+import { useEffect } from "react";
+import { useFormContext } from "react-hook-form";
 
 type ConversionProps = {
-	responseList: any;
+	// conversionsObject surely
+	conversion: any; //not any
 	objectKey: string;
 };
 
-// Paying creators, blah blah blah
-// Paying, etc, users send a post request with all of this guff
-// Non paying etc, do all of this on the browser side?
-
-//////////////////////////////////////////////////////
-// Start with 0 conversions
-// Add conversion
-// Select conversion type
-//    sort, filter, map, convert
-//    select conversion and add any required parameters
-//    i.e. sort - select label to sort by, alphanumeric, ascending
-//    i.e. filter - topN return the first N - provide N
-/////////////////////////////////////////////////////////
-type Conversion = any;
-type Conversions = Conversion[];
-
-const createConversions = (conversions: Conversions) => {
-	return conversions.map((conversion, i) => {
-		return (
-			<Paper
-				elevation={1}
-				key={i}
-				style={{ paddingTop: MARGINS.SMALL, paddingBottom: MARGINS.SMALL }}
-			>
-				<Conversion conversion={conversion} />
-			</Paper>
-		);
-	});
+const createMainResponse = (response: any, objectKey: string) => {
+	if (!response) {
+		return null;
+	}
+	return (
+		<ConversionGroup
+			objectKey={objectKey}
+			conversion={response}
+			formId={"response"}
+			title={"Main"}
+			info={"blurb about main part "}
+		/>
+	);
 };
-
-// const addConversion = (handler: Function, conversion: Conversion) => {
-
-// };
+const createIterable = (iterable: any, objectKey: string) => {
+	if (!iterable) {
+		return null;
+	}
+	return (
+		<ConversionGroup
+			objectKey={objectKey}
+			conversion={iterable}
+			formId={"iterable"} //should be more dynamic
+			title={"Iterable"}
+			info={"blurb about iterable part "}
+			iterable
+		/>
+	);
+};
 
 export const ConversionsContainer = ({
 	objectKey,
-	responseList,
+	conversion,
 }: ConversionProps) => {
-	const [conversions, setConversions] = useState<Conversions>([]);
-	const conversionComponents = createConversions(conversions);
+	// change iterable to array of sub objects
+	const { response, iterable, conversionId } = conversion;
+	const { setValue } = useFormContext();
 
-	const conversionsId = `${objectKey}.conversions`;
-	const conversionFormId = `[${conversions.length}]`;
-	const conversionFormName = `${conversionsId}.${conversionFormId}`;
+	console.log({ conversionId });
 
-	const { getValues } = useFormContext();
-	// const watchComponents = useWatch({ name: conversionFormName }) || [];
+	const mainResponseComponent = createMainResponse(response, objectKey);
+	const iterableComponent = createIterable(iterable, objectKey);
 
-	const addConversionHandler = () => {
-		//
-		// setValue(conversionFormName, {});
-		setConversions([...conversions, { objectKey: conversionFormName }]);
-		// addConversion(setConversions, { text: "new conversion" });
-	};
+	useEffect(() => {
+		// Probably manage this better with context?
+		// ${objectKey}.conversions should really be passed in
+		const formId = `${objectKey}.conversions.conversionId`;
+		setValue(formId, conversionId);
+	}, [conversionId, objectKey, setValue]);
 
-	const deleteConversionHandler = (ARGS) => {
-		const conversionsFormValues = getValues(conversionsId);
-		console.log(
-			"deleteConversionHandler",
-			{ conversionFormName },
-			{ conversionsFormValues },
-			{ ARGS }
-		);
-	};
-	const moveConversionHandler = (ARGS) => {
-		const conversionsFormValues = getValues(conversionsId);
-		console.log(
-			"moveConversionHandler",
-			{ conversionFormName },
-			{ conversionsFormValues },
-			{ ARGS }
-		);
-	};
-
+	if (!mainResponseComponent && !iterableComponent) {
+		// Would there realy ever be an iterable without a main.
+		// i.e. sub object with no main object
+		return <></>;
+	}
+	// console.log({ conversion });
 	return (
-		<ConversionsContextProvider
-			value={{
-				objectKey,
-				deleteConversion: deleteConversionHandler,
-				moveConversion: moveConversionHandler,
-			}}
-		>
-			<Stack>
-				<WithInfo info="How to modify the data you receive from your query. You can filter, sort, and transform results to suit your needs. Select from a predefined list or create your own.">
-					<Title
-						text="Response Conversion"
-						variant={TitleVariant.EDIT_COMPONENT}
-					></Title>
-				</WithInfo>
-				<Stack gap={MARGINS.SMALL}>{conversionComponents}</Stack>
-				<Box paddingTop={MARGINS.MIDSMALL} paddingBottom={MARGINS.MIDSMALL}>
-					<Button onClick={addConversionHandler} startIcon={<AddIcon />}>
-						Add Conversion
-					</Button>
-				</Box>
-			</Stack>
-		</ConversionsContextProvider>
+		<Stack>
+			<WithInfo info="How to modify the data you receive from your query. You can filter, sort, and transform results to suit your needs. Select from a predefined list or create your own.">
+				<Title
+					text="Response Conversion"
+					variant={TitleVariant.EDIT_COMPONENT}
+				></Title>
+			</WithInfo>
+			{mainResponseComponent ? mainResponseComponent : <></>}
+			{iterableComponent ? iterableComponent : <></>}
+		</Stack>
 	);
 };

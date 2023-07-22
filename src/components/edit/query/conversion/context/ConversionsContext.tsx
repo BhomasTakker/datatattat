@@ -5,8 +5,17 @@ import { ReactNode, createContext } from "react";
 // then on change / reset
 // potentially simpler
 
+type ConversionData = {
+	id: string;
+	type: string; // enum
+	props?: any; // key value [string, enum]
+};
+
 type ConversionsState = {
 	objectKey: null | string;
+	sort: ConversionData[];
+	filter: ConversionData[];
+	transform: ConversionData[];
 };
 
 type ConversionsInterface = {
@@ -18,6 +27,9 @@ const conversionsInitialState: ConversionsState & ConversionsInterface = {
 	objectKey: null,
 	deleteConversion: (param: any) => {},
 	moveConversion: (param: any) => {},
+	sort: [],
+	filter: [],
+	transform: [],
 };
 
 export const ConversionsContextProvider = ({

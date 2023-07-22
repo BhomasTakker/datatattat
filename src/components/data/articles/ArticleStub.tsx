@@ -16,7 +16,10 @@ const CreateAvatar = ({
 	enclosure?: RSSEnclosure;
 	title?: string;
 }) => {
-	if (image) return <Avatar alt={image.title} src={image.url} />;
+	if (image) {
+		console.log({ IMAGE: image });
+		return <Avatar alt={image.title} src={image.url} />;
+	}
 
 	if (enclosure && enclosure?.type.includes("image"))
 		return <Avatar alt={title || ""} src={enclosure.url} />;
