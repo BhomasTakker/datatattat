@@ -1,6 +1,5 @@
 // We can potentially create logging etc
 
-import { BING_CONVERSIONS } from "../../api/bing/news/conversions";
 import {
 	CompleteCallback,
 	ConversionObserver,

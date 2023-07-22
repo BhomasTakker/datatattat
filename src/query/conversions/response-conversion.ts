@@ -1,8 +1,4 @@
-import {
-	CONVERSIONS_MAP,
-	getConversion,
-	mergeConversions,
-} from "./conversions-map";
+import { getConversion, mergeConversions } from "./conversions-map";
 import { createIterable } from "./create-iterable";
 import { createResponse } from "./create-response";
 import { MAIN_CONVERSIONS } from "./main-conversions";

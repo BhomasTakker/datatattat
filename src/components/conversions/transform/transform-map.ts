@@ -1,16 +1,6 @@
-const testtransform1 = () => {
-	console.log("testFilter1");
-};
-const testtransform2 = () => {
-	console.log("testtransform2");
-};
-const testtransform3 = () => {
-	console.log("testtransform3");
-};
-const testtransform4 = () => {
-	console.log("testtransform4");
-};
+// front end list
+// should join files
 
-export const TRANSFORM_MAP = {
-	testtransform1: "testtransform1",
-} as const;
+// we would need response transform
+// iterable transform no?
+export const TRANSFORM_MAP = {} as const;
