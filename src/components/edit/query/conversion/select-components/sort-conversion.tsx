@@ -4,6 +4,8 @@ import { SelectConversion } from "../types";
 import { useFormContext } from "react-hook-form";
 import { useContext, useEffect } from "react";
 import { ConversionsContext } from "../context/ConversionsContext";
+import { Stack } from "@mui/material";
+import { ConversionProps } from "../props/conversion-props";
 
 export const SelectSortConversion = ({
 	objectKey,
@@ -20,11 +22,17 @@ export const SelectSortConversion = ({
 	}, [objectKey, setValue, value]);
 
 	return (
-		<SelectComponent
-			label="Select Sort Conversion"
-			name={`${objectKey}.id`}
-			infoId="SelectSortConversion"
-			selectList={conversionsList}
-		/>
+		<Stack>
+			<SelectComponent
+				label="Select Sort Conversion"
+				name={`${objectKey}.id`}
+				infoId="SelectSortConversion"
+				selectList={conversionsList}
+			/>
+			<ConversionProps
+				conversionFormId={`${objectKey}.id`}
+				objectKey={objectKey}
+			/>
+		</Stack>
 	);
 };

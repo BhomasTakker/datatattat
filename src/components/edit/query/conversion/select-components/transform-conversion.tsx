@@ -4,7 +4,10 @@ import { TRANSFORM_MAP } from "@/src/components/conversions/transform/transform-
 import { SelectConversion } from "../types";
 import { useContext, useEffect } from "react";
 import { ConversionsContext } from "../context/ConversionsContext";
+import { Stack } from "@mui/material";
+import { ConversionProps } from "../props/conversion-props";
 
+// create a single one...
 export const SelectTransformConversion = ({
 	objectKey,
 	value,
@@ -19,13 +22,21 @@ export const SelectTransformConversion = ({
 		}
 	}, [objectKey, setValue, value]);
 
+	// When selected if props / show props
+
 	return (
-		<SelectComponent
-			label="Select Transform Conversion"
-			// pass full key in
-			name={`${objectKey}.id`}
-			infoId="SelectTransformConversion"
-			selectList={conversionsList}
-		/>
+		<Stack>
+			<SelectComponent
+				label="Select Transform Conversion"
+				// pass full key in
+				name={`${objectKey}.id`}
+				infoId="SelectTransformConversion"
+				selectList={conversionsList}
+			/>
+			<ConversionProps
+				conversionFormId={`${objectKey}.id`}
+				objectKey={objectKey}
+			/>
+		</Stack>
 	);
 };

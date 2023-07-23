@@ -1,5 +1,6 @@
 // We can potentially create logging etc
 
+import { tap } from "rxjs";
 import {
 	CompleteCallback,
 	ConversionObserver,
@@ -30,17 +31,30 @@ export const createPipeFunctions = (
 	conversions: ConversionMap[],
 	conversionsMap: Map<string, object>
 ) => {
-	return conversions.reduce((pipeFunctions: PipeFunctions, { type, id }) => {
-		// pass in 'BING' and merge with BASE
-		const hash = conversionsMap.get(type) as Map<string, object>;
+	return conversions.reduce(
+		(pipeFunctions: PipeFunctions, { type, id, props = {} }) => {
+			// pass in props
+			// pass in 'BING' and merge with BASE
+			const hash = conversionsMap.get(type) as Map<string, object>;
 
-		console.log({ type });
-		console.log({ hash });
+			console.log({ type });
+			console.log({ hash });
 
-		const conversionFunction = hash?.get(id);
+			//Cal the function?
+			const conversionFunction = hash?.get(id) as (props: any) => void;
 
-		return conversionFunction
-			? [...pipeFunctions, conversionFunction]
-			: pipeFunctions;
-	}, []);
+			const pipeFunction = conversionFunction
+				? conversionFunction(props)
+				: tap(() => {});
+
+			// call function here? with props
+			// to return usable conversion function
+
+			console.log({ conversionFunction });
+			console.log({ conversionFunctionid: id });
+
+			return pipeFunction ? [...pipeFunctions, pipeFunction] : pipeFunctions;
+		},
+		[]
+	);
 };

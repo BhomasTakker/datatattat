@@ -4,6 +4,8 @@ import { SelectConversion } from "../types";
 import { useFormContext } from "react-hook-form";
 import { useContext, useEffect } from "react";
 import { ConversionsContext } from "../context/ConversionsContext";
+import { Stack } from "@mui/material";
+import { ConversionProps } from "../props/conversion-props";
 
 export const SelectFilterConversion = ({
 	objectKey,
@@ -20,11 +22,17 @@ export const SelectFilterConversion = ({
 	}, [objectKey, setValue, value]);
 	console.log("filterConversions");
 	return (
-		<SelectComponent
-			label="Select Filter Conversion"
-			name={`${objectKey}.id`}
-			infoId="SelectFilterConversion"
-			selectList={conversionsList}
-		/>
+		<Stack>
+			<SelectComponent
+				label="Select Filter Conversion"
+				name={`${objectKey}.id`}
+				infoId="SelectFilterConversion"
+				selectList={conversionsList}
+			/>
+			<ConversionProps
+				conversionFormId={`${objectKey}.id`}
+				objectKey={objectKey}
+			/>
+		</Stack>
 	);
 };

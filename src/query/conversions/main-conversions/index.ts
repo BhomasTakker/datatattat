@@ -1,11 +1,14 @@
-import { top5 } from "./filter";
+import { top5, topN } from "./filter";
 
 // back end functions list
 export const TRANSFORM = new Map<string, object>([]);
 
 export const SORT = new Map<string, object>([]);
 
-export const FILTER = new Map<string, object>([["top5", top5({})]]);
+export const FILTER = new Map<string, object>([
+	["top5", top5],
+	["topN", topN],
+]);
 
 type ConversionTypes = "TRANSFORM" | "FILTER" | "SORT"; // ?
 

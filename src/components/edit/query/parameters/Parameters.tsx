@@ -12,12 +12,13 @@ type ParametersProps = {
 	objectKey: string;
 };
 
+// pass in title and info
 export const Parameters = ({ params, objectKey }: ParametersProps) => {
 	// probably not great...
 	if (!params?.length) {
 		return <></>;
 	}
-	console.log({ params });
+	// console.log({ params });
 	return (
 		<ParametersContextProvider value={{ objectKey }}>
 			<WithInfo info="Query parameters. Controls to modify the query sent to your chosen api.">
