@@ -16,7 +16,7 @@ const toArticle = (props: any) =>
 		return {
 			title: data.headline || data.name,
 			description: data.description,
-			author: data.provider["0"]?.name, //should drop all if
+			author: data.provider?.["0"]?.name, //should drop all if
 			pubDate: data.datePublished,
 			//url might be article.url + article.name in some instances
 			link: data.url,

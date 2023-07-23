@@ -46,8 +46,13 @@ export const ConversionsContainer = ({
 	objectKey,
 	conversion,
 }: ConversionProps) => {
+	// if(!conversion){
+	// 	//
+	// 	return <></>;
+	// }
 	// change iterable to array of sub objects
-	const { response, iterable, conversionId } = conversion;
+	// Need to handle things better
+	const { response, iterable, conversionId } = conversion || {};
 	const { setValue } = useFormContext();
 
 	console.log({ conversionId });
