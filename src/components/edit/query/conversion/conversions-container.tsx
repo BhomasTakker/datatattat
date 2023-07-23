@@ -81,6 +81,8 @@ export const ConversionsContainer = ({
 					variant={TitleVariant.EDIT_COMPONENT}
 				></Title>
 			</WithInfo>
+			{/* We should probably always be showing main response? */}
+			{/* Would we ever not want to allow filtering / transforming? */}
 			{mainResponseComponent ? mainResponseComponent : <></>}
 			{iterableComponent ? iterableComponent : <></>}
 		</Stack>

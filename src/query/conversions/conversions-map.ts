@@ -1,7 +1,7 @@
 import { BING_CONVERSIONS } from "../api/bing/news/conversions";
 import { MAIN_CONVERSIONS } from "./main-conversions";
 
-const emptyReturn = new Map([]);
+const emptyReturn = new Map<string, object>([]);
 
 export const CONVERSIONS_MAP = new Map<string, object>([
 	// ["bing", BING_NEWS_API_OBJECT],
@@ -16,7 +16,10 @@ export const getConversion = (id: string) => {
 
 type MapType = Map<string, object>;
 
-export const mergeConversion = (conversion1: MapType, conversion2: MapType) => {
+export const mergeConversion = (
+	conversion1: MapType = emptyReturn,
+	conversion2: MapType = emptyReturn
+) => {
 	//Doesn't look like an eloquent solution available
 	// return new Map(function*() { yield* conversion1; yield* conversion2; }());
 	console.log({ conversion2 });

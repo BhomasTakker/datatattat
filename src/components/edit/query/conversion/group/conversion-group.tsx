@@ -80,9 +80,9 @@ export const ConversionGroup = ({
 	const [conversions, setConversions] = useState<Conversions>([]);
 
 	const { setValue } = useFormContext();
-
-	const { id, map = {}, defaultConversions = [] } = conversion;
-	const { sort = {}, filter = {}, transform = {} } = conversion;
+	const { getValues } = useFormContext();
+	const { id, map = {}, defaultConversions = [] } = conversion || {};
+	const { sort = {}, filter = {}, transform = {} } = conversion || {};
 
 	// objectKey . formId
 	const conversionFormName = `${objectKey}.conversions.${formId}`;
@@ -101,7 +101,6 @@ export const ConversionGroup = ({
 		iterable,
 		conversionFormName
 	);
-	const { getValues } = useFormContext();
 
 	useEffect(() => {
 		// shouldn't really even need the check

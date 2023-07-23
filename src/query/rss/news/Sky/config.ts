@@ -28,6 +28,15 @@ const endpoint = {
 // whats the /middle-bit/ of a url called? - it is a subdirectory
 // type subdirectoryObject
 // topSubDirectoryObjetct, usSubDirectoryObject
+const articleConversion = {
+	conversionId: "RSS:DEFAULT",
+	// response: {
+	// },
+	// really sub objects array
+	iterable: {
+		id: "items",
+	},
+};
 
 export const SKY_NEWS_ROOT = {
 	id: "sky_news_endpoint",
@@ -41,5 +50,5 @@ export const SKY_NEWS_ROOT = {
 
 	// Our list of conversions
 	// object default conversion, & list
-	conversions: {},
+	conversions: articleConversion,
 };

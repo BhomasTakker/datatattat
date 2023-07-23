@@ -134,6 +134,7 @@ export const QueryCreator = ({
 			) : (
 				<></>
 			)}
+			{/* if no recursive - not sure how correct this is */}
 			{RecursiveComponent ? (
 				RecursiveComponent
 			) : (
