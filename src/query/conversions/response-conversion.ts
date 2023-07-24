@@ -23,6 +23,7 @@ export const convertResponse = (response: any, conversions: any) => {
 	const {
 		response: responseConversion = [],
 		iterable = [],
+		sub = {},
 		conversionId,
 	} = conversions;
 
@@ -34,9 +35,18 @@ export const convertResponse = (response: any, conversions: any) => {
 
 	const conversionsMap = createConversionsMap(conversionId);
 
-	const iterableData = createIterable(response, iterable, conversionsMap);
+	// for each sub component
+	console.log({ SUB: sub });
+	// const iterableData = createIterable(response, iterable, conversionsMap);
+
+	// put in a function and type / rename createIterable
+	let subResponse = response;
+	Object.values(sub).forEach((subObject: any) => {
+		subResponse = createIterable(subResponse, subObject, conversionsMap);
+	});
+
 	const convertedResponse = createResponse(
-		iterableData,
+		subResponse,
 		responseConversion,
 		conversionsMap
 	);

@@ -17,6 +17,7 @@ type Conversions = ConversionMap[];
 type ConversionsObject = {
 	conversions: Conversions;
 	responseKey?: string;
+	iterable: boolean;
 };
 // then reduce your array object keys etc
 export const createResponse = (
@@ -24,7 +25,7 @@ export const createResponse = (
 	conversionsObject: ConversionsObject,
 	conversionsMap: Map<string, object>
 ) => {
-	const { conversions = [] } = conversionsObject;
+	const { conversions = [], iterable } = conversionsObject;
 
 	if (conversions.length === 0) {
 		return data;

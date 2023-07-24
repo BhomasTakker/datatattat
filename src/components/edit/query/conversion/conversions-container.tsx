@@ -5,6 +5,8 @@ import { Title } from "@/src/components/ui/title";
 import { TitleVariant } from "@/src/components/types/ui";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
+import { SubConversionObject } from "./types";
+import { capitalize } from "@/src/utils/string";
 
 type ConversionProps = {
 	// conversionsObject surely
@@ -42,23 +44,46 @@ const createIterable = (iterable: any, objectKey: string) => {
 	);
 };
 
+const createSubComponents = (
+	conversions: SubConversionObject[],
+	objectKey: string
+) => {
+	if (!conversions) {
+		return null;
+	}
+	if (conversions.length === 0) {
+		return null;
+	}
+	// it is known
+	return conversions.map((conversion: SubConversionObject, i: number) => {
+		const { id } = conversion;
+		return (
+			<ConversionGroup
+				key={id}
+				objectKey={`${objectKey}`}
+				conversion={conversion}
+				formId={`sub.${id}`}
+				title={capitalize(id)}
+				info={"We'll need to pass this "}
+			/>
+		);
+	});
+};
+
 export const ConversionsContainer = ({
 	objectKey,
 	conversion,
 }: ConversionProps) => {
-	// if(!conversion){
-	// 	//
-	// 	return <></>;
-	// }
-	// change iterable to array of sub objects
-	// Need to handle things better
-	const { response, iterable, conversionId } = conversion || {};
+	const { response, conversionId, subConversions } = conversion || {};
 	const { setValue } = useFormContext();
 
-	console.log({ conversionId });
+	console.log({ subConversions });
 
 	const mainResponseComponent = createMainResponse(response, objectKey);
-	const iterableComponent = createIterable(iterable, objectKey);
+
+	// sub
+	// const iterableComponent = createIterable(iterable, objectKey);
+	const subComponents = createSubComponents(subConversions, objectKey);
 
 	useEffect(() => {
 		// Probably manage this better with context?
@@ -67,9 +92,9 @@ export const ConversionsContainer = ({
 		setValue(formId, conversionId);
 	}, [conversionId, objectKey, setValue]);
 
-	if (!mainResponseComponent && !iterableComponent) {
+	if (!mainResponseComponent && !subComponents) {
 		// Would there realy ever be an iterable without a main.
-		// i.e. sub object with no main object
+		// i.e. sub object with no main object. Yes.
 		return <></>;
 	}
 	// console.log({ conversion });
@@ -84,7 +109,8 @@ export const ConversionsContainer = ({
 			{/* We should probably always be showing main response? */}
 			{/* Would we ever not want to allow filtering / transforming? */}
 			{mainResponseComponent ? mainResponseComponent : <></>}
-			{iterableComponent ? iterableComponent : <></>}
+			{/* {iterableComponent ? iterableComponent : <></>} */}
+			{subComponents ? subComponents : <></>}
 		</Stack>
 	);
 };

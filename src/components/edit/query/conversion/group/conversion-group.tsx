@@ -27,14 +27,7 @@ const createConversions = (
 	iterable: boolean,
 	objectKey: string
 ) => {
-	// console.log({ createConversions: conversions });
-
 	return conversions.map((conversion, i) => {
-		// here
-		// should be `${objectKey}.arrayName.[${i}]`;
-		// `${objectKey}.key = apply conversion to
-
-		/// WE ADDED THIS
 		const conversionFormId = `${objectKey}.conversions.[${i}]`;
 		return (
 			<Paper
@@ -58,13 +51,11 @@ const addDefaultConversions = (
 	conversions: any[],
 	objectKey: string
 ) => {
-	let defaultConversions = [];
+	let defaultConversions: unknown[] = [];
 	conversions.forEach((conversion) => {
-		// console.log({ PUSH: conversion });
 		defaultConversions.push({ ...conversion });
 	});
 
-	// console.log({ setState: conversions });
 	setState(defaultConversions);
 };
 
@@ -74,27 +65,26 @@ export const ConversionGroup = ({
 	title,
 	info,
 	formId,
-	iterable = false,
 }: ConversionGroupProps) => {
 	// create initial default conversions
 	const [conversions, setConversions] = useState<Conversions>([]);
 
 	const { setValue } = useFormContext();
 	const { getValues } = useFormContext();
-	const { id, map = {}, defaultConversions = [] } = conversion || {};
+	const {
+		id,
+		map = {},
+		defaultConversions = [],
+		iterable = false,
+	} = conversion || {};
 	const { sort = {}, filter = {}, transform = {} } = conversion || {};
 
 	// objectKey . formId
 	const conversionFormName = `${objectKey}.conversions.${formId}`;
 	useEffect(() => {
-		console.log("HERE YE", { id });
-		console.log("HERE YE", { conversionFormName });
-
-		// this type of thing needs to ba handled better
 		setValue(`${conversionFormName}.responseKey`, id);
-	}, [conversionFormName, id, setValue]);
-	// const conversionFormId = `[${conversions.length}]`;
-	// const conversionFormName = `${conversionsId}.${conversionFormId}`;
+		setValue(`${conversionFormName}.iterable`, iterable);
+	}, [conversionFormName, id, iterable, setValue]);
 
 	const conversionComponents = createConversions(
 		conversions,
@@ -103,11 +93,7 @@ export const ConversionGroup = ({
 	);
 
 	useEffect(() => {
-		// shouldn't really even need the check
-		// console.log({ USEEFFECT: defaultConversions });
-		// console.log({ USEEFFECT: conversion });
 		if (defaultConversions.length > 0) {
-			// console.log({ ADD: defaultConversions });
 			addDefaultConversions(
 				setConversions,
 				defaultConversions,
@@ -117,26 +103,24 @@ export const ConversionGroup = ({
 	}, [conversionFormName, defaultConversions]);
 
 	const addConversionHandler = () => {
-		//
-		// setValue(conversionFormName, {});
 		let updateConversions = conversions ? [...conversions] : [];
 		updateConversions.push({ id: "", type: "" });
 
 		setConversions([...updateConversions]);
-		// addConversion(setConversions, { text: "new conversion" });
 	};
 
 	const deleteConversionHandler = (ARGS) => {
-		const conversionsFormValues = getValues(conversionsId);
+		const conversionsFormValues = getValues(id);
 		console.log(
 			"deleteConversionHandler",
 			{ conversionFormName },
 			{ conversionsFormValues },
-			{ ARGS }
+			{ ARGS },
+			{ id }
 		);
 	};
 	const moveConversionHandler = (ARGS) => {
-		const conversionsFormValues = getValues(conversionsId);
+		const conversionsFormValues = getValues(id);
 		console.log(
 			"moveConversionHandler",
 			{ conversionFormName },

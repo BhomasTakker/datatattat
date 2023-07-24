@@ -16,3 +16,26 @@ export type Conversions = Conversion[];
 export type SelectConversion = BaseEditProps & {
 	value: string | undefined;
 };
+
+type DefaultConversions = {
+	id: string;
+	type: "TRANSFORM" | "FILTER" | "SORT";
+};
+
+export type ConversionObject = {
+	map: unknown;
+	defaultConversions: DefaultConversions[];
+	sort?: object;
+	filter?: object;
+	transform?: object;
+};
+
+export type SubConversionObject = {
+	id: string;
+	iterable?: boolean;
+	map: unknown;
+	defaultConversions: DefaultConversions[];
+	sort?: object;
+	filter?: object;
+	transform?: object;
+};

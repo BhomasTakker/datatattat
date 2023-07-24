@@ -46,7 +46,9 @@ export const SelectComponent = ({
 						</SelectInputWithControl>
 						{/* if? */}
 						<ArrayControls
-							onDelete={deleteConversion}
+							// Add the actual functions to the context
+							// Does anything else make sense?
+							onDelete={() => deleteConversion(name)}
 							onMove={moveConversion}
 						/>
 					</WithInfo>

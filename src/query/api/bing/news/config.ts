@@ -1,3 +1,7 @@
+import {
+	ConversionObject,
+	SubConversionObject,
+} from "@/src/components/edit/query/conversion/types";
 import { mainParams } from "./params";
 // Could call it a model perhaps
 // Is more a model of the of the api structure
@@ -21,6 +25,15 @@ const responseMap = {
 	value: "array",
 };
 
+const responseConversion: ConversionObject = {
+	map: responseMap,
+	defaultConversions: [{ id: "toArticlesList", type: "TRANSFORM" }],
+
+	transform: {
+		toArticlesList: "toArticlesList",
+	},
+};
+
 const articleMap = {
 	category: "string",
 	datePublished: "string",
@@ -31,78 +44,57 @@ const articleMap = {
 	video: "object",
 };
 
+const valueConversion: SubConversionObject = {
+	id: "value",
+	iterable: true,
+	map: articleMap,
+	defaultConversions: [{ id: "toArticle", type: "TRANSFORM" }],
+
+	sort: {},
+	filter: {},
+	transform: {
+		toArticle: "toArticle",
+	},
+};
+
+const imageConversion: SubConversionObject = {
+	id: "image",
+	map: articleMap,
+	defaultConversions: [],
+
+	// available local convrsions was this?
+	// probably not the best way?
+	sort: {},
+	filter: {},
+	transform: {
+		toArticlesList: "toArticlesList",
+	},
+};
+
 const searchConversion = {
 	conversionId: "BING",
-	response: {
-		map: responseMap,
-		defaultConversions: [{ id: "toArticlesList", type: "TRANSFORM" }],
-
-		transform: {
-			toArticlesList: "toArticlesList",
-		},
-	},
+	response: responseConversion,
 	// really sub objects array
-	iterable: {
-		id: "value",
-		map: articleMap,
-		defaultConversions: [{ id: "toArticle", type: "TRANSFORM" }],
-
-		sort: {},
-		filter: {},
-		transform: {
-			toArticle: "toArticle",
-		},
-	},
+	subConversions: [valueConversion, imageConversion],
+	// iterable: valueConversion,
 };
 
 const headlinesConversion = {
 	conversionId: "BING",
 
-	response: {
-		map: responseMap,
-		defaultConversions: [{ id: "toArticlesList", type: "TRANSFORM" }],
-
-		transform: {
-			toArticlesList: "toArticlesList",
-		},
-	},
+	response: responseConversion,
 	// really sub objects
-	iterable: {
-		id: "value",
-		map: articleMap,
-		defaultConversions: [{ id: "toArticle", type: "TRANSFORM" }],
-
-		sort: {},
-		filter: {},
-		transform: {
-			toArticle: "toArticle",
-		},
-	},
+	subConversions: [valueConversion, imageConversion],
+	// iterable: valueConversion,
 };
 
 const trendingConversion = {
 	conversionId: "BING",
 
-	response: {
-		map: responseMap,
-		defaultConversions: [{ id: "toArticlesList", type: "TRANSFORM" }],
-
-		transform: {
-			toArticlesList: "toArticlesList",
-		},
-	},
+	response: responseConversion,
 	// really sub objects
-	iterable: {
-		id: "value",
-		map: articleMap,
-		defaultConversions: [{ id: "toArticle", type: "TRANSFORM" }],
-
-		sort: {},
-		filter: {},
-		transform: {
-			toArticle: "toArticle",
-		},
-	},
+	subConversions: [valueConversion, imageConversion],
+	// iterable: valueConversion,
 };
 
 const search = {

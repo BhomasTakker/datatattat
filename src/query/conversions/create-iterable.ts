@@ -1,7 +1,10 @@
 // Change to create Sub objects or wot not
 
 import { Observer } from "rxjs";
-import { subscribeToObservableFromArray } from "./observable/observable";
+import {
+	subscribeToObservableFromArray,
+	subscribeToObservableFromObject,
+} from "./observable/observable";
 import { createObserver, createPipeFunctions } from "./observer/observer";
 import { ConversionMap } from "./types";
 import { cloneDeep } from "@/src/utils/object";
@@ -17,6 +20,7 @@ type Conversions = ConversionMap[];
 type ConversionsObject = {
 	conversions: Conversions;
 	responseKey: string;
+	iterable: boolean;
 };
 // then reduce your array object keys etc
 export const createIterable = (
@@ -25,7 +29,7 @@ export const createIterable = (
 	conversionsObject: ConversionsObject,
 	conversionsMap: Map<string, object>
 ) => {
-	const { conversions = [], responseKey } = conversionsObject;
+	const { conversions = [], responseKey, iterable } = conversionsObject;
 	if (conversions.length === 0) {
 		return data;
 	}
@@ -53,13 +57,22 @@ export const createIterable = (
 	// WE are only interested in the a to b of it not this logic
 	const seedData = data?.[responseKey] ? data[responseKey] : [];
 
-	// if typeof === array else
-	subscribeToObservableFromArray(
-		// ugly temp
-		seedData,
-		observer as Observer<unknown>,
-		pipeFunctions
-	);
+	// prob check not here
+	if (iterable) {
+		subscribeToObservableFromArray(
+			// ugly temp
+			seedData,
+			observer as Observer<unknown>,
+			pipeFunctions
+		);
+	} else {
+		subscribeToObservableFromObject(
+			// ugly temp
+			seedData,
+			observer as Observer<unknown>,
+			pipeFunctions
+		);
+	}
 
 	return updatedData;
 };
