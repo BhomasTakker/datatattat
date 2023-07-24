@@ -5,7 +5,7 @@ import { SelectInputWithControl } from "@/src/components/input/SelectInput";
 import { createSelectInputList } from "@/src/components/input/TextInput";
 import { ArrayControls } from "@/src/components/forms/edit/ArrayControls";
 import { useContext } from "react";
-import { ConversionsContext } from "../context/ConversionsContext";
+import { ConversionContext } from "../context/ConversionContext";
 
 type SelectComponentProps = {
 	label: string;
@@ -25,7 +25,7 @@ export const SelectComponent = ({
 }: SelectComponentProps) => {
 	// const { objectKey } = useContext(ConversionsContext);
 	// temp - tight coupling - should pass these in
-	const { deleteConversion, moveConversion } = useContext(ConversionsContext);
+	const { deleteConversion, moveConversion } = useContext(ConversionContext);
 	// console.log({ selectList });
 	// console.log({ label }, { name });
 

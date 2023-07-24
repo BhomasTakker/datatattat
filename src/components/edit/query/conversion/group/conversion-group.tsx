@@ -1,17 +1,19 @@
 import { Box, Button, Paper, Stack } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { MouseEvent, useContext, useEffect, useState } from "react";
 import { WithInfo } from "../../../info/WithInfo";
 import { TitleVariant } from "@/src/components/types/ui";
 import { Title } from "@/src/components/ui/title";
 import { MARGINS } from "config/styles/styles.config";
 import AddIcon from "@mui/icons-material/Add";
-import {
-	ConversionsContext,
-	ConversionsContextProvider,
-} from "../context/ConversionsContext";
 import { Conversions } from "../types";
 import { Conversion } from "../conversion";
 import { useFormContext } from "react-hook-form";
+import {
+	ConversionContextProvider,
+	DeleteConversion,
+	MoveConversion,
+} from "../context/ConversionContext";
+import { cloneDeep } from "@/src/utils/object";
 
 export type ConversionGroupProps = {
 	conversion: any;
@@ -22,12 +24,21 @@ export type ConversionGroupProps = {
 	formId: string;
 };
 
+// Probably convert to an actual component
+// I feel this is a lot of our issues in general?
+// React can't manage this effectively no?
+// i.e. if we 'move' a component they all have to be re-rendered
 const createConversions = (
 	conversions: Conversions,
 	iterable: boolean,
-	objectKey: string
+	objectKey: string,
+	deleteHnd: DeleteConversion,
+	moveHnd: MoveConversion
 ) => {
 	return conversions.map((conversion, i) => {
+		// I don't think this would work with a unique id
+		// This is getting recalled every change
+		// We are functionally relying on that behavour
 		const conversionFormId = `${objectKey}.conversions.[${i}]`;
 		return (
 			<Paper
@@ -35,11 +46,23 @@ const createConversions = (
 				key={i} //use id or something
 				style={{ paddingTop: MARGINS.SMALL, paddingBottom: MARGINS.SMALL }}
 			>
-				<Conversion
-					conversion={conversion}
-					iterable={iterable}
-					objectKey={conversionFormId}
-				/>
+				{/* Pass conversion data? / iterable? / whatever else */}
+				{/* Technically - could call function in ConversionsContext to update conversions no? */}
+				{/* Exactly yes - We are just a component right - and therefore could call ConversionsContext */}
+				<ConversionContextProvider
+					value={{
+						// @ts-ignore - fix me I'm annoying
+						deleteConversion: (e: MouseEvent) => deleteHnd(conversionFormId, i),
+						// @ts-ignore
+						moveConversion: (dir: number) => moveHnd(dir, conversionFormId, i),
+					}}
+				>
+					<Conversion
+						conversion={conversion}
+						iterable={iterable}
+						objectKey={conversionFormId}
+					/>
+				</ConversionContextProvider>
 			</Paper>
 		);
 	});
@@ -68,9 +91,13 @@ export const ConversionGroup = ({
 }: ConversionGroupProps) => {
 	// create initial default conversions
 	const [conversions, setConversions] = useState<Conversions>([]);
+	const conversionsTackyCheck = JSON.stringify(conversions);
 
-	const { setValue } = useFormContext();
-	const { getValues } = useFormContext();
+	useEffect(() => {
+		console.log({ TACKY: JSON.parse(conversionsTackyCheck) });
+	}, [conversionsTackyCheck, conversions]);
+
+	const { getValues, setValue, unregister } = useFormContext();
 	const {
 		id,
 		map = {},
@@ -86,10 +113,58 @@ export const ConversionGroup = ({
 		setValue(`${conversionFormName}.iterable`, iterable);
 	}, [conversionFormName, id, iterable, setValue]);
 
+	const deleteConversionHandler = (conversionFormId: string, i: number) => {
+		const conversionsFormValues = getValues(id);
+		console.log(
+			"deleteConversionHandler",
+			{ conversionFormName },
+			{ conversionsFormValues },
+			{ conversionFormId },
+			{ i },
+			{ id }
+		);
+
+		// node20 conversions.toSpliced(i, 1)
+		const updateConversions = cloneDeep(conversions);
+		updateConversions.splice(i, 1);
+		// It deletes the component(ish) and data but doesn't reset the hook form array
+		// I think we'll still have problems doing this
+		// But would we want to unregister the whole array?
+		// name contains the array
+		// Could look into storing array values by keys - this seems like a headache though
+
+		// seemingly need to setValues when create
+		unregister(conversionFormId, { keepValue: false });
+		setConversions(updateConversions);
+	};
+	// dir is really -1, 1, 0
+	const moveConversionHandler = (
+		dir: number,
+		conversionFormId: string,
+		i: number
+	) => {
+		const conversionsFormValues = getValues(id);
+		console.log(
+			"moveConversionHandler",
+			{ conversionFormName },
+			{ conversionsFormValues },
+			{ dir },
+			{ conversionFormId },
+			{ i }
+		);
+		const updateConversions = cloneDeep(conversions);
+		const movedConversion = updateConversions.splice(i, 1);
+		updateConversions.splice(i + dir, 0, ...movedConversion);
+		// unregister(conversionFormId, { keepValue: false });
+		setConversions(updateConversions);
+	};
+
 	const conversionComponents = createConversions(
 		conversions,
 		iterable,
-		conversionFormName
+		conversionFormName,
+		deleteConversionHandler,
+		moveConversionHandler
 	);
 
 	useEffect(() => {
@@ -106,53 +181,35 @@ export const ConversionGroup = ({
 		let updateConversions = conversions ? [...conversions] : [];
 		updateConversions.push({ id: "", type: "" });
 
+		//use conversions in context
 		setConversions([...updateConversions]);
-	};
-
-	const deleteConversionHandler = (ARGS) => {
-		const conversionsFormValues = getValues(id);
-		console.log(
-			"deleteConversionHandler",
-			{ conversionFormName },
-			{ conversionsFormValues },
-			{ ARGS },
-			{ id }
-		);
-	};
-	const moveConversionHandler = (ARGS) => {
-		const conversionsFormValues = getValues(id);
-		console.log(
-			"moveConversionHandler",
-			{ conversionFormName },
-			{ conversionsFormValues },
-			{ ARGS }
-		);
 	};
 
 	return (
 		// defaults and available conversions added here
 		// pass available
-		<ConversionsContextProvider
-			value={{
-				objectKey,
-				deleteConversion: deleteConversionHandler,
-				moveConversion: moveConversionHandler,
-				sort,
-				filter,
-				transform,
-			}}
-		>
-			<Stack>
-				<WithInfo info={info}>
-					<Title text={title} variant={TitleVariant.EDIT_COMPONENT}></Title>
-				</WithInfo>
-				<Stack gap={MARGINS.SMALL}>{conversionComponents}</Stack>
-				<Box paddingTop={MARGINS.MIDSMALL} paddingBottom={MARGINS.MIDSMALL}>
-					<Button onClick={addConversionHandler} startIcon={<AddIcon />}>
-						Add Conversion
-					</Button>
-				</Box>
-			</Stack>
-		</ConversionsContextProvider>
+		// we have to pass conversions and update as we go...
+		// <ConversionsContextProvider
+		// 	value={{
+		// 		objectKey,
+		// 		// deleteConversion: deleteConversionHandler,
+		// 		// moveConversion: moveConversionHandler,
+		// 		sort,
+		// 		filter,
+		// 		transform,
+		// 	}}
+		// >
+		<Stack>
+			<WithInfo info={info}>
+				<Title text={title} variant={TitleVariant.EDIT_COMPONENT}></Title>
+			</WithInfo>
+			<Stack gap={MARGINS.SMALL}>{conversionComponents}</Stack>
+			<Box paddingTop={MARGINS.MIDSMALL} paddingBottom={MARGINS.MIDSMALL}>
+				<Button onClick={addConversionHandler} startIcon={<AddIcon />}>
+					Add Conversion
+				</Button>
+			</Box>
+		</Stack>
+		// </ConversionsContextProvider>
 	);
 };

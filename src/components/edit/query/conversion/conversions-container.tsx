@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { SubConversionObject } from "./types";
 import { capitalize } from "@/src/utils/string";
+import { ConversionsContextProvider } from "./context/ConversionsContext";
 
 type ConversionProps = {
 	// conversionsObject surely
@@ -18,31 +19,42 @@ const createMainResponse = (response: any, objectKey: string) => {
 	if (!response) {
 		return null;
 	}
+	const { id, sort = {}, filter = {}, transform = {} } = response;
 	return (
-		<ConversionGroup
-			objectKey={objectKey}
-			conversion={response}
-			formId={"response"}
-			title={"Main"}
-			info={"blurb about main part "}
-		/>
+		<ConversionsContextProvider
+			value={{
+				conversions: [],
+				sort,
+				filter,
+				transform,
+			}}
+			key={id}
+		>
+			<ConversionGroup
+				objectKey={objectKey}
+				conversion={response}
+				formId={"response"}
+				title={"Main"}
+				info={"blurb about main part "}
+			/>
+		</ConversionsContextProvider>
 	);
 };
-const createIterable = (iterable: any, objectKey: string) => {
-	if (!iterable) {
-		return null;
-	}
-	return (
-		<ConversionGroup
-			objectKey={objectKey}
-			conversion={iterable}
-			formId={"iterable"} //should be more dynamic
-			title={"Iterable"}
-			info={"blurb about iterable part "}
-			iterable
-		/>
-	);
-};
+// const createIterable = (iterable: any, objectKey: string) => {
+// 	if (!iterable) {
+// 		return null;
+// 	}
+// 	return (
+// 		<ConversionGroup
+// 			objectKey={objectKey}
+// 			conversion={iterable}
+// 			formId={"iterable"} //should be more dynamic
+// 			title={"Iterable"}
+// 			info={"blurb about iterable part "}
+// 			iterable
+// 		/>
+// 	);
+// };
 
 const createSubComponents = (
 	conversions: SubConversionObject[],
@@ -56,16 +68,26 @@ const createSubComponents = (
 	}
 	// it is known
 	return conversions.map((conversion: SubConversionObject, i: number) => {
-		const { id } = conversion;
+		const { id, sort = {}, filter = {}, transform = {} } = conversion;
 		return (
-			<ConversionGroup
+			// We may want to add the ConversionsContextProvider here?
+			<ConversionsContextProvider
+				value={{
+					conversions: [],
+					sort,
+					filter,
+					transform,
+				}}
 				key={id}
-				objectKey={`${objectKey}`}
-				conversion={conversion}
-				formId={`sub.${id}`}
-				title={capitalize(id)}
-				info={"We'll need to pass this "}
-			/>
+			>
+				<ConversionGroup
+					objectKey={`${objectKey}`}
+					conversion={conversion}
+					formId={`sub.${id}`}
+					title={capitalize(id)}
+					info={"We'll need to pass this "}
+				/>
+			</ConversionsContextProvider>
 		);
 	});
 };

@@ -12,24 +12,24 @@ type ConversionData = {
 };
 
 type ConversionsState = {
-	objectKey: null | string;
-	sort: ConversionData[];
-	filter: ConversionData[];
-	transform: ConversionData[];
+	conversions: any[];
+	sort: any; // ConversionData[];
+	filter: any; //ConversionData[];
+	transform: any; //ConversionData[];
 };
 
 type ConversionsInterface = {
-	deleteConversion: (conversion: any) => void;
-	moveConversion: (conversion: any) => void;
+	// deleteConversion: (conversion: any) => void;
+	// moveConversion: (conversion: any) => void;
 };
 
 const conversionsInitialState: ConversionsState & ConversionsInterface = {
-	objectKey: null,
-	deleteConversion: (param: any) => {},
-	moveConversion: (param: any) => {},
-	sort: [],
-	filter: [],
-	transform: [],
+	conversions: [],
+	// deleteConversion: (param: any) => {},
+	// moveConversion: (param: any) => {},
+	sort: {},
+	filter: {},
+	transform: {},
 };
 
 export const ConversionsContextProvider = ({
