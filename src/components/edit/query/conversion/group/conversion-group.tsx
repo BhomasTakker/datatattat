@@ -14,6 +14,7 @@ import {
 	MoveConversion,
 } from "../context/ConversionContext";
 import { cloneDeep } from "@/src/utils/object";
+import { ConversionsContext } from "../context/ConversionsContext";
 
 export type ConversionGroupProps = {
 	conversion: any;
@@ -68,20 +69,6 @@ const createConversions = (
 	});
 };
 
-type SetState = (conversions: any[]) => void;
-const addDefaultConversions = (
-	setState: SetState,
-	conversions: any[],
-	objectKey: string
-) => {
-	let defaultConversions: unknown[] = [];
-	conversions.forEach((conversion) => {
-		defaultConversions.push({ ...conversion });
-	});
-
-	setState(defaultConversions);
-};
-
 export const ConversionGroup = ({
 	objectKey,
 	conversion,
@@ -90,21 +77,23 @@ export const ConversionGroup = ({
 	formId,
 }: ConversionGroupProps) => {
 	// create initial default conversions
-	const [conversions, setConversions] = useState<Conversions>([]);
-	const conversionsTackyCheck = JSON.stringify(conversions);
-
-	useEffect(() => {
-		console.log({ TACKY: JSON.parse(conversionsTackyCheck) });
-	}, [conversionsTackyCheck, conversions]);
+	const {
+		deleteConversion,
+		moveConversion,
+		addConversion,
+		addConversions,
+		conversions,
+	} = useContext(ConversionsContext);
 
 	const { getValues, setValue, unregister } = useFormContext();
+
 	const {
 		id,
 		map = {},
 		defaultConversions = [],
 		iterable = false,
 	} = conversion || {};
-	const { sort = {}, filter = {}, transform = {} } = conversion || {};
+	// const { sort = {}, filter = {}, transform = {} } = conversion || {};
 
 	// objectKey . formId
 	const conversionFormName = `${objectKey}.conversions.${formId}`;
@@ -114,28 +103,12 @@ export const ConversionGroup = ({
 	}, [conversionFormName, id, iterable, setValue]);
 
 	const deleteConversionHandler = (conversionFormId: string, i: number) => {
-		const conversionsFormValues = getValues(id);
-		console.log(
-			"deleteConversionHandler",
-			{ conversionFormName },
-			{ conversionsFormValues },
-			{ conversionFormId },
-			{ i },
-			{ id }
-		);
+		const handler = () => {
+			console.log("We got called ");
+			unregister(conversionFormId, { keepValue: false });
+		};
 
-		// node20 conversions.toSpliced(i, 1)
-		const updateConversions = cloneDeep(conversions);
-		updateConversions.splice(i, 1);
-		// It deletes the component(ish) and data but doesn't reset the hook form array
-		// I think we'll still have problems doing this
-		// But would we want to unregister the whole array?
-		// name contains the array
-		// Could look into storing array values by keys - this seems like a headache though
-
-		// seemingly need to setValues when create
-		unregister(conversionFormId, { keepValue: false });
-		setConversions(updateConversions);
+		deleteConversion(i, handler);
 	};
 	// dir is really -1, 1, 0
 	const moveConversionHandler = (
@@ -143,20 +116,7 @@ export const ConversionGroup = ({
 		conversionFormId: string,
 		i: number
 	) => {
-		const conversionsFormValues = getValues(id);
-		console.log(
-			"moveConversionHandler",
-			{ conversionFormName },
-			{ conversionsFormValues },
-			{ dir },
-			{ conversionFormId },
-			{ i }
-		);
-		const updateConversions = cloneDeep(conversions);
-		const movedConversion = updateConversions.splice(i, 1);
-		updateConversions.splice(i + dir, 0, ...movedConversion);
-		// unregister(conversionFormId, { keepValue: false });
-		setConversions(updateConversions);
+		moveConversion(dir, i);
 	};
 
 	const conversionComponents = createConversions(
@@ -169,36 +129,16 @@ export const ConversionGroup = ({
 
 	useEffect(() => {
 		if (defaultConversions.length > 0) {
-			addDefaultConversions(
-				setConversions,
-				defaultConversions,
-				conversionFormName
-			);
+			addConversions(defaultConversions);
 		}
-	}, [conversionFormName, defaultConversions]);
+		// I believe we need to useContext addConversions
+	}, []);
 
 	const addConversionHandler = () => {
-		let updateConversions = conversions ? [...conversions] : [];
-		updateConversions.push({ id: "", type: "" });
-
-		//use conversions in context
-		setConversions([...updateConversions]);
+		addConversion({ id: "", type: "" });
 	};
 
 	return (
-		// defaults and available conversions added here
-		// pass available
-		// we have to pass conversions and update as we go...
-		// <ConversionsContextProvider
-		// 	value={{
-		// 		objectKey,
-		// 		// deleteConversion: deleteConversionHandler,
-		// 		// moveConversion: moveConversionHandler,
-		// 		sort,
-		// 		filter,
-		// 		transform,
-		// 	}}
-		// >
 		<Stack>
 			<WithInfo info={info}>
 				<Title text={title} variant={TitleVariant.EDIT_COMPONENT}></Title>
@@ -210,6 +150,5 @@ export const ConversionGroup = ({
 				</Button>
 			</Box>
 		</Stack>
-		// </ConversionsContextProvider>
 	);
 };
