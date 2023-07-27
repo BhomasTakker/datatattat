@@ -5,16 +5,17 @@ import { TitleVariant } from "@/src/components/types/ui";
 import { Title } from "@/src/components/ui/title";
 import { MARGINS } from "config/styles/styles.config";
 import AddIcon from "@mui/icons-material/Add";
-import { Conversions } from "../types";
-import { Conversion } from "../conversion";
+import { Conversion as ConversionType, Conversions } from "../types";
 import { useFormContext } from "react-hook-form";
 import {
 	ConversionContextProvider,
 	DeleteConversion,
 	MoveConversion,
+	UpdateConversion,
 } from "../context/ConversionContext";
 import { cloneDeep } from "@/src/utils/object";
 import { ConversionsContext } from "../context/ConversionsContext";
+import { Conversion } from "../conversion";
 
 export type ConversionGroupProps = {
 	conversion: any;
@@ -34,7 +35,8 @@ const createConversions = (
 	iterable: boolean,
 	objectKey: string,
 	deleteHnd: DeleteConversion,
-	moveHnd: MoveConversion
+	moveHnd: MoveConversion,
+	updateHnd: UpdateConversion
 ) => {
 	return conversions.map((conversion, i) => {
 		// I don't think this would work with a unique id
@@ -44,7 +46,7 @@ const createConversions = (
 		return (
 			<Paper
 				elevation={1}
-				key={i} //use id or something
+				key={i} //use id or something/anything
 				style={{ paddingTop: MARGINS.SMALL, paddingBottom: MARGINS.SMALL }}
 			>
 				{/* Pass conversion data? / iterable? / whatever else */}
@@ -56,6 +58,8 @@ const createConversions = (
 						deleteConversion: (e: MouseEvent) => deleteHnd(conversionFormId, i),
 						// @ts-ignore
 						moveConversion: (dir: number) => moveHnd(dir, conversionFormId, i),
+						// @ts-ignore
+						updateConversion: (data: any) => updateHnd(i, data),
 					}}
 				>
 					<Conversion
@@ -82,6 +86,7 @@ export const ConversionGroup = ({
 		moveConversion,
 		addConversion,
 		addConversions,
+		updateConversion,
 		conversions,
 	} = useContext(ConversionsContext);
 
@@ -104,7 +109,6 @@ export const ConversionGroup = ({
 
 	const deleteConversionHandler = (conversionFormId: string, i: number) => {
 		const handler = () => {
-			console.log("We got called ");
 			unregister(conversionFormId, { keepValue: false });
 		};
 
@@ -118,13 +122,18 @@ export const ConversionGroup = ({
 	) => {
 		moveConversion(dir, i);
 	};
+	const updateConversionHandler = (i: number, data: ConversionType) => {
+		console.log("updateConversionHandler");
+		updateConversion(i, data);
+	};
 
 	const conversionComponents = createConversions(
 		conversions,
 		iterable,
 		conversionFormName,
 		deleteConversionHandler,
-		moveConversionHandler
+		moveConversionHandler,
+		updateConversionHandler
 	);
 
 	useEffect(() => {

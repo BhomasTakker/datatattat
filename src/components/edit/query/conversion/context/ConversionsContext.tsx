@@ -26,7 +26,7 @@ type ConversionsInterface = {
 	// moveConversion: (conversion: any) => void;
 	addConversion: (conversionData: Conversion) => void; // pass data in || default
 	addConversions: (conversionDatas: Conversions) => void;
-	setConversion: () => void;
+	updateConversion: (i: number, conversionData: Conversion) => void; // Partial
 	deleteConversion: (i: number, callback: () => void) => void;
 	moveConversion: (dir: number, i: number, callback?: () => void) => void;
 };
@@ -38,7 +38,7 @@ const conversionsInitialState: ConversionsState & ConversionsInterface = {
 	addConversions: () => {},
 	deleteConversion: () => {},
 	moveConversion: () => {},
-	setConversion: () => {},
+	updateConversion: () => {},
 	// deleteConversion: (param: any) => {},
 	// moveConversion: (param: any) => {},
 	sort: {},
@@ -73,7 +73,9 @@ export const ConversionsContextProvider = ({
 		setConversions([...conversions, conversionData]);
 	};
 	//?
-	const setConversion = () => {};
+	const updateConversion = (i: number, conversionData: Conversion) => {
+		console.log("Update Conversion", { conversionData }, { i });
+	};
 
 	const deleteConversion = (i: number, callback: () => void = () => {}) => {
 		// too tightly coupled to react hook form
@@ -118,7 +120,7 @@ export const ConversionsContextProvider = ({
 				addConversions,
 				deleteConversion,
 				moveConversion,
-				setConversion,
+				updateConversion,
 			}}
 		>
 			{children}

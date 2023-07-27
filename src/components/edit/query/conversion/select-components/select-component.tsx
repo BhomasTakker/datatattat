@@ -25,7 +25,8 @@ export const SelectComponent = ({
 }: SelectComponentProps) => {
 	// const { objectKey } = useContext(ConversionsContext);
 	// temp - tight coupling - should pass these in
-	const { deleteConversion, moveConversion } = useContext(ConversionContext);
+	const { deleteConversion, moveConversion, updateConversion } =
+		useContext(ConversionContext);
 	// console.log({ selectList });
 	// console.log({ label }, { name });
 
@@ -48,6 +49,7 @@ export const SelectComponent = ({
 						<ArrayControls
 							// Add the actual functions to the context
 							// Does anything else make sense?
+							// we need to run through these types! They are very wrong
 							onDelete={() => deleteConversion(name)}
 							onMove={moveConversion}
 						/>
