@@ -58,6 +58,7 @@ export const ConversionsContextProvider = ({
 
 	console.log({ conversionsContext: conversions });
 
+	// move these functions
 	// we need to useCallback all of these functions
 	const addConversions = (conversionsData: Conversions) => {
 		const conversionsToAdd = conversionsData.map((conversion) => conversion);
@@ -75,6 +76,17 @@ export const ConversionsContextProvider = ({
 	//?
 	const updateConversion = (i: number, conversionData: Conversion) => {
 		console.log("Update Conversion", { conversionData }, { i });
+
+		// update conversions array
+		const updateConversions = cloneDeep(conversions);
+		// probably do this better
+		// const middleMan = { ...conversionData };
+		const conversion = { ...conversions[i], ...conversionData };
+		updateConversions.splice(i, 1, conversion);
+
+		console.log({ updateConversions });
+
+		setConversions([...updateConversions]);
 	};
 
 	const deleteConversion = (i: number, callback: () => void = () => {}) => {

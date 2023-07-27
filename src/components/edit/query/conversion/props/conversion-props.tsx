@@ -21,7 +21,9 @@ export const ConversionProps = ({
 
 	useEffect(() => {
 		console.log("Call update PROPS");
-		updateConversion({ props });
+		if (props) {
+			updateConversion({ props });
+		}
 		// need add dependencey when useEffect wraps it
 	}, [props]);
 

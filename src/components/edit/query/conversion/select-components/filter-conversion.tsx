@@ -28,7 +28,9 @@ export const SelectFilterConversion = ({
 
 	useEffect(() => {
 		console.log("Call update ID");
-		updateConversion({ id: conversionId });
+		if (conversionId) {
+			updateConversion({ id: conversionId });
+		}
 	}, [conversionId]);
 
 	console.log("filterConversions");

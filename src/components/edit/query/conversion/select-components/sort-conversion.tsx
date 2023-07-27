@@ -28,7 +28,9 @@ export const SelectSortConversion = ({
 
 	useEffect(() => {
 		console.log("Call update ID");
-		updateConversion({ id: conversionId });
+		if (conversionId) {
+			updateConversion({ id: conversionId });
+		}
 	}, [conversionId]);
 
 	return (

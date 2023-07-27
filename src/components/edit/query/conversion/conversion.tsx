@@ -57,7 +57,9 @@ export const Conversion = ({
 
 	useEffect(() => {
 		console.log("Call update TYPE");
-		updateConversion({ type: selectConversionTypeValue });
+		if (selectConversionTypeValue) {
+			updateConversion({ type: selectConversionTypeValue });
+		}
 	}, [selectConversionTypeValue]);
 
 	// temp / have iterator list, etc

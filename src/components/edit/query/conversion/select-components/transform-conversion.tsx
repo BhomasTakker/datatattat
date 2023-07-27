@@ -29,7 +29,9 @@ export const SelectTransformConversion = ({
 
 	useEffect(() => {
 		console.log("Call update ID");
-		updateConversion({ id: conversionId });
+		if (conversionId) {
+			updateConversion({ id: conversionId });
+		}
 	}, [conversionId]);
 
 	// When selected if props / show props
