@@ -134,7 +134,7 @@ ConversionGroupProps) => {
 			addConversions(defaultConversions);
 		}
 		// I believe we need to useContext addConversions
-	}, []);
+	}, [defaultConversions]);
 
 	const addConversionHandler = () => {
 		addConversion({ id: "", type: "" });

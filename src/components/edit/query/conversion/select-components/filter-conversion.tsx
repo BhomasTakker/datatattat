@@ -11,12 +11,13 @@ import { ConversionContext } from "../context/ConversionContext";
 export const SelectFilterConversion = ({
 	objectKey,
 	value,
+	props,
 }: SelectConversion) => {
 	const { setValue } = useFormContext();
-	const { updateConversion } = useContext(ConversionContext);
+	// const { updateConversion } = useContext(ConversionContext);
 	const { filter, setFormValue } = useContext(ConversionsContext);
 	const conversionsList = { ...FILTER_MAP, ...filter };
-	const conversionId = useWatch({ name: `${objectKey}.id` });
+	// const conversionId = useWatch({ name: `${objectKey}.id` });
 
 	useEffect(() => {
 		if (value) {
@@ -24,7 +25,7 @@ export const SelectFilterConversion = ({
 			// updateConversion({ id: value });
 			setFormValue(`${objectKey}.id`, value);
 		}
-	}, [objectKey, setValue, value]);
+	}, [objectKey, setFormValue, setValue, value]);
 
 	console.log("filterConversions");
 	return (
@@ -38,6 +39,7 @@ export const SelectFilterConversion = ({
 			<ConversionProps
 				conversionFormId={`${objectKey}.id`}
 				objectKey={objectKey}
+				props={props}
 			/>
 		</Stack>
 	);

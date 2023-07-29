@@ -4,20 +4,31 @@ import { Parameters } from "../../parameters/Parameters";
 import { ParametersType } from "../../parameters/types";
 import { useContext, useEffect } from "react";
 import { ConversionContext } from "../context/ConversionContext";
+import { ConversionsContext } from "../context/ConversionsContext";
 
 type ConversionProps = {
 	conversionFormId: string;
 	objectKey: string;
+	props: any;
 };
 
 // useful to have type of conversion
 export const ConversionProps = ({
 	conversionFormId,
 	objectKey,
+	props,
 }: ConversionProps) => {
-	const { updateConversion } = useContext(ConversionContext);
+	const { setFormValue } = useContext(ConversionsContext);
 	const conversionId = useWatch({ name: conversionFormId });
 	// const props = useWatch({ name: `${objectKey}.props` });
+
+	useEffect(() => {
+		if (props) {
+			console.log("Call update props");
+			// updateConversion({ id: value });
+			setFormValue(`${objectKey}.props`, props);
+		}
+	}, [objectKey, props, setFormValue]);
 
 	console.log("PROPS!!");
 	console.log({ PROPS_conversionId: conversionId });

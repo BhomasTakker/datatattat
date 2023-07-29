@@ -15,6 +15,7 @@ export type Conversions = Conversion[];
 
 export type SelectConversion = BaseEditProps & {
 	value: string | undefined;
+	props: any;
 };
 
 type DefaultConversions = {
@@ -32,13 +33,3 @@ export type ConversionObject = {
 	filter?: object;
 	transform?: object;
 };
-
-// export type SubConversionObject = {
-// 	id: string;
-// 	iterable?: boolean;
-// 	map: unknown;
-// 	defaultConversions: DefaultConversions[];
-// 	sort?: object;
-// 	filter?: object;
-// 	transform?: object;
-// };

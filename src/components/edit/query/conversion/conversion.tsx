@@ -1,12 +1,9 @@
-import { useWatch, useFormContext } from "react-hook-form";
+import { useWatch } from "react-hook-form";
 import { SelectComponent } from "./select-components/select-component";
 import { CONVERSION_TYPES, ITERATOR_CONVERSION_TYPES } from "./types";
 import { SelectFilterConversion } from "./select-components/filter-conversion";
 import { SelectSortConversion } from "./select-components/sort-conversion";
 import { SelectTransformConversion } from "./select-components/transform-conversion";
-import { useContext, useEffect } from "react";
-import { ConversionContext } from "./context/ConversionContext";
-import { ConversionsContext } from "./context/ConversionsContext";
 
 type SetConversionType = string | null;
 
@@ -19,20 +16,35 @@ type ConversionProps = {
 type ConversionTypeProps = {
 	conversionType: string;
 	objectKey: string;
-	value: string | undefined;
+	conversion: any;
 };
-export const ConversionType = ({
+const ConversionType = ({
 	conversionType,
 	objectKey,
-	value,
+	conversion,
 }: ConversionTypeProps) => {
+	const { id, props } = conversion;
 	switch (conversionType) {
 		case ITERATOR_CONVERSION_TYPES.FILTER:
-			return <SelectFilterConversion objectKey={objectKey} value={value} />;
+			return (
+				<SelectFilterConversion
+					objectKey={objectKey}
+					value={id}
+					props={props}
+				/>
+			);
 		case ITERATOR_CONVERSION_TYPES.SORT:
-			return <SelectSortConversion objectKey={objectKey} value={value} />;
+			return (
+				<SelectSortConversion objectKey={objectKey} value={id} props={props} />
+			);
 		case CONVERSION_TYPES.TRANSFORM:
-			return <SelectTransformConversion objectKey={objectKey} value={value} />;
+			return (
+				<SelectTransformConversion
+					objectKey={objectKey}
+					value={id}
+					props={props}
+				/>
+			);
 		default:
 			return <>Error Component</>;
 	}
@@ -44,25 +56,12 @@ export const Conversion = ({
 	objectKey,
 }: ConversionProps) => {
 	const selectConversionTypeValue = useWatch({ name: `${objectKey}.type` });
-	const { updateConversion } = useContext(ConversionContext);
-	const { setFormValue } = useContext(ConversionsContext);
-	const { setValue } = useFormContext();
-	const { id, type } = conversion;
-
-	useEffect(() => {
-		if (type) {
-			console.log("Call update TYPE init");
-			// updateConversion({ type: type });
-			// change to update
-			setFormValue(`${objectKey}.type`, type);
-			// setValue(`${objectKey}.type`, type);
-		}
-	}, [type, objectKey, setValue]);
 
 	// temp / have iterator list, etc
 	const selectors = iterable ? ITERATOR_CONVERSION_TYPES : CONVERSION_TYPES;
 
 	if (!selectConversionTypeValue) {
+		console.log({ HEREYA1: conversion });
 		return (
 			<SelectComponent
 				label="Conversion Id"
@@ -73,12 +72,12 @@ export const Conversion = ({
 		);
 	}
 
-	// console.log({ HEREYA: id });
+	console.log({ HEREYA: conversion });
 	return (
 		<ConversionType
 			conversionType={selectConversionTypeValue}
 			objectKey={objectKey}
-			value={id}
+			conversion={conversion}
 		/>
 	);
 };

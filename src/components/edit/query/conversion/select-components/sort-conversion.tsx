@@ -11,6 +11,7 @@ import { ConversionContext } from "../context/ConversionContext";
 export const SelectSortConversion = ({
 	objectKey,
 	value,
+	props,
 }: SelectConversion) => {
 	const { setValue } = useFormContext();
 	const { updateConversion } = useContext(ConversionContext);
@@ -18,6 +19,9 @@ export const SelectSortConversion = ({
 	const conversionsList = { ...SORT_MAP, ...sort };
 	const conversionId = useWatch({ name: `${objectKey}.id` });
 
+	// This is when there is already a value
+	// i.e. When you move a conversion
+	// we update the conversion to the new values
 	useEffect(() => {
 		if (value) {
 			console.log("Call update ID");
@@ -38,6 +42,7 @@ export const SelectSortConversion = ({
 			<ConversionProps
 				conversionFormId={`${objectKey}.id`}
 				objectKey={objectKey}
+				props={props}
 			/>
 		</Stack>
 	);

@@ -12,6 +12,7 @@ import { ConversionContext } from "../context/ConversionContext";
 export const SelectTransformConversion = ({
 	objectKey,
 	value,
+	props,
 }: SelectConversion) => {
 	const { setValue } = useFormContext();
 	const { transform, setFormValue } = useContext(ConversionsContext);
@@ -40,6 +41,7 @@ export const SelectTransformConversion = ({
 			<ConversionProps
 				conversionFormId={`${objectKey}.id`}
 				objectKey={objectKey}
+				props={props}
 			/>
 		</Stack>
 	);

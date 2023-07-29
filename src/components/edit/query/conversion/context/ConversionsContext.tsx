@@ -163,10 +163,10 @@ export const ConversionsContextProvider = ({
 			const movedConversion = updateConversions.splice(i, 1);
 			updateConversions.splice(i + dir, 0, ...movedConversion);
 
-			unregister(conversionsFormId);
+			// unregister(conversionsFormId);
 			setValue(conversionsFormId, updateConversions);
 		},
-		[conversions, conversionsFormId, setValue, unregister]
+		[conversions, conversionsFormId, setValue]
 	);
 
 	const getFormValues = useCallback(() => {
@@ -178,6 +178,11 @@ export const ConversionsContextProvider = ({
 			// Temp - just use update conversion
 			console.log("SET VALUE", { id }, { value });
 			setValue(id, value);
+
+			// temp but here th issue
+			// const updateConversions = cloneDeep(conversions);
+			// unregister(conversionsFormId);
+			// setValue(conversionsFormId, updateConversions);
 		},
 		[setValue]
 	);
