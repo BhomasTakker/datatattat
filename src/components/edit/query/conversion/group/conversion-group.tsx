@@ -13,7 +13,6 @@ import {
 	MoveConversion,
 	UpdateConversion,
 } from "../context/ConversionContext";
-import { cloneDeep } from "@/src/utils/object";
 import { ConversionsContext } from "../context/ConversionsContext";
 import { Conversion } from "../conversion";
 
@@ -23,7 +22,7 @@ export type ConversionGroupProps = {
 	iterable?: boolean;
 	title: string;
 	info: string;
-	formId: string;
+	// formId: string;
 };
 
 // Probably convert to an actual component
@@ -31,7 +30,7 @@ export type ConversionGroupProps = {
 // React can't manage this effectively no?
 // i.e. if we 'move' a component they all have to be re-rendered
 const createConversions = (
-	conversions: Conversions,
+	conversions: Conversions = [],
 	iterable: boolean,
 	objectKey: string,
 	deleteHnd: DeleteConversion,
@@ -78,8 +77,8 @@ export const ConversionGroup = ({
 	conversion,
 	title,
 	info,
-	formId,
-}: ConversionGroupProps) => {
+}: // formId,
+ConversionGroupProps) => {
 	// create initial default conversions
 	const {
 		deleteConversion,
@@ -98,14 +97,8 @@ export const ConversionGroup = ({
 		defaultConversions = [],
 		iterable = false,
 	} = conversion || {};
-	// const { sort = {}, filter = {}, transform = {} } = conversion || {};
 
-	// objectKey . formId
-	const conversionFormName = `${objectKey}.conversions.${formId}`;
-	useEffect(() => {
-		setValue(`${conversionFormName}.responseKey`, id);
-		setValue(`${conversionFormName}.iterable`, iterable);
-	}, [conversionFormName, id, iterable, setValue]);
+	useEffect(() => {}, [objectKey, id, iterable, setValue]);
 
 	const deleteConversionHandler = (conversionFormId: string, i: number) => {
 		const handler = () => {
@@ -124,13 +117,13 @@ export const ConversionGroup = ({
 	};
 	const updateConversionHandler = (i: number, data: ConversionType) => {
 		console.log("updateConversionHandler");
-		updateConversion(i, data);
+		// updateConversion(i, data);
 	};
 
 	const conversionComponents = createConversions(
 		conversions,
 		iterable,
-		conversionFormName,
+		objectKey,
 		deleteConversionHandler,
 		moveConversionHandler,
 		updateConversionHandler

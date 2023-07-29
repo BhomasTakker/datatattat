@@ -14,24 +14,18 @@ export const SelectSortConversion = ({
 }: SelectConversion) => {
 	const { setValue } = useFormContext();
 	const { updateConversion } = useContext(ConversionContext);
-	const { sort } = useContext(ConversionsContext);
+	const { sort, setFormValue } = useContext(ConversionsContext);
 	const conversionsList = { ...SORT_MAP, ...sort };
 	const conversionId = useWatch({ name: `${objectKey}.id` });
 
 	useEffect(() => {
 		if (value) {
 			console.log("Call update ID");
-			updateConversion({ id: value });
-			setValue(`${objectKey}.id`, value);
+			// updateConversion({ id: value });
+			setFormValue(`${objectKey}.id`, value);
+			// setValue(`${objectKey}.id`, value);
 		}
-	}, [objectKey, setValue, value]);
-
-	useEffect(() => {
-		console.log("Call update ID");
-		if (conversionId) {
-			updateConversion({ id: conversionId });
-		}
-	}, [conversionId]);
+	}, [objectKey, setFormValue, setValue, value]);
 
 	return (
 		<Stack>

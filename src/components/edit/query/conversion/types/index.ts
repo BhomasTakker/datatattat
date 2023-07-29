@@ -22,16 +22,9 @@ type DefaultConversions = {
 	type: "TRANSFORM" | "FILTER" | "SORT";
 };
 
+// these should be the same thing
 export type ConversionObject = {
-	map: unknown;
-	defaultConversions: DefaultConversions[];
-	sort?: object;
-	filter?: object;
-	transform?: object;
-};
-
-export type SubConversionObject = {
-	id: string;
+	id?: string;
 	iterable?: boolean;
 	map: unknown;
 	defaultConversions: DefaultConversions[];
@@ -39,3 +32,13 @@ export type SubConversionObject = {
 	filter?: object;
 	transform?: object;
 };
+
+// export type SubConversionObject = {
+// 	id: string;
+// 	iterable?: boolean;
+// 	map: unknown;
+// 	defaultConversions: DefaultConversions[];
+// 	sort?: object;
+// 	filter?: object;
+// 	transform?: object;
+// };

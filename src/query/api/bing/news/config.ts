@@ -1,7 +1,4 @@
-import {
-	ConversionObject,
-	SubConversionObject,
-} from "@/src/components/edit/query/conversion/types";
+import { ConversionObject } from "@/src/components/edit/query/conversion/types";
 import { mainParams } from "./params";
 // Could call it a model perhaps
 // Is more a model of the of the api structure
@@ -44,7 +41,7 @@ const articleMap = {
 	video: "object",
 };
 
-const valueConversion: SubConversionObject = {
+const valueConversion: ConversionObject = {
 	id: "value",
 	iterable: true,
 	map: articleMap,
@@ -57,7 +54,7 @@ const valueConversion: SubConversionObject = {
 	},
 };
 
-const imageConversion: SubConversionObject = {
+const imageConversion: ConversionObject = {
 	id: "image",
 	map: articleMap,
 	defaultConversions: [],

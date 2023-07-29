@@ -6,6 +6,7 @@ import { SelectSortConversion } from "./select-components/sort-conversion";
 import { SelectTransformConversion } from "./select-components/transform-conversion";
 import { useContext, useEffect } from "react";
 import { ConversionContext } from "./context/ConversionContext";
+import { ConversionsContext } from "./context/ConversionsContext";
 
 type SetConversionType = string | null;
 
@@ -44,23 +45,19 @@ export const Conversion = ({
 }: ConversionProps) => {
 	const selectConversionTypeValue = useWatch({ name: `${objectKey}.type` });
 	const { updateConversion } = useContext(ConversionContext);
+	const { setFormValue } = useContext(ConversionsContext);
 	const { setValue } = useFormContext();
 	const { id, type } = conversion;
 
 	useEffect(() => {
 		if (type) {
 			console.log("Call update TYPE init");
-			updateConversion({ type: type });
-			setValue(`${objectKey}.type`, type);
+			// updateConversion({ type: type });
+			// change to update
+			setFormValue(`${objectKey}.type`, type);
+			// setValue(`${objectKey}.type`, type);
 		}
 	}, [type, objectKey, setValue]);
-
-	useEffect(() => {
-		console.log("Call update TYPE");
-		if (selectConversionTypeValue) {
-			updateConversion({ type: selectConversionTypeValue });
-		}
-	}, [selectConversionTypeValue]);
 
 	// temp / have iterator list, etc
 	const selectors = iterable ? ITERATOR_CONVERSION_TYPES : CONVERSION_TYPES;

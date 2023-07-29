@@ -14,7 +14,7 @@ export const SelectTransformConversion = ({
 	value,
 }: SelectConversion) => {
 	const { setValue } = useFormContext();
-	const { transform } = useContext(ConversionsContext);
+	const { transform, setFormValue } = useContext(ConversionsContext);
 	const { updateConversion } = useContext(ConversionContext);
 	const conversionsList = { ...TRANSFORM_MAP, ...transform };
 	const conversionId = useWatch({ name: `${objectKey}.id` });
@@ -22,19 +22,11 @@ export const SelectTransformConversion = ({
 	useEffect(() => {
 		if (value) {
 			console.log("Call update ID");
-			updateConversion({ id: value });
-			setValue(`${objectKey}.id`, value);
+			// I think  we need the context to manage the form data
+			// as in setValue, unregister, etc
+			setFormValue(`${objectKey}.id`, value);
 		}
-	}, [objectKey, setValue, value]);
-
-	useEffect(() => {
-		console.log("Call update ID");
-		if (conversionId) {
-			updateConversion({ id: conversionId });
-		}
-	}, [conversionId]);
-
-	// When selected if props / show props
+	}, [objectKey, setFormValue, setValue, value]);
 
 	return (
 		<Stack>

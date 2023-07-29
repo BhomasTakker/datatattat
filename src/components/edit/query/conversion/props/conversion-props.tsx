@@ -17,15 +17,7 @@ export const ConversionProps = ({
 }: ConversionProps) => {
 	const { updateConversion } = useContext(ConversionContext);
 	const conversionId = useWatch({ name: conversionFormId });
-	const props = useWatch({ name: `${objectKey}.props` });
-
-	useEffect(() => {
-		console.log("Call update PROPS");
-		if (props) {
-			updateConversion({ props });
-		}
-		// need add dependencey when useEffect wraps it
-	}, [props]);
+	// const props = useWatch({ name: `${objectKey}.props` });
 
 	console.log("PROPS!!");
 	console.log({ PROPS_conversionId: conversionId });

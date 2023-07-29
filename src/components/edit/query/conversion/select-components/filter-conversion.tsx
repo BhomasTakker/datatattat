@@ -14,24 +14,17 @@ export const SelectFilterConversion = ({
 }: SelectConversion) => {
 	const { setValue } = useFormContext();
 	const { updateConversion } = useContext(ConversionContext);
-	const { filter } = useContext(ConversionsContext);
+	const { filter, setFormValue } = useContext(ConversionsContext);
 	const conversionsList = { ...FILTER_MAP, ...filter };
 	const conversionId = useWatch({ name: `${objectKey}.id` });
 
 	useEffect(() => {
 		if (value) {
 			console.log("Call update ID");
-			updateConversion({ id: value });
-			setValue(`${objectKey}.id`, value);
+			// updateConversion({ id: value });
+			setFormValue(`${objectKey}.id`, value);
 		}
 	}, [objectKey, setValue, value]);
-
-	useEffect(() => {
-		console.log("Call update ID");
-		if (conversionId) {
-			updateConversion({ id: conversionId });
-		}
-	}, [conversionId]);
 
 	console.log("filterConversions");
 	return (
