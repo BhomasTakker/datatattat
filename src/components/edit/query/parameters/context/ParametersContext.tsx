@@ -1,12 +1,11 @@
 import { ReactNode, createContext } from "react";
-
 // this becomes non required
 // but we could store parameters here?
 // then on change / reset
 // potentially simpler
 
 type ParametersState = {
-	objectKey: null | string;
+	objectKey: string;
 };
 
 type ParametersInterface = {
@@ -14,11 +13,20 @@ type ParametersInterface = {
 };
 
 const parametersInitialState: ParametersState & ParametersInterface = {
-	objectKey: null,
+	objectKey: "",
 	updateParameters: (param: any) => {},
 };
 
 const parameterList = new Map();
+
+const addParameter = (param: any) => {
+	const { id, value } = param;
+	parameterList.set(id, value);
+};
+
+const updateParameters = (param: any) => {
+	addParameter(param);
+};
 
 export const ParametersContextProvider = ({
 	value,
@@ -27,15 +35,6 @@ export const ParametersContextProvider = ({
 	value: ParametersState;
 	children: ReactNode;
 }) => {
-	const addParameter = (param: any) => {
-		const { id, value } = param;
-		parameterList.set(id, value);
-	};
-
-	const updateParameters = (param: any) => {
-		addParameter(param);
-	};
-
 	return (
 		<ParametersContext.Provider value={{ ...value, updateParameters }}>
 			{children}

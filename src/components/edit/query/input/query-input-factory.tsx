@@ -25,7 +25,7 @@ export const QueryInputFactoryComponent = ({
 	const { type, id, label, options } = queryInputData;
 	const parameterId = `${objectKey}.${id}`;
 
-	console.log("TYPE", { type });
+	// console.log("TYPE", { type });
 
 	// We could / should have many
 	// Convert to a Map?

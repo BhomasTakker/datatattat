@@ -83,14 +83,8 @@ export const ConversionsContextProvider = ({
 	const { conversionJson, objectKey } = value;
 	const conversionsFormId = `${objectKey}.conversions`;
 	const conversions = watch(conversionsFormId);
-	console.log({ conversionJson }, { objectKey });
-	console.log({ conversions });
 
 	const { id = undefined, iterable = false } = conversionJson;
-
-	console.log({ conversionsContext: conversions });
-	console.log({ id: id });
-	console.log({ iterable: iterable });
 
 	////////////////////////////////
 	// initialize function
