@@ -13,6 +13,10 @@ import { TitleVariant } from "../../types/ui";
 import { QueryCreator } from "./creator/query-creator";
 import { QueryContext, QueryContextProvider } from "./context/query-context";
 import { useContext } from "react";
+import {
+	CreatorContext,
+	CreatorContextProvider,
+} from "./context/creator-context";
 
 // componentId
 // objectKey
@@ -29,7 +33,11 @@ const QueryComponent = ({}: QueryComponentProps) => {
 		return <></>; //errorComponent
 	}
 
-	return <QueryCreator blueprint={{ ...providerConfig }} />;
+	return (
+		<CreatorContextProvider value={{ config: providerConfig }}>
+			<QueryCreator />
+		</CreatorContextProvider>
+	);
 };
 
 type QuerySelectProps = {

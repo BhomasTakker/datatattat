@@ -36,6 +36,7 @@ const initialState: QueryState & QueryInterface = {
 	setQueryId: (id: string) => {},
 };
 
+// Could perhaps split form key 'logic' from the rest
 export const QueryContextProvider = ({
 	value,
 	children,
@@ -43,11 +44,8 @@ export const QueryContextProvider = ({
 	value: QueryState;
 	children: ReactNode;
 }) => {
-	const { setValue, unregister } = useFormContext();
-	const [providerConfig, setProviderConfig] = useState<object | undefined>(
-		undefined
-	);
-	// const { queryId = "" } = providerConfig;
+	const { setValue } = useFormContext();
+	const [providerConfig, setProviderConfig] = useState<any>(null);
 
 	const { objectKey, configList } = value;
 	const baseFormKey = `${objectKey}`;
@@ -74,13 +72,17 @@ export const QueryContextProvider = ({
 		setProviderConfig(configList.get(providerListener));
 	}, [configList, providerListener]);
 
-	const setQueryId = (id: string) => {
-		if (!id) {
-			return;
-		}
-		console.log({ setQueryId: id });
-		setValue(queryIdFormKey, id);
-	};
+	// copy over to creator cotext
+	const setQueryId = useCallback(
+		(id: string) => {
+			if (!id) {
+				return;
+			}
+			console.log({ setQueryId: id });
+			setValue(queryIdFormKey, id);
+		},
+		[queryIdFormKey, setValue]
+	);
 
 	return (
 		<QueryContext.Provider

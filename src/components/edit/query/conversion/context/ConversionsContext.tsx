@@ -88,13 +88,15 @@ export const ConversionsContextProvider = ({
 
 	const { conversionJson, objectKey } = value;
 	const conversionsFormId = `${objectKey}.conversions`;
-	const conversions = watch(conversionsFormId);
+	const conversions = watch(conversionsFormId, []);
 
 	const {
 		id = undefined,
 		iterable = false,
 		defaultConversions,
 	} = conversionJson;
+
+	console.log({ JSON: conversionJson });
 
 	////////////////////////////////
 	// initialize function
@@ -125,10 +127,19 @@ export const ConversionsContextProvider = ({
 	);
 
 	useEffect(() => {
-		// I don't think we should have this check
-		// indicates an issue <- yep
+		// I don't think we should have this check?
+		// indicates an issue <- yep <- undecided
 		// Why? / even providing an empty dependency adds default conversions multiple times...
-		if (conversions?.length === 0) {
+		// we will have instances of conversions being undefined
+		// We need to set the default value when we call watch!
+		// Quite possibly
+		if (!conversions) {
+			console.log("YABBA DABBA DOO!");
+		}
+		// by setting default value of watch we will always get an array
+		// remove !conversions ||
+		if (conversions.length === 0) {
+			console.log({ DEFAULT: defaultConversions });
 			addConversions(defaultConversions);
 		}
 	}, [addConversions, conversions, defaultConversions]);

@@ -7,6 +7,10 @@ import { Parameters } from "../parameters/Parameters";
 import { EditSelectInput } from "../input/input-components";
 import { ConversionsContainer } from "../conversion/conversions-container";
 import { QueryContext } from "../context/query-context";
+import {
+	CreatorContext,
+	CreatorContextProvider,
+} from "../context/creator-context";
 
 type QueryBluePrint = {
 	id: string;
@@ -16,102 +20,62 @@ type QueryBluePrint = {
 };
 
 type QueryCreatorProps = {
-	blueprint: any; // how to type this
+	// blueprint: any; // how to type this
 	// we need typeObject select, text, etc all have different types
 };
 
 // Clean this guy up
 // He can be better
-export const QueryCreator = ({ blueprint }: QueryCreatorProps) => {
-	const { setValue, unregister } = useFormContext();
+// First pass more needed
+export const QueryCreator = ({}: QueryCreatorProps) => {
+	// const { setValue } = useFormContext();
+	// I swear this will work
+	// You will use that which is closest to you.
+	// yeah works - seems no trouble at all
+	const { config, selectedQueryConfig } = useContext(CreatorContext);
+	console.log({ ID: config.id });
 	const {
 		queryFormKey,
 		queryIdFormKey,
 		parametersFormKey,
 		conversionsFormKey,
-		providerConfig,
-		setQueryId,
 	} = useContext(QueryContext);
 
 	const [RecursiveComponent, setRecursiveComponent] =
 		useState<ReactElement | null>(null);
 
-	// console.log({ blueprint });
-
+	// blueprint changes between endpoints
+	// we cannot use context for it
 	const {
 		id,
 		label,
 		type,
 		info,
 		params,
-		queryId,
 		conversions,
 
 		// component type specific
 		endpoints,
+	} = config;
 
-		endpointObjects = {},
-
-		defaultEndpoint, // ?
-	} = blueprint;
-
+	// This creates a new form key for every 'endpoint' selection
 	const formInputId = `${queryFormKey}.${id}`;
-
-	// better name / is not component / is our value
-	const formInputValue = useWatch({
-		name: formInputId,
-		// defaultValue,
-	});
-
-	// may need to revise this / need remove basically
-	useUnregisterForm({ name: formInputId });
-
-	const selectedQueryEndpoint = endpointObjects[formInputValue];
-
-	useEffect(() => {
-		// If we are not setting form state then duck out
-		// if type === none? / undefined
-		if (!type) {
-			console.log("There is no type!!!", { id }, { selectedQueryEndpoint });
-			return;
-		}
-
-		// if type !== select <- endpoint select?
-		// Tests to set input to default value on change
-		// Checks if current value exists in current endpoints
-		// if both choices share a field/endpoint then I believe it won't pick default
-		if (
-			!formInputValue ||
-			(endpoints && typeof endpoints?.[formInputValue] !== "string")
-		) {
-			// console.log("DO WE HERE???", { defaultEndpoint }, { formInputId });
-			setValue(formInputId, defaultEndpoint);
-		}
-	}, [formInputId, defaultEndpoint, setValue, formInputValue, endpoints, type]);
-
-	// always set an api id
-	useEffect(() => {
-		if (!queryId) {
-			return;
-		}
-
-		setQueryId(queryId);
-
-		// setValue(queryIdFormKey, queryId);
-		// queryIdFormKey, queryId, setValue, unregister, queryFormKey
-	}, [queryId, setQueryId]);
 
 	// Create recursive component IF there is an endpointObject for our current chosen endpoint
 	// If this was a hook in and of itself
 	// if anything needed it just call the hook
 	useEffect(() => {
-		if (selectedQueryEndpoint) {
-			setRecursiveComponent(<QueryCreator blueprint={selectedQueryEndpoint} />);
+		if (selectedQueryConfig) {
+			setRecursiveComponent(
+				<CreatorContextProvider value={{ config: selectedQueryConfig }}>
+					<QueryCreator />
+				</CreatorContextProvider>
+			);
 		} else {
 			setRecursiveComponent(null);
 		}
-	}, [formInputValue, queryFormKey, queryIdFormKey, selectedQueryEndpoint]);
-
+	}, [selectedQueryConfig]);
+	//formInputValue, queryFormKey, queryIdFormKey, selectedQueryConfig
 	return (
 		<Stack>
 			{type ? (
