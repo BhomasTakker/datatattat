@@ -1,9 +1,15 @@
-import { ReactNode, createContext, useEffect, useState } from "react";
-import { useWatch } from "react-hook-form";
+import {
+	ReactNode,
+	createContext,
+	useCallback,
+	useEffect,
+	useState,
+} from "react";
+import { useFormContext, useWatch } from "react-hook-form";
 
 type QueryState = {
 	objectKey: string;
-	configList: any[];
+	configList: Map<string, object>;
 };
 
 type QueryInterface = {
@@ -14,18 +20,20 @@ type QueryInterface = {
 	providerFormKey: string;
 	parametersFormKey: string;
 	conversionsFormKey: string;
+	setQueryId: (id: string) => void;
 };
 
 const initialState: QueryState & QueryInterface = {
 	providerConfig: null,
 	objectKey: "",
-	configList: [],
+	configList: new Map<string, object>([]),
 	baseFormKey: "",
 	queryFormKey: "",
 	queryIdFormKey: "",
 	providerFormKey: "",
 	parametersFormKey: "",
 	conversionsFormKey: "",
+	setQueryId: (id: string) => {},
 };
 
 export const QueryContextProvider = ({
@@ -35,7 +43,12 @@ export const QueryContextProvider = ({
 	value: QueryState;
 	children: ReactNode;
 }) => {
-	const [providerConfig, setProviderConfig] = useState(null);
+	const { setValue, unregister } = useFormContext();
+	const [providerConfig, setProviderConfig] = useState<object | undefined>(
+		undefined
+	);
+	// const { queryId = "" } = providerConfig;
+
 	const { objectKey, configList } = value;
 	const baseFormKey = `${objectKey}`;
 	const queryFormKey = `${objectKey}.query`;
@@ -58,11 +71,21 @@ export const QueryContextProvider = ({
 
 	useEffect(() => {
 		// configList needs to be a set...
-		setProviderConfig(configList[providerListener]);
+		setProviderConfig(configList.get(providerListener));
 	}, [configList, providerListener]);
 
+	const setQueryId = (id: string) => {
+		if (!id) {
+			return;
+		}
+		console.log({ setQueryId: id });
+		setValue(queryIdFormKey, id);
+	};
+
 	return (
-		<QueryContext.Provider value={{ ...value, ...formKeys, providerConfig }}>
+		<QueryContext.Provider
+			value={{ ...value, ...formKeys, providerConfig, setQueryId }}
+		>
 			{children}
 		</QueryContext.Provider>
 	);

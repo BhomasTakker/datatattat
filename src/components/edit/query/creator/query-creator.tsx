@@ -30,6 +30,7 @@ export const QueryCreator = ({ blueprint }: QueryCreatorProps) => {
 		parametersFormKey,
 		conversionsFormKey,
 		providerConfig,
+		setQueryId,
 	} = useContext(QueryContext);
 
 	const [RecursiveComponent, setRecursiveComponent] =
@@ -62,7 +63,7 @@ export const QueryCreator = ({ blueprint }: QueryCreatorProps) => {
 		// defaultValue,
 	});
 
-	// may need to revise this
+	// may need to revise this / need remove basically
 	useUnregisterForm({ name: formInputId });
 
 	const selectedQueryEndpoint = endpointObjects[formInputValue];
@@ -94,8 +95,11 @@ export const QueryCreator = ({ blueprint }: QueryCreatorProps) => {
 			return;
 		}
 
-		setValue(queryIdFormKey, queryId);
-	}, [queryIdFormKey, queryId, setValue, unregister, queryFormKey]);
+		setQueryId(queryId);
+
+		// setValue(queryIdFormKey, queryId);
+		// queryIdFormKey, queryId, setValue, unregister, queryFormKey
+	}, [queryId, setQueryId]);
 
 	// Create recursive component IF there is an endpointObject for our current chosen endpoint
 	// If this was a hook in and of itself
