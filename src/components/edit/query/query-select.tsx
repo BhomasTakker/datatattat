@@ -8,46 +8,25 @@ import { SelectInputWithControl } from "../../input/SelectInput";
 import { createSelectInputList } from "../../input/TextInput";
 import { TitleVariant } from "../../types/ui";
 import { QueryCreator } from "./creator/query-creator";
+import { QueryContext, QueryContextProvider } from "./context/query-context";
+import { useContext } from "react";
 
 // componentId
 // objectKey
 // configList
 
-type QueryComponentProps = {
-	componentId: string;
-	objectKey: string;
-	// this is known
-	configList: any; // how to type this / with a generic
-};
+type QueryComponentProps = {};
 
 // queryId = {`${objectKey}.apiId`}
-const QueryComponent = ({
-	componentId,
-	objectKey,
-	configList,
-}: QueryComponentProps) => {
-	//BING_NEWS_ROOT
-	const queryConfig = configList[componentId] || {};
+const QueryComponent = ({}: QueryComponentProps) => {
+	const { providerConfig } = useContext(QueryContext);
 
-	if (!componentId) {
+	if (!providerConfig) {
 		// error message
 		return <></>; //errorComponent
 	}
 
-	if (!queryConfig) {
-		// error message
-		return <></>; //errorComponent
-	}
-
-	return (
-		<QueryCreator
-			blueprint={{ ...queryConfig }}
-			objectKey={objectKey}
-			// queryType={}
-			queryIdFormKey={`${objectKey}.queryId`}
-			// apiId={`${objectKey}.apiId`}
-		/>
-	);
+	return <QueryCreator blueprint={{ ...providerConfig }} />;
 };
 
 type QuerySelectProps = {
@@ -55,29 +34,25 @@ type QuerySelectProps = {
 	titleInfo: string; // type an id? regex something
 	providerLabel: string;
 	providerInfo: string;
-	configList: any; // how to type Map [string, configType]
+};
+
+type QuerySelectorProps = QuerySelectProps & {
+	configList: any[];
 };
 
 // title, titleInfo,
 // type label, type info, type id
 // config list
 const QuerySelect = ({
-	objectKey,
 	title,
 	titleInfo,
 	providerLabel,
 	providerInfo,
-	configList,
-}: BaseEditProps & QuerySelectProps) => {
-	const provider = useWatch({
-		name: `${objectKey}.query.provider`,
-	});
-
-	console.log({ configList });
+}: QuerySelectProps) => {
+	const { providerFormKey, configList } = useContext(QueryContext);
 
 	return (
 		<Box>
-			{/* <WithInfo infoId="RssQuery"> */}
 			<WithInfo infoId={titleInfo}>
 				<Title variant={TitleVariant.EDIT_COMPONENT} text={title} />
 			</WithInfo>
@@ -89,7 +64,7 @@ const QuerySelect = ({
 					>
 						<SelectInputWithControl
 							label={providerLabel}
-							name={`${objectKey}.query.provider`}
+							name={providerFormKey}
 							fullWidth={true}
 							required
 						>
@@ -97,13 +72,8 @@ const QuerySelect = ({
 						</SelectInputWithControl>
 					</WithInfo>
 				</Box>
-				<QueryComponent
-					componentId={provider}
-					objectKey={`${objectKey}.query`}
-					configList={configList}
-				/>
+				<QueryComponent />
 			</Stack>
-			{/* <Conversion objectKey={objectKey} responseList={} /> */}
 		</Box>
 	);
 };
@@ -114,17 +84,22 @@ export const QuerySelector = ({
 	providerLabel,
 	providerInfo,
 	configList,
-}: QuerySelectProps) => {
+}: QuerySelectorProps) => {
 	return function WithQuery({ objectKey }: BaseEditProps) {
 		return (
-			<QuerySelect
-				objectKey={objectKey}
-				title={title}
-				titleInfo={titleInfo}
-				providerLabel={providerLabel}
-				providerInfo={providerInfo}
-				configList={configList}
-			/>
+			<QueryContextProvider
+				value={{
+					objectKey,
+					configList,
+				}}
+			>
+				<QuerySelect
+					title={title}
+					titleInfo={titleInfo}
+					providerLabel={providerLabel}
+					providerInfo={providerInfo}
+				/>
+			</QueryContextProvider>
 		);
 	};
 };

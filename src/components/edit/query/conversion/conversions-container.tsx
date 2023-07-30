@@ -27,11 +27,10 @@ const MainResponse = ({
 		return <></>;
 	}
 	const { id = "", sort = {}, filter = {}, transform = {} } = response;
-	const formId = `${objectKey}.conversions.response`;
 	return (
 		<ConversionsContextProvider
 			value={{
-				objectKey: formId,
+				objectKey,
 				conversions: [],
 				sort,
 				filter,
@@ -43,7 +42,7 @@ const MainResponse = ({
 			key={id}
 		>
 			<ConversionGroup
-				objectKey={formId}
+				objectKey={objectKey}
 				conversion={response}
 				title={"Main"}
 				info={"blurb about main part "}
@@ -71,7 +70,7 @@ const SubComponents = ({
 	const returnComponents = conversions.map(
 		(conversion: ConversionObject, i: number) => {
 			const { id = "", sort = {}, filter = {}, transform = {} } = conversion;
-			const formId = `${objectKey}.conversions.sub.${id}`;
+			const formId = `${objectKey}.${id}`;
 			return (
 				<ConversionsContextProvider
 					key={id}
@@ -110,7 +109,7 @@ export const ConversionsContainer = ({
 	useEffect(() => {
 		// Probably manage this better with context?
 		// ${objectKey}.conversions should really be passed in
-		const formId = `${objectKey}.conversions.conversionId`;
+		const formId = `${objectKey}.conversionId`;
 		setValue(formId, conversionId);
 	}, [conversionId, objectKey, setValue]);
 
@@ -126,8 +125,11 @@ export const ConversionsContainer = ({
 				></Title>
 			</WithInfo>
 			{/* Probably <ul> */}
-			<MainResponse response={response} objectKey={objectKey} />
-			<SubComponents conversions={subConversions} objectKey={objectKey} />
+			<MainResponse response={response} objectKey={`${objectKey}.response`} />
+			<SubComponents
+				conversions={subConversions}
+				objectKey={`${objectKey}.sub`}
+			/>
 		</Stack>
 	);
 };
