@@ -30,13 +30,11 @@ type ConversionsState = {
 };
 
 type ConversionsInterface = {
-	// deleteConversion: (conversion: any) => void;
-	// moveConversion: (conversion: any) => void;
 	addConversion: (conversionData: Conversion) => void; // pass data in || default
 	addConversions: (conversionDatas: Conversions) => void;
 	updateConversion: (i: number, conversionData: Conversion) => void; // Partial
-	deleteConversion: (i: number, callback: () => void) => void;
-	moveConversion: (dir: number, i: number, callback?: () => void) => void;
+	deleteConversion: (i: number) => void;
+	moveConversion: (dir: number, i: number) => void;
 
 	getFormValues: (id: string) => void;
 	setFormValue: (id: string, value: any) => void;
@@ -59,8 +57,6 @@ const conversionsInitialState: ConversionsState & ConversionsInterface = {
 	getFormValues: () => {},
 	setFormValue: () => {},
 
-	// deleteConversion: (param: any) => {},
-	// moveConversion: (param: any) => {},
 	sort: {},
 	filter: {},
 	transform: {},
@@ -138,7 +134,7 @@ export const ConversionsContextProvider = ({
 	);
 
 	const deleteConversion = useCallback(
-		(i: number, callback: () => void = () => {}) => {
+		(i: number) => {
 			if (conversions.length === 0) {
 				return;
 			}
@@ -178,11 +174,6 @@ export const ConversionsContextProvider = ({
 			// Temp - just use update conversion
 			console.log("SET VALUE", { id }, { value });
 			setValue(id, value);
-
-			// temp but here th issue
-			// const updateConversions = cloneDeep(conversions);
-			// unregister(conversionsFormId);
-			// setValue(conversionsFormId, updateConversions);
 		},
 		[setValue]
 	);

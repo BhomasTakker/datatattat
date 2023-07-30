@@ -56,7 +56,7 @@ const createConversions = (
 						// @ts-ignore - fix me I'm annoying
 						deleteConversion: (e: MouseEvent) => deleteHnd(conversionFormId, i),
 						// @ts-ignore
-						moveConversion: (dir: number) => moveHnd(dir, conversionFormId, i),
+						moveConversion: (dir: number) => moveHnd(dir, i),
 						// @ts-ignore
 						updateConversion: (data: any) => updateHnd(i, data),
 					}}
@@ -101,18 +101,10 @@ ConversionGroupProps) => {
 	useEffect(() => {}, [objectKey, id, iterable, setValue]);
 
 	const deleteConversionHandler = (conversionFormId: string, i: number) => {
-		const handler = () => {
-			unregister(conversionFormId, { keepValue: false });
-		};
-
-		deleteConversion(i, handler);
+		deleteConversion(i);
 	};
 	// dir is really -1, 1, 0
-	const moveConversionHandler = (
-		dir: number,
-		conversionFormId: string,
-		i: number
-	) => {
+	const moveConversionHandler = (dir: number, i: number) => {
 		moveConversion(dir, i);
 	};
 	const updateConversionHandler = (i: number, data: ConversionType) => {

@@ -6,7 +6,7 @@ import { Conversion } from "../types";
 type ConversionState = {};
 
 export type DeleteConversion = (id: string, index: number) => void;
-export type MoveConversion = (dir: number, id: string, index: number) => void;
+export type MoveConversion = (dir: number, index: number) => void;
 export type UpdateConversion = (index: number, data: Conversion) => void;
 
 type ConversionInterface = {
@@ -18,8 +18,7 @@ type ConversionInterface = {
 
 const conversionInitialState: ConversionState & ConversionInterface = {
 	deleteConversion: (e: MouseEvent) => (id: string, index: number) => {},
-	moveConversion:
-		(dir: number) => (dir: number, id: string, index: number) => {},
+	moveConversion: (dir: number) => (dir: number, index: number) => {},
 	updateConversion:
 		(data: Conversion) => (index: number, data: Conversion) => {},
 };
