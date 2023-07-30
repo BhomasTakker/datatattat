@@ -1,5 +1,11 @@
 import { cloneDeep } from "@/src/utils/object";
-import { ReactNode, createContext, useCallback, useState } from "react";
+import {
+	ReactNode,
+	createContext,
+	useCallback,
+	useEffect,
+	useState,
+} from "react";
 import { Conversion, ConversionObject, Conversions } from "../types";
 import { useFormContext } from "react-hook-form";
 
@@ -84,7 +90,11 @@ export const ConversionsContextProvider = ({
 	const conversionsFormId = `${objectKey}.conversions`;
 	const conversions = watch(conversionsFormId);
 
-	const { id = undefined, iterable = false } = conversionJson;
+	const {
+		id = undefined,
+		iterable = false,
+		defaultConversions,
+	} = conversionJson;
 
 	////////////////////////////////
 	// initialize function
@@ -93,15 +103,8 @@ export const ConversionsContextProvider = ({
 	}
 	setValue(`${objectKey}.iterable`, iterable);
 	/////////////////////////////////
-
 	// move these functions
 	// we need to useCallback all of these functions
-	const addConversions = (conversionsData: Conversions) => {
-		conversionsData.forEach((conversion) => {
-			addConversion(conversion);
-		});
-	};
-
 	const addConversion = useCallback(
 		(conversionData: Conversion) => {
 			console.log("Add Conversion");
@@ -111,6 +114,25 @@ export const ConversionsContextProvider = ({
 		},
 		[conversions, conversionsFormId, setValue]
 	);
+
+	const addConversions = useCallback(
+		(conversionsData: Conversions) => {
+			conversionsData.forEach((conversion) => {
+				addConversion(conversion);
+			});
+		},
+		[addConversion]
+	);
+
+	useEffect(() => {
+		// I don't think we should have this check
+		// indicates an issue <- yep
+		// Why? / even providing an empty dependency adds default conversions multiple times...
+		if (conversions?.length === 0) {
+			addConversions(defaultConversions);
+		}
+	}, [addConversions, conversions, defaultConversions]);
+
 	//? / void esq
 	const updateConversion = useCallback(
 		(i: number, conversionData: Conversion) => {

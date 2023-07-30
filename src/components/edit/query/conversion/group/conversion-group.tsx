@@ -80,16 +80,10 @@ export const ConversionGroup = ({
 }: // formId,
 ConversionGroupProps) => {
 	// create initial default conversions
-	const {
-		deleteConversion,
-		moveConversion,
-		addConversion,
-		addConversions,
-		updateConversion,
-		conversions,
-	} = useContext(ConversionsContext);
+	const { deleteConversion, moveConversion, addConversion, conversions } =
+		useContext(ConversionsContext);
 
-	const { getValues, setValue, unregister } = useFormContext();
+	const { setValue } = useFormContext();
 
 	const {
 		id,
@@ -120,13 +114,6 @@ ConversionGroupProps) => {
 		moveConversionHandler,
 		updateConversionHandler
 	);
-
-	useEffect(() => {
-		if (defaultConversions.length > 0) {
-			addConversions(defaultConversions);
-		}
-		// I believe we need to useContext addConversions
-	}, [defaultConversions]);
 
 	const addConversionHandler = () => {
 		addConversion({ id: "", type: "" });
