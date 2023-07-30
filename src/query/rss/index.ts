@@ -5,16 +5,26 @@ import { GOOGLE_RSS_CONFIG_OBJECT } from "./news/Google/config";
 import { SKY_NEWS_ROOT } from "./news/Sky/config";
 import { ALJAZEERA_NEWS_ROOT } from "./news/aljazeera/config";
 
-export const RSS_CONFIG_LIST: any = {
-	skyNews: SKY_NEWS_ROOT,
-	aljazeera: ALJAZEERA_NEWS_ROOT,
+// export const RSS_CONFIG_LIST: any = {
+// 	skyNews: SKY_NEWS_ROOT,
+// 	aljazeera: ALJAZEERA_NEWS_ROOT,
 
-	//need groups / here or prior to this set news / radio / etc
-	bbcNews: BBC_RSS_CONFIG_OBJECT,
+// 	//need groups / here or prior to this set news / radio / etc
+// 	bbcNews: BBC_RSS_CONFIG_OBJECT,
 
-	googleNews: GOOGLE_RSS_CONFIG_OBJECT,
+// 	googleNews: GOOGLE_RSS_CONFIG_OBJECT,
 
-	youtube: YOUTUBE_RSS_CONFIG_OBJECT,
+// 	youtube: YOUTUBE_RSS_CONFIG_OBJECT,
 
-	custom: CUSTOM_RSS_CONFIG_OBJECT,
-};
+// 	custom: CUSTOM_RSS_CONFIG_OBJECT,
+// };
+
+// @ts-ignore
+export const RSS_CONFIG_LIST: Map<string, any> = new Map([
+	["skyNews", SKY_NEWS_ROOT],
+	["aljazeera", ALJAZEERA_NEWS_ROOT],
+	["bbcNews", BBC_RSS_CONFIG_OBJECT],
+	["googleNews", GOOGLE_RSS_CONFIG_OBJECT],
+	["youtube", YOUTUBE_RSS_CONFIG_OBJECT],
+	["custom", CUSTOM_RSS_CONFIG_OBJECT],
+]);

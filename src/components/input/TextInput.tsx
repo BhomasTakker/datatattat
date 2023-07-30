@@ -1,5 +1,5 @@
 import { InputProps, MenuItem, TextField } from "@mui/material";
-import React, { ReactElement } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { withControl } from "@/hoc/components/forms/withControl";
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
 import { withToggleCheck } from "@/src/hoc/actions/withToggleCheck";
@@ -118,4 +118,24 @@ export const createSelectInputList = (hash: {}) => {
 			{key}
 		</MenuItem>
 	));
+};
+
+// I can't believe you made this and didn't move these...
+// this is how the above should be
+export const createSelectInputListMap = (hash: Map<string, any>) => {
+	if (!hash) {
+		console.log("We error here but why?");
+		return <p>Error</p>;
+	}
+	const options: ReactNode[] = [];
+
+	hash.forEach((_val, key, _map) => {
+		options.push(
+			<MenuItem key={key} value={key}>
+				{key}
+			</MenuItem>
+		);
+	});
+
+	return options;
 };

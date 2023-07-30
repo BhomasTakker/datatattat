@@ -5,7 +5,10 @@ import { WithInfo } from "../info/WithInfo";
 import { Title } from "../../ui/title";
 import { MARGINS, INFO_MARGINS } from "config/styles/styles.config";
 import { SelectInputWithControl } from "../../input/SelectInput";
-import { createSelectInputList } from "../../input/TextInput";
+import {
+	createSelectInputList,
+	createSelectInputListMap,
+} from "../../input/TextInput";
 import { TitleVariant } from "../../types/ui";
 import { QueryCreator } from "./creator/query-creator";
 import { QueryContext, QueryContextProvider } from "./context/query-context";
@@ -37,7 +40,7 @@ type QuerySelectProps = {
 };
 
 type QuerySelectorProps = QuerySelectProps & {
-	configList: any[];
+	configList: Map<string, object>;
 };
 
 // title, titleInfo,
@@ -68,7 +71,7 @@ const QuerySelect = ({
 							fullWidth={true}
 							required
 						>
-							{createSelectInputList(configList)}
+							{createSelectInputListMap(configList)}
 						</SelectInputWithControl>
 					</WithInfo>
 				</Box>
