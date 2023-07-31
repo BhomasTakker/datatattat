@@ -6,7 +6,6 @@ import { useContext, useEffect } from "react";
 import { ConversionsContext } from "../context/ConversionsContext";
 import { Stack } from "@mui/material";
 import { ConversionProps } from "../props/conversion-props";
-import { ConversionContext } from "../context/ConversionContext";
 
 export const SelectFilterConversion = ({
 	objectKey,
@@ -14,18 +13,12 @@ export const SelectFilterConversion = ({
 	props,
 }: SelectConversion) => {
 	const { setValue } = useFormContext();
-	// const { updateConversion } = useContext(ConversionContext);
 	const { filter, setFormValue } = useContext(ConversionsContext);
 	const conversionsList = { ...FILTER_MAP, ...filter };
-	// const conversionId = useWatch({ name: `${objectKey}.id` });
 
-	useEffect(() => {
-		if (value) {
-			console.log("Call update ID");
-			// updateConversion({ id: value });
-			setFormValue(`${objectKey}.id`, value);
-		}
-	}, [objectKey, setFormValue, setValue, value]);
+	if (value) {
+		setFormValue(`${objectKey}.id`, value);
+	}
 
 	console.log("filterConversions");
 	return (

@@ -84,7 +84,7 @@ export const ConversionsContextProvider = ({
 	children: ReactNode;
 }) => {
 	// const [conversions, setConversions] = useState<Conversions>([]);
-	const { setValue, watch, register, unregister } = useFormContext();
+	const { setValue, watch, unregister } = useFormContext();
 
 	const { conversionJson, objectKey } = value;
 	const conversionsFormId = `${objectKey}.conversions`;

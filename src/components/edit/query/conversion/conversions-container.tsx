@@ -67,6 +67,7 @@ const SubComponents = ({
 		return <></>;
 	}
 	// it is known
+	// is map known to be good, bad, etc? as opposed to a function, or something
 	const returnComponents = conversions.map(
 		(conversion: ConversionObject, i: number) => {
 			const { id = "", sort = {}, filter = {}, transform = {} } = conversion;

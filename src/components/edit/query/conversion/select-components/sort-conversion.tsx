@@ -13,23 +13,19 @@ export const SelectSortConversion = ({
 	value,
 	props,
 }: SelectConversion) => {
-	const { setValue } = useFormContext();
-	const { updateConversion } = useContext(ConversionContext);
+	// const { setValue } = useFormContext();
 	const { sort, setFormValue } = useContext(ConversionsContext);
 	const conversionsList = { ...SORT_MAP, ...sort };
-	const conversionId = useWatch({ name: `${objectKey}.id` });
 
-	// This is when there is already a value
-	// i.e. When you move a conversion
-	// we update the conversion to the new values
-	useEffect(() => {
-		if (value) {
-			console.log("Call update ID");
-			// updateConversion({ id: value });
-			setFormValue(`${objectKey}.id`, value);
-			// setValue(`${objectKey}.id`, value);
-		}
-	}, [objectKey, setFormValue, setValue, value]);
+	// This seems to fix the issue we have but...
+	// We are rendering far to many times
+	// Almost creating a disconnect between react hook form and component
+	///////////////////////////////////////////
+	// We could watch ourselves ?
+	// I feel that would be a horrible loop
+	if (value) {
+		setFormValue(`${objectKey}.id`, value);
+	}
 
 	return (
 		<Stack>

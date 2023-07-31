@@ -61,7 +61,6 @@ export const Conversion = ({
 	const selectors = iterable ? ITERATOR_CONVERSION_TYPES : CONVERSION_TYPES;
 
 	if (!selectConversionTypeValue) {
-		console.log({ HEREYA1: conversion });
 		return (
 			<SelectComponent
 				label="Conversion Id"
@@ -72,7 +71,6 @@ export const Conversion = ({
 		);
 	}
 
-	console.log({ HEREYA: conversion });
 	return (
 		<ConversionType
 			conversionType={selectConversionTypeValue}

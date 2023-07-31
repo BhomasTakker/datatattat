@@ -87,11 +87,11 @@ ConversionGroupProps) => {
 	const { deleteConversion, moveConversion, addConversion, conversions } =
 		useContext(ConversionsContext);
 
-	const { setValue } = useFormContext();
+	// const { setValue } = useFormContext();
 
 	const { id, iterable = false } = conversion || {};
 
-	useEffect(() => {}, [objectKey, id, iterable, setValue]);
+	// useEffect(() => {}, [objectKey, id, iterable, setValue]);
 
 	const deleteConversionHandler = (conversionFormId: string, i: number) => {
 		deleteConversion(i);

@@ -20,7 +20,6 @@ export const ConversionProps = ({
 }: ConversionProps) => {
 	const { setFormValue } = useContext(ConversionsContext);
 	const conversionId = useWatch({ name: conversionFormId });
-	// const props = useWatch({ name: `${objectKey}.props` });
 
 	useEffect(() => {
 		if (props) {
