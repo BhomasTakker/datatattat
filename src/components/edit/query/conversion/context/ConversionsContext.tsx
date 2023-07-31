@@ -133,9 +133,9 @@ export const ConversionsContextProvider = ({
 		// we will have instances of conversions being undefined
 		// We need to set the default value when we call watch!
 		// Quite possibly
-		if (!conversions) {
-			console.log("YABBA DABBA DOO!");
-		}
+		// if (!conversions) {
+		// 	console.log("YABBA DABBA DOO!");
+		// }
 		// by setting default value of watch we will always get an array
 		// remove !conversions ||
 		if (conversions.length === 0) {

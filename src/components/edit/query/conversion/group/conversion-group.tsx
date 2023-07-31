@@ -25,51 +25,55 @@ export type ConversionGroupProps = {
 	// formId: string;
 };
 
-// Probably convert to an actual component
-// I feel this is a lot of our issues in general?
-// React can't manage this effectively no?
-// i.e. if we 'move' a component they all have to be re-rendered
-const createConversions = (
-	conversions: Conversions = [],
-	iterable: boolean,
-	objectKey: string,
-	deleteHnd: DeleteConversion,
-	moveHnd: MoveConversion,
-	updateHnd: UpdateConversion
-) => {
-	return conversions.map((conversion, i) => {
-		// I don't think this would work with a unique id
-		// This is getting recalled every change
-		// We are functionally relying on that behavour
-		const conversionFormId = `${objectKey}.conversions.[${i}]`;
-		return (
-			<Paper
-				elevation={1}
-				key={i} //use id or something/anything
-				style={{ paddingTop: MARGINS.SMALL, paddingBottom: MARGINS.SMALL }}
-			>
-				{/* Pass conversion data? / iterable? / whatever else */}
-				{/* Technically - could call function in ConversionsContext to update conversions no? */}
-				{/* Exactly yes - We are just a component right - and therefore could call ConversionsContext */}
-				<ConversionContextProvider
-					value={{
-						// @ts-ignore - fix me I'm annoying
-						deleteConversion: (e: MouseEvent) => deleteHnd(conversionFormId, i),
-						// @ts-ignore
-						moveConversion: (dir: number) => moveHnd(dir, i),
-						// @ts-ignore
-						updateConversion: (data: any) => updateHnd(i, data),
-					}}
-				>
-					<Conversion
-						conversion={conversion}
-						iterable={iterable}
-						objectKey={conversionFormId}
-					/>
-				</ConversionContextProvider>
-			</Paper>
-		);
-	});
+type ConversionStackProps = {
+	conversions: Conversions;
+	iterable: boolean;
+	objectKey: string;
+	deleteHnd: DeleteConversion;
+	moveHnd: MoveConversion;
+	updateHnd: UpdateConversion;
+};
+
+const ConversionsStack = ({
+	conversions = [],
+	iterable,
+	objectKey,
+	deleteHnd,
+	moveHnd,
+	updateHnd,
+}: ConversionStackProps) => {
+	return (
+		<Stack gap={MARGINS.SMALL}>
+			{conversions.map((conversion, i) => {
+				const conversionFormId = `${objectKey}.conversions.[${i}]`;
+				return (
+					<Paper
+						elevation={1}
+						key={i} //use id or something/anything
+						style={{ paddingTop: MARGINS.SMALL, paddingBottom: MARGINS.SMALL }}
+					>
+						<ConversionContextProvider
+							value={{
+								// @ts-ignore - fix me I'm annoying
+								deleteConversion: (e: MouseEvent) =>
+									deleteHnd(conversionFormId, i),
+								// @ts-ignore
+								moveConversion: (dir: number) => moveHnd(dir, i),
+								// @ts-ignore
+								updateConversion: (data: any) => updateHnd(i, data),
+							}}
+						>
+							<Conversion
+								conversion={conversion}
+								iterable={iterable}
+								objectKey={conversionFormId}
+							/>
+						</ConversionContextProvider>
+					</Paper>
+				);
+			})}
+		</Stack>
+	);
 };
 
 export const ConversionGroup = ({
@@ -85,12 +89,7 @@ ConversionGroupProps) => {
 
 	const { setValue } = useFormContext();
 
-	const {
-		id,
-		map = {},
-		defaultConversions = [],
-		iterable = false,
-	} = conversion || {};
+	const { id, iterable = false } = conversion || {};
 
 	useEffect(() => {}, [objectKey, id, iterable, setValue]);
 
@@ -106,15 +105,6 @@ ConversionGroupProps) => {
 		// updateConversion(i, data);
 	};
 
-	const conversionComponents = createConversions(
-		conversions,
-		iterable,
-		objectKey,
-		deleteConversionHandler,
-		moveConversionHandler,
-		updateConversionHandler
-	);
-
 	const addConversionHandler = () => {
 		addConversion({ id: "", type: "" });
 	};
@@ -124,7 +114,15 @@ ConversionGroupProps) => {
 			<WithInfo info={info}>
 				<Title text={title} variant={TitleVariant.EDIT_COMPONENT}></Title>
 			</WithInfo>
-			<Stack gap={MARGINS.SMALL}>{conversionComponents}</Stack>
+			<ConversionsStack
+				conversions={conversions}
+				iterable={iterable}
+				objectKey={objectKey}
+				deleteHnd={deleteConversionHandler}
+				moveHnd={moveConversionHandler}
+				updateHnd={updateConversionHandler}
+			/>
+			{/* <Stack gap={MARGINS.SMALL}>{conversionComponents}</Stack> */}
 			<Box paddingTop={MARGINS.MIDSMALL} paddingBottom={MARGINS.MIDSMALL}>
 				<Button onClick={addConversionHandler} startIcon={<AddIcon />}>
 					Add Conversion

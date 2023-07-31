@@ -8,7 +8,8 @@ type NavigationProps = {
 	nav: NavLinkData[];
 };
 
-//This where
+// TODO: Create Context
+//This is where we want to create a context to control form data and nav array
 export const EditNavigationDisplay = ({ nav = [] }: NavigationProps) => {
 	const { setValue } = useFormContext();
 

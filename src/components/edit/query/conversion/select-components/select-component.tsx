@@ -23,6 +23,7 @@ export const SelectComponent = ({
 	infoId,
 	selectList,
 }: SelectComponentProps) => {
+	// We can probably call Conversions move/delete from inside context / a little easier
 	const { deleteConversion, moveConversion } = useContext(ConversionContext);
 
 	return (

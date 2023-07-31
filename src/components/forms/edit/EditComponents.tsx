@@ -6,6 +6,9 @@ import { BaseEditProps } from "./types/BaseEdit";
 import AddIcon from "@mui/icons-material/Add";
 import { MARGINS } from "config/styles/styles.config";
 
+// TODO: Create Context
+// This or US is where or whereabouts we need the Context creating to manage the array etc
+
 //We need to create a Compound Component
 //That is a managed array
 //So we can manage the created components
