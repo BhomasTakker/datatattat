@@ -133,9 +133,6 @@ export const ConversionsContextProvider = ({
 		// we will have instances of conversions being undefined
 		// We need to set the default value when we call watch!
 		// Quite possibly
-		// if (!conversions) {
-		// 	console.log("YABBA DABBA DOO!");
-		// }
 		// by setting default value of watch we will always get an array
 		// remove !conversions ||
 		if (conversions.length === 0) {
@@ -166,11 +163,11 @@ export const ConversionsContextProvider = ({
 				return;
 			}
 
-			const updateConversions2 = cloneDeep(conversions);
-			updateConversions2.splice(i, 1);
+			const updateConversions = cloneDeep(conversions);
+			updateConversions.splice(i, 1);
 
 			unregister(conversionsFormId);
-			setValue(conversionsFormId, updateConversions2);
+			setValue(conversionsFormId, updateConversions);
 		},
 		[conversions, conversionsFormId, setValue, unregister]
 	);
@@ -186,6 +183,7 @@ export const ConversionsContextProvider = ({
 			const movedConversion = updateConversions.splice(i, 1);
 			updateConversions.splice(i + dir, 0, ...movedConversion);
 
+			// potentially better?
 			// unregister(conversionsFormId);
 			setValue(conversionsFormId, updateConversions);
 		},

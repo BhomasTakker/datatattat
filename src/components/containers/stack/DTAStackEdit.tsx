@@ -1,10 +1,9 @@
 import { Box } from "@mui/material";
 import React from "react";
-import { EditComponents } from "../../forms/edit/EditComponents";
 import { WithInfo } from "../../edit/info/WithInfo";
 import { Title } from "../../ui/title";
 import { TitleVariant } from "../../types/ui";
-import { MARGINS } from "config/styles/styles.config";
+import { EditComponentsContainer } from "../../edit/components/container";
 
 //Just a blank Component until DTAStack is given some props say
 //We don't mirror the component structure
@@ -21,7 +20,8 @@ export const DTAStackEdit = () => {
 				<Title variant={TitleVariant.EDIT_COMPONENT} text="DTA Stack" />
 			</WithInfo>
 			{/* </Box> */}
-			<EditComponents objectKey={"content"} />
+			{/* <EditComponents objectKey={"content"} /> */}
+			<EditComponentsContainer objectKey={"content"} />
 		</Box>
 	);
 };

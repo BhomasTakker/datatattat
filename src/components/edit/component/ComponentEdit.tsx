@@ -11,19 +11,21 @@ import {
 } from "@mui/material";
 import React, { ReactElement, useCallback, useState } from "react";
 import { useWatch } from "react-hook-form";
-import { BaseEditProps } from "./types/BaseEdit";
+import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
 import { SelectInputWithControl } from "../../input/SelectInput";
-import { ArrayControls } from "./ArrayControls";
+import { ArrayControls } from "../../forms/edit/ArrayControls";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
-import { WithInfo } from "../../edit/info/WithInfo";
+import { WithInfo } from "../info/WithInfo";
 import classes from "./ComponentEdit.module.scss";
 
 type inputFuncs = {
 	onDelete: () => void;
 	onMove: (dir: number) => void;
 };
+
+// Clean this guy up
 
 // We should ultimately add another component / select input
 // So when a user selects they select a collection forst THEN a component
