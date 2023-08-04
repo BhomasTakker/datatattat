@@ -15,6 +15,10 @@ type Props = {
 	//Pass in a debug handler
 };
 
+// Okay this should almost certainly be a context?
+// Yes - and clean up
+// it could / should be very compact
+// We can look at validation again another time
 export const DTAFormProvider = ({
 	children,
 	defaultSchema,

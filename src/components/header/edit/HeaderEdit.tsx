@@ -8,7 +8,6 @@ import { EditContext } from "@/src/context/edit-context";
 import { SubHeadersList } from "../sub/SubHeadersList";
 import { useFormContext } from "react-hook-form";
 import AddIcon from "@mui/icons-material/Add";
-import { move, remove, replace } from "@/src/utils/array";
 import { MARGINS } from "config/styles/styles.config";
 
 let count = 0;
@@ -28,6 +27,7 @@ export const HeaderEdit = () => {
 	const { currentPage } = editCtx; //Should call it current route
 
 	//Clean all this the hell up!
+	// context ftw
 	useEffect(() => {
 		const fetchHeaderData = async () => {
 			//try catch

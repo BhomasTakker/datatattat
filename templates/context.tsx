@@ -12,10 +12,11 @@ export const XXX_ContextProvider = ({
 	value,
 	children,
 }: {
-	value: XXX_State;
+	value?: XXX_State;
 	children: ReactNode;
 }) => {
 	return (
+		// Would you always spread given value here?
 		<XXX_Context.Provider value={{ ...value }}>{children}</XXX_Context.Provider>
 	);
 };
