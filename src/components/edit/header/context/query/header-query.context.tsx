@@ -15,15 +15,11 @@ type HeaderQueryState = {};
 type HeaderQueryInterface = {
 	currentHeader: HeaderDataType;
 	subHeaders: HeaderDataType[];
-	newLink: () => void;
-	createHeader: () => void;
 };
 
 const initialState: HeaderQueryState & HeaderQueryInterface = {
 	currentHeader: {},
 	subHeaders: [],
-	newLink: () => {},
-	createHeader: () => {},
 };
 
 const initialHeaderData = {
@@ -31,6 +27,8 @@ const initialHeaderData = {
 	nav: [],
 };
 
+// When reload / update, etc - this might cause issues with refetch
+// Needs cleaning up and perhaps re struct
 export const HeaderQueryProvider = ({
 	value,
 	children,
@@ -41,6 +39,7 @@ export const HeaderQueryProvider = ({
 	const { reset } = useFormContext();
 	const [subHeaders, setSubHeaders] = useState<HeaderDataType[]>([]); //subHeaders
 	// header should just be form data
+	// Effectively get data and assign to form then use watch
 	const [currentHeader, setCurrentHeader] =
 		useState<HeaderDataType>(initialHeaderData); //type this
 
@@ -51,6 +50,7 @@ export const HeaderQueryProvider = ({
 	useEffect(() => {
 		const fetchHeadersData = async () => {
 			// should not be using fetch?
+			// @api
 			const response = await fetch(`../api/header${currentPage}`);
 			const headers = await response.json();
 
@@ -70,61 +70,12 @@ export const HeaderQueryProvider = ({
 
 			filteredHeaders.shift();
 			setSubHeaders([...filteredHeaders]);
-
-			// Quite possibly where one of our errors is
-			reset(
-				{
-					nav: [],
-				},
-				{
-					keepErrors: true,
-					keepDirty: true,
-				}
-			);
 		};
 		fetchHeadersData();
 	}, [currentPage, reset]);
 
-	// we can ssplit this up
-	// get Nav
-	// should pass data
-	const newLink = () => {
-		const { nav } = currentHeader;
-		const navLength = nav.length;
-		//If a user creates 2 links of the same name you will get a key error
-		//May need to pass key?
-		const newLink = {
-			route: "",
-			label: `link${navLength}`,
-		};
-
-		setCurrentHeader({ ...currentHeader, nav: [...nav, newLink] });
-	};
-
-	const createHeader = () => {
-		console.log("Create Header");
-
-		//clear current form header data / why?
-		reset(
-			{
-				nav: [],
-			},
-			{
-				keepErrors: true,
-				keepDirty: true,
-			}
-		);
-
-		setCurrentHeader({ ...initialHeaderData, nav: [] });
-	};
-
-	// for ONE source of truth we would want to update THIS store
-
 	return (
-		// Would you always spread given value here?
-		<HeaderQueryContext.Provider
-			value={{ currentHeader, subHeaders, newLink, createHeader }}
-		>
+		<HeaderQueryContext.Provider value={{ currentHeader, subHeaders }}>
 			{children}
 		</HeaderQueryContext.Provider>
 	);

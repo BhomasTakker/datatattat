@@ -1,11 +1,12 @@
 import { Box, Button, Stack } from "@mui/material";
 import { useContext } from "react";
-import { HeaderQueryContext } from "../query/context/header-query.context";
+import { HeaderQueryContext } from "../context/query/header-query.context";
 import { SubHeadersList } from "@/src/components/header/sub/SubHeadersList";
 import { EditNavigationDisplay } from "@/src/components/header/edit/EditNavigationDisplay";
 import { EditSubHeader } from "@/src/components/header/edit/EditSubHeader";
 import { MARGINS } from "config/styles/styles.config";
 import { HeaderControls } from "../controls/header-controls";
+import { HeaderStateContext } from "../context/form/state/header-state.context";
 
 const SubHeaders = () => {
 	const { subHeaders } = useContext(HeaderQueryContext);
@@ -30,7 +31,8 @@ const HeaderEdit = () => {
 };
 
 const CreateHeader = () => {
-	const { currentHeader, createHeader } = useContext(HeaderQueryContext);
+	const { currentHeader } = useContext(HeaderQueryContext);
+	const { createHeader } = useContext(HeaderStateContext);
 
 	return !currentHeader ? (
 		<Button variant="contained" color="primary" onClick={createHeader}>

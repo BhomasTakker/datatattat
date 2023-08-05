@@ -1,5 +1,3 @@
-// Should really make a plop file
-
 import { Button } from "@mui/material";
 import { ReactNode, createContext, useContext } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -15,6 +13,7 @@ const initialState: HookFormState & HookFormInterface = {
 	debug: false,
 };
 
+// Should be used by body as well
 export const HookFormContextProvider = ({
 	value,
 	children,
