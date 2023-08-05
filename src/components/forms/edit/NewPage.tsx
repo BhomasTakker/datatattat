@@ -7,7 +7,7 @@ import { LoadingSpinner } from "../../loading/LoadingSpinner";
 import { EditRouteForm } from "./EditRouteForm";
 import { CurrentEndpoint } from "./CurrentEndpoint";
 import { MARGINS } from "config/styles/styles.config";
-import { HeaderContainer } from "../../edit/header/header-container";
+import { HeaderContainer } from "../../edit/header/header.container";
 
 //Rename just to edit pages
 //The concept of a 'new' page should be somewhat meaningless? - !!
