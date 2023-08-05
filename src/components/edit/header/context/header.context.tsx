@@ -1,5 +1,6 @@
 import { ReactNode, createContext } from "react";
 import { HeaderFormContextProvider } from "./form/header-form.context";
+import { HeaderQueryProvider } from "../query/context/header-query.context";
 
 type HeaderState = {};
 
@@ -16,11 +17,11 @@ export const HeaderContextProvider = ({
 }) => {
 	// This could be very unperformant - BUT
 	// get to a point of simplicity and accuracy
-	// then convert what needs converting
+	// then refactor for performance
 	return (
 		<HeaderContext.Provider value={{ ...value }}>
 			<HeaderFormContextProvider value={{ debug: true }}>
-				{children}
+				<HeaderQueryProvider>{children}</HeaderQueryProvider>
 			</HeaderFormContextProvider>
 		</HeaderContext.Provider>
 	);
