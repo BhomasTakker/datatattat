@@ -14,9 +14,14 @@ export const HeaderContextProvider = ({
 	value?: HeaderState;
 	children: ReactNode;
 }) => {
+	// This could be very unperformant - BUT
+	// get to a point of simplicity and accuracy
+	// then convert what needs converting
 	return (
 		<HeaderContext.Provider value={{ ...value }}>
-			<HeaderFormContextProvider>{children}</HeaderFormContextProvider>
+			<HeaderFormContextProvider value={{ debug: true }}>
+				{children}
+			</HeaderFormContextProvider>
 		</HeaderContext.Provider>
 	);
 };

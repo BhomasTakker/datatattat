@@ -6,6 +6,7 @@ import { addNotification } from "@/src/store/notifications/notificationSlice";
 import { ReactNode, createContext, useContext } from "react";
 import { FieldValues } from "react-hook-form";
 import { submitHeader } from "../../form/submission";
+import { HookFormContextProvider } from "./hook-form.context";
 
 type HeaderFormState = {};
 
@@ -21,7 +22,7 @@ export const HeaderFormContextProvider = ({
 	value,
 	children,
 }: {
-	value?: HeaderFormState;
+	value: HeaderFormState;
 	children: ReactNode;
 }) => {
 	const { currentPage } = useContext(EditContext);
@@ -32,6 +33,7 @@ export const HeaderFormContextProvider = ({
 		console.log("FEATURE:105", "CONTEXT:GROUP", "HEADER:FORM", "SUBMIT", {
 			data,
 		});
+
 		if (!user) {
 			return;
 		}
@@ -41,6 +43,7 @@ export const HeaderFormContextProvider = ({
 		try {
 			await submitHeader(_id, nav, currentPage);
 
+			// Could argue this doesn't belong here?
 			dispatch(addNotification(NOTIFICATIONS.headerSavedSuccess));
 		} catch (error) {
 			dispatch(addNotification(NOTIFICATIONS.haederSavedError));
@@ -49,7 +52,9 @@ export const HeaderFormContextProvider = ({
 
 	return (
 		<HeaderFormContext.Provider value={{ submit: submitHandler }}>
-			{children}
+			<HookFormContextProvider value={{ debug: true }}>
+				{children}
+			</HookFormContextProvider>
 		</HeaderFormContext.Provider>
 	);
 };
