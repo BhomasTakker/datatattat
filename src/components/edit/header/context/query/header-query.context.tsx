@@ -7,7 +7,6 @@ import {
 	useEffect,
 	useState,
 } from "react";
-import { useFormContext } from "react-hook-form";
 import { EditContext } from "@/src/context/edit-context";
 
 type HeaderQueryState = {};
@@ -36,7 +35,6 @@ export const HeaderQueryProvider = ({
 	value?: HeaderQueryState;
 	children: ReactNode;
 }) => {
-	const { reset } = useFormContext();
 	const [subHeaders, setSubHeaders] = useState<HeaderDataType[]>([]); //subHeaders
 	// header should just be form data
 	// Effectively get data and assign to form then use watch
@@ -72,7 +70,7 @@ export const HeaderQueryProvider = ({
 			setSubHeaders([...filteredHeaders]);
 		};
 		fetchHeadersData();
-	}, [currentPage, reset]);
+	}, [currentPage]);
 
 	return (
 		<HeaderQueryContext.Provider value={{ currentHeader, subHeaders }}>

@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { HeaderQueryContext } from "../context/query/header-query.context";
 import { SubHeadersList } from "@/src/components/header/sub/SubHeadersList";
 import { EditNavigationDisplay } from "@/src/components/header/edit/EditNavigationDisplay";
-import { EditSubHeader } from "@/src/components/header/edit/EditSubHeader";
 import { MARGINS } from "config/styles/styles.config";
 import { HeaderControls } from "../controls/header-controls";
 import { HeaderStateContext } from "../context/form/state/header-state.context";
+import { SubHeader } from "../sub-header/header-sub-header";
 
 const SubHeaders = () => {
 	const { subHeaders } = useContext(HeaderQueryContext);
@@ -20,7 +20,7 @@ const HeaderEdit = () => {
 	return currentHeader ? (
 		<Stack gap={MARGINS.MIDSMALL}>
 			{/* Go through these - dont pass - these need wrapping in NavContext*/}
-			<EditSubHeader headerData={{ ...currentHeader }} />
+			<SubHeader />
 			<EditNavigationDisplay nav={[...currentHeader.nav]} />
 
 			<HeaderControls />
