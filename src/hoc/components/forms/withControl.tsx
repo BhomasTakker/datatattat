@@ -15,6 +15,7 @@ type FormInputControl = {
 //We need access to the props we need but the rest can be anything
 export const withControl = (Component: any) => {
 	//We need specify prop types to include
+
 	return function InputWithFormControl(props: FormInputControl & any) {
 		const {
 			label,
@@ -47,6 +48,7 @@ export const withControl = (Component: any) => {
 						field={field}
 						fieldState={fieldState}
 						name={name}
+						key={defaultValue || name}
 						label={t(label)}
 						error={!!errors[name]}
 						helperText={errors[name] ? t(`${errors[name]?.message}`) : ""}

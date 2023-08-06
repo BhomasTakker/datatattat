@@ -36,15 +36,11 @@ export const ComponentsContextProvider = ({
 
 	const addComponent = useCallback(
 		(component: Component, atStart = false) => {
-			console.log("FEAT:101", "ARRAY:CONTROLS", "ADD:COMPONENT");
 			if (!atStart) {
-				console.log("FEAT:101", "ARRAY:CONTROLS", "ADD:COMPONENT", "START");
 				const len = components?.length ?? 0;
 				setValue(`${componentsFormId}.${len}`, component);
 				return;
 			}
-
-			console.log("FEAT:101", "ARRAY:CONTROLS", "ADD:COMPONENT", "START");
 
 			const updateComponents: unknown[] = cloneDeep(components);
 			updateComponents.unshift(component);
@@ -57,7 +53,6 @@ export const ComponentsContextProvider = ({
 
 	const deleteComponent = useCallback(
 		(i: number) => {
-			console.log("FEAT:101", "ARRAY:CONTROLS", "DELETE:COMPONENT", { i });
 			if (components.length === 0) {
 				return;
 			}
@@ -73,11 +68,6 @@ export const ComponentsContextProvider = ({
 
 	const moveComponent = useCallback(
 		(dir: number, i: number) => {
-			console.log("FEAT:101", "ARRAY:CONTROLS", "MOVE:COMPONENT", {
-				components,
-				dir,
-				i,
-			});
 			if (components.length === 0) {
 				return;
 			}

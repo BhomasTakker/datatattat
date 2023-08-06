@@ -6,6 +6,10 @@ import { Auth } from "@/models/Auth";
 import { ERRORS } from "@/lib/errors/error-messages";
 import mongooseConnect from "@/lib/mongoose-connection";
 
+// TODO:
+// We need to go over all of this
+// Complete redo
+
 export const authOptions: NextAuthOptions = {
 	session: {
 		strategy: "jwt",
@@ -45,6 +49,7 @@ export const authOptions: NextAuthOptions = {
 				return {
 					email: user.email,
 					id: user._id.toString(),
+					role: "An example user Role",
 				};
 			},
 		}),

@@ -14,7 +14,6 @@ export const useUser = (): useUserReturn => {
 	const isAuthenticated = status === "authenticated";
 	const isLoading = status === "loading";
 	const email = session?.user?.email || undefined;
-	const isUserLoading = false;
 
 	//seperate function no
 

@@ -1,26 +1,42 @@
-import { ReactNode, createContext, useContext, useEffect } from "react";
+import {
+	ReactNode,
+	createContext,
+	useCallback,
+	useContext,
+	useEffect,
+} from "react";
 import { HeaderQueryContext } from "../../query/header-query.context";
 import { useFormContext } from "react-hook-form";
 import { useUser } from "@/src/hooks/useUser";
 import { EditContext } from "@/src/context/edit-context";
+import { NavLinkData } from "@/src/components/header/nav-links/NavLink";
+import { cloneDeep } from "@/src/utils/object";
+
+const FORM_ID = "nav";
 
 type HeaderStateState = {};
 
 type HeaderStateInterface = {
-	navigation: unknown[];
+	navigation: NavLinkData[];
+	navigationId: string;
 	addLink: () => void;
 	createHeader: () => void;
+	deleteLink: (i: number) => void;
+	moveLink: (dir: number, i: number) => void;
 	backPage: () => void;
+	setRoute: (route: string) => void;
 };
 
 const initialState: HeaderStateState & HeaderStateInterface = {
 	navigation: [],
+	navigationId: FORM_ID,
 	addLink: () => {},
 	createHeader: () => {},
+	deleteLink: () => {},
+	moveLink: () => {},
 	backPage: () => {},
+	setRoute: (route: string) => {},
 };
-
-const FORM_ID = "nav";
 
 export const HeaderStateContextProvider = ({
 	value,
@@ -30,38 +46,76 @@ export const HeaderStateContextProvider = ({
 	children: ReactNode;
 }) => {
 	const { currentHeader } = useContext(HeaderQueryContext);
-	const { setValue, watch } = useFormContext();
+	const { setValue, watch, unregister } = useFormContext();
 	const { nav } = currentHeader || {};
 
 	const { user } = useUser();
 	const username = user?.username || "";
 	const { currentPage, setCurrentPageHandler } = useContext(EditContext);
 
-	const navigation: unknown[] = watch(FORM_ID, []);
+	const navigation: NavLinkData[] = watch(FORM_ID, []);
 
 	useEffect(() => {
 		// stringify nav? & check the string value
 		setValue(FORM_ID, nav);
 	}, [nav, setValue]);
 
-	const addLink = () => {
-		console.log("FEATURE:105", "HEADER:STATE", "ADD:LINK");
-
+	/////////////////////////////
+	// CONTROLS /////////////////
+	/////////////////////////////
+	const addLink = useCallback(() => {
 		const newLink = {
 			route: "",
 			label: `link${navigation.length}`,
 		};
 		setValue(`${FORM_ID}.${navigation.length}`, newLink);
-	};
+	}, [navigation.length, setValue]);
 
+	const deleteLink = useCallback(
+		(i: number) => {
+			if (navigation.length === 0) {
+				return;
+			}
+
+			const updateNavigation = cloneDeep(navigation);
+			updateNavigation.splice(i, 1);
+
+			unregister(FORM_ID);
+			setValue(FORM_ID, updateNavigation);
+		},
+		[navigation, setValue, unregister]
+	);
+
+	const moveLink = useCallback(
+		(dir: number, i: number) => {
+			if (navigation.length === 0) {
+				return;
+			}
+
+			const updateNavigation = cloneDeep(navigation);
+			const movedNavigation = updateNavigation.splice(i, 1);
+			updateNavigation.splice(i + dir, 0, ...movedNavigation);
+
+			// unregister(conversionsFormId);
+			setValue(FORM_ID, updateNavigation);
+		},
+		[navigation, setValue]
+	);
+
+	////////////////////////////////////////
+	// ROUTE ///////////////////////////////
+	////////////////////////////////////////
 	// seems void perhaps? / do you want default header
 	// or specifically create header
 	const createHeader = () => {
-		console.log("FEATURE:105", "HEADER:STATE", "CREATE:HEADER");
 		setValue(FORM_ID, []);
 	};
 
+	/////////////////////////////////////////
+	// TODO: Edit Route Context
 	// need clean this
+	// potentially route state context
+	// at the wider edit level
 	const backPage = () => {
 		if (currentPage === `/users/${username}` || currentPage === `/`) {
 			return;
@@ -76,11 +130,32 @@ export const HeaderStateContextProvider = ({
 		setCurrentPageHandler(backPage);
 	};
 
-	console.log("FEATURE:105", "CONTEXT:GROUP", "HEADER:STATE", "RENDER");
+	// also a mess setting page needs something / a state object
+	const setRoute = (route: string) => {
+		if (!route) {
+			// ERROR: show warning alert - no route provided / could it happen? / yes user error
+			return;
+		}
+		const updateRoute =
+			currentPage === "/" ? `/${route}` : `${currentPage}/${route}`;
+
+		setCurrentPageHandler(updateRoute);
+	};
+
 	return (
 		// Would you always spread given value here?
 		<HeaderStateContext.Provider
-			value={{ ...value, navigation, addLink, createHeader, backPage }}
+			value={{
+				...value,
+				navigation,
+				addLink,
+				deleteLink,
+				moveLink,
+				createHeader,
+				backPage,
+				setRoute,
+				navigationId: FORM_ID,
+			}}
 		>
 			{children}
 		</HeaderStateContext.Provider>
