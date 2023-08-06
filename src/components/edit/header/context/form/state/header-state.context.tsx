@@ -12,6 +12,7 @@ import { useUser } from "@/src/hooks/useUser";
 import { EditContext } from "@/src/context/edit-context";
 import { NavLinkData } from "@/src/components/header/nav-links/NavLink";
 import { cloneDeep } from "@/src/utils/object";
+import { uniqueNumber } from "@/src/utils/math";
 
 const FORM_ID = "nav";
 
@@ -48,6 +49,7 @@ const reformNavigationRoutes = (navigation: NavLinkData[]) => {
 	return navigation.map(({ route, label }) => ({
 		label,
 		route: stripOpeningSlashes(route) || "",
+		key: uniqueNumber(),
 	}));
 };
 
