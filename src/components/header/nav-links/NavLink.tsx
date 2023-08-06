@@ -13,6 +13,7 @@ import { useUser } from "@/src/hooks/useUser";
 export type NavLinkData = {
 	route: string;
 	label: string;
+	key?: string;
 };
 
 const intersectionFunction = (

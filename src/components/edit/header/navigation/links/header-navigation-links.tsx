@@ -33,6 +33,7 @@ export const HeaderNavigationLinks = () => {
 		});
 	}, [deleteLink, moveLink, navLinksOrder, navigation, navigationId]);
 
+	////////////////////////////////////////////
 	//// HACK //////////////////////////////////
 	// Understand but this doesn't seem right
 	// We are data driven - whenever navigation changes we are rerendered
