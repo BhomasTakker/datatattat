@@ -31,6 +31,7 @@ const HeaderEdit = () => {
 	);
 };
 
+// At the moment there is always a current header
 const CreateHeader = () => {
 	const { currentHeader } = useContext(HeaderQueryContext);
 	const { createHeader } = useContext(HeaderStateContext);

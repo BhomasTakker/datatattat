@@ -5,24 +5,24 @@ import { useAppDispatch } from "@/src/store/hooks";
 import { addNotification } from "@/src/store/notifications/notificationSlice";
 import { ReactNode, createContext, useContext } from "react";
 import { FieldValues } from "react-hook-form";
-import { submitHeader } from "../../form/submission";
 import { HookFormContextProvider } from "../../../../forms/edit/context/hook-form.context";
+import { createPage } from "@/src/queries/pages/create-page";
 
-type HeaderFormState = {};
+type PageFormState = {};
 
-type HeaderFormInterface = {
+type PageFormInterface = {
 	submit: (data: FieldValues) => void;
 };
 
-const initialState: HeaderFormState & HeaderFormInterface = {
+const initialState: PageFormState & PageFormInterface = {
 	submit: (data: FieldValues) => {},
 };
 
-export const HeaderFormContextProvider = ({
+export const PageFormContextProvider = ({
 	value,
 	children,
 }: {
-	value?: HeaderFormState;
+	value?: PageFormState;
 	children: ReactNode;
 }) => {
 	const { currentPage } = useContext(EditContext);
@@ -30,7 +30,7 @@ export const HeaderFormContextProvider = ({
 	const { user } = useUser();
 
 	const submitHandler = async (data: FieldValues) => {
-		console.log("FEATURE:105", "CONTEXT:GROUP", "HEADER:FORM", "SUBMIT", {
+		console.log("FEATURE:205", "CONTEXT:GROUP", "PAGE:FORM", "SUBMIT", {
 			data,
 		});
 
@@ -38,27 +38,30 @@ export const HeaderFormContextProvider = ({
 			return;
 		}
 		const { _id } = user;
-		const { nav } = data;
+		const pageData = {
+			...data,
+			creator: _id,
+		};
 
 		try {
-			await submitHeader(_id, nav, currentPage);
+			await createPage(pageData);
 
 			// Could argue this doesn't belong here?
-			dispatch(addNotification(NOTIFICATIONS.headerSavedSuccess));
+			dispatch(addNotification(NOTIFICATIONS.pageCreationSuccess));
 		} catch (error) {
-			dispatch(addNotification(NOTIFICATIONS.haederSavedError));
+			dispatch(addNotification(NOTIFICATIONS.pageCreationError));
 		}
 	};
 
 	return (
-		<HeaderFormContext.Provider value={{ submit: submitHandler }}>
+		<PageFormContext.Provider value={{ submit: submitHandler }}>
 			<HookFormContextProvider
-				value={{ debug: true, context: HeaderFormContext }}
+				value={{ debug: true, context: PageFormContext }}
 			>
 				{children}
 			</HookFormContextProvider>
-		</HeaderFormContext.Provider>
+		</PageFormContext.Provider>
 	);
 };
 
-export const HeaderFormContext = createContext({ ...initialState });
+export const PageFormContext = createContext({ ...initialState });

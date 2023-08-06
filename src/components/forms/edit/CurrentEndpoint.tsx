@@ -4,8 +4,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
 
 export function CurrentEndpoint() {
-	const editCtx = useContext(EditContext);
-	const { currentPage } = editCtx;
+	const { currentPage } = useContext(EditContext);
 
 	return (
 		<Stack direction="row">

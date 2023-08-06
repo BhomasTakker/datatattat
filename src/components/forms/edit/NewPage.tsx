@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Divider, Stack } from "@mui/material";
-import { PageForm } from "./PageForm";
 import { EditContextProvider } from "@/src/context/edit-context";
 import { useUser } from "@/src/hooks/useUser";
 import { LoadingSpinner } from "../../loading/LoadingSpinner";
@@ -8,6 +7,7 @@ import { EditRouteForm } from "./EditRouteForm";
 import { CurrentEndpoint } from "./CurrentEndpoint";
 import { MARGINS } from "config/styles/styles.config";
 import { HeaderContainer } from "../../edit/header/header.container";
+import { PageContainer } from "../../edit/page/page-container";
 
 //Rename just to edit pages
 //The concept of a 'new' page should be somewhat meaningless? - !!
@@ -39,7 +39,7 @@ export const NewPage = () => {
 					{/* Show what route this is - if no associated page data then create new - ?? */}
 					<Divider variant="middle" />
 					{/* Pass route in - Or create a temporary hash/map of pages with a key of the endpoint */}
-					<PageForm />
+					<PageContainer />
 				</Stack>
 			</EditContextProvider>
 		</Box>

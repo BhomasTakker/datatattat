@@ -24,7 +24,7 @@ export const HeaderContextProvider = ({
 	// When we change everything changes / but we don't change for anything / except
 	return (
 		<HeaderContext.Provider value={{ ...value }}>
-			<HeaderFormContextProvider value={{ debug: true }}>
+			<HeaderFormContextProvider>
 				<HeaderQueryProvider>
 					<HeaderStateContextProvider>{children}</HeaderStateContextProvider>
 				</HeaderQueryProvider>

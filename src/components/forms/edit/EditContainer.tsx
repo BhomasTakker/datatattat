@@ -11,6 +11,7 @@ import { INFO_MARGINS } from "config/styles/styles.config";
 //EditPageContainer
 //Need provide description for each
 export const EditContainer = ({ objectKey }: BaseEditProps) => {
+	console.log("FEATURE:205", { objectKey });
 	const containerTypeKey = `${objectKey}.containerType`;
 	//need actually set enum of containers keys?
 	// const [container, setContainer] = useState<string | undefined>(undefined);
@@ -19,7 +20,7 @@ export const EditContainer = ({ objectKey }: BaseEditProps) => {
 		// control,
 		name: containerTypeKey,
 	});
-
+	console.log("FEATURE:205", { containerTypeKey }, { container });
 	const createContainerList = () => {
 		return Object.keys(CONTAINERS).map((container) => (
 			//Add show info synopsis here

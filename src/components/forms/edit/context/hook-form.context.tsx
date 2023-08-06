@@ -1,16 +1,24 @@
 import { Button } from "@mui/material";
-import { ReactNode, createContext, useContext } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { HeaderFormContext } from "./header-form.context";
+import { Context, ReactNode, createContext, useContext } from "react";
+import { FieldValues, FormProvider, useForm } from "react-hook-form";
+import { HeaderFormContext } from "../../../edit/header/context/form/header-form.context";
+
+interface IContext {
+	submit: (data: unknown) => void;
+}
 
 type HookFormState = {
 	debug?: boolean;
+	context: Context<{
+		submit: (data: FieldValues) => void;
+	}>;
 };
 
 type HookFormInterface = {};
 
 const initialState: HookFormState & HookFormInterface = {
 	debug: false,
+	context: createContext({ submit: (data: FieldValues) => {} }),
 };
 
 // Should be used by body as well
@@ -18,17 +26,21 @@ export const HookFormContextProvider = ({
 	value,
 	children,
 }: {
-	value?: HookFormState;
+	value: HookFormState;
 	children: ReactNode;
 }) => {
 	const methods = useForm();
-	const { submit } = useContext(HeaderFormContext);
-	const { debug } = value || {};
+	const { debug, context } = value || {};
+
+	const { submit } = useContext(context);
 
 	console.log("FEATURE:105", "CONTEXT:GROUP", "HOOK:FORM", { debug });
-
+	console.log("FEATURE:205", "CONTEXT:GROUP", "HOOK:FORM", { debug });
 	const debugHandler = () => {
 		console.log("DEBUG HANDLER");
+		console.log("FEATURE:205", "CONTEXT:GROUP", "HOOK:FORM", {
+			values: methods.getValues(),
+		});
 		console.log({ values: methods.getValues() });
 		console.log({ errors: methods.formState.errors });
 	};
