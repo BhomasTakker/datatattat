@@ -4,6 +4,7 @@ import {
 	useCallback,
 	useContext,
 	useEffect,
+	useMemo,
 } from "react";
 import { HeaderQueryContext } from "../../query/header-query.context";
 import { useFormContext } from "react-hook-form";
@@ -38,6 +39,18 @@ const initialState: HeaderStateState & HeaderStateInterface = {
 	setRoute: (route: string) => {},
 };
 
+const stripOpeningSlashes = (route: string) => {
+	const strippedRoute = route.split("/").filter(Boolean).join("/");
+	return strippedRoute.split("/").pop();
+};
+
+const reformNavigationRoutes = (navigation: NavLinkData[]) => {
+	return navigation.map(({ route, label }) => ({
+		label,
+		route: stripOpeningSlashes(route) || "",
+	}));
+};
+
 export const HeaderStateContextProvider = ({
 	value,
 	children,
@@ -48,6 +61,7 @@ export const HeaderStateContextProvider = ({
 	const { currentHeader } = useContext(HeaderQueryContext);
 	const { setValue, watch, unregister } = useFormContext();
 	const { nav } = currentHeader || {};
+	const reformedNav = useMemo(() => reformNavigationRoutes(nav), [nav]);
 
 	const { user } = useUser();
 	const username = user?.username || "";
@@ -56,9 +70,10 @@ export const HeaderStateContextProvider = ({
 	const navigation: NavLinkData[] = watch(FORM_ID, []);
 
 	useEffect(() => {
+		// const stripKeys = reformedNav.map(({ label, route }) => ({ label, route }));
 		// stringify nav? & check the string value
-		setValue(FORM_ID, nav);
-	}, [nav, setValue]);
+		setValue(FORM_ID, reformedNav);
+	}, [reformedNav, setValue]);
 
 	/////////////////////////////
 	// CONTROLS /////////////////

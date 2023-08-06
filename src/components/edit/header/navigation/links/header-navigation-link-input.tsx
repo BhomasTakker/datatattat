@@ -23,7 +23,7 @@ export const HeaderNavigationLinkInput = ({
 	const route = linkRoute.split("/").filter(Boolean).join("/");
 	const routeToShow = route.split("/").pop();
 
-	useEffect(() => {}, []);
+	console.log("ERROR:103", "INPUT:RE-RENDER");
 
 	// Setting key here enables re-render on delete
 	// smells like a problem?
