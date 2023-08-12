@@ -10,6 +10,8 @@ type ParameterInputProps = {
 	parameterConfigData: ParametersType;
 };
 
+// Go through
+// This can probably be better/more simply done with context
 export const ParameterInputComponent = ({
 	parameterConfigData,
 }: ParameterInputProps) => {
@@ -24,6 +26,11 @@ export const ParameterInputComponent = ({
 		name: parameterId,
 	});
 
+	// these seem bad practice
+	// should be controlled in context
+	// ruun through - update parameters calls a set on paremeters list
+	// but this map is never referenced
+	// this hook etc ultimqately does nothing
 	useUpdateParameters({
 		id,
 		key,
@@ -32,6 +39,9 @@ export const ParameterInputComponent = ({
 		updateParameters,
 	});
 
+	// This should be handled by context object
+	// is setDefault if no state value
+	// or select value coming back as undefined. ...
 	useUpdateParameterValue({
 		id: parameterId,
 		defaultValue,

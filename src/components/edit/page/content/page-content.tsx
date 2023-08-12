@@ -5,8 +5,10 @@ import { CONFIG } from "config/edit/page/base-page.config";
 import { PageContainerContainer } from "../container/page-container.container";
 
 export const PageContent = () => {
-	const { pageFormId } = useContext(PageStateContext);
-	console.log("FEATURE:205", "REFACTOR:PAGE", "NO:RERENDER", { pageFormId });
+	const { pageContainerId } = useContext(PageStateContext);
+	console.log("FEATURE:205", "REFACTOR:PAGE", "NO:RERENDER", {
+		pageContainerId,
+	});
 	console.log("FEATURE:110", "DYNAMIC:CONFIG", { CONFIG });
 	// basically we're here.
 	// this is where we load a config
@@ -14,8 +16,9 @@ export const PageContent = () => {
 	// TODO: FEATURE:110 DYANAMIC:EDIT
 	return (
 		<>
-			<PageContainerContainer objectKey={pageFormId} config={CONFIG} />
-			<EditContainer objectKey={pageFormId} />
+			{/* Why passing the prop when can get ourselves - justify this */}
+			<PageContainerContainer objectKey={pageContainerId} config={CONFIG} />
+			<EditContainer objectKey={pageContainerId} />
 		</>
 	);
 };

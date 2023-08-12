@@ -10,16 +10,30 @@ import { EditContext } from "@/src/context/edit-context";
 // Go through - we really need this to be a single state object
 // with responsibility for form state and interactions etc
 /////////////////////////////////////////////////////////////
-const FORM_ID = "content.container";
+const FORM_ID = "content";
+const CONTAINER_ID = "container";
+const PROPS_ID = "props";
+const COMPONENTS_ID = "components";
+
+const pageFormId = FORM_ID;
+const pageContainerId = `${FORM_ID}.${CONTAINER_ID}`;
+const pagePropsId = `${FORM_ID}.${PROPS_ID}`;
+const pageComponentsId = `${FORM_ID}.${COMPONENTS_ID}`;
 
 type PageStateState = {};
 
 type PageStateInterface = {
 	pageFormId: string;
+	pageContainerId: string;
+	pagePropsId: string;
+	pageComponentsId: string;
 };
 
 const initialState: PageStateState & PageStateInterface = {
 	pageFormId: FORM_ID,
+	pageContainerId: `${FORM_ID}.${CONTAINER_ID}`,
+	pagePropsId: `${FORM_ID}.${PROPS_ID}`,
+	pageComponentsId: `${FORM_ID}.${COMPONENTS_ID}`,
 };
 
 export const PageStateContextProvider = ({
@@ -57,7 +71,14 @@ export const PageStateContextProvider = ({
 
 	return (
 		// Should we be passing data?
-		<PageStateContext.Provider value={{ pageFormId: FORM_ID }}>
+		<PageStateContext.Provider
+			value={{
+				pageFormId,
+				pageComponentsId,
+				pageContainerId,
+				pagePropsId,
+			}}
+		>
 			{children}
 		</PageStateContext.Provider>
 	);

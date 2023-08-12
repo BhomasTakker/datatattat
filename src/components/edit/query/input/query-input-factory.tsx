@@ -31,6 +31,7 @@ export const QueryInputFactoryComponent = ({
 	// Convert to a Map?
 	switch (type) {
 		case "text":
+			// pass queryInput data into a function
 			return <EditTextInput id={parameterId} label={label} />;
 		// should just be a behaviour / wrong place
 		case "text-toggle":

@@ -1,6 +1,5 @@
 import { COMPONENT_TYPES_MAP } from "config/edit/component-types.map";
 import { ReactElement } from "react";
-import { PageComponent } from "../page/component/page-component";
 import { PageComponentContainer } from "../page/component/page-component.container";
 
 interface EditComponentProps {
