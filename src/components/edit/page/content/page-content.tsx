@@ -18,7 +18,7 @@ export const PageContent = () => {
 		<>
 			{/* Why passing the prop when can get ourselves - justify this */}
 			<PageContainerContainer objectKey={pageContainerId} config={CONFIG} />
-			<EditContainer objectKey={pageContainerId} />
+			{/* <EditContainer objectKey={pageContainerId} /> */}
 		</>
 	);
 };
