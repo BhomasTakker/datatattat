@@ -34,9 +34,12 @@ export const ComponentsContextProvider = ({
 	const components = useWatch({ name: componentsFormId, defaultValue: [] });
 	const { setValue, unregister } = useFormContext();
 
+	// this is confusing
+	// just do an add at Beginning of the array function etc
 	const addComponent = useCallback(
 		(component: Component, atStart = false) => {
 			if (!atStart) {
+				// addAtBeginning of array
 				const len = components?.length ?? 0;
 				setValue(`${componentsFormId}.${len}`, component);
 				return;

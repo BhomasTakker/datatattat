@@ -7,7 +7,7 @@ import { EditRouteForm } from "./EditRouteForm";
 import { CurrentEndpoint } from "./CurrentEndpoint";
 import { MARGINS } from "config/styles/styles.config";
 import { HeaderContainer } from "../../edit/header/header.container";
-import { PageContainer } from "../../edit/page/page-container";
+import { PageFormContainer } from "../../edit/page/page-form.container";
 
 //Rename just to edit pages
 //The concept of a 'new' page should be somewhat meaningless? - !!
@@ -39,7 +39,7 @@ export const NewPage = () => {
 					{/* Show what route this is - if no associated page data then create new - ?? */}
 					<Divider variant="middle" />
 					{/* Pass route in - Or create a temporary hash/map of pages with a key of the endpoint */}
-					<PageContainer />
+					<PageFormContainer />
 				</Stack>
 			</EditContextProvider>
 		</Box>

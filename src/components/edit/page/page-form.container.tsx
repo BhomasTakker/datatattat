@@ -1,7 +1,8 @@
 import { PageContextProvider } from "./context/page.context";
 import { PageForm } from "./page-form";
 
-export const PageContainer = () => {
+// rename ...
+export const PageFormContainer = () => {
 	return (
 		<PageContextProvider>
 			<PageForm />

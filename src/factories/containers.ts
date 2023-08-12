@@ -1,7 +1,5 @@
 import { DTAStack } from "@/components/containers/stack/DTAStack";
 import { DTAStackEdit } from "../components/containers/stack/DTAStackEdit";
-import { DTAGrid } from "../components/containers/grids/DTAGrid";
-import { DTAGridEdit } from "../components/containers/grids/DTAGridEdit";
 import { DTAPageGrid } from "../components/containers/pageGrid/DTAPageGrid";
 import { DTAPageGridEdit } from "../components/containers/pageGrid/DTAPageGridEdit";
 
