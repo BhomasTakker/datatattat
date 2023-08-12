@@ -12,6 +12,8 @@ type ToggleProps = {
 	isChecked?: boolean;
 };
 
+// redo toggle - it needs to be Toggle and pass type
+// There is a much better way of doing this
 export const TextToggleInput = ({
 	id,
 	info,
@@ -20,6 +22,7 @@ export const TextToggleInput = ({
 }: TextInputProps & ToggleProps) => {
 	return (
 		<WithInfo infoId={info}>
+			{/* Okay this is ridiculous  */}
 			<TextInputWithControlAndToggle label={label} name={id} fullWidth={true} />
 		</WithInfo>
 	);

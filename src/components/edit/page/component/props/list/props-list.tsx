@@ -6,6 +6,7 @@ import { InputFactory } from "@/src/components/edit/inputs/factory/input.factory
 import { PageStateContext } from "../../../context/state/page-state.context";
 
 export const PropsList = () => {
+	// type props
 	const { props } = useContext(PageComponentPropsContext);
 	const { pagePropsId } = useContext(PageStateContext);
 
@@ -15,7 +16,8 @@ export const PropsList = () => {
 				const { id } = prop;
 				const inputFormId = `${pagePropsId}.${id}`;
 
-				const inputProps = { ...prop, id: inputFormId };
+				// name and id??
+				const inputProps = { ...prop, id: inputFormId, name: inputFormId };
 				return (
 					// Should just be EditInputComponent
 					<InputFactory key={id} data={inputProps} />

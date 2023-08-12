@@ -9,7 +9,7 @@ export const GRID = {
 			min: 1,
 			info: "",
 			// never use type!
-			type: "text",
+			type: "number",
 			id: "gridRows",
 			label: "Grid Rows",
 			key: "gridRows",
@@ -18,7 +18,7 @@ export const GRID = {
 			max: 10,
 			min: 1,
 			info: "",
-			type: "text",
+			type: "number",
 			id: "gridColumns",
 			label: "Grid Columns",
 			key: "gridColumns",
