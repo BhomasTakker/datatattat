@@ -25,6 +25,8 @@ export const PageComponent = () => {
 	const { id, info, title, props, components } =
 		useContext(PageComponentContext);
 
+	console.log("FEATURE:404", "PageComponent", { components });
+
 	return (
 		<Stack>
 			<WithInfo infoId={info}>

@@ -16,6 +16,7 @@ import { SelectInput } from "../inputs/select/select-input";
 import { EDIT_COMPONENTS } from "@/src/factories/components";
 import { EditFactoryComponent } from "../factory/edit-component.factory";
 import { PageComponentContext } from "../page/component/context/page-component.context";
+import { COMPONENT_TYPES_MAP } from "config/edit/component-types.map";
 
 interface EditComponentControls {
 	isCollapsed: boolean;
@@ -43,6 +44,7 @@ export const EditComponent = () => {
 	const { components } = useContext(PageComponentContext);
 	// if this was in context we wouldn't need to pass
 	const [isCollapsed, setIsCollapsed] = useState(false);
+	const componentsList = COMPONENT_TYPES_MAP.get(components);
 
 	console.log(
 		"FEATURE:404",
@@ -67,7 +69,7 @@ export const EditComponent = () => {
 							info="selectComponent"
 							label="Select Component"
 							id={componentTypeFormId}
-							options={EDIT_COMPONENTS}
+							options={componentsList}
 						>
 							<EditComponentControls
 								isCollapsed={isCollapsed}
