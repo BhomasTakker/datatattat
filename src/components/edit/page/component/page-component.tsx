@@ -30,9 +30,10 @@ export const PageComponent = () => {
 			<WithInfo infoId={info}>
 				<Title variant={TitleVariant.EDIT_COMPONENT} text={title} />
 			</WithInfo>
+			{/* FEATURE:555 META:COMPONENT - technically meta would be before variant but?  */}
 			<PageComponentPropsContainer props={props} />
 			{/* Surely pass content.components? */}
-			<EditComponentsContainer objectKey={"content"} />
+			<EditComponentsContainer />
 		</Stack>
 	);
 };

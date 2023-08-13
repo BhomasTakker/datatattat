@@ -11,5 +11,5 @@ export interface PageContainerConfig {
 	info: string;
 	title: string;
 	props: unknown[];
-	components: unknown[];
+	components: string;
 }

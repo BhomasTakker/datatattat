@@ -1,4 +1,4 @@
-import { Config, PageContainerConfig } from "../types";
+import { PageContainerConfig } from "../types";
 import { PageComponentContextProvider } from "./context/page-component.context";
 import { PageComponent } from "./page-component";
 

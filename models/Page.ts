@@ -64,6 +64,7 @@ const ContainerSchema = new Schema(
 const ContentSchema = new Schema(
 	{
 		container: ContainerSchema,
+		//props
 		components: [ComponentSchema],
 	},
 	{ _id: false }

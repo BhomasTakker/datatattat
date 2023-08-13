@@ -1,5 +1,5 @@
 import { NumberInputWithControl } from "./number-input";
-import { SelectInput } from "./select-input";
+import { SelectInput } from "./select/select-input";
 import { TextInput } from "./text/text-input";
 import { TextToggleInput } from "./text/text-toggle-input";
 

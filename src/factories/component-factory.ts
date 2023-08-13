@@ -9,6 +9,14 @@ export const componentFactory = (componentType: string) => {
 	// console.log({ componentElement });
 	// console.log({ componentType });
 
+	console.log("FEAT:201", "EDIT:COMPONENTS", "REFACTOR", "COMPONENT:FACTORY");
+
+	////////////////////////////////////////////////
+	// Get component config from type and id
+	// We have that component already
+	// Create Component
+	//////////////////////////////////////////////////
+
 	return componentElement;
 };
 

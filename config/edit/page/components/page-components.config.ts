@@ -3,6 +3,7 @@ export const GRID = {
 	id: "grid",
 	info: "Grid",
 	title: "Grid",
+	components: "CONTENT:COMPONENTS",
 	props: [
 		{
 			max: 10,
@@ -26,13 +27,13 @@ export const GRID = {
 	],
 	// default/required components perhaps?
 	// you need this component input these props seems maybe plausible
-	components: [],
 } as const;
 
 export const STACK = {
 	id: "stack",
 	info: "stack",
 	title: "Stack",
+	components: "CONTENT:COMPONENTS",
 	props: [
 		{
 			type: "text", // select
@@ -41,13 +42,13 @@ export const STACK = {
 			key: "direction",
 		},
 	],
-	components: [],
 } as const;
 
 export const DISPLAY = {
 	id: "display",
 	info: "display",
 	title: "Display",
+	components: "CONTENT:COMPONENTS",
 	props: [
 		{
 			type: "text", // select
@@ -57,5 +58,4 @@ export const DISPLAY = {
 			// probably use props for type props
 		},
 	],
-	components: [],
 } as const;

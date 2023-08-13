@@ -18,7 +18,7 @@ const initialState: PageComponentInterface = {
 	info: "",
 	title: "",
 	props: {},
-	components: [],
+	components: "",
 };
 
 export const PageComponentContextProvider = ({

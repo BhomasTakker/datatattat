@@ -4,7 +4,8 @@ import { Box, MenuItem } from "@mui/material";
 import { WithInfo } from "../../info/WithInfo";
 import { INFO_MARGINS } from "config/styles/styles.config";
 import { SelectInputWithControl } from "@/src/components/input/SelectInput";
-import { EditComponent } from "../../factory/edit-component.factory";
+import { EditFactoryComponent } from "../../factory/edit-component.factory";
+import { SelectInput } from "../../inputs/select/select-input";
 
 const createContainerList = (list: string[]) => {
 	return list.map((option: string) => (
@@ -14,6 +15,9 @@ const createContainerList = (list: string[]) => {
 		</MenuItem>
 	));
 };
+
+// Page Select
+// Select your page container component
 
 // Content Container
 // Component Container
@@ -33,22 +37,18 @@ export const PageContainer = () => {
 	// label
 	const { select, info, label, type } = config;
 
+	console.log("FEATURE:202", "SELECT:INPUT:UPGRADE", "PAGE:CONTAINER", {
+		select,
+	});
 	return (
 		<Box>
-			<WithInfo infoId={info} marginLeft={INFO_MARGINS.STANDARD_LEFT}>
-				<SelectInputWithControl
-					id={label}
-					label={label}
-					name={containerTypeKey}
-					fullWidth={true}
-					variant="filled"
-					required
-				>
-					{createContainerList(select)}
-				</SelectInputWithControl>
-			</WithInfo>
-			{/* Factory Component */}
-			<EditComponent type={type} id={container} />
+			<SelectInput
+				info={info}
+				id={containerTypeKey}
+				label={label}
+				options={select}
+			/>
+			<EditFactoryComponent type={type} id={container} />
 		</Box>
 	);
 };

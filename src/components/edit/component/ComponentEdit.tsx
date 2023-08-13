@@ -18,7 +18,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { INFO_MARGINS, MARGINS } from "config/styles/styles.config";
 import { WithInfo } from "../info/WithInfo";
-import classes from "./ComponentEdit.module.scss";
+
+///////////////////////////
+// clean me
+/////////////////////////////
 
 type inputFuncs = {
 	onDelete: () => void;
@@ -28,7 +31,8 @@ type inputFuncs = {
 // Clean this guy up
 
 // We should ultimately add another component / select input
-// So when a user selects they select a collection forst THEN a component
+// dropdown groups in select
+// So when a user selects they select a collection first THEN a component
 // i.e. LISTS -> SimpleList
 
 export const ComponentEdit = ({
@@ -36,12 +40,15 @@ export const ComponentEdit = ({
 	onDelete,
 	onMove,
 }: BaseEditProps & inputFuncs) => {
-	// const { control } = useFormContext();
 	const [isCollapsed, setIsCollapsed] = useState(false);
+
 	const component = useWatch({
 		// control,
 		name: `${objectKey}.componentType`,
 	});
+
+	console.log("FEAT:201", "EDIT:COMPONENTS", "REFACTOR", "COMPONENT:EDIT");
+
 	const createComponentList = useCallback(() => {
 		return Object.keys(EDIT_COMPONENTS).map((container) => (
 			<MenuItem key={container} value={container}>
@@ -57,6 +64,7 @@ export const ComponentEdit = ({
 				return <></>;
 			}
 
+			// Follow through and clean me
 			const EditComponent = componentEditFactory(component);
 
 			if (!EditComponent) {
@@ -82,7 +90,7 @@ export const ComponentEdit = ({
 			I want something more label box then input box
 			*/}
 			{/* Should be a with - HOC */}
-			<Paper elevation={1} className={classes.container}>
+			<Paper elevation={1} sx={{ padding: MARGINS.MIDSMALL }}>
 				<Accordion defaultExpanded expanded={!isCollapsed} elevation={0}>
 					<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
 						<WithInfo
