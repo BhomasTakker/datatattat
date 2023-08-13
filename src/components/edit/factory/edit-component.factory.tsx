@@ -3,7 +3,6 @@ import {
 	COMPONENT_CONTAINERS_MAP,
 } from "config/edit/component-types.map";
 import { ReactElement } from "react";
-import { PageComponentContainer } from "../page/component/page-component.container";
 
 interface EditComponentProps {
 	type: string;
@@ -16,21 +15,12 @@ export const EditFactoryComponent = ({
 	type,
 	id,
 }: EditComponentProps): ReactElement => {
-	console.log(
-		"FEATURE:404",
-		"DYNAMIC:CONFIG",
-		"EDIT:COMPONENT",
-		{ type },
-		{ id }
-	);
 	if (!type) {
 		return <></>;
 	}
 
 	// how to type this? We know what it is
 	const typeMap = COMPONENT_TYPES_MAP.get(type); //[type]; // why is typeMap any...
-
-	console.log("FEATURE:404", "DYNAMIC:CONFIG", "EDIT:COMPONENT", { typeMap });
 
 	// get type object
 	if (!typeMap) {
@@ -45,7 +35,7 @@ export const EditFactoryComponent = ({
 	// @ts-ignore / maybe don't want to lower case!
 	const componentConfig = typeMap[id.toLowerCase()];
 
-	console.log("FEATURE:404", "DYNAMIC:CONFIG", "EDIT:COMPONENT", {
+	console.log("FEATURE:110", "DYNAMIC:CONFIG", "EDIT:COMPONENT", {
 		componentConfig,
 	});
 
@@ -55,7 +45,7 @@ export const EditFactoryComponent = ({
 
 	//basically call our generic with a new config
 	console.log(
-		"FEATURE:404",
+		"FEATURE:110",
 		"DYNAMIC:CONFIG",
 		"EDIT:COMPONENT",
 		"CREATE:COMPONENT"
@@ -72,7 +62,7 @@ export const EditFactoryComponent = ({
 	// this is literally endpoints and parameters again
 	// but with props and components
 	// const EditContainer = containerEditFactory(container);
-	console.log("FEATURE:404", "DYNAMIC:CONFIG", "EDIT:COMPONENT", { type });
+	console.log("FEATURE:110", "DYNAMIC:CONFIG", "EDIT:COMPONENT", { type });
 	/////////////////////////////////////////
 	// Should always use Map where possible
 	// @ts-ignore
@@ -80,10 +70,14 @@ export const EditFactoryComponent = ({
 	if (!ComponentContainer) {
 		return <></>;
 	}
-
-	console.log("FEATURE:404", "DYNAMIC:CONFIG", "EDIT:COMPONENT", {
-		ComponentContainer,
-	});
+	console.log(
+		"FEATURE:404",
+		"DYNAMIC:CONFIG",
+		"EDIT:COMPONENT",
+		{ type },
+		{ id },
+		{ componentConfig }
+	);
 	// This shouldn't be just Page Component
 	// guess what
 	// just use a hash or a factory component

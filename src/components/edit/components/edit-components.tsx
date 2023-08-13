@@ -1,10 +1,8 @@
 import { Box, Button, Stack } from "@mui/material";
-import { BaseEditProps } from "../../forms/edit/types/BaseEdit";
 import { MARGINS } from "config/styles/styles.config";
 import AddIcon from "@mui/icons-material/Add";
 import { useContext } from "react";
 import { ComponentsContext } from "./context/components.context";
-import { ComponentEdit } from "../component/ComponentEdit";
 import { PageStateContext } from "../page/context/state/page-state.context";
 import { EditComponentContainer } from "../component/edit-component.container";
 
@@ -20,12 +18,12 @@ const ComponentsArray = () => {
 		return (
 			<Stack direction="row" key={i}>
 				{/* Clean this guy up */}
-				<ComponentEdit
+				{/* <ComponentEdit
 					//This needs to change with re-order
 					objectKey={`${pageComponentsId}.${i}`}
 					onDelete={() => deleteComponent(i)}
 					onMove={(dir) => moveComponent(i, dir)}
-				/>
+				/> */}
 				<EditComponentContainer
 					objectKey={`${pageComponentsId}.${i}`}
 					onDelete={() => deleteComponent(i)}

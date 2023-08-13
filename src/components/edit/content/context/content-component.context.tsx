@@ -2,17 +2,21 @@
 
 import { ReactNode, createContext } from "react";
 
-type ContentComponentState = {};
+type ContentComponentState = {
+	config: any;
+};
 
 type ContentComponentInterface = {};
 
-const initialState: ContentComponentState & ContentComponentInterface = {};
+const initialState: ContentComponentState & ContentComponentInterface = {
+	config: null,
+};
 
 export const ContentComponentContextProvider = ({
 	value,
 	children,
 }: {
-	value?: ContentComponentState;
+	value: ContentComponentState;
 	children: ReactNode;
 }) => {
 	return (

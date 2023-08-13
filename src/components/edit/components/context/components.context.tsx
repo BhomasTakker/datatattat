@@ -1,6 +1,13 @@
 import { cloneDeep } from "@/src/utils/object";
-import { ReactNode, createContext, useCallback } from "react";
+import {
+	ReactNode,
+	createContext,
+	useCallback,
+	useContext,
+	useEffect,
+} from "react";
 import { useFormContext, useWatch } from "react-hook-form";
+import { PageContainerContext } from "../../page/context/container/page-container.context";
 
 type Component = unknown;
 
@@ -33,6 +40,16 @@ export const ComponentsContextProvider = ({
 	const componentsFormId = "content.components";
 	const components = useWatch({ name: componentsFormId, defaultValue: [] });
 	const { setValue, unregister } = useFormContext();
+	const { container } = useContext(PageContainerContext);
+
+	// effectively reset components when container changes
+	// might break everything!
+	// NOTE: HERE!
+	useEffect(() => {
+		// set props to empty / no need to reset value?
+		// perhaps reset would be better but damn simple
+		unregister(componentsFormId);
+	}, [container, componentsFormId, unregister]);
 
 	// this is confusing
 	// just do an add at Beginning of the array function etc
