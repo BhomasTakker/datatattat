@@ -1,22 +1,20 @@
 import { useContext } from "react";
-import { PageComponentPropsContext } from "../context/page-component-props.context";
+import { PageComponentPropsContext } from "../context/component-props.context";
 import { Stack } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
 import { InputFactory } from "@/src/components/edit/inputs/factory/input.factory";
-import { PageStateContext } from "../../../context/state/page-state.context";
+import { PageStateContext } from "../../page/context/state/page-state.context";
 
 export const PropsList = () => {
 	// type props
-	const { props } = useContext(PageComponentPropsContext);
-	const { pagePropsId } = useContext(PageStateContext);
-
+	const { props, propsId } = useContext(PageComponentPropsContext);
 	// Sort props type out
 
 	return (
 		<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
 			{props.map((prop) => {
 				const { id } = prop;
-				const inputFormId = `${pagePropsId}.${id}`;
+				const inputFormId = `${propsId}.${id}`;
 
 				// name and id??
 				const inputProps = { ...prop, id: inputFormId, name: inputFormId };

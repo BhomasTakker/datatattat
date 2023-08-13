@@ -12,11 +12,3 @@ export const containerFactory = (containerData: any) => {
 
 	return containerElement;
 };
-
-export const containerEditFactory = (id: string) => {
-	const containerEditElement = EDIT_CONTAINERS[id];
-
-	// console.log({ containerEditElement });
-
-	return containerEditElement;
-};

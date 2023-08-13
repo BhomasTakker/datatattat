@@ -1,11 +1,12 @@
 import { ReactNode, createContext, useContext, useEffect } from "react";
-import { PageStateContext } from "../../../context/state/page-state.context";
+import { PageStateContext } from "../../page/context/state/page-state.context";
 import { useFormContext } from "react-hook-form";
-import { PageContainerContext } from "../../../context/container/page-container.context";
+import { PageContainerContext } from "../../page/context/container/page-container.context";
 
 type PageComponentPropsState = {
-	objectKey: string;
+	propsId: string;
 	props: unknown[];
+	resetComponent: any;
 };
 
 type PageComponentPropsInterface = {
@@ -14,26 +15,31 @@ type PageComponentPropsInterface = {
 
 const initialState: PageComponentPropsState & PageComponentPropsInterface = {
 	props: [],
-	objectKey: "",
+	propsId: "",
+	resetComponent: null,
 	// propsFormId: "",
 };
 
-export const PageComponentPropsContextProvider = ({
+export const ComponentPropsContextProvider = ({
 	value,
 	children,
 }: {
 	value: PageComponentPropsState;
 	children: ReactNode;
 }) => {
-	const { pagePropsId } = useContext(PageStateContext);
-	const { container } = useContext(PageContainerContext);
+	// const { pagePropsId } = useContext(PageStateContext);
+	// This may need to chage
+	// const { container } = useContext(PageContainerContext);
 	const { unregister } = useFormContext();
 
+	const { resetComponent, propsId } = value;
+
+	// pass in what to to reset on
 	useEffect(() => {
 		// set props to empty / no need to reset value?
 		// perhaps reset would be better but damn simple
-		unregister(pagePropsId);
-	}, [container, pagePropsId, unregister]);
+		unregister(propsId);
+	}, [resetComponent, propsId, unregister]);
 
 	// We are just passing props at the moment
 	// no need to watch props
