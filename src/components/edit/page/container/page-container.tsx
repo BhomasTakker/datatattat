@@ -1,20 +1,17 @@
-import { ReactElement, useContext } from "react";
+import { useContext } from "react";
 import { PageContainerContext } from "../context/container/page-container.context";
-import { Box, MenuItem } from "@mui/material";
-import { WithInfo } from "../../info/WithInfo";
-import { INFO_MARGINS } from "config/styles/styles.config";
-import { SelectInputWithControl } from "@/src/components/input/SelectInput";
+import { Box } from "@mui/material";
 import { EditFactoryComponent } from "../../factory/edit-component.factory";
 import { SelectInput } from "../../inputs/select/select-input";
 
-const createContainerList = (list: string[]) => {
-	return list.map((option: string) => (
-		//Add show info synopsis here
-		<MenuItem key={option} value={option}>
-			{option}
-		</MenuItem>
-	));
-};
+// const createContainerList = (list: string[]) => {
+// 	return list.map((option: string) => (
+// 		//Add show info synopsis here
+// 		<MenuItem key={option} value={option}>
+// 			{option}
+// 		</MenuItem>
+// 	));
+// };
 
 // Page Select
 // Select your page container component
@@ -33,13 +30,9 @@ const createContainerList = (list: string[]) => {
 export const PageContainer = () => {
 	const { container, containerTypeKey, config } =
 		useContext(PageContainerContext);
-	// We need info
-	// label
+
 	const { select, info, label, type } = config;
 
-	console.log("FEATURE:202", "SELECT:INPUT:UPGRADE", "PAGE:CONTAINER", {
-		select,
-	});
 	return (
 		<Box>
 			<SelectInput

@@ -18,13 +18,20 @@ import {
 	CreatorContextProvider,
 } from "./context/creator-context";
 
+/////////////////////////////////////////////////////////////////////////////
+//////////////////////////// REFACTOR ME ////////////////////////////////////
+// This needs to be refactored to be more in keeping with the rest of edit //
+/////////////////////////////////////////////////////////////////////////////
+
 // componentId
 // objectKey
 // configList
 
 type QueryComponentProps = {};
 
-// queryId = {`${objectKey}.apiId`}
+///////////////////////////
+// query-creator.container
+/////////////////////////////
 const QueryComponent = ({}: QueryComponentProps) => {
 	const { providerConfig } = useContext(QueryContext);
 
@@ -34,6 +41,8 @@ const QueryComponent = ({}: QueryComponentProps) => {
 	}
 
 	return (
+		// This context needs refactor / rethink
+		// It does get rather complex from here
 		<CreatorContextProvider value={{ config: providerConfig }}>
 			<QueryCreator />
 		</CreatorContextProvider>
@@ -54,6 +63,10 @@ type QuerySelectorProps = QuerySelectProps & {
 // title, titleInfo,
 // type label, type info, type id
 // config list
+
+////////////////////////////
+// query / query.component
+////////////////////////////
 const QuerySelect = ({
 	title,
 	titleInfo,
@@ -83,12 +96,14 @@ const QuerySelect = ({
 						</SelectInputWithControl>
 					</WithInfo>
 				</Box>
+				{/* query-creator.container */}
 				<QueryComponent />
 			</Stack>
 		</Box>
 	);
 };
 
+// Rename file for sure query.selector or something
 export const QuerySelector = ({
 	title,
 	titleInfo,
@@ -98,6 +113,9 @@ export const QuerySelector = ({
 }: QuerySelectorProps) => {
 	return function WithQuery({ objectKey }: BaseEditProps) {
 		return (
+			////////////////////////////
+			// return query Container //
+			////////////////////////////
 			<QueryContextProvider
 				value={{
 					objectKey,

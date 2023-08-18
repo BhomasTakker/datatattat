@@ -1,6 +1,4 @@
 import { ReactElement, useContext, useEffect, useState } from "react";
-import { useFormContext, useWatch } from "react-hook-form";
-import { useUnregisterForm } from "../../hooks/useUnregisterForm";
 import { Box, Stack } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
 import { Parameters } from "../parameters/Parameters";
@@ -76,6 +74,7 @@ export const QueryCreator = ({}: QueryCreatorProps) => {
 		}
 	}, [selectedQueryConfig]);
 	//formInputValue, queryFormKey, queryIdFormKey, selectedQueryConfig
+	// Neaten this up for sure
 	return (
 		<Stack>
 			{type ? (

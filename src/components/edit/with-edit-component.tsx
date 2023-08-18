@@ -1,11 +1,10 @@
 import { withEditFactory } from "@/src/factories/with-factory";
 import { ReactElement } from "react";
 
-// on onjectkey change
-// unregister
-// If this was an actual component
-// We could just call unregister form
-// Theoretically should work?
+//////////////////////////////////////////////////////////
+// DELETE ME//////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
 export const createWithEditComponent = (
 	component: any,
 	objectKey: string

@@ -4,6 +4,7 @@ import { Title } from "@/src/components/ui/title";
 import { TitleVariant } from "@/src/components/types/ui";
 import { PropsList } from "./list/props-list";
 
+// Pass info and title or get from context
 export const ComponentProps = () => {
 	return (
 		<Stack>

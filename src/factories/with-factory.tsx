@@ -12,6 +12,7 @@ const OEMBED_PATH = "api/query/oembed/get";
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 // Move this somewhere
+//
 const createQueryObject = (queryObject: any, queryPath: string) => {
 	const {
 		queryId,
@@ -57,11 +58,11 @@ const createQueryObject = (queryObject: any, queryPath: string) => {
 	return query;
 };
 
-//////////////////////////////
-//Probably convert to a hash
+//////////////////////////////////////////////////
+// Probably convert to a hash / maybe and a Map
 // Thnk about this area - why are we different
 // There is a better way / or it can be cleaner
-// will we not end up with 100s
+// will we not end up with 100s / of these we probably shouldn't?
 // withObject is the saved with data
 export const withFactory = (componentObject: any, withObject: any) => {
 	switch (withObject.type) {

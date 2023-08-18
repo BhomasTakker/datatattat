@@ -4,7 +4,7 @@ import { Stack } from "@mui/material";
 import { WithInfo } from "../../info/WithInfo";
 import { Title } from "@/src/components/ui/title";
 import { TitleVariant } from "@/src/components/types/ui";
-import { EditComponentsContainer } from "../../components/container";
+import { EditComponentsContainer } from "../../components/edit-components.container";
 import { ComponentPropsContainer } from "../../props/component-props.container";
 import { PageStateContext } from "../context/state/page-state.context";
 import { PageContainerContext } from "../context/container/page-container.context";
@@ -27,14 +27,13 @@ export const PageComponent = () => {
 	const { id, info, title, props, components } =
 		useContext(PageComponentContext);
 	const { pagePropsId } = useContext(PageStateContext);
-	console.log("FEATURE:404", "PageComponent", { components });
+
 	const { container } = useContext(PageContainerContext);
 	return (
 		<Stack>
 			<WithInfo infoId={info}>
 				<Title variant={TitleVariant.EDIT_COMPONENT} text={title} />
 			</WithInfo>
-			{/* FEATURE:555 META:COMPONENT - technically meta would be before variant but?  */}
 			<ComponentPropsContainer
 				props={props}
 				propsId={pagePropsId}

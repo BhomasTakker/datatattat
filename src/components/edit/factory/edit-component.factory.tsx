@@ -35,21 +35,9 @@ export const EditFactoryComponent = ({
 	// @ts-ignore / maybe don't want to lower case!
 	const componentConfig = typeMap[id.toLowerCase()];
 
-	console.log("FEATURE:110", "DYNAMIC:CONFIG", "EDIT:COMPONENT", {
-		componentConfig,
-	});
-
 	if (!componentConfig) {
 		return <></>;
 	}
-
-	//basically call our generic with a new config
-	console.log(
-		"FEATURE:110",
-		"DYNAMIC:CONFIG",
-		"EDIT:COMPONENT",
-		"CREATE:COMPONENT"
-	);
 
 	///////////////////////////////////////////////////////////////
 	// Create Component with new config
@@ -64,20 +52,11 @@ export const EditFactoryComponent = ({
 	// const EditContainer = containerEditFactory(container);
 	console.log("FEATURE:110", "DYNAMIC:CONFIG", "EDIT:COMPONENT", { type });
 	/////////////////////////////////////////
-	// Should always use Map where possible
-	// @ts-ignore
 	const ComponentContainer = COMPONENT_CONTAINERS_MAP.get(type);
 	if (!ComponentContainer) {
 		return <></>;
 	}
-	console.log(
-		"FEATURE:404",
-		"DYNAMIC:CONFIG",
-		"EDIT:COMPONENT",
-		{ type },
-		{ id },
-		{ componentConfig }
-	);
+
 	// This shouldn't be just Page Component
 	// guess what
 	// just use a hash or a factory component

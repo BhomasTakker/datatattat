@@ -3,7 +3,7 @@ import React from "react";
 import { WithInfo } from "../../edit/info/WithInfo";
 import { Title } from "../../ui/title";
 import { TitleVariant } from "../../types/ui";
-import { EditComponentsContainer } from "../../edit/components/container";
+import { EditComponentsContainer } from "../../edit/components/edit-components.container";
 
 //Just a blank Component until DTAStack is given some props say
 //We don't mirror the component structure

@@ -1,15 +1,8 @@
 // Should really make a plop file
 
-import {
-	ReactNode,
-	createContext,
-	useContext,
-	useEffect,
-	useState,
-} from "react";
+import { ReactNode, createContext, useContext, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { EditComponentContext } from "../../component/context/edit-component.context";
-import { createWithEditComponent } from "../../with-edit-component";
 
 const WITH_ID = "_with";
 const WITH_TYPE_ID = `${WITH_ID}.type`;
@@ -55,14 +48,6 @@ export const ContentComponentContextProvider = ({
 		// control,
 		name: withFormTypeId,
 	});
-
-	// Probably don't do this here
-	// just create a factory component
-	useEffect(() => {
-		setWithComponent(
-			createWithEditComponent(withComponentFormData, withFormId)
-		);
-	}, [withComponentFormData, withFormId]);
 
 	return (
 		// Would you always spread given value here?
