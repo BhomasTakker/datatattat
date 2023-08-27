@@ -1,6 +1,13 @@
 // Should really make a plop file
 
-import { ReactNode, createContext, useContext, useEffect } from "react";
+import {
+	ReactNode,
+	createContext,
+	useContext,
+	useEffect,
+	useReducer,
+	useState,
+} from "react";
 import { PageQueryContext } from "../query/page-query.context";
 import { useFormContext } from "react-hook-form";
 import { EditContext } from "@/src/context/edit-context";
@@ -43,8 +50,9 @@ export const PageStateContextProvider = ({
 	value?: PageStateState;
 	children: ReactNode;
 }) => {
+	// const forceUpdate = useReducer((bool) => !bool, true)[1];
 	const { currentPage } = useContext(EditContext);
-	const { setValue, reset } = useFormContext();
+	const { setValue, register } = useFormContext();
 	const { pageData } = useContext(PageQueryContext);
 
 	useEffect(() => {
@@ -52,22 +60,45 @@ export const PageStateContextProvider = ({
 		if (!page) {
 			return;
 		}
-		console.log("FEATURE:205", "REFACTOR:PAGE", "SET:FORM:VALUE", { pageData });
+
+		const { content } = page;
+		console.log(
+			"FEATURE:205",
+			"REFACTOR:PAGE",
+			"SET:FORM:VALUE",
+			{ pageData },
+			{ currentPage }
+		);
 		// We get message ok etc from page data
 		// setValue(FORM_ID, { ...page, route: `${currentPage}` });
 
+		/////////////////////////
+		// ERROR HERE PERHAPS
+		/////////////////////////
+
+		console.log("ISSUE:123", "PAGE:STATE:RE-RENDER", "USE:EFFECT", { page });
+		// register("route");
+		// register("content");
+
+		setValue("route", currentPage);
+		setValue("content", content, {
+			shouldValidate: true,
+		});
+		// forceUpdate();
 		// reset works but setValue didn't
 		// not entirely sure why
-		reset(
-			{
-				...page,
-				route: `${currentPage}`,
-			},
-			{
-				keepValues: false,
-			}
-		);
-	}, [currentPage, pageData, reset]);
+		// reset(
+		// 	{
+		// 		...page,
+		// 		route: `${currentPage}`
+		// 	},
+		// 	{
+		// 		keepValues: false,
+		// 	}
+		// );
+	}, [currentPage, pageData, setValue]);
+
+	console.log("ISSUE:123", "PAGE:STATE:RE-RENDER", "OUT");
 
 	return (
 		// Should we be passing data?

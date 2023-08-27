@@ -11,6 +11,7 @@ import Header from "@/models/Header";
 import Footer from "@/models/Footer";
 import { containerFactory } from "../factories/container-factory";
 import { getHeaders, getMainHeader } from "../headers/get-headers";
+import { PageContainerFactoryComponent } from "../components/page-containers/page-container.factory";
 
 export default function Home(props: any) {
 	const { t } = useTranslation(); //pass a prameter of 'Home' for a particular namespace / array?
@@ -35,6 +36,7 @@ export default function Home(props: any) {
 			{/* Seems like a factory render - pass in content - blap container - pass in components or whatever */}
 			<main className={styles.main}>
 				<h1>{t(Common.pageTitle)}</h1>
+				<PageContainerFactoryComponent contentData={content} />
 				<Container data={content} />
 			</main>
 		</>

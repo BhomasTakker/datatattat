@@ -40,15 +40,15 @@ export const COMPONENTS: any = {
 // ?? We aren't sure of this
 // Containers -> Collections -> Components
 // DTAStack -> SimpleList -> ArticleStub
-export const EDIT_COMPONENTS: any = {
-	["SimpleList"]: SimpleListEdit,
-	["Embedded Object"]: IframelyOembedEdit,
+// export const EDIT_COMPONENTS: any = {
+// 	["SimpleList"]: SimpleListEdit,
+// 	["Embedded Object"]: IframelyOembedEdit,
 
-	["DTAGrid"]: DTAGridEdit,
+// 	["DTAGrid"]: DTAGridEdit,
 
-	["Test"]: TempComponentEdit, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
+// 	["Test"]: TempComponentEdit, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
 
-	// Not here
-	["ArticleStub"]: ArticleStubEdit,
-	["BasicArticle"]: BasicArticleEdit,
-};
+// 	// Not here
+// 	["ArticleStub"]: ArticleStubEdit,
+// 	["BasicArticle"]: BasicArticleEdit,
+// };

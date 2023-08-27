@@ -1,4 +1,4 @@
-import { COMPONENTS, EDIT_COMPONENTS } from "./components";
+import { COMPONENTS } from "./components";
 
 //We just need type at the moment
 export const componentFactory = (componentType: string) => {
@@ -20,10 +20,10 @@ export const componentFactory = (componentType: string) => {
 	return componentElement;
 };
 
-export const componentEditFactory = (id: string) => {
-	const componentEditElement = EDIT_COMPONENTS[id];
+// export const componentEditFactory = (id: string) => {
+// 	const componentEditElement = EDIT_COMPONENTS[id];
 
-	// console.log({ componentEditElement });
+// 	// console.log({ componentEditElement });
 
-	return componentEditElement;
-};
+// 	return componentEditElement;
+// };

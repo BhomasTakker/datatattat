@@ -45,11 +45,16 @@ export const ComponentsContextProvider = ({
 	// effectively reset components when container changes
 	// might break everything!
 	// NOTE: HERE!
-	useEffect(() => {
-		// set props to empty / no need to reset value?
-		// perhaps reset would be better but damn simple
-		unregister(componentsFormId);
-	}, [container, componentsFormId, unregister]);
+	// useEffect(() => {
+	// 	//////////////////////////
+	// 	// this is like a reset //
+	// 	// There is a rogue unregister form somewhere
+	// 	/////////////////////////////////
+	// 	// set props to empty / no need to reset value?
+	// 	// perhaps reset would be better but damn simple
+	// 	// unregister(componentsFormId);
+	// 	// setValue(componentsFormId, components);
+	// }, [container, componentsFormId, setValue, unregister]);
 
 	// this is confusing
 	// just do an add at Beginning of the array function etc
@@ -93,10 +98,11 @@ export const ComponentsContextProvider = ({
 			}
 
 			const updateComponents = cloneDeep(components);
+
 			const movedComponent = updateComponents.splice(i, 1);
+
 			updateComponents.splice(i + dir, 0, ...movedComponent);
 
-			// unregister(conversionsFormId);
 			setValue(componentsFormId, updateComponents);
 		},
 		[components, setValue]

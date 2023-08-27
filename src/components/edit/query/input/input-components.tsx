@@ -22,23 +22,20 @@ type EditTextInputProps = {
 	infoId?: string;
 };
 
-export const EditSelectInput = memo(
-	({ endpoints, id, label }: EditSelectInputProps) => {
-		console.log({ id });
-		return (
-			<WithInfo infoId="RssEndpoint">
-				<SelectInputWithControl
-					label={label}
-					name={id}
-					fullWidth={true}
-					required
-				>
-					{createSelectInputList(endpoints)}
-				</SelectInputWithControl>
-			</WithInfo>
-		);
-	}
-);
+export const EditSelectInput = ({
+	endpoints,
+	id,
+	label,
+}: EditSelectInputProps) => {
+	console.log("ISSUE:589", "SELECT:INPUT", { endpoints }, { id }, { label });
+	return (
+		<WithInfo infoId="RssEndpoint">
+			<SelectInputWithControl label={label} name={id} fullWidth={true} required>
+				{createSelectInputList(endpoints)}
+			</SelectInputWithControl>
+		</WithInfo>
+	);
+};
 
 EditSelectInput.displayName = "EditSelectInput";
 

@@ -37,6 +37,9 @@ const initialState: QueryState & QueryInterface = {
 };
 
 // Could perhaps split form key 'logic' from the rest
+//////////////////////////////////////////////
+// Here is where Query Resets should be //////
+//////////////////////////////////////////////
 export const QueryContextProvider = ({
 	value,
 	children,
@@ -44,11 +47,13 @@ export const QueryContextProvider = ({
 	value: QueryState;
 	children: ReactNode;
 }) => {
-	const { setValue } = useFormContext();
+	const { setValue, unregister } = useFormContext();
 	const [providerConfig, setProviderConfig] = useState<any>(null);
 
 	const { objectKey, configList } = value;
 	const baseFormKey = `${objectKey}`;
+	// pos not here
+	const withTypeKey = `${objectKey}.type`;
 	const queryFormKey = `${objectKey}.query`;
 	const queryIdFormKey = `${queryFormKey}.queryId`;
 	const providerFormKey = `${queryFormKey}.provider`;
@@ -63,14 +68,46 @@ export const QueryContextProvider = ({
 		conversionsFormKey,
 	};
 
+	console.log("ISSUE:389", { baseFormKey });
+	console.log("ISSUE:389", { queryFormKey });
+	console.log("ISSUE:389", { withTypeKey });
+
 	const providerListener = useWatch({
 		name: providerFormKey,
 	});
 
+	const withTypeKeyListener = useWatch({
+		name: withTypeKey,
+	});
+
 	useEffect(() => {
 		// configList needs to be a set...
+		console.log("ISSUE:389", "SET:PROVIDER", { providerListener });
 		setProviderConfig(configList.get(providerListener));
 	}, [configList, providerListener]);
+
+	useEffect(() => {
+		// if()
+		console.log("ISSUE:237", "UNREGISTER", { withTypeKeyListener });
+		console.log(
+			"ISSUE:589",
+			"QUERY:CONTEXT:UNREGISTER",
+			{ withTypeKeyListener },
+			{ parametersFormKey }
+		);
+		// unregister(queryFormKey);
+		// these should probably manage themselves?
+		unregister(queryIdFormKey);
+		unregister(providerFormKey);
+		// unregister(conversionsFormKey);
+		// unregister(parametersFormKey);
+	}, [
+		parametersFormKey,
+		providerFormKey,
+		queryIdFormKey,
+		unregister,
+		withTypeKeyListener,
+	]);
 
 	// copy over to creator cotext
 	const setQueryId = useCallback(

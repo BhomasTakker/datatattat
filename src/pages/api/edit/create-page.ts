@@ -19,7 +19,11 @@ async function createNewPage(
 	const { creator, route } = body;
 	const { user: sessionUser } = session;
 
+	console.log("FEATURE:NEW:PAGE", "HERE:1");
+
 	await mongooseConnect();
+
+	console.log("FEATURE:NEW:PAGE", "HERE:2");
 
 	//Add a function in try / a sequence of checks and or actions
 	const authUser = await Auth.findOne({ email: sessionUser?.email });
@@ -27,18 +31,26 @@ async function createNewPage(
 		return res.status(400).json({ msg: "Critical Error" });
 	}
 
+	console.log("FEATURE:NEW:PAGE", "HERE:3");
+
 	const { userId } = authUser;
 
 	const user = await User.findById(creator);
 	const { username, role } = user;
 
+	console.log("FEATURE:NEW:PAGE", "HERE:4");
+
 	if (!user) {
 		return res.status(400).json({ msg: "Incorrect creator" });
 	}
 
+	console.log("FEATURE:NEW:PAGE", "HERE:5");
+
 	if (user._id.toString() !== userId.toString()) {
 		return res.status(400).json({ msg: "Nefarious operation" });
 	}
+
+	console.log("FEATURE:NEW:PAGE", "HERE:6");
 
 	//////////////////////////////////////
 	// const splitRoute = route.split("/").filter(Boolean);
@@ -50,6 +62,8 @@ async function createNewPage(
 			return res.status(400).json({ msg: "Nefarious operation" });
 		}
 	}
+
+	console.log("FEATURE:NEW:PAGE", "HERE:7");
 
 	let page;
 
@@ -64,8 +78,13 @@ async function createNewPage(
 			}
 		);
 	} catch (error) {
+		console.log("FEATURE:NEW:PAGE", "HERE:7.5", { route });
+		console.log("FEATURE:NEW:PAGE", "HERE:7.5", { body });
+		console.log("FEATURE:NEW:PAGE", "HERE:7.5", { error });
 		return res.status(500).json({ msg: "DB error" });
 	}
+
+	console.log("FEATURE:NEW:PAGE", "HERE:8");
 
 	// const page = new Page(body);
 
@@ -79,6 +98,8 @@ async function createNewPage(
 	if (!page) {
 		return res.status(400).json({ msg: "Unable to save" });
 	}
+
+	console.log("FEATURE:NEW:PAGE", "HERE:9");
 
 	// try {
 	// 	user.page = page._id;

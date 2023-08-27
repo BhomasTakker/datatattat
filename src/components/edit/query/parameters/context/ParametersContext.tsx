@@ -1,4 +1,6 @@
-import { ReactNode, createContext } from "react";
+import { ReactNode, createContext, useEffect } from "react";
+import { ParametersType } from "../types";
+import { useFormContext } from "react-hook-form";
 // this becomes non required
 // but we could store parameters here?
 // then on change / reset
@@ -6,26 +8,17 @@ import { ReactNode, createContext } from "react";
 
 type ParametersState = {
 	objectKey: string;
+	parameters: ParametersType[];
 };
 
 type ParametersInterface = {
-	updateParameters: (param: any) => void;
+	// updateParameters: (param: any) => void;
 };
 
 const parametersInitialState: ParametersState & ParametersInterface = {
 	objectKey: "",
-	updateParameters: (param: any) => {},
-};
-
-const parameterList = new Map();
-
-const addParameter = (param: any) => {
-	const { id, value } = param;
-	parameterList.set(id, value);
-};
-
-const updateParameters = (param: any) => {
-	addParameter(param);
+	parameters: [],
+	// updateParameters: (param: any) => {},
 };
 
 export const ParametersContextProvider = ({
@@ -35,8 +28,20 @@ export const ParametersContextProvider = ({
 	value: ParametersState;
 	children: ReactNode;
 }) => {
+	const { objectKey, parameters } = value;
+	const { setValue } = useFormContext();
+
+	// useEffect(() => {
+	// 	console.log(
+	// 		"ISSUE:589",
+	// 		"PARAMETERS:CONTEXT",
+	// 		{ objectKey },
+	// 		{ parameters }
+	// 	);
+	// 	setValue(objectKey, parameters);
+	// }, [objectKey, parameters, setValue]);
 	return (
-		<ParametersContext.Provider value={{ ...value, updateParameters }}>
+		<ParametersContext.Provider value={{ ...value }}>
 			{children}
 		</ParametersContext.Provider>
 	);

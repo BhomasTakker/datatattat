@@ -16,7 +16,7 @@ export const CONTAINERS: any = {
 	// ["DTAGrid"]: DTAGrid,
 };
 
-export const EDIT_CONTAINERS: any = {
-	["DTAStack"]: DTAStackEdit, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
-	["DTAPageGrid"]: DTAPageGridEdit,
-};
+// export const EDIT_CONTAINERS: any = {
+// 	["DTAStack"]: DTAStackEdit, //can we return a dynamic load i.e. () => dynamic load ('@/components/containers/stack/DTAStack')
+// 	["DTAPageGrid"]: DTAPageGridEdit,
+// };

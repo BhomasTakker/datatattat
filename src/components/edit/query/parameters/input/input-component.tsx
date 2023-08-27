@@ -16,12 +16,13 @@ export const ParameterInputComponent = ({
 	parameterConfigData,
 }: ParameterInputProps) => {
 	const { id, options, key, defaultValue } = parameterConfigData;
-	const { objectKey, updateParameters } = useContext(ParametersContext);
+	const { objectKey } = useContext(ParametersContext);
 	const parameterId = `${objectKey}.${id}`;
 
 	const { setValue } = useFormContext();
 
 	// better name needed - is our state value
+	// should be taken from context
 	const parameterFormState = useWatch({
 		name: parameterId,
 	});
@@ -31,13 +32,23 @@ export const ParameterInputComponent = ({
 	// ruun through - update parameters calls a set on paremeters list
 	// but this map is never referenced
 	// this hook etc ultimqately does nothing
-	useUpdateParameters({
-		id,
-		key,
-		options,
-		parameterFormState,
-		updateParameters,
-	});
+	// useUpdateParameters({
+	// 	id,
+	// 	key,
+	// 	options,
+	// 	parameterFormState,
+	// 	updateParameters,
+	// });
+
+	// console.log(
+	// 	"ISSUE:589",
+	// 	"INPUT:COMPONENT",
+	// 	{ parameterConfigData },
+	// 	{ defaultValue },
+	// 	{ objectKey },
+	// 	{ parameterId },
+	// 	{ parameterFormState }
+	// );
 
 	// This should be handled by context object
 	// is setDefault if no state value

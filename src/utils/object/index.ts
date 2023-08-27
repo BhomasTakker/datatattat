@@ -3,7 +3,7 @@ export const cloneDeepSerializable = (obj: unknown) => {
 };
 
 export const cloneDeep = (obj: unknown) => {
-	return cloneDeepSerializable(obj);
+	// return cloneDeepSerializable(obj);
 	// node 17
-	// return structuredClone ? structuredClone(obj) : cloneDeepSerializable(obj);
+	return structuredClone ? structuredClone(obj) : cloneDeepSerializable(obj);
 };

@@ -2,6 +2,7 @@ import { ReactNode, createContext, useContext, useEffect } from "react";
 import { QueryContext } from "./query-context";
 import { useWatch, useFormContext } from "react-hook-form";
 import { useUnregisterForm } from "../../hooks/useUnregisterForm";
+import { ContentComponentContext } from "../../content/context/content-component.context";
 
 type CreatorState = {
 	config: any;
@@ -30,7 +31,14 @@ export const CreatorContextProvider = ({
 	// const { selectedQueryConfig: asSomething } = useContext(CreatorContext);
 	// console.log({ asSomething });
 
-	const { queryFormKey, setQueryId } = useContext(QueryContext);
+	const {
+		queryFormKey,
+		queryIdFormKey,
+		providerFormKey,
+		parametersFormKey,
+		setQueryId,
+	} = useContext(QueryContext);
+	const { withComponentType } = useContext(ContentComponentContext);
 	const { config } = value;
 	const {
 		id,
@@ -54,7 +62,17 @@ export const CreatorContextProvider = ({
 	// Shouldn't have unregister form
 	// the setValue useEffect is far too messy / hacky
 	// nope....
-	useUnregisterForm({ name: formInputId });
+	// useUnregisterForm({ name: formInputId });
+	// console.log("ISSUE:999", "WUT", { withComponentType });
+	// useEffect(() => {
+	// 	// console.log("ISSUE:999", { formInputId });
+	// 	console.log("ISSUE:999", { queryFormKey });
+	// 	// console.log("ISSUE:999", { queryIdFormKey });
+	// 	// console.log("ISSUE:999", { providerFormKey });
+	// 	// console.log("ISSUE:999", { parametersFormKey });
+	// 	console.log("ISSUE:999", { withComponentType });
+	// 	// setValue(queryFormKey, {});
+	// }, [withComponentType, queryFormKey, setValue]);
 
 	useEffect(() => {
 		if (!queryId) {

@@ -12,9 +12,8 @@ export const ContentComponent = () => {
 	const {
 		config,
 		withFormTypeId,
-		withComponent,
+		// withComponent,
 		propsId,
-		withComponentFormData,
 	} = useContext(ContentComponentContext);
 	const { componentTypeFormId, objectKey } = useContext(EditComponentContext);
 	console.log("FEATURE:404", "CONTENT:COMPONENT", { config }, { objectKey });
@@ -47,7 +46,7 @@ export const ContentComponent = () => {
 			</Box>
 			{/* Not like this! Just call a factoryComponent and pass whatever */}
 			{/* WithComponentFactory */}
-			{withComponent}
+			{/* {withComponent} */}
 			<WithComponentFactory />
 		</Stack>
 	);

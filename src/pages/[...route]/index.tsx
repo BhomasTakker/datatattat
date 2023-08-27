@@ -10,6 +10,7 @@ import { getHeaders, getMainHeader } from "@/src/headers/get-headers";
 import { Common } from "@/src/lib/i18n/translation";
 import styles from "@/styles/Home.module.css";
 import { useTranslation } from "next-i18next";
+import { PageContainerFactoryComponent } from "@/src/components/page-containers/page-container.factory";
 
 //type input - this needs to change
 function ContentPage({ pageData }: any) {
@@ -21,14 +22,21 @@ function ContentPage({ pageData }: any) {
 	}
 	const { content } = pageData;
 
-	const Container = containerFactory(content);
+	const Container = containerFactory(content) || <></>;
+
+	console.log({ content });
+	console.log({ Container });
+
+	// return <></>;
 
 	return (
 		<>
 			<DTAHead />
 			<main className={styles.main}>
+				{/* Remove title from here */}
 				<h1>{t(Common.pageTitle)}</h1>
-				<Container data={content} />
+				<PageContainerFactoryComponent contentData={content} />
+				{/* <Container data={content} /> */}
 			</main>
 		</>
 	);
@@ -80,6 +88,8 @@ export async function getStaticProps({
 	}
 
 	const headerAndSubHeader = await getHeaders(pageRoute);
+
+	console.log("We are here");
 
 	return {
 		props: {

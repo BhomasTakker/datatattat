@@ -1,6 +1,12 @@
 // Should really make a plop file
 
-import { ReactNode, createContext, useContext, useState } from "react";
+import {
+	ReactNode,
+	createContext,
+	useContext,
+	useEffect,
+	useState,
+} from "react";
 import { useWatch } from "react-hook-form";
 import { EditComponentContext } from "../../component/context/edit-component.context";
 
@@ -13,20 +19,22 @@ type ContentComponentState = {
 };
 
 type ContentComponentInterface = {
-	withComponentFormData: any;
+	// withComponentFormData: any;
 	propsId: string;
 	withFormId: string;
 	withFormTypeId: string;
-	withComponent: ReactNode;
+	// withComponent: ReactNode;
+	withComponentType: string;
 };
 
 const initialState: ContentComponentState & ContentComponentInterface = {
 	config: null,
-	withComponentFormData: null,
+	// withComponentFormData: null,
 	propsId: "",
 	withFormId: "",
 	withFormTypeId: "",
-	withComponent: <></>,
+	// withComponent: <></>,
+	withComponentType: "",
 };
 
 export const ContentComponentContextProvider = ({
@@ -37,7 +45,8 @@ export const ContentComponentContextProvider = ({
 	children: ReactNode;
 }) => {
 	const { objectKey } = useContext(EditComponentContext);
-	const [withComponent, setWithComponent] = useState(<></>);
+	// const [withComponent, setWithComponent] = useState(<></>);
+	const [withComponentType, setWithComponentType] = useState("");
 
 	const withFormId = `${objectKey}.${WITH_ID}`;
 	const withFormTypeId = `${objectKey}.${WITH_TYPE_ID}`;
@@ -48,16 +57,24 @@ export const ContentComponentContextProvider = ({
 		// control,
 		name: withFormTypeId,
 	});
+	useEffect(() => {
+		// console.log("ISSUE:999", "CONTEXT:USE:EFFECT", { withComponentType });
+		setWithComponentType(withComponentFormData);
+	}, [withComponentFormData]);
+
+	// console.log("ISSUE:999", "CONTEXT", { withComponentType });
 
 	return (
 		// Would you always spread given value here?
 		<ContentComponentContext.Provider
 			value={{
 				...value,
-				withComponentFormData, //?
+				//  better name
+				// withComponentFormData, //?
+				withComponentType,
 				withFormId,
 				withFormTypeId,
-				withComponent,
+				// withComponent,
 				propsId,
 			}}
 		>

@@ -1,4 +1,8 @@
-import { CONTAINERS, EDIT_CONTAINERS } from "./containers";
+import { CONTAINERS } from "./containers";
+
+////////////////////////////////////
+// This is our topLevel Component //
+////////////////////////////////////
 
 //We just need type at the moment
 // need return one of a number of ReactElements

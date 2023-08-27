@@ -17,7 +17,7 @@ export const ComponentsStack = () => {
 				<EditComponentContainer
 					objectKey={`${pageComponentsId}.${i}`}
 					onDelete={() => deleteComponent(i)}
-					onMove={(dir) => moveComponent(i, dir)}
+					onMove={(dir) => moveComponent(dir, i)}
 				/>
 			</Stack>
 		);

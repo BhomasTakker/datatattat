@@ -9,6 +9,7 @@ import Header from "@/models/Header";
 import Footer from "@/models/Footer";
 import { containerFactory } from "@/src/factories/container-factory";
 import { getHeaders, getMainHeader } from "@/src/headers/get-headers";
+import { PageContainerFactoryComponent } from "@/src/components/page-containers/page-container.factory";
 
 function UserLanding({ username, pageData, headerData, footerData }: any) {
 	// console.log({ username });
@@ -28,6 +29,7 @@ function UserLanding({ username, pageData, headerData, footerData }: any) {
 			<main>
 				{/* Does page have a title and a pre-amble */}
 				<h1>{`${username} Landing Page`}</h1>
+				<PageContainerFactoryComponent contentData={content} />
 				<Container data={content} />
 			</main>
 		</>
