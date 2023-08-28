@@ -100,7 +100,14 @@ export const QueryContextProvider = ({
 		unregister(queryIdFormKey);
 		unregister(providerFormKey);
 		// unregister(conversionsFormKey);
-		// unregister(parametersFormKey);
+		//this in use with useUnregisterForm is/was/will be an epic bug
+		// you need to properly understand what's going on and refactor/fix
+		// I don't think it works / I don't fucking need this
+		// The reset - we're unregistering but never again setValue?
+		// So you make a change here and resave and the thing reset to ''
+		// anything in this area is problematic - works now but fuuuuck.
+		// Think conversions will be the same or similar
+		unregister(parametersFormKey);
 	}, [
 		parametersFormKey,
 		providerFormKey,

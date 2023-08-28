@@ -28,8 +28,8 @@ export const ParametersContextProvider = ({
 	value: ParametersState;
 	children: ReactNode;
 }) => {
-	const { objectKey, parameters } = value;
-	const { setValue } = useFormContext();
+	// const { objectKey, parameters } = value;
+	// const { setValue } = useFormContext();
 
 	// useEffect(() => {
 	// 	console.log(

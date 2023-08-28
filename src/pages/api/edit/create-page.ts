@@ -84,8 +84,10 @@ async function createNewPage(
 		return res.status(500).json({ msg: "DB error" });
 	}
 
-	console.log("FEATURE:NEW:PAGE", "HERE:8");
-
+	console.log("FEATURE:NEW:PAGE", "HERE:8", { body });
+	const { content } = body;
+	const { props } = content;
+	console.log("FEATURE:NEW:PAGE", "HERE:8", { props });
 	// const page = new Page(body);
 
 	// try {

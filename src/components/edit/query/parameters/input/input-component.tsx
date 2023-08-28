@@ -27,6 +27,8 @@ export const ParameterInputComponent = ({
 		name: parameterId,
 	});
 
+	console.log("GODAMN", { parameterId });
+	console.log("GODAMN", { parameterFormState });
 	// these seem bad practice
 	// should be controlled in context
 	// ruun through - update parameters calls a set on paremeters list

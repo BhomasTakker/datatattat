@@ -52,7 +52,7 @@ export const PageStateContextProvider = ({
 }) => {
 	// const forceUpdate = useReducer((bool) => !bool, true)[1];
 	const { currentPage } = useContext(EditContext);
-	const { setValue, register } = useFormContext();
+	const { setValue, unregister, reset } = useFormContext();
 	const { pageData } = useContext(PageQueryContext);
 
 	useEffect(() => {
@@ -84,6 +84,7 @@ export const PageStateContextProvider = ({
 		setValue("content", content, {
 			shouldValidate: true,
 		});
+
 		// forceUpdate();
 		// reset works but setValue didn't
 		// not entirely sure why

@@ -64,7 +64,8 @@ const ContainerSchema = new Schema(
 const ContentSchema = new Schema(
 	{
 		container: ContainerSchema,
-		//props
+		// We can pass a type/ref and specify from that?
+		props: Schema.Types.Mixed,
 		components: [ComponentSchema],
 	},
 	{ _id: false }

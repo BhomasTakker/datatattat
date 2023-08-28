@@ -13,12 +13,16 @@ type ParametersProps = {
 };
 
 // pass in title and info
-export const Parameters = ({ params, objectKey }: ParametersProps) => {
+export const Parameters = ({ params = [], objectKey }: ParametersProps) => {
 	// probably not great...
 	// should the test be in context?
-	if (!params?.length) {
+	console.log("GODAMN", { len: params.length }, { params });
+	if (params.length === 0) {
+		console.log("GODAMN:RETURN:<></>", { len: params.length }, { params });
 		return <></>;
 	}
+	console.log("GODAMN:DO:MATH", { len: params.length }, { params });
+
 	// console.log({ params });
 	return (
 		// Parameters should just be added to the context
@@ -28,6 +32,7 @@ export const Parameters = ({ params, objectKey }: ParametersProps) => {
 			<WithInfo info="Query parameters. Controls to modify the query sent to your chosen api.">
 				<Title text="Parameters" variant={TitleVariant.EDIT_COMPONENT}></Title>
 			</WithInfo>
+			<h1>What the fuck</h1>
 			<ParametersList parameters={params} />
 		</ParametersContextProvider>
 	);

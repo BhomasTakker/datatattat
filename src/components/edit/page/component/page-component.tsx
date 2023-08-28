@@ -29,6 +29,9 @@ export const PageComponent = () => {
 	const { pagePropsId } = useContext(PageStateContext);
 
 	const { container } = useContext(PageContainerContext);
+
+	console.log("ISSUE:777", "PAGE:COMPONENT", { pagePropsId });
+
 	return (
 		<Stack>
 			<WithInfo infoId={info}>

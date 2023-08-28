@@ -62,7 +62,9 @@ export const CreatorContextProvider = ({
 	// Shouldn't have unregister form
 	// the setValue useEffect is far too messy / hacky
 	// nope....
-	// useUnregisterForm({ name: formInputId });
+	// Crazily required for parameters at the moment
+	// re-renders and form state are getting wild
+	useUnregisterForm({ name: formInputId });
 	// console.log("ISSUE:999", "WUT", { withComponentType });
 	// useEffect(() => {
 	// 	// console.log("ISSUE:999", { formInputId });

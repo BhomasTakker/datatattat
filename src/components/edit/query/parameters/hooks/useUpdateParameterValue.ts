@@ -17,9 +17,12 @@ export const useUpdateParameterValue = ({
 	parameterFormState,
 }: UseUpdateParameterValue) => {
 	useEffect(() => {
-		// if (!defaultValue) {
-		// 	return;
-		// }
+		// Probably a bug
+		// Don't set value to defaulkt if default = undefined
+		// But why is parametersFormState undefined...
+		if (!defaultValue) {
+			return;
+		}
 		// Tests to set input to default value on change
 		// Checks if current value exists in current endpoints
 		// if both choices share a field/endpoint then I believe it won't pick default
