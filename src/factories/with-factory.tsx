@@ -64,6 +64,8 @@ const createQueryObject = (queryObject: any, queryPath: string) => {
 // There is a better way / or it can be cleaner
 // will we not end up with 100s / of these we probably shouldn't?
 // withObject is the saved with data
+/////////////////////
+// you can basic type componentObject
 export const withFactory = (componentObject: any, withObject: any) => {
 	switch (withObject.type) {
 		case "rss-query":

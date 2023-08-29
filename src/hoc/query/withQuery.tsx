@@ -65,9 +65,11 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 	// A HOC might be unneccessary for Query etc
 	////////////////////////////////////////////////////////
 
+	// As above - look at this
+	// Query feels jank
 	return (
 		<Component
-			// Component doesn't care if it's a querry or not
+			// Component doesn't care if it's a query or not
 			// That would make it a query component or something
 			queryData={data}
 			//withPaginatedQuery?
@@ -75,6 +77,9 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 			onPageUpdate={setQueryState}
 			//pass in
 			// manualPagination={true}
+
+			// maybe not the best way?
+			// ONLY pass props
 			{...componentProps}
 		/>
 	);

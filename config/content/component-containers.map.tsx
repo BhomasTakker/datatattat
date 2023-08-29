@@ -1,10 +1,6 @@
-const ArticleList = ({ queryData }: { queryData: any }) => {
-	// Now need look at Query better
-	console.log("FEATURE:001", "ARTICLE:LIST", { queryData });
-	return <>ArticleList</>;
-};
+import { ArticleList } from "@/src/components/content-display/article/lists/article-list";
 
 export const COMPONENTS_MAP = new Map([
-	["ArticleList", ArticleList],
+	["articlelist", ArticleList],
 	["simplelist", ArticleList],
 ]);

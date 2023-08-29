@@ -7,6 +7,11 @@ type Component = any;
 
 type Direction = "row" | "row-reverse" | "column" | "column-reverse";
 
+////////////////
+// Main stack //
+// Basic Variations //
+// Have icons at the side like a menu & scrollable?
+
 export const PageDisplayStack = ({ data }: { data: any }) => {
 	console.log("FEATURE:001", "PAGE:DISPLAY:STACK", { data });
 	const { props, container, components } = data;
