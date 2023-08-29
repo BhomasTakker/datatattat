@@ -1,15 +1,15 @@
+import { PageDisplayStack } from "@/src/components/content-display/page-containers/stack/Stack";
+
 const Grid = ({ data }: { data: any }) => {
 	return <>Grid</>;
 };
-const Stack = ({ data }: { data: any }) => {
-	return <>Stack</>;
-};
+
 const Display = ({ data }: { data: any }) => {
 	return <>Display</>;
 };
 
 export const PAGE_CONTAINERS_MAP = new Map([
-	["grid", Grid],
-	["stack", Stack],
-	["display", Display],
+	["Grid", Grid],
+	["Stack", PageDisplayStack],
+	["Display", Display],
 ]);

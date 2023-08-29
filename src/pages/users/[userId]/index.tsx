@@ -9,7 +9,8 @@ import Header from "@/models/Header";
 import Footer from "@/models/Footer";
 import { containerFactory } from "@/src/factories/container-factory";
 import { getHeaders, getMainHeader } from "@/src/headers/get-headers";
-import { PageContainerFactoryComponent } from "@/src/components/page-containers/page-container.factory";
+import { PageContainerFactoryComponent } from "@/src/components/content-display/page-containers/page-container.factory";
+import { PageDisplayContainer } from "@/src/components/content-display/page/page-display.container";
 
 function UserLanding({ username, pageData, headerData, footerData }: any) {
 	// console.log({ username });
@@ -24,15 +25,16 @@ function UserLanding({ username, pageData, headerData, footerData }: any) {
 	const Container = containerFactory(content);
 
 	return (
-		<>
-			<DTAHead />
-			<main>
-				{/* Does page have a title and a pre-amble */}
-				<h1>{`${username} Landing Page`}</h1>
-				<PageContainerFactoryComponent contentData={content} />
-				<Container data={content} />
-			</main>
-		</>
+		<PageDisplayContainer pageData={pageData} />
+		// <>
+		// 	<DTAHead />
+		// 	<main>
+		// 		{/* Does page have a title and a pre-amble */}
+		// 		<h1>{`${username} Landing Page`}</h1>
+		// 		<PageContainerFactoryComponent contentData={content} />
+		// 		<Container data={content} />
+		// 	</main>
+		// </>
 	);
 }
 

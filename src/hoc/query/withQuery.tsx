@@ -55,8 +55,20 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 
 	//if you have pagination you have to be expecting pagination props - i.e. setPagination
 	//We need to be passing props and adding queryState to that
+
+	////////////////////////////////////////////////////////
+	// Wrap Component in a Query Context
+	// That way - if I am expecting pagination
+	// I can use context controls
+	// Would need multiple contexts ??
+	// i.e. PaginatedQuery perhaps
+	// A HOC might be unneccessary for Query etc
+	////////////////////////////////////////////////////////
+
 	return (
 		<Component
+			// Component doesn't care if it's a querry or not
+			// That would make it a query component or something
 			queryData={data}
 			//withPaginatedQuery?
 			queryState={queryState}

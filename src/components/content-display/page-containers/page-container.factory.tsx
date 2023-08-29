@@ -8,6 +8,7 @@ interface PageContainerProps {
 	contentData: any;
 }
 
+// Could pass in map
 export const PageContainerFactoryComponent = ({
 	contentData,
 }: PageContainerProps) => {
@@ -20,8 +21,6 @@ export const PageContainerFactoryComponent = ({
 		// Error component
 		return <>Error</>;
 	}
-
-	console.log({ PageContainerComponent });
 
 	return <PageContainerComponent data={contentData} />;
 };

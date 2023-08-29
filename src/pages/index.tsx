@@ -11,7 +11,8 @@ import Header from "@/models/Header";
 import Footer from "@/models/Footer";
 import { containerFactory } from "../factories/container-factory";
 import { getHeaders, getMainHeader } from "../headers/get-headers";
-import { PageContainerFactoryComponent } from "../components/page-containers/page-container.factory";
+import { PageContainerFactoryComponent } from "../components/content-display/page-containers/page-container.factory";
+import { PageDisplayContainer } from "../components/content-display/page/page-display.container";
 
 export default function Home(props: any) {
 	const { t } = useTranslation(); //pass a prameter of 'Home' for a particular namespace / array?
@@ -23,23 +24,24 @@ export default function Home(props: any) {
 	const Container = containerFactory(content);
 
 	return (
-		<>
-			{/* Need create a head component / and / or render function for each page */}
-			<Head>
-				<title>{t(Common.pageTitle)}</title>
-				<meta name="description" content="First rendition" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
-			{/* We need to get the container and pass in content data */}
-			{/* That should literally be it */}
-			{/* Seems like a factory render - pass in content - blap container - pass in components or whatever */}
-			<main className={styles.main}>
-				<h1>{t(Common.pageTitle)}</h1>
-				<PageContainerFactoryComponent contentData={content} />
-				<Container data={content} />
-			</main>
-		</>
+		<PageDisplayContainer pageData={pageData} />
+		// <>
+		// 	{/* Need create a head component / and / or render function for each page */}
+		// 	<Head>
+		// 		<title>{t(Common.pageTitle)}</title>
+		// 		<meta name="description" content="First rendition" />
+		// 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		// 		<link rel="icon" href="/favicon.ico" />
+		// 	</Head>
+		// 	{/* We need to get the container and pass in content data */}
+		// 	{/* That should literally be it */}
+		// 	{/* Seems like a factory render - pass in content - blap container - pass in components or whatever */}
+		// 	<main className={styles.main}>
+		// 		<h1>{t(Common.pageTitle)}</h1>
+		// 		<PageContainerFactoryComponent contentData={content} />
+		// 		<Container data={content} />
+		// 	</main>
+		// </>
 	);
 }
 
