@@ -33,7 +33,8 @@ export const EditFactoryComponent = ({
 
 	// get id config
 	// @ts-ignore / maybe don't want to lower case!
-	const componentConfig = typeMap[id.toLowerCase()];
+	// What was the reasoning in the first place?
+	const componentConfig = typeMap[id];
 
 	if (!componentConfig) {
 		return <></>;

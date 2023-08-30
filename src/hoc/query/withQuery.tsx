@@ -71,12 +71,20 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 		<Component
 			// Component doesn't care if it's a query or not
 			// That would make it a query component or something
-			queryData={data}
+			queryData={data} // deprecated
+			data={data}
 			//withPaginatedQuery?
 			queryState={queryState}
 			onPageUpdate={setQueryState}
 			//pass in
 			// manualPagination={true}
+
+			// if a component expects pagination / unlimited scroll
+			// it can call prev and next functions
+			// or goto
+
+			// next = () => {}
+			// prev = () => {}
 
 			// maybe not the best way?
 			// ONLY pass props
