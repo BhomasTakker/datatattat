@@ -7,7 +7,7 @@ import {
 	useState,
 } from "react";
 import { Conversion, ConversionObject, Conversions } from "../types";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 
 const defaultConversion = {
 	id: "",
@@ -15,11 +15,11 @@ const defaultConversion = {
 	defaultConversions: [],
 };
 
-type ConversionData = {
-	id: string;
-	type: string; // enum
-	props?: any; // key value [string, enum]
-};
+// type ConversionData = {
+// 	id: string;
+// 	type: string; // enum
+// 	props?: any; // key value [string, enum]
+// };
 
 type ConversionsState = {
 	objectKey: string;
@@ -31,8 +31,8 @@ type ConversionsState = {
 
 	conversionJson: ConversionObject;
 
-	getValues: (id: string) => void;
-	setValue: (id: string, value: any) => void;
+	// getValues: (id: string) => void;
+	// setValue: (id: string, value: any) => void;
 };
 
 type ConversionsInterface = {
@@ -57,8 +57,8 @@ const conversionsInitialState: ConversionsState & ConversionsInterface = {
 	updateConversion: () => {},
 
 	// external form
-	getValues: () => {},
-	setValue: () => {},
+	// getValues: () => {},
+	// setValue: () => {},
 	// internal form
 	getFormValues: () => {},
 	setFormValue: () => {},
@@ -84,11 +84,11 @@ export const ConversionsContextProvider = ({
 	children: ReactNode;
 }) => {
 	// const [conversions, setConversions] = useState<Conversions>([]);
-	const { setValue, watch, unregister } = useFormContext();
+	const { setValue, unregister } = useFormContext();
 
 	const { conversionJson, objectKey } = value;
 	const conversionsFormId = `${objectKey}.conversions`;
-	const conversions = watch(conversionsFormId, []);
+	const conversions = useWatch({ name: conversionsFormId, defaultValue: [] });
 
 	const {
 		id = undefined,
@@ -96,14 +96,19 @@ export const ConversionsContextProvider = ({
 		defaultConversions,
 	} = conversionJson;
 
-	console.log({ JSON: conversionJson });
+	// console.log({ JSON: conversionJson });
 
 	////////////////////////////////
-	// initialize function
-	if (id) {
-		setValue(`${objectKey}.responseKey`, id);
-	}
-	setValue(`${objectKey}.iterable`, iterable);
+	// initialize function ?
+	useEffect(() => {
+		if (id) {
+			setValue(`${objectKey}.responseKey`, id);
+		}
+	}, [id, objectKey, setValue]);
+	useEffect(() => {
+		setValue(`${objectKey}.iterable`, iterable);
+	}, [iterable, objectKey, setValue]);
+	//
 	/////////////////////////////////
 	// move these functions
 	// we need to useCallback all of these functions
@@ -136,7 +141,7 @@ export const ConversionsContextProvider = ({
 		// by setting default value of watch we will always get an array
 		// remove !conversions ||
 		if (conversions.length === 0) {
-			console.log({ DEFAULT: defaultConversions });
+			// console.log({ DEFAULT: defaultConversions });
 			addConversions(defaultConversions);
 		}
 	}, [addConversions, conversions, defaultConversions]);

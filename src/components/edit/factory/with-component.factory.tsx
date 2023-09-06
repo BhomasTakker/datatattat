@@ -10,12 +10,11 @@ export const WithComponentFactory = () => {
 	const Component = withEditFactory(withComponentType);
 
 	if (!Component) {
-		return (
-			<div>
-				There was an error
-				{/* {component} */}
-			</div>
-		);
+		// Return silent error component
+		// We are 'rendered' when null
+		// i.e. before a selection
+		// protect one way or other
+		return <></>;
 	}
 
 	console.log("FEATURE:215", "WITH:COMPONENT:FACTORY", {

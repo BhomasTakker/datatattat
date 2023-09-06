@@ -14,13 +14,15 @@ export const SelectTransformConversion = ({
 	value,
 	props,
 }: SelectConversion) => {
-	const { setValue } = useFormContext();
+	// const { setValue } = useFormContext();
 	const { transform, setFormValue } = useContext(ConversionsContext);
 	const conversionsList = { ...TRANSFORM_MAP, ...transform };
 
-	if (value) {
-		setFormValue(`${objectKey}.id`, value);
-	}
+	useEffect(() => {
+		if (value) {
+			setFormValue(`${objectKey}.id`, value);
+		}
+	}, [objectKey, setFormValue, value]);
 
 	return (
 		<Stack>

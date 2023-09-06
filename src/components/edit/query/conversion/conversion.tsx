@@ -24,6 +24,7 @@ const ConversionType = ({
 	conversion,
 }: ConversionTypeProps) => {
 	const { id, props } = conversion;
+
 	switch (conversionType) {
 		case ITERATOR_CONVERSION_TYPES.FILTER:
 			return (

@@ -44,9 +44,6 @@ export const ContentComponent = () => {
 					options={EDIT_WITH}
 				/>
 			</Box>
-			{/* Not like this! Just call a factoryComponent and pass whatever */}
-			{/* WithComponentFactory */}
-			{/* {withComponent} */}
 			<WithComponentFactory />
 		</Stack>
 	);

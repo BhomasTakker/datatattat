@@ -7,7 +7,7 @@ import {
 	useMemo,
 } from "react";
 import { HeaderQueryContext } from "../../query/header-query.context";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import { useUser } from "@/src/hooks/useUser";
 import { EditContext } from "@/src/context/edit-context";
 import { NavLinkData } from "@/src/components/header/nav-links/NavLink";
@@ -61,7 +61,7 @@ export const HeaderStateContextProvider = ({
 	children: ReactNode;
 }) => {
 	const { currentHeader } = useContext(HeaderQueryContext);
-	const { setValue, watch, unregister } = useFormContext();
+	const { setValue, unregister } = useFormContext();
 	const { nav } = currentHeader || {};
 	const reformedNav = useMemo(() => reformNavigationRoutes(nav), [nav]);
 
@@ -69,7 +69,10 @@ export const HeaderStateContextProvider = ({
 	const username = user?.username || "";
 	const { currentPage, setCurrentPageHandler } = useContext(EditContext);
 
-	const navigation: NavLinkData[] = watch(FORM_ID, []);
+	const navigation: NavLinkData[] = useWatch({
+		name: FORM_ID,
+		defaultValue: [],
+	});
 
 	useEffect(() => {
 		// const stripKeys = reformedNav.map(({ label, route }) => ({ label, route }));

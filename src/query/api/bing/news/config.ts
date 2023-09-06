@@ -140,6 +140,7 @@ export const BING_NEWS_ROOT = {
 	id: "bing_news_endpoint",
 	label: "Select Endpoint",
 
+	// type?
 	type: "select",
 	endpoints: BING_ENDPOINTS,
 

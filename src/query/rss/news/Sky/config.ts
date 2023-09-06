@@ -15,6 +15,12 @@ enum ENDPOINTS {
 	strange = "strange",
 }
 
+const CONVERSIONS = {
+	toArticleList: "toArticleList",
+	toArticleList2: "toArticleList2",
+	toArticleList3: "toArticleList3",
+} as const;
+
 const endpoint = {
 	type: "select",
 	id: "endpoint",
@@ -41,6 +47,8 @@ const articleConversion = {
 export const SKY_NEWS_ROOT = {
 	id: "sky_news_endpoint",
 	label: "Select Endpoint",
+
+	//type?
 
 	queryId: "skyNews",
 

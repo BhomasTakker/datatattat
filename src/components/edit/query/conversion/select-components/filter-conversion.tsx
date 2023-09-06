@@ -12,13 +12,14 @@ export const SelectFilterConversion = ({
 	value,
 	props,
 }: SelectConversion) => {
-	const { setValue } = useFormContext();
 	const { filter, setFormValue } = useContext(ConversionsContext);
 	const conversionsList = { ...FILTER_MAP, ...filter };
 
-	if (value) {
-		setFormValue(`${objectKey}.id`, value);
-	}
+	useEffect(() => {
+		if (value) {
+			setFormValue(`${objectKey}.id`, value);
+		}
+	}, [objectKey, setFormValue, value]);
 
 	console.log("filterConversions");
 	return (

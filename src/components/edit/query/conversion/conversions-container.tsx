@@ -22,10 +22,11 @@ const MainResponse = ({
 	response: any;
 	objectKey: string;
 }) => {
-	const { getValues, setValue } = useFormContext();
+	// const { getValues, setValue } = useFormContext();
 	if (!response) {
 		return <></>;
 	}
+
 	const { id = "", sort = {}, filter = {}, transform = {} } = response;
 	return (
 		<ConversionsContextProvider
@@ -35,8 +36,8 @@ const MainResponse = ({
 				sort,
 				filter,
 				transform,
-				getValues,
-				setValue,
+				// getValues,
+				// setValue,
 				conversionJson: response,
 			}}
 			key={id}
@@ -58,7 +59,7 @@ const SubComponents = ({
 	conversions: ConversionObject[];
 	objectKey: string;
 }) => {
-	const { getValues, setValue } = useFormContext();
+	// const { getValues, setValue } = useFormContext();
 
 	if (!conversions) {
 		return <></>;
@@ -82,8 +83,8 @@ const SubComponents = ({
 						sort,
 						filter,
 						transform,
-						getValues,
-						setValue,
+						// getValues,
+						// setValue,
 						conversionJson: conversion,
 					}}
 				>
@@ -108,6 +109,7 @@ export const ConversionsContainer = ({
 	const { response, conversionId, subConversions } = conversion || {};
 	const { setValue } = useFormContext();
 
+	// yeah this shouldn't be here
 	useEffect(() => {
 		// Probably manage this better with context?
 		// ${objectKey}.conversions should really be passed in
@@ -118,6 +120,8 @@ export const ConversionsContainer = ({
 	if (!response && !subConversions) {
 		return <></>;
 	}
+
+	// return <></>;
 	return (
 		<Stack>
 			<WithInfo info="How to modify the data you receive from your query. You can filter, sort, and transform results to suit your needs. Select from a predefined list or create your own.">
