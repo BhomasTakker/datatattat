@@ -17,6 +17,19 @@ const Page = ({ children }: { children: string }) => {
 		</Typography>
 	);
 };
+// this is a dumb way to go!
+const Content = ({ children }: { children: string }) => {
+	return (
+		<Typography
+			variant="h2"
+			component="h2"
+			marginTop={MARGINS.MIDLARGE}
+			marginBottom={MARGINS.MIDLARGE}
+		>
+			{children}
+		</Typography>
+	);
+};
 
 const EditComponent = ({ children }: { children: string }) => {
 	return (
@@ -47,6 +60,7 @@ const ComponantHash = {
 	Page,
 	Sub,
 	EditComponent,
+	Content,
 };
 // Our variants should be main, sub, article, etc
 // Should be able to pass down overides for component say
