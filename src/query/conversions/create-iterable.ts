@@ -39,6 +39,12 @@ export const createIterable = (
 	const nextHandler = (value: any) => {
 		// better way
 		updatedData[responseKey] = value;
+
+		// console.log("ISSUE:305", "CREATE:ITERABLE", { responseKey });
+		// console.log("ISSUE:305", "CREATE:ITERABLE", {
+		// 	old: updatedData[responseKey],
+		// });
+		// console.log("ISSUE:305", "CREATE:ITERABLE", { value });
 	};
 	const completeHandler = () => {
 		console.log("We completed");
@@ -48,6 +54,8 @@ export const createIterable = (
 	};
 	const observer = createObserver(nextHandler, completeHandler, errorHandler);
 
+	// console.log("ISSUE:305", "CREATE:ITERABLE", { conversions });
+	// console.log("ISSUE:305", "CREATE:ITERABLE", { conversionsMap });
 	let pipeFunctions = createPipeFunctions(conversions, conversionsMap);
 
 	// if dataKey then dataKey or nothing

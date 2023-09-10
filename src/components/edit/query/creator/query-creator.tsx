@@ -42,8 +42,10 @@ export const QueryCreator = ({}: QueryCreatorProps) => {
 	const [RecursiveComponent, setRecursiveComponent] =
 		useState<ReactElement | null>(null);
 
+	// ??
 	// blueprint changes between endpoints
 	// we cannot use context for it
+	// ??
 	const {
 		id,
 		label,

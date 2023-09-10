@@ -1,7 +1,9 @@
+import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import {
 	Avatar,
 	ListItem,
 	ListItemAvatar,
+	ListItemButton,
 	ListItemText,
 	Typography,
 } from "@mui/material";
@@ -15,29 +17,62 @@ interface SimpleArticleProps {
 
 export const SimpleArticle = ({
 	title,
-	content,
-	enclosure,
-}: SimpleArticleProps) => {
+	avatar,
+	src,
+	description,
+	guid,
+	variant,
+	details,
+	media,
+}: CollectionItem) => {
+	// hack for BING article
+	// need update BING
+	// or update sky / general RSS
+	console.log(
+		"FEATURE:753",
+		"SIMPLE:ARTICLE",
+		{ title },
+		{ avatar },
+		{ src },
+		{ description }
+	);
+	const img = avatar ? avatar.src : "";
+
+	// We want to do different things on click and/or hover
+
+	const onClickHandler = () => {
+		console.log(`GO TO ${src}`);
+	};
+
 	return (
 		<ListItem>
-			<ListItemAvatar>
-				<Avatar alt={title} src={enclosure.url} />
-			</ListItemAvatar>
-			<ListItemText
-				primary={title}
-				secondary={
-					<Fragment>
-						<Typography
-							sx={{ display: "inline" }}
-							component="span"
-							variant="body2"
-							color="text.primary"
-						>
-							{content}
-						</Typography>
-					</Fragment>
-				}
-			/>
+			<ListItemButton
+				selected={false}
+				color={"primary"}
+				onClick={onClickHandler}
+			>
+				{img && (
+					<ListItemAvatar>
+						<Avatar alt={title} src={img} />
+					</ListItemAvatar>
+				)}
+				<ListItemText
+					primary={title}
+					secondary={
+						<Fragment>
+							<Typography
+								noWrap
+								sx={{ display: "inline" }}
+								component="span"
+								variant="body2"
+								color="text.primary"
+							>
+								{description}
+							</Typography>
+						</Fragment>
+					}
+				/>
+			</ListItemButton>
 		</ListItem>
 	);
 };

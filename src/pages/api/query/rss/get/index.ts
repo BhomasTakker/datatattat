@@ -83,7 +83,9 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 
 	// console.log({ result });
 
+	// console.log("FEATURE:753", "RSS:QUERY", {parsedConversions});
 	const newResponse = convertResponse(result, parsedConversions);
+	// console.log("FEATURE:753", "RSS:QUERY", { result });
 	return res.status(200).json(newResponse);
 	// res.status(200).json(forNow(result));
 }

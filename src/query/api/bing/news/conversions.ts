@@ -1,8 +1,66 @@
 import { map } from "rxjs";
 import { BingNewsArticle, BingNewsSearchResponse } from "./types";
+import { Collection } from "@/src/types/data-structures/collection/collection";
+import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
+
+// bingResponseToCollection type = article
+// bingItemToItem
+
+const toCollection = (props: any) => {
+	return map((data: BingNewsSearchResponse): Collection => {
+		const { id, totalEstimatedMatches, value } = data;
+		console.log("TO COLLECTION ", { props });
+		// pagination: {}
+		return {
+			title: id,
+			src: "www.bing.com",
+			description: "",
+			guid: "",
+			variant: "article",
+			items: value as unknown as CollectionItem[],
+			pagination: {
+				results: totalEstimatedMatches,
+			},
+		};
+	});
+};
+
+const toCollectionItem = (props: any) => {
+	return map((data: BingNewsArticle): CollectionItem => {
+		const {
+			id,
+			description,
+			headline,
+			datePublished,
+			provider,
+			url,
+			category,
+			image,
+			name,
+		} = data;
+		const publishers = provider.map(({ name }) => name);
+		return {
+			title: name,
+			src: url,
+			description,
+			guid: "",
+			variant: "article",
+			details: {
+				published: datePublished,
+				categories: category ? [category] : [],
+				publishers,
+			},
+			avatar: {
+				src: image?.thumbnail?.contentUrl,
+				alt: headline || name,
+				// link: url,
+			},
+		};
+	});
+};
 
 // probably don't wrap in map here but ...
-const toArticleList = (props: any) =>
+export const toArticleList = (props: any) =>
 	map((data: BingNewsSearchResponse) => {
 		console.log("TO ARTICLE LIST");
 		return {
@@ -38,6 +96,8 @@ export const TRANSFORM = new Map<string, object>([
 	// spelling toArticle(s)List should change
 	["toArticlesList", toArticleList],
 	["toArticle", toArticle],
+	["toCollection", toCollection],
+	["toCollectionItem", toCollectionItem],
 ]);
 
 export const SORT = new Map<string, object>([]);

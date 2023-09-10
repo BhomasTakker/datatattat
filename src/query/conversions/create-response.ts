@@ -27,6 +27,10 @@ export const createResponse = (
 ) => {
 	const { conversions = [], iterable } = conversionsObject;
 
+	// console.log("FEATURE:753", "CREATE:RESPONSE", { data });
+	// console.log("FEATURE:753", "CREATE:RESPONSE", { conversionsObject });
+	// console.log("FEATURE:753", "CREATE:RESPONSE", { conversionsMap });
+	// console.log("FEATURE:753", "CREATE:RESPONSE", { conversions });
 	if (conversions.length === 0) {
 		return data;
 	}
@@ -38,6 +42,7 @@ export const createResponse = (
 	const nextHandler = (value: any) => {
 		// Change 2
 		updatedData = value;
+		// console.log("FEATURE:753", "NEXT:HANDLER", value);
 	};
 	const completeHandler = () => {
 		console.log("Response completed");
@@ -59,6 +64,8 @@ export const createResponse = (
 		observer as Observer<unknown>,
 		pipeFunctions
 	);
+
+	// console.log("FEATURE:753", "CREATE:RESPONSE", { updatedData });
 
 	return updatedData;
 };

@@ -8,11 +8,12 @@ enum BING_ENDPOINTS {
 	trending = "trending",
 }
 
-const CONVERSIONS = {
-	toArticleList: "toArticleList",
-	toArticleList2: "toArticleList2",
-	toArticleList3: "toArticleList3",
-} as const;
+// think unused / irrelevant
+// const CONVERSIONS = {
+// 	toArticleList: "toArticleList",
+// 	toArticleList2: "toArticleList2",
+// 	toArticleList3: "toArticleList3",
+// } as const;
 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
@@ -24,10 +25,11 @@ const responseMap = {
 
 const responseConversion: ConversionObject = {
 	map: responseMap,
-	defaultConversions: [{ id: "toArticlesList", type: "TRANSFORM" }],
+	defaultConversions: [{ id: "toCollection", type: "TRANSFORM" }],
 
 	transform: {
 		toArticlesList: "toArticlesList",
+		toCollection: "toCollection",
 	},
 };
 
@@ -45,11 +47,12 @@ const valueConversion: ConversionObject = {
 	id: "value",
 	iterable: true,
 	map: articleMap,
-	defaultConversions: [{ id: "toArticle", type: "TRANSFORM" }],
+	defaultConversions: [{ id: "toCollectionItem", type: "TRANSFORM" }],
 
 	sort: {},
 	filter: {},
 	transform: {
+		toCollectionItem: "toCollectionItem",
 		toArticle: "toArticle",
 	},
 };
@@ -64,7 +67,10 @@ const imageConversion: ConversionObject = {
 	sort: {},
 	filter: {},
 	transform: {
+		toCollectionItem: "toCollectionItem",
 		toArticlesList: "toArticlesList",
+		toCollection: "toCollection",
+		toArticle: "toArticle",
 	},
 };
 
@@ -151,7 +157,7 @@ export const BING_NEWS_ROOT = {
 	// Our list of conversions
 	// object default conversion, & list
 	// technically shouldn't be one here as no endpoint?
-	conversions: CONVERSIONS,
+	conversions: [], //ENDPOINTS
 
 	endpointObjects: {
 		search,

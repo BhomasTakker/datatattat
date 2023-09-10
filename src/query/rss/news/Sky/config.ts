@@ -1,3 +1,5 @@
+import { ConversionObject } from "@/src/components/edit/query/conversion/types";
+
 const BASE_URL = "https://feeds.skynews.com/feeds/rss/";
 const POSTFIX = ".xml";
 
@@ -15,12 +17,6 @@ enum ENDPOINTS {
 	strange = "strange",
 }
 
-const CONVERSIONS = {
-	toArticleList: "toArticleList",
-	toArticleList2: "toArticleList2",
-	toArticleList3: "toArticleList3",
-} as const;
-
 const endpoint = {
 	type: "select",
 	id: "endpoint",
@@ -34,25 +30,78 @@ const endpoint = {
 // whats the /middle-bit/ of a url called? - it is a subdirectory
 // type subdirectoryObject
 // topSubDirectoryObjetct, usSubDirectoryObject
-const articleConversion = {
-	conversionId: "RSS:DEFAULT",
-	// response: {
-	// },
-	// really sub objects array
-	iterable: {
-		id: "items",
+//////////////////////////////////////////////
+///////////////////////////////////////////
+// Conversions test
+const articleMap = {
+	category: "string",
+	datePublished: "string",
+	description: "string",
+	headline: "string",
+	id: "string",
+	image: "object",
+	video: "object",
+};
+
+const itemsConversion: ConversionObject = {
+	id: "items",
+	iterable: true,
+	map: articleMap,
+	defaultConversions: [{ id: "toCollectionItem", type: "TRANSFORM" }],
+
+	sort: {},
+	filter: {},
+	transform: {
+		toCollectionItem: "toCollectionItem",
 	},
 };
 
+// is this used?
+const responseMap = {
+	id: "string",
+	totalEstimatedMatches: "number",
+	value: "array",
+};
+
+const responseConversion: ConversionObject = {
+	map: responseMap,
+	defaultConversions: [{ id: "toCollection", type: "TRANSFORM" }],
+
+	transform: {
+		toCollection: "toCollection",
+	},
+};
+const articleConversion = {
+	conversionId: "RSS:2.0",
+	// response: {
+	// },
+	// really sub objects array
+	response: responseConversion,
+	// really sub objects
+	subConversions: [itemsConversion],
+	// iterable: {
+	// 	id: "items",
+	// },
+};
+
+//////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+
+// We need a type and/explainer
 export const SKY_NEWS_ROOT = {
 	id: "sky_news_endpoint",
 	label: "Select Endpoint",
 
-	//type?
+	// type?
+	// type is for our input type
+	// if none then there is none
+	// in this case we are just using params
+	// because it is just a value and not a route?
 
 	queryId: "skyNews",
 
-	params: [endpoint], // required?
+	params: [endpoint], // required? / yes
 
 	info: "id or explanation - or just an explanation",
 

@@ -9,7 +9,7 @@ export const SKY_NEWS_RSS_CREATOR = (queryParams: any) => {
 	return {
 		url: `${BASE_URL}${endpoint}${POSTFIX}`,
 		headers: {},
-		returns: (data: any) => data, // <- this needs a big work
+		returns: (data: any) => {}, // <- this needs a big work
 		queryParams,
 	};
 };

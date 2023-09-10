@@ -38,8 +38,9 @@ export const CreatorContextProvider = ({
 		parametersFormKey,
 		setQueryId,
 	} = useContext(QueryContext);
-	const { withComponentType } = useContext(ContentComponentContext);
+	// const { withComponentType } = useContext(ContentComponentContext);
 	const { config } = value;
+	console.log("FEATURE:531", "CREATOR:CONTEXT", "HERE");
 	const {
 		id,
 		queryId,
@@ -65,16 +66,6 @@ export const CreatorContextProvider = ({
 	// Crazily required for parameters at the moment
 	// re-renders and form state are getting wild
 	useUnregisterForm({ name: formInputId });
-	// console.log("ISSUE:999", "WUT", { withComponentType });
-	// useEffect(() => {
-	// 	// console.log("ISSUE:999", { formInputId });
-	// 	console.log("ISSUE:999", { queryFormKey });
-	// 	// console.log("ISSUE:999", { queryIdFormKey });
-	// 	// console.log("ISSUE:999", { providerFormKey });
-	// 	// console.log("ISSUE:999", { parametersFormKey });
-	// 	console.log("ISSUE:999", { withComponentType });
-	// 	// setValue(queryFormKey, {});
-	// }, [withComponentType, queryFormKey, setValue]);
 
 	useEffect(() => {
 		if (!queryId) {

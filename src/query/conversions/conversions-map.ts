@@ -1,16 +1,23 @@
 import { BING_CONVERSIONS } from "../api/bing/news/conversions";
+import { RSS_2_0_CONVERSIONS } from "../rss/conversions";
 import { MAIN_CONVERSIONS } from "./main-conversions";
 
 const emptyReturn = new Map<string, object>([]);
 
+// better way - this would get massive
 export const CONVERSIONS_MAP = new Map<string, object>([
 	// ["bing", BING_NEWS_API_OBJECT],
 	["MAIN", MAIN_CONVERSIONS],
 	["BING", BING_CONVERSIONS],
+	["RSS:2.0", RSS_2_0_CONVERSIONS],
 ]);
 
 export const getConversion = (id: string) => {
 	// if CONVERSIONS_MAP.has(id) else empty
+	console.log("FEATURE:753", "GET:CONVERSION", "ID", { id });
+	console.log("FEATURE:753", "GET:CONVERSION", "CONVERSION", {
+		CONVERSION: CONVERSIONS_MAP.get(id) ?? emptyReturn,
+	});
 	return CONVERSIONS_MAP.get(id) ?? emptyReturn;
 };
 
@@ -42,6 +49,8 @@ export const mergeConversions = (
 		conversions1.get("SORT") as Map<string, object>,
 		conversions2.get("SORT") as Map<string, object>
 	);
+
+	console.log("ISSUE:305", "MERGE:CONVERSIONS", { transform });
 
 	return new Map<string, object>([
 		["TRANSFORM", transform],
