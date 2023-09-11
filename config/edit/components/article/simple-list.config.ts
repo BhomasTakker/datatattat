@@ -1,10 +1,13 @@
+// Elsewhere but keep all available / different sets?
+const LIST_ITEMS = ["SimpleItem", "TitleItem"];
+
 export const SIMPLE_ARTICLE_LIST = {
 	id: "SimpleArticleList",
 	info: "SimpleArticleList",
 	title: "Simple Article List",
 
 	// FIX ME
-	// Need else blow up
+	// Need props else blow up
 	props: [
 		{
 			id: "title",
@@ -17,6 +20,13 @@ export const SIMPLE_ARTICLE_LIST = {
 			type: "text",
 			label: "Description",
 			info: "SimpleListDescription",
+		},
+		{
+			id: "component",
+			type: "select",
+			label: "List Component",
+			info: "ListComponentInfo",
+			options: LIST_ITEMS,
 		},
 	],
 } as const;

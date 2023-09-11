@@ -46,10 +46,13 @@ export const SimpleArticle = ({
 
 	return (
 		<ListItem>
+			{/* If link button - but next? */}
 			<ListItemButton
 				selected={false}
 				color={"primary"}
 				onClick={onClickHandler}
+				component="a"
+				href={src}
 			>
 				{img && (
 					<ListItemAvatar>
