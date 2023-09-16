@@ -20,12 +20,6 @@ export const SimpleArticleList = ({
 	description,
 	component,
 }: SimpleArticleListProps) => {
-	console.log("FEATURE:753", "SIMPLE:LIST", {
-		data,
-		title,
-		description,
-		component,
-	});
 	const { items } = data;
 
 	// We could use a variant for basic style?

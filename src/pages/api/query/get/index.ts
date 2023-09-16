@@ -19,14 +19,15 @@ const getQueryConfig = (queryId: QueryId, quearyData: QueryData) => {
 		data: typeof quearyData
 	) => QueryCreator;
 
-	return getConfigObject(quearyData);
+	// return getConfigObject(quearyData);
+	return getConfigObject ? getConfigObject(quearyData) : null;
 };
 
 const createQuery = () => {};
 
 // This needs massively cleaning up
 // As most thins we've done do
-// but this is very messy
+// but this is very messy / need merge / reuse with others
 async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== "GET") {
 		return;

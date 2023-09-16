@@ -1,6 +1,8 @@
 import { toArticleList } from "./conversions";
 import { BingNewsSearchResponse } from "./types";
 
+// Check if anything in here is used
+
 export const testReturn = (data: BingNewsSearchResponse) => {
 	return {
 		data: data.value,

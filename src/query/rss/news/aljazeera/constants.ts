@@ -6,7 +6,7 @@ export const ALJAZEERA_NEWS_RSS_CREATOR = (queryParams: any) => {
 	return {
 		url: `${BASE_URL}`,
 		headers: {},
-		returns: (data: any) => data, // <- this needs a big work
+		returns: (data: any) => data, // <- this needs a big work / check if dead now
 		queryParams,
 	};
 };

@@ -19,11 +19,9 @@ export const FactoryComponent = ({ data }: { data: any }) => {
 	};
 
 	if (!_with?.type) {
-		console.log("FEATURE:001", "FACTORY:COMPONENT", "NO:WITH", { data });
 		return <Component {...componentProps} />;
 	}
 
-	console.log("FEATURE:001", "FACTORY:COMPONENT", "WITH", { data });
 	const RenderElement = withFactory(componentObject, _with);
 	// Why wouldn't we have a context here?
 	return <RenderElement />;

@@ -1,9 +1,9 @@
-import { ConversionObject } from "@/src/components/edit/query/conversion/types";
-
-const BASE_URL = "https://feeds.skynews.com/feeds/rss/";
-const POSTFIX = ".xml";
+import { baseRSSConversion } from "../../rss-feed.config";
 
 // not a config but rss initialisation object or something??
+// Think about this - there will be a lot of these
+// Technically could be DB data
+// User Created
 
 enum ENDPOINTS {
 	home = "home",
@@ -26,86 +26,34 @@ const endpoint = {
 	// need add
 	defaultEndpoint: "home",
 };
-//Not input but endpoint or something
-// whats the /middle-bit/ of a url called? - it is a subdirectory
-// type subdirectoryObject
-// topSubDirectoryObjetct, usSubDirectoryObject
-//////////////////////////////////////////////
-///////////////////////////////////////////
-// Conversions test
-const articleMap = {
-	category: "string",
-	datePublished: "string",
-	description: "string",
-	headline: "string",
-	id: "string",
-	image: "object",
-	video: "object",
-};
-
-const itemsConversion: ConversionObject = {
-	id: "items",
-	iterable: true,
-	map: articleMap,
-	defaultConversions: [{ id: "toCollectionItem", type: "TRANSFORM" }],
-
-	sort: {},
-	filter: {},
-	transform: {
-		toCollectionItem: "toCollectionItem",
-	},
-};
-
-// is this used?
-const responseMap = {
-	id: "string",
-	totalEstimatedMatches: "number",
-	value: "array",
-};
-
-const responseConversion: ConversionObject = {
-	map: responseMap,
-	defaultConversions: [{ id: "toCollection", type: "TRANSFORM" }],
-
-	transform: {
-		toCollection: "toCollection",
-	},
-};
-const articleConversion = {
-	conversionId: "RSS:2.0",
-	// response: {
-	// },
-	// really sub objects array
-	response: responseConversion,
-	// really sub objects
-	subConversions: [itemsConversion],
-	// iterable: {
-	// 	id: "items",
-	// },
-};
 
 //////////////////////////////////////////
 ///////////////////////////////////////////
 ///////////////////////////////////////////
 
-// We need a type and/explainer
+// We need a type and/explainer !!
 export const SKY_NEWS_ROOT = {
+	/** Form ID I believe */
 	id: "sky_news_endpoint",
+	/** Shown Label - if this is an input */
 	label: "Select Endpoint",
 
-	// type?
+	/** Type */
 	// type is for our input type
 	// if none then there is none
 	// in this case we are just using params
 	// because it is just a value and not a route?
 
+	/** Unique and descriptive identifier / to get CREATOR Object */
 	queryId: "skyNews",
 
+	/** Available parameters for this endpoint */
 	params: [endpoint], // required? / yes
 
+	/** Unused - The info string / md text */
 	info: "id or explanation - or just an explanation",
 
-	// Our list of conversions
 	// object default conversion, & list
-	conversions: articleConversion,
+	/** Our list of conversions */
+	conversions: baseRSSConversion,
 };

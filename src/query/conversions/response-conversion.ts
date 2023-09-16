@@ -43,11 +43,9 @@ export const convertResponse = (response: any, conversions: any) => {
 	// put in a function and type / rename createIterable
 	let subResponse = response;
 	Object.values(sub).forEach((subObject: any) => {
-		console.log("ISSUE:305", "CONVERT:RESPOONSE", { subObject });
 		subResponse = createIterable(subResponse, subObject, conversionsMap);
 	});
-	console.log("ISSUE:305", "CONVERT:RESPOONSE", { subResponse });
-	console.log("ISSUE:305", "CONVERT:RESPOONSE", { conversionsMap });
+
 	const convertedResponse = createResponse(
 		subResponse,
 		responseConversion,

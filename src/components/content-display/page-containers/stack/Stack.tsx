@@ -13,7 +13,6 @@ type Direction = "row" | "row-reverse" | "column" | "column-reverse";
 // Have icons at the side like a menu & scrollable?
 
 export const PageDisplayStack = ({ data }: { data: any }) => {
-	console.log("FEATURE:001", "PAGE:DISPLAY:STACK", { data });
 	const { props, container, components } = data;
 	const { direction = "column" } = props;
 	// I don't think you'd ever do a row stack at this point

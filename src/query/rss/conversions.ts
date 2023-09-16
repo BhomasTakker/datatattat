@@ -7,7 +7,6 @@ const toCollection = (props: any) => {
 	// console.log("FEATURE:753", "TO:COLLECTION", "PROPS", { props });
 	return map((data: RSSChannelType): Collection => {
 		const { title, items, link, description } = data;
-		// console.log("FEATURE:753", "TO:COLLECTION:MAP", "DATA", { data });
 		// pagination: {}
 		return {
 			title,
@@ -42,7 +41,7 @@ const toCollectionItem = (props: any) => {
 			enclosure,
 		} = data;
 		const { url = "" } = enclosure || {};
-		console.log("FEATURE:753", "TO:COLLECTION:ITEM:MAP", "DATA", { data });
+
 		return {
 			title: title,
 			src: link,

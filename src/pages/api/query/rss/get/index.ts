@@ -20,7 +20,8 @@ const getQueryConfig = (queryId: QueryId, quearyData: QueryData) => {
 		data: typeof quearyData
 	) => QueryCreator;
 
-	return getConfigObject(quearyData);
+	// Return only if we got the object otherwise?
+	return getConfigObject ? getConfigObject(quearyData) : null;
 };
 
 const createQuery = () => {};

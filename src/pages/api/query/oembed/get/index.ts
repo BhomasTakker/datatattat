@@ -19,7 +19,8 @@ const getQueryConfig = (queryId: QueryId, quearyData: QueryData) => {
 		data: typeof quearyData
 	) => QueryCreator;
 
-	return getConfigObject(quearyData);
+	// return getConfigObject(quearyData);
+	return getConfigObject ? getConfigObject(quearyData) : null;
 };
 
 // This needs massively cleaning up

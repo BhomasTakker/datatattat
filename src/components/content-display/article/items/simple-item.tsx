@@ -8,6 +8,7 @@ import {
 	Typography,
 } from "@mui/material";
 import { Fragment } from "react";
+import { ArticleAvatar } from "./avatar/avatar";
 
 interface SimpleArticleProps {
 	title: string;
@@ -28,14 +29,6 @@ export const SimpleArticle = ({
 	// hack for BING article
 	// need update BING
 	// or update sky / general RSS
-	console.log(
-		"FEATURE:753",
-		"SIMPLE:ARTICLE",
-		{ title },
-		{ avatar },
-		{ src },
-		{ description }
-	);
 	const img = avatar ? avatar.src : "";
 
 	// We want to do different things on click and/or hover
@@ -47,6 +40,7 @@ export const SimpleArticle = ({
 	return (
 		<ListItem>
 			{/* If link button - but next? */}
+			{/* Create a compound component which just chooses which to use */}
 			<ListItemButton
 				selected={false}
 				color={"primary"}
@@ -54,17 +48,18 @@ export const SimpleArticle = ({
 				component="a"
 				href={src}
 			>
-				{img && (
-					<ListItemAvatar>
-						<Avatar alt={title} src={img} />
-					</ListItemAvatar>
-				)}
+				<ListItemAvatar>
+					<ArticleAvatar alt={title} img={img} src={src} />
+				</ListItemAvatar>
+
 				<ListItemText
 					primary={title}
 					secondary={
+						// noWrap / need to ...
+						// this alone just makes things a stupid length
 						<Fragment>
+							{/* Create a secondary content component  */}
 							<Typography
-								noWrap
 								sx={{ display: "inline" }}
 								component="span"
 								variant="body2"
