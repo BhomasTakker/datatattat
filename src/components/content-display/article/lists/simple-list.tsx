@@ -4,6 +4,7 @@ import { Box, List, ListItem } from "@mui/material";
 import { SimpleArticle } from "../items/simple-item";
 import { Collection } from "@/src/types/data-structures/collection/collection";
 import { ListItemsMap } from "../items/list-items.map";
+import { useCallback, useMemo } from "react";
 
 interface SimpleArticleListProps {
 	data: Collection; // should be data
@@ -11,6 +12,16 @@ interface SimpleArticleListProps {
 	description: string;
 	component: string; // union / enum really
 }
+
+const createComponentsList = (component: any, items: any[]) => {
+	const Component = ListItemsMap.get(component) || SimpleArticle;
+	const componentList = items.map((item) => (
+		// use guid for key?
+		<Component key={item.title} {...item} />
+	));
+
+	return componentList;
+};
 
 // we haven't added conversions to RSS or sky - whichever
 // Is RSS not the standard though?
@@ -22,17 +33,10 @@ export const SimpleArticleList = ({
 }: SimpleArticleListProps) => {
 	const { items } = data;
 
-	// We could use a variant for basic style?
-	// Perhaps too tied in to Compoennt
-	////////////////////////////
-	// Or pass in itemClickFunctionality
-
-	// Would you seperate this out?
-	const Component = ListItemsMap.get(component) || SimpleArticle;
-	const componentList = items.map((item) => (
-		// use guid for key?
-		<Component key={item.title} {...item} />
-	));
+	const componentList = useMemo(
+		() => createComponentsList(component, items),
+		[component, items]
+	);
 
 	return (
 		<Box>
