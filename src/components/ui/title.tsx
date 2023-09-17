@@ -44,6 +44,8 @@ const EditComponent = ({ children }: { children: string }) => {
 	);
 };
 
+// Should just do one component
+// but spread props according to variant
 const Sub = ({ children }: { children: string }) => {
 	return (
 		<Typography
@@ -56,11 +58,19 @@ const Sub = ({ children }: { children: string }) => {
 		</Typography>
 	);
 };
+const Article = ({ children }: { children: string }) => {
+	return (
+		<Typography variant="h6" component="h6" marginTop={MARGINS.VSMALL}>
+			{children}
+		</Typography>
+	);
+};
 const ComponantHash = {
 	Page,
 	Sub,
 	EditComponent,
 	Content,
+	Article,
 };
 // Our variants should be main, sub, article, etc
 // Should be able to pass down overides for component say

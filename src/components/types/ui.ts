@@ -14,6 +14,7 @@ export enum TitleVariant {
 	SUB = "Sub",
 	EDIT_COMPONENT = "EditComponent",
 	CONTENT = "Content",
+	ARTICLE = "Article",
 }
 
 export enum TextVariant {
