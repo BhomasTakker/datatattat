@@ -2,7 +2,7 @@ import { clientsideFetch } from "@/src/api/clientside-fetch";
 import { Avatar } from "@mui/material";
 import { useEffect, useState } from "react";
 
-const MEATADATA_API_PATH = "api/query/html/meta/get";
+const METADATA_API_PATH = "api/query/html/meta/get";
 
 interface ArticleAvatar {
 	alt: string;
@@ -10,13 +10,29 @@ interface ArticleAvatar {
 	src: string;
 }
 
-const getMeta = async () => {};
-let count = 0;
+interface Meta {
+	image: string;
+}
 
 export const ArticleAvatar = ({ alt, img, src }: ArticleAvatar) => {
-	if (!img) {
+	const [avatar, setAvatar] = useState(img);
+	// get meta hook perhaps
+	useEffect(() => {
+		const getMeta = async () => {
+			const meta = (await clientsideFetch({
+				url: METADATA_API_PATH,
+				searchParams: { url: src },
+			})) as Meta;
+			const { image } = meta || {};
+
+			setAvatar(image);
+		};
+		getMeta();
+	}, [src]);
+
+	if (!avatar) {
 		return <></>;
 	}
 
-	return <Avatar alt={alt} src={img} />;
+	return <Avatar alt={alt} src={avatar} />;
 };

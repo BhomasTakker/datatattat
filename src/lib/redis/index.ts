@@ -1,5 +1,5 @@
 import Parser from "rss-parser";
-
+import puppeteer from "puppeteer";
 //https://www.youtube.com/watch?v=-5RTyEim384
 
 import { getEnvVar } from "@/src/utils/env";
@@ -75,4 +75,67 @@ export const redisRssFetch = async (
 	await redis.expire(endpoint.toString(), cacheExpire);
 
 	return result;
+};
+
+// We need a pupeteer 'queries' folder
+// get from somewhere
+// pass in id of get / what we getting
+const getOGMetaData = () => {
+	return {
+		description: document.head
+			?.querySelector('meta[property="og:description"]')
+			?.getAttribute("content"),
+		image: document.head
+			?.querySelector('meta[property="og:image"]')
+			?.getAttribute("content"),
+		imageAlt: document.head
+			?.querySelector('meta[property="og:imageAlt"]')
+			?.getAttribute("content"),
+		locale: document.head
+			?.querySelector('meta[property="og:locale"]')
+			?.getAttribute("content"),
+		site_name: document.head
+			?.querySelector('meta[property="og:site_name"]')
+			?.getAttribute("content"),
+		title: document.head
+			?.querySelector('meta[property="og:title"]')
+			?.getAttribute("content"),
+		type: document.head
+			?.querySelector('meta[property="og:type"]')
+			?.getAttribute("content"),
+		url: document.head
+			?.querySelector('meta[property="og:url"]')
+			?.getAttribute("content"),
+	};
+};
+
+// Hosting on Vercel might be a problem
+// Sollutions - jump through hoops
+// Hosted micro service
+export const redisMetaDataFetch = async (
+	endpoint: string,
+	options: RequestInit,
+	cacheExpire: RedisCacheTime = RedisCacheTime.WEEK
+) => {
+	const cachedValue = await redis.get(endpoint);
+
+	if (cachedValue) {
+		console.log("RETURN META CACHE", { cachedValue });
+		return JSON.parse(cachedValue);
+	}
+
+	const browser = await puppeteer.launch({ headless: "new" });
+	const page = await browser.newPage();
+
+	await page.goto(endpoint);
+
+	const metaOG = await page.evaluate(getOGMetaData);
+
+	await browser.close();
+
+	await redis.set(endpoint.toString(), JSON.stringify(metaOG));
+	//need to set cache expire to a provided value or use a default / not integrated into edit yet
+	await redis.expire(endpoint.toString(), cacheExpire);
+
+	return metaOG;
 };
