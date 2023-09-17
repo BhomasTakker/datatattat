@@ -180,6 +180,7 @@ export const BBC_NEWS_ROOT = {
 
 	endpoints: BBC_MAIN_ENDPOINTS,
 	defaultEndpoint: "Top Stories",
+	// why is this here? rem
 	baseUrl: "Im a Base URL",
 	postfix: "Im a postfix",
 

@@ -68,9 +68,11 @@ export const CreatorContextProvider = ({
 	useUnregisterForm({ name: formInputId });
 
 	useEffect(() => {
-		if (!queryId) {
-			return;
-		}
+		// this protection is incprrect
+		// stops from changing / but why did we add it?
+		// if (!queryId) {
+		// 	return;
+		// }
 
 		setQueryId(queryId);
 	}, [queryId, setQueryId]);
