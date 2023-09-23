@@ -27,6 +27,7 @@ const toCollectionItem = (props: any) => {
 	return map((data: RSSItem): CollectionItem => {
 		const {
 			title,
+			// content potentially more likely to have html
 			content,
 			description,
 			contentSnippet,

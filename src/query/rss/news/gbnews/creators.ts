@@ -1,68 +1,55 @@
-const BASE_URL = "https://www.gbnews.com/feeds";
-const US = "/us";
-const ROYAL = "/royal";
-const MONEY = "/money";
-const OPINION = "/opinion";
-const SPORT = "/sport";
-const CELEBRITY = "/celebrity";
-const PRESENTERS = "/presenters";
-const NEWS_TOP = "/news";
-const UK_NEWS = "/news/uk";
-const US_NEWS = "/news/us";
-const WORLD_NEWS = "/news/world";
-const WEATHER = "/weather";
-const MIGRANT_CRISIS = "/news/uk/migrant-crisis";
-const CANCEL_CULTURE = "/news/cancel-culture";
-const BREXIT = "/news/uk/brexit";
-const CRIME = "/news/crime";
-const POLITICS_TOP = "/politics";
-const UK_POLITICS = "/politics/uk";
-const US_POLITICS = "/politics/us";
-const RISHI_SUNAK = "/politics/uk/rishi-sunak";
-const KEIR_STARMER = "/politics/uk/keir-starmer";
-const CONSERVATIVE = "/politics/uk/conservative";
-const LABOUR = "/politics/uk/labour";
-const SNP = "/politics/uk/snp";
+import { returnBasicCreator } from "../../utils/creators";
 
+const BASE_URL = "https://www.gbnews.com/feeds/";
 const POSTFIX = ".rss";
-
-const baseParams = {
-	headers: {},
-	returns: (data: any) => {}, // Remove
-};
-
-// There's a better way of doing this also
-const returnCreator = (urlId: string) => (queryParams: any) => {
-	return {
-		url: `${BASE_URL}${urlId}${POSTFIX}`,
-		...baseParams,
-		queryParams,
-	};
-};
+const US = `${BASE_URL}us${POSTFIX}`;
+const ROYAL = `${BASE_URL}royal${POSTFIX}`;
+const MONEY = `${BASE_URL}money${POSTFIX}`;
+const OPINION = `${BASE_URL}opinion${POSTFIX}`;
+const SPORT = `${BASE_URL}sport${POSTFIX}`;
+const CELEBRITY = `${BASE_URL}celebrity${POSTFIX}`;
+const PRESENTERS = `${BASE_URL}presenters${POSTFIX}`;
+const NEWS_TOP = `${BASE_URL}news${POSTFIX}`;
+const UK_NEWS = `${BASE_URL}news/uk${POSTFIX}`;
+const US_NEWS = `${BASE_URL}news/us${POSTFIX}`;
+const WORLD_NEWS = `${BASE_URL}news/world${POSTFIX}`;
+const WEATHER = `${BASE_URL}weather${POSTFIX}`;
+const MIGRANT_CRISIS = `${BASE_URL}news/uk/migrant-crisis${POSTFIX}`;
+const CANCEL_CULTURE = `${BASE_URL}news/cancel-culture${POSTFIX}`;
+const BREXIT = `${BASE_URL}news/uk/brexit${POSTFIX}`;
+const CRIME = `${BASE_URL}news/crime${POSTFIX}`;
+const POLITICS_TOP = `${BASE_URL}politics${POSTFIX}`;
+const UK_POLITICS = `${BASE_URL}politics/uk${POSTFIX}`;
+const US_POLITICS = `${BASE_URL}politics/us${POSTFIX}`;
+const RISHI_SUNAK = `${BASE_URL}politics/uk/rishi-sunak${POSTFIX}`;
+const KEIR_STARMER = `${BASE_URL}politics/uk/keir-starmer${POSTFIX}`;
+const CONSERVATIVE = `${BASE_URL}politics/uk/conservative${POSTFIX}`;
+const LABOUR = `${BASE_URL}politics/uk/labour${POSTFIX}`;
+const SNP = `${BASE_URL}politics/uk/snp${POSTFIX}`;
 
 export const GBNEWS_CREATORS = [
-	["gbnews_us", returnCreator(US)],
-	["gbnews_royals", returnCreator(ROYAL)],
-	["gbnews_money", returnCreator(MONEY)],
-	["gbnews_opinion", returnCreator(OPINION)],
-	["gbnews_sport", returnCreator(SPORT)],
-	["gbnews_celebrity", returnCreator(CELEBRITY)],
-	["gbnews_presenters", returnCreator(PRESENTERS)],
-	["gbnews_news_top_stories", returnCreator(NEWS_TOP)],
-	["gbnews_uk_news_stories", returnCreator(UK_NEWS)],
-	["gbnews_us_news_stories", returnCreator(US_NEWS)],
-	["gbnews_world_news_stories", returnCreator(WORLD_NEWS)],
-	["gbnews_weather_stories", returnCreator(WEATHER)],
-	["gbnews_migrant_crisis_stories", returnCreator(MIGRANT_CRISIS)],
-	["gbnews_cancel_culture_stories", returnCreator(CANCEL_CULTURE)],
-	["gbnews_brexit_stories", returnCreator(BREXIT)],
-	["gbnews_crime_stories", returnCreator(CRIME)],
-	["gbnews_politics_top_endpoint", returnCreator(POLITICS_TOP)],
-	["gbnews_politics_uk_endpoint", returnCreator(UK_POLITICS)],
-	["gbnews_politics_us_endpoint", returnCreator(US_POLITICS)],
-	["gbnews_rishi_sunak_endpoint", returnCreator(RISHI_SUNAK)],
-	["gbnews_keir_starmer_endpoint", returnCreator(KEIR_STARMER)],
-	["gbnews_conservative_endpoint", returnCreator(CONSERVATIVE)],
-	["gbnews_labour_endpoint", returnCreator(LABOUR)],
-	["gbnews_snp_endpoint", returnCreator(SNP)],
+	["gbnews_us", returnBasicCreator(US)],
+	["gbnews_royals", returnBasicCreator(ROYAL)],
+	["gbnews_money", returnBasicCreator(MONEY)],
+	["gbnews_opinion", returnBasicCreator(OPINION)],
+	["gbnews_sport", returnBasicCreator(SPORT)],
+	["gbnews_celebrity", returnBasicCreator(CELEBRITY)],
+	["gbnews_presenters", returnBasicCreator(PRESENTERS)],
+	["gbnews_news_top_stories", returnBasicCreator(NEWS_TOP)],
+	["gbnews_uk_news_stories", returnBasicCreator(UK_NEWS)],
+	["gbnews_us_news_stories", returnBasicCreator(US_NEWS)],
+	["gbnews_world_news_stories", returnBasicCreator(WORLD_NEWS)],
+	["gbnews_weather_stories", returnBasicCreator(WEATHER)],
+	["gbnews_migrant_crisis_stories", returnBasicCreator(MIGRANT_CRISIS)],
+	["gbnews_cancel_culture_stories", returnBasicCreator(CANCEL_CULTURE)],
+	["gbnews_brexit_stories", returnBasicCreator(BREXIT)],
+	["gbnews_crime_stories", returnBasicCreator(CRIME)],
+	["gbnews_politics_top_endpoint", returnBasicCreator(POLITICS_TOP)],
+	["gbnews_politics_uk_endpoint", returnBasicCreator(UK_POLITICS)],
+	["gbnews_politics_us_endpoint", returnBasicCreator(US_POLITICS)],
+	["gbnews_rishi_sunak_endpoint", returnBasicCreator(RISHI_SUNAK)],
+	["gbnews_keir_starmer_endpoint", returnBasicCreator(KEIR_STARMER)],
+	["gbnews_conservative_endpoint", returnBasicCreator(CONSERVATIVE)],
+	["gbnews_labour_endpoint", returnBasicCreator(LABOUR)],
+	["gbnews_snp_endpoint", returnBasicCreator(SNP)],
 ];

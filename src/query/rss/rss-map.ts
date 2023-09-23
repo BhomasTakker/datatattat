@@ -3,6 +3,7 @@ import { GOOGLE_CREATORS } from "./news/Google/creators";
 import { SKY_NEWS_RSS_CREATOR } from "./news/Sky/constants";
 import { ALJAZEERA_NEWS_RSS_CREATOR } from "./news/aljazeera/constants";
 import { GBNEWS_CREATORS } from "./news/gbnews/creators";
+import { NYTIMES_CREATORS } from "./news/nytimes/creators";
 
 // @ts-ignore
 export const RSS_CREATOR_MAP = new Map<string, object>([
@@ -12,4 +13,5 @@ export const RSS_CREATOR_MAP = new Map<string, object>([
 	...GOOGLE_CREATORS,
 	...BBC_CREATORS,
 	...GBNEWS_CREATORS,
+	...NYTIMES_CREATORS,
 ]);

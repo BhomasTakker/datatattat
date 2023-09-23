@@ -1,13 +1,15 @@
-import { baseRSSConversion } from "../../rss-feed.config";
+import { createBasicEndpoint } from "../../utils/endpoints";
 
-export const ALJAZEERA_NEWS_ROOT = {
-	id: "aljazeera_news_endpoint",
-	label: "There isn't one - can we omit?",
+export const ALJAZEERA_NEWS_ROOT = createBasicEndpoint({ id: "aljazeera" });
 
-	queryId: "aljazeera",
-	params: [],
+// {
+// 	id: "aljazeera_news_endpoint",
+// 	label: "There isn't one - can we omit?",
 
-	info: "id or explanation - or just an explanation",
+// 	queryId: "aljazeera",
+// 	params: [],
 
-	conversions: baseRSSConversion,
-};
+// 	info: "id or explanation - or just an explanation",
+
+// 	conversions: baseRSSConversion,
+// };

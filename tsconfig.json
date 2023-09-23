@@ -30,6 +30,7 @@
 			"@/head/*": ["src/head/*"],
 			"@/types/*": ["src/types/*"],
 			"@/pages/*": ["src/pages/*"],
+			"@/utils/*": ["src/utils/*"],
 
 			"@/translation/*": ["src/lib/i18n/translation/*"]
 		}
