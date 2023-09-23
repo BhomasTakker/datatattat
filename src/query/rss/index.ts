@@ -5,6 +5,7 @@ import { GOOGLE_RSS_CONFIG_OBJECT } from "./news/Google/config";
 import { SKY_NEWS_ROOT } from "./news/Sky/config";
 import { ALJAZEERA_NEWS_ROOT } from "./news/aljazeera/config";
 import { GBNEWS_ROOT } from "./news/gbnews/config";
+import { NYTIMES_ROOT } from "./news/nytimes/config";
 
 // What is the difference between me and
 // src\query\rss\rss-map.ts
@@ -18,7 +19,7 @@ export const RSS_CONFIG_LIST: Map<string, any> = new Map([
 	["bbcNews", BBC_NEWS_ROOT],
 	["googleNews", GOOGLE_RSS_CONFIG_OBJECT],
 	["gbnews", GBNEWS_ROOT],
-
+	["New York Times", NYTIMES_ROOT],
 	// ["youtube", YOUTUBE_RSS_CONFIG_OBJECT],
 	// ["custom", CUSTOM_RSS_CONFIG_OBJECT],
 ]);

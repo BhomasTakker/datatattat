@@ -6,6 +6,10 @@ interface Meta {
 	image: string;
 }
 
+// There is almost certainly a better way of getting meta data
+// this way is probably terribly unperormant
+// I mean we're even launching cromium every time!
+// but again this could be available to paying memebers, etc
 export const useMeta = (src: string, load: boolean = false) => {
 	const [meta, setMeta] = useState<Meta | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);

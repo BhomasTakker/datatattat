@@ -1,4 +1,7 @@
 import { baseRSSConversion } from "../../rss-feed.config";
+import { createSelectEndpoint } from "../../utils/endpoints";
+import { MAIN_ENDPOINT_OBJECTS } from "./endpoint-configs";
+import { BBC_MAIN_ENDPOINTS } from "./endpoints";
 
 // const BASE_URL = "http://feeds.bbci.co.uk/";
 // const POSTFIX = "/rss.xml";
@@ -127,66 +130,27 @@ import { baseRSSConversion } from "../../rss-feed.config";
 ///////////////////////////////////////////////////
 // that this doesn't work with default values suggests a problem?
 // If we are using the value then we should be using a map / surely
-enum BBC_MAIN_ENDPOINTS {
-	"Top Stories" = "Top Stories",
-	World = "World",
-	UK = "UK",
-}
 
-const MAIN_ENDPOINT_OBJECTS = {
-	["Top Stories"]: {
-		id: "bbc_news_top_stories_endpoint",
-		/** Shown Label - if this is an input */
-		label: "There isn't one",
-		queryId: "bbc_top_stories",
-
-		/** Unused - The info string / md text */
-		info: "id or explanation - or just an explanation",
-
-		conversions: baseRSSConversion,
-		params: [],
-	},
-	World: {
-		id: "bbc_news_world_endpoint",
-		/** Shown Label - if this is an input */
-		label: "There isn't one",
-		queryId: "bbc_news_world",
-
-		/** Unused - The info string / md text */
-		info: "id or explanation - or just an explanation",
-
-		conversions: baseRSSConversion,
-		params: [],
-	},
-	UK: {
-		id: "bbc_news_uk_endpoint",
-		/** Shown Label - if this is an input */
-		label: "There isn't one",
-		queryId: "bbc_news_uk",
-
-		/** Unused - The info string / md text */
-		info: "id or explanation - or just an explanation",
-
-		conversions: baseRSSConversion,
-		params: [],
-	},
-};
-
-// create a template or blank config
-export const BBC_NEWS_ROOT = {
+// createSelectEndpoint...
+export const BBC_NEWS_ROOT = createSelectEndpoint({
 	id: "bbc_news_root",
 	label: "Select Endpoint",
-	type: "select",
-
 	endpoints: BBC_MAIN_ENDPOINTS,
-	defaultEndpoint: "Top Stories",
-	// why is this here? rem
-	baseUrl: "Im a Base URL",
-	postfix: "Im a postfix",
-
-	info: "we need a description of what this does",
-
-	params: [],
-
+	defaultEndpoint: "World",
 	endpointObjects: MAIN_ENDPOINT_OBJECTS,
-};
+});
+
+// {
+// 	id: "bbc_news_root",
+// 	label: "Select Endpoint",
+// 	type: "select",
+
+// 	endpoints: BBC_MAIN_ENDPOINTS,
+// 	defaultEndpoint: "Top Stories",
+
+// 	info: "we need a description of what this does",
+
+// 	params: [],
+
+// 	endpointObjects: MAIN_ENDPOINT_OBJECTS,
+// };

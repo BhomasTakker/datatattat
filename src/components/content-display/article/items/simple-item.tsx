@@ -1,23 +1,17 @@
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import {
-	Avatar,
 	ListItem,
 	ListItemAvatar,
 	ListItemButton,
 	ListItemText,
 	Typography,
 } from "@mui/material";
-import { Fragment } from "react";
+
 import { ArticleAvatar } from "./avatar/avatar";
 import { Title } from "@/src/components/ui/title";
 import { TitleVariant } from "@/src/components/types/ui";
 import { ListItemContextProvider } from "./context/list-item.context";
-
-interface SimpleArticleProps {
-	title: string;
-	content: string;
-	enclosure: any;
-}
+import { stripHTML } from "@/src/utils/html";
 
 export const SimpleArticle = (collectionItem: CollectionItem) => {
 	const { title, avatar, src, description, guid, variant, details, media } =
@@ -73,7 +67,7 @@ export const SimpleArticle = (collectionItem: CollectionItem) => {
 								variant="body2"
 								color="text.primary"
 							>
-								{description}
+								{stripHTML(description)}
 							</Typography>
 							// </Fragment>
 						}
