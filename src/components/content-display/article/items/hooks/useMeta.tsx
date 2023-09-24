@@ -1,13 +1,15 @@
 import { clientsideFetch } from "@/src/api/clientside-fetch";
 import { useEffect, useState } from "react";
 
+// from config
 const METADATA_API_PATH = "api/query/html/meta/get";
+
 interface Meta {
 	image: string;
 }
 
 // There is almost certainly a better way of getting meta data
-// this way is probably terribly unperormant
+// this way is probably terribly unperformant
 // I mean we're even launching cromium every time!
 // but again this could be available to paying memebers, etc
 export const useMeta = (src: string, load: boolean = false) => {

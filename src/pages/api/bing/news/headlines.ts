@@ -3,11 +3,13 @@ import {
 	ENDPOINTS,
 	HEADERS,
 } from "@/src/query/api/bing/news/constants";
-import { redisApiFetch } from "@/src/lib/redis";
+import { redisDataFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next";
+import { fetchAPI } from "@/src/queries/data/api/fetch-api";
 
 const options = HEADERS;
-
+// is this used?
+// if so there are waaay better ways!
 async function headlines(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== "GET") {
 		return;
@@ -21,7 +23,11 @@ async function headlines(req: NextApiRequest, res: NextApiResponse) {
 	}
 
 	//Cache both api response object and the response object structure?
-	const result = await redisApiFetch(endpoint, options);
+	const result = await redisDataFetch({
+		endpoint: endpoint.toString(),
+		options,
+		getResult: fetchAPI,
+	});
 
 	res.status(200).json(result);
 }

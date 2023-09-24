@@ -1,9 +1,10 @@
 import { QueryCreator } from "@/src/query/api/api-map";
-import { redisApiFetch } from "@/src/lib/redis";
+import { redisDataFetch } from "@/src/lib/redis";
 import { OEMBED_CREATOR_MAP } from "@/src/query/oembed/oembed-map";
 import { getEnvVar } from "@/src/utils/env";
 import { NextApiRequest, NextApiResponse } from "next/types";
 import { convertResponse } from "@/src/query/conversions/response-conversion";
+import { fetchAPI } from "@/src/queries/data/api/fetch-api";
 
 const IFRAMELY_URL = "https://iframe.ly/api/iframely";
 
@@ -65,7 +66,12 @@ async function oembedQuery(req: NextApiRequest, res: NextApiResponse) {
 	queryUrl.searchParams.set("api_key", getEnvVar("IFRAMELY_API_KEY") as string);
 
 	// On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	const result = await redisApiFetch(queryUrl, { ...headers });
+	// const result = await redisApiFetch(queryUrl, { ...headers });
+	const result = await redisDataFetch({
+		endpoint: queryUrl.toString(),
+		options: { ...headers },
+		getResult: fetchAPI,
+	});
 	const newResponse = convertResponse(result, parsedConversions);
 	return res.status(200).json(newResponse);
 	// res.status(200).json(result);

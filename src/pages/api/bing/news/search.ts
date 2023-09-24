@@ -3,8 +3,9 @@ import {
 	ENDPOINTS,
 	HEADERS,
 } from "@/src/query/api/bing/news/constants";
-import { redisApiFetch } from "@/src/lib/redis";
+import { redisDataFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next";
+import { fetchAPI } from "@/src/queries/data/api/fetch-api";
 
 //We should initially form the data into a 'shape' we want?
 //We might do further on the client side but we should
@@ -50,8 +51,12 @@ async function search(req: NextApiRequest, res: NextApiResponse) {
 	// const result = await response.json();
 
 	//On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	const result = await redisApiFetch(endpoint, options);
-
+	// const result = await redisApiFetch(endpoint, options);
+	const result = await redisDataFetch({
+		endpoint: endpoint.toString(),
+		options,
+		getResult: fetchAPI,
+	});
 	// console.log({ BING: result });
 
 	res.status(200).json(result);
