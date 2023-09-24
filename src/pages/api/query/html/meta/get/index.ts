@@ -1,4 +1,5 @@
-import { redisMetaDataFetch } from "@/src/lib/redis";
+import { redisDataFetch } from "@/src/lib/redis";
+import { fetchMetaFromHTML } from "@/src/queries/data/meta/fetch-meta";
 import { NextApiRequest, NextApiResponse } from "next";
 
 // Should specify this as a web scraper or pupeteer query
@@ -20,7 +21,12 @@ async function metaQuery(req: NextApiRequest, res: NextApiResponse) {
 		return res.status(404);
 	}
 
-	const response = await redisMetaDataFetch(url, {});
+	// const response = await redisMetaDataFetch(url, {});
+	const response = await redisDataFetch({
+		endpoint: url,
+		options: {},
+		getResult: fetchMetaFromHTML,
+	});
 
 	return res.status(200).json(response);
 }

@@ -3,10 +3,12 @@ import {
 	API_REQUEST_TYPE,
 	QueryCreator,
 } from "@/src/query/api/api-map";
-import { redisApiFetch, redisRssFetch } from "@/src/lib/redis";
+import { redisDataFetch } from "@/src/lib/redis";
 import { RSS_CREATOR_MAP } from "@/src/query/rss/rss-map";
 import { NextApiRequest, NextApiResponse } from "next/types";
 import { convertResponse } from "@/src/query/conversions/response-conversion";
+import { fetchRSS } from "@/src/queries/data/rss/fetch-rss";
+import { RedisCacheTime } from "@/src/lib/redis/types";
 
 type QueryId = string | string[];
 type QueryData = {
@@ -68,8 +70,13 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 	}
 
 	// On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	const result = await redisRssFetch(queryUrl, { ...headers });
-
+	// const result = await redisRssFetch(queryUrl, { ...headers });
+	const result = await redisDataFetch({
+		endpoint: queryUrl.toString(),
+		options: { ...headers },
+		getResult: fetchRSS,
+		cacheExpire: RedisCacheTime.DAY,
+	});
 	// put result through transducers here
 	// ultimately if a good enough member
 

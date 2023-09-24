@@ -3,9 +3,10 @@ import {
 	API_REQUEST_TYPE,
 	QueryCreator,
 } from "@/src/query/api/api-map";
-import { redisApiFetch } from "@/src/lib/redis";
+import { redisDataFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next/types";
 import { convertResponse } from "@/src/query/conversions/response-conversion";
+import { fetchAPI } from "@/src/queries/data/api/fetch-api";
 
 type QueryId = string | string[];
 type QueryData = {
@@ -85,8 +86,12 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	// const result = await response.json();
 
 	// On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	const result = await redisApiFetch(queryUrl, { ...headers });
-
+	// const result = await redisApiFetch(queryUrl, { ...headers });
+	const result = await redisDataFetch({
+		endpoint: queryUrl.toString(),
+		options: { ...headers },
+		getResult: fetchAPI,
+	});
 	// put result through transducers here
 	// ultimately if a good enough member
 

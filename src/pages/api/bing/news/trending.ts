@@ -3,8 +3,9 @@ import {
 	ENDPOINTS,
 	HEADERS,
 } from "@/src/query/api/bing/news/constants";
-import { redisApiFetch } from "@/src/lib/redis";
+import { redisDataFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next";
+import { fetchAPI } from "@/src/queries/data/api/fetch-api";
 
 const options = HEADERS;
 
@@ -21,8 +22,12 @@ async function trending(req: NextApiRequest, res: NextApiResponse) {
 		endpoint.searchParams.set(param, query[param] as string);
 	}
 
-	const result = await redisApiFetch(endpoint, options);
-
+	// const result = await redisApiFetch(endpoint, options);
+	const result = await redisDataFetch({
+		endpoint: endpoint.toString(),
+		options,
+		getResult: fetchAPI,
+	});
 	res.status(200).json(result);
 }
 
