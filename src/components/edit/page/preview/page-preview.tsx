@@ -1,29 +1,31 @@
 import { Box, Button, Container, Modal } from "@mui/material";
 import { useContext, useState } from "react";
-import { EditComponentContext } from "../context/edit-component.context";
 import { useWatch } from "react-hook-form";
 import { MARGINS } from "config/styles/styles.config";
-import { FactoryComponent } from "@/src/components/content-display/component/factory/component.factory";
+import { PageContainerFactoryComponent } from "@/src/components/content-display/page-containers/page-container.factory";
+import { PageStateContext } from "../context/state/page-state.context";
 
-export const ComponentPreviewModal = () => {
+/**
+ * Preview for Page
+ */
+export const PagePreviewModal = () => {
 	const [isVisible, setIsVisiible] = useState(false);
-	const { componentTypeFormId, objectKey } = useContext(EditComponentContext);
+	// const { objectKey } = useContext(PageContainerContext);
+	const { pageFormId } = useContext(PageStateContext);
 	// Probably get in context and heave on up
-	const component = useWatch({
-		name: objectKey,
+	const page = useWatch({
+		name: pageFormId,
 	});
 
 	if (!isVisible) {
 		return <Button onClick={() => setIsVisiible(true)}>Open modal</Button>;
 	}
 
-	console.log("FEATURE:1425", { component });
-
 	return (
 		<Modal
 			open={isVisible}
 			onClose={() => setIsVisiible(false)}
-			aria-labelledby="modal-component-preview"
+			aria-labelledby="modal-page-preview"
 			aria-describedby="modal-what-is-this"
 			sx={{
 				overflowY: "scroll",
@@ -36,9 +38,9 @@ export const ComponentPreviewModal = () => {
 					width={"100%"}
 					bgcolor={"white"}
 				>
-					{/* Layout needs work - lol you shock me boy! */}
 					<Button onClick={() => setIsVisiible(false)}>Close</Button>
-					<FactoryComponent data={component} />
+					{/* Layout needs work - lol you shock me boy! */}
+					<PageContainerFactoryComponent contentData={page} />
 				</Box>
 			</Container>
 		</Modal>
