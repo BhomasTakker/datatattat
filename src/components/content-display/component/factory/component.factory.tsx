@@ -21,7 +21,6 @@ export const FactoryComponent = ({ data }: { data: any }) => {
 	if (!_with?.type) {
 		return <Component {...componentProps} />;
 	}
-
 	const RenderElement = withFactory(componentObject, _with);
 	// Why wouldn't we have a context here?
 	return <RenderElement />;

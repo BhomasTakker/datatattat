@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, Box, Paper } from "@mui/material";
+import { Accordion, AccordionDetails, Box, Button, Paper } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
 import { useContext, useState } from "react";
 import { EditComponentContext } from "./context/edit-component.context";
@@ -7,6 +7,7 @@ import { EditFactoryComponent } from "../factory/edit-component.factory";
 import { PageComponentContext } from "../page/component/context/page-component.context";
 import { COMPONENT_TYPES_MAP } from "config/edit/component-types.map";
 import { EditComponentControls } from "./controls/edit-component.controls";
+import { ComponentPreviewModal } from "./preview/component-preview";
 
 export const EditComponent = () => {
 	const { componentTypeFormId, component } = useContext(EditComponentContext);
@@ -24,6 +25,8 @@ export const EditComponent = () => {
 			<Paper elevation={1} sx={{ padding: MARGINS.MIDSMALL }}>
 				{/* Todo: Add proper title */}
 				<h1>Component N - {`${component}`}</h1>
+				{/* Probably want this on same line as title and use an icon */}
+				<ComponentPreviewModal />
 				{/* Accordian should be a compound - we should control */}
 				<Accordion defaultExpanded expanded={!isCollapsed} elevation={0}>
 					<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
