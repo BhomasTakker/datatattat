@@ -51,14 +51,6 @@ export const TextInput = React.memo(
 		endAdornment = undefined,
 		inputProps = {},
 	}: TextInputType) => {
-		// console.log(`TEXT INPUT RE-RENDER:${name}`);
-		// console.log(`TEXT INPUT RE-RENDER:${field?.value}`);
-		// console.log(`TEXT INPUT RE-RENDER:${id}`);
-		// const {
-		// 	control,
-		// 	formState: { errors },
-		// } = useFormContext();
-		// console.log(Boolean(control));
 		return (
 			<WithLabel label={label} htmlFor={id}>
 				<TextField

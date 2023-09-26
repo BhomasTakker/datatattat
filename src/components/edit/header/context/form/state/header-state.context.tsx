@@ -19,7 +19,7 @@ const FORM_ID = "nav";
 type HeaderStateState = {};
 
 type HeaderStateInterface = {
-	navigation: NavLinkData[];
+	// navigation: NavLinkData[];
 	navigationId: string;
 	addLink: () => void;
 	createHeader: () => void;
@@ -30,7 +30,7 @@ type HeaderStateInterface = {
 };
 
 const initialState: HeaderStateState & HeaderStateInterface = {
-	navigation: [],
+	// navigation: [],
 	navigationId: FORM_ID,
 	addLink: () => {},
 	createHeader: () => {},
@@ -61,7 +61,7 @@ export const HeaderStateContextProvider = ({
 	children: ReactNode;
 }) => {
 	const { currentHeader } = useContext(HeaderQueryContext);
-	const { setValue, unregister } = useFormContext();
+	const { setValue, unregister, getValues } = useFormContext();
 	const { nav } = currentHeader || {};
 	const reformedNav = useMemo(() => reformNavigationRoutes(nav), [nav]);
 
@@ -69,57 +69,60 @@ export const HeaderStateContextProvider = ({
 	const username = user?.username || "";
 	const { currentPage, setCurrentPageHandler } = useContext(EditContext);
 
-	const navigation: NavLinkData[] = useWatch({
-		name: FORM_ID,
-		defaultValue: [],
-	});
-
+	// On page update unregister and setValue
 	useEffect(() => {
-		// const stripKeys = reformedNav.map(({ label, route }) => ({ label, route }));
-		// stringify nav? & check the string value
+		unregister(FORM_ID);
 		setValue(FORM_ID, reformedNav);
-	}, [reformedNav, setValue]);
+	}, [reformedNav, setValue, unregister]);
 
 	/////////////////////////////
 	// CONTROLS /////////////////
 	/////////////////////////////
 	const addLink = useCallback(() => {
+		const nav = getValues(FORM_ID);
 		const newLink = {
 			route: "",
-			label: `link${navigation.length}`,
+			label: `link${nav.length}`,
 		};
-		setValue(`${FORM_ID}.${navigation.length}`, newLink);
-	}, [navigation.length, setValue]);
+		setValue(`${FORM_ID}.${nav.length}`, newLink);
+	}, [getValues, setValue]);
 
 	const deleteLink = useCallback(
 		(i: number) => {
-			if (navigation.length === 0) {
+			const nav = getValues(FORM_ID);
+			if (nav.length === 0) {
 				return;
 			}
 
-			const updateNavigation = cloneDeep(navigation);
+			const updateNavigation = cloneDeep(nav);
 			updateNavigation.splice(i, 1);
 
 			unregister(FORM_ID);
 			setValue(FORM_ID, updateNavigation);
 		},
-		[navigation, setValue, unregister]
+		[getValues, setValue, unregister]
 	);
 
 	const moveLink = useCallback(
 		(dir: number, i: number) => {
-			if (navigation.length === 0) {
+			const nav = getValues(FORM_ID);
+			if (nav.length === 0) {
 				return;
 			}
 
-			const updateNavigation = cloneDeep(navigation);
+			if (i === 0 && dir === -1) {
+				//no up / I mean do better though right
+				return;
+			}
+
+			const updateNavigation = cloneDeep(nav);
 			const movedNavigation = updateNavigation.splice(i, 1);
 			updateNavigation.splice(i + dir, 0, ...movedNavigation);
 
 			// unregister(conversionsFormId);
 			setValue(FORM_ID, updateNavigation);
 		},
-		[navigation, setValue]
+		[getValues, setValue]
 	);
 
 	////////////////////////////////////////
@@ -167,7 +170,7 @@ export const HeaderStateContextProvider = ({
 		<HeaderStateContext.Provider
 			value={{
 				...value,
-				navigation,
+				// navigation: getValues(FORM_ID) || [],
 				addLink,
 				deleteLink,
 				moveLink,
