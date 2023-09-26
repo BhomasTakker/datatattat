@@ -1,10 +1,10 @@
 import { HeaderContextProvider } from "./context/header.context";
-import { HeaderForm } from "./header-form";
+import { HeaderLayout } from "./layout/header-layout";
 
 export const HeaderContainer = () => {
 	return (
 		<HeaderContextProvider>
-			<HeaderForm />
+			<HeaderLayout />
 		</HeaderContextProvider>
 	);
 };

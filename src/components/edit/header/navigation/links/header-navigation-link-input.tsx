@@ -28,8 +28,12 @@ export const HeaderNavigationLinkInput = ({
 	// Setting key here enables re-render on delete
 	// smells like a problem?
 	return (
-		<Stack direction="row">
-			<Box paddingLeft={MARGINS.SMALL}>
+		<Stack direction="row" width="100%">
+			<Box
+				paddingLeft={MARGINS.SMALL}
+				width="100%"
+				bgcolor={"highlights.light"}
+			>
 				<TextInputWithControl
 					key={routeToShow}
 					inputProps={{
@@ -40,6 +44,7 @@ export const HeaderNavigationLinkInput = ({
 				/>
 			</Box>
 			<Box
+				width="100%"
 				bgcolor={"highlights.light"}
 				marginLeft={MARGINS.SMALL}
 				paddingLeft={MARGINS.SMALL}
@@ -54,7 +59,9 @@ export const HeaderNavigationLinkInput = ({
 					required
 				/>
 			</Box>
-			<ArrayControls onDelete={deleteHandler} onMove={moveHandler} />
+			<Box width="100%">
+				<ArrayControls onDelete={deleteHandler} onMove={moveHandler} />
+			</Box>
 		</Stack>
 	);
 };
