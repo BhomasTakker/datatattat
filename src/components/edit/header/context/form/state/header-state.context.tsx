@@ -7,7 +7,7 @@ import {
 	useMemo,
 } from "react";
 import { HeaderQueryContext } from "../../query/header-query.context";
-import { useFormContext, useWatch } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { useUser } from "@/src/hooks/useUser";
 import { EditContext } from "@/src/context/edit-context";
 import { NavLinkData } from "@/src/components/header/nav-links/NavLink";
