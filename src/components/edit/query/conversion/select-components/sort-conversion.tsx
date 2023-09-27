@@ -1,12 +1,10 @@
 import { SelectComponent } from "./select-component";
 import { SORT_MAP } from "@/src/components/conversions/sort/sort-map";
 import { SelectConversion } from "../types";
-import { useFormContext, useWatch } from "react-hook-form";
 import { useContext, useEffect } from "react";
 import { ConversionsContext } from "../context/ConversionsContext";
 import { Stack } from "@mui/material";
 import { ConversionProps } from "../props/conversion-props";
-import { ConversionContext } from "../context/ConversionContext";
 
 export const SelectSortConversion = ({
 	objectKey,

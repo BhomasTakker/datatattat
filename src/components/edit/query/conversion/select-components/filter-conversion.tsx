@@ -1,7 +1,6 @@
 import { SelectComponent } from "./select-component";
 import { FILTER_MAP } from "@/src/components/conversions/filter/filter-map";
 import { SelectConversion } from "../types";
-import { useFormContext, useWatch } from "react-hook-form";
 import { useContext, useEffect } from "react";
 import { ConversionsContext } from "../context/ConversionsContext";
 import { Stack } from "@mui/material";

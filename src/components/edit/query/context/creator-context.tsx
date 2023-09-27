@@ -2,7 +2,6 @@ import { ReactNode, createContext, useContext, useEffect } from "react";
 import { QueryContext } from "./query-context";
 import { useWatch, useFormContext } from "react-hook-form";
 import { useUnregisterForm } from "../../hooks/useUnregisterForm";
-import { ContentComponentContext } from "../../content/context/content-component.context";
 
 type CreatorState = {
 	config: any;
