@@ -19,17 +19,16 @@ export const HeaderNavigationLinkInput = ({
 	deleteHandler,
 }: Props) => {
 	const { route: linkRoute, label, key } = link;
-	// remove beginning/trailing slashes / there's probably a trim
 	const route = linkRoute.split("/").filter(Boolean).join("/");
 	const routeToShow = route.split("/").pop();
 
-	console.log("ERROR:103", "INPUT:RE-RENDER", { key });
-
-	// Setting key here enables re-render on delete
-	// smells like a problem?
 	return (
 		<Stack direction="row">
-			<Box paddingLeft={MARGINS.SMALL}>
+			<Box
+				paddingLeft={MARGINS.SMALL}
+				width="100%"
+				bgcolor={"highlights.light"}
+			>
 				<TextInputWithControl
 					key={routeToShow}
 					inputProps={{
@@ -40,6 +39,7 @@ export const HeaderNavigationLinkInput = ({
 				/>
 			</Box>
 			<Box
+				width="100%"
 				bgcolor={"highlights.light"}
 				marginLeft={MARGINS.SMALL}
 				paddingLeft={MARGINS.SMALL}
@@ -54,7 +54,9 @@ export const HeaderNavigationLinkInput = ({
 					required
 				/>
 			</Box>
-			<ArrayControls onDelete={deleteHandler} onMove={moveHandler} />
+			<Box width="100%">
+				<ArrayControls onDelete={deleteHandler} onMove={moveHandler} />
+			</Box>
 		</Stack>
 	);
 };

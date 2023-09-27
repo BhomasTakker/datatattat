@@ -29,6 +29,9 @@ type TextInputType = {
 	inputProps?: InputProps;
 };
 
+// I think you have triefd to be too generic here.
+// we probably want more targetted And simpler components
+// We want / need to rethink with controls too i.e. withControl, withBlocker, etc
 //This could effectively replace the password, username, and email inputs we have
 //Way better
 export const TextInput = React.memo(
@@ -48,17 +51,11 @@ export const TextInput = React.memo(
 		endAdornment = undefined,
 		inputProps = {},
 	}: TextInputType) => {
-		console.log(`TEXT INPUT RE-RENDER:${name}`);
-		console.log(`TEXT INPUT RE-RENDER:${field?.value}`);
-		console.log(`TEXT INPUT RE-RENDER:${id}`);
-		// const {
-		// 	control,
-		// 	formState: { errors },
-		// } = useFormContext();
-		// console.log(Boolean(control));
 		return (
 			<WithLabel label={label} htmlFor={id}>
 				<TextField
+					// Need pass width in
+					sx={{ width: "100%" }}
 					id={id}
 					hiddenLabel
 					fullWidth={fullWidth}

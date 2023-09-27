@@ -1,12 +1,16 @@
 import { Box, Button, Stack } from "@mui/material";
 import { useCallback, useContext } from "react";
 import { HeaderStateContext } from "../context/form/state/header-state.context";
+import { useFormContext } from "react-hook-form";
+import { NavLinkData } from "@/src/components/header/nav-links/NavLink";
 
 export const HeaderNavigation = () => {
-	const { navigation, setRoute } = useContext(HeaderStateContext);
+	const { navigationId, setRoute } = useContext(HeaderStateContext);
+	const { getValues } = useFormContext();
+	const nav = (getValues(navigationId) as NavLinkData[]) || [];
 
-	const renderNavigationLinks = useCallback(() => {
-		return navigation.map((link) => {
+	const renderNavigationLinks = () => {
+		return nav.map((link) => {
 			const { label, route } = link;
 			return (
 				<Button
@@ -18,7 +22,7 @@ export const HeaderNavigation = () => {
 				</Button>
 			);
 		});
-	}, [navigation, setRoute]);
+	}; // [nav, setRoute]);
 
 	return (
 		<Box>
