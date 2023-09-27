@@ -1,13 +1,6 @@
 import { cloneDeep } from "@/src/utils/object";
-import {
-	ReactNode,
-	createContext,
-	useCallback,
-	useContext,
-	useEffect,
-} from "react";
-import { useFormContext, useWatch } from "react-hook-form";
-import { PageContainerContext } from "../../page/context/container/page-container.context";
+import { ReactNode, createContext, useCallback } from "react";
+import { useFormContext } from "react-hook-form";
 
 type Component = unknown;
 
@@ -16,14 +9,14 @@ interface ComponentData {}
 interface ComponentsState {}
 
 interface ComponentsInterface {
-	components: Component[];
+	componentsFormId: string;
 	addComponent: (componentData: ComponentData, atStart?: boolean) => void;
 	deleteComponent: (i: number) => void;
 	moveComponent: (dir: number, i: number) => void;
 }
 
 const initialState: ComponentsState & ComponentsInterface = {
-	components: [],
+	componentsFormId: "",
 	addComponent: () => {},
 	deleteComponent: () => {},
 	moveComponent: () => {},
@@ -38,9 +31,11 @@ export const ComponentsContextProvider = ({
 }) => {
 	// should probably be more dynamic than this - pass in objectKey
 	const componentsFormId = "content.components";
-	const components = useWatch({ name: componentsFormId, defaultValue: [] });
-	const { setValue, unregister } = useFormContext();
-	const { container } = useContext(PageContainerContext);
+	// Oh this looks like it may have worked - actually fixed the worst of it?
+	// here ISSUE:54321 - whenever a component has a minor update we will re-render
+	// const components = []; //useWatch({ name: componentsFormId, defaultValue: [] });
+	const { setValue, unregister, getValues } = useFormContext();
+	// const { container } = useContext(PageContainerContext);
 
 	// effectively reset components when container changes
 	// might break everything!
@@ -60,8 +55,10 @@ export const ComponentsContextProvider = ({
 	// just do an add at Beginning of the array function etc
 	const addComponent = useCallback(
 		(component: Component, atStart = false) => {
+			const components = getValues(componentsFormId);
 			if (!atStart) {
 				// addAtBeginning of array
+
 				const len = components?.length ?? 0;
 				setValue(`${componentsFormId}.${len}`, component);
 				return;
@@ -73,11 +70,12 @@ export const ComponentsContextProvider = ({
 			unregister(componentsFormId);
 			setValue(componentsFormId, updateComponents);
 		},
-		[components?.length, setValue]
+		[getValues, setValue, unregister]
 	);
 
 	const deleteComponent = useCallback(
 		(i: number) => {
+			const components = getValues(componentsFormId);
 			if (components.length === 0) {
 				return;
 			}
@@ -88,11 +86,12 @@ export const ComponentsContextProvider = ({
 			unregister(componentsFormId);
 			setValue(componentsFormId, updateComponents);
 		},
-		[components, setValue, unregister]
+		[getValues, setValue, unregister]
 	);
 
 	const moveComponent = useCallback(
 		(dir: number, i: number) => {
+			const components = getValues(componentsFormId);
 			if (components.length === 0) {
 				return;
 			}
@@ -105,14 +104,14 @@ export const ComponentsContextProvider = ({
 
 			setValue(componentsFormId, updateComponents);
 		},
-		[components, setValue]
+		[getValues, setValue]
 	);
 
 	return (
 		<ComponentsContext.Provider
 			value={{
 				...value,
-				components,
+				componentsFormId,
 				addComponent,
 				deleteComponent,
 				moveComponent,
