@@ -122,10 +122,16 @@ export const ConversionsContextProvider = ({
 			const conversions = getValues(conversionsFormId);
 			console.log("Add Conversion");
 
-			const len = conversions?.length ?? 0;
-			setValue(`${conversionsFormId}.${len}`, conversionData);
+			// const len = conversions?.length ?? 0;
+			// setValue(`${conversionsFormId}.${len}`, conversionData);
+
+			const updateConversions = cloneDeep(conversions);
+			updateConversions.push(conversionData);
+
+			unregister(conversionsFormId);
+			setValue(conversionsFormId, updateConversions);
 		},
-		[conversionsFormId, getValues, setValue]
+		[conversionsFormId, getValues, setValue, unregister]
 	);
 
 	const addConversions = useCallback(
@@ -138,7 +144,7 @@ export const ConversionsContextProvider = ({
 	);
 
 	useEffect(() => {
-		const conversions = getValues(conversionsFormId);
+		const conversions = getValues(conversionsFormId) || [];
 		// I don't think we should have this check?
 		// indicates an issue <- yep <- undecided
 		// Why? / even providing an empty dependency adds default conversions multiple times...
@@ -164,6 +170,8 @@ export const ConversionsContextProvider = ({
 
 			const conversion = { ...conversions[i], ...conversionData };
 			updateConversions.splice(i, 1, conversion);
+
+			// Nothing happens here?
 
 			console.log({ updateConversions });
 		},
@@ -201,6 +209,10 @@ export const ConversionsContextProvider = ({
 			// potentially better?
 			// unregister(conversionsFormId);
 			setValue(conversionsFormId, updateConversions);
+
+			// should be?
+			// unregister(conversionsFormId);
+			// setValue(conversionsFormId, updateConversions);
 		},
 		[conversionsFormId, getValues, setValue]
 	);

@@ -57,10 +57,11 @@ export const ComponentsContextProvider = ({
 		(component: Component, atStart = false) => {
 			const components = getValues(componentsFormId);
 			if (!atStart) {
-				// addAtBeginning of array
+				const updateComponents: unknown[] = cloneDeep(components);
+				updateComponents.push(component);
 
-				const len = components?.length ?? 0;
-				setValue(`${componentsFormId}.${len}`, component);
+				unregister(componentsFormId);
+				setValue(componentsFormId, updateComponents);
 				return;
 			}
 

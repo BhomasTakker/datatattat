@@ -84,8 +84,14 @@ export const HeaderStateContextProvider = ({
 			route: "",
 			label: `link${nav.length}`,
 		};
-		setValue(`${FORM_ID}.${nav.length}`, newLink);
-	}, [getValues, setValue]);
+		// setValue(`${FORM_ID}.${nav.length}`, newLink);
+
+		const updateNavigation = cloneDeep(nav);
+		updateNavigation.push(newLink);
+
+		unregister(FORM_ID);
+		setValue(FORM_ID, updateNavigation);
+	}, [getValues, setValue, unregister]);
 
 	const deleteLink = useCallback(
 		(i: number) => {
