@@ -25,6 +25,7 @@ export const EditContextProvider = (props: any) => {
 		// console.log({ route });
 		setCurrentPage(route);
 	};
+	console.log("ISSUE:12345", "EDIT:CONTEXT");
 
 	return (
 		<EditContext.Provider

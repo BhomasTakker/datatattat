@@ -90,17 +90,12 @@ export const ConversionsContextProvider = ({
 
 	const { conversionJson, objectKey } = value;
 	const conversionsFormId = `${objectKey}.conversions`;
-	// ISSUE:54321 / looks identical to header issue
-	// Will update on any/every minor change
-	// const conversions = useWatch({ name: conversionsFormId, defaultValue: [] });
 
 	const {
 		id = undefined,
 		iterable = false,
 		defaultConversions,
 	} = conversionJson;
-
-	// console.log({ JSON: conversionJson });
 
 	////////////////////////////////
 	// initialize function ?

@@ -8,7 +8,6 @@ interface ContentComponentContainerProps {
 export const ContentComponentContainer = ({
 	config,
 }: ContentComponentContainerProps) => {
-	console.log("FEATURE:404", "CONTENT:COMPONENT:CONTAINER");
 	return (
 		<ContentComponentContextProvider value={{ config }}>
 			<ContentComponent />

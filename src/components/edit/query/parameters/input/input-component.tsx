@@ -1,9 +1,8 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { ParametersContext } from "../context/ParametersContext";
 import { ParametersType } from "../types";
 import { useFormContext, useWatch } from "react-hook-form";
 import { QueryInputFactoryComponent } from "../../input/query-input-factory";
-import { useUpdateParameters } from "../hooks/useUpdateParameters";
 import { useUpdateParameterValue } from "../hooks/useUpdateParameterValue";
 
 type ParameterInputProps = {
@@ -15,7 +14,7 @@ type ParameterInputProps = {
 export const ParameterInputComponent = ({
 	parameterConfigData,
 }: ParameterInputProps) => {
-	const { id, options, key, defaultValue } = parameterConfigData;
+	const { id, options, defaultValue } = parameterConfigData;
 	const { objectKey } = useContext(ParametersContext);
 	const parameterId = `${objectKey}.${id}`;
 
@@ -23,34 +22,10 @@ export const ParameterInputComponent = ({
 
 	// better name needed - is our state value
 	// should be taken from context
+	// ISSUE:54321 - whatever the hell this is
 	const parameterFormState = useWatch({
 		name: parameterId,
 	});
-
-	console.log("GODAMN", { parameterId });
-	console.log("GODAMN", { parameterFormState });
-	// these seem bad practice
-	// should be controlled in context
-	// ruun through - update parameters calls a set on paremeters list
-	// but this map is never referenced
-	// this hook etc ultimqately does nothing
-	// useUpdateParameters({
-	// 	id,
-	// 	key,
-	// 	options,
-	// 	parameterFormState,
-	// 	updateParameters,
-	// });
-
-	// console.log(
-	// 	"ISSUE:589",
-	// 	"INPUT:COMPONENT",
-	// 	{ parameterConfigData },
-	// 	{ defaultValue },
-	// 	{ objectKey },
-	// 	{ parameterId },
-	// 	{ parameterFormState }
-	// );
 
 	// This should be handled by context object
 	// is setDefault if no state value
