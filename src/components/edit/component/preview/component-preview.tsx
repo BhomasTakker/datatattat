@@ -1,21 +1,20 @@
 import { Box, Button, Container, Modal } from "@mui/material";
 import { useContext, useState } from "react";
 import { EditComponentContext } from "../context/edit-component.context";
-import { useWatch } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { MARGINS } from "config/styles/styles.config";
 import { FactoryComponent } from "@/src/components/content-display/component/factory/component.factory";
 
 export const ComponentPreviewModal = () => {
 	const [isVisible, setIsVisiible] = useState(false);
 	const { componentTypeFormId, objectKey } = useContext(EditComponentContext);
-	// Probably get in context and heave on up
-	const component = useWatch({
-		name: objectKey,
-	});
+	const { getValues } = useFormContext();
 
 	if (!isVisible) {
 		return <Button onClick={() => setIsVisiible(true)}>Open modal</Button>;
 	}
+
+	const component = getValues(objectKey);
 
 	console.log("FEATURE:1425", { component });
 

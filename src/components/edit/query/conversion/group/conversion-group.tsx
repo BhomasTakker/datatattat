@@ -84,8 +84,10 @@ export const ConversionGroup = ({
 }: // formId,
 ConversionGroupProps) => {
 	// create initial default conversions
-	const { deleteConversion, moveConversion, addConversion, conversions } =
+	const { deleteConversion, moveConversion, addConversion, conversionsFormId } =
 		useContext(ConversionsContext);
+	const { getValues } = useFormContext();
+	const conversions = getValues(conversionsFormId);
 
 	// const { setValue } = useFormContext();
 

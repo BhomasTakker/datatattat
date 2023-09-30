@@ -33,6 +33,7 @@ export const NewPage = () => {
 					{/* Current endpoint */}
 					<CurrentEndpoint />
 					{/* Show available admin routes and change on select */}
+					{/* Do need to do this - extra renders are muddying the water */}
 					<EditRouteForm />
 					{/* Header Edit would be a better name - show create header button if no header exists  */}
 					<HeaderContainer />

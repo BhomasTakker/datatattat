@@ -16,6 +16,7 @@ export const PageContextProvider = ({
 	value?: PageState;
 	children: ReactNode;
 }) => {
+	console.log("ISSUE:12345", "PAGE:CONTEXT:PROVIDER");
 	return (
 		<PageContext.Provider value={{ ...value }}>
 			<PageFormContextProvider>

@@ -40,12 +40,13 @@ export const redisDataFetch = async ({
 	const cachedValue = await redis.get(url);
 
 	if (cachedValue) {
-		console.log("RETURN CACHE");
+		console.log("RETURN CACHE", { cachedValue });
+		// return JSON.parse(cachedValue);
 		return JSON.parse(cachedValue);
 	}
 
-	// what is the expected return?
-	const result = getResult(url, options);
+	// what is the expected return? / It is a promise though you deadbeat
+	const result = await getResult(url, options);
 
 	await redis.set(endpoint.toString(), JSON.stringify(result));
 	//need to set cache expire to a provided value or use a default / not integrated into edit yet

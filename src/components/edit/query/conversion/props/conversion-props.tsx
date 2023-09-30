@@ -3,7 +3,6 @@ import { CONVERSION_PROPS_MAP } from "./config";
 import { Parameters } from "../../parameters/Parameters";
 import { ParametersType } from "../../parameters/types";
 import { useContext, useEffect } from "react";
-import { ConversionContext } from "../context/ConversionContext";
 import { ConversionsContext } from "../context/ConversionsContext";
 
 type ConversionProps = {

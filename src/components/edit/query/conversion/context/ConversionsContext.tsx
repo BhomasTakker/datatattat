@@ -23,8 +23,9 @@ const defaultConversion = {
 
 type ConversionsState = {
 	objectKey: string;
+	conversionsFormId: string;
 	// Perhaps this is where you argue conversions is better as a class
-	conversions: any[];
+	// conversions: any[];
 	sort: any; // ConversionData[];
 	filter: any; //ConversionData[];
 	transform: any; //ConversionData[];
@@ -48,7 +49,8 @@ type ConversionsInterface = {
 
 const conversionsInitialState: ConversionsState & ConversionsInterface = {
 	objectKey: "",
-	conversions: [],
+	// conversions: [],
+	conversionsFormId: "",
 
 	addConversion: () => {},
 	addConversions: () => {},
@@ -84,19 +86,16 @@ export const ConversionsContextProvider = ({
 	children: ReactNode;
 }) => {
 	// const [conversions, setConversions] = useState<Conversions>([]);
-	const { setValue, unregister } = useFormContext();
+	const { setValue, unregister, getValues } = useFormContext();
 
 	const { conversionJson, objectKey } = value;
 	const conversionsFormId = `${objectKey}.conversions`;
-	const conversions = useWatch({ name: conversionsFormId, defaultValue: [] });
 
 	const {
 		id = undefined,
 		iterable = false,
 		defaultConversions,
 	} = conversionJson;
-
-	// console.log({ JSON: conversionJson });
 
 	////////////////////////////////
 	// initialize function ?
@@ -115,12 +114,19 @@ export const ConversionsContextProvider = ({
 	// we need to useCallback all of these functions
 	const addConversion = useCallback(
 		(conversionData: Conversion) => {
+			const conversions = getValues(conversionsFormId);
 			console.log("Add Conversion");
 
-			const len = conversions?.length ?? 0;
-			setValue(`${conversionsFormId}.${len}`, conversionData);
+			// const len = conversions?.length ?? 0;
+			// setValue(`${conversionsFormId}.${len}`, conversionData);
+
+			const updateConversions = cloneDeep(conversions);
+			updateConversions.push(conversionData);
+
+			unregister(conversionsFormId);
+			setValue(conversionsFormId, updateConversions);
 		},
-		[conversions, conversionsFormId, setValue]
+		[conversionsFormId, getValues, setValue, unregister]
 	);
 
 	const addConversions = useCallback(
@@ -133,6 +139,7 @@ export const ConversionsContextProvider = ({
 	);
 
 	useEffect(() => {
+		const conversions = getValues(conversionsFormId) || [];
 		// I don't think we should have this check?
 		// indicates an issue <- yep <- undecided
 		// Why? / even providing an empty dependency adds default conversions multiple times...
@@ -145,11 +152,12 @@ export const ConversionsContextProvider = ({
 			// console.log({ DEFAULT: defaultConversions });
 			addConversions(defaultConversions);
 		}
-	}, [addConversions, conversions, defaultConversions]);
+	}, [addConversions, conversionsFormId, defaultConversions, getValues]);
 
 	//? / void esq
 	const updateConversion = useCallback(
 		(i: number, conversionData: Conversion) => {
+			const conversions = getValues(conversionsFormId);
 			console.log("Update Conversion", { conversionData }, { i });
 
 			// update conversions array
@@ -158,13 +166,16 @@ export const ConversionsContextProvider = ({
 			const conversion = { ...conversions[i], ...conversionData };
 			updateConversions.splice(i, 1, conversion);
 
+			// Nothing happens here?
+
 			console.log({ updateConversions });
 		},
-		[conversions]
+		[conversionsFormId, getValues]
 	);
 
 	const deleteConversion = useCallback(
 		(i: number) => {
+			const conversions = getValues(conversionsFormId);
 			if (conversions.length === 0) {
 				return;
 			}
@@ -175,11 +186,12 @@ export const ConversionsContextProvider = ({
 			unregister(conversionsFormId);
 			setValue(conversionsFormId, updateConversions);
 		},
-		[conversions, conversionsFormId, setValue, unregister]
+		[conversionsFormId, getValues, setValue, unregister]
 	);
 
 	const moveConversion = useCallback(
 		(dir: number, i: number, callback: () => void = () => {}) => {
+			const conversions = getValues(conversionsFormId);
 			console.log("Move Conversion");
 			if (conversions.length === 0) {
 				return;
@@ -192,8 +204,12 @@ export const ConversionsContextProvider = ({
 			// potentially better?
 			// unregister(conversionsFormId);
 			setValue(conversionsFormId, updateConversions);
+
+			// should be?
+			// unregister(conversionsFormId);
+			// setValue(conversionsFormId, updateConversions);
 		},
-		[conversions, conversionsFormId, setValue]
+		[conversionsFormId, getValues, setValue]
 	);
 
 	const getFormValues = useCallback(() => {
@@ -213,7 +229,8 @@ export const ConversionsContextProvider = ({
 		<ConversionsContext.Provider
 			value={{
 				...value,
-				conversions,
+				// conversions,
+				conversionsFormId,
 				addConversion,
 				addConversions,
 				deleteConversion,

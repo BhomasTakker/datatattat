@@ -1,5 +1,3 @@
-// Should really make a plop file
-
 import {
 	ReactNode,
 	createContext,
@@ -55,6 +53,8 @@ export const PageStateContextProvider = ({
 	const { setValue, unregister, reset } = useFormContext();
 	const { pageData } = useContext(PageQueryContext);
 
+	console.log("ISSUE:12345", "PAGE:STATE:CONTEXT", { currentPage });
+	console.log("ISSUE:12345", "PAGE:STATE:CONTEXT", { pageData });
 	useEffect(() => {
 		const page = pageData?.page || null;
 		if (!page) {
@@ -62,13 +62,7 @@ export const PageStateContextProvider = ({
 		}
 
 		const { content } = page;
-		console.log(
-			"FEATURE:205",
-			"REFACTOR:PAGE",
-			"SET:FORM:VALUE",
-			{ pageData },
-			{ currentPage }
-		);
+
 		// We get message ok etc from page data
 		// setValue(FORM_ID, { ...page, route: `${currentPage}` });
 
@@ -76,7 +70,6 @@ export const PageStateContextProvider = ({
 		// ERROR HERE PERHAPS
 		/////////////////////////
 
-		console.log("ISSUE:123", "PAGE:STATE:RE-RENDER", "USE:EFFECT", { page });
 		// register("route");
 		// register("content");
 
@@ -98,8 +91,6 @@ export const PageStateContextProvider = ({
 		// 	}
 		// );
 	}, [currentPage, pageData, setValue]);
-
-	console.log("ISSUE:123", "PAGE:STATE:RE-RENDER", "OUT");
 
 	return (
 		// Should we be passing data?

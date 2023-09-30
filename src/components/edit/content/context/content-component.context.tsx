@@ -53,16 +53,18 @@ export const ContentComponentContextProvider = ({
 
 	const propsId = `${objectKey}.${PROPS_ID}`;
 
+	// ISSUE:54321 perhaps here / check / this one has to be fine.
+	// just a select / name it differently
 	const withComponentFormData = useWatch({
 		// control,
 		name: withFormTypeId,
 	});
+
+	console.log("ISSUE:12345", { withComponentFormData }, { withFormTypeId });
 	useEffect(() => {
 		// console.log("ISSUE:999", "CONTEXT:USE:EFFECT", { withComponentType });
 		setWithComponentType(withComponentFormData);
 	}, [withComponentFormData]);
-
-	// console.log("ISSUE:999", "CONTEXT", { withComponentType });
 
 	return (
 		// Would you always spread given value here?

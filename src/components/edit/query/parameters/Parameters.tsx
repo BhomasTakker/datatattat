@@ -28,7 +28,7 @@ export const Parameters = ({ params = [], objectKey }: ParametersProps) => {
 			<WithInfo info="Query parameters. Controls to modify the query sent to your chosen api.">
 				<Title text="Parameters" variant={TitleVariant.EDIT_COMPONENT}></Title>
 			</WithInfo>
-			<ParametersList parameters={params} />
+			<ParametersList />
 		</ParametersContextProvider>
 	);
 };

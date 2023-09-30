@@ -34,8 +34,8 @@ export const PageQueryProvider = ({
 	children: ReactNode;
 }) => {
 	const [pageData, setPageData] = useState({});
-	const { user } = useUser();
-	const username = user?.username || "";
+	// const { user } = useUser();
+	// const username = user?.username || "";
 	// const [subHeaders, setSubHeaders] = useState<HeaderDataType[]>([]); //subHeaders
 	// header should just be form data
 	// Effectively get data and assign to form then use watch
@@ -43,7 +43,12 @@ export const PageQueryProvider = ({
 	// 	useState<HeaderDataType>(initialHeaderData); //type this
 
 	const { currentPage } = useContext(EditContext);
-
+	console.log(
+		"ISSUE:12345",
+		"PAGE:QUERY:CONTEXT",
+		{ pageData },
+		{ currentPage }
+	);
 	// create hook?
 	// clean the hell up
 	useEffect(() => {
