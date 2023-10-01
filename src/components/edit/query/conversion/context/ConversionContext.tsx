@@ -11,13 +11,13 @@ export type UpdateConversion = (index: number, data: Conversion) => void;
 
 type ConversionInterface = {
 	// these are / or are going to be individual references to the conversionsContext
-	deleteConversion: (e: MouseEvent) => DeleteConversion;
+	deleteConversion: (str: string) => DeleteConversion;
 	moveConversion: (dir: number) => MoveConversion;
 	updateConversion: (data: Conversion) => UpdateConversion;
 };
 
 const conversionInitialState: ConversionState & ConversionInterface = {
-	deleteConversion: (e: MouseEvent) => (id: string, index: number) => {},
+	deleteConversion: (str: string) => (id: string, index: number) => {},
 	moveConversion: (dir: number) => (dir: number, index: number) => {},
 	updateConversion:
 		(data: Conversion) => (index: number, data: Conversion) => {},

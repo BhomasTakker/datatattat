@@ -1,4 +1,4 @@
-type BaseInfo = {
+export type BaseInfo = {
 	title: string;
 	src: string; // URL format
 	description: string;
@@ -6,7 +6,7 @@ type BaseInfo = {
 	variant: string; // union
 };
 
-type Details = {
+export type Details = {
 	docs?: string[];
 	categories?: string[];
 	authors?: string[];
@@ -15,13 +15,13 @@ type Details = {
 	modified?: Date | string;
 };
 
-type Media = {};
+export type Media = {};
 
-type Avatar = {
+export type Avatar = {
 	src: string;
 	alt: string;
 };
 
-type Pagination = {
+export type Pagination = {
 	results: number;
 };

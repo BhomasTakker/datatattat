@@ -33,6 +33,7 @@ const theme = createTheme({
 			main: orange[500],
 			light: orange[300],
 		},
+		// @ts-ignore think it's a chore to sort out
 		highlights: {
 			main: alpha(orange[300], 0.3),
 			light: alpha(orange[300], 0.1),

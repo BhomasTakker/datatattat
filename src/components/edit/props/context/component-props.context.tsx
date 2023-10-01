@@ -1,11 +1,9 @@
-import { ReactNode, createContext, useContext, useEffect } from "react";
-import { PageStateContext } from "../../page/context/state/page-state.context";
+import { ReactNode, createContext, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-import { PageContainerContext } from "../../page/context/container/page-container.context";
 
 type PageComponentPropsState = {
 	propsId: string;
-	props: unknown[];
+	props: any[];
 	resetComponent: any;
 };
 

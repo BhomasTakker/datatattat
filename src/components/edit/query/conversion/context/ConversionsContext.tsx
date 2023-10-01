@@ -23,7 +23,7 @@ const defaultConversion = {
 
 type ConversionsState = {
 	objectKey: string;
-	conversionsFormId: string;
+	// conversionsFormId: string;
 	// Perhaps this is where you argue conversions is better as a class
 	// conversions: any[];
 	sort: any; // ConversionData[];
@@ -37,6 +37,8 @@ type ConversionsState = {
 };
 
 type ConversionsInterface = {
+	conversionsFormId: string;
+
 	addConversion: (conversionData: Conversion) => void; // pass data in || default
 	addConversions: (conversionDatas: Conversions) => void;
 	updateConversion: (i: number, conversionData: Conversion) => void; // Partial

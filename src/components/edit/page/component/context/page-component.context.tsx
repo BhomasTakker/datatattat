@@ -17,7 +17,7 @@ const initialState: PageComponentInterface = {
 	id: "",
 	info: "",
 	title: "",
-	props: {},
+	props: [],
 	components: "",
 };
 
