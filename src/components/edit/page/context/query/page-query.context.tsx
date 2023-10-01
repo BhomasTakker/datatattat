@@ -26,6 +26,9 @@ const initialState: PageQueryState & PageQueryInterface = {
 
 // When reload / update, etc - this might cause issues with refetch
 // Needs cleaning up and perhaps re struct
+// We could just create a hook for getting currentPage and use it where required
+// return loading etc - would stop at least some rerenders
+// Probably the correct approach
 export const PageQueryProvider = ({
 	value,
 	children,
@@ -34,13 +37,6 @@ export const PageQueryProvider = ({
 	children: ReactNode;
 }) => {
 	const [pageData, setPageData] = useState({});
-	// const { user } = useUser();
-	// const username = user?.username || "";
-	// const [subHeaders, setSubHeaders] = useState<HeaderDataType[]>([]); //subHeaders
-	// header should just be form data
-	// Effectively get data and assign to form then use watch
-	// const [currentHeader, setCurrentHeader] =
-	// 	useState<HeaderDataType>(initialHeaderData); //type this
 
 	const { currentPage } = useContext(EditContext);
 	console.log(
@@ -64,9 +60,11 @@ export const PageQueryProvider = ({
 
 			// try catch
 			// how safe is this ?
+			// it should have a try catch
 			const result = await getPageByRoute(currentPage);
 			// setPageData to error state if error
 			// Could loading etc
+			// should check if error
 			setPageData(result);
 		};
 		fetchPageData();
