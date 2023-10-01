@@ -1,4 +1,10 @@
-import { ReactElement, useContext, useEffect, useState } from "react";
+import {
+	ReactElement,
+	useCallback,
+	useContext,
+	useEffect,
+	useState,
+} from "react";
 import { Box, Stack } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
 import { Parameters } from "../parameters/Parameters";
@@ -22,6 +28,18 @@ type QueryCreatorProps = {
 	// we need typeObject select, text, etc all have different types
 };
 
+const getRecursiveComponent = (config: any) => {
+	if (config) {
+		return (
+			<CreatorContextProvider value={{ config }}>
+				<QueryCreator />
+			</CreatorContextProvider>
+		);
+	} else {
+		return null;
+	}
+};
+
 // Clean this guy up
 // He can be better
 // First pass more needed
@@ -40,7 +58,7 @@ export const QueryCreator = ({}: QueryCreatorProps) => {
 	} = useContext(QueryContext);
 
 	const [RecursiveComponent, setRecursiveComponent] =
-		useState<ReactElement | null>(null);
+		useState<ReactElement | null>(getRecursiveComponent(selectedQueryConfig));
 
 	// ??
 	// blueprint changes between endpoints
@@ -65,15 +83,7 @@ export const QueryCreator = ({}: QueryCreatorProps) => {
 	// If this was a hook in and of itself
 	// if anything needed it just call the hook
 	useEffect(() => {
-		if (selectedQueryConfig) {
-			setRecursiveComponent(
-				<CreatorContextProvider value={{ config: selectedQueryConfig }}>
-					<QueryCreator />
-				</CreatorContextProvider>
-			);
-		} else {
-			setRecursiveComponent(null);
-		}
+		setRecursiveComponent(getRecursiveComponent(selectedQueryConfig));
 	}, [selectedQueryConfig]);
 	//formInputValue, queryFormKey, queryIdFormKey, selectedQueryConfig
 	// Neaten this up for sure

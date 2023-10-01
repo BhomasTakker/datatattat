@@ -4,27 +4,17 @@ import { WithInfo } from "../info/WithInfo";
 import { Title } from "../../ui/title";
 import { MARGINS, INFO_MARGINS } from "config/styles/styles.config";
 import { SelectInputWithControl } from "../../input/SelectInput";
-import {
-	createSelectInputList,
-	createSelectInputListMap,
-} from "../../input/TextInput";
+import { createSelectInputListMap } from "../../input/TextInput";
 import { TitleVariant } from "../../types/ui";
 import { QueryCreator } from "./creator/query-creator";
 import { QueryContext, QueryContextProvider } from "./context/query-context";
 import { useContext } from "react";
-import {
-	CreatorContext,
-	CreatorContextProvider,
-} from "./context/creator-context";
+import { CreatorContextProvider } from "./context/creator-context";
 
 /////////////////////////////////////////////////////////////////////////////
 //////////////////////////// REFACTOR ME ////////////////////////////////////
 // This needs to be refactored to be more in keeping with the rest of edit //
 /////////////////////////////////////////////////////////////////////////////
-
-// componentId
-// objectKey
-// configList
 
 type QueryComponentProps = {};
 
@@ -32,7 +22,7 @@ type QueryComponentProps = {};
 // query-creator.container
 /////////////////////////////
 const QueryComponent = ({}: QueryComponentProps) => {
-	const { providerConfig } = useContext(QueryContext);
+	const { providerConfig, objectKey } = useContext(QueryContext);
 
 	if (!providerConfig) {
 		// error message
@@ -58,10 +48,6 @@ type QuerySelectProps = {
 type QuerySelectorProps = QuerySelectProps & {
 	configList: Map<string, object>;
 };
-
-// title, titleInfo,
-// type label, type info, type id
-// config list
 
 ////////////////////////////
 // query / query.component
