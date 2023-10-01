@@ -1,4 +1,3 @@
-import { YOUTUBE_IFRAME_OBJECT } from "../iframe-embeds/youtube/constants";
 import { TIKTOK_OEMBED_OBJECT } from "./tik-tok/constants";
 import { TWITTER_OEMBED_OBJECT } from "./twitter/constants";
 import { YOUTUBE_OEMBED_OBJECT } from "./youtube/constants";

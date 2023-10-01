@@ -1,16 +1,10 @@
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { i18namespace } from "@/lib/i18n/namespace-sets";
-import { DTAHead } from "@/head/DTAHead";
-import { User } from "@/models/User";
 import mongooseConnect from "@/src/lib/mongoose-connection";
 import Page from "@/models/Page";
-import { containerFactory } from "@/src/factories/container-factory";
-import { getHeaders, getMainHeader } from "@/src/headers/get-headers";
-import { Common } from "@/src/lib/i18n/translation";
-import styles from "@/styles/Home.module.css";
+import { getHeaders } from "@/src/headers/get-headers";
 import { useTranslation } from "next-i18next";
-import { PageContainerFactoryComponent } from "@/src/components/content-display/page-containers/page-container.factory";
 import { PageDisplayContainer } from "@/src/components/content-display/page/page-display.container";
 
 //type input - this needs to change
@@ -21,33 +15,8 @@ function ContentPage({ pageData }: any) {
 	if (!pageData) {
 		return <div>Loading...</div>;
 	}
-	const { content } = pageData;
 
-	const Container = containerFactory(content) || <></>;
-
-	console.log({ content });
-	console.log({ Container });
-
-	// return <></>;
-
-	return (
-		<PageDisplayContainer pageData={pageData} />
-		// <>
-		// 	{/* Content Page, etc */}
-		// 	{/* We should probably just call a generic content page if we can */}
-		// 	{/* PageContainer, PageContext */}
-		// 	{/* Contain Head, Title, etc, Component, HTML, Style */}
-		// 	{/* That way you could ultimately add individual style no */}
-		// 	<DTAHead />
-		// 	{/* Remove styling - or some of it */}
-		// 	<main className={styles.main}>
-		// 		{/* Remove title from here */}
-		// 		<h1>{t(Common.pageTitle)}</h1>
-		// 		<PageContainerFactoryComponent contentData={content} />
-		// 		{/* <Container data={content} /> */}
-		// 	</main>
-		// </>
-	);
+	return <PageDisplayContainer pageData={pageData} />;
 }
 
 type ContextParams = {

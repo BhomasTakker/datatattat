@@ -25,7 +25,8 @@ export const mergeConversion = (
 ) => {
 	//Doesn't look like an eloquent solution available
 	// return new Map(function*() { yield* conversion1; yield* conversion2; }());
-	console.log({ conversion2 });
+	// console.log({ conversion2 });
+	// @ts-ignore - next config? tsconfig target es6/2015 or higher
 	return new Map([...conversion1, ...conversion2]);
 };
 

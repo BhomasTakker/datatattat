@@ -2,9 +2,6 @@ import { TanTable } from "./TanTable";
 import { withQuery } from "@/hoc/query/withQuery";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { fetchPokemon } from "@/src/api/pokeapi/pokemon";
-import { fetchCharacters } from "@/src/api/swapi/people";
-
 //Create a Controller
 const queryClient = new QueryClient();
 
@@ -27,7 +24,7 @@ const componentObject = {
 };
 
 const queryObject = {
-	queryFn: fetchCharacters,
+	queryFn: () => {}, //fetchCharacters,
 	queryId: "fetchCharacters",
 	//this is seperate to pagination state but includes
 	state: {

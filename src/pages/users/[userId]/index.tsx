@@ -1,41 +1,18 @@
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { i18namespace } from "@/lib/i18n/namespace-sets";
-import { DTAHead } from "@/head/DTAHead";
 import { User } from "@/models/User";
 import mongooseConnect from "@/src/lib/mongoose-connection";
 import Page from "@/models/Page";
-import Header from "@/models/Header";
-import Footer from "@/models/Footer";
-import { containerFactory } from "@/src/factories/container-factory";
-import { getHeaders, getMainHeader } from "@/src/headers/get-headers";
-import { PageContainerFactoryComponent } from "@/src/components/content-display/page-containers/page-container.factory";
+import { getHeaders } from "@/src/headers/get-headers";
 import { PageDisplayContainer } from "@/src/components/content-display/page/page-display.container";
 
 function UserLanding({ username, pageData, headerData, footerData }: any) {
-	// console.log({ username });
-
 	if (!pageData) {
 		return <div>Loading...</div>;
 	}
-	const { content } = pageData;
 
-	// console.log({ content });
-	//get? / use is interesting because that suggests that it could change
-	const Container = containerFactory(content);
-
-	return (
-		<PageDisplayContainer pageData={pageData} />
-		// <>
-		// 	<DTAHead />
-		// 	<main>
-		// 		{/* Does page have a title and a pre-amble */}
-		// 		<h1>{`${username} Landing Page`}</h1>
-		// 		<PageContainerFactoryComponent contentData={content} />
-		// 		<Container data={content} />
-		// 	</main>
-		// </>
-	);
+	return <PageDisplayContainer pageData={pageData} />;
 }
 
 type ContextParams = {
@@ -46,11 +23,11 @@ export async function getStaticPaths() {
 	//
 	return {
 		paths: [
-			{
-				params: {
-					userId: "Tumus",
-				},
-			},
+			// {
+			// 	params: {
+			// 		userId: "Tumus",
+			// 	},
+			// },
 		],
 		fallback: true,
 	};
