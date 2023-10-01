@@ -6,7 +6,11 @@ export async function getPageByRoute(route: string): Promise<any> {
 	if (!route) {
 		return {}; //as a response
 	}
-	console.log({ THISroute: route });
-	const response = await fetch(`/api/page/route/${route}`);
-	return await response.json();
+
+	try {
+		const response = await fetch(`/api/page/route/${route}`);
+		return await response.json();
+	} catch (err) {
+		return err;
+	}
 }

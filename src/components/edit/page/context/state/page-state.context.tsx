@@ -1,11 +1,4 @@
-import {
-	ReactNode,
-	createContext,
-	useContext,
-	useEffect,
-	useReducer,
-	useState,
-} from "react";
+import { ReactNode, createContext, useContext, useEffect } from "react";
 import { PageQueryContext } from "../query/page-query.context";
 import { useFormContext } from "react-hook-form";
 import { EditContext } from "@/src/context/edit-context";
@@ -48,49 +41,30 @@ export const PageStateContextProvider = ({
 	value?: PageStateState;
 	children: ReactNode;
 }) => {
-	// const forceUpdate = useReducer((bool) => !bool, true)[1];
 	const { currentPage } = useContext(EditContext);
-	const { setValue, unregister, reset } = useFormContext();
+	const { setValue, unregister } = useFormContext();
 	const { pageData } = useContext(PageQueryContext);
 
 	console.log("ISSUE:12345", "PAGE:STATE:CONTEXT", { currentPage });
 	console.log("ISSUE:12345", "PAGE:STATE:CONTEXT", { pageData });
 	useEffect(() => {
+		// Why is this check here?
+		// split this up / make better
+		// PageData is always null originally since it's derived from a query
+		// we should - if loading - ignore
 		const page = pageData?.page || null;
 		if (!page) {
+			unregister("content", { keepValue: false });
 			return;
 		}
 
 		const { content } = page;
 
-		// We get message ok etc from page data
-		// setValue(FORM_ID, { ...page, route: `${currentPage}` });
-
-		/////////////////////////
-		// ERROR HERE PERHAPS
-		/////////////////////////
-
-		// register("route");
-		// register("content");
-
 		setValue("route", currentPage);
 		setValue("content", content, {
 			shouldValidate: true,
 		});
-
-		// forceUpdate();
-		// reset works but setValue didn't
-		// not entirely sure why
-		// reset(
-		// 	{
-		// 		...page,
-		// 		route: `${currentPage}`
-		// 	},
-		// 	{
-		// 		keepValues: false,
-		// 	}
-		// );
-	}, [currentPage, pageData, setValue]);
+	}, [currentPage, pageData, setValue, unregister]);
 
 	return (
 		// Should we be passing data?
