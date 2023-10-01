@@ -68,10 +68,6 @@ export const QueryContextProvider = ({
 		conversionsFormKey,
 	};
 
-	console.log("ISSUE:389", { baseFormKey });
-	console.log("ISSUE:389", { queryFormKey });
-	console.log("ISSUE:389", { withTypeKey });
-
 	const providerListener = useWatch({
 		name: providerFormKey,
 	});
@@ -85,23 +81,16 @@ export const QueryContextProvider = ({
 
 	useEffect(() => {
 		// configList needs to be a set...
-		console.log("ISSUE:389", "SET:PROVIDER", { providerListener });
 		setProviderConfig(configList.get(providerListener));
 	}, [configList, providerListener]);
 
 	useEffect(() => {
-		// if()
-		console.log("ISSUE:237", "UNREGISTER", { withTypeKeyListener });
-		console.log(
-			"ISSUE:589",
-			"QUERY:CONTEXT:UNREGISTER",
-			{ withTypeKeyListener },
-			{ parametersFormKey }
-		);
-		// unregister(queryFormKey);
-		// these should probably manage themselves?
 		unregister(queryIdFormKey);
-		unregister(providerFormKey);
+		// Okay removing this fixed it / but why was it here??
+		// if remove one all should be removed no?
+		// I feel like we're bouncing between bugs!
+		// unregister(providerFormKey);
+
 		// unregister(conversionsFormKey);
 		//this in use with useUnregisterForm is/was/will be an epic bug
 		// you need to properly understand what's going on and refactor/fix

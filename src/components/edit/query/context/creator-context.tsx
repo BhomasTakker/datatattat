@@ -1,7 +1,13 @@
-import { ReactNode, createContext, useContext, useEffect } from "react";
+import {
+	ReactNode,
+	createContext,
+	useContext,
+	useEffect,
+	useState,
+} from "react";
 import { QueryContext } from "./query-context";
 import { useWatch, useFormContext } from "react-hook-form";
-import { useUnregisterForm } from "../../hooks/useUnregisterForm";
+// import { useUnregisterForm } from "../../hooks/useUnregisterForm";
 
 type CreatorState = {
 	config: any;
@@ -26,10 +32,6 @@ export const CreatorContextProvider = ({
 }) => {
 	const { setValue } = useFormContext();
 
-	// 100% have to try / unknown
-	// const { selectedQueryConfig: asSomething } = useContext(CreatorContext);
-	// console.log({ asSomething });
-
 	const {
 		queryFormKey,
 		queryIdFormKey,
@@ -39,7 +41,7 @@ export const CreatorContextProvider = ({
 	} = useContext(QueryContext);
 	// const { withComponentType } = useContext(ContentComponentContext);
 	const { config } = value;
-	console.log("FEATURE:531", "CREATOR:CONTEXT", "HERE");
+
 	const {
 		id,
 		queryId,
@@ -54,9 +56,17 @@ export const CreatorContextProvider = ({
 
 	const formInputValue = useWatch({
 		name: formInputId,
+		defaultValue: null,
 	});
 
-	const selectedQueryConfig = endpointObjects[formInputValue];
+	const [selectedQueryConfig, setSelectedQueryConfig] = useState(
+		endpointObjects[formInputValue]
+	);
+
+	useEffect(() => {
+		if (!formInputValue) return;
+		setSelectedQueryConfig(endpointObjects[formInputValue]);
+	}, [endpointObjects, formInputValue]);
 
 	// This all needs cleaning up
 	// Shouldn't have unregister form
@@ -64,7 +74,8 @@ export const CreatorContextProvider = ({
 	// nope....
 	// Crazily required for parameters at the moment
 	// re-renders and form state are getting wild
-	useUnregisterForm({ name: formInputId });
+	// ERROR HERE PERHAPS - removed as should not be a thing
+	// useUnregisterForm({ name: formInputId });
 
 	useEffect(() => {
 		// this protection is incprrect
@@ -77,10 +88,19 @@ export const CreatorContextProvider = ({
 	}, [queryId, setQueryId]);
 
 	useEffect(() => {
-		if (!type || type === "none") {
+		// if (!type || type === "none") {
+		// 	return;
+		// }
+
+		// should be type endpoint or something
+		if (type !== "select") {
 			return;
 		}
 
+		// not yet loaded
+		if (formInputValue === null) {
+			return;
+		}
 		// if type !== select <- endpoint select?
 		// Tests to set input to default value on change
 		// Checks if current value exists in current endpoints
@@ -89,10 +109,17 @@ export const CreatorContextProvider = ({
 			!formInputValue ||
 			(endpoints && typeof endpoints?.[formInputValue] !== "string")
 		) {
-			// console.log("DO WE HERE???", { defaultEndpoint }, { formInputId });
 			setValue(formInputId, defaultEndpoint);
 		}
-	}, [formInputId, defaultEndpoint, setValue, formInputValue, endpoints, type]);
+	}, [
+		defaultEndpoint,
+		endpointObjects,
+		endpoints,
+		formInputId,
+		formInputValue,
+		setValue,
+		type,
+	]);
 
 	return (
 		<CreatorContext.Provider value={{ ...value, selectedQueryConfig }}>
