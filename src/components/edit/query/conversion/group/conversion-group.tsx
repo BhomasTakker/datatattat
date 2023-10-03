@@ -87,7 +87,7 @@ ConversionGroupProps) => {
 	const { deleteConversion, moveConversion, addConversion, conversionsFormId } =
 		useContext(ConversionsContext);
 	const { getValues } = useFormContext();
-	const conversions = getValues(conversionsFormId);
+	const conversions = getValues(conversionsFormId) || [];
 
 	// const { setValue } = useFormContext();
 
