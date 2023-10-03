@@ -116,7 +116,7 @@ export const ConversionsContextProvider = ({
 	// we need to useCallback all of these functions
 	const addConversion = useCallback(
 		(conversionData: Conversion) => {
-			const conversions = getValues(conversionsFormId);
+			const conversions = getValues(conversionsFormId) || [];
 			console.log("Add Conversion");
 
 			// const len = conversions?.length ?? 0;
@@ -159,7 +159,7 @@ export const ConversionsContextProvider = ({
 	//? / void esq
 	const updateConversion = useCallback(
 		(i: number, conversionData: Conversion) => {
-			const conversions = getValues(conversionsFormId);
+			const conversions = getValues(conversionsFormId) || [];
 			console.log("Update Conversion", { conversionData }, { i });
 
 			// update conversions array
@@ -177,7 +177,7 @@ export const ConversionsContextProvider = ({
 
 	const deleteConversion = useCallback(
 		(i: number) => {
-			const conversions = getValues(conversionsFormId);
+			const conversions = getValues(conversionsFormId) || [];
 			if (conversions.length === 0) {
 				return;
 			}
@@ -193,7 +193,7 @@ export const ConversionsContextProvider = ({
 
 	const moveConversion = useCallback(
 		(dir: number, i: number, callback: () => void = () => {}) => {
-			const conversions = getValues(conversionsFormId);
+			const conversions = getValues(conversionsFormId) || [];
 			console.log("Move Conversion");
 			if (conversions.length === 0) {
 				return;

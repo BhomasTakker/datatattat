@@ -15,7 +15,7 @@ export const ComponentsStack = () => {
 
 	// We need this to re-render on add comnponent
 	// When tried to reduce renders we get a bug with add component
-	const components = getValues(componentsFormId);
+	const components = getValues(componentsFormId) || [];
 	const ComponentsStack = components.map((component: any, i: number) => {
 		return (
 			<Stack direction="row" key={i}>

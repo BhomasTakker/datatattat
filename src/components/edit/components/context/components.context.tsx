@@ -55,7 +55,7 @@ export const ComponentsContextProvider = ({
 	// just do an add at Beginning of the array function etc
 	const addComponent = useCallback(
 		(component: Component, atStart = false) => {
-			const components = getValues(componentsFormId);
+			const components = getValues(componentsFormId) || [];
 			if (!atStart) {
 				const updateComponents: unknown[] = cloneDeep(components);
 				updateComponents.push(component);
@@ -76,7 +76,7 @@ export const ComponentsContextProvider = ({
 
 	const deleteComponent = useCallback(
 		(i: number) => {
-			const components = getValues(componentsFormId);
+			const components = getValues(componentsFormId) || [];
 			if (components.length === 0) {
 				return;
 			}
@@ -92,7 +92,7 @@ export const ComponentsContextProvider = ({
 
 	const moveComponent = useCallback(
 		(dir: number, i: number) => {
-			const components = getValues(componentsFormId);
+			const components = getValues(componentsFormId) || [];
 			if (components.length === 0) {
 				return;
 			}

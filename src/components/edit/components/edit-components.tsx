@@ -11,7 +11,7 @@ const LABEL = "Add Component";
 export const EditComponents = () => {
 	const { addComponent, componentsFormId } = useContext(ComponentsContext);
 	const { getValues } = useFormContext();
-	const components = getValues(componentsFormId);
+	const components = getValues(componentsFormId) || [];
 	return (
 		<Box paddingTop={MARGINS.MIDSMALL} paddingBottom={MARGINS.MIDSMALL}>
 			<Button onClick={() => addComponent("", true)} startIcon={<AddIcon />}>
