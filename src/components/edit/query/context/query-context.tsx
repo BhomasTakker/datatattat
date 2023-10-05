@@ -1,6 +1,7 @@
 import {
 	ReactNode,
 	createContext,
+	useRef,
 	useCallback,
 	useEffect,
 	useState,
@@ -47,8 +48,10 @@ export const QueryContextProvider = ({
 	value: QueryState;
 	children: ReactNode;
 }) => {
-	const { setValue, unregister } = useFormContext();
+	const isMounted = useRef(false);
+	const { setValue, unregister, resetField } = useFormContext();
 	const [providerConfig, setProviderConfig] = useState<any>(null);
+	const [formerState, setFormerState] = useState(null);
 
 	const { objectKey, configList } = value;
 	const baseFormKey = `${objectKey}`;
@@ -72,41 +75,30 @@ export const QueryContextProvider = ({
 		name: providerFormKey,
 	});
 
-	// ISSUE:54321
-	// This is to reset all with data when the type changes - i.e. when change from api to rss
-	// need to go through it because it looks wrong - but in some way required
 	const withTypeKeyListener = useWatch({
 		name: withTypeKey,
 	});
 
 	useEffect(() => {
-		// configList needs to be a set...
+		// Looks fairly safe - should we be protecting this from undue setting, etc
 		setProviderConfig(configList.get(providerListener));
-	}, [configList, providerListener]);
+	}, [configList, providerListener, queryFormKey, resetField]);
 
+	// This was a previous major issue
+	// We were unregistering on first render
+	// but also unregistering on strict mode render / which means update render <- which was an occasional bug
+	// i.e On away from focus and come back, you will re-render (the reason for strict mode) and unregister which would be wrong
 	useEffect(() => {
-		unregister(queryIdFormKey);
-		// Okay removing this fixed it / but why was it here??
-		// if remove one all should be removed no?
-		// I feel like we're bouncing between bugs!
-		// unregister(providerFormKey);
+		// Just used to protect against resetting when
+		// First render, strict mode, etc
+		if (formerState !== null && formerState != withTypeKeyListener) {
+			// Reset query when withTypeKeyChanges
+			// We are somewhat assuming that everything comes through query toughh right
+			unregister(queryFormKey);
+		}
 
-		// unregister(conversionsFormKey);
-		//this in use with useUnregisterForm is/was/will be an epic bug
-		// you need to properly understand what's going on and refactor/fix
-		// I don't think it works / I don't fucking need this
-		// The reset - we're unregistering but never again setValue?
-		// So you make a change here and resave and the thing reset to ''
-		// anything in this area is problematic - works now but fuuuuck.
-		// Think conversions will be the same or similar
-		unregister(parametersFormKey);
-	}, [
-		parametersFormKey,
-		providerFormKey,
-		queryIdFormKey,
-		unregister,
-		withTypeKeyListener,
-	]);
+		setFormerState(withTypeKeyListener);
+	}, [formerState, queryFormKey, unregister, withTypeKey, withTypeKeyListener]);
 
 	// copy over to creator cotext
 	const setQueryId = useCallback(
@@ -114,7 +106,7 @@ export const QueryContextProvider = ({
 			if (!id) {
 				return;
 			}
-			console.log({ setQueryId: id });
+
 			setValue(queryIdFormKey, id);
 		},
 		[queryIdFormKey, setValue]
