@@ -34,15 +34,10 @@ export const HookFormContextProvider = ({
 
 	const { submit } = useContext(context);
 
-	console.log("FEATURE:105", "CONTEXT:GROUP", "HOOK:FORM", { debug });
-	console.log("FEATURE:205", "CONTEXT:GROUP", "HOOK:FORM", { debug });
 	const debugHandler = () => {
-		console.log("DEBUG HANDLER");
-		console.log("FEATURE:205", "CONTEXT:GROUP", "HOOK:FORM", {
+		console.log("ISSUE:0003", "CONTEXT:GROUP", "HOOK:FORM", {
 			values: methods.getValues(),
 		});
-		console.log({ values: methods.getValues() });
-		console.log({ errors: methods.formState.errors });
 	};
 
 	return (

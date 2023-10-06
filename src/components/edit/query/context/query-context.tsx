@@ -1,7 +1,6 @@
 import {
 	ReactNode,
 	createContext,
-	useRef,
 	useCallback,
 	useEffect,
 	useState,
@@ -19,6 +18,7 @@ type QueryInterface = {
 	queryFormKey: string;
 	queryIdFormKey: string;
 	providerFormKey: string;
+	endpointsFormKey: string;
 	parametersFormKey: string;
 	conversionsFormKey: string;
 	setQueryId: (id: string) => void;
@@ -32,6 +32,7 @@ const initialState: QueryState & QueryInterface = {
 	queryFormKey: "",
 	queryIdFormKey: "",
 	providerFormKey: "",
+	endpointsFormKey: "",
 	parametersFormKey: "",
 	conversionsFormKey: "",
 	setQueryId: (id: string) => {},
@@ -48,10 +49,12 @@ export const QueryContextProvider = ({
 	value: QueryState;
 	children: ReactNode;
 }) => {
-	const isMounted = useRef(false);
-	const { setValue, unregister, resetField } = useFormContext();
+	const { setValue, getValues, unregister } = useFormContext();
 	const [providerConfig, setProviderConfig] = useState<any>(null);
-	const [formerState, setFormerState] = useState(null);
+	// Need be null for first render
+	const [formerWithKeyState, setFormerWithKeyState] = useState(null);
+	const [formerProviderFormKeyState, setFormerProviderFormKeyState] =
+		useState(null);
 
 	const { objectKey, configList } = value;
 	const baseFormKey = `${objectKey}`;
@@ -61,12 +64,14 @@ export const QueryContextProvider = ({
 	const queryIdFormKey = `${queryFormKey}.queryId`;
 	const providerFormKey = `${queryFormKey}.provider`;
 	const parametersFormKey = `${queryFormKey}.params`;
+	const endpointsFormKey = `${queryFormKey}.endpoints`;
 	const conversionsFormKey = `${queryFormKey}.conversions`;
 	const formKeys = {
 		baseFormKey,
 		queryFormKey,
 		queryIdFormKey,
 		providerFormKey,
+		endpointsFormKey,
 		parametersFormKey,
 		conversionsFormKey,
 	};
@@ -79,10 +84,30 @@ export const QueryContextProvider = ({
 		name: withTypeKey,
 	});
 
+	// Look at useFieldArray?? / nope not for us
 	useEffect(() => {
 		// Looks fairly safe - should we be protecting this from undue setting, etc
+		if (
+			formerProviderFormKeyState !== null &&
+			formerProviderFormKeyState != providerListener
+		) {
+			// Big issue was here / ISSUE:0003
+			// We are not actually getting rid of endpoint keys
+			// They are still present but set to undefined with the below allocation
+			// Not quite the issue but related / and worth noting
+			setValue(endpointsFormKey, {});
+		}
+
 		setProviderConfig(configList.get(providerListener));
-	}, [configList, providerListener, queryFormKey, resetField]);
+		setFormerProviderFormKeyState(providerListener);
+	}, [
+		configList,
+		endpointsFormKey,
+		formerProviderFormKeyState,
+		providerListener,
+		setValue,
+	]);
+	// configList, providerListener, queryFormKey, resetField
 
 	// This was a previous major issue
 	// We were unregistering on first render
@@ -91,14 +116,23 @@ export const QueryContextProvider = ({
 	useEffect(() => {
 		// Just used to protect against resetting when
 		// First render, strict mode, etc
-		if (formerState !== null && formerState != withTypeKeyListener) {
+		if (
+			formerWithKeyState !== null &&
+			formerWithKeyState != withTypeKeyListener
+		) {
 			// Reset query when withTypeKeyChanges
 			// We are somewhat assuming that everything comes through query toughh right
 			unregister(queryFormKey);
 		}
 
-		setFormerState(withTypeKeyListener);
-	}, [formerState, queryFormKey, unregister, withTypeKey, withTypeKeyListener]);
+		setFormerWithKeyState(withTypeKeyListener);
+	}, [
+		formerWithKeyState,
+		queryFormKey,
+		unregister,
+		withTypeKey,
+		withTypeKeyListener,
+	]);
 
 	// copy over to creator cotext
 	const setQueryId = useCallback(

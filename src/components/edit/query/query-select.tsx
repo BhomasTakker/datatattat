@@ -49,6 +49,7 @@ type QuerySelectorProps = QuerySelectProps & {
 	configList: Map<string, object>;
 };
 
+// Need explainer on all this
 ////////////////////////////
 // query / query.component
 ////////////////////////////
