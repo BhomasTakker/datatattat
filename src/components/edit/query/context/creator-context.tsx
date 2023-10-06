@@ -7,7 +7,6 @@ import {
 } from "react";
 import { QueryContext } from "./query-context";
 import { useWatch, useFormContext } from "react-hook-form";
-// import { useUnregisterForm } from "../../hooks/useUnregisterForm";
 
 type CreatorState = {
 	config: any;
@@ -37,10 +36,11 @@ export const CreatorContextProvider = ({
 		queryFormKey,
 		queryIdFormKey,
 		providerFormKey,
+		endpointsFormKey,
 		parametersFormKey,
 		setQueryId,
 	} = useContext(QueryContext);
-	// const { withComponentType } = useContext(ContentComponentContext);
+
 	const { config } = value;
 
 	const {
@@ -51,9 +51,8 @@ export const CreatorContextProvider = ({
 		type,
 		defaultEndpoint,
 	} = config;
-	//, ...config // spread config into
 
-	const formInputId = `${queryFormKey}.${id}`;
+	const formInputId = `${endpointsFormKey}.${id}`;
 
 	const formInputValue = useWatch({
 		name: formInputId,
@@ -65,18 +64,16 @@ export const CreatorContextProvider = ({
 	);
 
 	useEffect(() => {
-		if (!formInputValue) return;
+		if (!formInputValue || !endpointObjects) {
+			// FIX ISSUE:0003
+			// This feels more like a cheat
+			// If the object keys are still there - that's an issue
+			// This also feels like it may cause an issue?
+			setSelectedQueryConfig(null);
+			return;
+		}
 		setSelectedQueryConfig(endpointObjects[formInputValue]);
 	}, [endpointObjects, formInputValue]);
-
-	// This all needs cleaning up
-	// Shouldn't have unregister form
-	// the setValue useEffect is far too messy / hacky
-	// nope....
-	// Crazily required for parameters at the moment
-	// re-renders and form state are getting wild
-	// ERROR HERE PERHAPS - removed as should not be a thing
-	// useUnregisterForm({ name: formInputId });
 
 	useEffect(() => {
 		// this protection is incprrect

@@ -49,14 +49,16 @@ export const QueryCreator = ({}: QueryCreatorProps) => {
 	// You will use that which is closest to you.
 	// yeah works - seems no trouble at all
 	const { config, selectedQueryConfig } = useContext(CreatorContext);
-	console.log({ ID: config.id });
+
 	const {
 		queryFormKey,
 		queryIdFormKey,
+		endpointsFormKey,
 		parametersFormKey,
 		conversionsFormKey,
 	} = useContext(QueryContext);
 
+	// Could probably just be an array no?
 	const [RecursiveComponent, setRecursiveComponent] =
 		useState<ReactElement | null>(getRecursiveComponent(selectedQueryConfig));
 
@@ -76,24 +78,25 @@ export const QueryCreator = ({}: QueryCreatorProps) => {
 		endpoints,
 	} = config;
 
+	console.log("ISSUE:0003", "QUERY:CREATOR", id);
+
 	// This creates a new form key for every 'endpoint' selection
-	const formInputId = `${queryFormKey}.${id}`;
+	const formInputId = `${endpointsFormKey}.${id}`;
 
 	// Create recursive component IF there is an endpointObject for our current chosen endpoint
-	// If this was a hook in and of itself
-	// if anything needed it just call the hook
 	useEffect(() => {
 		setRecursiveComponent(getRecursiveComponent(selectedQueryConfig));
 	}, [selectedQueryConfig]);
 	//formInputValue, queryFormKey, queryIdFormKey, selectedQueryConfig
 	// Neaten this up for sure
+
 	return (
 		<Stack>
 			{type ? (
 				<Box marginLeft={MARGINS.LARGE}>
 					<EditSelectInput
 						endpoints={endpoints}
-						id={formInputId}
+						id={`${formInputId}`}
 						label={label}
 						info={info}
 					/>
