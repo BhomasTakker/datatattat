@@ -1,10 +1,4 @@
-import {
-	ReactElement,
-	useCallback,
-	useContext,
-	useEffect,
-	useState,
-} from "react";
+import { ReactElement, useContext, useEffect, useState } from "react";
 import { Box, Stack } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
 import { Parameters } from "../parameters/Parameters";
@@ -15,7 +9,7 @@ import {
 	CreatorContext,
 	CreatorContextProvider,
 } from "../context/creator-context";
-
+import { useWatch } from "react-hook-form";
 type QueryBluePrint = {
 	id: string;
 	label: string;
@@ -28,11 +22,11 @@ type QueryCreatorProps = {
 	// we need typeObject select, text, etc all have different types
 };
 
-const getRecursiveComponent = (config: any) => {
+const getRecursiveComponent = (config: any, queryId: string) => {
 	if (config) {
 		return (
-			<CreatorContextProvider value={{ config }}>
-				<QueryCreator />
+			<CreatorContextProvider value={{ config }} key={queryId}>
+				<QueryCreator key={queryId} />
 			</CreatorContextProvider>
 		);
 	} else {
@@ -40,14 +34,8 @@ const getRecursiveComponent = (config: any) => {
 	}
 };
 
-// Clean this guy up
-// He can be better
-// First pass more needed
 export const QueryCreator = ({}: QueryCreatorProps) => {
-	// const { setValue } = useFormContext();
-	// I swear this will work
-	// You will use that which is closest to you.
-	// yeah works - seems no trouble at all
+	// Using nested context
 	const { config, selectedQueryConfig } = useContext(CreatorContext);
 
 	const {
@@ -57,10 +45,14 @@ export const QueryCreator = ({}: QueryCreatorProps) => {
 		parametersFormKey,
 		conversionsFormKey,
 	} = useContext(QueryContext);
-
+	const queryId = useWatch({ name: queryIdFormKey });
 	// Could probably just be an array no?
 	const [RecursiveComponent, setRecursiveComponent] =
-		useState<ReactElement | null>(getRecursiveComponent(selectedQueryConfig));
+		useState<ReactElement | null>(
+			getRecursiveComponent(selectedQueryConfig, queryId)
+		);
+
+	const endpointsData = useWatch({ name: endpointsFormKey });
 
 	// ??
 	// blueprint changes between endpoints
@@ -74,27 +66,30 @@ export const QueryCreator = ({}: QueryCreatorProps) => {
 		params,
 		conversions,
 
-		// component type specific
 		endpoints,
 	} = config;
-
-	console.log("ISSUE:0003", "QUERY:CREATOR", id);
 
 	// This creates a new form key for every 'endpoint' selection
 	const formInputId = `${endpointsFormKey}.${id}`;
 
+	const formInputValue = useWatch({ name: formInputId });
+
 	// Create recursive component IF there is an endpointObject for our current chosen endpoint
+	// Hoo Wee shit this all worked but I don't know why???
+	// Problem was keys - update react but items have the same key and no change of props so no change
+	// if queryId added as dependency then endless loop but almost okay... suggetsing a guard would work <- but why this loop!!!!!?????
+	// Update endpoints and change me - works with new key
 	useEffect(() => {
-		setRecursiveComponent(getRecursiveComponent(selectedQueryConfig));
-	}, [selectedQueryConfig]);
-	//formInputValue, queryFormKey, queryIdFormKey, selectedQueryConfig
-	// Neaten this up for sure
+		// Some protection?
+		setRecursiveComponent(getRecursiveComponent(selectedQueryConfig, queryId));
+	}, [formInputId, selectedQueryConfig, formInputValue, endpointsData]);
 
 	return (
 		<Stack>
 			{type ? (
 				<Box marginLeft={MARGINS.LARGE}>
 					<EditSelectInput
+						key={queryId}
 						endpoints={endpoints}
 						id={`${formInputId}`}
 						label={label}

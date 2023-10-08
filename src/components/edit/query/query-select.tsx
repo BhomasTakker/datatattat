@@ -8,7 +8,7 @@ import { createSelectInputListMap } from "../../input/TextInput";
 import { TitleVariant } from "../../types/ui";
 import { QueryCreator } from "./creator/query-creator";
 import { QueryContext, QueryContextProvider } from "./context/query-context";
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { CreatorContextProvider } from "./context/creator-context";
 
 /////////////////////////////////////////////////////////////////////////////
@@ -22,19 +22,25 @@ type QueryComponentProps = {};
 // query-creator.container
 /////////////////////////////
 const QueryComponent = ({}: QueryComponentProps) => {
-	const { providerConfig, objectKey } = useContext(QueryContext);
+	const { providerConfig, objectKey, endpointsFormKey } =
+		useContext(QueryContext);
+
+	const renderElement = useCallback(() => {
+		return (
+			<CreatorContextProvider value={{ config: providerConfig }}>
+				<QueryCreator />
+			</CreatorContextProvider>
+		);
+	}, [providerConfig]);
 
 	if (!providerConfig) {
-		// error message
 		return <></>; //errorComponent
 	}
 
 	return (
 		// This context needs refactor / rethink
 		// It does get rather complex from here
-		<CreatorContextProvider value={{ config: providerConfig }}>
-			<QueryCreator />
-		</CreatorContextProvider>
+		renderElement()
 	);
 };
 

@@ -21,11 +21,9 @@ export const EditContextProvider = (props: any) => {
 		initiallContext.currentPage || props.currentPage
 	);
 	const setCurrentPageHandler = (route: string) => {
-		// console.log("SET CURRENT PAGE " + route);
-		// console.log({ route });
+		// I mean here resetthough right?
 		setCurrentPage(route);
 	};
-	console.log("ISSUE:12345", "EDIT:CONTEXT");
 
 	return (
 		<EditContext.Provider

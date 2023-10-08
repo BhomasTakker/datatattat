@@ -45,19 +45,18 @@ export const PageStateContextProvider = ({
 	const { setValue, unregister } = useFormContext();
 	const { pageData } = useContext(PageQueryContext);
 
-	console.log("ISSUE:12345", "PAGE:STATE:CONTEXT", { currentPage });
-	console.log("ISSUE:12345", "PAGE:STATE:CONTEXT", { pageData });
 	useEffect(() => {
 		// Why is this check here?
 		// split this up / make better
 		// PageData is always null originally since it's derived from a query
 		// we should - if loading - ignore
 		const page = pageData?.page || null;
+
+		unregister("content", { keepValue: false });
+
 		if (!page) {
-			unregister("content", { keepValue: false });
 			return;
 		}
-
 		const { content } = page;
 
 		setValue("route", currentPage);
