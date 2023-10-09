@@ -45,6 +45,13 @@ export const PageStateContextProvider = ({
 	const { setValue, unregister } = useFormContext();
 	const { pageData } = useContext(PageQueryContext);
 
+	// Seperating seems to have fixed our issue
+	// It's not too pretty perhaps but works
+	useEffect(() => {
+		unregister("content", { keepValue: false });
+		setValue("route", currentPage);
+	}, [currentPage, setValue, unregister]);
+
 	useEffect(() => {
 		// Why is this check here?
 		// split this up / make better
@@ -52,18 +59,18 @@ export const PageStateContextProvider = ({
 		// we should - if loading - ignore
 		const page = pageData?.page || null;
 
-		unregister("content", { keepValue: false });
-
 		if (!page) {
+			// moving outside caused minor issue - Selected container was wiped (UI) on change page
+			// I think we made the change thinking it was safer
+			unregister("content", { keepValue: false });
 			return;
 		}
 		const { content } = page;
 
-		setValue("route", currentPage);
 		setValue("content", content, {
 			shouldValidate: true,
 		});
-	}, [currentPage, pageData, setValue, unregister]);
+	}, [pageData, setValue, unregister]);
 
 	return (
 		// Should we be passing data?
