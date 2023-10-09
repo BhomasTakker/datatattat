@@ -2,6 +2,7 @@
 // https://www.react-hook-form.com/api/useform/unregister/
 // Ignored options for now seems rather irrelevant to us at this stage
 /////////////////////////////////////////////////////////////
+// Unused Delete
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
@@ -11,6 +12,8 @@ type UnregisterFormType = {
 	//Didn't fix anything just caused a never ending loop!
 	// dependencies?: any[];
 };
+
+// Delete now
 
 const defaultDependencies: any = {};
 

@@ -35,21 +35,6 @@ export const ComponentsContextProvider = ({
 	// here ISSUE:54321 - whenever a component has a minor update we will re-render
 	// const components = []; //useWatch({ name: componentsFormId, defaultValue: [] });
 	const { setValue, unregister, getValues } = useFormContext();
-	// const { container } = useContext(PageContainerContext);
-
-	// effectively reset components when container changes
-	// might break everything!
-	// NOTE: HERE!
-	// useEffect(() => {
-	// 	//////////////////////////
-	// 	// this is like a reset //
-	// 	// There is a rogue unregister form somewhere
-	// 	/////////////////////////////////
-	// 	// set props to empty / no need to reset value?
-	// 	// perhaps reset would be better but damn simple
-	// 	// unregister(componentsFormId);
-	// 	// setValue(componentsFormId, components);
-	// }, [container, componentsFormId, setValue, unregister]);
 
 	// this is confusing
 	// just do an add at Beginning of the array function etc

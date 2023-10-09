@@ -6,6 +6,7 @@ import {
 	useState,
 } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
+import { EditContext } from "@/src/context/edit-context";
 
 type QueryState = {
 	objectKey: string;
@@ -49,7 +50,7 @@ export const QueryContextProvider = ({
 	value: QueryState;
 	children: ReactNode;
 }) => {
-	const { setValue, getValues, unregister } = useFormContext();
+	const { setValue, unregister } = useFormContext();
 	const [providerConfig, setProviderConfig] = useState<any>(null);
 	// Need be null for first render
 	const [formerWithKeyState, setFormerWithKeyState] = useState(null);
@@ -84,7 +85,6 @@ export const QueryContextProvider = ({
 		name: withTypeKey,
 	});
 
-	// Look at useFieldArray?? / nope not for us
 	useEffect(() => {
 		// Looks fairly safe - should we be protecting this from undue setting, etc
 		if (
@@ -94,6 +94,9 @@ export const QueryContextProvider = ({
 			// Big issue was here / ISSUE:0003
 			// We are not actually getting rid of endpoint keys
 			// They are still present but set to undefined with the below allocation
+			// Note:- On a subsequent change the undefined fields are removed
+			// On a 'console log re-render' they are not
+			// Suggests that we can delete them properly - not sure the cause of this
 			// Not quite the issue but related / and worth noting
 			setValue(endpointsFormKey, {});
 		}
@@ -107,7 +110,7 @@ export const QueryContextProvider = ({
 		providerListener,
 		setValue,
 	]);
-	// configList, providerListener, queryFormKey, resetField
+	// queryFormKey
 
 	// This was a previous major issue
 	// We were unregistering on first render
@@ -121,7 +124,7 @@ export const QueryContextProvider = ({
 			formerWithKeyState != withTypeKeyListener
 		) {
 			// Reset query when withTypeKeyChanges
-			// We are somewhat assuming that everything comes through query toughh right
+			// We are somewhat assuming that everything comes through query though right
 			unregister(queryFormKey);
 		}
 

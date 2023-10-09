@@ -1,5 +1,3 @@
-// Should really make a plop file
-
 import {
 	ReactNode,
 	createContext,
@@ -19,21 +17,17 @@ type ContentComponentState = {
 };
 
 type ContentComponentInterface = {
-	// withComponentFormData: any;
 	propsId: string;
 	withFormId: string;
 	withFormTypeId: string;
-	// withComponent: ReactNode;
 	withComponentType: string;
 };
 
 const initialState: ContentComponentState & ContentComponentInterface = {
 	config: null,
-	// withComponentFormData: null,
 	propsId: "",
 	withFormId: "",
 	withFormTypeId: "",
-	// withComponent: <></>,
 	withComponentType: "",
 };
 
@@ -45,7 +39,6 @@ export const ContentComponentContextProvider = ({
 	children: ReactNode;
 }) => {
 	const { objectKey } = useContext(EditComponentContext);
-	// const [withComponent, setWithComponent] = useState(<></>);
 	const [withComponentType, setWithComponentType] = useState("");
 
 	const withFormId = `${objectKey}.${WITH_ID}`;
@@ -53,30 +46,26 @@ export const ContentComponentContextProvider = ({
 
 	const propsId = `${objectKey}.${PROPS_ID}`;
 
-	// ISSUE:54321 perhaps here / check / this one has to be fine.
-	// just a select / name it differently
 	const withComponentFormData = useWatch({
-		// control,
 		name: withFormTypeId,
 	});
 
 	console.log("ISSUE:12345", { withComponentFormData }, { withFormTypeId });
 	useEffect(() => {
-		// console.log("ISSUE:999", "CONTEXT:USE:EFFECT", { withComponentType });
+		if (!withComponentFormData) {
+			return;
+		}
+
 		setWithComponentType(withComponentFormData);
 	}, [withComponentFormData]);
 
 	return (
-		// Would you always spread given value here?
 		<ContentComponentContext.Provider
 			value={{
 				...value,
-				//  better name
-				// withComponentFormData, //?
 				withComponentType,
 				withFormId,
 				withFormTypeId,
-				// withComponent,
 				propsId,
 			}}
 		>

@@ -56,14 +56,19 @@ export const CreatorContextProvider = ({
 
 	const formInputValue = useWatch({
 		name: formInputId,
-		defaultValue: null,
 	});
 
-	const [selectedQueryConfig, setSelectedQueryConfig] = useState(
-		endpointObjects[formInputValue]
-	);
+	const endpointsListener = useWatch({
+		name: endpointsFormKey,
+	});
+
+	const [selectedQueryConfig, setSelectedQueryConfig] = useState(null);
 
 	useEffect(() => {
+		// Perhaps unnecessary
+		if (selectedQueryConfig === endpointObjects[formInputValue]) {
+			return;
+		}
 		if (!formInputValue || !endpointObjects) {
 			// FIX ISSUE:0003
 			// This feels more like a cheat
@@ -73,30 +78,31 @@ export const CreatorContextProvider = ({
 			return;
 		}
 		setSelectedQueryConfig(endpointObjects[formInputValue]);
-	}, [endpointObjects, formInputValue]);
+	}, [
+		endpointObjects,
+		formInputValue,
+		endpointsListener,
+		queryId,
+		selectedQueryConfig,
+	]);
 
 	useEffect(() => {
-		// this protection is incprrect
-		// stops from changing / but why did we add it?
-		// if (!queryId) {
-		// 	return;
-		// }
-
+		// Do we need to have some protection?
+		// no queryId may cause issues - stops from changing
 		setQueryId(queryId);
 	}, [queryId, setQueryId]);
 
 	useEffect(() => {
-		// if (!type || type === "none") {
-		// 	return;
-		// }
-
-		// should be type endpoint or something
+		// This all has to be wrong
+		// Would we ever use anything other than a ;select?
+		// ( Selects with 3 or less should be radio )
 		if (type !== "select") {
+			// We surely also need to set default
 			return;
 		}
 
 		// not yet loaded
-		if (formInputValue === null) {
+		if (formInputValue === null || formInputValue === undefined) {
 			return;
 		}
 		// if type !== select <- endpoint select?
