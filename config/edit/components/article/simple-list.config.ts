@@ -1,5 +1,6 @@
 // Elsewhere but keep all available / different sets?
-const LIST_ITEMS = ["SimpleItem", "TitleItem"];
+// Elsewhere but We can group then use a set to build and exclude crossover
+const LIST_ITEMS = ["SimpleItem", "TitleItem", "DisplayItem"];
 
 export const SIMPLE_ARTICLE_LIST = {
 	id: "SimpleArticleList",
@@ -23,6 +24,8 @@ export const SIMPLE_ARTICLE_LIST = {
 		},
 		{
 			id: "component",
+			// Need to be a component select type
+			// Load component config for props etc
 			type: "select",
 			label: "List Component",
 			info: "ListComponentInfo",

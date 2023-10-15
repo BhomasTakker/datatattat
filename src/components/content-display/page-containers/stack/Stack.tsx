@@ -17,5 +17,9 @@ export const PageDisplayStack = ({ data }: { data: any }) => {
 	const { direction = "column" } = props;
 	// I don't think you'd ever do a row stack at this point
 	// Stack of row Stacks makes sense
-	return <Stack direction={"column"}>{createComponents(components)}</Stack>;
+	return (
+		<Stack direction={"column"} width={"100%"}>
+			{createComponents(components)}
+		</Stack>
+	);
 };
