@@ -14,7 +14,7 @@ export const PageDisplay = () => {
 			{/* Remove styling - or some of it */}
 			<main className={styles.main}>
 				{/* Remove title from here */}
-				<h1>Page Display - set this from somewhere</h1>
+				{/* <h1>Page Display - set this from somewhere</h1> */}
 				<PageContainerFactoryComponent contentData={content} />
 				{/* <Container data={content} /> */}
 			</main>
