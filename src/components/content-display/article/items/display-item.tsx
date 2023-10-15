@@ -10,11 +10,12 @@ import { Title } from "@/src/components/ui/title";
 import { TitleVariant } from "@/src/components/types/ui";
 import { MARGINS } from "config/styles/styles.config";
 
-// Shouldn't specifically be a list item?
-// Almost certainly shouldn't
-// Mui listItem at least 'expects' a simple ppiece if info?
-// A card would be better
-interface DisplayItemProps {}
+// Very very basic
+// Needs work and variants
+// We should have a set component for image
+// Titles, and descriptions, with variants, etc
+// Then just use ?
+
 const DisplayItemContent = (collectionItem: CollectionItem) => {
 	const { title, avatar, src, description } = collectionItem;
 	const img = avatar ? avatar.src : "";
