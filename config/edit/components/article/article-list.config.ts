@@ -24,20 +24,51 @@ export const ARTICLE_LIST = {
 	// Or just Article list 1,2,3,a,b,c,etc
 	props: [
 		{
-			id: "variant",
-			type: "select",
-			label: "Variant",
-			info: "ArticleListVariant",
-			//LIST_ITEM_COMPONENTS
-			options: ["Variant1", "Variant2", "Variant3"],
+			id: "title",
+			type: "text",
+			label: "Title",
+			info: "ArticleListtTitle",
 		},
 		{
-			id: "component",
-			type: "select",
-			label: "Component",
-			info: "ArticleListComponent",
-			//LIST_ITEM_COMPONENTS
-			options: ["Component1", "Component2", "Component3"],
+			id: "description",
+			type: "text",
+			label: "Description",
+			info: "ArticleListDescription",
+		},
+		{
+			id: "useAvatar",
+			type: "switch",
+			default: true,
+			label: "Avatar",
+			info: "ArticleListUseAvatar",
+		},
+		{
+			id: "showDescription",
+			type: "switch",
+			default: true,
+			label: "Show Description",
+			info: "ArticleListshowDescription",
+		},
+		{
+			id: "showPublished",
+			type: "switch",
+			default: false,
+			label: "Show Published At",
+			info: "ArticleListShowPublished",
+		},
+		{
+			id: "showAuthor",
+			type: "switch",
+			default: false,
+			label: "Show Author",
+			info: "ArticleListShowAuthor",
+		},
+		{
+			id: "showPublisher",
+			type: "switch",
+			default: false,
+			label: "Show Publisher",
+			info: "ArticleListShowPublisher",
 		},
 	],
 	// default/required components perhaps?
