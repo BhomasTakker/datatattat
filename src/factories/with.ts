@@ -27,4 +27,21 @@ export const EDIT_WITH: any = {
 		providerInfo: "IframelyOIembedResourceProviderInfo",
 		configList: IFRAMELY_OEMBED_CONFIG_LIST,
 	}),
+	//////////////////////////////////////////////
+	// This would be different / look into this
+	// Not a resource select / it is a provide url
+	// Get Meta data from it
+	////////////////////////////////////////
+	// Fake it - i.e. get this meta data
+	// Or get open graph meta data
+	// get twitter metadata
+	// get all, etc
+	["html-meta-query"]: QuerySelector({
+		title: "HTML Meta Query",
+		titleInfo: "HTMLMetaTitleInfo",
+		// We would just need to pass in a url
+		providerLabel: "Select Resource",
+		providerInfo: "IframelyOIembedResourceProviderInfo",
+		configList: IFRAMELY_OEMBED_CONFIG_LIST,
+	}),
 };

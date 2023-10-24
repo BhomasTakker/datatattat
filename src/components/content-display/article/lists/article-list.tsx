@@ -1,23 +1,66 @@
+import { TitleVariant } from "@/src/components/types/ui";
+import { Title } from "@/src/components/ui/title";
+import { Collection } from "@/src/types/data-structures/collection/collection";
+import { Box, List } from "@mui/material";
+import { ArticleListItem } from "./article-list-item";
+
 interface ArticleListProps {
-	data: any; // should be data
-	component: string;
-	variant: string;
+	data: Collection; // should be data
+	title: string;
+	description: string;
+	// component: string; // union / enum really
+
+	useAvatar: boolean;
+	showDescription: boolean;
+	showPublished: boolean;
+	showAuthor: boolean;
+	showPublisher: boolean;
 }
-// Now need look at Query better
-// 100% change queryData to data
-// spread props or no?
-export const ArticleList = ({ data, component, variant }: ArticleListProps) => {
-	// What's the plan?
-	// I think just make a basic list?
-	// Basic Flexbox / basic flex controls
-	// set widths? for components
 
-	// already seems like a massively required change
-	// if we are specifying a component
-	// then we need to be able to specify props
+// Add variant for css class to use <- layout
+//
+// We expect article data
+// We are going to display it in a list of article components
+export const ArticleList = ({
+	data,
+	title,
+	description,
+	// component,
+	useAvatar,
+	showDescription,
+	showPublished,
+	showAuthor,
+	showPublisher,
 
-	// if we are specifying a variant
-	// then a variant needs props
+	...rest
+}: ArticleListProps) => {
+	const { items } = data;
 
-	return <>ArticleList</>;
+	// Everything you need is in rest
+	console.log("FEATURE:0007", "WTF", { data, rest });
+
+	return (
+		<Box>
+			{/* Need to make a content title / intro component */}
+			{/* i.e. either given details or component
+			 - like a tweet as per the original idea */}
+			<Title text={title} variant={TitleVariant.CONTENT} />
+			{/* We can spread variant list props into list sx */}
+			{/* Pass props down to listItem and spread there? */}
+			<List>
+				{items.map((item) => (
+					// argument to clone the data?
+					<ArticleListItem
+						key={item.title}
+						item={item}
+						useAvatar={useAvatar}
+						showDescription={showDescription}
+						showPublished={showPublished}
+						showAuthor={showAuthor}
+						showPublisher={showPublisher}
+					/>
+				))}
+			</List>
+		</Box>
+	);
 };

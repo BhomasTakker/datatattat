@@ -1,3 +1,7 @@
+// To contrast text colour and image colour see
+// https://stackoverflow.com/questions/2541481/get-average-color-of-image-via-javascript
+// https://css-tricks.com/nailing-the-perfect-contrast-between-light-text-and-a-background-image/
+
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import { Box, Stack, Typography } from "@mui/material";
 import {
@@ -16,6 +20,8 @@ import { MARGINS } from "config/styles/styles.config";
 // Titles, and descriptions, with variants, etc
 // Then just use ?
 
+// should just be passing image no?
+// No, this is where we need the set image type
 const DisplayItemContent = (collectionItem: CollectionItem) => {
 	const { title, avatar, src, description } = collectionItem;
 	const img = avatar ? avatar.src : "";

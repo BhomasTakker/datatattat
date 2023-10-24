@@ -8,6 +8,7 @@ import { EDIT_WITH } from "./with";
 const API_PATH = "api/query/get";
 const RSS_PATH = "api/query/rss/get";
 const OEMBED_PATH = "api/query/oembed/get";
+const METADATA_API_PATH = "api/query/html/meta/get";
 
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
@@ -83,6 +84,11 @@ export const withFactory = (componentObject: any, withObject: any) => {
 			return withQuery(
 				componentObject,
 				createQueryObject(withObject.query, OEMBED_PATH)
+			);
+		case "html-meta-query":
+			return withQuery(
+				componentObject,
+				createQueryObject(withObject.query, METADATA_API_PATH)
 			);
 
 		default:
