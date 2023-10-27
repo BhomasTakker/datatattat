@@ -7,6 +7,8 @@ import {
 	Typography,
 } from "@mui/material";
 
+// Should be redundant / arrticle-list, and article-list-item
+
 import { ArticleAvatar } from "./avatar/avatar";
 import { Title } from "@/src/components/ui/title";
 import { TitleVariant } from "@/src/components/types/ui";

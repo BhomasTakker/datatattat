@@ -7,6 +7,8 @@ interface TitleListItemProps {
 	guid: string;
 }
 
+// Should be redundant / arrticle-list, and article-list-item
+
 // if you could get variant in here
 // then you could specify slim, description on hover, etc
 export const TitleListItem = ({ title, src, guid }: TitleListItemProps) => {
