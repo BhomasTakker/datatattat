@@ -1,20 +1,23 @@
+import type { Meta, StoryObj } from "@storybook/react";
+
 import { ArticleList } from "./article-list";
 import { Articles } from "./article-list.mock.data";
 
-export default {
-	title: "Components/ArticleList",
+const meta: Meta<typeof ArticleList> = {
 	component: ArticleList,
 };
+export default meta;
+type Story = StoryObj<typeof ArticleList>;
 
-export const ArticleListComponent = () => (
-	<ArticleList
-		data={Articles}
-		title={"Article List Title"}
-		description={"Article List Title - Lorem Ipsum "}
-		useAvatar={true}
-		showDescription={true}
-		showPublished={true}
-		showAuthor={false}
-		showPublisher={false}
-	/>
-);
+export const Standard: Story = {
+	args: {
+		data: Articles,
+		title: "Article List Title",
+		description: "Article List Title - Lorem Ipsum",
+		useAvatar: true,
+		showDescription: true,
+		showPublished: true,
+		showAuthor: true,
+		showPublisher: true,
+	},
+};

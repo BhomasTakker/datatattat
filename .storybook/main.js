@@ -2,8 +2,9 @@
 
 const path = require("path");
 module.exports = {
-	stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
-	addons: [
+    stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
+
+    addons: [
 		"@storybook/addon-links",
 		"@storybook/addon-essentials",
 		"@storybook/addon-interactions",
@@ -11,19 +12,19 @@ module.exports = {
 		"@tomfreudenberg/next-auth-mock/storybook",
 		// "@storybook/addon-a11y",
 	],
-	framework: {
+
+    framework: {
 		name: "@storybook/nextjs",
 		options: {},
 	},
-	docs: {
+
+    docs: {
 		autodocs: "tag",
 	},
-	core: {
-		builder: "webpack5",
-	},
-	//This was what I needed to get storybook running again ...
-	//https://stackoverflow.com/questions/71158775/storybook-couldnt-resolve-fs
-	webpackFinal: async (config, { configType }) => {
+
+    //This was what I needed to get storybook running again ...
+    //https://stackoverflow.com/questions/71158775/storybook-couldnt-resolve-fs
+    webpackFinal: async (config, { configType }) => {
 		config.resolve = {
 			...config.resolve,
 			fallback: {
@@ -54,5 +55,5 @@ module.exports = {
 
 		// Return the altered config
 		return config;
-	},
+	}
 };

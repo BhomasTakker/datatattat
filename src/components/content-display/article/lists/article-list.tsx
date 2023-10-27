@@ -2,7 +2,7 @@ import { TitleVariant } from "@/src/components/types/ui";
 import { Title } from "@/src/components/ui/title";
 import { Collection } from "@/src/types/data-structures/collection/collection";
 import { Box, List } from "@mui/material";
-import { ArticleListItem } from "./article-list-item";
+import { ArticleListItem } from "../items/article-list-item";
 
 interface ArticleListProps {
 	data: Collection; // should be data

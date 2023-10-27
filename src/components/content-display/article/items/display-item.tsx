@@ -2,6 +2,8 @@
 // https://stackoverflow.com/questions/2541481/get-average-color-of-image-via-javascript
 // https://css-tricks.com/nailing-the-perfect-contrast-between-light-text-and-a-background-image/
 
+// Should be redundant
+
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import { Box, Stack, Typography } from "@mui/material";
 import {
