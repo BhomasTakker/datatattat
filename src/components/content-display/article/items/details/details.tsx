@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
-import { Time } from "../time/time";
+import { Time } from "../time/Time";
 import { Details } from "@/src/types/data-structures/base";
 import { DetailsVariant } from "./details.css-data";
 

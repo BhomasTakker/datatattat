@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Time } from "./time";
+import { Time } from "./Time";
 import {
 	TIME_AGO_10_YEAR,
 	TIME_AGO_1_DAY,

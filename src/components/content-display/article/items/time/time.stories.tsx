@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { LOREM_5_S } from "mockData/text/lorem";
-import { Time } from "./time";
+import { Time } from "./Time";
 
 const meta: Meta<typeof Time> = {
 	component: Time,
