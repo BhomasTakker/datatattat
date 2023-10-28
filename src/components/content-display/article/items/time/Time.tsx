@@ -2,11 +2,20 @@ import { Typography } from "@mui/material";
 
 type TimeVariant = "age" | "string" | "locale" | "locale-date" | "locale-time";
 
+// probs utils
+const pluralise = (unit: number, str: string) => {
+	return unit > 1 ? `${unit} ${str}s` : `${unit} ${str}`;
+};
+
+// Too much going on
+// Organise better
+// Typography should be a 'time'? typog type
+// Calculation - the switch - should be utilsy or module
 export const Time = ({
-	time,
-	variant,
+	time = Date.now(),
+	variant = "locale",
 }: {
-	time: Date | string | null;
+	time?: Date | string | number | null;
 	variant?: TimeVariant;
 }) => {
 	if (!time) {
@@ -19,15 +28,33 @@ export const Time = ({
 	switch (variant) {
 		default:
 		case "string":
-			return <p>{date.toDateString()}</p>;
+			return (
+				<Typography variant="body2" color="text.secondary" data-testid="time">
+					{date.toDateString()}
+				</Typography>
+			);
 		case "locale":
-			return <p>{date.toLocaleString()}</p>;
+			return (
+				<Typography variant="body2" color="text.secondary" data-testid="time">
+					{date.toLocaleString()}
+				</Typography>
+			);
 		case "locale-date":
-			return <p>{date.toLocaleDateString()}</p>;
+			return (
+				<Typography variant="body2" color="text.secondary" data-testid="time">
+					{date.toLocaleDateString()}
+				</Typography>
+			);
 		case "locale-time":
-			return <p>{date.toLocaleTimeString()}</p>;
+			return (
+				<Typography variant="body2" color="text.secondary" data-testid="time">
+					{date.toLocaleTimeString()}
+				</Typography>
+			);
 
 		// This is ropey but works
+		// needs own file / function etc
+		// time getAgo etc
 		case "age":
 			// @ts-ignore - whatever this is - not a number etc
 			const diffTime = Math.abs(now - date);
@@ -38,48 +65,40 @@ export const Time = ({
 			const diffWeeks = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 7));
 			const diffRoughMonths = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 30));
 			const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
-			console.log(diffTime + " milliseconds");
-			console.log(diffSeconds + " seconds");
-			console.log(diffMinutes + " minutes");
-			console.log(diffHours + " hours");
-			console.log(diffDays + " days");
-			console.log(diffWeeks + " weeks");
-			console.log(diffRoughMonths + " months");
-			console.log(diffYears + " years");
-			// prob get days hours minutes secounds of something
-			// minus each from now
-			// show years if, months if, weeks if, days if > 0, hours > 0, minutes > 0, etc
+
 			let diff;
 			// Okay you would do better
 			// minutes etc up to double so 2 hours should follow 120 minutes?
 			// 2+ hours is better but?
 			// Or you round when close
 			switch (true) {
+				// There's nothing for now!
 				case !!diffYears:
-					diff = `${diffYears} years`;
+					diff = pluralise(diffYears, "year");
 					break;
 				case !!diffRoughMonths:
-					diff = `${diffRoughMonths} months`;
+					diff = pluralise(diffRoughMonths, "month");
 					break;
 				case !!diffWeeks:
-					diff = `${diffWeeks} weeks`;
+					diff = pluralise(diffWeeks, "week");
 					break;
 				case !!diffDays:
-					diff = `${diffDays} days`;
+					diff = pluralise(diffDays, "day");
 					break;
 				case !!diffHours:
-					diff = `${diffHours} hours`;
+					diff = pluralise(diffHours, "hour");
 					break;
 				case !!diffMinutes:
-					diff = `${diffMinutes} minutes`;
+					diff = pluralise(diffMinutes, "minute");
 					break;
 				case !!diffSeconds:
-					diff = `${diffSeconds} seconds`;
+					diff = pluralise(diffSeconds, "second");
 					break;
 			}
-			const str = `Published ${diff} ago`;
+			// now or error!
+			const str = diff ? `Published ${diff} ago` : "Published now!";
 			return (
-				<Typography variant="body2" color="text.secondary">
+				<Typography variant="body2" color="text.secondary" data-testid="time">
 					{str}
 				</Typography>
 			);

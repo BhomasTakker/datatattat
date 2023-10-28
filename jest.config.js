@@ -1,5 +1,6 @@
 //jest setup follows / https://nextjs.org/docs/testing#setting-up-jest-with-the-rust-compiler
 // jest.config.js
+// convert to ts no?
 const nextJest = require("next/jest");
 
 const createJestConfig = nextJest({
@@ -24,6 +25,8 @@ const customJestConfig = {
 			statements: -10,
 		},
 	},
+	coverageDirectory: "<rootDir>/coverage",
+	coveragePathIgnorePatterns: ["<rootDir>/build/", "<rootDir>/node_modules/"],
 	moduleNameMapper: {
 		"^@/styles/(.*)$": "<rootDir>/styles/$1",
 		"^@/models/(.*)$": "<rootDir>/models/$1",
@@ -41,6 +44,7 @@ const customJestConfig = {
 
 		"^@/translation/(.*)$": "<rootDir>/src/lib/i18n/translation/$1",
 	},
+	coveragePathIgnorePatterns: [],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

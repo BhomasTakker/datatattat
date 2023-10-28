@@ -20,5 +20,5 @@ export const ArticleAvatar = ({ alt, img, src }: ArticleAvatar) => {
 		return <></>;
 	}
 
-	return <Avatar alt={alt} src={img || image} />;
+	return <Avatar alt={alt} src={img || image} data-testid="avatar" />;
 };
