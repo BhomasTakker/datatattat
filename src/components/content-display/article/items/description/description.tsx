@@ -20,22 +20,15 @@ export const Description = ({
 }: DescriptionProps) => {
 	return (
 		<Typography
+			data-testid="description"
 			sx={{
 				// width object / max, min, breakpoint sizes?
-				...minMaxWidth({}), // do a width object
-				// What is this actually for?
-				// style default something or other
-				display: "-webkit-box",
-				// function to return this data
-				// take num lines
-
-				// for lines
-				// Return function - lines style
+				...minMaxWidth(), // do a width object
 				...CSS.maxLines({ maxLines }),
 			}}
 			// Perhaps componentType for variant and component
 			// style gets color and etc's
-			{...CSS.textStyle({})}
+			{...CSS.textStyle()}
 		>
 			{stripHTML(description)}
 		</Typography>

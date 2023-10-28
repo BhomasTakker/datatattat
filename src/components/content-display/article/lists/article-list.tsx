@@ -40,7 +40,7 @@ export const ArticleList = ({
 	console.log("FEATURE:0007", "WTF", { data, rest });
 
 	return (
-		<Box>
+		<Box data-testid="article-list">
 			{/* Need to make a content title / intro component */}
 			{/* i.e. either given details or component
 			 - like a tweet as per the original idea */}

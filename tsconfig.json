@@ -42,5 +42,8 @@
 		"src/lib/mongoose-connection.js",
 		"setup.ts"
 	],
-	"exclude": ["node_modules"]
+	// added cypress here
+	// was conflicting / removing / types for jest
+	// https://www.reddit.com/r/typescript/comments/x59poq/jest_ts_property_tobeinthedocument_does_not_exist/
+	"exclude": ["node_modules", "cypress.config.ts"]
 }

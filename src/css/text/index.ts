@@ -18,7 +18,7 @@ export const textStyle = ({
 	component = "span",
 	variant = "body1",
 	color = "text.primary",
-}: TextStyle) => ({
+}: TextStyle = {}) => ({
 	component,
 	variant,
 	color,
@@ -31,7 +31,8 @@ interface MaxLines {
 export const maxLines = ({
 	maxLines = 1,
 	textOverflow = "ellipsis",
-}: MaxLines) => ({
+}: MaxLines = {}) => ({
+	display: "-webkit-box",
 	overflow: "hidden",
 	textOverflow,
 	WebkitBoxOrient: "vertical",

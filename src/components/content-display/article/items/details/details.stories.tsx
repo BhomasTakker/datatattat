@@ -12,6 +12,7 @@ type Story = StoryObj<typeof DetailsComponent>;
 export const Standard: Story = {
 	args: {
 		details: details1,
+		variant: "space-between",
 		showPublished: false,
 		showCategories: false,
 		showpublishers: false,

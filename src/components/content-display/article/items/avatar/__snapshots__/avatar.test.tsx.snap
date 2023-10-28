@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Article Avatar snaps should match snapshot 1`] = `
+<div
+  class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+  data-testid="avatar"
+>
+  <img
+    alt="Dwayne Johnson 'belly laughs' after controversial waxwork unveiled"
+    class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+    src="https://e3.365dm.com/23/10/70x70/skynews-dwayne-johnson-waxwork_6333809.jpg?20231024132712"
+  />
+</div>
+`;
