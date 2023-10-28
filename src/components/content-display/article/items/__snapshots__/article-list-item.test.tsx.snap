@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleListItem snaps should match snapshot for article list item 1`] = `
+<li
+  class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+  data-testid="article-list-item"
+>
+  <div
+    class="MuiListItemAvatar-root css-1e9lk82-MuiListItemAvatar-root"
+  >
+    <div
+      class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+      data-testid="avatar"
+    >
+      <img
+        alt="Dwayne Johnson 'belly laughs' after controversial waxwork unveiled"
+        class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+        src="https://e3.365dm.com/23/10/70x70/skynews-dwayne-johnson-waxwork_6333809.jpg?20231024132712"
+      />
+    </div>
+  </div>
+  <div
+    class="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+  >
+    <h6
+      class="MuiTypography-root MuiTypography-h6 css-104nvzn-MuiTypography-root"
+    >
+      Dwayne Johnson 'belly laughs' after controversial waxwork unveiled
+    </h6>
+    <div
+      class="css-urd5lq-MuiStack-root"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-body1 css-2u148c-MuiTypography-root"
+        data-testid="description"
+      >
+        A museum has changed the skin tone of its Dwayne Johnson wax statue after it was criticised for being too white.
+      </span>
+      <div
+        class="css-1jligzp-MuiStack-root"
+        data-testid="details"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+          data-testid="time"
+        >
+          Published 4 days ago
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+        />
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+        />
+      </div>
+    </div>
+  </div>
+</li>
+`;

@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Details snapshots should match snapshot for space-between variant 1`] = `
+<div
+  class="css-1jligzp-MuiStack-root"
+  data-testid="details"
+>
+  <p
+    class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+    data-testid="time"
+  >
+    Published 4 days ago
+  </p>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+  >
+    category1, category2
+  </p>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+  >
+    Publisher.com
+  </p>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+  >
+    Author McAuther, Authorson, Author
+  </p>
+</div>
+`;
+
+exports[`Details snapshots should match snapshot for stack variant 1`] = `
+<div
+  class="css-1ds6d3x-MuiStack-root"
+  data-testid="details"
+>
+  <p
+    class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+    data-testid="time"
+  >
+    Published 4 days ago
+  </p>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+  >
+    category1, category2
+  </p>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+  >
+    Publisher.com
+  </p>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+  >
+    Author McAuther, Authorson, Author
+  </p>
+</div>
+`;

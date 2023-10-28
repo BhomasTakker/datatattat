@@ -1,7 +1,28 @@
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
 import { Time } from "../time/Time";
 import { Details } from "@/src/types/data-structures/base";
+import { DetailsVariant } from "./details.css-data";
+
+interface DetailsTextProps {
+	children: React.ReactNode;
+}
+
+const DetailsText = ({ children }: DetailsTextProps) => {
+	return <Typography>{children}</Typography>;
+};
+
+type DetailsVariantType = "space-between" | "stack";
+
+interface DetailsComponentProps {
+	details?: Details;
+	showPublished?: boolean;
+	showCategories?: boolean;
+	showpublishers?: boolean;
+	showAuthors?: boolean;
+	variant?: DetailsVariantType;
+	// divider?: boolean;
+}
 
 export const DetailsComponent = ({
 	details,
@@ -9,13 +30,9 @@ export const DetailsComponent = ({
 	showCategories = false,
 	showpublishers = false,
 	showAuthors = false,
-}: {
-	details?: Details;
-	showPublished?: boolean;
-	showCategories?: boolean;
-	showpublishers?: boolean;
-	showAuthors?: boolean;
-}) => {
+	// divider = true,
+	variant = "space-between",
+}: DetailsComponentProps) => {
 	const {
 		published = null,
 		categories = null,
@@ -23,24 +40,28 @@ export const DetailsComponent = ({
 		authors = null,
 	} = details || {};
 	console.log("FETURE:0007", "Details", {
-		details,
-		published,
-		categories,
-		publishers,
-		authors,
+		variant,
+		DetailsVariant,
+	});
+	const variantProps = DetailsVariant.get(variant);
+	console.log("FETURE:0007", "Details", {
+		variantProps,
+	});
+	console.log("FETURE:0007", "DetailsVariant", {
+		DetailsVariant,
 	});
 	return (
 		<Stack
-			direction="row"
-			justifyContent={"space-between"}
-			marginTop={MARGINS.SMALL}
+			data-testid="details"
+			{...variantProps}
+			// divider={React Element}
 		>
 			{/* do something proper with the time!! */}
 			{/* Like we want an image AND avatar component - we want Time - variant age/publish date */}
 			{showPublished && <Time time={published} variant="age" />}
-			{showCategories && <p>{categories?.join(", ")}</p>}
-			{showpublishers && <p>{publishers?.join(", ")}</p>}
-			{showAuthors && <p>{authors?.join(", ")}</p>}
+			{showCategories && <DetailsText>{categories?.join(", ")}</DetailsText>}
+			{showpublishers && <DetailsText>{publishers?.join(", ")}</DetailsText>}
+			{showAuthors && <DetailsText>{authors?.join(", ")}</DetailsText>}
 		</Stack>
 	);
 };

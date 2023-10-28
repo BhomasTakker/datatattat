@@ -1,21 +1,9 @@
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import { ListItemContextProvider } from "./context/list-item.context";
-import {
-	ListItem,
-	ListItemAvatar,
-	ListItemText,
-	Stack,
-	Typography,
-} from "@mui/material";
+import { ListItem, ListItemAvatar, ListItemText, Stack } from "@mui/material";
 import { ArticleAvatar } from "./avatar/avatar";
 import { Title } from "@/src/components/ui/title";
 import { TitleVariant } from "@/src/components/types/ui";
-import { stripHTML } from "@/src/utils/html";
-
-import { Time } from "./time/Time";
-import { MARGINS } from "config/styles/styles.config";
-import { CSS } from "@/src/css/text";
-import { minMaxWidth } from "@/src/css/sizing";
 import { Description } from "./description/description";
 import { DetailsComponent } from "./details/details";
 
@@ -57,7 +45,7 @@ export const ArticleListItem = ({
 
 	return (
 		<ListItemContextProvider value={{ item }}>
-			<ListItem>
+			<ListItem data-testid="article-list-item">
 				{/* if */}
 				{useAvatar && (
 					<ListItemAvatar>
