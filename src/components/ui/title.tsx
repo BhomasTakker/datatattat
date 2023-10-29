@@ -2,7 +2,7 @@ import React from "react";
 import { TitleProps, TitleVariant } from "../types/ui";
 import Typography from "@mui/material/Typography";
 import { MARGINS } from "config/styles/styles.config";
-import { getIsOn, log, setLoggerOn } from "@/src/lib/logger";
+import { getIsOn, log, setLog } from "@/src/lib/logger";
 
 //Should just be Title / not just Edit
 
@@ -78,11 +78,20 @@ const ComponantHash = {
 // Definitely overides for margin
 const Title = React.memo(
 	({ variant = TitleVariant.PAGE, text }: TitleProps) => {
-		log("FEATURE:0009", "WE SHOULDN'T LOG!!!!", { isOn: getIsOn() });
-		setLoggerOn(true);
-		log("FEATURE:0009", "WE SHOULD LOG", { isOn: getIsOn() });
-		setLoggerOn(false);
-		log("FEATURE:0009", "WE SHOULDN'T LOG!!!!", { isOn: getIsOn() });
+		log(
+			{ code: "FEATURE:0009", message: "WE SHOULDN'T LOG!!!!" },
+			{ isOn: getIsOn() }
+		);
+		setLog(true);
+		log(
+			{ code: "FEATURE:0009", message: "WE SHOULD LOG" },
+			{ isOn: getIsOn() }
+		);
+		setLog(false);
+		log(
+			{ code: "FEATURE:0009", message: "WE SHOULDN'T LOG!!!!" },
+			{ isOn: getIsOn() }
+		);
 
 		const Component = ComponantHash[variant];
 		//if typeof Component ... else <></>

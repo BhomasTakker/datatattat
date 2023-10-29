@@ -3,6 +3,7 @@ import { Title } from "@/src/components/ui/title";
 import { Collection } from "@/src/types/data-structures/collection/collection";
 import { Box, List } from "@mui/material";
 import { ArticleListItem } from "../items/article-list-item";
+import { log } from "@/src/lib/logger";
 
 interface ArticleListProps {
 	data: Collection; // should be data
@@ -37,13 +38,15 @@ export const ArticleList = ({
 	const { items } = data;
 
 	// Everything you need is in rest
-	console.log("FEATURE:0007", "WTF", { data, rest });
+	log({ code: "FEATURE:0007", context: "WTF" }, { data, rest });
 
 	return (
 		<Box data-testid="article-list">
 			{/* Need to make a content title / intro component */}
 			{/* i.e. either given details or component
 			 - like a tweet as per the original idea */}
+			{/* Why would this be here? */}
+			{/* Why would or would not */}
 			<Title text={title} variant={TitleVariant.CONTENT} />
 			{/* We can spread variant list props into list sx */}
 			{/* Pass props down to listItem and spread there? */}
