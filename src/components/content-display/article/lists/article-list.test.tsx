@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import { ArticleList } from "./article-list";
+import { ArticleList, ArticleListProps } from "./article-list";
 import { Articles } from "./article-list.mock.data";
 import { LOREM_1_S } from "mockData/text/lorem";
 import { ContentTitleVariants } from "../items/content-title/content-title";
 import { DescriptionVariants } from "../items/description/description";
 import { DetailsVariantType } from "../items/details/details";
 
-const props = {
+const props: ArticleListProps = {
 	data: Articles,
 	// title: "Test Title",
 	// description: LOREM_1_S,

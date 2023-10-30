@@ -14,7 +14,7 @@ import { DetailsVariantType } from "../items/details/details";
 // setLog(true);
 // setCode("FEATURE:0010");
 
-interface ArticleListProps {
+export interface ArticleListProps {
 	data: Collection; // should be data
 
 	// wider interface
