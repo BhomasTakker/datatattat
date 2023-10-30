@@ -1,3 +1,4 @@
+// argument to keep with component a-la article-list.edit.config.ts
 export const ARTICLE_LIST = {
 	id: "ArticleList",
 	info: "ArticleList",
@@ -24,49 +25,108 @@ export const ARTICLE_LIST = {
 	// Or just Article list 1,2,3,a,b,c,etc
 	props: [
 		{
-			id: "title",
+			id: "componentTitle",
 			type: "text",
-			label: "Title",
+			label: "Component Title",
 			info: "ArticleListtTitle",
 		},
 		{
-			id: "description",
+			id: "componentTitleVariant",
+			type: "select",
+			options: ["Primary", "Secondary"],
+			label: "Component Title Variant",
+			info: "ComponentTitleVariant",
+		},
+		{
+			id: "componentDescription",
 			type: "text",
-			label: "Description",
+			label: "Component Description",
 			info: "ArticleListDescription",
+		},
+		{
+			id: "componentDescriptionVariant",
+			type: "select",
+			options: ["Primary", "Secondary"],
+			label: "Component Description Variant",
+			info: "DescriptionVariant",
+		},
+		// Add title
+		// If type = title just add a title as a divider
+		// Add a horizontal rule etc
+		{
+			type: "title",
+			title: "Item Props",
 		},
 		{
 			id: "useAvatar",
 			type: "switch",
-			default: true,
+			defaultValue: true,
 			label: "Avatar",
 			info: "ArticleListUseAvatar",
 		},
 		{
+			id: "itemTitleVariant",
+			type: "select",
+			options: ["Primary", "Secondary"],
+			label: "Item Title Variant",
+			info: "ItemTitleVariant",
+		},
+		{
+			// We need to type these?
+			// this object is passed into the input component
+			id: "itemTitleMaxLines",
+			type: "number",
+			label: "Item Title Max Lines",
+			info: "ItemTitleMaxLines",
+			min: 1,
+		},
+		{
 			id: "showDescription",
 			type: "switch",
-			default: true,
+			defaultValue: true,
 			label: "Show Description",
 			info: "ArticleListshowDescription",
 		},
 		{
+			id: "itemDescriptionVariant",
+			type: "select",
+			options: ["Primary", "Secondary"],
+			label: "Item Description Variant",
+			info: "ItemDescriptionVariant",
+		},
+		{
+			id: "itemDescriptionMaxLines",
+			type: "number",
+			label: "Item Description Max Lines",
+			info: "ItemDescriptionMaxLines",
+			min: 1,
+		},
+		{
+			id: "itemDetailsVariant",
+			type: "select",
+			// get options from somewhere
+			options: ["space-between", "stack"],
+			label: "Item Details Variant",
+			info: "itemDetailsVariant",
+		},
+		{
 			id: "showPublished",
 			type: "switch",
-			default: false,
+			defaultValue: false,
 			label: "Show Published At",
 			info: "ArticleListShowPublished",
 		},
 		{
 			id: "showAuthor",
 			type: "switch",
-			default: false,
+			defaultValue: false,
 			label: "Show Author",
 			info: "ArticleListShowAuthor",
 		},
 		{
 			id: "showPublisher",
 			type: "switch",
-			default: false,
+			defaultValue: false,
 			label: "Show Publisher",
 			info: "ArticleListShowPublisher",
 		},

@@ -35,6 +35,7 @@ interface TextInputProps {
 }
 
 // Clean this up and redo others
+// yep - make again see switch just neater and more concise
 export const NumberInput = ({
 	info,
 	label,

@@ -12,7 +12,7 @@ const DetailsText = ({ children }: DetailsTextProps) => {
 	return <Typography>{children}</Typography>;
 };
 
-type DetailsVariantType = "space-between" | "stack";
+export type DetailsVariantType = "space-between" | "stack";
 
 interface DetailsComponentProps {
 	details?: Details;
