@@ -2,15 +2,23 @@ import { CollectionItem } from "@/src/types/data-structures/collection/item/item
 import { ListItemContextProvider } from "./context/list-item.context";
 import { ListItem, ListItemAvatar, ListItemText, Stack } from "@mui/material";
 import { ArticleAvatar } from "./avatar/avatar";
-import { Title } from "@/src/components/ui/title";
-import { TitleVariant } from "@/src/components/types/ui";
-import { Description } from "./description/description";
-import { DetailsComponent } from "./details/details";
+import { Description, DescriptionVariants } from "./description/description";
+import { DetailsComponent, DetailsVariantType } from "./details/details";
+import {
+	ContentTitle,
+	ContentTitleVariants,
+} from "./content-title/content-title";
 
 export interface ArticleListItemProps {
 	item: CollectionItem;
+	titleVariant: ContentTitleVariants;
+	titleMaxLines?: number;
+	descriptionMaxLines?: number;
 	useAvatar: boolean;
 	showDescription: boolean;
+	descriptionVariant: DescriptionVariants;
+
+	detailsVariant: DetailsVariantType;
 	showPublished: boolean;
 	showAuthor: boolean;
 	showPublisher: boolean;
@@ -18,8 +26,13 @@ export interface ArticleListItemProps {
 
 export const ArticleListItem = ({
 	item,
+	titleVariant = "Primary",
+	titleMaxLines = 2,
+	descriptionMaxLines = 3,
 	useAvatar,
 	showDescription,
+	descriptionVariant = "Primary",
+	detailsVariant = "space-between",
 	showPublished,
 	showAuthor,
 	showPublisher,
@@ -27,7 +40,7 @@ export const ArticleListItem = ({
 	const { title, avatar, src, description, guid, variant, details, media } =
 		item;
 
-	const lines = 3;
+	// const maxLines = 3;
 
 	// hack for BING article
 	// need update BING
@@ -49,6 +62,7 @@ export const ArticleListItem = ({
 				{/* if */}
 				{useAvatar && (
 					<ListItemAvatar>
+						{/* Avatar Variant */}
 						<ArticleAvatar alt={title} img={img} src={src} />
 						{/* Icon */}
 						{/* Logo */}
@@ -58,12 +72,24 @@ export const ArticleListItem = ({
 					disableTypography
 					// title and title variant - == 'none'
 					// always title? / we want type
-					primary={<Title text={title} variant={TitleVariant.ARTICLE} />}
+					primary={
+						<ContentTitle
+							title={title}
+							variant={titleVariant}
+							maxLines={titleMaxLines}
+						/>
+					}
 					secondary={
 						// Create / get elsewhere
 						<Stack margin={0} padding={0}>
 							{/* if show */}
-							{showDescription && <Description description={description} />}
+							{showDescription && (
+								<Description
+									description={description}
+									maxLines={descriptionMaxLines}
+									variant={descriptionVariant}
+								/>
+							)}
 							{(showAuthor || showPublished || showPublisher) && (
 								<DetailsComponent
 									details={details}
@@ -71,6 +97,7 @@ export const ArticleListItem = ({
 									showPublished={showPublished}
 									showpublishers={showPublisher}
 									showCategories={false}
+									variant={detailsVariant}
 								/>
 							)}
 						</Stack>

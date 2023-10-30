@@ -23,7 +23,7 @@ exports[`ArticleListItem snaps should match snapshot for article list item 1`] =
     class="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
   >
     <h6
-      class="MuiTypography-root MuiTypography-h6 css-104nvzn-MuiTypography-root"
+      class="MuiTypography-root MuiTypography-h6 css-1ecob9d-MuiTypography-root"
     >
       Dwayne Johnson 'belly laughs' after controversial waxwork unveiled
     </h6>
@@ -44,14 +44,18 @@ exports[`ArticleListItem snaps should match snapshot for article list item 1`] =
           class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
           data-testid="time"
         >
-          Published 4 days ago
+          Published 5 days ago
         </p>
         <p
           class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-        />
+        >
+          Publisher1, Publisher1
+        </p>
         <p
           class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-        />
+        >
+          Author1, Author2
+        </p>
       </div>
     </div>
   </div>

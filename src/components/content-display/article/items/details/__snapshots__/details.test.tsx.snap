@@ -9,7 +9,7 @@ exports[`Details snapshots should match snapshot for space-between variant 1`] =
     class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
     data-testid="time"
   >
-    Published 4 days ago
+    Published 5 days ago
   </p>
   <p
     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -38,7 +38,7 @@ exports[`Details snapshots should match snapshot for stack variant 1`] = `
     class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
     data-testid="time"
   >
-    Published 4 days ago
+    Published 5 days ago
   </p>
   <p
     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"

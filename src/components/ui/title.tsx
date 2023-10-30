@@ -82,12 +82,12 @@ const Title = React.memo(
 			{ code: "FEATURE:0009", message: "WE SHOULDN'T LOG!!!!" },
 			{ isOn: getIsOn() }
 		);
-		setLog(true);
+		// setLog(true);
 		log(
 			{ code: "FEATURE:0009", message: "WE SHOULD LOG" },
 			{ isOn: getIsOn() }
 		);
-		setLog(false);
+		// setLog(false);
 		log(
 			{ code: "FEATURE:0009", message: "WE SHOULDN'T LOG!!!!" },
 			{ isOn: getIsOn() }

@@ -1,21 +1,34 @@
 import { render, screen } from "@testing-library/react";
-import { ArticleList } from "./article-list";
+import { ArticleList, ArticleListProps } from "./article-list";
 import { Articles } from "./article-list.mock.data";
 import { LOREM_1_S } from "mockData/text/lorem";
+import { ContentTitleVariants } from "../items/content-title/content-title";
+import { DescriptionVariants } from "../items/description/description";
+import { DetailsVariantType } from "../items/details/details";
 
-const props = {
+const props: ArticleListProps = {
 	data: Articles,
-	title: "Test Title",
-	description: LOREM_1_S,
+	// title: "Test Title",
+	// description: LOREM_1_S,
 	// component,
 	useAvatar: true,
 	showDescription: true,
 	showPublished: true,
 	showAuthor: true,
 	showPublisher: true,
+	///////////
+	componentTitle: "Test Title",
+	componentTitleVariant: "Primary" as ContentTitleVariants,
+	componentDescription: LOREM_1_S,
+	componentDescriptionVariant: "Primary" as DescriptionVariants,
+	itemTitleVariant: "Primary" as ContentTitleVariants,
+	itemTitleMaxLines: 0,
+	itemDescriptionVariant: "Primary" as DescriptionVariants,
+	itemDescriptionMaxLines: 0,
+	itemDetailsVariant: "space-between" as DetailsVariantType,
 };
 
-const { title } = props;
+const { componentTitle } = props;
 
 describe("ArticleListItem", () => {
 	it("should render article list item", () => {
@@ -26,7 +39,7 @@ describe("ArticleListItem", () => {
 
 	it("should render expected title", () => {
 		render(<ArticleList {...props} />);
-		const articleListItem = screen.getByText(title);
+		const articleListItem = screen.getByText(componentTitle);
 		expect(articleListItem).toBeInTheDocument();
 	});
 

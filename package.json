@@ -15,7 +15,8 @@
 		"cypress:run": "cypress run",
 		"test:dev": "jest --watch",
 		"test": "jest",
-		"coverage": "npx jest --coverage --collectCoverageFrom='src/**/*.{ts,tsx}'"
+		"coverage": "npx jest --coverage --collectCoverageFrom='src/**/*.{ts,tsx}'",
+		"coverage:comps": "npx jest --coverage --collectCoverageFrom='src/components/content-display/**/*.{ts,tsx}'"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.10.5",

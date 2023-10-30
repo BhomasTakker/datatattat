@@ -14,10 +14,15 @@ export const Primary: Story = {
 	name: "I am the primary",
 	args: {
 		item: Article1,
+		titleVariant: "Primary",
+		titleMaxLines: 1,
 		useAvatar: true,
 		showDescription: true,
+		descriptionMaxLines: 3,
+		descriptionVariant: "Primary",
 		showPublished: true,
 		showAuthor: true,
 		showPublisher: true,
+		detailsVariant: "space-between",
 	},
 };
