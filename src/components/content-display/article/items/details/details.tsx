@@ -39,17 +39,9 @@ export const DetailsComponent = ({
 		publishers = null,
 		authors = null,
 	} = details || {};
-	console.log("FETURE:0007", "Details", {
-		variant,
-		DetailsVariant,
-	});
+
 	const variantProps = DetailsVariant.get(variant);
-	console.log("FETURE:0007", "Details", {
-		variantProps,
-	});
-	console.log("FETURE:0007", "DetailsVariant", {
-		DetailsVariant,
-	});
+
 	return (
 		<Stack
 			data-testid="details"

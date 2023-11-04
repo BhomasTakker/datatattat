@@ -11,14 +11,14 @@ import {
 
 export interface ArticleListItemProps {
 	item: CollectionItem;
-	titleVariant: ContentTitleVariants;
+	titleVariant?: ContentTitleVariants;
 	titleMaxLines?: number;
 	descriptionMaxLines?: number;
 	useAvatar: boolean;
 	showDescription: boolean;
-	descriptionVariant: DescriptionVariants;
+	descriptionVariant?: DescriptionVariants;
 
-	detailsVariant: DetailsVariantType;
+	detailsVariant?: DetailsVariantType;
 	showPublished: boolean;
 	showAuthor: boolean;
 	showPublisher: boolean;
@@ -46,15 +46,6 @@ export const ArticleListItem = ({
 	// need update BING
 	// or update sky / general RSS / chase this up and fix
 	const img = avatar ? avatar.src : "";
-
-	console.log("FETURE:0007", "ARTICLE:LIST:ITEM", {
-		item,
-		useAvatar,
-		showDescription,
-		showPublished,
-		showAuthor,
-		showPublisher,
-	});
 
 	return (
 		<ListItemContextProvider value={{ item }}>

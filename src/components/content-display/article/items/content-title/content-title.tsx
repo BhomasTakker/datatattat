@@ -10,7 +10,7 @@ export type ContentTitleVariants = "Primary" | "Secondary";
 // And element props?
 export type ContentTitleProps = {
 	title: string;
-	variant: ContentTitleVariants;
+	variant?: ContentTitleVariants;
 	maxLines?: number;
 };
 

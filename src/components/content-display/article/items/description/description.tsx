@@ -29,7 +29,7 @@ export const Description = ({
 			data-testid="description"
 			sx={{
 				// width object / max, min, breakpoint sizes?
-				...minMaxWidth(), // do a width object
+				...minMaxWidth({ maxWidth, minWidth }), // do a width object
 				...CSS.maxLines({ maxLines }),
 			}}
 			// Perhaps componentType for variant and component

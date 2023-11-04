@@ -1,3 +1,5 @@
+import { COMPONENT_DETAILS } from "../component-details.config";
+
 // argument to keep with component a-la article-list.edit.config.ts
 export const ARTICLE_LIST = {
 	id: "ArticleList",
@@ -24,32 +26,7 @@ export const ARTICLE_LIST = {
 	// ArticleGrid is grid controls / 'variants' to suit
 	// Or just Article list 1,2,3,a,b,c,etc
 	props: [
-		{
-			id: "componentTitle",
-			type: "text",
-			label: "Component Title",
-			info: "ArticleListtTitle",
-		},
-		{
-			id: "componentTitleVariant",
-			type: "select",
-			options: ["Primary", "Secondary"],
-			label: "Component Title Variant",
-			info: "ComponentTitleVariant",
-		},
-		{
-			id: "componentDescription",
-			type: "text",
-			label: "Component Description",
-			info: "ArticleListDescription",
-		},
-		{
-			id: "componentDescriptionVariant",
-			type: "select",
-			options: ["Primary", "Secondary"],
-			label: "Component Description Variant",
-			info: "DescriptionVariant",
-		},
+		...COMPONENT_DETAILS,
 		// Add title
 		// If type = title just add a title as a divider
 		// Add a horizontal rule etc

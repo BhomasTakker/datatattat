@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { ArticleListItem } from "./article-list-item";
-import { Article1 } from "../lists/article-list.mock.data";
+import { Article1 } from "../mock/Articles.mock";
 
 const props = {
 	item: Article1,

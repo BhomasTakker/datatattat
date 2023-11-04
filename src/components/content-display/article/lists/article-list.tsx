@@ -1,5 +1,3 @@
-import { TitleVariant } from "@/src/components/types/ui";
-import { Title } from "@/src/components/ui/title";
 import { Collection } from "@/src/types/data-structures/collection/collection";
 import { Box, List } from "@mui/material";
 import { ArticleListItem } from "../items/article-list-item";

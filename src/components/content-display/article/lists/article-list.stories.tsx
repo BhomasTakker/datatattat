@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ArticleList } from "./article-list";
-import { Articles } from "./article-list.mock.data";
+import { Articles } from "../mock/Articles.mock";
 
 const meta: Meta<typeof ArticleList> = {
 	component: ArticleList,

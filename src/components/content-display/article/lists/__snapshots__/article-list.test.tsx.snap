@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ArticleListItem snaps should match snapshot for article list item 1`] = `
+exports[`ArticleList snaps should match snapshot for article list item 1`] = `
 <div
   class="MuiBox-root css-0"
   data-testid="article-list"
@@ -115,7 +115,7 @@ exports[`ArticleListItem snaps should match snapshot for article list item 1`] =
               class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
               data-testid="time"
             >
-              Published 5 days ago
+              Published 1 hour ago
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -174,7 +174,7 @@ exports[`ArticleListItem snaps should match snapshot for article list item 1`] =
               class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
               data-testid="time"
             >
-              Published 5 days ago
+              Published 1 week ago
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -292,7 +292,7 @@ exports[`ArticleListItem snaps should match snapshot for article list item 1`] =
               class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
               data-testid="time"
             >
-              Published 5 days ago
+              Published 1 hour ago
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -351,7 +351,7 @@ exports[`ArticleListItem snaps should match snapshot for article list item 1`] =
               class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
               data-testid="time"
             >
-              Published 5 days ago
+              Published 1 week ago
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -469,7 +469,7 @@ exports[`ArticleListItem snaps should match snapshot for article list item 1`] =
               class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
               data-testid="time"
             >
-              Published 5 days ago
+              Published 1 hour ago
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -528,7 +528,7 @@ exports[`ArticleListItem snaps should match snapshot for article list item 1`] =
               class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
               data-testid="time"
             >
-              Published 5 days ago
+              Published 1 week ago
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
