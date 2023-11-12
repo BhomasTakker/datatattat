@@ -24,7 +24,7 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-11noctg-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1u57f74-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -45,13 +45,13 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 5 days ago
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
           >
             Publisher1, Publisher1
           </p>
@@ -78,7 +78,7 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-11noctg-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1u57f74-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -99,13 +99,13 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 1 hour ago
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
           >
             Publisher1, Publisher1
           </p>
@@ -132,7 +132,7 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-11noctg-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1u57f74-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -153,13 +153,13 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 1 week ago
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
           >
             Publisher1, Publisher1
           </p>
@@ -186,7 +186,7 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-11noctg-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1u57f74-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -207,13 +207,13 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 5 days ago
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
           >
             Publisher1, Publisher1
           </p>
@@ -240,7 +240,7 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-11noctg-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1u57f74-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -261,13 +261,13 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 1 hour ago
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
           >
             Publisher1, Publisher1
           </p>
@@ -294,7 +294,7 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-11noctg-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1u57f74-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -315,13 +315,13 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 1 week ago
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
           >
             Publisher1, Publisher1
           </p>
@@ -348,7 +348,7 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-11noctg-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1u57f74-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -369,13 +369,13 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 5 days ago
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
           >
             Publisher1, Publisher1
           </p>
@@ -402,7 +402,7 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-11noctg-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1u57f74-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -423,13 +423,13 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 1 hour ago
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
           >
             Publisher1, Publisher1
           </p>
@@ -456,7 +456,7 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-11noctg-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1u57f74-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -477,13 +477,13 @@ exports[`Article List snaps should match snapshot for article list 1`] = `
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 1 week ago
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
           >
             Publisher1, Publisher1
           </p>
@@ -500,7 +500,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
   data-testid="article-list"
 >
   <li
-    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-tu2nhv-MuiListItem-root"
     data-testid="article-list-item"
   >
     <div
@@ -518,7 +518,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-9s2wpe-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1vz9628-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -533,7 +533,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 5 days ago
@@ -543,7 +543,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
     </div>
   </li>
   <li
-    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-tu2nhv-MuiListItem-root"
     data-testid="article-list-item"
   >
     <div
@@ -561,7 +561,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-9s2wpe-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1vz9628-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -576,7 +576,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 1 hour ago
@@ -586,7 +586,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
     </div>
   </li>
   <li
-    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-tu2nhv-MuiListItem-root"
     data-testid="article-list-item"
   >
     <div
@@ -604,7 +604,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-9s2wpe-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1vz9628-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -619,7 +619,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 1 week ago
@@ -629,7 +629,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
     </div>
   </li>
   <li
-    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-tu2nhv-MuiListItem-root"
     data-testid="article-list-item"
   >
     <div
@@ -647,7 +647,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-9s2wpe-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1vz9628-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -662,7 +662,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 5 days ago
@@ -672,7 +672,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
     </div>
   </li>
   <li
-    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-tu2nhv-MuiListItem-root"
     data-testid="article-list-item"
   >
     <div
@@ -690,7 +690,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-9s2wpe-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1vz9628-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -705,7 +705,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 1 hour ago
@@ -715,7 +715,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
     </div>
   </li>
   <li
-    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-tu2nhv-MuiListItem-root"
     data-testid="article-list-item"
   >
     <div
@@ -733,7 +733,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-9s2wpe-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1vz9628-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -748,7 +748,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 1 week ago
@@ -758,7 +758,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
     </div>
   </li>
   <li
-    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-tu2nhv-MuiListItem-root"
     data-testid="article-list-item"
   >
     <div
@@ -776,7 +776,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-9s2wpe-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1vz9628-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -791,7 +791,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 5 days ago
@@ -801,7 +801,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
     </div>
   </li>
   <li
-    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-tu2nhv-MuiListItem-root"
     data-testid="article-list-item"
   >
     <div
@@ -819,7 +819,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-9s2wpe-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1vz9628-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -834,7 +834,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 1 hour ago
@@ -844,7 +844,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
     </div>
   </li>
   <li
-    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-tu2nhv-MuiListItem-root"
     data-testid="article-list-item"
   >
     <div
@@ -862,7 +862,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
       </div>
     </div>
     <div
-      class="MuiListItemText-root MuiListItemText-multiline css-9s2wpe-MuiListItemText-root"
+      class="MuiListItemText-root MuiListItemText-multiline css-1vz9628-MuiListItemText-root"
     >
       <h6
         class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
@@ -877,7 +877,7 @@ exports[`Article List snaps should match snapshot for article list of compact it
           data-testid="details"
         >
           <p
-            class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
             data-testid="time"
           >
             Published 1 week ago
