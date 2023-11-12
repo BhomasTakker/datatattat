@@ -3,7 +3,9 @@
 import { Suspense } from "react";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../src/lib/i18n/i18n";
-
+import { theme } from "../src/theme/theme";
+// import { withThemeFromJSXProvider } from "@storybook/addon-themes";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 // i18n;
 export const parameters = {
 	actions: { argTypesRegex: "^on[A-Z].*" },
@@ -41,4 +43,13 @@ const withI18next = (Story) => {
 	);
 };
 
-export const decorators = [withI18next];
+const withMuiTheme = (Story) => {
+	return (
+		<ThemeProvider theme={theme}>
+			<CssBaseline />
+			<Story />
+		</ThemeProvider>
+	);
+};
+
+export const decorators = [withI18next, withMuiTheme];

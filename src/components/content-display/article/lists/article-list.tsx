@@ -72,32 +72,6 @@ export const ArticleList = ({
 }: ArticleListProps) => {
 	const { items } = data;
 
-	log(
-		{ code: "FEATURE:0010", context: "ARTICLE:LIST" },
-		{
-			componentTitle,
-			componentTitleVariant,
-			componentDescription,
-			componentDescriptionVariant,
-
-			itemTitleVariant,
-			itemTitleMaxLines,
-
-			showDescription,
-			itemDescriptionVariant,
-			itemDescriptionMaxLines,
-
-			itemDetailsVariant,
-
-			useAvatar,
-			showPublished,
-			showAuthor,
-			showPublisher,
-		},
-		{ rest },
-		"ffs"
-	);
-
 	return (
 		<Box data-testid="article-list">
 			{/* Need to make a content title / intro component */}

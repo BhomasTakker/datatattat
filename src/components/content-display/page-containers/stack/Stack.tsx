@@ -5,8 +5,6 @@ import { createComponents } from "../../components/create-components";
 
 type Component = any;
 
-type Direction = "row" | "row-reverse" | "column" | "column-reverse";
-
 ////////////////
 // Main stack //
 // Basic Variations //

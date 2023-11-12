@@ -1,18 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ArticleCard } from "./article-card";
 import { ArticleCardMock } from "./article-card.mock";
+import { ArticleCardWrapper } from "./article-card.wrapper";
+import { Article1 } from "../mock/Articles.mock";
 
-const { props } = ArticleCardMock;
-
-const meta: Meta<typeof ArticleCard> = {
-	component: ArticleCard,
+const meta: Meta<typeof ArticleCardWrapper> = {
+	component: ArticleCardWrapper,
 };
 export default meta;
-type Story = StoryObj<typeof ArticleCard>;
+type Story = StoryObj<typeof ArticleCardWrapper>;
 
-export const Primary: Story = {
-	name: "I am the primary",
+export const Wrapper: Story = {
 	args: {
-		...props,
+		item: Article1,
+		direction: "column",
 	},
 };

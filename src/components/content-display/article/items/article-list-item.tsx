@@ -63,13 +63,7 @@ export const ArticleListItem = ({
 					disableTypography
 					// title and title variant - == 'none'
 					// always title? / we want type
-					primary={
-						<ContentTitle
-							title={title}
-							variant={titleVariant}
-							maxLines={titleMaxLines}
-						/>
-					}
+					primary={<ContentTitle title={title} maxLines={titleMaxLines} />}
 					secondary={
 						// Create / get elsewhere
 						<Stack margin={0} padding={0}>
@@ -78,7 +72,6 @@ export const ArticleListItem = ({
 								<Description
 									description={description}
 									maxLines={descriptionMaxLines}
-									variant={descriptionVariant}
 								/>
 							)}
 							{(showAuthor || showPublished || showPublisher) && (

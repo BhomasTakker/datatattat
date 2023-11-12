@@ -32,17 +32,14 @@ export const ArticleImage = ({
 	height,
 	src,
 }: ArticleImageProps) => {
-	// 100% this all should not be here
+	// 100% this all should not be here / wrapper and pass in perhaps
 	const [shouldLoadMeta, setShouldLoadMeta] = useState(false);
 	const { meta, loading, error } = useMeta(src || "", shouldLoadMeta);
 
-	console.log("ARTICLE:IMAGE");
 	useEffect(() => {
-		console.log("ARTICLE:IMAGE", "USE:EFFECT");
+		// if meta return
 		if (!image || !image.src) {
-			console.log("ARTICLE:IMAGE", "USE:EFFECT", "NO:IMAGE");
 			if (src) {
-				console.log("ARTICLE:IMAGE", "USE:EFFECT", "SET:SHOULD");
 				setShouldLoadMeta(true);
 			}
 		}

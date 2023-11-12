@@ -9,7 +9,7 @@ exports[`ArticleListItem snaps should match snapshot for article list item 1`] =
     class="MuiListItemAvatar-root css-1e9lk82-MuiListItemAvatar-root"
   >
     <div
-      class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+      class="MuiAvatar-root MuiAvatar-circular css-2ldpwk-MuiAvatar-root"
       data-testid="avatar"
     >
       <img
@@ -20,10 +20,10 @@ exports[`ArticleListItem snaps should match snapshot for article list item 1`] =
     </div>
   </div>
   <div
-    class="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+    class="MuiListItemText-root MuiListItemText-multiline css-11noctg-MuiListItemText-root"
   >
     <h6
-      class="MuiTypography-root MuiTypography-h6 css-mkqqcn-MuiTypography-root"
+      class="MuiTypography-root MuiTypography-h6 css-1mvytpj-MuiTypography-root"
     >
       Dwayne Johnson 'belly laughs' after controversial waxwork unveiled
     </h6>
