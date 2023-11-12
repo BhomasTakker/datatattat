@@ -2,7 +2,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ArticleListItem } from "./article-list-item";
-import { Article1, Article2, Article3 } from "../lists/article-list.mock.data";
+import { Article1 } from "../mock/Articles.mock";
 
 const meta: Meta<typeof ArticleListItem> = {
 	component: ArticleListItem,

@@ -8,6 +8,7 @@ interface SelectInputProps {
 	label: string;
 	id: string;
 	options: any;
+	defaultValue?: string;
 }
 
 // Probably elsewhere in time
@@ -91,13 +92,20 @@ export const SelectInput = ({
 	label,
 	id,
 	options,
+	defaultValue = undefined,
 	children,
 }: PropsWithChildren<SelectInputProps>) => {
 	const createInputList = getSelectInputList(options);
 
 	return (
 		<WithInfo infoId={info}>
-			<SelectInputWithControl label={label} name={id} fullWidth={true} required>
+			<SelectInputWithControl
+				label={label}
+				name={id}
+				fullWidth={true}
+				defaultValue={defaultValue}
+				required
+			>
 				{createInputList(options)}
 			</SelectInputWithControl>
 			{children}

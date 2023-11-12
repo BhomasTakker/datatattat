@@ -54,13 +54,13 @@
 	},
 	"devDependencies": {
 		"@mui/types": "^7.2.3",
-		"@storybook/addon-a11y": "^7.5.1",
-		"@storybook/addon-essentials": "^7.5.1",
-		"@storybook/addon-interactions": "^7.5.1",
-		"@storybook/addon-links": "^7.5.1",
-		"@storybook/blocks": "^7.5.1",
-		"@storybook/nextjs": "^7.5.1",
-		"@storybook/react": "^7.5.1",
+		"@storybook/addon-a11y": "^7.5.2",
+		"@storybook/addon-essentials": "^7.5.2",
+		"@storybook/addon-interactions": "^7.5.2",
+		"@storybook/addon-links": "^7.5.2",
+		"@storybook/blocks": "^7.5.2",
+		"@storybook/nextjs": "^7.5.2",
+		"@storybook/react": "^7.5.2",
 		"@storybook/testing-library": "^0.2.2",
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^13.4.0",
@@ -74,6 +74,6 @@
 		"jest-environment-jsdom": "^29.3.1",
 		"rxjs": "^7.8.1",
 		"sass": "^1.58.0",
-		"storybook": "^7.5.1"
+		"storybook": "^7.5.2"
 	}
 }

@@ -1,5 +1,3 @@
-import { TitleVariant } from "@/src/components/types/ui";
-import { Title } from "@/src/components/ui/title";
 import { Collection } from "@/src/types/data-structures/collection/collection";
 import { Box, List } from "@mui/material";
 import { ArticleListItem } from "../items/article-list-item";
@@ -73,32 +71,6 @@ export const ArticleList = ({
 	...rest
 }: ArticleListProps) => {
 	const { items } = data;
-
-	log(
-		{ code: "FEATURE:0010", context: "ARTICLE:LIST" },
-		{
-			componentTitle,
-			componentTitleVariant,
-			componentDescription,
-			componentDescriptionVariant,
-
-			itemTitleVariant,
-			itemTitleMaxLines,
-
-			showDescription,
-			itemDescriptionVariant,
-			itemDescriptionMaxLines,
-
-			itemDetailsVariant,
-
-			useAvatar,
-			showPublished,
-			showAuthor,
-			showPublisher,
-		},
-		{ rest },
-		"ffs"
-	);
 
 	return (
 		<Box data-testid="article-list">

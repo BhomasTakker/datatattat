@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { ArticleList, ArticleListProps } from "./article-list";
-import { Articles } from "./article-list.mock.data";
 import { LOREM_1_S } from "mockData/text/lorem";
 import { ContentTitleVariants } from "../items/content-title/content-title";
 import { DescriptionVariants } from "../items/description/description";
 import { DetailsVariantType } from "../items/details/details";
+import { Articles } from "../mock/Articles.mock";
 
 const props: ArticleListProps = {
 	data: Articles,
@@ -30,7 +30,7 @@ const props: ArticleListProps = {
 
 const { componentTitle } = props;
 
-describe("ArticleListItem", () => {
+describe("ArticleList", () => {
 	it("should render article list item", () => {
 		render(<ArticleList {...props} />);
 		const articleListItem = screen.getByTestId("article-list");

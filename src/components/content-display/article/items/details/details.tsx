@@ -3,18 +3,27 @@ import { MARGINS } from "config/styles/styles.config";
 import { Time } from "../time/Time";
 import { Details } from "@/src/types/data-structures/base";
 import { DetailsVariant } from "./details.css-data";
+import { CSS } from "@/src/css/text";
 
 interface DetailsTextProps {
 	children: React.ReactNode;
 }
 
 const DetailsText = ({ children }: DetailsTextProps) => {
-	return <Typography>{children}</Typography>;
+	return (
+		<Typography
+			sx={{
+				...CSS.maxLines({ maxLines: 1 }),
+			}}
+		>
+			{children}
+		</Typography>
+	);
 };
 
 export type DetailsVariantType = "space-between" | "stack";
 
-interface DetailsComponentProps {
+export interface DetailsComponentProps {
 	details?: Details;
 	showPublished?: boolean;
 	showCategories?: boolean;
@@ -39,17 +48,9 @@ export const DetailsComponent = ({
 		publishers = null,
 		authors = null,
 	} = details || {};
-	console.log("FETURE:0007", "Details", {
-		variant,
-		DetailsVariant,
-	});
+
 	const variantProps = DetailsVariant.get(variant);
-	console.log("FETURE:0007", "Details", {
-		variantProps,
-	});
-	console.log("FETURE:0007", "DetailsVariant", {
-		DetailsVariant,
-	});
+
 	return (
 		<Stack
 			data-testid="details"

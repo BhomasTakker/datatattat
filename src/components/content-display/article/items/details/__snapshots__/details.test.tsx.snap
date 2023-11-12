@@ -6,23 +6,23 @@ exports[`Details snapshots should match snapshot for space-between variant 1`] =
   data-testid="details"
 >
   <p
-    class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
     data-testid="time"
   >
     Published 5 days ago
   </p>
   <p
-    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
   >
     category1, category2
   </p>
   <p
-    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
   >
     Publisher.com
   </p>
   <p
-    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
   >
     Author McAuther, Authorson, Author
   </p>
@@ -35,23 +35,23 @@ exports[`Details snapshots should match snapshot for stack variant 1`] = `
   data-testid="details"
 >
   <p
-    class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-body2 css-sbmvo9-MuiTypography-root"
     data-testid="time"
   >
     Published 5 days ago
   </p>
   <p
-    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
   >
     category1, category2
   </p>
   <p
-    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
   >
     Publisher.com
   </p>
   <p
-    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-body1 css-aiw75n-MuiTypography-root"
   >
     Author McAuther, Authorson, Author
   </p>

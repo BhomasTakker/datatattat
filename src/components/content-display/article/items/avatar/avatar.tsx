@@ -10,6 +10,7 @@ interface ArticleAvatar {
 
 // Maybe neaten this up
 // get data from context
+// Prob shouldnt use context at all
 export const ArticleAvatar = ({ alt, img, src }: ArticleAvatar) => {
 	// The getting meta functionality seems a little dirty
 	const { getMeta, meta } = useContext(ListItemContext);

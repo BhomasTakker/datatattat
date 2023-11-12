@@ -1,10 +1,27 @@
-import { Typography } from "@mui/material";
+import { CSS } from "@/src/css/text";
+import { Typography, TypographyProps } from "@mui/material";
 
 type TimeVariant = "age" | "string" | "locale" | "locale-date" | "locale-time";
 
 // probs utils
 const pluralise = (unit: number, str: string) => {
 	return unit > 1 ? `${unit} ${str}s` : `${unit} ${str}`;
+};
+
+const TimeText = ({ children, ...rest }: TypographyProps) => {
+	return (
+		<Typography
+			variant="body2"
+			color="text.secondary"
+			data-testid="time"
+			sx={{
+				...CSS.maxLines({ maxLines: 1 }),
+			}}
+			{...rest}
+		>
+			{children}
+		</Typography>
+	);
 };
 
 // Too much going on
@@ -28,29 +45,13 @@ export const Time = ({
 	switch (variant) {
 		default:
 		case "string":
-			return (
-				<Typography variant="body2" color="text.secondary" data-testid="time">
-					{date.toDateString()}
-				</Typography>
-			);
+			return <TimeText>{date.toDateString()}</TimeText>;
 		case "locale":
-			return (
-				<Typography variant="body2" color="text.secondary" data-testid="time">
-					{date.toLocaleString()}
-				</Typography>
-			);
+			return <TimeText>{date.toLocaleString()}</TimeText>;
 		case "locale-date":
-			return (
-				<Typography variant="body2" color="text.secondary" data-testid="time">
-					{date.toLocaleDateString()}
-				</Typography>
-			);
+			return <TimeText>{date.toLocaleDateString()}</TimeText>;
 		case "locale-time":
-			return (
-				<Typography variant="body2" color="text.secondary" data-testid="time">
-					{date.toLocaleTimeString()}
-				</Typography>
-			);
+			return <TimeText>{date.toLocaleTimeString()}</TimeText>;
 
 		// This is ropey but works
 		// needs own file / function etc
@@ -97,10 +98,6 @@ export const Time = ({
 			}
 			// now or error!
 			const str = diff ? `Published ${diff} ago` : "Published now!";
-			return (
-				<Typography variant="body2" color="text.secondary" data-testid="time">
-					{str}
-				</Typography>
-			);
+			return <TimeText>{str}</TimeText>;
 	}
 };

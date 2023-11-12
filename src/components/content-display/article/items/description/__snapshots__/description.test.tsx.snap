@@ -2,7 +2,7 @@
 
 exports[`Description snaps should match snapshot 1`] = `
 <span
-  class="MuiTypography-root MuiTypography-body1 css-2u148c-MuiTypography-root"
+  class="MuiTypography-root MuiTypography-body1 css-1aunven-MuiTypography-root"
   data-testid="description"
 >
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus orci ac auctor augue mauris. Sit amet nulla facilisi morbi.
@@ -11,7 +11,7 @@ exports[`Description snaps should match snapshot 1`] = `
 
 exports[`Description snaps should render expected number of lines 1`] = `
 <span
-  class="MuiTypography-root MuiTypography-body1 css-2u148c-MuiTypography-root"
+  class="MuiTypography-root MuiTypography-body1 css-1aunven-MuiTypography-root"
   data-testid="description"
 >
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus orci ac auctor augue mauris. Sit amet nulla facilisi morbi.

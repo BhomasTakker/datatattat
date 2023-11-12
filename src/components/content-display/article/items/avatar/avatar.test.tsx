@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { ArticleAvatar } from "./avatar";
 import { AVATAR_MOCK } from "./avatar.mock.data";
 import { ListItemContextProvider } from "../context/list-item.context";
-import { Article1 } from "../../lists/article-list.mock.data";
+import { Article1 } from "../../mock/Articles.mock";
 
 const mockFunc = jest.fn();
 

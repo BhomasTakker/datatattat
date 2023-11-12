@@ -1,37 +1,43 @@
-import { TitleVariant } from "@/src/components/types/ui";
-import { Title } from "@/src/components/ui/title";
 import { CSS } from "@/src/css/text";
 import { log } from "@/src/lib/logger";
-import { Typography } from "@mui/material";
-import { MARGINS } from "config/styles/styles.config";
+import { TypographyProps } from "@/src/types/mui";
+import { Typography, TypographyTypeMap } from "@mui/material";
 
 export type ContentTitleVariants = "Primary" | "Secondary";
+
+// type FontProps = {
+// 	fontFamily?: string;
+// 	fontWeight?: string;
+// 	lineHeight?: string;
+// 	fontSize?: string;
+// };
 
 // And element props?
 export type ContentTitleProps = {
 	title: string;
-	variant: ContentTitleVariants;
+	variant?: ContentTitleVariants;
 	maxLines?: number;
-};
+	// font?: FontProps;
+	// should use rest?
+	// titleProps?: TypographyTypeMap["props"];
+} & TypographyProps;
 
 export const ContentTitle = ({
 	title,
-	variant = "Primary",
+	// titleVariant or none
+	// variant = "Primary",
 	maxLines = 2,
+	...rest
 }: ContentTitleProps) => {
-	log({ code: "FEATURE:0010", context: "CONTENT:TITLE" }, { variant });
 	return (
 		<Typography
-			// variant compact
 			variant="h6"
 			component="h6"
-			marginTop={0}
-			marginBottom={0}
+			{...rest}
 			///////////////////
 			sx={{
 				...CSS.maxLines({ maxLines }),
 			}}
-			// {...CSS.maxLines({ maxLines })}
 		>
 			{title}
 		</Typography>

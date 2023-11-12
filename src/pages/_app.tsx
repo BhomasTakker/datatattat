@@ -17,29 +17,12 @@ import { MainFooter } from "../components/footer/MainFooter";
 import { alpha, createTheme, ThemeProvider } from "@mui/material/styles";
 import { orange } from "@mui/material/colors";
 import { CssBaseline } from "@mui/material";
-
+import { theme } from "../theme/theme";
 interface highlightsColor {
 	main: string;
 	light?: string;
 	dark?: string;
 }
-
-//Dude create an actual theme already
-//Need use theme augmentation
-// https://mui.com/material-ui/customization/theming/#custom-variables
-const theme = createTheme({
-	palette: {
-		primary: {
-			main: orange[500],
-			light: orange[300],
-		},
-		// @ts-ignore think it's a chore to sort out
-		highlights: {
-			main: alpha(orange[300], 0.3),
-			light: alpha(orange[300], 0.1),
-		},
-	},
-});
 
 //Create a Controller
 const queryClient = new QueryClient();
