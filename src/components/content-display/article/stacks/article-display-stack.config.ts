@@ -5,7 +5,7 @@
 // | "compact";
 
 import { StackDirection } from "@/src/types/mui";
-import { DisplayCardVariant } from "../card/display-card.config";
+import { DisplayCardVariant } from "../card/display-card/config/display-card.config";
 import {
 	ArticleDisplayStackProps,
 	ArticleDisplayStackVariant,

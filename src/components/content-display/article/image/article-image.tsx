@@ -2,8 +2,9 @@ import Image from "next/image";
 import { useMeta } from "../items/hooks/useMeta";
 import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
+import CSS from "csstype";
 
-export interface ArticleImageProps {
+export type ArticleImageProps = {
 	image: {
 		// Almost certainly has a type
 		src: string;
@@ -13,7 +14,9 @@ export interface ArticleImageProps {
 	height: number;
 	// Probably not here
 	src?: string;
-}
+	style?: CSS.Properties;
+	boxStyle?: CSS.Properties;
+};
 
 // Variants?
 // We really do need something along the lines of useMeta
@@ -31,6 +34,8 @@ export const ArticleImage = ({
 	width,
 	height,
 	src,
+	boxStyle = {},
+	style = {},
 }: ArticleImageProps) => {
 	// 100% this all should not be here / wrapper and pass in perhaps
 	const [shouldLoadMeta, setShouldLoadMeta] = useState(false);
@@ -48,14 +53,16 @@ export const ArticleImage = ({
 
 	return (
 		// <Image was not happy with src - should figure that out
-		<Box width={width} height={height}>
+		// Box probably isn't correct
+		<Box width={width} height={height} sx={{ ...boxStyle }}>
 			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<img
 				src={image?.src || meta?.image || ""}
 				alt={image?.alt || ""}
 				width={width}
 				height={height}
-				style={{ objectFit: "cover" }}
+				// should at least use an scss file when we can
+				style={{ objectFit: "cover", ...style }}
 				data-testid={"article-image"}
 			/>
 		</Box>

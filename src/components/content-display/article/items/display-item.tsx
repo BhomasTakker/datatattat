@@ -67,11 +67,6 @@ const DisplayItemContent = (collectionItem: CollectionItem) => {
 					<Typography
 						sx={{
 							color: "white",
-							// width: "50%",
-							// maxWidth: "100%",
-							// display: "-webkit-box",
-							// function to return this data
-							// take num lines
 							overflow: "hidden",
 							textOverflow: "ellipsis",
 							WebkitBoxOrient: "vertical",
@@ -85,33 +80,6 @@ const DisplayItemContent = (collectionItem: CollectionItem) => {
 						{stripHTML(description)}
 					</Typography>
 				</Box>
-				{/* <Stack
-					direction={"column"}
-					alignItems={"flex-end"}
-					sx={{ height: "100%" }}
-				>
-					<Typography
-						sx={{
-							color: "white",
-							// width: "50%",
-							// maxWidth: "100%",
-							// display: "-webkit-box",
-							// function to return this data
-							// take num lines
-
-							overflow: "hidden",
-							textOverflow: "ellipsis",
-							WebkitBoxOrient: "vertical",
-							WebkitLineClamp: 3,
-							maxLines: 3,
-						}}
-						component="span"
-						variant="body2"
-						color="text.primary"
-					>
-						{"Minor Deets"}
-					</Typography>
-				</Stack> */}
 			</Stack>
 		</Stack>
 	);

@@ -76,7 +76,9 @@ export const ArticleCard = ({
 			<CardActionArea>
 				<Stack direction={layout}>
 					{avatar && showImage && (
+						// <Box>
 						<ArticleImage image={avatar} src={src} {...imageProps} />
+						// </Box>
 					)}
 					<CardContentNoPadding sx={cardContentCss}>
 						<Stack {...contentStackProps} sx={contentStackCss}>
