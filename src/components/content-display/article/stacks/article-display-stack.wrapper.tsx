@@ -1,9 +1,10 @@
 import { Collection } from "@/src/types/data-structures/collection/collection";
 import { ArticleStack } from "./article-stack";
 import { useWidth } from "@/src/hooks/useWidth";
-import { DisplayCard } from "../card/display-card.controller";
-import { DisplayCardVariant } from "../card/display-card.config";
+import { DisplayCard } from "../card/display-card/display-card.controller";
+import { DisplayCardVariant } from "../card/display-card/config/display-card.config";
 import { getArticleDisplayStackConfig } from "./article-display-stack.config";
+import { StackProps } from "@mui/material";
 
 export type ArticleDisplayStackVariant =
 	| "column"
@@ -16,14 +17,16 @@ export type ArticleDisplayStackProps = {
 	variant: ArticleDisplayStackVariant;
 	componentVariant: DisplayCardVariant;
 	limit?: number;
-};
+} & StackProps;
 
 // instead of wrapper call it controller perhaps?
+// should have input rest
 export const ArticleDisplayStack = ({
 	data,
 	variant,
 	componentVariant,
 	limit,
+	...propsRest
 }: ArticleDisplayStackProps) => {
 	const { items = [] } = data;
 	const width = useWidth();
@@ -50,7 +53,7 @@ export const ArticleDisplayStack = ({
 	});
 
 	return (
-		<ArticleStack data={data} direction={direction} {...rest}>
+		<ArticleStack data={data} direction={direction} {...rest} {...propsRest}>
 			{cards}
 		</ArticleStack>
 	);

@@ -34,10 +34,11 @@ export const Description = ({
 				// ...minMaxWidth({ maxWidth, minWidth }), // do a width object
 				...CSS.maxLines({ maxLines }),
 			}}
+			{...CSS.textStyle()}
 			{...rest}
 			// This would be a no? you could go with text variant
 			// font family, size, color, etc
-			{...CSS.textStyle()}
+			//
 		>
 			{stripHTML(description)}
 		</Typography>

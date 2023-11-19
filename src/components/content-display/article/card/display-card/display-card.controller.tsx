@@ -1,7 +1,7 @@
-import { ArticleCard } from "./article-card";
+import { ArticleCard } from "../article-card";
 
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
-import { DisplayCardVariant, getConfig } from "./display-card.config";
+import { DisplayCardVariant, getConfig } from "./config/display-card.config";
 
 export interface ArticleCardWrapperProps {
 	item: CollectionItem;

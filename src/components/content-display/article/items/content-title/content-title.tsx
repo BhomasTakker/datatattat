@@ -33,11 +33,11 @@ export const ContentTitle = ({
 		<Typography
 			variant="h6"
 			component="h6"
-			{...rest}
-			///////////////////
 			sx={{
 				...CSS.maxLines({ maxLines }),
 			}}
+			{...rest}
+			///////////////////
 		>
 			{title}
 		</Typography>

@@ -1,3 +1,4 @@
+import { ArticleGridController } from "@/src/components/content-display/article/grid/article-grid.controller";
 import { ArticleListController } from "@/src/components/content-display/article/list/article-list.controller";
 import { ArticleList } from "@/src/components/content-display/article/lists/article-list";
 import { SimpleArticleList } from "@/src/components/content-display/article/lists/simple-list";
@@ -9,6 +10,7 @@ import { SimpleStack } from "@/src/components/content-display/article/stacks/sim
 export const COMPONENTS_MAP = new Map<string, any>([
 	["ArticleList", ArticleListController],
 	["ArticleStack", ArticleDisplayStack],
+	["ArticleGrid", ArticleGridController],
 
 	// ["ArticleList", ArticleList],
 	// ["ArticleStack", ArticleStack],
