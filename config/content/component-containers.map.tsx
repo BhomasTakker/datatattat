@@ -5,12 +5,15 @@ import { SimpleArticleList } from "@/src/components/content-display/article/list
 import { ArticleDisplayStack } from "@/src/components/content-display/article/stacks/article-display-stack.wrapper";
 import { ArticleStack } from "@/src/components/content-display/article/stacks/article-stack";
 import { SimpleStack } from "@/src/components/content-display/article/stacks/simple-stack";
+import { DataTable } from "@/src/components/content-display/tabular/tanstack-table/controllers/data-table.controller";
 
 // 100% change to ArticleList
 export const COMPONENTS_MAP = new Map<string, any>([
 	["ArticleList", ArticleListController],
 	["ArticleStack", ArticleDisplayStack],
 	["ArticleGrid", ArticleGridController],
+
+	["DataTable", DataTable],
 
 	// ["ArticleList", ArticleList],
 	// ["ArticleStack", ArticleStack],

@@ -15,6 +15,6 @@ export const inputMap = new Map<string, any>([
 	["text-toggle", TextToggleInput],
 	["select", SelectInput],
 
-	/////////////
+	/////////////Not an input but a title element
 	["title", InputTitle],
 ]);

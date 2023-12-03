@@ -1,15 +1,19 @@
 import { BING_CONVERSIONS } from "../api/bing/news/conversions";
+import { FOOTBALL_DATA_ORG_CONVERSIONS } from "../api/data/sport/football/football-data.org/football-data-org.conversions";
 import { RSS_2_0_CONVERSIONS } from "../rss/conversions";
 import { MAIN_CONVERSIONS } from "./main-conversions";
 
 const emptyReturn = new Map<string, object>([]);
 
 // better way - this would get massive
+// Yeah this seems unmanageable?
 export const CONVERSIONS_MAP = new Map<string, object>([
 	// ["bing", BING_NEWS_API_OBJECT],
 	["MAIN", MAIN_CONVERSIONS],
 	["BING", BING_CONVERSIONS],
 	["RSS:2.0", RSS_2_0_CONVERSIONS],
+
+	["FOOTBALL:DATA:ORG", FOOTBALL_DATA_ORG_CONVERSIONS],
 ]);
 
 export const getConversion = (id: string) => {

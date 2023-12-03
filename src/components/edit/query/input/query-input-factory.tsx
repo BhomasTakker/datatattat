@@ -25,6 +25,7 @@ export const QueryInputFactoryComponent = ({
 	const { type, id, label, options } = queryInputData;
 	const parameterId = `${objectKey}.${id}`;
 
+	// Used for Parameters - need update parameters to use the main edit etc
 	// console.log("TYPE", { type });
 
 	// We could / should have many
