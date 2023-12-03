@@ -26,7 +26,7 @@ import { DebouncedInput } from "./input/debounced-input";
 // can integrate with table etc
 // https://virtuoso.dev/mui-table-virtual-scroll/
 
-export interface SimpleTableProps {
+export interface TanStackTableProps {
 	// columns
 	data: any[]; //type?
 	columns: ColumnDef<any, any>[];
@@ -77,7 +77,7 @@ export interface SimpleTableProps {
  * @prop showCaption - show a table caption - good for a11y
  * @prop caption - the cation text
  */
-export const SimpleTable = ({
+export const TanStackTable = ({
 	data,
 	columns,
 	useSorting = false,
@@ -93,7 +93,7 @@ export const SimpleTable = ({
 	debug = false,
 	showCaption = false,
 	caption = "",
-}: SimpleTableProps) => {
+}: TanStackTableProps) => {
 	const [sorting, setSorting] = useState([]);
 	const [globalFiltering, setGlobalFiltering] = useState("");
 	const [columnFiltering, setColumnFiltering] = useState([]);
@@ -102,6 +102,7 @@ export const SimpleTable = ({
 		data,
 		columns,
 
+		// ADD: Should be usePagination ? pageSize : dataset size?
 		initialState: { pagination: { pageSize: pageSize } },
 
 		getCoreRowModel: getCoreRowModel(),

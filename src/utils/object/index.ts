@@ -33,9 +33,19 @@ export const isObject = (obj: any) => {
 	return typeof obj === "object" && !Array.isArray(obj) && obj !== null;
 };
 
+/**
+ * Check if given parameter is an Array
+ *
+ * @param obj - any
+ * @returns true / false
+ */
+export const isArray = (obj: any) => {
+	return typeof obj === "object" && Array.isArray(obj) && obj !== null;
+};
+
 /** 
 * Object Utils: 'flatten' destructure child objects into it's parent
-*
+****
 * @remarks
 * First proper comments
 * 
@@ -47,7 +57,8 @@ export const isObject = (obj: any) => {
 * @param obj - The nested object
 *
 * @returns Single layered object
-*
+****
+* @todo create with flatten objects contained in arrays
 @beta
 */
 export const destructureChildObjects = (obj: any) => {
@@ -62,3 +73,22 @@ export const destructureChildObjects = (obj: any) => {
 
 	return { ...newObject };
 };
+
+// export const destructureChildObjectsInArrays = (obj: any) => {
+// 	let newObject = {};
+// 	for (const prop in obj) {
+// 		if (isObject(obj[prop])) {
+// 			newObject = { ...newObject, ...destructureChildObjects(obj[prop]) };
+// 		} else if (isArray(obj[prop])) {
+// 			newObject = {
+// 				...newObject,
+// 				[prop]: obj[prop].map((obj) => destructureChildObjects(obj)),
+// 			};
+// 			// newObject = { ...newObject, ...destructureChildObjects(obj[prop]) };
+// 		} else {
+// 			newObject = { ...newObject, [prop]: obj[prop] };
+// 		}
+// 	}
+
+// 	return { ...newObject };
+// };

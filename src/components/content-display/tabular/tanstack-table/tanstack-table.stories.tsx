@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SimpleTable } from "./simple-table";
+import { TanStackTable } from "./tanstack-table";
 import { mock } from "./mock";
 import { destructureChildObjects } from "@/src/utils/object";
 
-const meta: Meta<typeof SimpleTable> = {
-	component: SimpleTable,
+const meta: Meta<typeof TanStackTable> = {
+	component: TanStackTable,
 };
 export default meta;
-type Story = StoryObj<typeof SimpleTable>;
+type Story = StoryObj<typeof TanStackTable>;
 
 // Would we do this at this level?
 const list = mock.standings[0].table;
