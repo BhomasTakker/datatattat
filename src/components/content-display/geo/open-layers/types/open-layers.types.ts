@@ -1,3 +1,4 @@
+export type CustomViewProjection = `EPSG:${number | string}`;
 // Need explainer on what each of these is
 // e.g.
 export type ViewProjection =
@@ -9,4 +10,8 @@ export type ViewProjection =
 	/**
 	 * latitude and longitude
 	 */
-	| "EPSG:4326";
+	| "EPSG:4326"
+	/**
+	 * For dynamic provided projection (proj4)
+	 */
+	| CustomViewProjection;

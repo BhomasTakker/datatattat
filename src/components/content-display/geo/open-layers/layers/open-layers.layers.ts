@@ -1,82 +1,131 @@
 // Probably create a basic management system
 
+// Proper redo required
+
 import TileLayer from "ol/layer/Tile";
 import GroupLayer from "ol/layer/Group";
 import XYZ from "ol/source/XYZ";
-import OSM from "ol/source/OSM";
 import { Map as OSMap } from "ol";
+import {
+	TileLayerSources,
+	getLayerSource,
+	getTileLayerSource,
+} from "./sources/open-layers.sources";
+import { baseLayers } from "./open-layers.layers.mock";
+import ImageLayer from "ol/layer/Image";
+import VectorTileLayer from "ol/layer/VectorTile";
+import VectorLayer from "ol/layer/Vector";
+import VectorImageLayer from "ol/layer/VectorImage";
+import HeatmapLayer from "ol/layer/Heatmap";
+import GraticuleLayer from "ol/layer/Graticule";
 
-type TileLayerTypes = "XYZ" | "OSM";
-// @ts-ignore - even more annoying than usual
-const tileLayerMap = new Map([
-	["XYZ", XYZ],
-	["OSM", OSM],
+type LayerModules = TileLayer<any> | VectorTileLayer | ImageLayer<any>;
+type Layers =
+	| "TileLayer"
+	| "ImageLayer"
+	| "VectorTileLayer"
+	| "VectorLayer"
+	| "VectorImageLayer"
+	| "HeatmapLayer"
+	| "GraticuleLayer";
+const layerSourceMap = new Map<string, any>([
+	["TileLayer", TileLayer],
+	["ImageLayer", ImageLayer],
+	["VectorTileLayer", VectorTileLayer],
+	["VectorLayer", VectorLayer],
+	["VectorImageLayer", VectorImageLayer],
+	["HeatmapLayer", HeatmapLayer],
+	["GraticuleLayer", GraticuleLayer],
 ]);
+// utils
+export const createLayer = (
+	type: Layers = "TileLayer",
+	options: any = {},
+	source?: any
+): LayerModules => {
+	const LayerType = layerSourceMap.get(type) || TileLayer;
+	console.log({ type, source, LayerType });
+	// Graticule layer has no source
 
-interface CreateTileLayerOptions {
-	// how expected is url - OSM can be used without - default?
-	url?: string;
-	visible?: boolean;
-	type?: TileLayerTypes;
-}
-// const exampleLayer = new TileLayer({
-// 	source: new OSM(),
-// });
-export const createTileLayer = ({
-	url,
-	visible = true,
-	type = "XYZ", //sourceType
-}: CreateTileLayerOptions) => {
-	// Need change XYZ
-	const TypeClass = tileLayerMap.get(type) || XYZ;
-
-	return new TileLayer({
-		source: new TypeClass({
-			url,
-		}),
-		visible,
+	return new LayerType({
+		source: source ? source : undefined,
+		...options,
 	});
 };
 
-// types?
-export const createLayer = () => {};
-
-export const createGroupLayer = (group: TileLayer<XYZ>[]) => {
+export const createGroupLayer = (group: TileLayer<any>[]) => {
 	return new GroupLayer({
 		layers: [...group],
 	});
 };
 
-///////////
-// TEMP ///
-// Create from given data
-const openStreetMapStandard = createTileLayer({
-	url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-});
+// Would we have need?
+// const baseLayerGroup = createGroupLayer([
+// 	openStreetMapStandard,
+// 	googleMapsTerrain,
+// 	usGovTopo,
+// 	bing,
+// 	tileArcGISRest,
+// 	tileWMS,
+// 	stadia,
+// 	debug,
+// ]);
 
-const googleMapsTerrain = createTileLayer({
-	url: "http://mt0.google.com/vt/lyrs=p&hl=en&x={x}&y={y}&z={z}",
-	visible: false,
-});
-
-// USGS Topo
-const usGovTopo = createTileLayer({
-	url: "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
-	visible: false,
-});
-
-const baseLayerGroup = createGroupLayer([
-	openStreetMapStandard,
-	googleMapsTerrain,
-	usGovTopo,
-]);
+export type Layer = {
+	layerId?: Layers;
+	layerOptions?: any;
+	sourceId?: TileLayerSources;
+	sourceOptions?: any;
+};
 
 interface CreateLayersOptions {
 	map: OSMap;
-	data: {};
+	baseLayers: Layer[];
+	overlayLayers?: Layer[];
 }
 
-export const createLayers = ({ map, data }: CreateLayersOptions) => {
-	// Actually madding doesn't feel okay
-	map.addLayer(baseLayerGroup);
+interface InitialiseLayers {
+	map: OSMap;
+	layers: Layer[];
+}
+
+interface CreateLayerOptions {
+	map: OSMap;
+	layer: Layer;
+}
+
+// really create layer
+const initialiseLayer = ({ map, layer }: CreateLayerOptions) => {
+	const {
+		layerId = "TileLayer",
+		layerOptions = {},
+		sourceId = "XYZ",
+		sourceOptions = {},
+	} = layer;
+	const newLayer = createLayer(layerId, layerOptions);
+	newLayer.setSource(getLayerSource(sourceId, sourceOptions));
+	return newLayer;
+	// map.addLayer(newLayer);
+};
+
+const initialiseLayers = ({ map, layers }: InitialiseLayers) => {
+	return layers.map((layer) => {
+		return initialiseLayer({ map, layer });
+	});
+};
+
+// map and object?
+export const createLayers = ({
+	map,
+	baseLayers,
+	overlayLayers = [],
+}: CreateLayersOptions) => {
+	// map.addLayer(baseLayerGroup);
+	// data.baseLayers
+	// data.overlays ?
+	const base = initialiseLayers({ map, layers: baseLayers });
+	// Would we actually need to do this?
+	const overlays = initialiseLayers({ map, layers: overlayLayers });
+	// createOverlayLayers
+	return [...base, ...overlays];
 };

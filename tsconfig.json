@@ -40,7 +40,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		"src/lib/mongoose-connection.js",
-		"setup.ts"
+		"setup.ts",
+		"src/components/content-display/geo/open-layers/layers/sources/tile-debug.ts"
 	],
 	// added cypress here
 	// was conflicting / removing / types for jest

@@ -41,13 +41,17 @@ export const createOpenLayersView = (options?: CreateViewOptions) => {
 		zoom = 5,
 		maxZoom = 20,
 		minZoom = 1,
+		// do we need a default - won't it default to chosen - if not should it
 		projection = "EPSG:3857",
 	} = options || {};
+
+	console.log("VIEW CREATED");
 
 	return new View({
 		center: pointTransform({ coord: [...center], to: projection }),
 		zoom,
 		maxZoom,
 		minZoom,
+		projection,
 	});
 };

@@ -28,26 +28,44 @@ type EventType =
 
 interface SetDragBoxInteractionOptions {
 	map: Map;
+	minArea?: number;
 }
 
-// works but does not draw a box
 export const setDragBoxInteraction = ({
 	map,
+	minArea = 64,
 }: SetDragBoxInteractionOptions) => {
 	const dragBoxInteraction = new DragBox({
-		// can technically create a list of conditions
+		// can technically create a list of conditions get by id
 		condition: altKeyOnly,
 	});
 
-	map.addInteraction(dragBoxInteraction);
+	// map.addInteraction(dragBoxInteraction);
 
+	// Woukd you do this or just have set interactions available
+	// Extent would / Could be for zoom or select
+	// But what else are you really going to need
+	// And even then - just create available interactions
+	// i.e. ZoomOnDragBox, SelectFeaturesOnDragBox
+	// move on click, zoom on click, select on click, coords on click
+	//////////////////////////////////////////////////////////
 	// pass callback - we will call the callback passing dragBox asa parameter
 	// Then you can specify a list of events and available actions?
+	// pass callback from an array?
+	// ///////////////////////////////////////////
+	// Create the function and provide a list of available functions to use as a callback?
+	// i.e. These are the expected / sensible uses for the event
 	dragBoxInteraction.on("boxend", () => {
 		const extent = dragBoxInteraction.getGeometry().getExtent();
 		// this or default
 		map.getView().fit(extent as Extent);
+		// Functions
+		// mapSetExtent / zoom
+		// Get all Features from extent
+		// copy/select extent
 	});
+
+	return dragBoxInteraction;
 };
 
 // export const addInteraction = (event: EventType, callback: () => void) => {
