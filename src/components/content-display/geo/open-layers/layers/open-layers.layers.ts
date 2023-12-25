@@ -28,7 +28,7 @@ type Layers =
 	| "VectorImageLayer"
 	| "HeatmapLayer"
 	| "GraticuleLayer";
-const layerSourceMap = new Map<string, any>([
+const layerSourceMap = new Map<Layers, any>([
 	["TileLayer", TileLayer],
 	["ImageLayer", ImageLayer],
 	["VectorTileLayer", VectorTileLayer],

@@ -21,6 +21,8 @@ import {
 } from "./projections/open-layers.projections";
 import { useMap } from "./hooks/useMap";
 import { baseLayers } from "./layers/open-layers.layers.mock";
+import { mockOSControls } from "./mock/controls.mock";
+import { mockOSInteractions } from "./mock/interactions.mock";
 
 interface OpenLayersMapProps {
 	// features: Feature<Geometry>[] | Collection<Feature<Geometry>> | undefined;
@@ -118,10 +120,10 @@ export const OpenLayersMap = ({ features }: OpenLayersMapProps) => {
 		// Perhaps better as ba stand alone
 
 		// These have to be added one by one unless at start
-		createOpenLayersInteractions(initialMap, {});
+		createOpenLayersInteractions(initialMap, mockOSInteractions);
 
 		// /Have to be added one by one unless passed to constructor
-		createOpenLayersControls(initialMap);
+		createOpenLayersControls(initialMap, mockOSControls);
 
 		addOpenLayerEvent(initialMap, []);
 

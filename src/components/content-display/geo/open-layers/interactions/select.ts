@@ -5,7 +5,7 @@ import { StyleLike } from "ol/style/Style";
 import Select, { SelectEvent } from "ol/interaction/Select";
 
 // There are more props but?
-interface SetSelectInteractionOptions {
+export interface SetSelectInteractionOptions {
 	// Need a map of the ones we use - can we dynamically import things like this?
 	condition?: Condition;
 	layers?: Layer[]; // did not like Function

@@ -1,79 +1,83 @@
-import Map from "ol/Map";
-import { format } from "ol/coordinate";
-import { createScaleLineControl } from "./scale-line";
-import { createFullScreenControl } from "./full-screen";
-import { createZoomSliderControl } from "./zoom-slider";
-import { createZoomToExtentControl } from "./zoom-to-extent";
-import { createZoomControl } from "./zoom";
-import { createRotateControl } from "./rotate";
-import { createAttributionControl } from "./attribution";
-import { createOverviewMapControl } from "./overview-map";
-import { createMousePositionControl } from "./mouse-position";
-import { createLayer } from "../layers/open-layers.layers";
-import { createOpenLayersView } from "../view/open-layers.view";
-import { getTileLayerSource } from "../layers/sources/open-layers.sources";
-import { getCurrentProjection } from "../projections/open-layers.projections";
+import OSMap from "ol/Map";
+import { ScaleLineControlOptions, createScaleLineControl } from "./scale-line";
+import {
+	FullScreenControlOptions,
+	createFullScreenControl,
+} from "./full-screen";
+import {
+	ZoomSliderControlOptions,
+	createZoomSliderControl,
+} from "./zoom-slider";
+import {
+	ZoomToExtentControlOptions,
+	createZoomToExtentControl,
+} from "./zoom-to-extent";
+import { ZoomControlOptions, createZoomControl } from "./zoom";
+import { RotateControlOptions, createRotateControl } from "./rotate";
+import {
+	AttributionControlOptions,
+	createAttributionControl,
+} from "./attribution";
+import {
+	OverviewMapControlOptions,
+	createOverviewMapControl,
+} from "./overview-map";
+import {
+	MousePositionControlOptions,
+	createMousePositionControl,
+} from "./mouse-position";
 
 // You can create basic controls by using the given Controls class
+type CreateControlsOptions =
+	| FullScreenControlOptions
+	| MousePositionControlOptions
+	| RotateControlOptions
+	| ScaleLineControlOptions
+	| ZoomSliderControlOptions
+	| ZoomToExtentControlOptions
+	| ZoomControlOptions
+	| AttributionControlOptions
+	| OverviewMapControlOptions;
 
-interface CreateControlsOptions {}
+type Controls =
+	| "FullScreen"
+	| "ZoomSlider"
+	| "ZoomToExtent"
+	| "Zoom"
+	| "Rotate"
+	| "Attributions"
+	| "Overview"
+	| "MousePosition"
+	| "ScaleLine";
 
-const exampleLayer = createLayer(
-	"TileLayer",
-	{},
-	getTileLayerSource("OSM", {})
-);
+export type CreateControl = {
+	id: Controls;
+	options?: CreateControlsOptions;
+};
 
-// Would need options to make it work well
-// assume default max zoom etc are out of sync
-// const exampleLayer = createLayer(
-// 	"TileLayer",
-// 	{},
-// 	getLayerSource("StadiaMaps", { layer: "stamen_watercolor" })
-// );
+const controlsMap = new Map<Controls, any>([
+	["FullScreen", createFullScreenControl],
+	["ZoomSlider", createZoomSliderControl],
+	["ZoomToExtent", createZoomToExtentControl],
+	["Zoom", createZoomControl],
+	["Rotate", createRotateControl],
+	["Attributions", createAttributionControl],
+	["ScaleLine", createScaleLineControl],
+	["Overview", createOverviewMapControl],
+	["MousePosition", createMousePositionControl],
+]);
 
-// create Control pass opttions
-// list of controls
-// Provide map and a controls set
-// Loop through array applying each control
 export const createOpenLayersControls = (
-	map: Map,
-	options?: CreateControlsOptions
+	map: OSMap,
+	controls: CreateControl[]
 ) => {
 	// loop given set taking control id and control options
-
-	map.addControl(createFullScreenControl());
-	map.addControl(createZoomSliderControl({ duration: 1000 }));
-	map.addControl(createZoomToExtentControl());
-	map.addControl(createZoomControl({ duration: 1000, delta: 10 }));
-	map.addControl(createRotateControl({ autoHide: false }));
-	// needs an attribution of course
-	map.addControl(
-		createAttributionControl({ collapsible: false, collapsed: false })
-	);
-
-	// We can provide a view to specify what exactly we want to show
-	// We need a create view
-	// we need a create layer
-	// projectionneeds to match map projection else it will be out of sync but might be dead
-	const view = createOpenLayersView({ projection: getCurrentProjection() });
-	map.addControl(
-		createOverviewMapControl({
-			collapsible: false,
-			layers: [exampleLayer],
-			view,
-		})
-	);
-	map.addControl(
-		createMousePositionControl({
-			projection: "EPSG:4326",
-			coordinateFormat: (coordinate) => {
-				if (!coordinate) return "";
-
-				return format(coordinate, "{y}, {x}", 3);
-			},
-		})
-	);
-
-	map.addControl(createScaleLineControl());
+	controls.forEach((control) => {
+		const { id, options } = control;
+		const initControl = controlsMap.get(id);
+		if (!initControl) {
+			return;
+		}
+		map.addControl(initControl(options));
+	});
 };

@@ -1,14 +1,9 @@
-import { Condition } from "ol/events/condition";
-import Layer from "ol/layer/Layer";
-import { StyleLike } from "ol/style/Style";
 import DragAndDrop, { DragAndDropEvent } from "ol/interaction/DragAndDrop";
-import Feature from "ol/Feature";
-import FeatureFormat from "ol/format/Feature";
 import VectorSource from "ol/source/Vector";
 import { ProjectionLike } from "ol/proj";
 
 // There are more props but?
-interface SetDragAndDropInteractionOptions {
+export interface SetDragAndDropInteractionOptions {
 	// I absolutely don't know
 	formatConstructors?: any;
 	source?: VectorSource; // did not like Function

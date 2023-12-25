@@ -1,6 +1,6 @@
 // generic if possible
-import DragBox from "ol/interaction/DragBox";
-import { altKeyOnly } from "ol/events/condition";
+import DragBox, { DragBoxEvent } from "ol/interaction/DragBox";
+import { Condition, altKeyOnly } from "ol/events/condition";
 import { Extent } from "openlayers";
 import Map from "ol/Map";
 import { EventTypes } from "ol/Observable";
@@ -26,18 +26,21 @@ type EventType =
 	| "boxend"
 	| EventTypes;
 
-interface SetDragBoxInteractionOptions {
-	map: Map;
+export interface SetDragBoxInteractionOptions {
 	minArea?: number;
+	cb: (e: DragBoxEvent) => void;
+	condition?: Condition;
 }
 
 export const setDragBoxInteraction = ({
-	map,
+	cb,
 	minArea = 64,
+	condition,
 }: SetDragBoxInteractionOptions) => {
 	const dragBoxInteraction = new DragBox({
 		// can technically create a list of conditions get by id
-		condition: altKeyOnly,
+		minArea,
+		condition,
 	});
 
 	// map.addInteraction(dragBoxInteraction);
@@ -55,15 +58,12 @@ export const setDragBoxInteraction = ({
 	// ///////////////////////////////////////////
 	// Create the function and provide a list of available functions to use as a callback?
 	// i.e. These are the expected / sensible uses for the event
-	dragBoxInteraction.on("boxend", () => {
-		const extent = dragBoxInteraction.getGeometry().getExtent();
-		// this or default
-		map.getView().fit(extent as Extent);
-		// Functions
-		// mapSetExtent / zoom
-		// Get all Features from extent
-		// copy/select extent
-	});
+	// () => {
+	// 	const extent = dragBoxInteraction.getGeometry().getExtent();
+	// 	map.getView().fit(extent as Extent);
+	// }
+
+	dragBoxInteraction.on("boxend", cb);
 
 	return dragBoxInteraction;
 };

@@ -6,7 +6,7 @@ import VectorSource from "ol/source/Vector";
 import { Collection, Feature } from "ol";
 
 // There are more props but?
-interface SetModifyInteractionOptions {
+export interface SetModifyInteractionOptions {
 	// Need a map of the ones we use - can we dynamically import things like this?
 	condition?: Condition;
 	pixelTolerance?: number;
