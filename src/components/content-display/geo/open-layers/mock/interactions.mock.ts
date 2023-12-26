@@ -1,12 +1,11 @@
 import DragBox, { DragBoxEvent } from "ol/interaction/DragBox";
-import { CreateInteraction } from "../interactions/open-layers.interactions";
 import { setSelectInteraction } from "../interactions/select";
 import { SelectEvent } from "ol/interaction/Select";
-import { ModifyEvent } from "ol/interaction/Modify";
 import KML from "ol/format/KML";
 import GeoJSON from "ol/format/GeoJSON";
 import { DragAndDropEvent } from "ol/interaction/DragAndDrop";
 import { altKeyOnly, altShiftKeysOnly } from "ol/events/condition";
+import { CreateInteraction } from "../hooks/useMapInteractions";
 
 // Okay this shit can be done!
 const dragBoxCb = (e: DragBoxEvent) => {
@@ -33,7 +32,7 @@ const formatConstructors = [KML, GeoJSON];
 // mocking / selecting these might be difficult?
 // if something uses select say
 // we are going to need to create that interaction as part of what uses it
-export const mockOSInteractions: CreateInteraction[] = [
+export const mockOLInteractions: CreateInteraction[] = [
 	{
 		id: "DragBox",
 		options: { minArea: 64, cb: dragBoxCb, condition: altShiftKeysOnly },

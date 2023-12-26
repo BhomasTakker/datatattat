@@ -19,6 +19,12 @@ export type CreateProjectionType = {
 	def: string;
 };
 
+export const addProjection = (projectionObject: CreateProjectionType) => {
+	const { projection, def } = projectionObject;
+	proj4.defs(projection, def);
+	register(proj4);
+};
+
 // Should probably add default and set current projection here?
 export const createProjections = (projections: CreateProjectionType[]) => {
 	projections.forEach((projectionDefinition) => {

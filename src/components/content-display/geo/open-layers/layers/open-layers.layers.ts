@@ -5,7 +5,7 @@
 import TileLayer from "ol/layer/Tile";
 import GroupLayer from "ol/layer/Group";
 import XYZ from "ol/source/XYZ";
-import { Map as OSMap } from "ol";
+import { Map as OLMap } from "ol";
 import {
 	TileLayerSources,
 	getLayerSource,
@@ -19,7 +19,7 @@ import VectorImageLayer from "ol/layer/VectorImage";
 import HeatmapLayer from "ol/layer/Heatmap";
 import GraticuleLayer from "ol/layer/Graticule";
 
-type LayerModules = TileLayer<any> | VectorTileLayer | ImageLayer<any>;
+export type LayerModules = TileLayer<any> | VectorTileLayer | ImageLayer<any>;
 type Layers =
 	| "TileLayer"
 	| "ImageLayer"
@@ -79,18 +79,18 @@ export type Layer = {
 };
 
 interface CreateLayersOptions {
-	map: OSMap;
+	map: OLMap;
 	baseLayers: Layer[];
 	overlayLayers?: Layer[];
 }
 
 interface InitialiseLayers {
-	map: OSMap;
+	map: OLMap;
 	layers: Layer[];
 }
 
 interface CreateLayerOptions {
-	map: OSMap;
+	map: OLMap;
 	layer: Layer;
 }
 
@@ -108,7 +108,7 @@ const initialiseLayer = ({ map, layer }: CreateLayerOptions) => {
 	// map.addLayer(newLayer);
 };
 
-const initialiseLayers = ({ map, layers }: InitialiseLayers) => {
+export const initialiseLayers = ({ map, layers }: InitialiseLayers) => {
 	return layers.map((layer) => {
 		return initialiseLayer({ map, layer });
 	});

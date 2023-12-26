@@ -1,33 +1,36 @@
-import OSMap from "ol/Map";
-import { ScaleLineControlOptions, createScaleLineControl } from "./scale-line";
-import {
-	FullScreenControlOptions,
-	createFullScreenControl,
-} from "./full-screen";
-import {
-	ZoomSliderControlOptions,
-	createZoomSliderControl,
-} from "./zoom-slider";
-import {
-	ZoomToExtentControlOptions,
-	createZoomToExtentControl,
-} from "./zoom-to-extent";
-import { ZoomControlOptions, createZoomControl } from "./zoom";
-import { RotateControlOptions, createRotateControl } from "./rotate";
+import { Map as OLMap } from "ol";
 import {
 	AttributionControlOptions,
 	createAttributionControl,
-} from "./attribution";
+} from "../controls/attribution";
 import {
-	OverviewMapControlOptions,
-	createOverviewMapControl,
-} from "./overview-map";
+	FullScreenControlOptions,
+	createFullScreenControl,
+} from "../controls/full-screen";
 import {
 	MousePositionControlOptions,
 	createMousePositionControl,
-} from "./mouse-position";
+} from "../controls/mouse-position";
+import {
+	OverviewMapControlOptions,
+	createOverviewMapControl,
+} from "../controls/overview-map";
+import { RotateControlOptions, createRotateControl } from "../controls/rotate";
+import {
+	ScaleLineControlOptions,
+	createScaleLineControl,
+} from "../controls/scale-line";
+import { ZoomControlOptions, createZoomControl } from "../controls/zoom";
+import {
+	ZoomSliderControlOptions,
+	createZoomSliderControl,
+} from "../controls/zoom-slider";
+import {
+	ZoomToExtentControlOptions,
+	createZoomToExtentControl,
+} from "../controls/zoom-to-extent";
+import { useEffect } from "react";
 
-// You can create basic controls by using the given Controls class
 type CreateControlsOptions =
 	| FullScreenControlOptions
 	| MousePositionControlOptions
@@ -55,6 +58,11 @@ export type CreateControl = {
 	options?: CreateControlsOptions;
 };
 
+interface UseMapControls {
+	map: OLMap | null;
+	controls?: CreateControl[];
+}
+
 const controlsMap = new Map<Controls, any>([
 	["FullScreen", createFullScreenControl],
 	["ZoomSlider", createZoomSliderControl],
@@ -67,17 +75,18 @@ const controlsMap = new Map<Controls, any>([
 	["MousePosition", createMousePositionControl],
 ]);
 
-export const createOpenLayersControls = (
-	map: OSMap,
-	controls: CreateControl[]
-) => {
-	// loop given set taking control id and control options
-	controls.forEach((control) => {
-		const { id, options } = control;
-		const initControl = controlsMap.get(id);
-		if (!initControl) {
+export const useMapControls = ({ map, controls = [] }: UseMapControls) => {
+	useEffect(() => {
+		if (!map) {
 			return;
 		}
-		map.addControl(initControl(options));
-	});
+		controls.forEach((control) => {
+			const { id, options } = control;
+			const initControl = controlsMap.get(id);
+			if (!initControl) {
+				return;
+			}
+			map.addControl(initControl(options));
+		});
+	}, [controls, map]);
 };
