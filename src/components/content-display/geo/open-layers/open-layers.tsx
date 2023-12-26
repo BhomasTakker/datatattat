@@ -25,6 +25,7 @@ import { useMapProjections } from "./hooks/useMapProjections";
 import { useMapControls } from "./hooks/useMapControls";
 import { useMapInteractions } from "./hooks/useMapInteractions";
 import { useMapLayers } from "./hooks/useMapLayers";
+import { useMapView } from "./hooks/useMapView";
 
 interface OpenLayersMapProps {
 	// features: Feature<Geometry>[] | Collection<Feature<Geometry>> | undefined;
@@ -60,11 +61,11 @@ createProjections([projectionDefinition]);
 const projections = [projectionDefinition];
 const currentProjection = "EPSG:29901";
 
-const view = createOpenLayersView({
-	// center: [-1.1397207380041652, 52.63837630084822],
-	center: [0, 0],
-	projection: getCurrentProjection(),
-});
+// const view = createOpenLayersView({
+// 	// center: [-1.1397207380041652, 52.63837630084822],
+// 	center: [0, 0],
+// 	projection: getCurrentProjection(),
+// });
 
 // baseLayers & overlayLayers
 const overlayLayers: Layer[] = [];
@@ -101,6 +102,7 @@ const height = "95vh";
 
 // Would you not just pass view, layers etc in rather than initilise?
 // Probably thinking too much - move on
+// We can get view etc and anything else from map - use a reference
 // We need to add a controls panel left/top etc
 // key layer, etc?
 // i.e. layers selector - https://www.youtube.com/watch?v=k4b3nqDHCIU&list=PLSWT7gmk_6LrvfkAFzfBpNckEsaF7S2GB&index=7
@@ -114,6 +116,11 @@ export const OpenLayersMap = ({ features }: OpenLayersMapProps) => {
 
 	const { map: initialMap, ref: mapElement } = useMap({});
 	useMapProjections({ projections, projection: currentProjection });
+
+	const { view } = useMapView({
+		map: initialMap,
+		options: { center: [0, 0], projection: getCurrentProjection() },
+	});
 	// Works v well
 	// Question is why not more?
 	useMapEvent({ map: initialMap, events: events });
@@ -128,14 +135,10 @@ export const OpenLayersMap = ({ features }: OpenLayersMapProps) => {
 		overlayLayers: overlayLayers,
 	});
 
-	// useView
-
 	useEffect(() => {
 		if (!initialMap) {
 			return;
 		}
-
-		initialMap.setView(view);
 
 		// save map and vector layer references to state
 		setMap(initialMap);

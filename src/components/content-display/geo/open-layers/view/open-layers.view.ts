@@ -6,7 +6,7 @@ import { ViewProjection } from "../types/open-layers.types";
 // Want to extend / wrap the View class and other library classes
 // Add / Limit / interpret controls
 
-interface CreateViewOptions {
+export interface CreateViewOptions {
 	center?: [number, number];
 	zoom?: number;
 	maxZoom?: number;

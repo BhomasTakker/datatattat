@@ -35,6 +35,7 @@ export const useMapLayers = ({
 		if (!map) {
 			return;
 		}
+
 		map.setLayers([...baseMapLayers, ...overlayMapLayers]);
 	}, [baseMapLayers, map, overlayMapLayers]);
 
