@@ -10,6 +10,7 @@ import RegularShape from "ol/style/RegularShape";
 import Icon from "ol/style/Icon";
 import Text from "ol/style/Text";
 import { Feature } from "ol";
+import { Layer } from "./open-layers.layers";
 
 const hammersArrow = (color: [number, number, number, number]) =>
 	new RegularShape({
@@ -82,7 +83,7 @@ const exampleStyleFunction = (feature: Feature) => {
 	}
 };
 
-export const baseLayers = [
+export const baseLayers: Layer[] = [
 	{
 		layerId: "TileLayer",
 		layerOptions: {

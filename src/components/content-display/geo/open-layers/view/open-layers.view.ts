@@ -42,7 +42,7 @@ export const createOpenLayersView = (options?: CreateViewOptions) => {
 		maxZoom = 20,
 		minZoom = 1,
 		// do we need a default - won't it default to chosen - if not should it
-		projection = "EPSG:3857",
+		projection = "EPSG:3857", //get current or use provided
 	} = options || {};
 
 	console.log("VIEW CREATED");
