@@ -23,6 +23,11 @@ interface GetLayerSourceOptions {}
 export type ImageLayerSources = "ImageArcGISRest" | "ImageWMS";
 export type VectorLayerSources = "VectorTile" | "Vector";
 
+export type LayerSources =
+	| TileLayerSources
+	| ImageLayerSources
+	| VectorLayerSources;
+
 // This could be sources but tileLayerSourcesMap is probably better
 const tileLayerSourceMap = new Map<string, any>([
 	["XYZ", createXYZSource],

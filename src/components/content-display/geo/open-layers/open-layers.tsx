@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { CreateViewOptions } from "./view/open-layers.view";
 import { Layer } from "./layers/open-layers.layers";
 
-// not sure why that was so hard / thisisn't good though
+// not sure why that was so hard / this isn't good though
 import "node_modules/ol/ol.css";
 import { CreateProjectionType } from "./projections/open-layers.projections";
 import { useMap } from "./hooks/useMap";
@@ -22,10 +22,10 @@ import { useMapLayers } from "./hooks/useMapLayers";
 import { useMapView } from "./hooks/useMapView";
 import { ViewProjection } from "./types/open-layers.types";
 
-interface OpenLayersMapProps {
+export interface OpenLayersMapProps {
 	// features: Feature<Geometry>[] | Collection<Feature<Geometry>> | undefined;
 	// these were added to a layer I believe
-	features: Feature<Geometry>[] | undefined;
+	// features: Feature<Geometry>[] | undefined;
 
 	projection?: ViewProjection;
 	projections?: CreateProjectionType[];
@@ -43,6 +43,10 @@ interface OpenLayersMapProps {
 	width: string;
 	height: string;
 }
+
+// We can - almost certainly easily allow drawing/editing of maps
+// saving and / or uploading maps to a db
+// https://openlayers.org/workshop/en/vector/download.html
 
 // i.e. layers selector - https://www.youtube.com/watch?v=k4b3nqDHCIU&list=PLSWT7gmk_6LrvfkAFzfBpNckEsaF7S2GB&index=7
 export const OpenLayersMap = ({
@@ -95,5 +99,35 @@ export const OpenLayersMap = ({
 		return () => initialMap.setTarget(undefined);
 	}, [initialMap]);
 
-	return <Box ref={mapElement} width={width} height={height}></Box>;
+	// There's a way to do this
+	// perhaps not like this though
+	// It's like map size and view size - not sure
+	// Effectively remove the margin and 100vw / set height
+	// useEffect(() => {
+	// 	if (!initialMap) {
+	// 		return;
+	// 	}
+	// 	addEventListener("resize", (event) => {
+	// 		console.log({ innerWidth, innerHeight });
+	// 		initialMap.setSize([innerWidth, innerHeight]);
+	// 	});
+
+	// 	return () => {
+	// 		removeEventListener("resize", (event) => {
+	// 			console.log({ innerWidth, innerHeight });
+	// 			initialMap.setSize([innerWidth, innerHeight]);
+	// 		});
+	// 	};
+	// 	// initialMap.setSize(size);
+	// }, [initialMap]);
+
+	return (
+		<Box
+			ref={mapElement}
+			// minHeight={"400px"}
+			// minWidth={"400px"}
+			width={width}
+			height={height}
+		></Box>
+	);
 };

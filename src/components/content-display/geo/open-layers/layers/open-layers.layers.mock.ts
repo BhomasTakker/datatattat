@@ -5,7 +5,6 @@ import KML from "ol/format/KML";
 import Style from "ol/style/Style";
 import Stroke from "ol/style/Stroke";
 import Fill from "ol/style/Fill";
-import Image from "ol/style/Image";
 import RegularShape from "ol/style/RegularShape";
 import Icon from "ol/style/Icon";
 import Text from "ol/style/Text";
@@ -234,7 +233,7 @@ export const baseLayers: Layer[] = [
 	{
 		layerId: "VectorLayer",
 		layerOptions: {
-			visible: false,
+			visible: true,
 			title: "VectorWithStyleFunction",
 			///////// layer styling //////////
 			style: exampleStyleFunction,
@@ -260,7 +259,7 @@ export const baseLayers: Layer[] = [
 	{
 		layerId: "VectorImageLayer",
 		layerOptions: {
-			visible: false,
+			visible: true,
 			title: "VectorImageLayer",
 		},
 		sourceId: "Vector",
@@ -272,7 +271,7 @@ export const baseLayers: Layer[] = [
 	{
 		layerId: "HeatmapLayer",
 		layerOptions: {
-			visible: false,
+			visible: true,
 			title: "HeatmapLayer",
 			radius: 30,
 			blur: 10,

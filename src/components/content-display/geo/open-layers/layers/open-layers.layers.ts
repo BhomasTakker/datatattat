@@ -7,6 +7,7 @@ import GroupLayer from "ol/layer/Group";
 import XYZ from "ol/source/XYZ";
 import { Map as OLMap } from "ol";
 import {
+	LayerSources,
 	TileLayerSources,
 	getLayerSource,
 	getTileLayerSource,
@@ -20,7 +21,7 @@ import HeatmapLayer from "ol/layer/Heatmap";
 import GraticuleLayer from "ol/layer/Graticule";
 
 export type LayerModules = TileLayer<any> | VectorTileLayer | ImageLayer<any>;
-type Layers =
+export type Layers =
 	| "TileLayer"
 	| "ImageLayer"
 	| "VectorTileLayer"
@@ -38,6 +39,7 @@ const layerSourceMap = new Map<Layers, any>([
 	["GraticuleLayer", GraticuleLayer],
 ]);
 // utils
+// Potentially or even should do as sources
 export const createLayer = (
 	type: Layers = "TileLayer",
 	options: any = {},
@@ -74,7 +76,7 @@ export const createGroupLayer = (group: TileLayer<any>[]) => {
 export type Layer = {
 	layerId?: Layers;
 	layerOptions?: any;
-	sourceId?: TileLayerSources;
+	sourceId?: LayerSources;
 	sourceOptions?: any;
 };
 
