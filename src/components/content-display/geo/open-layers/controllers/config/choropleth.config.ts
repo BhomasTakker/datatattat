@@ -1,8 +1,8 @@
-import { StyleLike } from "ol/style/Style";
-import { Layer } from "../../layers/open-layers.layers";
 import GeoJSON from "ol/format/GeoJSON";
+import { Layer } from "../../layers/open-layers.layers";
+import { StyleLike } from "ol/style/Style";
 
-type CreateOLPointLayerConfig = Omit<Layer, "layerId" | "sourceId"> & {
+type CreateOLChoroplethLayerConfig = Omit<Layer, "layerId" | "sourceId"> & {
 	style: StyleLike;
 };
 
@@ -13,11 +13,12 @@ const defaultLayerOptions = {
 
 const defaultSourceOptions = {
 	format: new GeoJSON(),
-	url: "./mock/tanzania.geojson",
+	url: "./mock/africa.geojson",
 };
 
-export const createOLPointLayerConfig = (
-	options?: CreateOLPointLayerConfig
+// At the moment all too similar to pointconfig
+export const createOLChoroplethLayerConfig = (
+	options?: CreateOLChoroplethLayerConfig
 ) => {
 	const { style, layerOptions, sourceOptions } = options || {};
 	const layer = { ...defaultLayerOptions, ...layerOptions };

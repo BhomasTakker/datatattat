@@ -7,13 +7,15 @@ import {
 	ShapeMap,
 	SizeMap,
 } from "../../filters/types";
-import { ApplyProportionalSize } from "../apply-proprtional-size";
-import { ApplyProportionalColor } from "../apply-proportional-color";
 import { getStyleColor } from "../get-style-color";
 import { getStyleSize } from "../get-style-size";
 import { getStylePointType } from "../get-style-point-type";
 import { createStyleText } from "../text/style-text";
 import { getStyleText } from "../text/get-style-text";
+import {
+	ProprtionalColor,
+	ProprtionalSize,
+} from "../../types/open-layers.types";
 
 // proportional size
 // graduant color
@@ -23,6 +25,8 @@ type CreatePointStyle = {
 	sizeMap?: SizeMap;
 	iconMap?: IconMap;
 	emojiMap?: EmojiMap;
+	proportionalColor?: ProprtionalColor;
+	proportionalSize?: ProprtionalSize;
 	properties: {
 		[x: string]: unknown;
 	};
@@ -36,27 +40,15 @@ export const createPointStyle = ({
 	iconMap,
 	emojiMap,
 	properties,
+	proportionalColor,
+	proportionalSize,
 	shape,
 }: CreatePointStyle) => {
-	const proportionalSize: Omit<ApplyProportionalSize, "object"> = {
-		key: "rank",
-		minSize: 0,
-		maxSize: 100,
-		minValue: 0,
-		maxValue: 100,
-	};
-
-	const proportionalColor: Omit<ApplyProportionalColor, "object"> = {
-		key: "rank",
-		gradientStart: [77, 77, 77, 1],
-		gradientEnd: [188, 188, 188, 1],
-		minValue: 0,
-		maxValue: 100,
-	};
-
 	console.log({ proportionalSize });
 
 	const {} = shape || {};
+
+	// Should be if text return text else return shape
 
 	// Fix me
 	const newShape: CreateShape = {
@@ -89,8 +81,9 @@ export const createPointStyle = ({
 
 	console.log({ newShape });
 
+	// At the moment no text AND shape
 	const style = new Style({
-		image: createShape(newShape),
+		image: !text ? createShape(newShape) : undefined,
 		// text,
 		text: text ? createStyleText(text) : undefined,
 		// text: text ? createStyleEmoji({ code: text, scale: 5 }) : undefined,

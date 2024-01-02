@@ -1,7 +1,7 @@
 import { OpenLayersMap } from "../open-layers";
-import { Choropleth } from "../variants/choropleth";
-import { Heatmap } from "../variants/heatmap";
-import { Point } from "../variants/point";
+import { Choropleth } from "../variants/choropleth/choropleth";
+import { Heatmap } from "../variants/heatmap/heatmap";
+import { Point } from "../variants/point/point";
 import { OLMapVariant } from "./config/ol-map.config";
 
 type MapType = Heatmap | Point;

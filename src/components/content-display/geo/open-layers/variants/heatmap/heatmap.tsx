@@ -1,8 +1,8 @@
 import FeatureFormat from "ol/format/Feature";
-import { createHeatmapLayerConfig } from "../controllers/config/heatmap.config";
-import { OpenLayersMap, OpenLayersMapProps } from "../open-layers";
-import { createOLBaseMapConfig } from "../controllers/config/base/base-map.config";
-import { Layer } from "../layers/open-layers.layers";
+import { createHeatmapLayerConfig } from "../../controllers/config/heatmap.config";
+import { OpenLayersMap, OpenLayersMapProps } from "../../open-layers";
+import { createOLBaseMapConfig } from "../../controllers/config/base/base-map.config";
+import { Layer } from "../../layers/open-layers.layers";
 
 // features OR src
 // Need include map so we can overide etc? / pass in view, controls, etc with no fuss
