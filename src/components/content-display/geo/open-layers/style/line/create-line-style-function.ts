@@ -4,7 +4,7 @@ import { applyFilters } from "../../filters/apply-filters";
 import { ColorMap, Filter, SizeMap } from "../../filters/types";
 import {
 	ProprtionalColor,
-	ProprtionalSize,
+	ProportionalSize,
 } from "../../types/open-layers.types";
 import Style from "ol/style/Style";
 import Fill from "ol/style/Fill";
@@ -15,7 +15,7 @@ type CreateLineStyleFunction = {
 	colorMap: ColorMap | undefined;
 	sizeMap: SizeMap | undefined;
 	proportionalColor: ProprtionalColor | undefined;
-	proportionalSize: ProprtionalSize | undefined;
+	proportionalSize: ProportionalSize | undefined;
 };
 
 const defaultLineStyle = new Style({

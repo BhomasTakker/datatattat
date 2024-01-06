@@ -131,3 +131,14 @@ export const EmojiPoints: Story = {
 		shape: { control: "object", description: "Overwritten description" },
 	},
 };
+
+export const ShapePoints: Story = {
+	args: {
+		url: "./mock/tanzania.geojson",
+		format: new GeoJSON(),
+		shapeMap: PointMock.shapeMap,
+	},
+	argTypes: {
+		shape: { control: "object", description: "Overwritten description" },
+	},
+};

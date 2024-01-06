@@ -22,4 +22,4 @@ export type ViewProjection =
 	| CustomViewProjection;
 
 export type ProprtionalColor = Omit<ApplyProportionalColor, "object">;
-export type ProprtionalSize = Omit<ApplyProportionalSize, "object">;
+export type ProportionalSize = Omit<ApplyProportionalSize, "object">;

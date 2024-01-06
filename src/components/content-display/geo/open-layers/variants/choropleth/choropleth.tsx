@@ -8,6 +8,7 @@ import { ProprtionalColor } from "../../types/open-layers.types";
 import { createOLChoroplethLayerConfig } from "../../controllers/config/choropleth.config";
 import { createPolygonStyleFunction } from "../../style/polygon/create-polygon-style-function";
 import { StyleFunction } from "ol/style/Style";
+import { createLegendControl } from "../../legend/ol-ext-legend";
 
 // features OR src
 export interface Choropleth {
@@ -62,5 +63,7 @@ export const Choropleth = (options: Choropleth) => {
 		overlayLayers: [config as Layer],
 	});
 
-	return <OpenLayersMap {...mergedConfig} {...rest} />;
+	const legend = createLegendControl({ colorMap, proportionalColor });
+
+	return <OpenLayersMap {...mergedConfig} legend={legend} {...rest} />;
 };

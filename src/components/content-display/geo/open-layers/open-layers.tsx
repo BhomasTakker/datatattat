@@ -2,13 +2,17 @@
 import { Box } from "@mui/material";
 import Feature from "ol/Feature";
 import Map from "ol/Map";
-import { Geometry } from "ol/geom";
+import { Geometry, LineString, Point, Polygon } from "ol/geom";
 import { useEffect, useRef, useState } from "react";
 import { CreateViewOptions } from "./view/open-layers.view";
 import { Layer } from "./layers/open-layers.layers";
 
+import Legend from "ol-ext/legend/Legend";
+import LegendControl from "ol-ext/control/Legend";
+
 // not sure why that was so hard / this isn't good though
 import "node_modules/ol/ol.css";
+import "node_modules/ol-ext/dist/ol-ext.css";
 import { CreateProjectionType } from "./projections/open-layers.projections";
 import { useMap } from "./hooks/useMap";
 import { CreateEvent, useMapEvent } from "./hooks/useMapEvent";
@@ -40,6 +44,8 @@ export interface OpenLayersMapProps {
 
 	viewOptions?: CreateViewOptions;
 
+	legend?: LegendControl;
+
 	width: string;
 	height: string;
 }
@@ -58,6 +64,7 @@ export const OpenLayersMap = ({
 	controls = [],
 	events = [],
 	viewOptions,
+	legend,
 	width,
 	height,
 }: OpenLayersMapProps) => {
@@ -78,6 +85,8 @@ export const OpenLayersMap = ({
 
 	useMapEvent({ map: initialMap, events: events });
 
+	// Okay for some default controls perhaps
+	// For more involved may need individual - like Legend?
 	useMapControls({ map: initialMap, controls });
 
 	useMapInteractions({ map: initialMap, interactions });
@@ -98,6 +107,22 @@ export const OpenLayersMap = ({
 
 		return () => initialMap.setTarget(undefined);
 	}, [initialMap]);
+
+	// I dunno, really?
+	// Make a hook perhaps?
+	// At least a hook to match style
+	// All controls need removing as per this
+	// Add this, if pos, into
+	useEffect(() => {
+		if (!initialMap) {
+			return;
+		}
+		legend && initialMap.addControl(legend);
+
+		return () => {
+			legend && initialMap.removeControl(legend);
+		};
+	}, [initialMap, legend]);
 
 	// There's a way to do this
 	// perhaps not like this though

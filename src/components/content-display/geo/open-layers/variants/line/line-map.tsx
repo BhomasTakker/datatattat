@@ -5,11 +5,12 @@ import { Layer } from "../../layers/open-layers.layers";
 import { ColorMap, Filter, SizeMap } from "../../filters/types";
 import {
 	ProprtionalColor,
-	ProprtionalSize,
+	ProportionalSize,
 } from "../../types/open-layers.types";
 import { StyleFunction } from "ol/style/Style";
 import { createOLLineLayerConfig } from "../../controllers/config/linemap.config";
 import { createLineStyleFunction } from "../../style/line/create-line-style-function";
+import { createLegendControl } from "../../legend/ol-ext-legend";
 
 // features OR src
 export interface LineMap {
@@ -17,7 +18,7 @@ export interface LineMap {
 	colorMap: ColorMap | undefined;
 	sizeMap: SizeMap | undefined;
 	proportionalColor: ProprtionalColor | undefined;
-	proportionalSize: ProprtionalSize | undefined;
+	proportionalSize: ProportionalSize | undefined;
 	format: FeatureFormat;
 	url: string;
 	////////////////////
@@ -70,7 +71,12 @@ export const LineMap = (options: LineMap) => {
 		overlayLayers: [config as Layer],
 	});
 
-	console.log({ mergedConfig });
+	const legend = createLegendControl({
+		colorMap,
+		proportionalColor,
+		sizeMap,
+		proportionalSize,
+	});
 
-	return <OpenLayersMap {...mergedConfig} {...rest} />;
+	return <OpenLayersMap {...mergedConfig} legend={legend} {...rest} />;
 };

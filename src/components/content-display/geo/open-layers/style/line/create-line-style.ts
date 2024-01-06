@@ -2,7 +2,7 @@ import Style from "ol/style/Style";
 import { ColorMap, SizeMap, StyleColor } from "../../filters/types";
 import {
 	ProprtionalColor,
-	ProprtionalSize,
+	ProportionalSize,
 } from "../../types/open-layers.types";
 import Fill from "ol/style/Fill";
 import { getStyleColor } from "../get-style-color";
@@ -16,7 +16,7 @@ type CreateLineStyle = {
 	colorMap?: ColorMap;
 	sizeMap?: SizeMap;
 	proportionalColor?: ProprtionalColor;
-	proportionalSize?: ProprtionalSize;
+	proportionalSize?: ProportionalSize;
 	properties: {
 		[x: string]: unknown;
 	};

@@ -16,8 +16,9 @@ import {
 } from "../../filters/types";
 import {
 	ProprtionalColor,
-	ProprtionalSize,
+	ProportionalSize,
 } from "../../types/open-layers.types";
+import { createLegendControl } from "../../legend/ol-ext-legend";
 
 const defaultShape: CreateShape = {
 	size: 10,
@@ -36,7 +37,7 @@ export interface Point extends OpenLayersMapProps {
 	iconMap: IconMap | undefined;
 	emojiMap: EmojiMap | undefined;
 	proportionalColor: ProprtionalColor | undefined;
-	proportionalSize: ProprtionalSize | undefined;
+	proportionalSize: ProportionalSize | undefined;
 	// required if url used / alternative to use features
 	// Though this is just a layer
 	format: FeatureFormat;
@@ -91,5 +92,15 @@ export const Point = (options: Point) => {
 		overlayLayers: [config as Layer],
 	});
 
-	return <OpenLayersMap {...mergedConfig} {...rest} />;
+	const legend = createLegendControl({
+		colorMap,
+		proportionalColor,
+		sizeMap,
+		proportionalSize,
+		shapeMap,
+		iconMap,
+		emojiMap,
+	});
+
+	return <OpenLayersMap {...mergedConfig} legend={legend} {...rest} />;
 };

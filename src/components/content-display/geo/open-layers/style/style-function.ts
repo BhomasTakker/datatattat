@@ -14,7 +14,7 @@ import { createPointStyle } from "./points/create-point-style";
 import {
 	Geometry,
 	ProprtionalColor,
-	ProprtionalSize,
+	ProportionalSize,
 } from "../types/open-layers.types";
 import { filterFeature } from "./utils";
 
@@ -37,7 +37,7 @@ type CreatePointsStyleFunction = {
 	iconMap: IconMap | undefined;
 	emojiMap: EmojiMap | undefined;
 	proportionalColor: ProprtionalColor | undefined;
-	proportionalSize: ProprtionalSize | undefined;
+	proportionalSize: ProportionalSize | undefined;
 };
 
 // At the moment this is doing more than style

@@ -3,6 +3,7 @@ import { createHeatmapLayerConfig } from "../../controllers/config/heatmap.confi
 import { OpenLayersMap, OpenLayersMapProps } from "../../open-layers";
 import { createOLBaseMapConfig } from "../../controllers/config/base/base-map.config";
 import { Layer } from "../../layers/open-layers.layers";
+import { createLegendControl } from "../../legend/ol-ext-legend";
 
 // features OR src
 // Need include map so we can overide etc? / pass in view, controls, etc with no fuss
@@ -21,6 +22,7 @@ export interface Heatmap extends OpenLayersMapProps {
 	// interactions
 }
 
+// We may want to take another look at this one
 export const Heatmap = (options: Heatmap) => {
 	const { weight, radius, blur, gradient, format, url, ...rest } =
 		options || {};
@@ -45,5 +47,11 @@ export const Heatmap = (options: Heatmap) => {
 		overlayLayers: [config as Layer],
 	});
 
-	return <OpenLayersMap {...mergedConfig} {...rest} />;
+	console.log("heatmap ", { gradient });
+
+	const legend = createLegendControl({
+		heatmap: { gradient, weight, blur, radius },
+	});
+
+	return <OpenLayersMap {...mergedConfig} legend={legend} {...rest} />;
 };

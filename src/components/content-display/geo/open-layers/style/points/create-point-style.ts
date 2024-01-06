@@ -14,7 +14,7 @@ import { createStyleText } from "../text/style-text";
 import { getStyleText } from "../text/get-style-text";
 import {
 	ProprtionalColor,
-	ProprtionalSize,
+	ProportionalSize,
 } from "../../types/open-layers.types";
 
 // proportional size
@@ -26,7 +26,7 @@ type CreatePointStyle = {
 	iconMap?: IconMap;
 	emojiMap?: EmojiMap;
 	proportionalColor?: ProprtionalColor;
-	proportionalSize?: ProprtionalSize;
+	proportionalSize?: ProportionalSize;
 	properties: {
 		[x: string]: unknown;
 	};
@@ -76,10 +76,6 @@ export const createPointStyle = ({
 	};
 
 	const text = getStyleText({ feature: properties, emojiMap });
-
-	console.log({ TEXT: text });
-
-	console.log({ newShape });
 
 	// At the moment no text AND shape
 	const style = new Style({
