@@ -25,6 +25,7 @@ import {
 import { useMapLayers } from "./hooks/useMapLayers";
 import { useMapView } from "./hooks/useMapView";
 import { ViewProjection } from "./types/open-layers.types";
+import { createInfoPopup } from "./overlays/popups/info-popup.overlay";
 
 export interface OpenLayersMapProps {
 	// features: Feature<Geometry>[] | Collection<Feature<Geometry>> | undefined;
@@ -123,6 +124,13 @@ export const OpenLayersMap = ({
 			legend && initialMap.removeControl(legend);
 		};
 	}, [initialMap, legend]);
+
+	useEffect(() => {
+		if (!initialMap) {
+			return;
+		}
+		createInfoPopup({ map: initialMap });
+	}, [initialMap]);
 
 	// There's a way to do this
 	// perhaps not like this though
