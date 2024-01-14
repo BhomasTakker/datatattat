@@ -12,7 +12,6 @@ import { MapBrowserEvent } from "ol";
 import { CreateEvent } from "./hooks/useMapEvent";
 // import geo from "./open-layers.mock.geojson";
 import { baseLayers } from "./layers/open-layers.layers.mock";
-import { transform } from "ol/proj";
 import { CreateViewOptions } from "./view/types";
 
 const meta: Meta<typeof OpenLayersMap> = {

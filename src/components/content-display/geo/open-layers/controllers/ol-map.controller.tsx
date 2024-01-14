@@ -8,7 +8,6 @@ import { OLMapVariant } from "./config/ol-map.config";
 import { Feature } from "ol";
 import { transform } from "ol/proj";
 import { log } from "@/src/lib/logger";
-import { createOpenLayersView } from "../view/open-layers.view";
 import { CreateViewOptions } from "../view/types";
 
 type GISData = any; // {coordinates: [number, number], any}
@@ -67,6 +66,8 @@ export const OLMapController = ({
 
 	// Move me and neaten up
 	// We can create a withComponent or just call wrapper component
+	// We would also want some thing for title etc
+	// so <AComponent><MapController></MapController></AComponent>
 	const {
 		sourceOptions,
 		longitude,
@@ -93,7 +94,6 @@ export const OLMapController = ({
 		minZoom,
 		projection,
 	};
-	// console.log({ mapFeatures });
 
 	const newSourceOptions = { ...sourceOptions, features: mapFeatures };
 
