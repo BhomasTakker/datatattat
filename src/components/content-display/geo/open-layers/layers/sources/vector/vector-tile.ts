@@ -28,7 +28,7 @@ export const createVectorTileSource = (options: VectorTileOptions) => {
 		transition = 250,
 	} = options || {};
 
-	console.log({ options });
+	// console.log({ options });
 
 	return new VectorTile({
 		extent,

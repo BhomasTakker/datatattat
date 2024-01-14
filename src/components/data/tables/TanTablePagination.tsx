@@ -23,7 +23,7 @@ import { Table } from "@tanstack/react-table";
 //some apis won't have the option
 
 export const TanTablePagination = ({ table }: { table: Table<any> }) => {
-	// console.log({ tablePag: table.getState().pagination });
+	// // console.log({ tablePag: table.getState().pagination });
 	return (
 		<Stack direction="row">
 			{/* Split to component */}

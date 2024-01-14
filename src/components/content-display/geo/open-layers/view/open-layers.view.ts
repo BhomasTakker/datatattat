@@ -21,6 +21,8 @@ interface PointTransform {
 	from?: `EPSG:${string}`;
 	to?: `EPSG:${string}`;
 }
+// add to src\components\content-display\geo\open-layers\projections\open-layers.projections.ts
+// Do better / setProjection, get etc
 // Yoots / from and to are projections
 // Potentially needs work / control / setting
 const pointTransform = ({
@@ -45,7 +47,7 @@ export const createOpenLayersView = (options?: CreateViewOptions) => {
 		projection = "EPSG:3857", //get current or use provided
 	} = options || {};
 
-	console.log("VIEW CREATED");
+	// console.log("VIEW CREATED");
 
 	return new View({
 		center: pointTransform({ coord: [...center], to: projection }),

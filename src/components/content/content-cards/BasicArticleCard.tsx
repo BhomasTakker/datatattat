@@ -18,7 +18,7 @@ type BasicArticleCardProps = {
 //Height and width aren't great.
 const BasicArticleCard = ({ height }: BasicArticleCardProps) => {
 	const onClickHandler = () => {
-		console.log("clicked");
+		// console.log("clicked");
 	};
 
 	return (

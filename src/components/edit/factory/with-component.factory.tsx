@@ -17,7 +17,7 @@ export const WithComponentFactory = () => {
 		return <></>;
 	}
 
-	console.log("FEATURE:215", "WITH:COMPONENT:FACTORY", {
+	// console.log("FEATURE:215", "WITH:COMPONENT:FACTORY", {
 		withComponentType,
 	});
 

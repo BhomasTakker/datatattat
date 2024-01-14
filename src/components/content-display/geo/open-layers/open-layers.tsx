@@ -1,13 +1,9 @@
 // https://taylor.callsen.me/using-openlayers-with-react-functional-components/
-import { Box } from "@mui/material";
-import Feature from "ol/Feature";
-import Map from "ol/Map";
-import { Geometry, LineString, Point, Polygon } from "ol/geom";
-import { useEffect, useRef, useState } from "react";
+import { Box, Paper } from "@mui/material";
+import { useEffect } from "react";
 import { CreateViewOptions } from "./view/open-layers.view";
 import { Layer } from "./layers/open-layers.layers";
 
-import Legend from "ol-ext/legend/Legend";
 import LegendControl from "ol-ext/control/Legend";
 
 // not sure why that was so hard / this isn't good though
@@ -31,6 +27,8 @@ export interface OpenLayersMapProps {
 	// features: Feature<Geometry>[] | Collection<Feature<Geometry>> | undefined;
 	// these were added to a layer I believe
 	// features: Feature<Geometry>[] | undefined;
+
+	// shouldn't be here
 
 	projection?: ViewProjection;
 	projections?: CreateProjectionType[];
@@ -56,7 +54,7 @@ export interface OpenLayersMapProps {
 // https://openlayers.org/workshop/en/vector/download.html
 
 // i.e. layers selector - https://www.youtube.com/watch?v=k4b3nqDHCIU&list=PLSWT7gmk_6LrvfkAFzfBpNckEsaF7S2GB&index=7
-export const OpenLayersMap = ({
+export const OpenLayersMap = function Foo({
 	projection,
 	projections,
 	baseLayers,
@@ -68,13 +66,13 @@ export const OpenLayersMap = ({
 	legend,
 	width,
 	height,
-}: OpenLayersMapProps) => {
-	const [map, setMap] = useState<Map | undefined>();
+}: OpenLayersMapProps) {
+	// const [map, setMap] = useState<Map | undefined>();
 
 	// create state ref that can be accessed in OpenLayers onclick callback function
 	//  https://stackoverflow.com/a/60643670
-	const mapRef = useRef<any>();
-	mapRef.current = map;
+	// const mapRef = useRef<any>();
+	// mapRef.current = map;
 
 	const { map: initialMap, ref: mapElement } = useMap({});
 	useMapProjections({ projections, projection });
@@ -96,18 +94,21 @@ export const OpenLayersMap = ({
 		map: initialMap,
 		baseLayers: baseLayers as Layer[],
 		overlayLayers: overlayLayers,
+		// features layer - pass in features layers array
 	});
 
-	useEffect(() => {
-		if (!initialMap) {
-			return;
-		}
+	// useEffect(() => {
+	// 	if (!initialMap) {
+	// 		return;
+	// 	}
 
-		// save map and vector layer references to state
-		setMap(initialMap);
+	// 	// save map and vector layer references to state
+	// 	setMap(initialMap);
 
-		return () => initialMap.setTarget(undefined);
-	}, [initialMap]);
+	// 	// This thing
+	// 	// When a parent component gets removed this does not get called - I think
+	// 	return () => initialMap.setTarget(undefined);
+	// }, [initialMap]);
 
 	// I dunno, really?
 	// Make a hook perhaps?
@@ -130,6 +131,9 @@ export const OpenLayersMap = ({
 			return;
 		}
 		createInfoPopup({ map: initialMap });
+
+		// // console.log("ADD FEATURE", { features });
+		// initialMap.addLayer(features);
 	}, [initialMap]);
 
 	// There's a way to do this
@@ -141,13 +145,13 @@ export const OpenLayersMap = ({
 	// 		return;
 	// 	}
 	// 	addEventListener("resize", (event) => {
-	// 		console.log({ innerWidth, innerHeight });
+	// 		// console.log({ innerWidth, innerHeight });
 	// 		initialMap.setSize([innerWidth, innerHeight]);
 	// 	});
 
 	// 	return () => {
 	// 		removeEventListener("resize", (event) => {
-	// 			console.log({ innerWidth, innerHeight });
+	// 			// console.log({ innerWidth, innerHeight });
 	// 			initialMap.setSize([innerWidth, innerHeight]);
 	// 		});
 	// 	};
@@ -157,10 +161,29 @@ export const OpenLayersMap = ({
 	return (
 		<Box
 			ref={mapElement}
-			// minHeight={"400px"}
-			// minWidth={"400px"}
-			width={width}
-			height={height}
+			style={{
+				// displayMap - style variant
+				// height to be responsive - or percentage
+				position: "absolute",
+				left: 0,
+				width: "100vw",
+				height: "70vh",
+				boxShadow: "rgba(0, 0, 0, 0.15) 0px 3px 3px 0px",
+				// "rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px",
+				// "rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
+				// "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+			}}
 		></Box>
+		// <Box
+		// 	ref={mapElement}
+		// 	width={width}
+		// 	height={height}
+		// 	style={{
+		// 		position: "absolute",
+		// 		left: 0,
+		// 		width: "100%",
+		// 		height: "70%",
+		// 	}}
+		// ></Box>box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 	);
 };

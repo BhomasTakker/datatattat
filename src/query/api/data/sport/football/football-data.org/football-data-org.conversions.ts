@@ -5,7 +5,7 @@ import { StandingsResponse, TableEntry } from "./football-data-org.types";
 const toDataCollection = (props: any) => {
 	return map((data: StandingsResponse) => {
 		const { standings, filters, area, competition, season } = data;
-		console.log("TO DATACOLLECTION ", { props });
+		// console.log("TO DATACOLLECTION ", { props });
 		// pagination: {}
 		return {
 			filters,

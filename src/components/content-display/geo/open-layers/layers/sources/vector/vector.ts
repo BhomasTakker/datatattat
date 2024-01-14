@@ -43,11 +43,13 @@ export const createVectorSource = (options: VectorOptions) => {
 		url,
 	} = options || {};
 
-	console.log({ options });
+	// console.log({ options });
 
 	return new Vector({
 		attributions,
 		// @ts-ignore fix my type?
+		// use features when no url and format
+		// pass features as an array of created features
 		features, // unsure
 		format,
 		loader,

@@ -30,7 +30,7 @@ export const HeaderFormContextProvider = ({
 	const { user } = useUser();
 
 	const submitHandler = async (data: FieldValues) => {
-		console.log("FEATURE:105", "CONTEXT:GROUP", "HEADER:FORM", "SUBMIT", {
+		// console.log("FEATURE:105", "CONTEXT:GROUP", "HEADER:FORM", "SUBMIT", {
 			data,
 		});
 

@@ -53,7 +53,7 @@ export const ArticleDisplayItem = ({
 			// pass in
 			justifyContent={justifyContent}
 			// onClick={() => {
-			// 	console.log("clicked");
+			// 	// console.log("clicked");
 			// }}
 			// sx={{
 			// 	// cursor: "pointer",

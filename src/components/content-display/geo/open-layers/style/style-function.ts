@@ -61,7 +61,7 @@ export const createPointStyleFunction =
 		}
 
 		const properties = feature.getProperties();
-		console.log({ properties });
+		// console.log({ properties });
 		// This will all NOT be performant
 		// For large datasets you want to look at webGL layers
 		// filter, filter2

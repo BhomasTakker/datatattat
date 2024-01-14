@@ -27,28 +27,28 @@ export const createResponse = (
 ) => {
 	const { conversions = [], iterable } = conversionsObject;
 
-	// console.log("FEATURE:753", "CREATE:RESPONSE", { data });
-	// console.log("FEATURE:753", "CREATE:RESPONSE", { conversionsObject });
-	// console.log("FEATURE:753", "CREATE:RESPONSE", { conversionsMap });
-	// console.log("FEATURE:753", "CREATE:RESPONSE", { conversions });
+	// // console.log("FEATURE:753", "CREATE:RESPONSE", { data });
+	// // console.log("FEATURE:753", "CREATE:RESPONSE", { conversionsObject });
+	// // console.log("FEATURE:753", "CREATE:RESPONSE", { conversionsMap });
+	// // console.log("FEATURE:753", "CREATE:RESPONSE", { conversions });
 	if (conversions.length === 0) {
 		return data;
 	}
 
 	// Change 1
 	let updatedData;
-	console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", { conversionsMap });
+	// console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", { conversionsMap });
 
 	const nextHandler = (value: any) => {
 		// Change 2
 		updatedData = value;
-		// console.log("FEATURE:753", "NEXT:HANDLER", value);
+		// // console.log("FEATURE:753", "NEXT:HANDLER", value);
 	};
 	const completeHandler = () => {
-		console.log("Response completed");
+		// console.log("Response completed");
 	};
 	const errorHandler = (err: Error) => {
-		console.log("ERROR", err);
+		// console.log("ERROR", err);
 	};
 	const observer = createObserver(nextHandler, completeHandler, errorHandler);
 
@@ -65,7 +65,7 @@ export const createResponse = (
 		pipeFunctions
 	);
 
-	// console.log("FEATURE:753", "CREATE:RESPONSE", { updatedData });
+	// // console.log("FEATURE:753", "CREATE:RESPONSE", { updatedData });
 
 	return updatedData;
 };

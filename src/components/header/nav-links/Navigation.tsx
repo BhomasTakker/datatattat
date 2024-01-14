@@ -27,7 +27,7 @@ export const Navigation = ({ onMenuUpdate, navLinks }: NavigationProps) => {
 			onMenuUpdate(menuLinks);
 		}
 
-		// console.log({ menuLinks });
+		// // console.log({ menuLinks });
 	};
 
 	const drawNavLinks = (links: NavLinkData[]) => {

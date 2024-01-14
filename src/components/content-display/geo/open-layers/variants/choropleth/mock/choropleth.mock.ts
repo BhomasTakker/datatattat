@@ -1,5 +1,8 @@
+import { Feature } from "ol";
 import { ColorMap, Filter } from "../../../filters/types";
 import { ApplyProportionalColor } from "../../../style/apply-proportional-color";
+import { transform } from "ol/proj";
+import { Point, Polygon } from "ol/geom";
 
 const colorMap: ColorMap = {
 	filter: "equals",
@@ -55,8 +58,35 @@ const filter2: Filter = {
 	key: "population_density",
 };
 const filters = [filter, filter2];
+
+const attributes = {
+	name: "Leicester",
+	bar: "foo",
+	wahwah: "woowoo",
+	score: 0.6,
+	rank: 75,
+};
+
+// Figure out or rem - points are far more likely
+// Not working :()
+const createFeature = () => {
+	return new Feature({
+		geometry: new Polygon([
+			[
+				[11.852132950632637, -17.17559188963027],
+				[15.6884190829482, -28.498698388783247],
+				[19.511230992915074, -28.85018047206215],
+				[21.20061858837039, -17.803784140414393],
+				[11.852132950632637, -17.17559188963027],
+			],
+		]),
+		...attributes,
+	});
+};
+
 export const ChoroplethMock = {
 	filters,
 	colorMap,
 	proportionalColor,
+	createFeature,
 };

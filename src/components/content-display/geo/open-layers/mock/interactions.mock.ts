@@ -9,7 +9,7 @@ import { CreateInteraction } from "../hooks/useMapInteractions";
 
 // Okay this shit can be done!
 const dragBoxCb = (e: DragBoxEvent) => {
-	console.log({ e });
+	// console.log({ e });
 
 	const dragBoxInteraction = e.target as DragBox;
 	const extent = dragBoxInteraction.getGeometry().getExtent();
@@ -17,14 +17,14 @@ const dragBoxCb = (e: DragBoxEvent) => {
 
 	// const interactions = e.mapBrowserEvent.map.getInteractions();
 
-	console.log({ extent });
+	// console.log({ extent });
 	e.mapBrowserEvent.map.getView().fit(extent);
 	// const extent = dragBoxInteraction.getGeometry().getExtent();
 	// map.getView().fit(extent as Extent);
 };
 
 const selectInteraction = setSelectInteraction({
-	cb: (selectEvent) => console.log({ selectEvent }),
+	cb: (selectEvent) => // console.log({ selectEvent }),
 });
 
 const formatConstructors = [KML, GeoJSON];
@@ -39,18 +39,18 @@ export const mockOLInteractions: CreateInteraction[] = [
 	},
 	{
 		id: "Select",
-		options: { cb: (selectEvent: SelectEvent) => console.log({ selectEvent }) },
+		options: { cb: (selectEvent: SelectEvent) => // console.log({ selectEvent }) },
 	},
 	// {
 	// 	id: "Modify",
-	// 	options: { cb: (modifyEvent: ModifyEvent) => console.log({ modifyEvent }) },
+	// 	options: { cb: (modifyEvent: ModifyEvent) => // console.log({ modifyEvent }) },
 	// },
 	{
 		id: "DragAndDrop",
 		options: {
 			formatConstructors,
 			cb: (dragAndDropEvent: DragAndDropEvent) =>
-				console.log({ dragAndDropEvent }),
+				// console.log({ dragAndDropEvent }),
 		},
 	},
 ];

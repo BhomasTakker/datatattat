@@ -37,7 +37,7 @@ export default async function signUpAPI(
 		}
 	} catch (err) {
 		//this is more of a db failure
-		console.log("error finding user");
+		// console.log("error finding user");
 	}
 
 	//Surely this can be a function
@@ -49,7 +49,7 @@ export default async function signUpAPI(
 			return;
 		}
 	} catch (err) {
-		console.log("error checking user");
+		// console.log("error checking user");
 	}
 
 	const hashedPassword = await hashPassword(password);
@@ -66,8 +66,8 @@ export default async function signUpAPI(
 		res.status(500).json({ message: "Problem creating user" });
 	}
 
-	// console.log({ newUserId: newUser._id });
-	// console.log({ userId });
+	// // console.log({ newUserId: newUser._id });
+	// // console.log({ userId });
 
 	//if no userId / respond and jump
 

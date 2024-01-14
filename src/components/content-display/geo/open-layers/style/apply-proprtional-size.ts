@@ -26,7 +26,7 @@ export const applyProportionalSize = ({
 
 	const size = (maxPossibleSize / 100) * valuePercentage + minSize;
 
-	console.log({ test: object[key], value });
+	// console.log({ test: object[key], value });
 
 	return size;
 };

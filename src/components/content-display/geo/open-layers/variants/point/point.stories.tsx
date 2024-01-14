@@ -9,22 +9,17 @@ const meta: Meta<typeof Point> = {
 export default meta;
 type Story = StoryObj<typeof Point>;
 
-// shapeMap = [],
-// colorMap = [],
-// sizeMap = [],
-// ...rest
 export const PointMap: Story = {
 	args: {
-		url: "./mock/tanzania.geojson",
-		format: new GeoJSON(),
-		// create this properly so we can easily change
+		sourceOptions: {
+			features: [PointMock.createFeature()],
+		},
 		shape: {
 			type: "Circle",
 			size: 25,
 			fillColor: [255, 0, 0, 0.3],
 			strokeColor: [255, 0, 0, 0],
 		},
-		// colorMap: PointMock.colorMap,
 	},
 	argTypes: {
 		shape: { control: "object", description: "Overwritten description" },
@@ -33,8 +28,12 @@ export const PointMap: Story = {
 
 export const GraduatingColor: Story = {
 	args: {
-		url: "./mock/tanzania.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/tanzania.geojson",
+			format: new GeoJSON(),
+			features: [PointMock.createFeature()],
+		},
+
 		// create this properly so we can easily change
 		shape: {
 			type: "Circle",
@@ -51,8 +50,11 @@ export const GraduatingColor: Story = {
 
 export const GraduatingSymbol: Story = {
 	args: {
-		url: "./mock/tanzania.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/tanzania.geojson",
+			format: new GeoJSON(),
+			features: [PointMock.createFeature()],
+		},
 		// create this properly so we can easily change
 		shape: {
 			type: "Circle",
@@ -69,8 +71,11 @@ export const GraduatingSymbol: Story = {
 
 export const ProportionalColor: Story = {
 	args: {
-		url: "./mock/tanzania.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/tanzania.geojson",
+			format: new GeoJSON(),
+			features: [PointMock.createFeature()],
+		},
 		// create this properly so we can easily change
 		shape: {
 			type: "Circle",
@@ -85,8 +90,11 @@ export const ProportionalColor: Story = {
 
 export const ProportionalSize: Story = {
 	args: {
-		url: "./mock/tanzania.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/tanzania.geojson",
+			format: new GeoJSON(),
+			features: [PointMock.createFeature()],
+		},
 		// create this properly so we can easily change
 		shape: {
 			type: "Circle",
@@ -101,8 +109,11 @@ export const ProportionalSize: Story = {
 
 export const IconPoints: Story = {
 	args: {
-		url: "./mock/tanzania.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/tanzania.geojson",
+			format: new GeoJSON(),
+			features: [PointMock.createFeature()],
+		},
 		// create this properly so we can easily change
 		shape: {
 			type: "Circle",
@@ -118,8 +129,11 @@ export const IconPoints: Story = {
 
 export const EmojiPoints: Story = {
 	args: {
-		url: "./mock/tanzania.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/tanzania.geojson",
+			format: new GeoJSON(),
+			features: [PointMock.createFeature()],
+		},
 		// create this properly so we can easily change
 		// shape: {
 		// 	type: "Circle",
@@ -134,8 +148,11 @@ export const EmojiPoints: Story = {
 
 export const ShapePoints: Story = {
 	args: {
-		url: "./mock/tanzania.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/tanzania.geojson",
+			format: new GeoJSON(),
+			features: [PointMock.createFeature()],
+		},
 		shapeMap: PointMock.shapeMap,
 	},
 	argTypes: {

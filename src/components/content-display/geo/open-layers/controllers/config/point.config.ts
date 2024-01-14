@@ -11,9 +11,11 @@ const defaultLayerOptions = {
 	visible: true,
 };
 
+// if features no url etc
+// (p.s. You can use features AND url-format)
 const defaultSourceOptions = {
-	format: new GeoJSON(),
-	url: "./mock/tanzania.geojson",
+	// format: new GeoJSON(),
+	// url: "./mock/tanzania.geojson",
 };
 
 export const createOLPointLayerConfig = (

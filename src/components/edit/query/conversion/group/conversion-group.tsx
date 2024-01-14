@@ -103,7 +103,7 @@ ConversionGroupProps) => {
 		moveConversion(dir, i);
 	};
 	const updateConversionHandler = (i: number, data: ConversionType) => {
-		console.log("updateConversionHandler");
+		// console.log("updateConversionHandler");
 		// When did you comment this out...?
 		// updateConversion(i, data);
 	};

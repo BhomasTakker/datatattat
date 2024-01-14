@@ -44,8 +44,8 @@ export const SelectInput = React.memo(
 		disabled = false,
 		children = [],
 	}: SelectInputType) => {
-		// console.log("ISSUE:589", "SELECT:INPUT", "RE-RENDER", { label }, { name });
-		console.log("SELECT INPUT RE-RENDER");
+		// // console.log("ISSUE:589", "SELECT:INPUT", "RE-RENDER", { label }, { name });
+		// console.log("SELECT INPUT RE-RENDER");
 		return (
 			<WithLabel label={label} htmlFor={id}>
 				<TextField

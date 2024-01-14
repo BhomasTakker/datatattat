@@ -32,7 +32,7 @@ export const ArticleGridController = ({
 		...rest
 	} = config || {};
 
-	console.log({ config });
+	// console.log({ config });
 
 	// Add children if want (children OR default)
 	return (

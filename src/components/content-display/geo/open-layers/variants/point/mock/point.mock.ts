@@ -1,3 +1,4 @@
+import { Feature } from "ol";
 import {
 	ShapeMap,
 	IconMap,
@@ -8,6 +9,8 @@ import {
 } from "../../../filters/types";
 import { ApplyProportionalColor } from "../../../style/apply-proportional-color";
 import { ApplyProportionalSize } from "../../../style/apply-proprtional-size";
+import { transform } from "ol/proj";
+import { Point } from "ol/geom";
 
 const shapeMap: ShapeMap = {
 	filter: "equals",
@@ -244,6 +247,21 @@ const filter2: Filter = {
 };
 const filters = [filter, filter2];
 
+const attributes = {
+	name: "Leicester",
+	bar: "foo",
+	wahwah: "woowoo",
+	score: 0.6,
+	rank: 75,
+};
+
+const createFeature = () => {
+	return new Feature({
+		geometry: new Point(transform([0, 0], "EPSG:4326", "EPSG:3857")),
+		...attributes,
+	});
+};
+
 export const PointMock = {
 	filters,
 	shapeMap,
@@ -253,4 +271,5 @@ export const PointMock = {
 	colorMap,
 	proportionalColor,
 	proportionalSize,
+	createFeature,
 };

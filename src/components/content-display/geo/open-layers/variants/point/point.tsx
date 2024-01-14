@@ -19,6 +19,7 @@ import {
 	ProportionalSize,
 } from "../../types/open-layers.types";
 import { createLegendControl } from "../../legend/ol-ext-legend";
+import { GetLayerSourceOptions } from "../../layers/sources/open-layers.sources";
 
 const defaultShape: CreateShape = {
 	size: 10,
@@ -28,6 +29,7 @@ const defaultShape: CreateShape = {
 // features OR src
 // Need include map so we can overide etc? / pass in view, controls, etc with no fuss
 export interface Point extends OpenLayersMapProps {
+	// we can add features here but we should probably be passing in sourceObject or higher
 	size?: number;
 	shape?: CreateShape;
 	filters: Filter[] | undefined;
@@ -38,19 +40,28 @@ export interface Point extends OpenLayersMapProps {
 	emojiMap: EmojiMap | undefined;
 	proportionalColor: ProprtionalColor | undefined;
 	proportionalSize: ProportionalSize | undefined;
-	// required if url used / alternative to use features
-	// Though this is just a layer
-	format: FeatureFormat;
-	url: string;
+
+	////////////
+	sourceOptions: GetLayerSourceOptions;
 }
+
+// You can create a withComponent to deal with the
+// Or just wrap and update features in that
+// i.e. wrap me in a FeaturesData component
 
 // Argument that thisa is doing too much
 // We can have proportional symbol etc as a specific variant
 export const Point = (options: Point) => {
 	const {
 		size = 10,
-		format,
-		url,
+
+		sourceOptions,
+		// format and url are really on a per source/layer basis same as features
+		// should use/expect as such?
+		// Or we are assuming / stipulating that this point will only have one layer.
+		// We need to create a multi layer thing
+		// Replace with a source options & layerOptions / and replace in all other maps
+		////////////////////////////////////////
 		// Use shape for a simple point map
 		shape = defaultShape,
 		// Use for multiple shapes colors, sizes, map to ids
@@ -69,7 +80,8 @@ export const Point = (options: Point) => {
 	const layerOptions = {
 		title: "Example Title",
 	};
-	const sourceOptions = { format, url };
+	// this needs a creation surely (I think we are falling back on defaults here too)
+	// const sourceOptions = { features, format, url };
 
 	// Vector point map?
 	const config = createOLPointLayerConfig({

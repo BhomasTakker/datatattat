@@ -14,7 +14,7 @@ export const LogInButton = () => {
 	};
 
 	// Check the rerenders on this thing
-	// console.log({ size });
+	// // console.log({ size });
 
 	if (size === ScreenWidth.XS) {
 		return (

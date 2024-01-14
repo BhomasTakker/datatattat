@@ -14,7 +14,7 @@ export const applyIconMap = ({ shapeMap, object }: ApplyIconMap) => {
 	let retShape = {};
 
 	map.forEach(({ value, key, src, size }) => {
-		console.log({ test: object[key], value });
+		// console.log({ test: object[key], value });
 		if (filterSwitch(filter, object[key], value)) {
 			retShape = {
 				type: "Icon",

@@ -27,7 +27,7 @@ const WithInfo = ({
 	const [infoDisplay, setInfoDisplay] = useState(info);
 	const [isOpen, setIsOpen] = useState(false);
 
-	// console.log("WILD RE-RENDER");
+	// // console.log("WILD RE-RENDER");
 
 	useEffect(() => {
 		//perhaps manage better / bur seems to work well
@@ -43,7 +43,7 @@ const WithInfo = ({
 			const response = await result.json();
 
 			//error check
-			// console.log({ response });
+			// // console.log({ response });
 
 			setInfoDisplay(
 				response?.description ||

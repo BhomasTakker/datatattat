@@ -32,17 +32,17 @@ const DisplayItemContent = (collectionItem: CollectionItem) => {
 	const { image } = meta || {};
 
 	if (!img && !image) {
-		console.log("FEATURE:0001", "DISPLAY:ITEM", "GET:META", { img, image });
+		// console.log("FEATURE:0001", "DISPLAY:ITEM", "GET:META", { img, image });
 		getMeta();
 	}
 
-	console.log("FEATURE:0001", "DISPLAY:ITEM", { img, image });
+	// console.log("FEATURE:0001", "DISPLAY:ITEM", { img, image });
 
 	return (
 		<Stack
 			padding={MARGINS.MIDSMALL}
 			onClick={() => {
-				console.log("clicked");
+				// console.log("clicked");
 			}}
 			sx={{
 				cursor: "pointer",

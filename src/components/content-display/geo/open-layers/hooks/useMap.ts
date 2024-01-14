@@ -41,6 +41,7 @@ export const useMap = ({
 		setMap(initialMap);
 		// we do need a way of updating
 		// but that is done by updating layers I believe
+		return () => initialMap.setTarget(undefined);
 	}, [controls, interactions, layers, view]);
 
 	// Return error if error

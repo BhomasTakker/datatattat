@@ -11,6 +11,7 @@ import { StyleFunction } from "ol/style/Style";
 import { createOLLineLayerConfig } from "../../controllers/config/linemap.config";
 import { createLineStyleFunction } from "../../style/line/create-line-style-function";
 import { createLegendControl } from "../../legend/ol-ext-legend";
+import { GetLayerSourceOptions } from "../../layers/sources/open-layers.sources";
 
 // features OR src
 export interface LineMap {
@@ -19,8 +20,7 @@ export interface LineMap {
 	sizeMap: SizeMap | undefined;
 	proportionalColor: ProprtionalColor | undefined;
 	proportionalSize: ProportionalSize | undefined;
-	format: FeatureFormat;
-	url: string;
+	sourceOptions: GetLayerSourceOptions;
 	////////////////////
 }
 
@@ -44,9 +44,8 @@ export const LineMap = (options: LineMap) => {
 		proportionalSize,
 		colorMap,
 		sizeMap,
-		format,
 		filters = [],
-		url,
+		sourceOptions,
 		...rest
 	} = options || {};
 	// deconstruct and do with options however you like
@@ -54,7 +53,7 @@ export const LineMap = (options: LineMap) => {
 	const layerOptions = {
 		title: "Example Title",
 	};
-	const sourceOptions = { format, url };
+
 	const config = createOLLineLayerConfig({
 		layerOptions,
 		sourceOptions,

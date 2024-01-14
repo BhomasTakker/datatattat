@@ -15,11 +15,11 @@ export const TitleListItem = ({ title, src, guid }: TitleListItemProps) => {
 	// hack for BING article
 	// need update BING
 	// or update sky / general RSS
-	console.log("FEATURE:754", "TITLE:LIST:ITEM", { title }, { src });
+	// console.log("FEATURE:754", "TITLE:LIST:ITEM", { title }, { src });
 
 	// how to set this / href
 	const onClickHandler = () => {
-		console.log(`GO TO ${src}`);
+		// console.log(`GO TO ${src}`);
 	};
 
 	return (

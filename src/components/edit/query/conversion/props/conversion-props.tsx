@@ -22,14 +22,14 @@ export const ConversionProps = ({
 
 	useEffect(() => {
 		if (props) {
-			console.log("Call update props");
+			// console.log("Call update props");
 			// updateConversion({ id: value });
 			setFormValue(`${objectKey}.props`, props);
 		}
 	}, [objectKey, props, setFormValue]);
 
-	console.log("PROPS!!");
-	console.log({ PROPS_conversionId: conversionId });
+	// console.log("PROPS!!");
+	// console.log({ PROPS_conversionId: conversionId });
 	if (!conversionId) {
 		return <></>;
 	}
@@ -42,7 +42,7 @@ export const ConversionProps = ({
 		return <></>;
 	}
 
-	console.log({ PROPS_CONFIG: propsConfig });
+	// console.log({ PROPS_CONFIG: propsConfig });
 
 	// load conversion config/data
 	// get props

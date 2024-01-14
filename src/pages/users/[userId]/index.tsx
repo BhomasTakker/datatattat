@@ -72,9 +72,9 @@ export async function getStaticProps({
 	//Why can't I populate!!!
 	// const headerData = await Header.findById(pageData.header.id).lean();
 	// const headerData = await getMainHeader();
-	// console.log({ headerData });
+	// // console.log({ headerData });
 	const headerAndSubHeader = await getHeaders(`/users/${userId}`); //pageData.header.id
-	// console.log({ headerAndSubHeader });
+	// // console.log({ headerAndSubHeader });
 	//just get by route or user?
 	// const footerData = await Footer.findById(page.footer.id).lean();
 

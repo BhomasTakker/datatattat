@@ -1,4 +1,5 @@
 import { BING_NEWS_API_CREATORS } from "./bing/news/constants";
+import { POLICE_DATA_UK_API_CREATORS } from "./data/gov/uk/police/crime/constants";
 import { FOOTBALL_DATA_ORG_API_CREATORS } from "./data/sport/football/football-data.org/constants";
 
 export type API_REQUEST_TYPE = {
@@ -24,4 +25,9 @@ export const API_CREATOR_MAP = new Map<string, object>([
 
 	//
 	["football_data_org_pl", FOOTBALL_DATA_ORG_API_CREATORS.premier_league],
+
+	[
+		"data_police_uk_street_crime",
+		POLICE_DATA_UK_API_CREATORS.uk_police_crime_data,
+	],
 ]);

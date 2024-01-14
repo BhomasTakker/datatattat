@@ -10,7 +10,7 @@ export const HEADERS: RequestInit = {
 
 // type me
 const premier_league = (queryParams: any) => {
-	console.log("WE ARE HERE");
+	// console.log("WE ARE HERE");
 	return { url: `${BASE_URL}`, headers: HEADERS, queryParams };
 };
 

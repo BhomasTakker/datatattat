@@ -9,14 +9,14 @@ import { createOLChoroplethLayerConfig } from "../../controllers/config/chorople
 import { createPolygonStyleFunction } from "../../style/polygon/create-polygon-style-function";
 import { StyleFunction } from "ol/style/Style";
 import { createLegendControl } from "../../legend/ol-ext-legend";
+import { GetLayerSourceOptions } from "../../layers/sources/open-layers.sources";
 
 // features OR src
 export interface Choropleth {
 	filters?: Filter[];
 	colorMap: ColorMap;
 	proportionalColor: ProprtionalColor;
-	format: FeatureFormat;
-	url: string;
+	sourceOptions: GetLayerSourceOptions;
 	////////////////////
 }
 
@@ -38,9 +38,8 @@ export const Choropleth = (options: Choropleth) => {
 	const {
 		proportionalColor,
 		colorMap,
-		format,
 		filters = [],
-		url,
+		sourceOptions,
 		...rest
 	} = options || {};
 	// deconstruct and do with options however you like
@@ -48,7 +47,7 @@ export const Choropleth = (options: Choropleth) => {
 	const layerOptions = {
 		title: "Example Title",
 	};
-	const sourceOptions = { format, url };
+
 	const config = createOLChoroplethLayerConfig({
 		layerOptions,
 		sourceOptions,

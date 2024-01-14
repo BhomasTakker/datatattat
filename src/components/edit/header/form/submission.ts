@@ -32,11 +32,11 @@ export const submitHeader = async (
 	data: FieldValues,
 	currentPage: string | null = ""
 ) => {
-	console.log("FEATURE:102", "SAVE:HEADER", "HEADER:SUBMISSION", { data });
+	// console.log("FEATURE:102", "SAVE:HEADER", "HEADER:SUBMISSION", { data });
 
 	const navData: NavItem[] = getNavData(data as NavItem[], currentPage || "");
 
-	console.log("FEATURE:102", "SAVE:HEADER", "HEADER:SUBMISSION", { navData });
+	// console.log("FEATURE:102", "SAVE:HEADER", "HEADER:SUBMISSION", { navData });
 	// type from somewhere
 	// we probably want some form of info here
 	// I'd argue a class / data structure for submissionData

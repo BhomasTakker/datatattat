@@ -37,15 +37,15 @@ export const createIIIFSource = (options: IIIFOptions) => {
 
 	// const response = await fetch(url);
 	// const responseJson = await response.json();
-	// console.log({ responseJson });
+	// // console.log({ responseJson });
 	// const iiifOptions = new IIIFInfo(responseJson).getTileSourceOptions();
 	// if (iiifOptions === undefined || iiifOptions.version === undefined) {
 	// 	return;
 	// }
 
 	// I get it - we are applying the layer before we have received the source
-	console.log({ IIIF: url });
-	// console.log({ iiifOptions });
+	// console.log({ IIIF: url });
+	// // console.log({ iiifOptions });
 	return new IIIF({ url, zDirection, transition, size });
 	// return new IIIF(iiifOptions);
 };

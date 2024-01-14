@@ -12,7 +12,7 @@ export const ComponentPropsContainer = ({
 	propsId,
 	resetComponent,
 }: PageComponentPropsContainerProps) => {
-	console.log("FEATURE:115", "PAGE:COMPONENT:PROPS:CONTAINER", propsId);
+	// console.log("FEATURE:115", "PAGE:COMPONENT:PROPS:CONTAINER", propsId);
 	return (
 		<ComponentPropsContextProvider value={{ props, propsId, resetComponent }}>
 			<ComponentProps />

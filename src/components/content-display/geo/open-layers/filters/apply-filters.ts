@@ -4,7 +4,7 @@ import { FilterValue, FilterTypes, ApplyFilters } from "./types";
 
 // We can create a library of filters etc
 const lessThan = (value: FilterValue, test: FilterValue) => {
-	console.log("lessThan", { value, test });
+	// console.log("lessThan", { value, test });
 	return value < test;
 };
 const greaterThan = (value: FilterValue, test: FilterValue) => {

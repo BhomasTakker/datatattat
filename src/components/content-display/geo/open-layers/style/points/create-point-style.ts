@@ -44,7 +44,7 @@ export const createPointStyle = ({
 	proportionalSize,
 	shape,
 }: CreatePointStyle) => {
-	console.log({ proportionalSize });
+	// console.log({ proportionalSize });
 
 	const {} = shape || {};
 

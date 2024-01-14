@@ -4,7 +4,7 @@ import { RSSChannelType, RSSItem } from "@/src/types/data-structures/rss";
 import { map } from "rxjs";
 
 const toCollection = (props: any) => {
-	// console.log("FEATURE:753", "TO:COLLECTION", "PROPS", { props });
+	// // console.log("FEATURE:753", "TO:COLLECTION", "PROPS", { props });
 	return map((data: RSSChannelType): Collection => {
 		const { title, items, link, description } = data;
 		// pagination: {}
@@ -23,7 +23,7 @@ const toCollection = (props: any) => {
 };
 
 const toCollectionItem = (props: any) => {
-	// console.log("FEATURE:753", "TO:COLLECTION:ITEM", "PROPS", { props });
+	// // console.log("FEATURE:753", "TO:COLLECTION:ITEM", "PROPS", { props });
 	return map((data: RSSItem): CollectionItem => {
 		const {
 			title,

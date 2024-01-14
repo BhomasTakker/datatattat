@@ -16,7 +16,7 @@ export const applySizeMap = ({ sizeMap, object }: ApplySizeMap) => {
 	// There is a way better way of doing this
 	// I mean RxJS
 	map.forEach(({ value, key, size }) => {
-		console.log({ test: object[key], value });
+		// console.log({ test: object[key], value });
 		if (filterSwitch(filter, object[key], value)) {
 			retSize = size;
 		}

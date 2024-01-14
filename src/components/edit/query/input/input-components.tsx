@@ -27,7 +27,7 @@ export const EditSelectInput = ({
 	id,
 	label,
 }: EditSelectInputProps) => {
-	console.log("ISSUE:589", "SELECT:INPUT", { endpoints }, { id }, { label });
+	// console.log("ISSUE:589", "SELECT:INPUT", { endpoints }, { id }, { label });
 	return (
 		<WithInfo infoId="RssEndpoint">
 			<SelectInputWithControl label={label} name={id} fullWidth={true} required>

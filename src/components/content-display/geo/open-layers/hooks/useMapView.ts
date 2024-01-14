@@ -22,14 +22,14 @@ export const useMapView = ({ map, options }: UseMapView) => {
 				...options,
 			})
 		);
-		console.log("MAP UPDATED");
+		// console.log("MAP UPDATED");
 	}, [map, options, view]);
 
 	useEffect(() => {
 		if (!view || !map) {
 			return;
 		}
-		console.log("WHAT?");
+		// console.log("WHAT?");
 
 		map.setView(view);
 	}, [map, view]);

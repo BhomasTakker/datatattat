@@ -16,9 +16,9 @@ export const applyColorMap = ({ colorMap, object }: ApplyColorMap) => {
 	// There is a way better way of doing this
 	// I mean RxJS
 	map.forEach(({ value, key, color }) => {
-		console.log({ test: object[key], value });
+		// console.log({ test: object[key], value });
 		if (filterSwitch(filter, object[key], value)) {
-			console.log("RET ", { color });
+			// console.log("RET ", { color });
 			retColor = color;
 		}
 	});

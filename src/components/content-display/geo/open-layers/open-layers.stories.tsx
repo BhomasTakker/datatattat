@@ -13,6 +13,7 @@ import { CreateEvent } from "./hooks/useMapEvent";
 // import geo from "./open-layers.mock.geojson";
 import { baseLayers } from "./layers/open-layers.layers.mock";
 import { CreateViewOptions } from "./view/open-layers.view";
+import { transform } from "ol/proj";
 
 const meta: Meta<typeof OpenLayersMap> = {
 	component: OpenLayersMap,
@@ -40,17 +41,22 @@ const controls = getMockControls(); // should be the standard
 const mockClickEvent = {
 	id: "click",
 	callback: (e: MapBrowserEvent<UIEvent>) => {
-		console.log("CLICK! pixel ", e.pixel);
-		console.log("CLICK! coordinate ", e.coordinate);
-		console.log("CLICK! e ", e);
+		// console.log("CLICK! pixel ", e.pixel);
+		// console.log("CLICK! coordinate ", e.coordinate);
+		//"EPSG:4326", "EPSG:3857"
+		// console.log(
+			"CLICK! coordinate transform ",
+			transform(e.coordinate, "EPSG:29901", "EPSG:4326")
+		);
+		// console.log("CLICK! e ", e);
 	},
 };
 const mockDblClickEvent = {
 	id: "dblclick",
 	callback: (e: MapBrowserEvent<UIEvent>) => {
-		console.log("dblclick! pixel ", e.pixel);
-		console.log("dblclick! coordinate ", e.coordinate);
-		console.log("dblclick! e ", e);
+		// console.log("dblclick! pixel ", e.pixel);
+		// console.log("dblclick! coordinate ", e.coordinate);
+		// console.log("dblclick! e ", e);
 	},
 };
 const events: CreateEvent[] = [

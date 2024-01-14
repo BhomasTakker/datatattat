@@ -39,7 +39,7 @@ export const PageQueryProvider = ({
 	const [pageData, setPageData] = useState({});
 
 	const { currentPage } = useContext(EditContext);
-	console.log(
+	// console.log(
 		"ISSUE:12345",
 		"PAGE:QUERY:CONTEXT",
 		{ pageData },

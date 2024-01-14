@@ -30,7 +30,7 @@ export const PageComponent = () => {
 
 	const { container } = useContext(PageContainerContext);
 
-	console.log("ISSUE:777", "PAGE:COMPONENT", { pagePropsId });
+	// console.log("ISSUE:777", "PAGE:COMPONENT", { pagePropsId });
 
 	return (
 		<Stack>

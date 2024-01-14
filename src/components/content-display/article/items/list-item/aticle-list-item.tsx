@@ -40,7 +40,7 @@ export const ArticleListItem = ({
 
 	// const img = avatar ? avatar.src : "";
 	const img = avatar?.src || "";
-	console.log({ rest });
+	// console.log({ rest });
 	return (
 		<ListItem data-testid="article-list-item" {...rest}>
 			{/* if */}

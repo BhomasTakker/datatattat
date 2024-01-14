@@ -11,29 +11,38 @@ type Story = StoryObj<typeof Choropleth>;
 
 export const Controller: Story = {
 	args: {
-		url: "./mock/africa.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/africa.geojson",
+			format: new GeoJSON(),
+			features: [ChoroplethMock.createFeature()],
+		},
 	},
 };
 export const Filtered: Story = {
 	args: {
-		url: "./mock/africa.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/africa.geojson",
+			format: new GeoJSON(),
+		},
 		colorMap: ChoroplethMock.colorMap,
 		filters: ChoroplethMock.filters,
 	},
 };
 export const GraduantColors: Story = {
 	args: {
-		url: "./mock/africa.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/africa.geojson",
+			format: new GeoJSON(),
+		},
 		colorMap: ChoroplethMock.colorMap,
 	},
 };
 export const ProportionalColors: Story = {
 	args: {
-		url: "./mock/africa.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/africa.geojson",
+			format: new GeoJSON(),
+		},
 		proportionalColor: ChoroplethMock.proportionalColor,
 	},
 };

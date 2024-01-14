@@ -8,7 +8,7 @@ interface TextInputProps {
 }
 
 export const TextInput = ({ info, label, id }: TextInputProps) => {
-	console.log(
+	// console.log(
 		"FEATURE:115",
 		"EDIT:PROPS",
 		"TEXT:INPUT",

@@ -107,7 +107,7 @@ export const TextInputWithControlAndToggle =
 // For Christs sake move this
 export const createSelectInputList = (hash: {}) => {
 	if (!hash) {
-		console.log("We error here but why?");
+		// console.log("We error here but why?");
 		return <p>Error</p>;
 	}
 	return Object.keys(hash).map((key) => (
@@ -121,7 +121,7 @@ export const createSelectInputList = (hash: {}) => {
 // this is how the above should be
 export const createSelectInputListMap = (hash: Map<string, any>) => {
 	if (!hash) {
-		console.log("We error here but why?");
+		// console.log("We error here but why?");
 		return <p>Error</p>;
 	}
 	const options: ReactNode[] = [];

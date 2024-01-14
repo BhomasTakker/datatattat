@@ -24,8 +24,10 @@ export const Controller: Story = {
 		variant: "heatmap",
 		radius: 15,
 		blur: 15,
-		url: "./mock/tanzania.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/tanzania.geojson",
+			format: new GeoJSON(),
+		},
 		weight: "score",
 	},
 };

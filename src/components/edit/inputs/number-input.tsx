@@ -53,7 +53,7 @@ export const NumberInput = ({
 	min = undefined,
 	max = undefined,
 }: InputProps & NumberInputProps) => {
-	console.log(
+	// console.log(
 		"FEATURE:115",
 		"EDIT:PROPS",
 		"TEXT:INPUT",

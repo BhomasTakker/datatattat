@@ -26,7 +26,7 @@ export type CreateText = {
 } & AvailableText;
 
 export const createStyleText = ({ type, ...rest }: CreateText) => {
-	console.log("!!!!!!!!!!!!!!!!!!!!!", { type, rest });
+	// console.log("!!!!!!!!!!!!!!!!!!!!!", { type, rest });
 	switch (type) {
 		case "Emoji":
 			return createStyleEmoji(rest as CreateStyleEmoji);

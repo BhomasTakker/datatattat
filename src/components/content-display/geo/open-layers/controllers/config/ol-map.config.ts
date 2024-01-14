@@ -1,16 +1,11 @@
 // import { OpenLayersMapProps } from "../../open-layers";
 // import { CreateOLHeatmapConfig, createOLHeatmapConfig } from "./heatmap.config";
 
-export type OLMapVariant =
-	| "heatmap"
-	| "choropleth"
-	| "graduated-colors"
-	| "proportional-symbol"
-	| "point"
-	////////////
-	| "info"
-	| "slider"
-	| "timeline";
+export type OLMapVariant = "heatmap" | "choropleth" | "line" | "point";
+////////////
+// | "info"
+// | "slider"
+// | "timeline";
 // Controls variants and custom
 // Interactions variants and custom
 // switcher for turning layers on and off

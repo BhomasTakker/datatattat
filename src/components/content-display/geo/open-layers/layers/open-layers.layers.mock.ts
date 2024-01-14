@@ -11,6 +11,36 @@ import Text from "ol/style/Text";
 import { Feature } from "ol";
 import { Layer } from "./open-layers.layers";
 
+import FeaturePoint from "ol/geom/Point";
+import { transform } from "ol/proj";
+import VectorLayer from "ol/layer/Vector";
+import VectorSource from "ol/source/Vector";
+
+var attributes = {
+	name: "my name",
+	bar: "foo",
+	wahwah: "woowoo",
+	score: 0.6,
+	rank: 75,
+};
+
+// This adds an unstyles point
+const feature = new Feature({
+	// geometry: new FeaturePoint(transform([0, 0], "EPSG:4326", "EPSG:29901")),
+	geometry: new FeaturePoint([0, 0]),
+	...attributes,
+});
+
+const source = new VectorSource({
+	features: [feature],
+});
+
+// console.log("This feature", { feature });
+
+const featureLayer = new VectorLayer({
+	source: source,
+});
+
 const hammersArrow = (color: [number, number, number, number]) =>
 	new RegularShape({
 		fill: new Fill({ color: color }),
@@ -43,9 +73,9 @@ const lineStringStyle = new Style({
 });
 
 const exampleStyleFunction = (feature: Feature) => {
-	console.log("HERE:1234");
+	// console.log("HERE:1234");
 	const featureGeometry = feature.getGeometry()?.getType();
-	console.log("HERE:1234", { keys: feature.getKeys() });
+	// console.log("HERE:1234", { keys: feature.getKeys() });
 	const featureName = feature.get("name");
 
 	const textStyle = new Style({
@@ -61,7 +91,7 @@ const exampleStyleFunction = (feature: Feature) => {
 
 	if (featureGeometry === "Polygon") {
 		const rank = feature.get("rank");
-		console.log("HERE:1234", { rank });
+		// console.log("HERE:1234", { rank });
 		if (rank > 70) {
 			feature.setStyle([greenPolygonStyle, textStyle]);
 		} else {
@@ -70,7 +100,7 @@ const exampleStyleFunction = (feature: Feature) => {
 	}
 	if (featureGeometry === "Point") {
 		const rank = feature.get("rank");
-		console.log("HERE:1234", { rank });
+		// console.log("HERE:1234", { rank });
 		if (rank > 70) {
 			feature.setStyle([redPointStyle, textStyle]);
 		} else {
@@ -314,4 +344,39 @@ export const baseLayers: Layer[] = [
 	// 		// url: "https://iiif.lib.harvard.edu/manifests/ids:26003933",
 	// 	},
 	// },
+	{
+		layerId: "VectorLayer",
+		layerOptions: {
+			visible: true,
+			title: "Vector",
+			// style: exampleStyleFunction,
+			style: new Style({
+				fill: new Fill({ color: [255, 127, 127, 0.6] }),
+				stroke: new Stroke({
+					color: [0, 0, 0, 0.7],
+					// width: ,
+					lineDash: [3, 6],
+				}),
+				// image: new RegularShape({
+				// 	fill: new Fill({ color: [256, 0, 0] }),
+				// 	stroke: new Stroke({ color: [0, 0, 0, 0.7] }),
+				// 	points: 3,
+				// 	rotation: 3.1416,
+				// 	radius: 10,
+				// 	// radius1: 15,
+				// 	// radius2: 5,
+				// 	scale: 1,
+				// }),
+				image: new Icon({
+					src: "./images/penis.png",
+					scale: 0.5,
+					color: [255, 192, 203, 1],
+				}),
+			}),
+		},
+		sourceId: "Vector",
+		sourceOptions: {
+			features: [feature],
+		},
+	},
 ];

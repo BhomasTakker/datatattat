@@ -78,7 +78,7 @@ export const DataTable = ({
 	const config = getDataTableConfig(styleVariant);
 	const { data } = sourceObject;
 
-	console.log("DATA", { sourceObject });
+	// console.log("DATA", { sourceObject });
 
 	// Format data / provide rule
 	const formattedData = formatData(data);

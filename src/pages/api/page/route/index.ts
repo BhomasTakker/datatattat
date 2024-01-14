@@ -14,7 +14,7 @@ export default async function getHomePage(
 	//try catch
 	const page = await Page.findOne({ route: "/" }).lean();
 
-	console.log({ page });
+	// console.log({ page });
 	const pageData = {
 		page: page,
 		msg: page ? "ok" : "Page not found",

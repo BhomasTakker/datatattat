@@ -20,13 +20,13 @@ export const createProportionalSizeLegend = ({
 
 	// proportionalSizeLegend.addItem({ title: `Proportional Size` });
 	// colorMapLegend.addItem({ title: "" });
-	console.log("proportional", {
-		key,
-		minValue,
-		maxValue,
-		minSize,
-		maxSize,
-	});
+	// console.log("proportional", {
+	// 	key,
+	// 	minValue,
+	// 	maxValue,
+	// 	minSize,
+	// 	maxSize,
+	// });
 	const small: olLegendItemOptions = {
 		// Force to string but really?
 		title: `${maxSize / 2}`,

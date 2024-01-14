@@ -40,7 +40,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 
 	if (!pageData) {
 		//would actually go with something like throw createError(error.id)
-		console.log("ERROR");
+		// console.log("ERROR");
 	}
 
 	// const pageData = { data: "Hello World!" };

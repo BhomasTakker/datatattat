@@ -20,6 +20,8 @@ const getQueryConfig = (queryId: QueryId, quearyData: QueryData) => {
 		data: typeof quearyData
 	) => QueryCreator;
 
+	// console.log("HERE ", getConfigObject);
+
 	// return getConfigObject(quearyData);
 	return getConfigObject ? getConfigObject(quearyData) : null;
 };
@@ -58,15 +60,16 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	// pass / get list by type
 	const queryConfig = getQueryConfig(queryId, quearyData);
 
+	// console.log("apiQuery 3", { queryConfig });
 	if (!queryConfig) {
 		// log situation
 		return res.status(404).json("Bad request");
 	}
-
+	// console.log("apiQuery 4", { queryConfig });
 	const { url, headers, returns, queryParams } = queryConfig;
 
 	const queryUrl = new URL(url);
-
+	// console.log("apiQuery 5", { queryUrl });
 	for (let param in queryParams) {
 		queryUrl.searchParams.set(param, queryParams[param] as string);
 	}
@@ -84,7 +87,7 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	//try catch response
 	// const response = await fetch(endpoint, options);
 	// const result = await response.json();
-
+	// console.log("apiQuery 6", { queryParams });
 	// On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// const result = await redisApiFetch(queryUrl, { ...headers });
 	const result = await redisDataFetch({
@@ -94,7 +97,7 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 	});
 	// put result through transducers here
 	// ultimately if a good enough member
-
+	// console.log("apiQuery 7", { queryParams });
 	/////////////////////////////////////////////////
 	// pass conversion object into a function and return result
 	// wrap api call so we have user or whatever

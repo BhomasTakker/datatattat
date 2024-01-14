@@ -16,7 +16,7 @@ export const applyShapeMap = ({ shapeMap, object }: ApplyShapeMap) => {
 	// There is a way better way of doing this
 	// I mean RxJS
 	map.forEach(({ value, key, shape }) => {
-		console.log({ test: object[key], value });
+		// console.log({ test: object[key], value });
 		if (filterSwitch(filter, object[key], value)) {
 			retShape = shape;
 		}

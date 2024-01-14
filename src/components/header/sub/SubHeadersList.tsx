@@ -5,7 +5,7 @@ import { SubHeader } from "./SubHeader";
 //Here is a very good answer
 //https://stackoverflow.com/questions/46138145/where-should-functions-in-function-components-go
 const renderSubMenu = (item: any, i: number): ReactElement => {
-	// console.log({ item });
+	// // console.log({ item });
 	return <SubHeader key={`SubHeader${i}`} headerData={item} />;
 };
 
@@ -37,8 +37,8 @@ export const SubHeadersList = ({ headersArray }: { headersArray: any[] }) => {
 
 	const trimmedList = trimList(reversedList); //if show all show all else
 
-	// console.log({ trimmedList });
-	// console.log({ reversedList });
+	// // console.log({ trimmedList });
+	// // console.log({ reversedList });
 	//enable opening all / have an arrow or something
 	//put a little seperator in ? Or main header control
 	return renderList(trimmedList);

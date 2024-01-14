@@ -12,8 +12,11 @@ export const Controller: Story = {
 	args: {
 		radius: 15,
 		blur: 15,
-		url: "./mock/tanzania.geojson",
-		format: new GeoJSON(),
+		sourceOptions: {
+			url: "./mock/tanzania.geojson",
+			format: new GeoJSON(),
+		},
+
 		weight: "score",
 	},
 };

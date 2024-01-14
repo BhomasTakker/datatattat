@@ -2,13 +2,19 @@ import TileArcGISRest from "ol/source/TileArcGISRest";
 import { BingMapsOptions, createBingMapsSource } from "./bing-maps-source";
 import { OSMOptions, createOSMSource } from "./osm-source";
 import { XYZOptions, createXYZSource } from "./xyz-source";
-import { createTileArcGISRestSource } from "./tile-arc-gis-rest";
-import { createTileWMSSource } from "./tile-wms";
-import { createStadiaMapsSource } from "./stadia-maps";
-import { createTileDebugSource } from "./tile-debug";
-import { createVectorTileSource } from "./vector/vector-tile";
-import { createVectorSource } from "./vector/vector";
-import { createIIIFSource } from "./iiif";
+import {
+	TileArcGISRestOptions,
+	createTileArcGISRestSource,
+} from "./tile-arc-gis-rest";
+import { TileWMSOptions, createTileWMSSource } from "./tile-wms";
+import { StadiaMapsOptions, createStadiaMapsSource } from "./stadia-maps";
+import { TileDebugOptions, createTileDebugSource } from "./tile-debug";
+import {
+	VectorTileOptions,
+	createVectorTileSource,
+} from "./vector/vector-tile";
+import { VectorOptions, createVectorSource } from "./vector/vector";
+import { IIIFOptions, createIIIFSource } from "./iiif";
 
 export type TileLayerSources =
 	| "XYZ"
@@ -18,7 +24,17 @@ export type TileLayerSources =
 	| "TileWMS"
 	| "StadiaMaps"
 	| "TileDebug";
-interface GetLayerSourceOptions {}
+export type GetLayerSourceOptions =
+	| BingMapsOptions
+	| OSMOptions
+	| XYZOptions
+	| TileArcGISRestOptions
+	| TileWMSOptions
+	| StadiaMapsOptions
+	| TileDebugOptions
+	| VectorTileOptions
+	| VectorOptions
+	| IIIFOptions;
 
 export type ImageLayerSources = "ImageArcGISRest" | "ImageWMS";
 export type VectorLayerSources = "VectorTile" | "Vector";
@@ -91,6 +107,6 @@ export const getLayerSource = (
 	options: GetLayerSourceOptions //could be different shapes
 ) => {
 	const getter = sourceMap.get(id);
-	console.log({ getter });
+	// console.log({ getter });
 	return getter ? getter(options) : null;
 };

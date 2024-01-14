@@ -17,8 +17,8 @@ export default async function getHomePage(
 	const { query } = req;
 	const { pageId } = query; //should be pageid
 
-	console.log("GET PAGE");
-	console.log({ pageId });
+	// console.log("GET PAGE");
+	// console.log({ pageId });
 	//File isn't actually ised anywhere - i.e. we don't get page by id
 	//Gets called accidentally if no actual route provided...
 	//So api/page/route equates as api/page/index ....

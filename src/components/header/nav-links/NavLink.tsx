@@ -85,7 +85,7 @@ export const NavLink = ({
 
 	//Does seem very wrong!
 	const editClickHandler = (route: string) => {
-		console.log("Clicked " + route);
+		// console.log("Clicked " + route);
 		//temporary alert - you will lose any unsaved information
 		//Or if route does not == currentRoute?
 		//repeat need to outsource the function
@@ -101,7 +101,7 @@ export const NavLink = ({
 	//Then edit subheaders will 'navigate' correctly
 	//refactor
 	if (editCtx.currentPage) {
-		// console.log({ editCtx });
+		// // console.log({ editCtx });
 		return (
 			<div ref={containerRef} style={style}>
 				{(isVisible || king) && (

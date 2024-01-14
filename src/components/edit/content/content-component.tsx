@@ -16,7 +16,7 @@ export const ContentComponent = () => {
 		propsId,
 	} = useContext(ContentComponentContext);
 	const { componentTypeFormId, objectKey } = useContext(EditComponentContext);
-	console.log("FEATURE:404", "CONTENT:COMPONENT", { config }, { objectKey });
+	// console.log("FEATURE:404", "CONTENT:COMPONENT", { config }, { objectKey });
 
 	const { title, info, props } = config;
 	//////////////////////////////////////////////////////////

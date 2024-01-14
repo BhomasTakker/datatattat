@@ -26,7 +26,7 @@ export const SimpleArticle = (collectionItem: CollectionItem) => {
 	// We want to do different things on click and/or hover
 
 	const onClickHandler = () => {
-		console.log(`GO TO ${src}`);
+		// console.log(`GO TO ${src}`);
 	};
 
 	return (
