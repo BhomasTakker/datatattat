@@ -1,6 +1,6 @@
 import FeatureFormat from "ol/format/Feature";
 import { createHeatmapLayerConfig } from "../../controllers/config/heatmap.config";
-import { OpenLayersMap } from "../../open-layers";
+import { OpenLayersMap, OpenLayersMapProps } from "../../open-layers";
 import { createOLBaseMapConfig } from "../../controllers/config/base/base-map.config";
 import { Layer } from "../../layers/open-layers.layers";
 import { ColorMap, Filter } from "../../filters/types";
@@ -12,7 +12,7 @@ import { createLegendControl } from "../../legend/ol-ext-legend";
 import { GetLayerSourceOptions } from "../../layers/sources/open-layers.sources";
 
 // features OR src
-export interface Choropleth {
+export interface Choropleth extends OpenLayersMapProps {
 	filters?: Filter[];
 	colorMap: ColorMap;
 	proportionalColor: ProprtionalColor;

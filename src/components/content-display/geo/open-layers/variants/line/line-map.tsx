@@ -1,5 +1,5 @@
 import FeatureFormat from "ol/format/Feature";
-import { OpenLayersMap } from "../../open-layers";
+import { OpenLayersMap, OpenLayersMapProps } from "../../open-layers";
 import { createOLBaseMapConfig } from "../../controllers/config/base/base-map.config";
 import { Layer } from "../../layers/open-layers.layers";
 import { ColorMap, Filter, SizeMap } from "../../filters/types";
@@ -14,7 +14,7 @@ import { createLegendControl } from "../../legend/ol-ext-legend";
 import { GetLayerSourceOptions } from "../../layers/sources/open-layers.sources";
 
 // features OR src
-export interface LineMap {
+export interface LineMap extends OpenLayersMapProps {
 	filters?: Filter[];
 	colorMap: ColorMap | undefined;
 	sizeMap: SizeMap | undefined;

@@ -1,18 +1,11 @@
 import View from "ol/View";
 import { transform } from "ol/proj";
 import { ViewProjection } from "../types/open-layers.types";
+import { CreateViewOptions } from "./types";
 
 // Would we want / OR / Should we by default
 // Want to extend / wrap the View class and other library classes
 // Add / Limit / interpret controls
-
-export interface CreateViewOptions {
-	center?: [number, number];
-	zoom?: number;
-	maxZoom?: number;
-	minZoom?: number;
-	projection?: ViewProjection;
-}
 
 interface PointTransform {
 	coord?: [number, number];

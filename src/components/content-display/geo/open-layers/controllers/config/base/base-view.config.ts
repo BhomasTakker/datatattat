@@ -1,5 +1,5 @@
 import { Layer, Layers } from "../../../layers/open-layers.layers";
-import { CreateViewOptions } from "../../../view/open-layers.view";
+import { CreateViewOptions } from "../../../view/types";
 
 export type CreateBaseViewOptions = {} & CreateViewOptions;
 

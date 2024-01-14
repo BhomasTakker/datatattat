@@ -1,3 +1,5 @@
+import { getEnvVar } from "@/src/utils/env";
+
 let logOn = false;
 let filterCode = "";
 let filterContext = "";
@@ -6,6 +8,17 @@ let filterMessage = "";
 export type Code = string;
 export type Context = string;
 export type Message = string;
+
+// We need if on
+// if filters
+
+// logOn = getEnvVar("NEXT_PUBLIC_LOGGING") == "true";
+logOn = process.env.NEXT_PUBLIC_LOGGING == "true";
+console.log("LOGGING ", {
+	logOn,
+	type: typeof logOn,
+	env: process.env.NEXT_PUBLIC_LOGGING,
+});
 
 export const getIsOn = () => {
 	return logOn;
@@ -31,23 +44,19 @@ export const log = (
 	...optionalParams: OptionalParams
 ) => {
 	if (!logOn) return;
-
 	// string /OR/ array
 	if (filterCode && filterCode !== code) {
 		return;
 	}
-
 	// string /OR/ array
 	// just add filterContext.includes
 	if (filterContext && filterContext !== context) {
 		return;
 	}
-
 	// string /OR/ array
 	if (filterMessage && filterMessage !== message) {
 		return;
 	}
-
 	// log to txt
 	// code_context_message
 	// split: for _ AND lowercase
@@ -56,7 +65,7 @@ export const log = (
 	// gives you renders etc
 	// need strip from code
 
-	return; // console.log(code, context, message, optionalParams);
+	return console.log(code, context, message, optionalParams);
 };
 
 export const little_log = (msg: Message, ...optionalParams: OptionalParams) => {

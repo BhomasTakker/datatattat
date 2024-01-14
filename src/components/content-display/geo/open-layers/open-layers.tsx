@@ -1,7 +1,6 @@
 // https://taylor.callsen.me/using-openlayers-with-react-functional-components/
 import { Box, Paper } from "@mui/material";
 import { useEffect } from "react";
-import { CreateViewOptions } from "./view/open-layers.view";
 import { Layer } from "./layers/open-layers.layers";
 
 import LegendControl from "ol-ext/control/Legend";
@@ -22,6 +21,8 @@ import { useMapLayers } from "./hooks/useMapLayers";
 import { useMapView } from "./hooks/useMapView";
 import { ViewProjection } from "./types/open-layers.types";
 import { createInfoPopup } from "./overlays/popups/info-popup.overlay";
+import { CreateViewOptions } from "./view/types";
+import View from "ol/View";
 
 export interface OpenLayersMapProps {
 	// features: Feature<Geometry>[] | Collection<Feature<Geometry>> | undefined;
@@ -42,6 +43,7 @@ export interface OpenLayersMapProps {
 	events?: CreateEvent[];
 
 	viewOptions?: CreateViewOptions;
+	// view?: View;
 
 	legend?: LegendControl;
 
@@ -77,6 +79,7 @@ export const OpenLayersMap = function Foo({
 	const { map: initialMap, ref: mapElement } = useMap({});
 	useMapProjections({ projections, projection });
 
+	// surely just create view outside and pass in?
 	const { view } = useMapView({
 		map: initialMap,
 		options: viewOptions,
