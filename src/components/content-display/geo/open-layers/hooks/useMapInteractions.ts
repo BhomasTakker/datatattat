@@ -55,7 +55,6 @@ export const useMapInteractions = ({
 			if (!initInteraction) {
 				return;
 			}
-			// console.log({ interaction });
 			map.addInteraction(initInteraction(options));
 		});
 	}, [interactions, map]);

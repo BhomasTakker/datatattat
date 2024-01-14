@@ -59,7 +59,6 @@ export const createLineStyle = ({
 		defaultSize,
 	});
 
-	// console.log({ lineColor, lineSize });
 	const style = new Style({
 		// fill: new Fill({ color: fillColor }),
 		stroke: new Stroke({ color: lineColor, width: lineSize }),

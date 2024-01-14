@@ -15,7 +15,6 @@ interface SelectInputProps {
 // should convert to a component?
 export const createSelectInputListArray = (options: string[]) => {
 	if (!options) {
-		// console.log("We error here but why?");
 		return <></>;
 	}
 
@@ -31,7 +30,6 @@ export const createSelectInputListArray = (options: string[]) => {
 // seperate thes efunctions into their own files no
 export const createSelectInputListMap = (hash: Map<string, any>) => {
 	if (!hash) {
-		// console.log("We error here but why?");
 		return <p>Error</p>;
 	}
 	const options: ReactNode[] = [];
@@ -49,7 +47,6 @@ export const createSelectInputListMap = (hash: Map<string, any>) => {
 
 export const createSelectInputListObject = (options: {}) => {
 	if (!options) {
-		// console.log("We error here but why?");
 		return <></>;
 	}
 
@@ -63,9 +60,6 @@ export const createSelectInputListObject = (options: {}) => {
 };
 
 const getSelectInputList = (options: unknown) => {
-	// console.log("FEATURE:202", "SELECT:INPUT:UPGRADE", "GET:SELECT:INPUT:LIST", {
-		options,
-	});
 	switch (true) {
 		case options instanceof Map:
 			return createSelectInputListMap;
@@ -77,12 +71,6 @@ const getSelectInputList = (options: unknown) => {
 			return createSelectInputListObject;
 
 		default:
-			// console.log(
-				"FEATURE:202",
-				"SELECT:INPUT:UPGRADE",
-				"GET:SELECT:INPUT:LIST",
-				"TYPE:ERROR"
-			);
 			return () => "Error";
 	}
 };

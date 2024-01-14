@@ -10,6 +10,5 @@ const configMap = new Map<string, Omit<TanStackTableProps, "data" | "columns">>(
 	]
 );
 export const getDataTableConfig = (variant: DataTableStyleVariants) => {
-	// // console.log("hello", { variant, viewport });
 	return configMap.get(`${variant}`);
 };

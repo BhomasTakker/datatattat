@@ -51,7 +51,6 @@ export const EditFactoryComponent = ({
 	// this is literally endpoints and parameters again
 	// but with props and components
 	// const EditContainer = containerEditFactory(container);
-	// console.log("FEATURE:110", "DYNAMIC:CONFIG", "EDIT:COMPONENT", { type });
 	/////////////////////////////////////////
 	const ComponentContainer = COMPONENT_CONTAINERS_MAP.get(type);
 	if (!ComponentContainer) {

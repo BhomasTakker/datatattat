@@ -15,7 +15,6 @@ export const EditComponent = () => {
 	// if this was in context we wouldn't need to pass
 	const [isCollapsed, setIsCollapsed] = useState(false);
 	const componentsList = COMPONENT_TYPES_MAP.get(components);
-	// console.log("ISSUE:12345", "EDIT:COMPONENT");
 	return (
 		<Box
 			width={"100%"}

@@ -28,10 +28,7 @@ UnregisterFormType) => {
 	const { unregister, register } = useFormContext();
 
 	useEffect(() => {
-		// console.log("registered? " + name);
-		// register(name);
 		return () => {
-			// console.log("un-registered? " + name);
 			unregister(name);
 		};
 		// Can we spread dependencies or get around spreading?

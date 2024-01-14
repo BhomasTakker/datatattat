@@ -53,15 +53,6 @@ export const ArticleDisplayItem = ({
 			// pass in
 			justifyContent={justifyContent}
 			// onClick={() => {
-			// 	// console.log("clicked");
-			// }}
-			// sx={{
-			// 	// cursor: "pointer",
-			// 	width,
-			// 	height,
-			// 	backgroundImage: `url(${img})`,
-			// 	backgroundSize: "cover",
-			// 	// background: "no-repeat",
 			// }}
 		>
 			{/* Pass in dimensions */}

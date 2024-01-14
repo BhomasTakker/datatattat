@@ -43,8 +43,6 @@ export const Heatmap = (options: Heatmap) => {
 		overlayLayers: [config as Layer],
 	});
 
-	// console.log("heatmap ", { gradient });
-
 	const legend = createLegendControl({
 		heatmap: { gradient, weight, blur, radius },
 	});

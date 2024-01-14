@@ -117,10 +117,6 @@ export const ConversionsContextProvider = ({
 	const addConversion = useCallback(
 		(conversionData: Conversion) => {
 			const conversions = getValues(conversionsFormId) || [];
-			// console.log("Add Conversion");
-
-			// const len = conversions?.length ?? 0;
-			// setValue(`${conversionsFormId}.${len}`, conversionData);
 
 			const updateConversions = cloneDeep(conversions);
 			updateConversions.push(conversionData);

@@ -32,7 +32,7 @@ export const PageContainer = () => {
 		useContext(PageContainerContext);
 
 	const { select, info, label, type } = config;
-	// console.log("ISSUE:12345", "PAGE:CONTAINER");
+
 	return (
 		<Box>
 			<SelectInput

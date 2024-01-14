@@ -42,7 +42,6 @@ export const ListItemContextProvider = ({
 	const { meta } = useMeta(src, needMeta);
 
 	const getMeta = useCallback(() => {
-		// console.log("FEATURE:0001", "GET:META", { src });
 		setNeedMeta(true);
 	}, []);
 	return (

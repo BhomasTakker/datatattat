@@ -18,7 +18,6 @@ export const applyEmojiMap = ({
 	let ret = null;
 
 	map.forEach(({ value, key, code, shape, ...rest }) => {
-		// console.log({ test: object[key], value });
 		if (filterSwitch(filter, object[key], value)) {
 			ret = { text: code, type: shape, ...rest };
 		}

@@ -36,7 +36,5 @@ export const applyProportionalColor = ({
 		return (maxPossibleColor / 100) * valuePercentage + start;
 	});
 
-	// console.log("applyGraduantColor", { color });
-
 	return color as StyleColor;
 };

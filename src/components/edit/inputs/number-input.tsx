@@ -53,16 +53,6 @@ export const NumberInput = ({
 	min = undefined,
 	max = undefined,
 }: InputProps & NumberInputProps) => {
-	// console.log(
-		"FEATURE:115",
-		"EDIT:PROPS",
-		"TEXT:INPUT",
-		{ info },
-		{ id },
-		{ label },
-		{ min },
-		{ max }
-	);
 	return (
 		<WithInfo infoId={info}>
 			<WithLabel label={label} htmlFor={id}>

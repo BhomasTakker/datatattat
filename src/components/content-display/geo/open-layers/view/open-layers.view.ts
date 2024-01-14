@@ -47,8 +47,6 @@ export const createOpenLayersView = (options?: CreateViewOptions) => {
 		projection = "EPSG:3857", //get current or use provided
 	} = options || {};
 
-	// console.log("VIEW CREATED");
-
 	return new View({
 		center: pointTransform({ coord: [...center], to: projection }),
 		zoom,

@@ -50,7 +50,6 @@ export const ContentComponentContextProvider = ({
 		name: withFormTypeId,
 	});
 
-	// console.log("ISSUE:12345", { withComponentFormData }, { withFormTypeId });
 	useEffect(() => {
 		if (!withComponentFormData) {
 			return;

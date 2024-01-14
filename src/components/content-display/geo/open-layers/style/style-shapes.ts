@@ -159,7 +159,6 @@ export type CreateShape = {
 } & AvailableShape;
 
 export const createShape = ({ type, ...rest }: CreateShape) => {
-	// console.log("!!!!!!!!!!!!!!!!!!!!!", { type });
 	switch (type) {
 		case "Circle":
 			return createStyleCircle(rest as CreateStyleCircle);
@@ -175,7 +174,6 @@ export const createShape = ({ type, ...rest }: CreateShape) => {
 			return createStyleX(rest as CreateStyleShape);
 
 		case "Icon":
-			// console.log("ICON", { rest });
 			return createStyleIcon(rest as CreateStyleIcon);
 		// case "Emoji":
 		// 	return createStyleEmoji(rest as CreateStyleEmoji);

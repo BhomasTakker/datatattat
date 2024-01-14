@@ -6,25 +6,23 @@ import GeoJSON from "ol/format/GeoJSON";
 import { DragAndDropEvent } from "ol/interaction/DragAndDrop";
 import { altKeyOnly, altShiftKeysOnly } from "ol/events/condition";
 import { CreateInteraction } from "../hooks/useMapInteractions";
+import { log } from "@/src/lib/logger";
 
-// Okay this shit can be done!
 const dragBoxCb = (e: DragBoxEvent) => {
-	// console.log({ e });
-
 	const dragBoxInteraction = e.target as DragBox;
 	const extent = dragBoxInteraction.getGeometry().getExtent();
 	// const extent = e.coordinate;
 
 	// const interactions = e.mapBrowserEvent.map.getInteractions();
 
-	// console.log({ extent });
 	e.mapBrowserEvent.map.getView().fit(extent);
 	// const extent = dragBoxInteraction.getGeometry().getExtent();
 	// map.getView().fit(extent as Extent);
 };
 
 const selectInteraction = setSelectInteraction({
-	cb: (selectEvent) => // console.log({ selectEvent }),
+	cb: (selectEvent) =>
+		log({ code: "XXX", context: "selectInteraction" }, { selectEvent }),
 });
 
 const formatConstructors = [KML, GeoJSON];
@@ -39,18 +37,28 @@ export const mockOLInteractions: CreateInteraction[] = [
 	},
 	{
 		id: "Select",
-		options: { cb: (selectEvent: SelectEvent) => // console.log({ selectEvent }) },
+		options: {
+			cb: (selectEvent: SelectEvent) =>
+				log({ code: "XXX", context: "selectInteraction" }, { selectEvent }),
+		},
 	},
 	// {
 	// 	id: "Modify",
-	// 	options: { cb: (modifyEvent: ModifyEvent) => // console.log({ modifyEvent }) },
+	// 	options: { cb: (modifyEvent: ModifyEvent) => // log({ code: "XXX", context: "selectInteraction" }, { modifyEvent }) },
 	// },
 	{
 		id: "DragAndDrop",
 		options: {
 			formatConstructors,
 			cb: (dragAndDropEvent: DragAndDropEvent) =>
-				// console.log({ dragAndDropEvent }),
+				log(
+					{
+						code: "XXX",
+						context: "mockOLInteractions",
+						message: "drag and drop",
+					},
+					{ dragAndDropEvent }
+				),
 		},
 	},
 ];

@@ -44,8 +44,6 @@ export const createPointStyle = ({
 	proportionalSize,
 	shape,
 }: CreatePointStyle) => {
-	// console.log({ proportionalSize });
-
 	const {} = shape || {};
 
 	// Should be if text return text else return shape
@@ -59,6 +57,7 @@ export const createPointStyle = ({
 			proportionalColor,
 			defaultColor: shape.fillColor,
 		}),
+		// prob need an if
 		size: getStyleSize({
 			feature: properties,
 			sizeMap,

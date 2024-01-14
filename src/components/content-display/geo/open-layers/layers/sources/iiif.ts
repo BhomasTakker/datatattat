@@ -5,7 +5,10 @@ import { Extent } from "ol/extent";
 import { ProjectionLike } from "ol/proj";
 import { Size } from "ol/size";
 
+////////////////////////////////
 // Haven't gotten to work yet
+// We really want tit too...
+//////////////////////////////////
 export interface IIIFOptions {
 	attributions?: AttributionLike;
 	attributionsCollapsible?: boolean;
@@ -37,15 +40,13 @@ export const createIIIFSource = (options: IIIFOptions) => {
 
 	// const response = await fetch(url);
 	// const responseJson = await response.json();
-	// // console.log({ responseJson });
 	// const iiifOptions = new IIIFInfo(responseJson).getTileSourceOptions();
 	// if (iiifOptions === undefined || iiifOptions.version === undefined) {
 	// 	return;
 	// }
 
 	// I get it - we are applying the layer before we have received the source
-	// console.log({ IIIF: url });
-	// // console.log({ iiifOptions });
+
 	return new IIIF({ url, zDirection, transition, size });
 	// return new IIIF(iiifOptions);
 };

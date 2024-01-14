@@ -40,24 +40,11 @@ const controls = getMockControls(); // should be the standard
 
 const mockClickEvent = {
 	id: "click",
-	callback: (e: MapBrowserEvent<UIEvent>) => {
-		// console.log("CLICK! pixel ", e.pixel);
-		// console.log("CLICK! coordinate ", e.coordinate);
-		//"EPSG:4326", "EPSG:3857"
-		// console.log(
-			"CLICK! coordinate transform ",
-			transform(e.coordinate, "EPSG:29901", "EPSG:4326")
-		);
-		// console.log("CLICK! e ", e);
-	},
+	callback: (e: MapBrowserEvent<UIEvent>) => {},
 };
 const mockDblClickEvent = {
 	id: "dblclick",
-	callback: (e: MapBrowserEvent<UIEvent>) => {
-		// console.log("dblclick! pixel ", e.pixel);
-		// console.log("dblclick! coordinate ", e.coordinate);
-		// console.log("dblclick! e ", e);
-	},
+	callback: (e: MapBrowserEvent<UIEvent>) => {},
 };
 const events: CreateEvent[] = [
 	mockClickEvent as CreateEvent,

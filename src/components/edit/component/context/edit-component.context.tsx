@@ -36,8 +36,6 @@ export const EditComponentContextProvider = ({
 		name: componentTypeFormId,
 	});
 
-	// console.log("FEAT:201", "EDIT:COMPONENTS", "REFACTOR", "COMPONENT:EDIT");
-
 	return (
 		// Would you always spread given value here?
 		<EditComponentContext.Provider

@@ -20,6 +20,5 @@ export const createXYZSource = (options: XYZOptions) => {
 		tileSize = [256, 256],
 		transition = 250,
 	} = options || {};
-	// console.log({ XYZ: url });
 	return new XYZ({ url, urls, maxZoom, minZoom, tileSize, transition });
 };

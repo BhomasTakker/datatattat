@@ -107,6 +107,5 @@ export const getLayerSource = (
 	options: GetLayerSourceOptions //could be different shapes
 ) => {
 	const getter = sourceMap.get(id);
-	// console.log({ getter });
 	return getter ? getter(options) : null;
 };

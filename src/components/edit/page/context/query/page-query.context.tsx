@@ -39,12 +39,7 @@ export const PageQueryProvider = ({
 	const [pageData, setPageData] = useState({});
 
 	const { currentPage } = useContext(EditContext);
-	// console.log(
-		"ISSUE:12345",
-		"PAGE:QUERY:CONTEXT",
-		{ pageData },
-		{ currentPage }
-	);
+
 	// create hook?
 	// clean the hell up
 	useEffect(() => {

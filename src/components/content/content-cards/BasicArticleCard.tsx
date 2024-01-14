@@ -10,6 +10,7 @@ import {
 	CardActions,
 	CardMedia,
 } from "@mui/material";
+import { log } from "@/src/lib/logger";
 
 type BasicArticleCardProps = {
 	height: number;
@@ -18,7 +19,7 @@ type BasicArticleCardProps = {
 //Height and width aren't great.
 const BasicArticleCard = ({ height }: BasicArticleCardProps) => {
 	const onClickHandler = () => {
-		// console.log("clicked");
+		log({ code: "XXX", message: "Basic Article Card Clicked." });
 	};
 
 	return (

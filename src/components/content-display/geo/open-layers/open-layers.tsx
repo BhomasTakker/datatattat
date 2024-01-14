@@ -94,21 +94,7 @@ export const OpenLayersMap = function Foo({
 		map: initialMap,
 		baseLayers: baseLayers as Layer[],
 		overlayLayers: overlayLayers,
-		// features layer - pass in features layers array
 	});
-
-	// useEffect(() => {
-	// 	if (!initialMap) {
-	// 		return;
-	// 	}
-
-	// 	// save map and vector layer references to state
-	// 	setMap(initialMap);
-
-	// 	// This thing
-	// 	// When a parent component gets removed this does not get called - I think
-	// 	return () => initialMap.setTarget(undefined);
-	// }, [initialMap]);
 
 	// I dunno, really?
 	// Make a hook perhaps?
@@ -131,32 +117,7 @@ export const OpenLayersMap = function Foo({
 			return;
 		}
 		createInfoPopup({ map: initialMap });
-
-		// // console.log("ADD FEATURE", { features });
-		// initialMap.addLayer(features);
 	}, [initialMap]);
-
-	// There's a way to do this
-	// perhaps not like this though
-	// It's like map size and view size - not sure
-	// Effectively remove the margin and 100vw / set height
-	// useEffect(() => {
-	// 	if (!initialMap) {
-	// 		return;
-	// 	}
-	// 	addEventListener("resize", (event) => {
-	// 		// console.log({ innerWidth, innerHeight });
-	// 		initialMap.setSize([innerWidth, innerHeight]);
-	// 	});
-
-	// 	return () => {
-	// 		removeEventListener("resize", (event) => {
-	// 			// console.log({ innerWidth, innerHeight });
-	// 			initialMap.setSize([innerWidth, innerHeight]);
-	// 		});
-	// 	};
-	// 	// initialMap.setSize(size);
-	// }, [initialMap]);
 
 	return (
 		<Box
@@ -174,16 +135,5 @@ export const OpenLayersMap = function Foo({
 				// "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
 			}}
 		></Box>
-		// <Box
-		// 	ref={mapElement}
-		// 	width={width}
-		// 	height={height}
-		// 	style={{
-		// 		position: "absolute",
-		// 		left: 0,
-		// 		width: "100%",
-		// 		height: "70%",
-		// 	}}
-		// ></Box>box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 	);
 };

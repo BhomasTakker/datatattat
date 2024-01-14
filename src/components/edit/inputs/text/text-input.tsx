@@ -8,14 +8,6 @@ interface TextInputProps {
 }
 
 export const TextInput = ({ info, label, id }: TextInputProps) => {
-	// console.log(
-		"FEATURE:115",
-		"EDIT:PROPS",
-		"TEXT:INPUT",
-		{ info },
-		{ id },
-		{ label }
-	);
 	return (
 		<WithInfo infoId={info}>
 			<TextInputWithControl

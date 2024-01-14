@@ -46,11 +46,8 @@ export const createLayer = (
 	source?: any
 ): LayerModules => {
 	const LayerType = layerSourceMap.get(type) || TileLayer;
-	// console.log({ type, source, LayerType });
-	// Graticule layer has no source
-
 	return new LayerType({
-		source: source ? source : undefined,
+		source: source ? source : undefined, // Graticule layer has no source
 		...options,
 	});
 };

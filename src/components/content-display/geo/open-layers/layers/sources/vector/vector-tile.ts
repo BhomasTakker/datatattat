@@ -28,8 +28,6 @@ export const createVectorTileSource = (options: VectorTileOptions) => {
 		transition = 250,
 	} = options || {};
 
-	// console.log({ options });
-
 	return new VectorTile({
 		extent,
 		url,
@@ -39,10 +37,5 @@ export const createVectorTileSource = (options: VectorTileOptions) => {
 		tileSize,
 		transition,
 		format,
-		// format: new MVT(),
-		// url:
-		// 	"https://ahocevar.com/geoserver/gwc/service/tms/1.0.0/" +
-		// 	"ne:ne_10m_admin_0_countries@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf",
-		// maxZoom: 14,
 	});
 };

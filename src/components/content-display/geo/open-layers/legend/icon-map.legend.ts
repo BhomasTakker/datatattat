@@ -10,7 +10,6 @@ export const createIconMapLegend = ({ filter, map }: IconMap) => {
 	iconMapLegend.addItem({ title: `Icon Map` });
 
 	map.forEach(({ value, shape, key, size, src }) => {
-		// console.log("ICON ", { value, shape, key, size: 10, src });
 		const item: olLegendItemOptions = {
 			// Force to string but really?
 			title: value.toString(),

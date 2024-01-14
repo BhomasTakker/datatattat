@@ -32,18 +32,13 @@ const DisplayItemContent = (collectionItem: CollectionItem) => {
 	const { image } = meta || {};
 
 	if (!img && !image) {
-		// console.log("FEATURE:0001", "DISPLAY:ITEM", "GET:META", { img, image });
 		getMeta();
 	}
-
-	// console.log("FEATURE:0001", "DISPLAY:ITEM", { img, image });
 
 	return (
 		<Stack
 			padding={MARGINS.MIDSMALL}
-			onClick={() => {
-				// console.log("clicked");
-			}}
+			onClick={() => {}}
 			sx={{
 				cursor: "pointer",
 				// Set styles - i.e. variant
@@ -55,7 +50,6 @@ const DisplayItemContent = (collectionItem: CollectionItem) => {
 			}}
 		>
 			<Box sx={{ width: "50%", color: "white" }}>
-				{/* {"Hello"} */}
 				<Title text={title} variant={TitleVariant.SUB} />
 			</Box>
 			<Stack

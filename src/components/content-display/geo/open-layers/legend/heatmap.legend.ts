@@ -35,25 +35,6 @@ export const createHeatmapLegend = ({
 }: CreateHeatmapLegend) => {
 	const colorMapLegend = new Legend({ margin: 4, title: weight });
 
-	// console.log("heatmap ", { gradient, weight, radius, blur });
-
-	// gradient.forEach((color, i) => {
-	// 	const title = i == 0 ? "Low" : i == gradient.length - 1 ? "High" : "";
-	// 	const item: olLegendItemOptions = {
-	// 		// Force to string but really?
-	// 		title: title,
-	// 		typeGeom: "Point",
-	// 		style: new Style({
-	// 			image: new Circle({
-	// 				radius: 25,
-	// 				fill: new Fill({ color: color }),
-	// 			}),
-	// 		}),
-	// 	};
-
-	// 	colorMapLegend.addItem(item as olLegendItemOptions);
-	// });
-
 	const item: olLegendItemOptions = {
 		// Force to string but really?
 		title: "low / high",

@@ -35,8 +35,6 @@ const source = new VectorSource({
 	features: [feature],
 });
 
-// console.log("This feature", { feature });
-
 const featureLayer = new VectorLayer({
 	source: source,
 });
@@ -73,9 +71,7 @@ const lineStringStyle = new Style({
 });
 
 const exampleStyleFunction = (feature: Feature) => {
-	// console.log("HERE:1234");
 	const featureGeometry = feature.getGeometry()?.getType();
-	// console.log("HERE:1234", { keys: feature.getKeys() });
 	const featureName = feature.get("name");
 
 	const textStyle = new Style({
@@ -91,7 +87,6 @@ const exampleStyleFunction = (feature: Feature) => {
 
 	if (featureGeometry === "Polygon") {
 		const rank = feature.get("rank");
-		// console.log("HERE:1234", { rank });
 		if (rank > 70) {
 			feature.setStyle([greenPolygonStyle, textStyle]);
 		} else {
@@ -100,7 +95,6 @@ const exampleStyleFunction = (feature: Feature) => {
 	}
 	if (featureGeometry === "Point") {
 		const rank = feature.get("rank");
-		// console.log("HERE:1234", { rank });
 		if (rank > 70) {
 			feature.setStyle([redPointStyle, textStyle]);
 		} else {

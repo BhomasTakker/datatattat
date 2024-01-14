@@ -43,8 +43,6 @@ export const createVectorSource = (options: VectorOptions) => {
 		url,
 	} = options || {};
 
-	// console.log({ options });
-
 	return new Vector({
 		attributions,
 		// @ts-ignore fix my type?
