@@ -1,5 +1,5 @@
 import { map } from "rxjs";
-import { StreetCrimeItem, StreetCrimeResponse } from "./police-data-uk.types";
+import { StreetCrimeResponse } from "./police-data-uk.types";
 
 // what are props in this instance
 const toGISFeatureCollection = (props: any) => {
