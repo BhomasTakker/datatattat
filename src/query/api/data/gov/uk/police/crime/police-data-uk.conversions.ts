@@ -1,12 +1,10 @@
 import { map } from "rxjs";
 import { StreetCrimeItem, StreetCrimeResponse } from "./police-data-uk.types";
-import { destructureChildObjects } from "@/src/utils/object";
 
 // what are props in this instance
 const toGISFeatureCollection = (props: any) => {
 	return map((data: StreetCrimeResponse) => {
-		// // console.log("toGISFeatureCollection ", { props });
-
+		let dateOfResponses;
 		const newData = data.map((item) => {
 			// We possibly/probably want to filter redundant data
 
@@ -19,10 +17,11 @@ const toGISFeatureCollection = (props: any) => {
 
 			const { category: conclusion, date: concludedOn } = outcome_status || {};
 
-			// // console.log("WAH WAH WAH WAH", { item });
+			// assigned every time - has to be a better way
+			dateOfResponses = month;
+
 			// loop in loop in loop - every key in every object
 			// Rxjs at the very very least
-			// // console.log("WAH WAH WAH WAH", { rest: destructureChildObjects(rest) });
 
 			return {
 				crime: category,
@@ -37,6 +36,7 @@ const toGISFeatureCollection = (props: any) => {
 		});
 		return {
 			responses: data?.length || 0,
+			date: dateOfResponses,
 			variant: "gis-features",
 			// We just have the one table if groups we would need to show multiple tables
 			// Probably call it something other than data
@@ -54,10 +54,8 @@ const toGISFeatureCollection = (props: any) => {
 // Kinda just a default though?
 // We can have various
 const toGISFeatureCollectionItem = (props: any) => {
-	// console.log("toGISFeatureCollectionItem ", { props });
 	return map((data: StreetCrimeItem) => {
 		const { location } = data;
-		// console.log("toGISFeatureCollectionItem we do not get here ", { location });
 		return {
 			...data,
 			coordinates: [location.latitude, location.longitude],

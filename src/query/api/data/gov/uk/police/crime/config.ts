@@ -29,7 +29,7 @@ const valueConversion: ConversionObject = {
 	},
 };
 
-const standingsConversion = {
+const dataConversion = {
 	conversionId: "DATA:POLICE:UK",
 	response: responseConversion,
 	// really sub objects array
@@ -37,6 +37,75 @@ const standingsConversion = {
 	// iterable: valueConversion,
 };
 
+export enum CRIMES {
+	All = "All",
+	"Violent Crime and Sexual Offences" = "Violent crime and Sexual Offences",
+	Shoplifting = "Shoplifting",
+	"Public Order" = "Public Order",
+	"Arson and Criminal Damage" = "Arson and Criminal Damage",
+	"Weapons Possession" = "Weapons Possession",
+	"Other Theft" = "Other Theft",
+	"Bicycle Theft" = "Bicycle Theft",
+	"Anti Social Behaviour" = "Anti Social Behaviour",
+	"Vehicle Crime" = "Vehicle Crime",
+	Robbery = "Robbery",
+	Drugs = "Drugs",
+	Other = "Other",
+	"Theft From Person" = "Theft From Person",
+	Burglary = "Burglary",
+}
+
+const crime = {
+	type: "select",
+	id: "crime",
+	label: "crime",
+	key: "crime",
+	options: CRIMES,
+	// need add
+	defaultEndpoint: "all-crime",
+};
+
+const lat = {
+	type: "text",
+	id: "latitude",
+	label: "latitude",
+	key: "latitude",
+	max: 90,
+	min: -90,
+};
+
+const lng = {
+	// number does not work
+
+	type: "text",
+	// defaultValue: 0,
+	id: "longitude",
+	label: "longitude",
+	key: "longitude",
+	min: -180,
+	max: 180,
+};
+
+const year = {
+	type: "text",
+	id: "year",
+	label: "year",
+	key: "year",
+	min: 2000,
+	// get current....
+	max: 2024,
+};
+
+const month = {
+	type: "text",
+	id: "month",
+	label: "month",
+	key: "month",
+	min: 1,
+	max: 12,
+};
+
+// Street crime from point
 const streetCrime = {
 	id: "data_police_uk_street_crime_endpoint",
 	info: `Lorem ipsum dolor sit amet, 
@@ -45,18 +114,25 @@ const streetCrime = {
 	ut labore et dolore magna aliqua.`,
 
 	queryId: "data_police_uk_street_crime",
-	params: [
-		// lat
-		// lon
-		// date
-		// by crime
-	],
+	params: [crime, lat, lng, year, month],
 
-	conversions: standingsConversion,
+	conversions: dataConversion,
 
 	// notsure if should add to each but?
 	// conversions: CONVERSIONS,
 };
+
+// There is stop and search data...
+// Again we should look to collate this data ourselves and allow use
+// Thinking this comes in with D3?
+// select an area then view stats - crimes by number / resolutions by force, etc
+// Go down to specific - this street had x amount of violent crimes and y amount of successful resolutions
+// And this becomes our case study in an election year
+// Think your query could throw a query at a DB
+// return that data and use in components
+///////////////////////////////////////////////
+// outcome data & outcomes for a specific crime
+// some other data, force data etc
 
 export const DATA_POLICE_UK = {
 	id: "data_police_uk_endpoint",
