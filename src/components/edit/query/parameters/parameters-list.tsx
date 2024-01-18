@@ -1,6 +1,5 @@
 import { Stack } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
-import { ParameterInputComponent } from "./input/input-component";
 import { useContext } from "react";
 import { ParametersContext } from "./context/ParametersContext";
 import { log } from "@/src/lib/logger";

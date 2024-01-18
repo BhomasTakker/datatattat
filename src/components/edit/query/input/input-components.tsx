@@ -15,13 +15,14 @@ type EditSelectInputProps = {
 	infoId?: string;
 };
 
-type EditTextInputProps = {
-	id: string;
-	label: string;
-	info?: string;
-	infoId?: string;
-};
+// type EditTextInputProps = {
+// 	id: string;
+// 	label: string;
+// 	info?: string;
+// 	infoId?: string;
+// };
 
+// Replace use with edit select
 export const EditSelectInput = ({
 	endpoints,
 	id,
@@ -39,31 +40,31 @@ export const EditSelectInput = ({
 
 EditSelectInput.displayName = "EditSelectInput";
 
-export const EditTextInput = ({ id, label }: EditTextInputProps) => {
-	return (
-		<WithInfo infoId="RssEndpoint">
-			<TextInputWithControl
-				label={label}
-				name={id}
-				fullWidth={true}
-				disabled={false}
-			/>
-		</WithInfo>
-	);
-};
+// export const EditTextInput = ({ id, label }: EditTextInputProps) => {
+// 	return (
+// 		<WithInfo infoId="RssEndpoint">
+// 			<TextInputWithControl
+// 				label={label}
+// 				name={id}
+// 				fullWidth={true}
+// 				disabled={false}
+// 			/>
+// 		</WithInfo>
+// 	);
+// };
 
-type ToggleProps = {
-	isChecked?: boolean;
-};
+// type ToggleProps = {
+// 	isChecked?: boolean;
+// };
 
-export const EditTextToggleInput = ({
-	id,
-	label,
-	isChecked = false,
-}: EditTextInputProps & ToggleProps) => {
-	return (
-		<WithInfo infoId="RssEndpoint">
-			<TextInputWithControlAndToggle label={label} name={id} fullWidth={true} />
-		</WithInfo>
-	);
-};
+// export const EditTextToggleInput = ({
+// 	id,
+// 	label,
+// 	isChecked = false,
+// }: EditTextInputProps & ToggleProps) => {
+// 	return (
+// 		<WithInfo infoId="RssEndpoint">
+// 			<TextInputWithControlAndToggle label={label} name={id} fullWidth={true} />
+// 		</WithInfo>
+// 	);
+// };

@@ -53,20 +53,20 @@ const toGISFeatureCollection = (props: any) => {
 // Probably shouldn't do this with data? I dunno
 // Kinda just a default though?
 // We can have various
-const toGISFeatureCollectionItem = (props: any) => {
-	return map((data: StreetCrimeItem) => {
-		const { location } = data;
-		return {
-			...data,
-			coordinates: [location.latitude, location.longitude],
-		};
-	});
-};
+// const toGISFeatureCollectionItem = (props: any) => {
+// 	return map((data: StreetCrimeItem) => {
+// 		const { location } = data;
+// 		return {
+// 			...data,
+// 			coordinates: [location.latitude, location.longitude],
+// 		};
+// 	});
+// };
 
 export const TRANSFORM = new Map<string, object>([
 	// spelling toArticle(s)List should change
 	["toGISFeatureCollection", toGISFeatureCollection],
-	["toGISFeatureCollectionItem", toGISFeatureCollectionItem],
+	// ["toGISFeatureCollectionItem", toGISFeatureCollectionItem],
 ]);
 
 export const SORT = new Map<string, object>([]);

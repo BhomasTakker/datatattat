@@ -16,24 +16,24 @@ const responseConversion: ConversionObject = {
 	},
 };
 
-const valueConversion: ConversionObject = {
-	id: "data",
-	iterable: true,
-	map: {},
-	defaultConversions: [{ id: "toGISFeatureCollectionItem", type: "TRANSFORM" }],
+// const valueConversion: ConversionObject = {
+// 	id: "data",
+// 	iterable: true,
+// 	map: {},
+// 	defaultConversions: [{ id: "toGISFeatureCollectionItem", type: "TRANSFORM" }],
 
-	sort: {},
-	filter: {},
-	transform: {
-		toGISFeatureCollectionItem: "toGISFeatureCollectionItem",
-	},
-};
+// 	sort: {},
+// 	filter: {},
+// 	transform: {
+// 		toGISFeatureCollectionItem: "toGISFeatureCollectionItem",
+// 	},
+// };
 
 const dataConversion = {
 	conversionId: "DATA:POLICE:UK",
 	response: responseConversion,
 	// really sub objects array
-	subConversions: [valueConversion],
+	subConversions: [],
 	// iterable: valueConversion,
 };
 

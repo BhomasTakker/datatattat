@@ -1,10 +1,11 @@
-import { ReactNode, createContext, useEffect } from "react";
+import { ReactNode, createContext } from "react";
 import { ParametersType } from "../types";
-import { useFormContext } from "react-hook-form";
 // this becomes non required
 // but we could store parameters here?
 // then on change / reset
 // potentially simpler
+
+// This is only being used for the objectId now
 
 type ParametersState = {
 	objectKey: string;
