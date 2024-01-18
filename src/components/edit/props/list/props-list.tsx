@@ -4,6 +4,7 @@ import { Stack } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
 import { InputFactory } from "@/src/components/edit/inputs/factory/input.factory";
 import { PageStateContext } from "../../page/context/state/page-state.context";
+import { log } from "@/src/lib/logger";
 
 export const PropsList = () => {
 	// type props
@@ -13,6 +14,10 @@ export const PropsList = () => {
 	return (
 		<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
 			{props.map((prop) => {
+				log(
+					{ code: "P10-5698", context: "PROPS", message: "PROP:DATA" },
+					{ prop }
+				);
 				const { id } = prop;
 				const inputFormId = `${propsId}.${id}`;
 

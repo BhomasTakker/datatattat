@@ -39,7 +39,7 @@ const dataConversion = {
 
 export enum CRIMES {
 	All = "All",
-	"Violent Crime and Sexual Offences" = "Violent crime and Sexual Offences",
+	"Violent Crime and Sexual Offences" = "Violent Crime and Sexual Offences",
 	Shoplifting = "Shoplifting",
 	"Public Order" = "Public Order",
 	"Arson and Criminal Damage" = "Arson and Criminal Damage",
@@ -87,7 +87,7 @@ const lng = {
 };
 
 const year = {
-	type: "text",
+	type: "number",
 	id: "year",
 	label: "year",
 	key: "year",
@@ -97,7 +97,7 @@ const year = {
 };
 
 const month = {
-	type: "text",
+	type: "number",
 	id: "month",
 	label: "month",
 	key: "month",

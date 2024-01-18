@@ -52,6 +52,7 @@ const uk_police_crime_data = (queryParams: QueryParameters) => {
 	const crime = crimeMap.get(selectedCrime) || crimeMap.get(CRIMES.All);
 	const lat = latitude;
 	const lon = longitude;
+
 	// [-1.1325075476203084, 52.63543283768226]
 	const newMonth = month.length == 1 ? `0${month}` : month;
 	const date = year && month ? `&date=${year}-${newMonth}` : "";
