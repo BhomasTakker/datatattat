@@ -1,8 +1,10 @@
+import { Coordinate } from "ol/coordinate";
 import { ViewProjection } from "../types/open-layers.types";
 
 export interface CreateViewOptions {
+	[key: string]: unknown;
 	// We need extent - to lock in place or restrict
-	center?: [number, number];
+	center?: [number, number] | Coordinate;
 	zoom?: number;
 	maxZoom?: number;
 	minZoom?: number;

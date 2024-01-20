@@ -1,9 +1,7 @@
 import { Map as OLMap, View } from "ol";
-import {
-	CreateViewOptions,
-	createOpenLayersView,
-} from "../view/open-layers.view";
+import { createOpenLayersView } from "../view/open-layers.view";
 import { useEffect, useState } from "react";
+import { CreateViewOptions } from "../view/types";
 
 interface UseMapView {
 	map: OLMap | null;

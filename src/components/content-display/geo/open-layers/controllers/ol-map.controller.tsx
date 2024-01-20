@@ -9,6 +9,7 @@ import { Feature } from "ol";
 import { transform } from "ol/proj";
 import { log } from "@/src/lib/logger";
 import { CreateViewOptions } from "../view/types";
+import { createOpenLayersViewOptions } from "../view/open-layers.view";
 
 type GISData = any; // {coordinates: [number, number], any}
 
@@ -79,6 +80,7 @@ export const OLMapController = ({
 	} = args || {};
 	const { features } = data || {};
 
+	// Need a much better way of doing this
 	const mapFeatures = createFeatures(features);
 
 	// Probably the better way but need a c-shift
@@ -87,13 +89,18 @@ export const OLMapController = ({
 
 	// there's a better place/way to do this
 	// if we wrap in a component/with etc we can create view, etc in a set place
-	const viewOptions = {
+	// const viewOptions = {
+	// 	center: [longitude, latitude] as [number, number],
+	// 	zoom,
+	// 	maxZoom,
+	// 	minZoom,
+	// 	projection,
+	// };
+
+	const viewOptions = createOpenLayersViewOptions({
+		...args,
 		center: [longitude, latitude] as [number, number],
-		zoom,
-		maxZoom,
-		minZoom,
-		projection,
-	};
+	});
 
 	const newSourceOptions = { ...sourceOptions, features: mapFeatures };
 

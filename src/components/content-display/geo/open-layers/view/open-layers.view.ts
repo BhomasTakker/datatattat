@@ -27,6 +27,27 @@ const pointTransform = ({
 	return transform([...coord], from, to);
 };
 
+export const createOpenLayersViewOptions = (options?: CreateViewOptions) => {
+	const {
+		// we need to know what this projection is taken from
+		// sourceProjection?
+		center = [0, 0],
+		// shouldn't set here?
+		zoom = 5,
+		maxZoom = 20,
+		minZoom = 1,
+		// do we need a default - won't it default to chosen - if not should it
+		projection = "EPSG:3857", //get current or use provided
+	} = options || {};
+	return {
+		center,
+		zoom,
+		maxZoom,
+		minZoom,
+		projection,
+	};
+};
+
 // Add more options
 export const createOpenLayersView = (options?: CreateViewOptions) => {
 	const {
@@ -41,7 +62,10 @@ export const createOpenLayersView = (options?: CreateViewOptions) => {
 	} = options || {};
 
 	return new View({
-		center: pointTransform({ coord: [...center], to: projection }),
+		center: pointTransform({
+			coord: [...center] as [number, number],
+			to: projection,
+		}),
 		zoom,
 		maxZoom,
 		minZoom,
