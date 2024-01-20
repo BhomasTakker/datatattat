@@ -25,11 +25,6 @@ export const clientsideFetch = async ({
 		endpoint.searchParams.set(param, searchParams[param]);
 	}
 
-	// console.log("URL HERE");
-	// console.log({ url });
-
-	// console.log({ wut: process.env.API_PATH });
-	// console.log({ wut: process.env.MONGO_USER });
 	//try catch
 	//absolute path should not be required
 	const response = await fetch(

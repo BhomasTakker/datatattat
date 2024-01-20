@@ -38,9 +38,7 @@ export const ArticleListItem = ({
 	const { title, avatar, src, description, guid, variant, details, media } =
 		item;
 
-	// const img = avatar ? avatar.src : "";
 	const img = avatar?.src || "";
-	console.log({ rest });
 	return (
 		<ListItem data-testid="article-list-item" {...rest}>
 			{/* if */}

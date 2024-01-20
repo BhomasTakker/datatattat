@@ -24,8 +24,8 @@ const createQueryObject = (queryObject: any, queryPath: string) => {
 	} = queryObject;
 	// conversionId needs to be string | string[] -> reducer or reducer[]
 
-	console.log({ CONVERSION: conversion });
-	console.log({ CONVERSIONS_ARRAY: conversions });
+	// console.log({ CONVERSION: conversion });
+	// console.log({ CONVERSIONS_ARRAY: conversions });
 
 	const url = queryPath;
 	// this feels a little dutty for some reason

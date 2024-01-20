@@ -24,7 +24,7 @@ export const NavigationMenu = ({
 	const [isMenuShowing, setIsMenuShowing] = useState(false);
 
 	const subMenuUpdatedHandler = (menuList: NavLinkData[]) => {
-		// console.log({ menuList });
+		// // console.log({ menuList });
 		setShowMore(menuList.length > 0);
 	};
 

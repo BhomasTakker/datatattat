@@ -12,15 +12,7 @@ interface TitleListItemProps {
 // if you could get variant in here
 // then you could specify slim, description on hover, etc
 export const TitleListItem = ({ title, src, guid }: TitleListItemProps) => {
-	// hack for BING article
-	// need update BING
-	// or update sky / general RSS
-	console.log("FEATURE:754", "TITLE:LIST:ITEM", { title }, { src });
-
-	// how to set this / href
-	const onClickHandler = () => {
-		console.log(`GO TO ${src}`);
-	};
+	const onClickHandler = () => {};
 
 	return (
 		<ListItem sx={{ margin: 0, padding: 0 }}>

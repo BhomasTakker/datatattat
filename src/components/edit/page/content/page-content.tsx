@@ -7,8 +7,6 @@ import { PagePreviewModal } from "../preview/page-preview";
 export const PageContent = () => {
 	const { pageContainerId } = useContext(PageStateContext);
 
-	console.log("ISSUE:12345", "PAGE:CONTENT", { pageContainerId });
-
 	return (
 		<>
 			<PagePreviewModal />

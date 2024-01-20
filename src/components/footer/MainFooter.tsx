@@ -35,7 +35,7 @@ const Copyright = () => {
 //remove dynamic footer stuff?
 //For now we should
 export const MainFooter = ({ footerData }: any) => {
-	// console.log({ footerData });
+	// // console.log({ footerData });
 	return (
 		<footer>
 			<Box className={footer} bgcolor={"primary.main"}>

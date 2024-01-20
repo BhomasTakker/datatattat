@@ -1,0 +1,22 @@
+.scale-line {
+	/* Pretty much the default css for scale-line - but how do I assign to ol scale line - selectors */
+	/* Okay so we can then add default styles to users when updating */
+	/* update style - true - show defaults - allow edit or removal - addition - etc */
+	background: rgba(255, 255, 255, 0.6);
+	border-radius: 4px;
+	bottom: 8px;
+	left: 8px;
+	padding: 2px;
+	position: absolute;
+}
+
+.scale-line > div {
+	border: 1px solid #666666;
+	border-top: none;
+	color: #333333;
+	font-size: 10px;
+	text-align: center;
+	margin: 1px;
+	will-change: contents, width;
+	transition: all 0.25s;
+}

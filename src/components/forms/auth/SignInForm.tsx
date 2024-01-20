@@ -49,7 +49,7 @@ export const SignInForm = () => {
 			const response = await fetch(`/api/user/get-user?email=${email}`);
 			const user = await response.json();
 			const { username } = user;
-			// console.log({ user });
+			// // console.log({ user });
 			//create a redirect call in a router lib?
 			router
 				.replace(`/users/${username}`)

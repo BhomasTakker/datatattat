@@ -2,8 +2,8 @@ import { PageContextProvider } from "./context/page.context";
 import { PageForm } from "./page-form";
 
 // rename ...
+// entirely useless - empty structure
 export const PageFormContainer = () => {
-	console.log("ISSUE:12345", "PAGE:FORM:CONTAINER");
 	return (
 		<PageContextProvider>
 			<PageForm />

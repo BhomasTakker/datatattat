@@ -25,9 +25,7 @@ export const SimpleArticle = (collectionItem: CollectionItem) => {
 
 	// We want to do different things on click and/or hover
 
-	const onClickHandler = () => {
-		console.log(`GO TO ${src}`);
-	};
+	const onClickHandler = () => {};
 
 	return (
 		<ListItemContextProvider value={{ item: collectionItem }}>
@@ -49,10 +47,6 @@ export const SimpleArticle = (collectionItem: CollectionItem) => {
 						disableTypography
 						primary={<Title text={title} variant={TitleVariant.ARTICLE} />}
 						secondary={
-							// noWrap / need to ...
-							// this alone just makes things a stupid length
-							// <Fragment>
-
 							<Typography
 								sx={{
 									maxWidth: "100%",
@@ -71,7 +65,6 @@ export const SimpleArticle = (collectionItem: CollectionItem) => {
 							>
 								{stripHTML(description)}
 							</Typography>
-							// </Fragment>
 						}
 					/>
 				</ListItemButton>

@@ -23,9 +23,9 @@ function checkIsRtl(code: LanguageType): boolean {
 	//es2017 syntax
 	// if(Object.values(RtlType).includes(code)){}
 	const truthy = rightToLeftLanguages.includes(code);
-	// console.log({ truthy });
-	// console.log({ code });
-	// console.log({ rightToLeftLanguages });
+	// // console.log({ truthy });
+	// // console.log({ code });
+	// // console.log({ rightToLeftLanguages });
 	return truthy;
 }
 

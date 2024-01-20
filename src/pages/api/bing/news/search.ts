@@ -57,7 +57,7 @@ async function search(req: NextApiRequest, res: NextApiResponse) {
 		options,
 		getResult: fetchAPI,
 	});
-	// console.log({ BING: result });
+	// // console.log({ BING: result });
 
 	res.status(200).json(result);
 }

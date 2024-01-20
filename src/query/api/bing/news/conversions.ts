@@ -9,7 +9,7 @@ import { CollectionItem } from "@/src/types/data-structures/collection/item/item
 const toCollection = (props: any) => {
 	return map((data: BingNewsSearchResponse): Collection => {
 		const { id, totalEstimatedMatches, value } = data;
-		console.log("TO COLLECTION ", { props });
+		// console.log("TO COLLECTION ", { props });
 		// pagination: {}
 		return {
 			title: id,
@@ -62,7 +62,7 @@ const toCollectionItem = (props: any) => {
 // probably don't wrap in map here but ...
 export const toArticleList = (props: any) =>
 	map((data: BingNewsSearchResponse) => {
-		console.log("TO ARTICLE LIST");
+		// console.log("TO ARTICLE LIST");
 		return {
 			items: data.value,
 		};
@@ -70,7 +70,7 @@ export const toArticleList = (props: any) =>
 
 const toArticle = (props: any) =>
 	map((data: BingNewsArticle) => {
-		console.log("TO ARTICLE");
+		// console.log("TO ARTICLE");
 		return {
 			title: data.headline || data.name,
 			description: data.description,

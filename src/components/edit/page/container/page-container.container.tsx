@@ -12,7 +12,7 @@ export const PageContainerContainer = ({ objectKey, config }: Props) => {
 		objectKey,
 		config,
 	};
-	console.log("ISSUE:12345", "PAGE:CONTAINER:CONTAINER");
+
 	return (
 		<PageContainerContextProvider value={contextObject}>
 			<PageContainer />

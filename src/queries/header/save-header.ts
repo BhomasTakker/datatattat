@@ -15,9 +15,9 @@ export async function saveHeader(headerData: any) {
 				"Content-Type": "application/json",
 			},
 		});
-		// console.log("post header ", { headerData });
+		// // console.log("post header ", { headerData });
 	} catch (error) {
-		console.log({ error });
+		// console.log({ error });
 		return error;
 	}
 	//Error breaks
@@ -25,9 +25,9 @@ export async function saveHeader(headerData: any) {
 	const data = await response.json();
 
 	if (!response.ok) {
-		console.log("post header - not ok");
+		// console.log("post header - not ok");
 		throw new Error(data.message || ERRORS.createUser);
 	}
-	// console.log("post header return data ", { data });
+	// // console.log("post header return data ", { data });
 	return data;
 }

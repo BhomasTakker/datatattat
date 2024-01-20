@@ -17,9 +17,5 @@ export const WithComponentFactory = () => {
 		return <></>;
 	}
 
-	console.log("FEATURE:215", "WITH:COMPONENT:FACTORY", {
-		withComponentType,
-	});
-
 	return <Component objectKey={withFormId} />;
 };

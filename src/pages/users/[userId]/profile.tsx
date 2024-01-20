@@ -23,7 +23,7 @@ function UserProfile({ user }: any) {
 	const { data: session, status } = useSession();
 	// const {user, isLoading} = useUser();
 
-	// console.log({ session });
+	// // console.log({ session });
 
 	if (!user) {
 		return <div>Loading...</div>;
@@ -94,7 +94,7 @@ export async function getStaticProps({
 	const user = await User.findOne({ username: userId }).lean();
 	const headerData = await getMainHeader();
 
-	console.log({ headerData });
+	// console.log({ headerData });
 
 	//We need to trim this data / surely?
 

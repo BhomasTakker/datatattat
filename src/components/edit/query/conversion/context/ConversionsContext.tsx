@@ -117,10 +117,6 @@ export const ConversionsContextProvider = ({
 	const addConversion = useCallback(
 		(conversionData: Conversion) => {
 			const conversions = getValues(conversionsFormId) || [];
-			console.log("Add Conversion");
-
-			// const len = conversions?.length ?? 0;
-			// setValue(`${conversionsFormId}.${len}`, conversionData);
 
 			const updateConversions = cloneDeep(conversions);
 			updateConversions.push(conversionData);
@@ -151,7 +147,7 @@ export const ConversionsContextProvider = ({
 		// by setting default value of watch we will always get an array
 		// remove !conversions ||
 		if (conversions.length === 0) {
-			// console.log({ DEFAULT: defaultConversions });
+			// // console.log({ DEFAULT: defaultConversions });
 			addConversions(defaultConversions);
 		}
 	}, [addConversions, conversionsFormId, defaultConversions, getValues]);
@@ -160,7 +156,7 @@ export const ConversionsContextProvider = ({
 	const updateConversion = useCallback(
 		(i: number, conversionData: Conversion) => {
 			const conversions = getValues(conversionsFormId) || [];
-			console.log("Update Conversion", { conversionData }, { i });
+			// console.log("Update Conversion", { conversionData }, { i });
 
 			// update conversions array
 			const updateConversions = cloneDeep(conversions);
@@ -170,7 +166,7 @@ export const ConversionsContextProvider = ({
 
 			// Nothing happens here?
 
-			console.log({ updateConversions });
+			// console.log({ updateConversions });
 		},
 		[conversionsFormId, getValues]
 	);
@@ -194,7 +190,7 @@ export const ConversionsContextProvider = ({
 	const moveConversion = useCallback(
 		(dir: number, i: number, callback: () => void = () => {}) => {
 			const conversions = getValues(conversionsFormId) || [];
-			console.log("Move Conversion");
+			// console.log("Move Conversion");
 			if (conversions.length === 0) {
 				return;
 			}
@@ -215,13 +211,13 @@ export const ConversionsContextProvider = ({
 	);
 
 	const getFormValues = useCallback(() => {
-		console.log("GET VALUES");
+		// console.log("GET VALUES");
 	}, []);
 
 	const setFormValue = useCallback(
 		(id: string, value: any) => {
 			// Temp - just use update conversion
-			console.log("SET VALUE", { id }, { value });
+			// console.log("SET VALUE", { id }, { value });
 			setValue(id, value);
 		},
 		[setValue]

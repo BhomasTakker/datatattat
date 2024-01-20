@@ -27,8 +27,6 @@ const WithInfo = ({
 	const [infoDisplay, setInfoDisplay] = useState(info);
 	const [isOpen, setIsOpen] = useState(false);
 
-	// console.log("WILD RE-RENDER");
-
 	useEffect(() => {
 		//perhaps manage better / bur seems to work well
 		//We need a loading spinner and a timeout
@@ -41,9 +39,6 @@ const WithInfo = ({
 			if (!infoId || !isOpen) return;
 			const result = await fetch(`api/info/get/${infoId}`);
 			const response = await result.json();
-
-			//error check
-			// console.log({ response });
 
 			setInfoDisplay(
 				response?.description ||

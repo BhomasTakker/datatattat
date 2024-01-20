@@ -28,10 +28,10 @@ export const authOptions: NextAuthOptions = {
 				//okay - how are we going to remember to do this..
 				//feels like we shouldn't have to do this? .
 				await mongooseConnect();
-				// console.log("authorize");
-				// console.log({ email: credentials!.email });
+				// // console.log("authorize");
+				// // console.log({ email: credentials!.email });
 				const user = await Auth.findOne({ email: credentials!.email });
-				// console.log({ user });
+				// // console.log({ user });
 				if (!user) {
 					//would actually go with something like throw createError(error.id)
 					throw new Error(ERRORS.noUser);

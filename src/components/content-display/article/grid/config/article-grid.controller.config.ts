@@ -58,7 +58,6 @@ export const getArticleGridConfig = (
 	variant: ArticleGridControllerVariant,
 	viewport: ViewportSize
 ) => {
-	// console.log("hello", { variant, viewport });
 	return (
 		configMap.get(`${variant}-${viewport}`) || articleGridDisplayExtraLarge
 	);

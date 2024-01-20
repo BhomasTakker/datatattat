@@ -14,29 +14,29 @@ async function oembedQuery(req: NextApiRequest, res: NextApiResponse) {
 		return;
 	}
 
-	console.log("OEMBED 1");
+	// console.log("OEMBED 1");
 
 	const { query } = req;
 	const { oembedId = "", endpoint = "" } = query;
 	const quearyData = { ...query };
 	delete quearyData.oembedId;
 
-	console.log("OEMBED 2");
+	// console.log("OEMBED 2");
 
 	const getConfigObject = OEMBED_MAP.get(oembedId.toString()) as (
 		data: typeof quearyData
 	) => API_REQUEST_TYPE;
 
-	console.log({ oembedId });
-	console.log({ quearyData });
-	console.log("OEMBED 3");
+	// console.log({ oembedId });
+	// console.log({ quearyData });
+	// console.log("OEMBED 3");
 
 	const oembedConfig = getConfigObject(quearyData);
 
 	if (!oembedConfig) {
 		return res.status(404).json("Bad request");
 	}
-	console.log("OEMBED 4");
+	// console.log("OEMBED 4");
 	const { url: configUrl, headers, returns, data: queryParams } = oembedConfig;
 
 	// use key with hash in browser
@@ -53,10 +53,10 @@ async function oembedQuery(req: NextApiRequest, res: NextApiResponse) {
 		// consent: 1, //try 0
 		maxheight: 600,
 	};
-	// console.log("API_KEY!!! ", { api_key: iframelyParams.api_key });
+	// // console.log("API_KEY!!! ", { api_key: iframelyParams.api_key });
 	const iframelyReadyParams = { ...queryParams, ...iframelyParams };
 
-	console.log("OEMBED 5");
+	// console.log("OEMBED 5");
 
 	const oembedUrl = new URL("https://cdn.iframe.ly/api/iframely");
 	// const oembedUrl = new URL(configUrl);
@@ -67,7 +67,7 @@ async function oembedQuery(req: NextApiRequest, res: NextApiResponse) {
 	// for (let param in queryParams) {
 	// 	oembedUrl.searchParams.set(param, queryParams[param] as string);
 	// }
-	// console.log({ oembedUrl: oembedUrl.toString() });
+	// // console.log({ oembedUrl: oembedUrl.toString() });
 
 	//On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// const result = await redisApiFetch(oembedUrl, { ...headers });
@@ -76,8 +76,8 @@ async function oembedQuery(req: NextApiRequest, res: NextApiResponse) {
 		options: { ...headers },
 		getResult: fetchAPI,
 	});
-	console.log({ oembedUrl });
-	console.log({ result });
+	// console.log({ oembedUrl });
+	// console.log({ result });
 
 	res.status(200).json(result);
 }

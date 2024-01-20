@@ -22,13 +22,13 @@ export const useUser = (): useUserReturn => {
 	//We just need to get user
 	useEffect(() => {
 		const fetchUser = async () => {
-			// console.log(session!.user);
+			// // console.log(session!.user);
 			setUserLoading(true);
 
 			//if error
 			const response = await fetch(`/api/user/get-user?email=${email}`);
 			const fetchedUser = await response.json();
-			// console.log({ setUser: user });
+			// // console.log({ setUser: user });
 			//We should join these states
 			setUser(fetchedUser);
 			setUserLoading(false);

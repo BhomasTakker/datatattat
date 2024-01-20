@@ -5,6 +5,7 @@ import { SimpleArticleList } from "@/src/components/content-display/article/list
 import { ArticleDisplayStack } from "@/src/components/content-display/article/stacks/article-display-stack.wrapper";
 import { ArticleStack } from "@/src/components/content-display/article/stacks/article-stack";
 import { SimpleStack } from "@/src/components/content-display/article/stacks/simple-stack";
+import { OLMapController } from "@/src/components/content-display/geo/open-layers/controllers/ol-map.controller";
 import { DataTable } from "@/src/components/content-display/tabular/tanstack-table/controllers/data-table.controller";
 
 // 100% change to ArticleList
@@ -14,6 +15,8 @@ export const COMPONENTS_MAP = new Map<string, any>([
 	["ArticleGrid", ArticleGridController],
 
 	["DataTable", DataTable],
+
+	["OpenLayersMap", OLMapController],
 
 	// ["ArticleList", ArticleList],
 	// ["ArticleStack", ArticleStack],

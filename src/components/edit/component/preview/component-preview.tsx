@@ -16,8 +16,6 @@ export const ComponentPreviewModal = () => {
 
 	const component = getValues(objectKey);
 
-	console.log("FEATURE:1425", { component });
-
 	return (
 		<Modal
 			open={isVisible}

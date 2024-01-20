@@ -53,16 +53,6 @@ export const NumberInput = ({
 	min = undefined,
 	max = undefined,
 }: InputProps & NumberInputProps) => {
-	console.log(
-		"FEATURE:115",
-		"EDIT:PROPS",
-		"TEXT:INPUT",
-		{ info },
-		{ id },
-		{ label },
-		{ min },
-		{ max }
-	);
 	return (
 		<WithInfo infoId={info}>
 			<WithLabel label={label} htmlFor={id}>
@@ -79,10 +69,12 @@ export const NumberInput = ({
 					error={error}
 					helperText={helperText}
 					disabled={disabled}
+					// step="any"
 					// defaultValue="Small"
 					size="small"
 					className={classes.textfield}
-					InputProps={{ inputProps: { min: min, max: max } }}
+					// use step any for decimals? read up and make available
+					InputProps={{ inputProps: { min: min, max: max, step: "any" } }}
 				></TextField>
 			</WithLabel>
 		</WithInfo>

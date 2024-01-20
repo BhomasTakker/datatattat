@@ -17,6 +17,7 @@ export const PageDisplayStack = ({ data }: { data: any }) => {
 	// Stack of row Stacks makes sense
 	return (
 		<Stack direction={"column"} width={"100%"}>
+			{/* Should pass type? i.e. display? */}
 			{createComponents(components)}
 		</Stack>
 	);

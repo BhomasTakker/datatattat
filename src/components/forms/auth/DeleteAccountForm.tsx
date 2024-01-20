@@ -37,7 +37,7 @@ export const DeleteAccountForm = () => {
 	const dispatch = useAppDispatch();
 
 	async function submitHandler(data: any) {
-		// console.log("delete account and sign out");
+		// // console.log("delete account and sign out");
 		const result = await deleteUser(data.email, data.password);
 		if (result.error) {
 			//We could just call a disapatchNotification(Notification.changePasswordError) which is way better

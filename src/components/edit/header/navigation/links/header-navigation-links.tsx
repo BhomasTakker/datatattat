@@ -19,10 +19,6 @@ export const HeaderNavigationLinks = () => {
 			// this nav is a const somewhere
 			const name = `${navigationId}.${index}`;
 
-			console.log("ERROR:223", "HEADER:NAVIGATION:LINKS", "RENDER:LINKS", {
-				navigationId,
-			});
-
 			return (
 				<HeaderNavigationLinkInput
 					key={name}

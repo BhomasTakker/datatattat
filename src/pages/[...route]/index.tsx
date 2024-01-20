@@ -50,11 +50,11 @@ export async function getStaticProps({
 
 	const pageRoute = `/${route.join("/")}`;
 
-	console.log({ route });
+	// console.log({ route });
 
 	const page = await Page.findOne({ route: pageRoute }).lean();
 
-	console.log({ page });
+	// console.log({ page });
 
 	if (!page) {
 		return {
@@ -66,7 +66,7 @@ export async function getStaticProps({
 
 	const headerAndSubHeader = await getHeaders(pageRoute);
 
-	console.log("We are here");
+	// console.log("We are here");
 
 	return {
 		props: {

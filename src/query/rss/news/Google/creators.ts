@@ -32,9 +32,9 @@ const GOOGLE_RSS_NEWS_CUSTOM_TOPIC_CREATOR = (queryParams: any) => {
 	const { custom_topic } = queryParams;
 	delete queryParams.custom_topic;
 
-	console.log("OMG:HERE:TOPIC", {
-		url: `${BASE_URL}${CUSTOM_TOPIC_URI}${custom_topic}`,
-	});
+	// console.log("OMG:HERE:TOPIC", {
+	// url: `${BASE_URL}${CUSTOM_TOPIC_URI}${custom_topic}`,
+	// });
 	return {
 		url: `${BASE_URL}${CUSTOM_TOPIC_URI}${custom_topic}`,
 		headers: {},
@@ -47,10 +47,10 @@ const GOOGLE_RSS_NEWS_CUSTOM_TOPIC_CREATOR = (queryParams: any) => {
 const GOOGLE_RSS_NEWS_CUSTOM_LOCATION_CREATOR = (queryParams: any) => {
 	const { location } = queryParams;
 	delete queryParams.location;
-	console.log("OMG:HERE:LOCATION", {
-		url: `${BASE_URL}${LOCATION_URI}${location}`,
-	});
-	console.log("OMG:HERE:SEARCH", { queryParams });
+	// console.log("OMG:HERE:LOCATION", {
+	// 	url: `${BASE_URL}${LOCATION_URI}${location}`,
+	// });
+	// console.log("OMG:HERE:SEARCH", { queryParams });
 
 	return {
 		url: `${BASE_URL}${LOCATION_URI}${location}`,
@@ -61,8 +61,8 @@ const GOOGLE_RSS_NEWS_CUSTOM_LOCATION_CREATOR = (queryParams: any) => {
 };
 // https://news.google.com/rss/search?q={query}
 const GOOGLE_RSS_NEWS_CUSTOM_SEARCH_CREATOR = (queryParams: any) => {
-	console.log("OMG:HERE:SEARCH", { url: `${BASE_URL}${SEARCH_URI}` });
-	console.log("OMG:HERE:SEARCH", { queryParams });
+	// console.log("OMG:HERE:SEARCH", { url: `${BASE_URL}${SEARCH_URI}` });
+	// console.log("OMG:HERE:SEARCH", { queryParams });
 	return {
 		url: `${BASE_URL}${SEARCH_URI}`,
 		headers: {},

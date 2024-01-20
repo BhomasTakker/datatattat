@@ -29,6 +29,5 @@ export const createWithEditComponent = (
 		);
 	}
 
-	// console.log({ WITH_COMPONENT: objectKey });
 	return <EditComponent objectKey={objectKey} />;
 };

@@ -20,12 +20,12 @@ export default async function getPage(
 		routeId = `/${route?.join("/")}`;
 	}
 
-	console.log({ route });
-	console.log({ routeId });
+	// console.log({ route });
+	// console.log({ routeId });
 	//try catch
 	const page = routeId ? await Page.findOne({ route: routeId }).lean() : null;
 
-	console.log({ page });
+	// console.log({ page });
 	const pageData = {
 		page: page,
 		msg: page ? "ok" : "Page not found",
