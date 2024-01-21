@@ -35,6 +35,7 @@ async function oembedQuery(req: NextApiRequest, res: NextApiResponse) {
 	const { query } = req;
 	const { queryId = "", conversion = "{}", conversions = "[]" } = query;
 
+	// Why would we have conversions for oembeds?
 	const parsedConversions = JSON.parse(conversions as string);
 
 	if (!queryId) {

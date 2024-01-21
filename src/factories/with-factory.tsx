@@ -7,6 +7,7 @@ import { EDIT_WITH } from "./with";
 
 const API_PATH = "api/query/get";
 const RSS_PATH = "api/query/rss/get";
+const XLSX_PATH = "api/query/xlsx/get";
 const OEMBED_PATH = "api/query/oembed/get";
 const METADATA_API_PATH = "api/query/html/meta/get";
 
@@ -80,15 +81,23 @@ export const withFactory = (componentObject: any, withObject: any) => {
 				createQueryObject(withObject.query, API_PATH)
 			);
 
+		// get rid
 		case "iframely-oembed-query":
 			return withQuery(
 				componentObject,
 				createQueryObject(withObject.query, OEMBED_PATH)
 			);
+		// go over - we can load an article with just this
+		// meta to article conversion
 		case "html-meta-query":
 			return withQuery(
 				componentObject,
 				createQueryObject(withObject.query, METADATA_API_PATH)
+			);
+		case "xlsx-query":
+			return withQuery(
+				componentObject,
+				createQueryObject(withObject.query, XLSX_PATH)
 			);
 
 		default:
