@@ -5,6 +5,7 @@ import { SimpleArticleList } from "@/src/components/content-display/article/list
 import { ArticleDisplayStack } from "@/src/components/content-display/article/stacks/article-display-stack.wrapper";
 import { ArticleStack } from "@/src/components/content-display/article/stacks/article-stack";
 import { SimpleStack } from "@/src/components/content-display/article/stacks/simple-stack";
+import { Dummy } from "@/src/components/content-display/dummy/dummy";
 import { OLMapController } from "@/src/components/content-display/geo/open-layers/controllers/ol-map.controller";
 import { DataTable } from "@/src/components/content-display/tabular/tanstack-table/controllers/data-table.controller";
 
@@ -27,4 +28,7 @@ export const COMPONENTS_MAP = new Map<string, any>([
 	// rem below
 
 	["SimpleList", ArticleList],
+
+	// DEV
+	["Dummy", Dummy],
 ]);

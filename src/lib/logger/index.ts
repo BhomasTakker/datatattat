@@ -65,7 +65,7 @@ export const log = (
 	// gives you renders etc
 	// need strip from code
 
-	return console.log(code, context, message, optionalParams);
+	return console.log(code, context, message, ...optionalParams);
 };
 
 export const little_log = (msg: Message, ...optionalParams: OptionalParams) => {

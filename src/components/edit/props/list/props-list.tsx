@@ -11,6 +11,10 @@ export const PropsList = () => {
 	const { props, propsId } = useContext(PageComponentPropsContext);
 	// Sort props type out
 
+	if (!props) {
+		return <></>;
+	}
+
 	return (
 		<Stack marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}>
 			{props.map((prop) => {
