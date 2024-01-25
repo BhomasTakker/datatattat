@@ -29,6 +29,11 @@ const responseConversion: ConversionObject = {
 // 	},
 // };
 
+// We can and should probably convert to a geojson object
+// then pass that in instead of features?
+// Or at least allow both
+// Could group results by vicinity to a point - i.e. 42 violent-crimes on this block in past 6 months
+// Feel like the direct above is more if and when we can keep and query data
 const dataConversion = {
 	conversionId: "DATA:POLICE:UK",
 	response: responseConversion,
