@@ -1,6 +1,6 @@
 import { log } from "@/src/lib/logger";
 import { SVGChartWrapper } from "../../ui/svg-chart";
-import { extent, format, scaleLinear, scaleTime, timeFormat } from "d3";
+import { extent, scaleLinear, scaleTime, timeFormat } from "d3";
 import { TimeAxis } from "../../axis/time-axis";
 import { LinearAxisLeft } from "../../axis/linear-axis-left";
 import { Text } from "../../text/text";
@@ -16,19 +16,32 @@ type Data = {
 	keys: string[];
 };
 
-export type D3LineChart = { data: Data };
+export type D3LineChart = {
+	data: Data;
+	xAxisValue: string;
+	yAxisValue: string;
+	xAxisLabel?: string;
+	yAxisLabel?: string;
+};
 
-export const D3LineChart = ({ data }: D3LineChart) => {
+export const D3LineChart = ({
+	data,
+	xAxisValue,
+	yAxisValue,
+	xAxisLabel = "",
+	yAxisLabel = "",
+}: D3LineChart) => {
 	const width = 900;
 	const height = 600;
 	const margin = { top: 20, right: 30, bottom: 50, left: 100 };
 	const innerHeight = height - margin.top - margin.bottom;
 	const innerWidth = width - margin.left - margin.right;
-	const xAxis = "timestamp";
-	const yAxis = "temperature";
 
-	const xAxisLabel = "Day";
-	const yAxisLabel = "Temparature";
+	// const xAxisValue = "timestamp";
+	// const yAxisValue = "temperature";
+
+	// const xAxisLabel = "Day";
+	// const yAxisLabel = "Temparature";
 
 	// We will need parse for values surely
 	// parse as number, string, date?
@@ -36,11 +49,17 @@ export const D3LineChart = ({ data }: D3LineChart) => {
 
 	// how do we specify
 	// number, text, date, etc?
-	const xScaleValue = (d: UnknownObject) => new Date(d[xAxis] as string);
-	const yScaleValue = (d: UnknownObject) => d[yAxis] as number;
+	const xScaleValue = (d: UnknownObject) => new Date(d[xAxisValue] as string);
+	const yScaleValue = (d: UnknownObject) => d[yAxisValue] as number;
 
 	// okay this is good / returns just the day
+	// but how to make nicely dynamic....
 	const xAxisTickFormat = timeFormat("%a");
+
+	const xAxis = {
+		type: "Time",
+		format: "%a",
+	};
 
 	const { results } = data;
 
@@ -65,16 +84,19 @@ export const D3LineChart = ({ data }: D3LineChart) => {
 			height={height}
 			margin={margin}
 		>
+			{/* Bottom Axis Object - this could be variable */}
 			<TimeAxis
 				scale={xScale}
 				innerHeight={innerHeight}
 				formatter={xAxisTickFormat}
 			/>
 			{/* <AxisBottom xScale={xScale} innerHeight={innerHeight} /> */}
+			{/* Left Axis Object */}
 			<LinearAxisLeft
 				innerWidth={innerWidth}
 				yScale={yScale}
 				textProps={{
+					// pass class?
 					x: -10,
 					dy: ".3rem",
 					// For Bars
@@ -87,24 +109,24 @@ export const D3LineChart = ({ data }: D3LineChart) => {
 				variant="label"
 				x={innerWidth / 2}
 				textAnchor="middle"
+				// need set offset somehow
 				y={innerHeight + 45}
 			/>
 			<Text
 				text={yAxisLabel}
 				variant="label"
-				// x={0 + -50}
 				textAnchor="middle"
-				// y={innerHeight / 2}
+				// We need to control this
 				transform={`translate(${-50}, ${innerHeight / 2}) rotate(-90) `}
 			/>
 			<Line
 				data={results}
 				xScale={xScale}
 				xScaleValue={xScaleValue}
-				xAxisKey={xAxis}
+				xAxisKey={xAxisValue}
 				yScale={yScale}
 				yScaleValue={yScaleValue}
-				yAxisKey={yAxis}
+				yAxisKey={yAxisValue}
 				circleRadius={3}
 			/>
 			{/* show points? */}
@@ -112,10 +134,11 @@ export const D3LineChart = ({ data }: D3LineChart) => {
 				data={results}
 				xScale={xScale}
 				xScaleValue={xScaleValue}
-				xAxisKey={xAxis}
+				xAxisKey={xAxisValue}
 				yScale={yScale}
 				yScaleValue={yScaleValue}
-				yAxisKey={yAxis}
+				yAxisKey={yAxisValue}
+				// could be css
 				circleRadius={3}
 				// circleProps={circleProps}
 			/>

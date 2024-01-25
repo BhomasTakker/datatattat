@@ -19,25 +19,42 @@ type Data = {
 // BarChart comes in with a controler / interface component
 type D3BarChart = {
 	data: Data;
+	xAxisValue: string;
+	yAxisValue: string;
+	xAxisLabel?: string;
+	yAxisLabel?: string;
 };
 
 // The structure of data needs to be consistent
 //
-export const D3BarChart = ({ data }: D3BarChart) => {
+export const D3BarChart = ({
+	data,
+	xAxisValue,
+	yAxisValue,
+	xAxisLabel = "",
+	yAxisLabel = "",
+}: D3BarChart) => {
 	log({ code: "0010:CSV:DATA", context: "Component data" }, { data });
-
+	log(
+		{ code: "0010:CSV:DATA", context: "BAR:CHART" },
+		{ data, xAxisValue, yAxisValue, xAxisLabel, yAxisLabel }
+	);
 	// pass in
 	const width = 900;
 	const height = 600;
 	const margin = { top: 20, right: 30, bottom: 50, left: 220 };
 	const innerHeight = height - margin.top - margin.bottom;
 	const innerWidth = width - margin.left - margin.right;
-	const yAxis = "Country";
-	const xAxis = "2020_1";
-	const axisLabel = "Deaths per 100,000";
 
-	const xScaleValue = (d: UnknownObject) => d[xAxis] as number;
-	const yScaleValue = (d: UnknownObject) => d[yAxis] as string;
+	// edit data
+	// const yAxis = "Country";
+	// const xAxis = "2020_1";
+	// const xAxisLabel = "Deaths per 100,000";
+	// const yAxisLabel = "";
+	// we need citation / attributions
+
+	const xScaleValue = (d: UnknownObject) => d[xAxisValue] as number;
+	const yScaleValue = (d: UnknownObject) => d[yAxisValue] as string;
 
 	//
 	type Direction = "vertical" | "horizontal"; // would you leftToRight/rightToLeft, etc?
@@ -84,7 +101,7 @@ export const D3BarChart = ({ data }: D3BarChart) => {
 	// We should be filtering on the server - this is where conversions start being properly required?
 	////////////////////////////////////////////////////////////////////////////////
 	const filteredResults = results.filter((res) =>
-		countries.includes(res[yAxis] as string)
+		countries.includes(res[yAxisValue] as string)
 	);
 	/////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////
@@ -124,21 +141,29 @@ export const D3BarChart = ({ data }: D3BarChart) => {
 				}}
 			/>
 			<Text
-				text={axisLabel}
+				text={xAxisLabel}
 				variant="label"
 				className={styles.axisLabel}
 				x={innerWidth / 2}
 				textAnchor="middle"
 				y={innerHeight + 45}
 			/>
+			<Text
+				text={yAxisLabel}
+				// chart label
+				className={styles.axisLabel}
+				variant="label"
+				textAnchor="middle"
+				transform={`translate(${-50}, ${innerHeight / 2}) rotate(-90) `}
+			/>
 			<Bars
 				data={results}
 				xScale={xScale}
 				xScaleValue={xScaleValue}
-				xAxisKey={xAxis}
+				xAxisKey={xAxisValue}
 				yScale={yScale}
 				yScaleValue={yScaleValue}
-				yAxisKey={yAxis}
+				yAxisKey={yAxisValue}
 				xStart={0}
 				yStart={0}
 			/>
