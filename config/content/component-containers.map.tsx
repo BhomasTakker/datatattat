@@ -8,6 +8,7 @@ import { SimpleStack } from "@/src/components/content-display/article/stacks/sim
 import { D3BarChart } from "@/src/components/content-display/data-visualization/d3/charts/interfaces/bar/bar-chart.interface";
 import { D3LineChart } from "@/src/components/content-display/data-visualization/d3/charts/interfaces/line/line-chart.interface";
 import { D3ScatterChart } from "@/src/components/content-display/data-visualization/d3/charts/interfaces/scatter/scatter-chart.interface";
+import { D3Map } from "@/src/components/content-display/data-visualization/d3/maps/map.interface";
 import { Dummy } from "@/src/components/content-display/dummy/dummy";
 import { OLMapController } from "@/src/components/content-display/geo/open-layers/controllers/ol-map.controller";
 import { DataTable } from "@/src/components/content-display/tabular/tanstack-table/controllers/data-table.controller";
@@ -39,4 +40,5 @@ export const COMPONENTS_MAP = new Map<string, any>([
 	["BarChart", D3BarChart],
 	["ScatterChart", D3ScatterChart],
 	["LineChart", D3LineChart],
+	["MapChart", D3Map],
 ]);

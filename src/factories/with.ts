@@ -3,6 +3,7 @@ import { RSS_CONFIG_LIST } from "../query/rss";
 import { API_CONFIG_LIST } from "../query/api";
 import { IFRAMELY_OEMBED_CONFIG_LIST } from "../query/oembed";
 import { XLSX_CONFIG_LIST } from "../query/xlsx";
+import { FILE_CONFIG_LIST } from "../query/file";
 
 export const EDIT_WITH: any = {
 	//these in a config etc
@@ -36,6 +37,15 @@ export const EDIT_WITH: any = {
 		providerLabel: "Select Resource",
 		providerInfo: "What-is-this?",
 		configList: XLSX_CONFIG_LIST,
+	}),
+
+	["file-query"]: QuerySelector({
+		title: "File Query",
+		titleInfo: "FileTitleInfo",
+		// We would just need to pass in a url
+		providerLabel: "Select Resource",
+		providerInfo: "What-is-this?",
+		configList: FILE_CONFIG_LIST,
 	}),
 	//////////////////////////////////////////////
 	// This would be different / look into this
