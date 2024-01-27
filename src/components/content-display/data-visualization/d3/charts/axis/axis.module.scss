@@ -9,3 +9,19 @@
 	fill: $textMain;
 	font-family: Poppins;
 }
+
+.label {
+	// text-anchor: middle;
+}
+
+.line {
+	stroke: red;
+}
+
+.axis-x {
+	text-anchor: middle;
+}
+
+.axis-y {
+	text-anchor: end;
+}

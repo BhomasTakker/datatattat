@@ -6,12 +6,20 @@
 .label {
 	fill: $textMain;
 	font-size: 1.5em;
+	text-transform: capitalize;
 }
 
 .tick {
 	fill: $textLight;
 	font-size: 1em;
+	cursor: default;
 }
 
 .title {
+}
+
+.legend {
+	fill: $textLight;
+	font-size: 2.5em;
+	text-transform: capitalize;
 }

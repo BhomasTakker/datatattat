@@ -1,12 +1,16 @@
 import { log } from "@/src/lib/logger";
 import { max, scaleBand, scaleLinear } from "d3";
-import { AxisBottom } from "../../axis/axis-bottom";
-import { AxisLeft } from "../../axis/axis-left";
+import { AxisBottom } from "../../axis/___axis-bottom";
+import { AxisLeft } from "../../axis/__axis-left";
 import { Bars } from "../../marks/bars";
 import styles from "./bar-chart.module.scss";
 import { Text } from "../../text/text";
 import { SVGChartWrapper } from "../../ui/svg-chart";
 import { UnknownObject } from "../../../types";
+import { ChartWrapper } from "../../ui/chart";
+import { D3Axis } from "../../axis/axis";
+import { createLinearScale } from "../../scale/linear-scale";
+import { createBandScale } from "../../scale/band-scale";
 // type Data = { [key: string]: unknown }[];
 type Data = {
 	results: { [key: string]: unknown }[];
@@ -107,66 +111,97 @@ export const D3BarChart = ({
 	/////////////////////////////////////////////////////////////////////////////////
 
 	// variable horiz, vert
-	const yScale = scaleBand()
-		.domain(filteredResults.map(yScaleValue))
-		.range([0, innerHeight])
-		.paddingInner(0.15);
+	// const yScale = scaleBand()
+	// 	.domain(filteredResults.map(yScaleValue))
+	// 	.range([0, innerHeight])
+	// 	.paddingInner(0.15);
 
-	const xScale = scaleLinear()
-		// @ts-ignore
-		.domain([0, max(filteredResults, xScaleValue)])
-		.range([0, innerWidth]);
+	const yScale = createBandScale({
+		data: filteredResults,
+		scale: yScaleValue,
+		rangeFrom: 0,
+		rangeTo: innerHeight,
+		padding: 0.15,
+	});
+
+	const xScale = createLinearScale({
+		data: filteredResults,
+		scale: xScaleValue,
+		rangeFrom: 0,
+		rangeTo: innerWidth,
+	});
+	// scaleLinear()
+	// 	// @ts-ignore
+	// 	.domain([0, max(filteredResults, xScaleValue)])
+	// 	.range([0, innerWidth]);
 
 	log(
 		{ code: "0010:CSV:DATA", context: "XSCALE:TICKS" },
 		{ ticks: xScale.ticks() }
 	);
 
+	const xAxisTranslateHnd = (val: number) => {
+		return `translate(${xScale(val)}, 0)`;
+	};
+
+	const yAxisTranslateHnd = (val: number) => {
+		return `translate(0, ${yScale(val)})`;
+	};
+
+	const axisLabelFormatHnd = (val: number) => val.toString();
+
 	return (
-		<SVGChartWrapper
-			title="This is a Bar Chart"
-			width={width}
-			height={height}
-			margin={margin}
-		>
-			<AxisBottom xScale={xScale} innerHeight={innerHeight} />
-			<AxisLeft
-				yScale={yScale}
-				textProps={{
-					x: -10,
-					dy: ".3rem",
-					// For Bars
-					y: yScale.bandwidth() / 2,
-					style: { textAnchor: "end" },
-				}}
-			/>
-			<Text
-				text={xAxisLabel}
-				variant="label"
-				className={styles.axisLabel}
-				x={innerWidth / 2}
-				textAnchor="middle"
-				y={innerHeight + 45}
-			/>
-			<Text
-				text={yAxisLabel}
-				// chart label
-				className={styles.axisLabel}
-				variant="label"
-				textAnchor="middle"
-				transform={`translate(${-50}, ${innerHeight / 2}) rotate(-90) `}
-			/>
-			<Bars
-				data={results}
-				xScale={xScale}
-				xScaleValue={xScaleValue}
-				xAxisKey={xAxisValue}
-				yScale={yScale}
-				yScaleValue={yScaleValue}
-				yAxisKey={yAxisValue}
-				xStart={0}
-				yStart={0}
-			/>
-		</SVGChartWrapper>
+		<ChartWrapper title="This is a Bar Chart">
+			<SVGChartWrapper width={width} height={height} margin={margin}>
+				<D3Axis
+					axis="x"
+					translate={xAxisTranslateHnd}
+					ticks={xScale.ticks()}
+					y2={innerHeight}
+					labelFormat={axisLabelFormatHnd}
+					yLabel={innerHeight}
+					yLabelOffset="1rem"
+				/>
+
+				<D3Axis
+					axis="y"
+					translate={yAxisTranslateHnd}
+					ticks={yScale.domain()}
+					x2={innerWidth}
+					labelFormat={axisLabelFormatHnd}
+					xLabel={-10}
+					yLabel={yScale.bandwidth() / 2}
+					yLabelOffset="0.25rem"
+					labelStyle={styles.yAxis}
+				/>
+				<Text
+					text={xAxisLabel}
+					variant="label"
+					className={styles.axisLabel}
+					x={innerWidth / 2}
+					// textAnchor="middle"
+					y={innerHeight + 45}
+				/>
+				<Text
+					text={yAxisLabel}
+					// chart label
+					className={styles.yAxis}
+					variant="label"
+					// textAnchor="middle"
+					transform={`translate(${-50}, ${innerHeight / 2}) rotate(-90) `}
+				/>
+				<Bars
+					data={results}
+					xScale={xScale}
+					xScaleValue={xScaleValue}
+					xAxisKey={xAxisValue}
+					yScale={yScale}
+					yScaleValue={yScaleValue}
+					yAxisKey={yAxisValue}
+					xStart={0}
+					yStart={0}
+				/>
+			</SVGChartWrapper>
+		</ChartWrapper>
 	);
 };

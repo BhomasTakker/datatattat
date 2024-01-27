@@ -1,6 +1,6 @@
-import { ScaleBand, ScaleLinear } from "d3";
+import { ScaleBand, ScaleLinear, ScaleOrdinal } from "d3";
 import styles from "./bars.module.scss";
-import { SVGProps } from "react";
+import { SVGProps, useCallback } from "react";
 import { UnknownObject } from "../../types";
 
 // take in circle props
@@ -16,6 +16,9 @@ type Points = {
 	////////////////////
 	circleRadius: number;
 	circleProps?: SVGProps<SVGCircleElement>;
+	//
+	colorValue: (d: UnknownObject) => unknown;
+	colorScale: ScaleOrdinal<string, unknown, never>;
 };
 // think it does one over - or 0?
 const rando = Math.floor(Math.random() * 31);
@@ -32,17 +35,36 @@ export const Points = ({
 	/////////////////////////////////////////////
 	circleProps,
 	circleRadius,
+	colorValue,
+	colorScale,
 }: Points) => {
+	// setColor
+
+	const setColor = useCallback(
+		(d: UnknownObject) => {
+			let fill = "#FF0000";
+			if (colorValue && colorScale) {
+				fill = colorScale(colorValue(d) as string) as string;
+			}
+			// console.log({ COLOR: fill });
+			return fill;
+		},
+		[colorScale, colorValue]
+	);
+
 	return (
 		<>
+			{/* Offset this to a function */}
 			{data.map((d, i) => (
 				<circle
-					className={styles[`data${rando}`]}
+					// className={styles[`data${rando}`]}
 					key={i}
 					// wouldn't neccessarily start at 0
 					cx={xScale(xScaleValue(d) as number)}
 					cy={yScale(yScaleValue(d) as number)}
 					r={circleRadius}
+					// use to set class
+					fill={setColor(d)}
 					{...circleProps}
 				>
 					{/* variable */}
