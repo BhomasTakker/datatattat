@@ -1,4 +1,4 @@
-import { scaleLinear, extent, scaleBand } from "d3";
+import { scaleBand } from "d3";
 import { UnknownObject } from "../../types";
 
 type CreateBandScale = {

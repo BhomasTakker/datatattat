@@ -1,7 +1,6 @@
 import { log } from "@/src/lib/logger";
 import { SVGChartWrapper } from "../../ui/svg-chart";
-import { extent, scaleLinear, scaleTime, timeFormat } from "d3";
-import { TimeAxis } from "../../axis/__time-axis";
+import { timeFormat } from "d3";
 import { Text } from "../../text/text";
 import { Line } from "../../marks/line";
 import { UnknownObject } from "../../../types";
@@ -117,18 +116,6 @@ export const D3LineChart = ({
 					yLabelOffset="0.25rem"
 					labelStyle={styles.yAxis}
 				/>
-				{/* <LinearAxisLeft
-					innerWidth={innerWidth}
-					yScale={yScale}
-					textProps={{
-						// pass class?
-						x: -10,
-						dy: ".3rem",
-						// For Bars
-						y: 0,
-						style: { textAnchor: "end" },
-					}}
-				/> */}
 				<Text
 					text={xAxisLabel}
 					variant="label"
