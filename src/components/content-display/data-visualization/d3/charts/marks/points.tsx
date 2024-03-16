@@ -1,5 +1,4 @@
-import { ScaleBand, ScaleLinear, ScaleOrdinal } from "d3";
-import styles from "./bars.module.scss";
+import { ScaleLinear, ScaleOrdinal } from "d3";
 import { SVGProps, useCallback } from "react";
 import { UnknownObject } from "../../types";
 
@@ -19,6 +18,7 @@ type Points = {
 	//
 	colorValue: (d: UnknownObject) => unknown;
 	colorScale: ScaleOrdinal<string, unknown, never>;
+	defaultColor?: string;
 };
 // think it does one over - or 0?
 const rando = Math.floor(Math.random() * 31);
@@ -37,19 +37,20 @@ export const Points = ({
 	circleRadius,
 	colorValue,
 	colorScale,
+	defaultColor = "#FF0000",
 }: Points) => {
 	// setColor
 
 	const setColor = useCallback(
 		(d: UnknownObject) => {
-			let fill = "#FF0000";
+			let fill = defaultColor;
 			if (colorValue && colorScale) {
 				fill = colorScale(colorValue(d) as string) as string;
 			}
 			// console.log({ COLOR: fill });
 			return fill;
 		},
-		[colorScale, colorValue]
+		[colorScale, colorValue, defaultColor]
 	);
 
 	return (

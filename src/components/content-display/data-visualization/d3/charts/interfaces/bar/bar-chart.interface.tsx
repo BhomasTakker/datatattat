@@ -1,17 +1,17 @@
-import { log } from "@/src/lib/logger";
-import { max, scaleBand, scaleLinear } from "d3";
-import { AxisBottom } from "../../axis/___axis-bottom";
-import { AxisLeft } from "../../axis/__axis-left";
-import { Bars } from "../../marks/bars";
 import styles from "./bar-chart.module.scss";
 import { Text } from "../../text/text";
 import { SVGChartWrapper } from "../../ui/svg-chart";
-import { UnknownObject } from "../../../types";
 import { ChartWrapper } from "../../ui/chart";
 import { D3Axis } from "../../axis/axis";
-import { createLinearScale } from "../../scale/linear-scale";
-import { createBandScale } from "../../scale/band-scale";
-// type Data = { [key: string]: unknown }[];
+import { createColorScale } from "../../../scale/color-scale";
+import { COLOR_SET_FREE_PALESTINE } from "../../../config/colors";
+import {
+	getLabelFormatter,
+	getScaleFormatter,
+} from "../../../format/scale-format";
+import { HorizontalBars } from "../../marks/horizontal-bars";
+import { getScale } from "../../../scale/scale";
+
 type Data = {
 	results: { [key: string]: unknown }[];
 	responses: number;
@@ -23,123 +23,106 @@ type Data = {
 // BarChart comes in with a controler / interface component
 type D3BarChart = {
 	data: Data;
+	title: string;
 	xAxisValue: string;
 	yAxisValue: string;
 	xAxisLabel?: string;
 	yAxisLabel?: string;
+	xAxisType: string;
+	xScaleType: string;
+	yAxisType: string;
+	yScaleType: string;
+	colorKey?: string;
+	// Will be string[] - OR color[] - ie #00FF0F / could use colorSet instead / as well
+	colorRange?: string[];
 };
 
 // The structure of data needs to be consistent
 //
 export const D3BarChart = ({
 	data,
+	title,
+	// bandAxis
 	xAxisValue,
-	yAxisValue,
+	xAxisType,
+	xScaleType,
 	xAxisLabel = "",
+	// linearAxis
+	yAxisValue,
+	yAxisType,
+	yScaleType,
 	yAxisLabel = "",
+	colorKey,
+	colorRange,
 }: D3BarChart) => {
-	log({ code: "0010:CSV:DATA", context: "Component data" }, { data });
-	log(
-		{ code: "0010:CSV:DATA", context: "BAR:CHART" },
-		{ data, xAxisValue, yAxisValue, xAxisLabel, yAxisLabel }
-	);
-	// pass in
+	// pass in / this has to be from the wider object
+	// i.e. grid / we will need to position and size
 	const width = 900;
 	const height = 600;
 	const margin = { top: 20, right: 30, bottom: 50, left: 220 };
 	const innerHeight = height - margin.top - margin.bottom;
 	const innerWidth = width - margin.left - margin.right;
 
-	// edit data
-	// const yAxis = "Country";
-	// const xAxis = "2020_1";
-	// const xAxisLabel = "Deaths per 100,000";
-	// const yAxisLabel = "";
-	// we need citation / attributions
+	////////////////////////////////////////////////////////////
+	// format scaleValue - number, string, date
+	// need format / parse
+	// xScaleFormat / yScaleFormat - string, number - 2dp | integer, date - sate format,
+	// const xScaleValue = (d: UnknownObject) => d[xAxisValue] as number;
+	// const yScaleValue = (d: UnknownObject) => d[yAxisValue] as string;
 
-	const xScaleValue = (d: UnknownObject) => d[xAxisValue] as number;
-	const yScaleValue = (d: UnknownObject) => d[yAxisValue] as string;
+	// needs passed in or worked out
+	const xScaleValue = getScaleFormatter({ type: xAxisType, key: xAxisValue });
+	const yScaleValue = getScaleFormatter({ type: yAxisType, key: yAxisValue });
 
 	//
-	type Direction = "vertical" | "horizontal"; // would you leftToRight/rightToLeft, etc?
-	const direction: Direction = "horizontal";
-
-	// Filters - but how?
-	// We should have this figured out
-	// filtering, sorting, etc, on the front end
-	// great point to jump into web workers...
-	///////////////////////////////////////////
-	// Do as part of conversions?
-	// Both - we can use controls to switch between data
-	// filter what we aren't interested in
-	// But how the hell do we know?
-	// Ultimately we'll need to load the data and get headings from it
-	// 'type' that as reference
-	const countries = [
-		"Afghanistan",
-		"American Samoa",
-		"Aruba",
-		"Barbados",
-		"Albania",
-		"Dominica",
-		"Guinea-Bissau",
-		"Kuwait",
-		"Malawi",
-		"Mongolia",
-		"Pakistan",
-		"Saint Lucia",
-		"Trinidad and Tobago",
-		"United States of America",
-		"Uzbekistan",
-		"Viet Nam",
-		"Zimbabwe",
-		"United Kingdom (Scotland)",
-		"United Kingdom (Northern Ireland)",
-		"United Kingdom (England and Wales)",
-		"Israel",
-	];
+	//////////////////////////////////////////////////////////////
 
 	const { results } = data;
-	////////////////////////////////////////////////////////////////////////////////
-	// FILTERING ///////////////////////////////////////////////////////////////////
-	// We should be filtering on the server - this is where conversions start being properly required?
-	////////////////////////////////////////////////////////////////////////////////
-	const filteredResults = results.filter((res) =>
-		countries.includes(res[yAxisValue] as string)
-	);
-	/////////////////////////////////////////////////////////////////////////////////
-	/////////////////////////////////////////////////////////////////////////////////
 
-	// variable horiz, vert
-	// const yScale = scaleBand()
-	// 	.domain(filteredResults.map(yScaleValue))
-	// 	.range([0, innerHeight])
-	// 	.paddingInner(0.15);
-
-	const yScale = createBandScale({
-		data: filteredResults,
-		scale: yScaleValue,
-		rangeFrom: 0,
-		rangeTo: innerHeight,
-		padding: 0.15,
+	const yScale = getScale({
+		// take from props
+		type: yScaleType,
+		options: {
+			data: results,
+			scale: yScaleValue,
+			rangeFrom: 0,
+			rangeTo: innerHeight,
+			padding: 0.15,
+		},
 	});
 
-	const xScale = createLinearScale({
-		data: filteredResults,
-		scale: xScaleValue,
-		rangeFrom: 0,
-		rangeTo: innerWidth,
+	const xScale = getScale({
+		// take from props
+		type: xScaleType,
+		options: {
+			data: results,
+			scale: xScaleValue,
+			rangeFrom: 0,
+			rangeTo: innerWidth,
+		},
 	});
-	// scaleLinear()
-	// 	// @ts-ignore
-	// 	.domain([0, max(filteredResults, xScaleValue)])
-	// 	.range([0, innerWidth]);
+	// Fallback colors
+	// Probs need if - else default color or set / assigning a color to a range/group?
+	// We also want users to be able to select a color set
+	// const colorValue = (d: UnknownObject) => d[colorKey] as string;
+	const colorValue = getScaleFormatter({ type: "string", key: colorKey || "" });
 
-	log(
-		{ code: "0010:CSV:DATA", context: "XSCALE:TICKS" },
-		{ ticks: xScale.ticks() }
-	);
+	// Use but throw in a or set of colours
+	const colorScale = createColorScale({
+		data: results,
+		scale: colorValue,
+		// temp / need do better / works though / whie need outline?
+		// given range, selected color set / default
+		range: colorRange || COLOR_SET_FREE_PALESTINE,
+	});
 
+	// sorting via conversions seems a problem
+
+	////////////////
+	// create axis
+	////////////////
+	// Could package this as standard axis
+	// this would be the same for a chart i.e. vertical bar chart
 	const xAxisTranslateHnd = (val: number) => {
 		return `translate(${xScale(val)}, 0)`;
 	};
@@ -148,11 +131,21 @@ export const D3BarChart = ({
 		return `translate(0, ${yScale(val)})`;
 	};
 
-	const axisLabelFormatHnd = (val: number) => val.toString();
+	// We would need a label format / max length - css? / etc
+	// number date etc
+	// const axisLabelFormatHnd = (val: number) => val.toString().slice(0, 25);
+	// const axisLabelFn =  getLabelFormatter({type: 'string'});
+	const axisLabelFormatHnd = getLabelFormatter({
+		// Would just be axis type
+		type: "string",
+		options: { maxLength: 25 },
+	});
 
 	return (
-		<ChartWrapper title="This is a Bar Chart">
+		// description?
+		<ChartWrapper title={title}>
 			<SVGChartWrapper width={width} height={height} margin={margin}>
+				{/* Create Axis  */}
 				<D3Axis
 					axis="x"
 					translate={xAxisTranslateHnd}
@@ -179,7 +172,7 @@ export const D3BarChart = ({
 					variant="label"
 					className={styles.axisLabel}
 					x={innerWidth / 2}
-					// textAnchor="middle"
+					textAnchor="middle"
 					y={innerHeight + 45}
 				/>
 				<Text
@@ -190,7 +183,7 @@ export const D3BarChart = ({
 					// textAnchor="middle"
 					transform={`translate(${-50}, ${innerHeight / 2}) rotate(-90) `}
 				/>
-				<Bars
+				<HorizontalBars
 					data={results}
 					xScale={xScale}
 					xScaleValue={xScaleValue}
@@ -200,6 +193,8 @@ export const D3BarChart = ({
 					yAxisKey={yAxisValue}
 					xStart={0}
 					yStart={0}
+					colorScale={colorScale}
+					colorValue={colorValue}
 				/>
 			</SVGChartWrapper>
 		</ChartWrapper>

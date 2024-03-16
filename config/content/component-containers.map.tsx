@@ -6,8 +6,11 @@ import { ArticleDisplayStack } from "@/src/components/content-display/article/st
 import { ArticleStack } from "@/src/components/content-display/article/stacks/article-stack";
 import { SimpleStack } from "@/src/components/content-display/article/stacks/simple-stack";
 import { D3BarChart } from "@/src/components/content-display/data-visualization/d3/charts/interfaces/bar/bar-chart.interface";
+import { D3HistogramChart } from "@/src/components/content-display/data-visualization/d3/charts/interfaces/histogram/histogram.interface";
 import { D3LineChart } from "@/src/components/content-display/data-visualization/d3/charts/interfaces/line/line-chart.interface";
 import { D3ScatterChart } from "@/src/components/content-display/data-visualization/d3/charts/interfaces/scatter/scatter-chart.interface";
+import { D3BubbleMap } from "@/src/components/content-display/data-visualization/d3/maps/bubble/bubble-map";
+import { D3ChoroplethMap } from "@/src/components/content-display/data-visualization/d3/maps/choropleth/choropleth-map";
 import { D3Map } from "@/src/components/content-display/data-visualization/d3/maps/map.interface";
 import { Dummy } from "@/src/components/content-display/dummy/dummy";
 import { OLMapController } from "@/src/components/content-display/geo/open-layers/controllers/ol-map.controller";
@@ -40,5 +43,9 @@ export const COMPONENTS_MAP = new Map<string, any>([
 	["BarChart", D3BarChart],
 	["ScatterChart", D3ScatterChart],
 	["LineChart", D3LineChart],
+	["HistogramChart", D3HistogramChart],
+
 	["MapChart", D3Map],
+	["D3BubbleMap", D3BubbleMap],
+	["D3ChoroplethMap", D3ChoroplethMap],
 ]);

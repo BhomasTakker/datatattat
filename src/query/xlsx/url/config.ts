@@ -1,3 +1,35 @@
+import { ConversionObject } from "@/src/components/edit/query/conversion/types";
+
+const responseConversion: ConversionObject = {
+	map: {},
+	defaultConversions: [],
+	sort: {},
+	filter: {},
+	transform: {},
+	// iterable: true,
+};
+
+const itemsConversion: ConversionObject = {
+	id: "results",
+	iterable: true,
+	map: {},
+	defaultConversions: [],
+
+	sort: {},
+	filter: {},
+	transform: {},
+};
+
+// Conversion should be a default - or we split down type
+// Default XXX conversion - Iterable Main
+const defaultConversion = {
+	conversionId: "DEFAULT:XLSX",
+	response: responseConversion,
+	// really sub objects array
+	subConversions: [itemsConversion],
+	// iterable: valueConversion,
+};
+
 const url = {
 	type: "text",
 	id: "url",
@@ -17,5 +49,5 @@ export const XLSX_BY_URL_ROOT = {
 
 	// Our list of conversions
 	// object default conversion, & list
-	conversions: {},
+	conversions: defaultConversion,
 };

@@ -1,3 +1,5 @@
+import { D3_CHARTS_DETAILS, D3_CHARTS_AXIS } from "../../edit/base.edit";
+
 export const D3_LINE_CHART = {
 	id: "LineChart",
 	info: "Nothing here",
@@ -7,34 +9,38 @@ export const D3_LINE_CHART = {
 			type: "title",
 			title: "Line Chart Props",
 		},
+		...D3_CHARTS_DETAILS,
+		...D3_CHARTS_AXIS,
 		{
-			id: "yAxisValue",
-			type: "text",
-			label: "Y Axis Value",
-			info: "We need to try and link this into expected data",
+			id: "lineThickness",
+			type: "number",
+			label: "Line Thickness",
+			info: "The thickness of the drawn line.",
 		},
 		{
-			id: "xAxisValue",
-			type: "text",
-			label: "X Axis Value",
-			info: "xAxisValue",
+			id: "lineColor",
+			type: "color",
+			label: "Line Color",
+			info: "The color of the drawn Line.",
 		},
 		{
-			id: "yAxisLabel",
-			type: "text-toggle",
-			label: "Y Axis Label",
-			info: "yAxisLabel",
+			id: "showPoints",
+			type: "switch",
+			defaultValue: false,
+			label: "Show Points",
+			info: "Show individual points on line",
 		},
 		{
-			id: "xAxisLabel",
-			type: "text-toggle",
-			label: "X Axis Label",
-			info: "xAxisLabel",
+			id: "pointRadius",
+			type: "number",
+			label: "Point Radius",
+			info: "The radius of the rendered points.",
 		},
 		{
-			type: "title",
-			title:
-				"We need to add data filters, parse, sort, etc. Or, that is better done befor the data gets loaded. You sort that - we'll sort this. For now at least",
+			id: "pointColor",
+			type: "color",
+			label: "Point Color",
+			info: "The color of the rendered points.",
 		},
 	],
 };

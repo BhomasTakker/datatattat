@@ -1,7 +1,7 @@
 import { scaleBand } from "d3";
-import { UnknownObject } from "../../types";
+import { UnknownObject } from "../types";
 
-type CreateBandScale = {
+export type CreateBandScale = {
 	data: UnknownObject[];
 	scale: (d: UnknownObject) => number | string;
 	rangeFrom?: number;

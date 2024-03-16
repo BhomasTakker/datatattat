@@ -1,7 +1,7 @@
 import { extent, scaleTime } from "d3";
-import { UnknownObject } from "../../types";
+import { UnknownObject } from "../types";
 
-type CreateTimeScale = {
+export type CreateTimeScale = {
 	data: UnknownObject[];
 	scale: (d: UnknownObject) => Date;
 	rangeFrom?: number;

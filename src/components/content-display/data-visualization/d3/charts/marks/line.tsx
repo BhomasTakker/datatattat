@@ -11,6 +11,8 @@ type Line = {
 	xScaleValue: (d: UnknownObject) => unknown;
 	yScaleValue: (d: UnknownObject) => unknown;
 	// xAxisTickFormat: (): string;
+	color?: string;
+	lineThickness?: number;
 };
 
 const rando = Math.floor(Math.random() * 31);
@@ -26,6 +28,8 @@ export const Line = ({
 	yAxisKey,
 	xScaleValue,
 	yScaleValue,
+	color = "#ff0000",
+	lineThickness = 2,
 }: // xAxisTickFormat,
 Line) => {
 	return (
@@ -33,8 +37,11 @@ Line) => {
 			{/* create a path component */}
 			<path
 				// pass class or use default / pass color
-				className={`${styles[`stroke${rando}`]} ${styles.path}`}
+				//${styles[`stroke${rando}`]}
+				className={`${styles.path}`}
 				//
+				stroke={color}
+				strokeWidth={lineThickness}
 				d={line()
 					.x((d) => xScale(xScaleValue(d)))
 					.y((d) => yScale(yScaleValue(d)))

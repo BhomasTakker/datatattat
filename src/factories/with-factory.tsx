@@ -49,8 +49,10 @@ const createQueryObject = (queryObject: any, queryPath: string) => {
 		// if conversionIds and you are a member of ill repute
 		// client side conversion
 		queryFn: () => clientsideFetch({ url, searchParams }),
-		// convert to queryCacheId
-		queryId: `${queryPath}:${queryId}:${JSON.stringify(params)}`,
+		// convert to queryCacheId - create a function fir this - and know when to clear?
+		queryId: `${queryPath}:${queryId}:${JSON.stringify(
+			params
+		)}:${JSON.stringify(conversions)}`,
 
 		// conversion: JSON.stringify(conversion),
 		// need work with state

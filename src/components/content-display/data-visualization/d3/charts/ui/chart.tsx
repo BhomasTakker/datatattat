@@ -20,6 +20,7 @@ export const ChartWrapper = ({
 				display: "flex",
 				flexDirection: "column",
 				alignItems: "center",
+				justifyItems: "center",
 				paddingBottom: MARGINS.MIDLARGE,
 			}}
 		>

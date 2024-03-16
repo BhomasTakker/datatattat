@@ -1,4 +1,4 @@
-import { ScaleBand, ScaleLinear } from "d3";
+import { ScaleBand, ScaleLinear, ScaleOrdinal } from "d3";
 import styles from "./bars.module.scss";
 import { SVGProps } from "react";
 import { UnknownObject } from "../../types";
@@ -15,6 +15,8 @@ type Bars = {
 	xStart?: number;
 	yStart?: number;
 	rectProps?: SVGProps<SVGRectElement>;
+	colorValue: (d: UnknownObject) => unknown;
+	colorScale: ScaleOrdinal<string, unknown, never>;
 };
 
 const HorizontalBars = (
@@ -30,10 +32,23 @@ const HorizontalBars = (
 		yScaleValue,
 		xStart = 0,
 		rectProps,
+		colorValue,
+		colorScale,
 	} = options;
+
+	const setColor = (d: UnknownObject) => {
+		let fill = "#FF0000";
+		if (colorValue && colorScale) {
+			fill = colorScale(colorValue(d) as string) as string;
+		}
+		// console.log({ COLOR: fill });
+		return fill;
+	};
+
 	return (
 		<rect
-			className={styles[`data${rando}`]}
+			// have and pass override
+			// className={styles[`data${rando}`]}
 			// in bars is okay other types no
 			key={`${d[xAxisKey]}:${d[yAxisKey]}` as string}
 			// wouldn't neccessarily start at 0
@@ -45,6 +60,9 @@ const HorizontalBars = (
 			width={xScale(xScaleValue(d) as number)}
 			// @ts-ignore
 			height={yScale.bandwidth()}
+			fill={setColor(d)}
+			// pass in as prop / let user decide
+			stroke="#000000"
 			{...rectProps}
 		>
 			{/* variable horizonal / vertical */}
@@ -101,6 +119,8 @@ export const Bars = ({
 	yAxisKey,
 	xScaleValue,
 	yScaleValue,
+	colorValue,
+	colorScale,
 	///////////////////////////////////
 	xStart = 0,
 	yStart = 0,
@@ -123,6 +143,8 @@ export const Bars = ({
 						yAxisKey={yAxisKey}
 						xScaleValue={xScaleValue}
 						yScaleValue={yScaleValue}
+						colorScale={colorScale}
+						colorValue={colorValue}
 						///////////////////////////////////
 						yStart={xStart}
 						rectProps={rectProps}
@@ -144,6 +166,8 @@ export const Bars = ({
 					yAxisKey={yAxisKey}
 					xScaleValue={xScaleValue}
 					yScaleValue={yScaleValue}
+					colorScale={colorScale}
+					colorValue={colorValue}
 					///////////////////////////////////
 					xStart={xStart}
 					rectProps={rectProps}

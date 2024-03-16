@@ -1,7 +1,7 @@
 import { scaleLinear, extent } from "d3";
-import { UnknownObject } from "../../types";
+import { UnknownObject } from "../types";
 
-type CreateLinearScale = {
+export type CreateLinearScale = {
 	data: UnknownObject[];
 	scale: (d: UnknownObject) => number;
 	rangeFrom?: number;

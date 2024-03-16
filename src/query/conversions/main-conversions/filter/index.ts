@@ -1,6 +1,7 @@
 // rxjs operators
 // https://app.pluralsight.com/course-player?clipId=0558ef44-e83b-4c8d-aca0-eafd8ae2d16b
 
+import { UnknownObject } from "@/src/components/content-display/data-visualization/d3/types";
 import {
 	distinct as rxjsDistinct,
 	first as rxjsFirst,
@@ -10,6 +11,8 @@ import {
 	take,
 	takeLast,
 } from "rxjs";
+
+import { filter } from "rxjs/operators";
 
 // // we need to accept inputs
 // export const top5 = (data: any) => {
@@ -63,6 +66,59 @@ export const distinctKey = ({ key }: any) => {
 	// we would need to pass a function to determine distintness / or just create a bunch
 	// i.e. distinct((data) => props[props.key])
 	return rxjsDistinct((data: any) => data[`${key}`]);
+};
+
+// I guess split these up into sensible groupings
+export const includes = ({ values, key }: { values: string; key: string }) => {
+	return filter((value: any) => {
+		// console.log("WOMP - react query done us!", { key, val: value[key] });
+		return values.split(",").includes(value[key]);
+	});
+};
+
+type NumericalConditional = {
+	key: string;
+	n: number;
+};
+/**
+ * Provide a number value
+ * @returns rxjs transducer
+ */
+export const greaterThan = ({ key, n }: NumericalConditional) => {
+	return filter((value: UnknownObject) => {
+		// console.log("WOMP!", { n, key, val: value[key] });
+		if (value[key] && typeof +value[key] !== "number") {
+			return false;
+		}
+		// console.log("WOMP2!", { n, key, val: value[key] });
+		return +value[key] > n;
+	});
+};
+
+/**
+ * Provide a number value
+ * @returns rxjs transducer
+ */
+export const lessThan = ({ key, n }: NumericalConditional) => {
+	return filter((value: UnknownObject) => {
+		if (value[key] && typeof +value[key] !== "number") {
+			return false;
+		}
+		return +value[key] < n;
+	});
+};
+
+/**
+ * Provide a number value
+ * @returns rxjs transducer
+ */
+export const equals = ({ key, n }: NumericalConditional) => {
+	return filter((value: UnknownObject) => {
+		if (value[key] && typeof +value[key] !== "number") {
+			return false;
+		}
+		return +value[key] === +n;
+	});
 };
 
 // Note -

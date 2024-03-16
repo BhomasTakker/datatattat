@@ -1,6 +1,4 @@
-import { log } from "@/src/lib/logger";
 import { SVGChartWrapper } from "../../ui/svg-chart";
-import { timeFormat } from "d3";
 import { Text } from "../../text/text";
 import { Line } from "../../marks/line";
 import { UnknownObject } from "../../../types";
@@ -10,8 +8,11 @@ import { useState } from "react";
 import { D3Axis } from "../../axis/axis";
 
 import styles from "./line-chart.module.scss";
-import { createLinearScale } from "../../scale/linear-scale";
-import { createTimeScale } from "../../scale/time-scale";
+import {
+	getLabelFormatter,
+	getScaleFormatter,
+} from "../../../format/scale-format";
+import { getScale } from "../../../scale/scale";
 
 type Data = {
 	results: UnknownObject[];
@@ -27,14 +28,34 @@ export type D3LineChart = {
 	yAxisValue: string;
 	xAxisLabel?: string;
 	yAxisLabel?: string;
+	xAxisType: string;
+	xScaleType: string;
+	yAxisType: string;
+	yScaleType: string;
+	//
+	lineThickness: number;
+	lineColor: string;
+	showPoints: boolean;
+	pointRadius: number;
+	pointColor: string;
 };
 
 export const D3LineChart = ({
 	data,
 	xAxisValue,
+	xAxisType,
+	xScaleType,
 	yAxisValue,
+	yAxisType,
+	yScaleType,
 	xAxisLabel = "",
 	yAxisLabel = "",
+	//
+	lineThickness,
+	lineColor,
+	showPoints,
+	pointRadius,
+	pointColor,
 }: D3LineChart) => {
 	// this won't work yet with the data we have
 	const [selectedXValue, setSelectedXValue] = useState(xAxisValue);
@@ -43,43 +64,74 @@ export const D3LineChart = ({
 
 	const colorKey = "species";
 
+	// line color
+	// Point color
+
+	// defaults as per style / use / size etc
 	const width = 900;
 	const height = 600;
 	const margin = { top: 20, right: 30, bottom: 50, left: 100 };
 	const innerHeight = height - margin.top - margin.bottom;
 	const innerWidth = width - margin.left - margin.right;
 
+	// const showPoints: boolean = true;
+	// const pointRadius = 3;
+	// const pointColor = "#664290";
+
 	// how do we specify
 	// number, text, date, etc?
-	const xScaleValue = (d: UnknownObject) => new Date(d[xAxisValue] as string);
-	const yScaleValue = (d: UnknownObject) => d[yAxisValue] as number;
-
-	// okay this is good / returns just the day
-	// but how to make nicely dynamic....
-	const xAxisTickFormat = timeFormat("%a");
-
-	const xAxis = {
-		type: "Time",
-		format: "%a",
-	};
+	// const xScaleValue = (d: UnknownObject) => new Date(d[xAxisValue] as string);
+	// const yScaleValue = (d: UnknownObject) => d[yAxisValue] as number;
+	// Would you ever pass anything in here or are we just parsing?
+	// Potentially redo scales - or - can we group or something
+	const xScaleValue = getScaleFormatter({ type: xAxisType, key: xAxisValue });
+	const yScaleValue = getScaleFormatter({ type: yAxisType, key: yAxisValue });
 
 	const { results } = data;
 
-	const xScale = createTimeScale({
-		data: results,
-		scale: xScaleValue,
-		rangeFrom: 0,
-		rangeTo: innerWidth,
+	// Need specify the axis
+	// return scale and formatter?
+	// const xScale = createTimeScale({
+	// 	data: results,
+	// 	scale: xScaleValue,
+	// 	rangeFrom: 0,
+	// 	rangeTo: innerWidth,
+	// });
+
+	const xScale = getScale({
+		// take from props
+		type: xScaleType,
+		options: {
+			data: results,
+			scale: xScaleValue,
+			rangeFrom: 0,
+			rangeTo: innerWidth,
+		},
 	});
 
-	const yScale = createLinearScale({
-		data: results,
-		scale: yScaleValue,
-		rangeFrom: innerHeight,
-		rangeTo: 0,
+	const yScale = getScale({
+		type: yScaleType,
+		options: {
+			data: results,
+			scale: yScaleValue,
+			rangeFrom: innerHeight,
+			rangeTo: 0,
+		},
 	});
 
-	log({ code: "0001:D3:LINE:CHART", context: "DATA" }, { data });
+	// const [start, stop] = xScale.domain();
+	// // create a bin / okay wtf...
+	// const binnedData = bin()
+	// 	.value(xScaleValue)
+	// 	.domain(xScale.domain())
+	// 	.thresholds(timeMonths(start, stop))(results)
+	// 	.map((ary) => ({
+	// 		["totalDeadAndMissing"]: sum(ary, yScaleValue),
+	// 		x0: ary.x0,
+	// 		x1: ary.x1,
+	// 	}));
+
+	// log({ code: "0001:D3:LINE:CHART", context: "DATA" }, { data, binnedData });
 
 	// Repeated
 	const xAxisTranslateHnd = (val: number) => {
@@ -91,8 +143,17 @@ export const D3LineChart = ({
 	};
 
 	//
-	const axisLabelFormatHnd = (val: number) => val.toString();
-	const timeAxisLabelFormatHnd = xAxisTickFormat;
+	// const axisLabelFormatHnd = (val: number) => val.toString();
+	const axisLabelFormatHnd = getLabelFormatter({
+		type: "number",
+		options: { integer: true },
+	});
+	// const timeAxisLabelFormatHnd = xAxisTickFormat;
+	const timeAxisLabelFormatHnd = getLabelFormatter({
+		type: "date",
+		options: { format: "%m/%d/%Y" },
+		// options: { format: "%b %d %a %y" },
+	});
 
 	return (
 		<ChartWrapper title="This is a Line Chart">
@@ -139,21 +200,28 @@ export const D3LineChart = ({
 					yScale={yScale}
 					yScaleValue={yScaleValue}
 					yAxisKey={yAxisValue}
-					circleRadius={3}
+					color={lineColor}
+					lineThickness={lineThickness}
+					// need set stroke color & width & dashed etc
+					// could have sets and allow select
 				/>
 				{/* show points? */}
-				<Points
-					data={results}
-					xScale={xScale}
-					xScaleValue={xScaleValue}
-					xAxisKey={xAxisValue}
-					yScale={yScale}
-					yScaleValue={yScaleValue}
-					yAxisKey={yAxisValue}
-					// could be css
-					circleRadius={3}
-					// circleProps={circleProps}
-				/>
+				{showPoints && (
+					<Points
+						data={results}
+						xScale={xScale}
+						xScaleValue={xScaleValue}
+						xAxisKey={xAxisValue}
+						yScale={yScale}
+						yScaleValue={yScaleValue}
+						yAxisKey={yAxisValue}
+						defaultColor={pointColor}
+						// could be css
+						circleRadius={pointRadius}
+						// need pass in color scale or single color
+						// circleProps={circleProps}
+					/>
+				)}
 			</SVGChartWrapper>
 		</ChartWrapper>
 	);

@@ -1,3 +1,4 @@
+import { convertResponse } from "@/src/query/conversions/response-conversion";
 import { getFileSizeFromJson } from "@/src/utils/file";
 import { decimalPlace } from "@/src/utils/math";
 import { NextApiRequest, NextApiResponse } from "next/types";
@@ -11,9 +12,19 @@ async function xlsxQuery(req: NextApiRequest, res: NextApiResponse) {
 
 	// We can caste queries
 	const { query } = req;
-	const { url = "" } = query;
+	const { url = "", conversions = "[]" } = query;
+
+	// console.log("0054:", { query });
+
+	const parsedConversions = JSON.parse(conversions as string);
 
 	// TRYCATCH
+	// Can convert to a fetchall
+	// Add to a data strcture
+	// Then what to expect?
+	// An array of sheets
+	// An object of given ids for each sheet
+	// It's loading features right?
 	const ab = await (await fetch(`${url}`)).arrayBuffer();
 
 	/* Parse file and get first worksheet */
@@ -41,13 +52,17 @@ async function xlsxQuery(req: NextApiRequest, res: NextApiResponse) {
 	// we want to be able to filter results
 	// Should be somewhere in utils etc
 	const fileSize = getFileSizeFromJson(data);
+
+	// Dont redis but save file on A3 etc??
+
 	const returnData = {
 		responses: data.length,
 		filesize: `${decimalPlace(fileSize.size, 100)}${fileSize.type}`,
 		variant: "json-results",
 		// headers and columns would be if returning csv no?
 		headers: Object.keys(data[0] || {}),
-		columns: data,
+		// go for results
+		// columns: data,
 		// returning json
 		keys: Object.keys(data[0] || {}),
 		results: data,
@@ -55,7 +70,11 @@ async function xlsxQuery(req: NextApiRequest, res: NextApiResponse) {
 		// return xlsx / table?
 	};
 
-	return res.status(200).json(returnData);
+	const newData = convertResponse(returnData, parsedConversions);
+	// We can do iterator - since we convert this stuff anyway
+	// const newResponse = convertResponse(result, parsedConversions);
+
+	return res.status(200).json(newData);
 }
 
 export default xlsxQuery;

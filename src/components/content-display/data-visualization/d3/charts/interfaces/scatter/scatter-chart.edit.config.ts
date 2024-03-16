@@ -1,36 +1,17 @@
+import { D3_CHARTS_AXIS, D3_CHARTS_DETAILS } from "../../edit/base.edit";
+
 export const D3_SCATTER_CHART = {
 	id: "ScatterChart",
 	info: "Nothing here",
 	title: "ScatterChart Component",
 	props: [
+		...D3_CHARTS_DETAILS,
+		...D3_CHARTS_AXIS,
 		{
-			id: "scatterPropsTitle",
-			type: "title",
-			title: "Scatter Chart Props",
-		},
-		{
-			id: "yAxisValue",
+			id: "colorKey",
 			type: "text",
-			label: "Y Axis Value",
-			info: "We need to try and link this into expected data",
-		},
-		{
-			id: "xAxisValue",
-			type: "text",
-			label: "X Axis Value",
-			info: "xAxisValue",
-		},
-		{
-			id: "yAxisLabel",
-			type: "text-toggle",
-			label: "Y Axis Label",
-			info: "yAxisLabel",
-		},
-		{
-			id: "xAxisLabel",
-			type: "text-toggle",
-			label: "X Axis Label",
-			info: "xAxisLabel",
+			label: "Color Key",
+			info: "The identifier you want to use to distinguish color",
 		},
 		{
 			id: "info1",

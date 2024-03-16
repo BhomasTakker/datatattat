@@ -36,9 +36,17 @@ export const FILTER_MAP = {
 	lastN: "lastN",
 	skipN: "skipN",
 	skipLastN: "skipLastN",
+	///////////////////////
 	distinct: "distinct",
 	distinctKey: "distinctKey",
 	// we can pass functions / filters to these - i.e. the first/last positive filter result
 	first: "first",
 	last: "last",
+
+	///////////////////////
+	// Group these
+	includes: "includes",
+	greaterThan: "greaterThan",
+	lessThan: "lessThan",
+	equals: "equals",
 } as const;

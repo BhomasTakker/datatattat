@@ -2,6 +2,7 @@ import { BING_CONVERSIONS } from "../api/bing/news/conversions";
 import { POLICE_DATA_UK_CONVERSIONS } from "../api/data/gov/uk/police/crime/police-data-uk.conversions";
 import { FOOTBALL_DATA_ORG_CONVERSIONS } from "../api/data/sport/football/football-data.org/football-data-org.conversions";
 import { RSS_2_0_CONVERSIONS } from "../rss/conversions";
+import { XLSX_CONVERSIONS } from "../xlsx/conversions/default.conversions";
 import { MAIN_CONVERSIONS } from "./main-conversions";
 
 const emptyReturn = new Map<string, object>([]);
@@ -16,6 +17,9 @@ export const CONVERSIONS_MAP = new Map<string, object>([
 
 	["FOOTBALL:DATA:ORG", FOOTBALL_DATA_ORG_CONVERSIONS],
 	["DATA:POLICE:UK", POLICE_DATA_UK_CONVERSIONS],
+
+	// use main?
+	["DEFAULT:XLSX", XLSX_CONVERSIONS],
 ]);
 
 export const getConversion = (id: string) => {
