@@ -35,9 +35,9 @@ export const HookFormContextProvider = ({
 	const { submit } = useContext(context);
 
 	const debugHandler = () => {
-		// console.log("ISSUE:0004", "CONTEXT:GROUP", "HOOK:FORM", {
-		// 	values: methods.getValues(),
-		// });
+		console.log("ISSUE:0004", "CONTEXT:GROUP", "HOOK:FORM", {
+			values: methods.getValues(),
+		});
 	};
 
 	return (

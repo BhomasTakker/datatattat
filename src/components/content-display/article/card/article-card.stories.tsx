@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ArticleCardMock } from "./article-card.mock";
 import { ArticleCardWrapper } from "./article-card.wrapper";
 import { Article1 } from "../mock/Articles.mock";
 

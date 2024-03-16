@@ -1,0 +1,27 @@
+@import "../../styles/colors.scss";
+/* This is where we should set up some scss variables */
+/* We want to store all of the sunlight foundations colours */
+.tick line {
+	stroke: $lineGrey;
+}
+
+.tick text {
+	fill: $textMain;
+	font-family: Poppins;
+}
+
+.label {
+	// text-anchor: middle;
+}
+
+.line {
+	stroke: red;
+}
+
+.axis-x {
+	text-anchor: middle;
+}
+
+.axis-y {
+	text-anchor: end;
+}

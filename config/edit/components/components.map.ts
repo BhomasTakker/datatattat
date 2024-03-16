@@ -7,6 +7,13 @@ import { ARTICLE_GRID_STACK } from "@/src/components/content-display/article/gri
 import { DATA_TABLE } from "@/src/components/content-display/tabular/tanstack-table/controllers/data-table.controller.edit.config";
 import { OLMAP } from "@/src/components/content-display/geo/open-layers/controllers/ol-map.controller.edit";
 import { DUMMY } from "@/src/components/content-display/dummy/dummy.edit.config";
+import { D3_BAR_CHART } from "@/src/components/content-display/data-visualization/d3/charts/interfaces/bar/bar-chart.edit.config";
+import { D3_SCATTER_CHART } from "@/src/components/content-display/data-visualization/d3/charts/interfaces/scatter/scatter-chart.edit.config";
+import { D3_LINE_CHART } from "@/src/components/content-display/data-visualization/d3/charts/interfaces/line/line-chart.edit.config";
+import { D3_MAP_CHART } from "@/src/components/content-display/data-visualization/d3/maps/map.edit.config";
+import { D3_HISTOGRAM_CHART } from "@/src/components/content-display/data-visualization/d3/charts/interfaces/histogram/histogram.edit.config";
+import { D3_BUBBLE_MAP_CHART } from "@/src/components/content-display/data-visualization/d3/maps/bubble/bubble-map.edit.config";
+import { D3_CHOROPLETH_MAP_CHART } from "@/src/components/content-display/data-visualization/d3/maps/choropleth/choropleth-map.edit.config";
 // we should be using Maps as standard no?
 // Better name for what these are 100%
 // Will need to compose these as they will get huge
@@ -19,6 +26,15 @@ export const CONTENT_COMPONENTS = {
 
 	DataTable: DATA_TABLE,
 	Dummy: DUMMY,
+
+	BarChart: D3_BAR_CHART,
+	ScatterChart: D3_SCATTER_CHART,
+	LineChart: D3_LINE_CHART,
+	HistogramChart: D3_HISTOGRAM_CHART,
+
+	MapChart: D3_MAP_CHART,
+	D3BubbleMap: D3_BUBBLE_MAP_CHART,
+	D3ChoroplethMap: D3_CHOROPLETH_MAP_CHART,
 
 	SimpleArticleList: SIMPLE_ARTICLE_LIST,
 	SimpleStack: SIMPLE_STACK,

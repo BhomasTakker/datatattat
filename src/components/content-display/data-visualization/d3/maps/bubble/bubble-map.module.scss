@@ -1,0 +1,21 @@
+@import "../../styles/colors.scss";
+
+// .root {
+// width: 100%;
+// display: flex;
+// justify-items: center;
+// }
+
+.sphere {
+	fill: #ececec;
+}
+
+.graticule {
+	stroke: #dadada;
+	fill: none;
+}
+
+.base {
+	stroke: #dadada;
+	fill: #cacaca;
+}

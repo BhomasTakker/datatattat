@@ -8,7 +8,9 @@ type Response = any;
 export const subscribeToObservableFromObject = (
 	response: Response,
 	observer: Observer<unknown>,
-	pipeFunctions: OperatorFunction<any, unknown>[]
+	pipeFunctions: OperatorFunction<any, unknown>[],
+	// think not applicable
+	sortFunctions: OperatorFunction<any, unknown>[]
 ) => {
 	const observable$ = of(response);
 	observable$.pipe(...(pipeFunctions as [])).subscribe(observer);
@@ -16,8 +18,15 @@ export const subscribeToObservableFromObject = (
 export const subscribeToObservableFromArray = (
 	response: Response,
 	observer: Observer<unknown>,
-	pipeFunctions: OperatorFunction<any, unknown>[]
+	pipeFunctions: OperatorFunction<any, unknown>[],
+	sortFunctions: OperatorFunction<any, unknown>[]
 ) => {
 	const observable$ = from(response);
-	observable$.pipe(...(pipeFunctions as []), toArray()).subscribe(observer);
+	// Not for sort
+	// We should return an array from sort no?
+	// sort functions should be called after filters
+	// filter, transform, sort
+	observable$
+		.pipe(...(pipeFunctions as []), toArray(), ...(sortFunctions as []))
+		.subscribe(observer);
 };

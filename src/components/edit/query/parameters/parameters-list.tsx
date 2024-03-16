@@ -15,14 +15,14 @@ export const ParametersList = () => {
 				// All Param inputs have a corresponding Prop/Edit input
 				// We can or at least should be able to
 				// Remove everything from ParameterInputComponent on down
-				log(
-					{
-						code: "P10-5698",
-						context: "PARAMETERS",
-						message: "PARAMETER:DATA",
-					},
-					{ param }
-				);
+				// log(
+				// 	{
+				// 		code: "P10-5698",
+				// 		context: "PARAMETERS",
+				// 		message: "PARAMETER:DATA",
+				// 	},
+				// 	{ param }
+				// );
 				const { id } = param;
 				const inputFormId = `${objectKey}.${id}`;
 

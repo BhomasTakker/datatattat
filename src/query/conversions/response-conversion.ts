@@ -29,13 +29,17 @@ export const convertResponse = (response: any, conversions: any) => {
 	} = conversions;
 
 	if (!conversionId) {
+		// console.log("7777:WOMP");
 		// not a fan
 		// better way to protect/deal with this
 		return response;
 	}
 
+	// console.log("7777: We do get here ", { conversionId });
+
 	const conversionsMap = createConversionsMap(conversionId);
 
+	// console.log("7777: We do get here ", { conversionsMap });
 	// for each sub component
 	// console.log({ SUB: sub });
 	// const iterableData = createIterable(response, iterable, conversionsMap);
@@ -52,7 +56,7 @@ export const convertResponse = (response: any, conversions: any) => {
 		responseConversion,
 		conversionsMap
 	);
-
+	// console.log("7777: We do get here 2 ");
 	// // console.log("FEATURE:753", "CONVERT:RESPONSE", "response", { response });
 	// // console.log("FEATURE:753", "CONVERT:RESPONSE", "subResponse", {
 	// 	subResponse,

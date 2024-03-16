@@ -1,6 +1,7 @@
-import { SwitchInputWithControl } from "@/src/components/input/SwitchInput";
+import { ControlledSwitchInput } from "@/src/components/input/SwitchInput";
 import { WithInfo } from "../../info/WithInfo";
 import { log, setCode, setLog } from "@/src/lib/logger";
+import { useWatch } from "react-hook-form";
 
 interface TextInputProps {
 	info: string;
@@ -11,9 +12,12 @@ interface TextInputProps {
 
 export const SwitchInput = (props: TextInputProps) => {
 	const { info, id, label, defaultValue = false } = props;
+	// const value = useWatch({
+	// 	name: id,
+	// });
 
 	log(
-		{ code: "FEATURE:0010", context: "EDIT:PROPS", message: "TEXT:INPUT" },
+		{ code: "0909", context: "EDIT:PROPS", message: "TEXT:INPUT" },
 		{ props },
 		"wut?"
 	);
@@ -22,13 +26,45 @@ export const SwitchInput = (props: TextInputProps) => {
 		// name here is wrong I believe
 		// should be appended to existing name
 		<WithInfo infoId={info}>
-			<SwitchInputWithControl
+			<ControlledSwitchInput
 				label={label}
+				id={id}
 				name={id}
-				fullWidth={true}
+				// fullWidth={true}
 				disabled={false}
-				checked={defaultValue}
+				// checked={value}
 			/>
 		</WithInfo>
+	);
+};
+
+import { UnknownObject } from "@/src/components/content-display/data-visualization/d3/types";
+
+interface ShowInputProps {
+	info: string;
+	label: string;
+	id: string;
+	defaultValue: boolean;
+}
+
+export const NewSwitchInput = (props: ShowInputProps) => {
+	const { info, id, label, defaultValue = false } = props;
+	const value = useWatch({
+		name: id,
+	});
+
+	return (
+		<>
+			<WithInfo infoId={info}>
+				<ControlledSwitchInput
+					label={label}
+					name={id}
+					id={id}
+					// fullWidth={true}
+					disabled={false}
+					checked={value}
+				/>
+			</WithInfo>
+		</>
 	);
 };

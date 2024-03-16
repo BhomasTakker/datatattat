@@ -8,6 +8,7 @@ import { EDIT_WITH } from "./with";
 const API_PATH = "api/query/get";
 const RSS_PATH = "api/query/rss/get";
 const XLSX_PATH = "api/query/xlsx/get";
+const FILE_PATH = "api/query/file/get";
 const OEMBED_PATH = "api/query/oembed/get";
 const METADATA_API_PATH = "api/query/html/meta/get";
 
@@ -48,8 +49,10 @@ const createQueryObject = (queryObject: any, queryPath: string) => {
 		// if conversionIds and you are a member of ill repute
 		// client side conversion
 		queryFn: () => clientsideFetch({ url, searchParams }),
-		// convert to queryCacheId
-		queryId: `${queryPath}:${queryId}:${JSON.stringify(params)}`,
+		// convert to queryCacheId - create a function fir this - and know when to clear?
+		queryId: `${queryPath}:${queryId}:${JSON.stringify(
+			params
+		)}:${JSON.stringify(conversions)}`,
 
 		// conversion: JSON.stringify(conversion),
 		// need work with state
@@ -94,10 +97,17 @@ export const withFactory = (componentObject: any, withObject: any) => {
 				componentObject,
 				createQueryObject(withObject.query, METADATA_API_PATH)
 			);
+
 		case "xlsx-query":
 			return withQuery(
 				componentObject,
 				createQueryObject(withObject.query, XLSX_PATH)
+			);
+		// This may just be json?
+		case "file-query":
+			return withQuery(
+				componentObject,
+				createQueryObject(withObject.query, FILE_PATH)
 			);
 
 		default:

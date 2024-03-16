@@ -5,6 +5,7 @@ import { StreetCrimeResponse } from "./police-data-uk.types";
 const toGISFeatureCollection = (props: any) => {
 	return map((data: StreetCrimeResponse) => {
 		let dateOfResponses;
+		// revise this / should surely use rxja at least
 		const newData = data.map((item) => {
 			// We possibly/probably want to filter redundant data
 
@@ -23,6 +24,11 @@ const toGISFeatureCollection = (props: any) => {
 			// loop in loop in loop - every key in every object
 			// Rxjs at the very very least
 
+			// we need all oof this to be uniform types
+			// this could be gis-data, whereas geojson would be geojson
+			// base type of data is {[key: string]: unknown}
+			// add standards i.e. filesize, results, pagination if and when
+			// then specializations i.e gis
 			return {
 				crime: category,
 				street: streetName,

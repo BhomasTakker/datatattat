@@ -3,7 +3,7 @@ import { SelectInputWithControl } from "../../../input/SelectInput";
 import { WithInfo } from "../../info/WithInfo";
 import { PropsWithChildren, ReactNode } from "react";
 
-interface SelectInputProps {
+export interface SelectInputProps {
 	info: string;
 	label: string;
 	id: string;
@@ -91,7 +91,7 @@ export const SelectInput = ({
 				label={label}
 				name={id}
 				fullWidth={true}
-				defaultValue={defaultValue}
+				// defaultValue={defaultValue}
 				required
 			>
 				{createInputList(options)}
