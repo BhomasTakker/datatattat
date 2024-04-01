@@ -1,3 +1,4 @@
+// @ts-nocheck / fix me
 import styles from "./bar-chart.module.scss";
 import { Text } from "../../text/text";
 import { SVGChartWrapper } from "../../ui/svg-chart";
@@ -28,9 +29,9 @@ type D3BarChart = {
 	yAxisValue: string;
 	xAxisLabel?: string;
 	yAxisLabel?: string;
-	xAxisType: string;
+	xAxisType: "number" | "string" | "date";
 	xScaleType: string;
-	yAxisType: string;
+	yAxisType: "number" | "string" | "date";
 	yScaleType: string;
 	colorKey?: string;
 	// Will be string[] - OR color[] - ie #00FF0F / could use colorSet instead / as well

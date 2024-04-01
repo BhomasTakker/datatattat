@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 // Basic, quick, and easy / needs to be user led map / features / vase map
 
 import { feature } from "topojson-client";

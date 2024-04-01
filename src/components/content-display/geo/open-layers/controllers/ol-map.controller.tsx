@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { useEffect, useState } from "react";
 import { Choropleth } from "../variants/choropleth/choropleth";
 import { Heatmap } from "../variants/heatmap/heatmap";

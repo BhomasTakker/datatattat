@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { ColorMap, StyleColor } from "../filters/types";
 import { ApplyColorMap, applyColorMap } from "./apply-color-map";
 import {

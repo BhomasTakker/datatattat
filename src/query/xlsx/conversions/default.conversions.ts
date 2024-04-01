@@ -1,5 +1,4 @@
 import { map } from "rxjs";
-import { StandingsResponse, TableEntry } from "./football-data-org.types";
 import { UnknownObject } from "@/src/components/content-display/data-visualization/d3/types";
 
 // what are props in this instance

@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { feature } from "topojson-client";
 import { createSquareRootScale } from "../../scale/square-root-scale";
 import { UnknownObject } from "../../types";

@@ -21,8 +21,8 @@ type DisplayStackConfig = {
 } & StackProps;
 
 export const standard: DisplayStackConfig = {
-	itemVariant: "compact",
-	itemVariants: ["compact"],
+	itemVariant: "compact-column",
+	itemVariants: ["compact-column"],
 	itemLimit: 3,
 };
 export const column: DisplayStackConfig = {
@@ -70,7 +70,7 @@ export const fancy: DisplayStackConfig = {
 
 export const fancyXs: DisplayStackConfig = {
 	...fancy,
-	itemVariant: "compact",
+	itemVariant: "compact-1-line",
 };
 
 export const fancySm: DisplayStackConfig = {

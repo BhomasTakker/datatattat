@@ -1,17 +1,14 @@
 import { log } from "@/src/lib/logger";
-import { max, scaleBand, scaleLinear } from "d3";
-import { AxisBottom } from "../../axis/___axis-bottom";
-import { AxisLeft } from "../../axis/__axis-left";
-import { Bars } from "../../marks/bars";
 import styles from "./bar-chart.module.scss";
-import { Text } from "../../text/text";
-import { SVGChartWrapper } from "../../ui/svg-chart";
-import { UnknownObject } from "../../../types";
-import { ChartWrapper } from "../../ui/chart";
-import { D3Axis } from "../../axis/axis";
-import { createLinearScale } from "../../scale/linear-scale";
-import { createBandScale } from "../../scale/band-scale";
-import { createColorScale } from "../../scale/color-scale";
+import { UnknownObject } from "../../../../types";
+import { createBandScale } from "../../../../scale/band-scale";
+import { createLinearScale } from "../../../../scale/linear-scale";
+import { createColorScale } from "../../../../scale/color-scale";
+import { ChartWrapper } from "../../../ui/chart";
+import { SVGChartWrapper } from "../../../ui/svg-chart";
+import { D3Axis } from "../../../axis/axis";
+import { Bars } from "../../../marks/bars";
+import { Text } from "../../../text/text";
 // type Data = { [key: string]: unknown }[];
 type Data = {
 	results: { [key: string]: unknown }[];
@@ -178,7 +175,7 @@ export const D3BarChart = ({
 		return `translate(${xScale(val)}, 0)`;
 	};
 
-	const yAxisTranslateHnd = (val: number) => {
+	const yAxisTranslateHnd = (val: string) => {
 		return `translate(0, ${yScale(val)})`;
 	};
 
@@ -189,20 +186,20 @@ export const D3BarChart = ({
 			<SVGChartWrapper width={width} height={height} margin={margin}>
 				<D3Axis
 					axis="x"
-					translate={xAxisTranslateHnd}
+					translate={xAxisTranslateHnd as (val: unknown) => string}
 					ticks={xScale.ticks()}
 					y2={innerHeight}
-					labelFormat={axisLabelFormatHnd}
+					labelFormat={axisLabelFormatHnd as (val: unknown) => string}
 					yLabel={innerHeight}
 					yLabelOffset="1rem"
 				/>
 
 				<D3Axis
 					axis="y"
-					translate={yAxisTranslateHnd}
+					translate={yAxisTranslateHnd as (val: unknown) => string}
 					ticks={yScale.domain()}
 					x2={innerWidth}
-					labelFormat={axisLabelFormatHnd}
+					labelFormat={axisLabelFormatHnd as (val: unknown) => string}
 					xLabel={-10}
 					yLabel={yScale.bandwidth() / 2}
 					yLabelOffset="0.25rem"

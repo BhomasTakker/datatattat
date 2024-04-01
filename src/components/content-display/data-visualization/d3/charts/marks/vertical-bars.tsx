@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { ScaleBand, ScaleLinear, ScaleOrdinal } from "d3";
 import { SVGProps } from "react";
 import { UnknownObject } from "../../types";

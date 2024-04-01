@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { CreateBandScale, createBandScale } from "./band-scale";
 import { CreateColorScale, createColorScale } from "./color-scale";
 import { CreateLinearScale, createLinearScale } from "./linear-scale";

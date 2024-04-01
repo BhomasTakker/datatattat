@@ -27,9 +27,10 @@ export const clientsideFetch = async ({
 
 	//try catch
 	//absolute path should not be required
-	const response = await fetch(
-		`${process.env.NEXT_PUBLIC_API_PATH}/${url}${endpoint.search}`
-	);
+	console.log("OMG:HERE", {
+		call: `${url}${endpoint.search}`,
+	});
+	const response = await fetch(`${url}${endpoint.search}`);
 	if (!response.ok) {
 		throw new Error("Network response was not ok");
 	}

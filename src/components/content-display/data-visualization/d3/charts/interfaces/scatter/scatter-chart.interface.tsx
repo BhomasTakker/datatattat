@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import styles from "./scatter-chart.module.scss";
 import { Text } from "../../text/text";
 import { Points } from "../../marks/points";

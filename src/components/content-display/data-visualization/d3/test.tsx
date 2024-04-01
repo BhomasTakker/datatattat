@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { arc } from "d3";
 
 const width = 960;

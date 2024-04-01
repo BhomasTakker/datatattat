@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 // https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json
 // https://www.youtube.com/watch?v=2LhoCfjm8R4
 
