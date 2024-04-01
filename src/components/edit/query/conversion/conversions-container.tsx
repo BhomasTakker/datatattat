@@ -8,6 +8,7 @@ import { useFormContext } from "react-hook-form";
 import { ConversionObject } from "./types";
 import { capitalize } from "@/src/utils/string";
 import { ConversionsContextProvider } from "./context/ConversionsContext";
+import { UnknownObject } from "@/src/components/content-display/data-visualization/d3/types";
 
 type ConversionProps = {
 	// conversionsObject surely
@@ -33,6 +34,8 @@ const MainResponse = ({
 		group = {},
 		filter = {},
 		transform = {},
+		bin = {},
+		summarize = {},
 	} = response;
 	return (
 		<ConversionsContextProvider
@@ -43,6 +46,8 @@ const MainResponse = ({
 				group,
 				filter,
 				transform,
+				bin,
+				summarize,
 				// getValues,
 				// setValue,
 				conversionJson: response,
@@ -84,6 +89,8 @@ const SubComponents = ({
 				group = {},
 				filter = {},
 				transform = {},
+				bin = {},
+				summarize = {},
 			} = conversion;
 			const formId = `${objectKey}.${id}`;
 
@@ -97,6 +104,8 @@ const SubComponents = ({
 						group,
 						filter,
 						transform,
+						bin: bin as UnknownObject,
+						summarize: summarize as UnknownObject,
 						// getValues,
 						// setValue,
 						conversionJson: conversion,
