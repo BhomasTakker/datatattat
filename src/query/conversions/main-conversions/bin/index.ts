@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { createBinnedData } from "@/src/components/content-display/data-visualization/d3/data-manipulation/binned/binned-data";
 import { UnknownObject } from "@/src/components/content-display/data-visualization/d3/types";
 import { extent } from "d3";

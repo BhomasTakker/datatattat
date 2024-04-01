@@ -37,7 +37,7 @@ export const testGroup = ({ groupId, operationId, operationKey }: any) => {
 	return map((arr: UnknownObject[]) => {
 		const groupAccessor = (d: UnknownObject) => d[groupId];
 		const operationAccessor = (d: UnknownObject) => d[operationId];
-		const resultExtent = extent(arr, groupAccessor);
+		// const resultExtent = extent(arr, groupAccessor);
 
 		return arr;
 	});
