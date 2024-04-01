@@ -70,6 +70,15 @@ export const createIterable = (
 	const sortConversions = conversions.filter(
 		(conversion) => conversion.type === "SORT"
 	);
+	const groupConversions = conversions.filter(
+		(conversion) => conversion.type === "GROUP"
+	);
+	const binConversions = conversions.filter(
+		(conversion) => conversion.type === "BIN"
+	);
+	const summarizeConversions = conversions.filter(
+		(conversion) => conversion.type === "SUMMARIZE"
+	);
 
 	// was conversions for pipeFunctions
 	const pipeFunctions = createPipeFunctions(
@@ -77,6 +86,16 @@ export const createIterable = (
 		conversionsMap
 	);
 	const sortFunctions = createPipeFunctions(sortConversions, conversionsMap);
+
+	// It would surely have to be
+	// error group conversions - would/wouldnt be pipes?
+	const groupFunctions = createPipeFunctions(groupConversions, conversionsMap);
+
+	const binFunctions = createPipeFunctions(binConversions, conversionsMap);
+	const summarizeFunctions = createPipeFunctions(
+		summarizeConversions,
+		conversionsMap
+	);
 	// if dataKey then dataKey or nothing
 	// else we are top data
 	// do this before calling the function
@@ -100,7 +119,10 @@ export const createIterable = (
 			seedData,
 			observer as Observer<unknown>,
 			pipeFunctions,
-			sortFunctions
+			sortFunctions,
+			groupFunctions,
+			binFunctions,
+			summarizeFunctions
 		);
 	} else {
 		subscribeToObservableFromObject(
@@ -108,7 +130,10 @@ export const createIterable = (
 			seedData,
 			observer as Observer<unknown>,
 			pipeFunctions,
-			sortFunctions
+			sortFunctions,
+			groupFunctions,
+			binFunctions,
+			summarizeFunctions
 		);
 	}
 

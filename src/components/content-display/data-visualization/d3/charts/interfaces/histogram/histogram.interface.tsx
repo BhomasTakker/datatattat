@@ -171,7 +171,14 @@ export const D3HistogramChart = ({
 	// Bin should be in / a part of conversions - bins or groups or transformations
 	// Use D3 - There are probably a lot of useful D3 data conversion functions
 	// Even just dates for instance
+	//////////////////////////////////
+	// Conversions - I don't think this works
+	// What do you do for scale? - nob - it's just used for range
 	////////////////////////////////////////
+	// If we take binned data from conversions
+	// We are going to need to take scake from orignal data
+	// And use binned data for the chart?
+	// We need to scale this back
 	const binnedData = createBinnedData({
 		// These 3 are linked
 		// We are performing the grouping on xScales data
