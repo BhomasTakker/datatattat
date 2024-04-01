@@ -1,3 +1,4 @@
+import { testBin } from "./bin";
 import {
 	distinct,
 	distinctKey,
@@ -12,7 +13,9 @@ import {
 	skipN,
 	topN,
 } from "./filter";
+import { testGroup } from "./group";
 import { alphanumeric, numericDescending, numericAscending } from "./sort";
+import { testSummarize } from "./summarize";
 
 // back end functions list
 export const TRANSFORM = new Map<string, object>([]);
@@ -43,7 +46,15 @@ export const FILTER = new Map<string, object>([
 	["equals", equals],
 ]);
 
-type ConversionTypes = "TRANSFORM" | "FILTER" | "SORT"; // ?
+export const GROUP = new Map<string, object>([["testGroup", testGroup]]);
+
+export const BIN = new Map<string, object>([["testBin", testBin]]);
+
+export const SUMMARIZE = new Map<string, object>([
+	["testSummarize", testSummarize],
+]);
+
+type ConversionTypes = "TRANSFORM" | "FILTER" | "SORT" | "GROUP"; // dupe
 
 export const MAIN_CONVERSIONS = new Map<string, Map<string, object>>([
 	["TRANSFORM", TRANSFORM],
@@ -51,4 +62,7 @@ export const MAIN_CONVERSIONS = new Map<string, Map<string, object>>([
 	// absolutely possible - look at min funnily enough
 	// https://app.pluralsight.com/course-player?clipId=8dc4a14b-c62e-43cd-8273-03891c4acde1
 	["SORT", SORT],
+	["GROUP", GROUP],
+	["BIN", BIN],
+	["SUMMARIZE", SUMMARIZE],
 ]);

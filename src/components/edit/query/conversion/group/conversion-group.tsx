@@ -89,11 +89,7 @@ ConversionGroupProps) => {
 	const { getValues } = useFormContext();
 	const conversions = getValues(conversionsFormId) || [];
 
-	// const { setValue } = useFormContext();
-
 	const { id, iterable = false } = conversion || {};
-
-	// useEffect(() => {}, [objectKey, id, iterable, setValue]);
 
 	const deleteConversionHandler = (conversionFormId: string, i: number) => {
 		deleteConversion(i);
@@ -109,6 +105,7 @@ ConversionGroupProps) => {
 	};
 
 	const addConversionHandler = () => {
+		// default shouldn't be here but as part of context
 		addConversion({ id: "", type: "" });
 	};
 

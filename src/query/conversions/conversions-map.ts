@@ -56,10 +56,25 @@ export const mergeConversions = (
 		conversions1.get("SORT") as Map<string, object>,
 		conversions2.get("SORT") as Map<string, object>
 	);
+	const group = mergeConversion(
+		conversions1.get("GROUP") as Map<string, object>,
+		conversions2.get("GROUP") as Map<string, object>
+	);
+	const bin = mergeConversion(
+		conversions1.get("BIN") as Map<string, object>,
+		conversions2.get("BIN") as Map<string, object>
+	);
+	const summarizre = mergeConversion(
+		conversions1.get("SUMMARIZE") as Map<string, object>,
+		conversions2.get("SUMMARIZE") as Map<string, object>
+	);
 
 	return new Map<string, object>([
 		["TRANSFORM", transform],
 		["FILTER", filter],
 		["SORT", sort],
+		["GROUP", group],
+		["BIN", bin],
+		["SUMMARIZE", summarizre],
 	]);
 };

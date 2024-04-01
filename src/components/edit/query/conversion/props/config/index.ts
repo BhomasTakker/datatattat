@@ -1,3 +1,4 @@
+import { testBin } from "./bin";
 import {
 	distinct,
 	distinctKey,
@@ -10,7 +11,9 @@ import {
 	topN,
 	numberConditional,
 } from "./filter";
+import { testGroup } from "./group";
 import { simpleNumberSort } from "./sort";
+import { testSummarize } from "./summarize";
 
 export const CONVERSION_PROPS_MAP = new Map<string, object>([
 	// SAMPLE
@@ -33,4 +36,13 @@ export const CONVERSION_PROPS_MAP = new Map<string, object>([
 	// SORT
 	["numericAscending", simpleNumberSort],
 	["numericDescending", simpleNumberSort],
+
+	// GROUP
+	["testGroup", testGroup],
+
+	// BIN
+	["testBin", testBin],
+
+	// SUMMARIZE
+	["testSummarize", testSummarize],
 ]);

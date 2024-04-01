@@ -8,6 +8,7 @@ import {
 } from "react";
 import { Conversion, ConversionObject, Conversions } from "../types";
 import { useFormContext, useWatch } from "react-hook-form";
+import { UnknownObject } from "@/src/components/content-display/data-visualization/d3/types";
 
 const defaultConversion = {
 	id: "",
@@ -27,6 +28,9 @@ type ConversionsState = {
 	// Perhaps this is where you argue conversions is better as a class
 	// conversions: any[];
 	sort: any; // ConversionData[];
+	group: any;
+	bin: UnknownObject;
+	summarize: UnknownObject;
 	filter: any; //ConversionData[];
 	transform: any; //ConversionData[];
 
@@ -68,9 +72,11 @@ const conversionsInitialState: ConversionsState & ConversionsInterface = {
 	setFormValue: () => {},
 
 	sort: {},
+	group: {},
 	filter: {},
 	transform: {},
-
+	bin: {},
+	summarize: {},
 	conversionJson: defaultConversion,
 };
 
