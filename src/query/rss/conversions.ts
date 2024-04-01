@@ -71,9 +71,18 @@ export const SORT = new Map<string, object>([]);
 
 export const FILTER = new Map<string, object>([]);
 
+export const GROUP = new Map<string, object>([]);
+
+export const BIN = new Map<string, object>([]);
+
+export const SUMMARIZE = new Map<string, object>([]);
+
 //RSS 2.0 Conversions
 export const RSS_2_0_CONVERSIONS = new Map<string, Map<string, object>>([
 	["TRANSFORM", TRANSFORM],
 	["FILTER", FILTER],
 	["SORT", SORT],
+	["GROUP", GROUP],
+	["BIN", BIN],
+	["SUMMARIZE", SUMMARIZE],
 ]);

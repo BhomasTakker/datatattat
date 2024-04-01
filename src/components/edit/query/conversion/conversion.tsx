@@ -4,6 +4,9 @@ import { CONVERSION_TYPES, ITERATOR_CONVERSION_TYPES } from "./types";
 import { SelectFilterConversion } from "./select-components/filter-conversion";
 import { SelectSortConversion } from "./select-components/sort-conversion";
 import { SelectTransformConversion } from "./select-components/transform-conversion";
+import { SelectGroupConversion } from "./select-components/group-conversion";
+import { SelectBinConversion } from "./select-components/bin-conversion";
+import { SelectSummarizeConversion } from "./select-components/summarize-conversion";
 
 type SetConversionType = string | null;
 
@@ -41,6 +44,22 @@ const ConversionType = ({
 		case CONVERSION_TYPES.TRANSFORM:
 			return (
 				<SelectTransformConversion
+					objectKey={objectKey}
+					value={id}
+					props={props}
+				/>
+			);
+		case ITERATOR_CONVERSION_TYPES.GROUP:
+			return (
+				<SelectGroupConversion objectKey={objectKey} value={id} props={props} />
+			);
+		case ITERATOR_CONVERSION_TYPES.BIN:
+			return (
+				<SelectBinConversion objectKey={objectKey} value={id} props={props} />
+			);
+		case ITERATOR_CONVERSION_TYPES.SUMMARIZE:
+			return (
+				<SelectSummarizeConversion
 					objectKey={objectKey}
 					value={id}
 					props={props}

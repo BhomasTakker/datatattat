@@ -8,6 +8,9 @@ export const ITERATOR_CONVERSION_TYPES = {
 	...CONVERSION_TYPES,
 	FILTER: "FILTER",
 	SORT: "SORT",
+	GROUP: "GROUP",
+	BIN: "BIN",
+	SUMMARIZE: "SUMMARIZE",
 } as const;
 
 export type Conversion = any;
@@ -20,7 +23,7 @@ export type SelectConversion = BaseEditProps & {
 
 type DefaultConversions = {
 	id: string;
-	type: "TRANSFORM" | "FILTER" | "SORT";
+	type: "TRANSFORM" | "FILTER" | "SORT" | "GROUP" | "BIN" | "SUMMARIZE";
 };
 
 // these should be the same thing
@@ -32,4 +35,5 @@ export type ConversionObject = {
 	sort?: object;
 	filter?: object;
 	transform?: object;
+	group?: object;
 };

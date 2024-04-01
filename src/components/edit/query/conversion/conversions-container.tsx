@@ -27,13 +27,20 @@ const MainResponse = ({
 		return <></>;
 	}
 
-	const { id = "", sort = {}, filter = {}, transform = {} } = response;
+	const {
+		id = "",
+		sort = {},
+		group = {},
+		filter = {},
+		transform = {},
+	} = response;
 	return (
 		<ConversionsContextProvider
 			value={{
 				objectKey,
 				// conversions: [],
 				sort,
+				group,
 				filter,
 				transform,
 				// getValues,
@@ -71,7 +78,13 @@ const SubComponents = ({
 	// is map known to be good, bad, etc? as opposed to a function, or something
 	const returnComponents = conversions.map(
 		(conversion: ConversionObject, i: number) => {
-			const { id = "", sort = {}, filter = {}, transform = {} } = conversion;
+			const {
+				id = "",
+				sort = {},
+				group = {},
+				filter = {},
+				transform = {},
+			} = conversion;
 			const formId = `${objectKey}.${id}`;
 
 			return (
@@ -81,6 +94,7 @@ const SubComponents = ({
 						objectKey: formId,
 						// conversions: [],
 						sort,
+						group,
 						filter,
 						transform,
 						// getValues,
