@@ -7,7 +7,7 @@ const props: ArticleStackProps = {
 	alignItems: "center",
 	justifyContent: "center",
 	spacing: 5,
-	useFlexWrap: true,
+	// useFlexWrap: true,
 	dividerVariant: "none",
 };
 

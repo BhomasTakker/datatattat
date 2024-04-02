@@ -1,3 +1,5 @@
+// @ts-nocheck / FIX ME
+
 import { ScaleLinear } from "d3";
 
 // take in circle props

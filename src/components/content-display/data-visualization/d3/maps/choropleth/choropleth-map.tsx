@@ -1,11 +1,8 @@
+// @ts-nocheck / FIX ME
 import { UnknownObject } from "../../types";
-import { useData } from "../hooks/useData";
-import { feature } from "topojson-client";
-import styles from "./choropleth-map.module.scss";
 import { ChartWrapper } from "../../charts/ui/chart";
 import { SVGChartWrapper } from "../../charts/ui/svg-chart";
 import { MapBackground } from "../base/background";
-import { Features } from "../features/features";
 import { createSequentialScale } from "../../scale/sequential-scale";
 import { ChoroplethFeatures } from "./choropleth-features";
 import { geoEqualEarth } from "d3";

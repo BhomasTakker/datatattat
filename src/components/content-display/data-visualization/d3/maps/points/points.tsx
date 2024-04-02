@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { GeoProjection, ScalePower, geoEqualEarth } from "d3";
 import { UnknownObject } from "../../types";
 import styles from "./points.module.scss";

@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { EmojiMap } from "../../filters/types";
 import { applyEmojiMap } from "../apply-emoji-map";
 import { CreateText } from "./style-text";

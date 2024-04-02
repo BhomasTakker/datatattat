@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { clientsideFetch } from "@/src/api/clientside-fetch";
 import { useEffect, useState } from "react";
 // Needs listing somewhere

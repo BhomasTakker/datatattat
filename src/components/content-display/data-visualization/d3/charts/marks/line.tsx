@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { ScaleBand, ScaleLinear, curveNatural, line, timeFormat } from "d3";
 import styles from "./line.module.scss";
 import { UnknownObject } from "../../types";

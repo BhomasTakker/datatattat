@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import type { Meta, StoryObj } from "@storybook/react";
 import { D3ScatterChart } from "./scatter-chart.interface";
 

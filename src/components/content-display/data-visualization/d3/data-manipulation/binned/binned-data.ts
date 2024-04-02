@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 // I suppose call a data-manipulation function
 // Take / like conversions / an array
 

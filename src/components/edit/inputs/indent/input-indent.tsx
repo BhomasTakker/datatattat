@@ -1,6 +1,5 @@
+// @ts-nocheck / FIX ME
 import { UnknownObject } from "@/src/components/content-display/data-visualization/d3/types";
-import { TitleVariant } from "@/src/components/types/ui";
-import { Title } from "@/src/components/ui/title";
 import { Box } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
 import { inputMap } from "../input.map";

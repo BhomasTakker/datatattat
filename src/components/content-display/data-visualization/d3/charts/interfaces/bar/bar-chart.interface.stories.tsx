@@ -9,6 +9,6 @@ type Story = StoryObj<typeof D3BarChart>;
 
 export const Wrapper: Story = {
 	args: {
-		data: [],
+		// data: [],
 	},
 };

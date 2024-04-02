@@ -36,4 +36,6 @@ export type ConversionObject = {
 	filter?: object;
 	transform?: object;
 	group?: object;
+	bin?: object;
+	summarize?: object;
 };

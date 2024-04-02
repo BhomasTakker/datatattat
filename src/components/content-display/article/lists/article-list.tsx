@@ -79,7 +79,8 @@ export const ArticleList = ({
 			 - like a tweet as per the original idea */}
 			{/* Why would this be here? */}
 			{/* Why would or would not */}
-			<ContentTitle title={componentTitle} variant={componentTitleVariant} />
+			{/* REmoved variant - variant={componentTitleVariant}  */}
+			<ContentTitle title={componentTitle} />
 			{/* <Title text={title} variant={TitleVariant.CONTENT} /> */}
 			{/* Content Title */}
 

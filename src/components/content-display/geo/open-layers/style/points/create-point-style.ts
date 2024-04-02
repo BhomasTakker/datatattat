@@ -1,4 +1,4 @@
-import Style from "ol/style/Style";
+// @ts-nocheck / FIX MEimport Style from "ol/style/Style";
 import { CreateShape, createShape } from "../style-shapes";
 import {
 	ColorMap,

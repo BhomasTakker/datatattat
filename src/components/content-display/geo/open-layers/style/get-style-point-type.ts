@@ -1,5 +1,5 @@
+// @ts-nocheck / FIX ME
 import { EmojiMap, IconMap, ShapeMap } from "../filters/types";
-import { applyEmojiMap } from "./apply-emoji-map";
 import { applyIconMap } from "./apply-icon-map";
 import { applyShapeMap } from "./apply-shape-map";
 

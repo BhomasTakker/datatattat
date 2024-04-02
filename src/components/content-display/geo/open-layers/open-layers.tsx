@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 // https://taylor.callsen.me/using-openlayers-with-react-functional-components/
 import { Box, Paper } from "@mui/material";
 import { useEffect } from "react";

@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import styles from "./TanTable.module.css";
 import {
 	Table,

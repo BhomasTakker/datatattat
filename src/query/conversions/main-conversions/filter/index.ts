@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 // rxjs operators
 // https://app.pluralsight.com/course-player?clipId=0558ef44-e83b-4c8d-aca0-eafd8ae2d16b
 

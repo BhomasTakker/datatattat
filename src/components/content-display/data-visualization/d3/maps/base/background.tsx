@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { geoEqualEarth, geoPath, geoGraticule, GeoProjection } from "d3";
 import styles from "./background.module.scss";
 

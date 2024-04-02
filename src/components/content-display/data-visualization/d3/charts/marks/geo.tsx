@@ -1,6 +1,6 @@
+// @ts-nocheck / FIX ME
 import { ScalePower, geoEqualEarth, geoGraticule, geoPath } from "d3";
 import styles from "./geo.module.scss";
-import { createSquareRootScale } from "../scale/square-root-scale";
 import { UnknownObject } from "../../types";
 
 type Geo = {

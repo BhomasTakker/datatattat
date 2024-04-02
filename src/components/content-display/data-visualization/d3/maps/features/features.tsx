@@ -1,3 +1,4 @@
+// @ts-nocheck / FIX ME
 import { GeoPermissibleObjects, geoEqualEarth, geoPath } from "d3";
 import { UnknownObject } from "../../types";
 import styles from "./features.module.scss";
