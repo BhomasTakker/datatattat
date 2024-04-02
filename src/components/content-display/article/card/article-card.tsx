@@ -19,6 +19,7 @@ import { ArticleImage } from "../image/article-image";
 import { styled } from "@mui/material/styles";
 import { defaults } from "./article-card.config";
 import { StackDirection } from "@/src/types/mui";
+import { useInView } from "react-intersection-observer";
 // Ya create types like this and dump somewhere useful
 
 export interface ArticleCardProps {
@@ -67,15 +68,19 @@ export const ArticleCard = ({
 	cardContentCss = defaults.cardContentCss,
 	contentStackCss = defaults.contentStackCss,
 }: ArticleCardProps) => {
+	const { ref, inView } = useInView({
+		threshold: 0,
+		triggerOnce: true,
+	});
 	const { title, avatar, src, description, guid, variant, details, media } =
 		item;
 	const actionIcons: any[] = [];
 
 	return (
-		<Card sx={cardCss} data-testid="article-card" elevation={0}>
+		<Card ref={ref} sx={cardCss} data-testid="article-card" elevation={0}>
 			<CardActionArea>
 				<Stack direction={layout}>
-					{avatar && showImage && (
+					{inView && avatar && showImage && (
 						// <Box>
 						<ArticleImage image={avatar} src={src} {...imageProps} />
 						// </Box>
