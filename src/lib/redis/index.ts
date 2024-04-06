@@ -1,12 +1,5 @@
-import { getEnvVar } from "@/src/utils/env";
-import { Redis } from "ioredis";
 import { RedisCacheTime } from "./types";
-
-export const redis = new Redis({
-	host: getEnvVar("REDIS_HOST"),
-	port: Number(getEnvVar("REDIS_PORT")),
-	password: getEnvVar("REDIS_PASSWORD"),
-});
+import redis from "./create-redis-connection";
 
 type Result = any;
 
@@ -35,6 +28,9 @@ export const redisDataFetch = async ({
 	cacheExpire = RedisCacheTime.WEEK,
 	getResult,
 }: RedisDataFetch) => {
+	if (!redis) {
+		throw new Error("Redis not instantiated");
+	}
 	// We should be sure this is a string post refactor
 	const url = endpoint.toString();
 	const cachedValue = await redis.get(url);

@@ -46,47 +46,55 @@ export const ArticleListItem = ({
 	const img = avatar?.src || "";
 	return (
 		<ListItem ref={ref} data-testid="article-list-item" {...rest}>
-			{/* if */}
-			{inView && useAvatar && (
-				<ListItemAvatar>
-					{/* Avatar Variant */}
-					<ArticleAvatar alt={title} img={img} src={src} size={avatarSize} />
-					{/* Icon */}
-					{/* Logo */}
-				</ListItemAvatar>
+			{inView && (
+				<>
+					{useAvatar && (
+						<ListItemAvatar>
+							{/* Avatar Variant */}
+							<ArticleAvatar
+								alt={title}
+								img={img}
+								src={src}
+								size={avatarSize}
+							/>
+							{/* Icon */}
+							{/* Logo */}
+						</ListItemAvatar>
+					)}
+					<ListItemText
+						disableTypography
+						sx={{
+							// Should be passing this in
+							display: "flex",
+							flexDirection: direction,
+							justifyContent: "space-between",
+							margin: 0,
+						}}
+						primary={<ContentTitle title={title} maxLines={titleMaxLines} />}
+						secondary={
+							<Stack margin={0} padding={0}>
+								{/* if show */}
+								{showDescription && (
+									<Description
+										description={description}
+										maxLines={descriptionMaxLines}
+									/>
+								)}
+								{/* very wrong - probably choose one to show - published as default */}
+								{(showAuthor || showPublished || showPublisher) && (
+									<DetailsComponent
+										details={details}
+										showAuthors={showAuthor}
+										showPublished={showPublished}
+										showpublishers={showPublisher}
+										showCategories={false}
+									/>
+								)}
+							</Stack>
+						}
+					/>
+				</>
 			)}
-			<ListItemText
-				disableTypography
-				sx={{
-					// Should be passing this in
-					display: "flex",
-					flexDirection: direction,
-					justifyContent: "space-between",
-					margin: 0,
-				}}
-				primary={<ContentTitle title={title} maxLines={titleMaxLines} />}
-				secondary={
-					<Stack margin={0} padding={0}>
-						{/* if show */}
-						{showDescription && (
-							<Description
-								description={description}
-								maxLines={descriptionMaxLines}
-							/>
-						)}
-						{/* very wrong - probably choose one to show - published as default */}
-						{(showAuthor || showPublished || showPublisher) && (
-							<DetailsComponent
-								details={details}
-								showAuthors={showAuthor}
-								showPublished={showPublished}
-								showpublishers={showPublisher}
-								showCategories={false}
-							/>
-						)}
-					</Stack>
-				}
-			/>
 		</ListItem>
 	);
 };

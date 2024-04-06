@@ -68,6 +68,7 @@ export const ArticleCard = ({
 	cardContentCss = defaults.cardContentCss,
 	contentStackCss = defaults.contentStackCss,
 }: ArticleCardProps) => {
+	// Probably create a layout InView component
 	const { ref, inView } = useInView({
 		threshold: 0,
 		triggerOnce: true,
@@ -78,42 +79,46 @@ export const ArticleCard = ({
 
 	return (
 		<Card ref={ref} sx={cardCss} data-testid="article-card" elevation={0}>
-			<CardActionArea>
-				<Stack direction={layout}>
-					{inView && avatar && showImage && (
-						// <Box>
-						<ArticleImage image={avatar} src={src} {...imageProps} />
-						// </Box>
-					)}
-					<CardContentNoPadding sx={cardContentCss}>
-						<Stack {...contentStackProps} sx={contentStackCss}>
-							<Box>
-								<ContentTitle title={title} {...contentTitleProps} />
-								{/* Use instead of margins? - irrelevant if we config? */}
-								{/* Either replace or add to controls */}
-								<Box height={"0.5rem"} />
-								{showDescription && (
-									<Description
-										description={description}
-										{...descriptionProps}
-									/>
-								)}
-							</Box>
-							<DetailsComponent details={details} {...detailsProps} />
+			{inView && (
+				<>
+					<CardActionArea>
+						<Stack direction={layout}>
+							{avatar && showImage && (
+								// <Box>
+								<ArticleImage image={avatar} src={src} {...imageProps} />
+								// </Box>
+							)}
+							<CardContentNoPadding sx={cardContentCss}>
+								<Stack {...contentStackProps} sx={contentStackCss}>
+									<Box>
+										<ContentTitle title={title} {...contentTitleProps} />
+										{/* Use instead of margins? - irrelevant if we config? */}
+										{/* Either replace or add to controls */}
+										<Box height={"0.5rem"} />
+										{showDescription && (
+											<Description
+												description={description}
+												{...descriptionProps}
+											/>
+										)}
+									</Box>
+									<DetailsComponent details={details} {...detailsProps} />
+								</Stack>
+							</CardContentNoPadding>
 						</Stack>
-					</CardContentNoPadding>
-				</Stack>
-			</CardActionArea>
-			{/* Not like this but something like this
+					</CardActionArea>
+					{/* Not like this but something like this
 			 reason is to have a button OUTSIDE of CardActionArea */}
-			{actionIcons.length > 0 ? (
-				<CardActions>
-					<Button size="small" color="primary">
-						Example
-					</Button>
-				</CardActions>
-			) : (
-				<></>
+					{actionIcons.length > 0 ? (
+						<CardActions>
+							<Button size="small" color="primary">
+								Example
+							</Button>
+						</CardActions>
+					) : (
+						<></>
+					)}
+				</>
 			)}
 		</Card>
 	);
