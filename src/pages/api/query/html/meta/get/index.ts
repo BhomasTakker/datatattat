@@ -23,16 +23,16 @@ async function metaQuery(req: NextApiRequest, res: NextApiResponse) {
 	}
 
 	// const response = await redisMetaDataFetch(url, {});
-	const response = await redisDataFetch({
-		endpoint: url,
-		options: {},
-		getResult: fetchMetaFromHTML,
-	});
-
-	// const response = await fetchRedis({
-	// 	url: new URL(url),
-	// 	fetchId: "fetchMeta",
+	// const response = await redisDataFetch({
+	// 	endpoint: url,
+	// 	options: {},
+	// 	getResult: fetchMetaFromHTML,
 	// });
+
+	const response = await fetchRedis({
+		url: new URL(url),
+		fetchId: "fetchMeta",
+	});
 
 	return res.status(200).json(response);
 }
