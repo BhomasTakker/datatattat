@@ -78,9 +78,6 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 	// 	getResult: fetchRSS,
 	// 	cacheExpire: RedisCacheTime.DAY,
 	// });
-	const baseUrl = process.env.VERCEL_URL
-		? "https://" + process.env.VERCEL_URL
-		: "http://localhost:3000";
 
 	// Make a fetchRedis function and pass in xyz
 	// const result = await fetch(`${baseUrl}/api/redis?endpoint=${queryUrl.href}`);
