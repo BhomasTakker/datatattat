@@ -70,11 +70,23 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 		queryUrl.searchParams.set(param, queryParams[param] as string);
 	}
 
+	// On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// const result = await redisRssFetch(queryUrl, { ...headers });
+	const result = await redisDataFetch({
+		endpoint: queryUrl.toString(),
+		options: { ...headers },
+		getResult: fetchRSS,
+		cacheExpire: RedisCacheTime.DAY,
+	});
+	const baseUrl = process.env.VERCEL_URL
+		? "https://" + process.env.VERCEL_URL
+		: "http://localhost:3000";
+
 	// Make a fetchRedis function and pass in xyz
 	// const result = await fetch(`${baseUrl}/api/redis?endpoint=${queryUrl.href}`);
 	// const resultToo = await result.json();
 
-	const result = await fetchRedis({ url: queryUrl, fetchId: "fetchRSS" });
+	// const result = await fetchRedis({ url: queryUrl, fetchId: "fetchRSS" });
 	// const result = await fetch(`/api/redis`);
 	// put result through transducers here
 	// ultimately if a good enough member

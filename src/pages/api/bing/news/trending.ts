@@ -23,14 +23,14 @@ async function trending(req: NextApiRequest, res: NextApiResponse) {
 		endpoint.searchParams.set(param, query[param] as string);
 	}
 
-	const result = await fetchRedis({ url: endpoint, fetchId: "fetch" });
+	// const result = await fetchRedis({ url: endpoint, fetchId: "fetch" });
 
 	// const result = await redisApiFetch(endpoint, options);
-	// const result = await redisDataFetch({
-	// 	endpoint: endpoint.toString(),
-	// 	options,
-	// 	getResult: fetchAPI,
-	// });
+	const result = await redisDataFetch({
+		endpoint: endpoint.toString(),
+		options,
+		getResult: fetchAPI,
+	});
 	res.status(200).json(result);
 }
 

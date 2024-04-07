@@ -69,13 +69,13 @@ async function oembedQuery(req: NextApiRequest, res: NextApiResponse) {
 
 	// On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// const result = await redisApiFetch(queryUrl, { ...headers });
-	// const result = await redisDataFetch({
-	// 	endpoint: queryUrl.toString(),
-	// 	options: { ...headers },
-	// 	getResult: fetchAPI,
-	// });
+	const result = await redisDataFetch({
+		endpoint: queryUrl.toString(),
+		options: { ...headers },
+		getResult: fetchAPI,
+	});
 
-	const result = await fetchRedis({ url: queryUrl, fetchId: "fetch" });
+	// const result = await fetchRedis({ url: queryUrl, fetchId: "fetch" });
 	const newResponse = convertResponse(result, parsedConversions);
 	return res.status(200).json(newResponse);
 	// res.status(200).json(result);
