@@ -18,13 +18,17 @@ async function fetchRedis(req: NextApiRequest, res: NextApiResponse) {
 		return res.status(404).json("[ERROR] No endpoint provided");
 	}
 
-	const result = await redisDataFetch({
-		endpoint: endpoint.toString(),
-		options: {},
-		getResult: fetchFn || fetchAPI,
-	});
+	try {
+		const result = await redisDataFetch({
+			endpoint: endpoint.toString(),
+			options: {},
+			getResult: fetchFn || fetchAPI,
+		});
 
-	res.status(200).json(result);
+		return res.status(200).json(result);
+	} catch (err) {
+		return res.status(500).json(`ERROR Failed to fetch ${err}`);
+	}
 }
 
 export default fetchRedis;
