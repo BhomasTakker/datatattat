@@ -27,7 +27,8 @@ async function fetchRedis(req: NextApiRequest, res: NextApiResponse) {
 
 		return res.status(200).json(result);
 	} catch (err) {
-		return res.status(500).json(`ERROR Failed to fetch ${err}`);
+		throw new Error(`ERROR:- Failed to fetch`);
+		// return res.status(500).json(`ERROR Failed to fetch ${err}`);
 	}
 }
 
