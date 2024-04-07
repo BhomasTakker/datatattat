@@ -9,6 +9,7 @@ import { NextApiRequest, NextApiResponse } from "next/types";
 import { convertResponse } from "@/src/query/conversions/response-conversion";
 import { fetchRSS } from "@/src/queries/data/rss/fetch-rss";
 import { RedisCacheTime } from "@/src/lib/redis/types";
+import { fetchRedis } from "@/src/lib/redis/fetch-redis";
 
 type QueryId = string | string[];
 type QueryData = {
@@ -69,14 +70,12 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 		queryUrl.searchParams.set(param, queryParams[param] as string);
 	}
 
-	// On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// const result = await redisRssFetch(queryUrl, { ...headers });
-	const result = await redisDataFetch({
-		endpoint: queryUrl.toString(),
-		options: { ...headers },
-		getResult: fetchRSS,
-		cacheExpire: RedisCacheTime.DAY,
-	});
+	// Make a fetchRedis function and pass in xyz
+	// const result = await fetch(`${baseUrl}/api/redis?endpoint=${queryUrl.href}`);
+	// const resultToo = await result.json();
+
+	const result = await fetchRedis({ url: queryUrl, fetchId: "fetchRSS" });
+	// const result = await fetch(`/api/redis`);
 	// put result through transducers here
 	// ultimately if a good enough member
 
@@ -89,13 +88,8 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 	// check has the chops
 	// run data through transducers
 
-	// // console.log({ result });
-
-	// // console.log("FEATURE:753", "RSS:QUERY", {parsedConversions});
 	const newResponse = convertResponse(result, parsedConversions);
-	// // console.log("FEATURE:753", "RSS:QUERY", { result });
 	return res.status(200).json(newResponse);
-	// res.status(200).json(forNow(result));
 }
 
 export default rssQuery;

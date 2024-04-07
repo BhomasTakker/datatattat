@@ -3,6 +3,7 @@ import { redisDataFetch } from "@/src/lib/redis";
 import { OEMBED_MAP } from "@/src/oembed/oembed-map";
 import { NextApiRequest, NextApiResponse } from "next/types";
 import { fetchAPI } from "@/src/queries/data/api/fetch-api";
+import { fetchRedis } from "@/src/lib/redis/fetch-redis";
 
 // Putting all embeds through iframely
 // https://iframely.com/docs/iframely-api
@@ -71,11 +72,12 @@ async function oembedQuery(req: NextApiRequest, res: NextApiResponse) {
 
 	//On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// const result = await redisApiFetch(oembedUrl, { ...headers });
-	const result = await redisDataFetch({
-		endpoint: oembedUrl.toString(),
-		options: { ...headers },
-		getResult: fetchAPI,
-	});
+	// const result = await redisDataFetch({
+	// 	endpoint: oembedUrl.toString(),
+	// 	options: { ...headers },
+	// 	getResult: fetchAPI,
+	// });
+	const result = await fetchRedis({ url: oembedUrl, fetchId: "fetch" });
 	// console.log({ oembedUrl });
 	// console.log({ result });
 

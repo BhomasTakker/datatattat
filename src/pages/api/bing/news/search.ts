@@ -6,6 +6,7 @@ import {
 import { redisDataFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next";
 import { fetchAPI } from "@/src/queries/data/api/fetch-api";
+import { fetchRedis } from "@/src/lib/redis/fetch-redis";
 
 //We should initially form the data into a 'shape' we want?
 //We might do further on the client side but we should
@@ -52,11 +53,12 @@ async function search(req: NextApiRequest, res: NextApiResponse) {
 
 	//On fail get stuck in a loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// const result = await redisApiFetch(endpoint, options);
-	const result = await redisDataFetch({
-		endpoint: endpoint.toString(),
-		options,
-		getResult: fetchAPI,
-	});
+	// const result = await redisDataFetch({
+	// 	endpoint: endpoint.toString(),
+	// 	options,
+	// 	getResult: fetchAPI,
+	// });
+	const result = await fetchRedis({ url: endpoint, fetchId: "fetch" });
 	// // console.log({ BING: result });
 
 	res.status(200).json(result);

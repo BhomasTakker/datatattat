@@ -1,4 +1,5 @@
 import { redisDataFetch } from "@/src/lib/redis";
+import { fetchRedis } from "@/src/lib/redis/fetch-redis";
 import { fetchMetaFromHTML } from "@/src/queries/data/meta/fetch-meta";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -22,10 +23,15 @@ async function metaQuery(req: NextApiRequest, res: NextApiResponse) {
 	}
 
 	// const response = await redisMetaDataFetch(url, {});
-	const response = await redisDataFetch({
-		endpoint: url,
-		options: {},
-		getResult: fetchMetaFromHTML,
+	// const response = await redisDataFetch({
+	// 	endpoint: url,
+	// 	options: {},
+	// 	getResult: fetchMetaFromHTML,
+	// });
+
+	const response = await fetchRedis({
+		url: new URL(url),
+		fetchId: "fetchMeta",
 	});
 
 	return res.status(200).json(response);
