@@ -17,6 +17,6 @@ export const fetchRedis = async ({ url, fetchId }: FetchRedis) => {
 		const returnData = await result.json();
 		return returnData;
 	} catch (err) {
-		throw new Error("ERROR: Could not fetch data from cache");
+		throw new Error(`ERROR: Could not fetch data from cache ${err}`);
 	}
 };
