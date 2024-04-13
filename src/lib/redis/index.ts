@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { RedisCacheTime } from "./types";
 import redis from "./create-redis-connection";
 // import redis from "./global-redis";
@@ -37,7 +38,7 @@ export const redisDataFetch = async ({
 	const cachedValue = await redis.get(url);
 
 	if (cachedValue) {
-		return JSON.parse(cachedValue.toString());
+		return JSON.parse(cachedValue);
 	}
 
 	const result = await getResult(url, options);

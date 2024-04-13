@@ -14,8 +14,8 @@ let redis: Redis | null = null;
 
 if (!redis) {
 	redis = new Redis({
-		url: getEnvVar("UPSTASH_REDIS_URL") || "",
-		token: getEnvVar("UPSTASH_REDIS_TOKEN") || "",
+		url: getEnvVar("UPSTASH_REDIS_URL")!,
+		token: getEnvVar("UPSTASH_REDIS_TOKEN")!,
 		// host: getEnvVar("REDIS_HOST"),
 		// port: Number(getEnvVar("REDIS_PORT")),
 		// password: getEnvVar("REDIS_PASSWORD"),
