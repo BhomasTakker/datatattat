@@ -37,7 +37,7 @@ export const redisDataFetch = async ({
 	const cachedValue = await redis.get(url);
 
 	if (cachedValue) {
-		return JSON.parse(cachedValue);
+		return JSON.parse(cachedValue.toString());
 	}
 
 	const result = await getResult(url, options);
