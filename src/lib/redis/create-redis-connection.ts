@@ -1,5 +1,6 @@
 import { getEnvVar } from "@/src/utils/env";
-import Redis from "ioredis";
+// import Redis from "ioredis";
+import { Redis } from "@upstash/redis";
 
 /////////////////////////////////////////////////
 // ISSUE
@@ -13,9 +14,11 @@ let redis: Redis | null = null;
 
 if (!redis) {
 	redis = new Redis({
-		host: getEnvVar("REDIS_HOST"),
-		port: Number(getEnvVar("REDIS_PORT")),
-		password: getEnvVar("REDIS_PASSWORD"),
+		url: getEnvVar("UPSTASH_REDIS_URL") || "",
+		token: getEnvVar("UPSTASH_REDIS_TOKEN") || "",
+		// host: getEnvVar("REDIS_HOST"),
+		// port: Number(getEnvVar("REDIS_PORT")),
+		// password: getEnvVar("REDIS_PASSWORD"),
 	});
 }
 

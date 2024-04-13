@@ -1,6 +1,6 @@
 import { RedisCacheTime } from "./types";
-// import redis from "./create-redis-connection";
-import redis from "./global-redis";
+import redis from "./create-redis-connection";
+// import redis from "./global-redis";
 
 type Result = any;
 
