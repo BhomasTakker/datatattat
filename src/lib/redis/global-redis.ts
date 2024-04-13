@@ -19,18 +19,37 @@ let redisClient: Redis;
 let redisClientPromise: Redis;
 
 // if (process.env.NEXT_PUBLIC_NODE_ENV === "development") {
-if (!global._redisClientPromise) {
+// 	if (!global._redisClientPromise) {
+// 		redisClient = new Redis({
+// 			host: REDIS_HOST,
+// 			port: REDIS_PORT,
+// 			password: REDIS_PASSWORD,
+// 		});
+// 		console.info(`NextJS Redis client connected 111 ..`);
+// 		global._redisClientPromise = redisClient as Redis;
+// 	}
+// 	redisClientPromise = global._redisClientPromise;
+// } else {
+// 	redisClientPromise = redisClient;
+// }
+
+if (process.env.NEXT_PUBLIC_NODE_ENV === "development") {
+	if (!global._redisClientPromise) {
+		redisClient = new Redis({
+			host: REDIS_HOST,
+			port: REDIS_PORT,
+			password: REDIS_PASSWORD,
+		});
+		global._redisClientPromise = redisClient;
+	}
+	redisClientPromise = global._redisClientPromise;
+} else {
 	redisClient = new Redis({
 		host: REDIS_HOST,
 		port: REDIS_PORT,
 		password: REDIS_PASSWORD,
 	});
-	console.info(`NextJS Redis client connected 111 ..`);
-	global._redisClientPromise = redisClient as Redis;
+	redisClientPromise = redisClient;
 }
-redisClientPromise = global._redisClientPromise;
-// } else {
-// 	redisClientPromise = redisClient;
-// }
 
 export default redisClientPromise;
