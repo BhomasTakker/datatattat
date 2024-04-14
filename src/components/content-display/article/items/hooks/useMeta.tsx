@@ -9,15 +9,12 @@ interface Meta {
 }
 
 // There is almost certainly a better way of getting meta data
-// this way is probably terribly unperformant
-// I mean we're even launching cromium every time!
-// but again this could be available to paying memebers, etc
 export const useMeta = (src: string, load: boolean = false) => {
 	const [meta, setMeta] = useState<Meta | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<Error | null>(null);
 
-	// Can we do this only if on screen?
+	// Can we do this only if on screen? / React lazy on the parent component
 	// useElementOnScreen perhaps?
 	useEffect(() => {
 		const getMeta = async () => {
@@ -27,11 +24,13 @@ export const useMeta = (src: string, load: boolean = false) => {
 					url: METADATA_API_PATH,
 					searchParams: { url: src },
 				})) as Meta;
+				console.log("999", { meta });
 				setLoading(false);
 				setMeta(meta);
 			} catch (err) {
 				setLoading(false);
 				setError(err as Error);
+				// fallback ?
 			}
 		};
 		if (load && !loading && !meta) getMeta();

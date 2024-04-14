@@ -1,12 +1,7 @@
-import { getEnvVar } from "@/src/utils/env";
-import { Redis } from "ioredis";
+// @ts-nocheck
 import { RedisCacheTime } from "./types";
-
-export const redis = new Redis({
-	host: getEnvVar("REDIS_HOST"),
-	port: Number(getEnvVar("REDIS_PORT")),
-	password: getEnvVar("REDIS_PASSWORD"),
-});
+import redis from "./create-redis-connection";
+// import redis from "./global-redis";
 
 type Result = any;
 
@@ -35,20 +30,20 @@ export const redisDataFetch = async ({
 	cacheExpire = RedisCacheTime.WEEK,
 	getResult,
 }: RedisDataFetch) => {
+	if (!redis) {
+		throw new Error("Redis not instantiated");
+	}
 	// We should be sure this is a string post refactor
 	const url = endpoint.toString();
 	const cachedValue = await redis.get(url);
 
 	if (cachedValue) {
-		// // console.log("RETURN CACHE", { cachedValue });
+		return cachedValue;
 		// return JSON.parse(cachedValue);
-		return JSON.parse(cachedValue);
 	}
 
-	// // console.log("redisDataFetch 1 ", { url });
-	// what is the expected return? / It is a promise though you deadbeat
 	const result = await getResult(url, options);
-	// // console.log("redisDataFetch 2 ", { result });
+
 	await redis.set(endpoint.toString(), JSON.stringify(result));
 	//need to set cache expire to a provided value or use a default / not integrated into edit yet
 	await redis.expire(endpoint.toString(), cacheExpire);

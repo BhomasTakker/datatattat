@@ -6,6 +6,7 @@ import { ContentTitle } from "../content-title/content-title";
 import { Description } from "../description/description";
 import { DetailsComponent } from "../details/details";
 import { ArticleAvatar, AvatarSize } from "../../avatar/avatar";
+import { useInView } from "react-intersection-observer";
 
 export interface ArticleListItemProps {
 	item: CollectionItem;
@@ -35,53 +36,65 @@ export const ArticleListItem = ({
 	showPublisher,
 	...rest
 }: ArticleListItemProps) => {
+	const { ref, inView } = useInView({
+		threshold: 0,
+		triggerOnce: true,
+	});
 	const { title, avatar, src, description, guid, variant, details, media } =
 		item;
 
 	const img = avatar?.src || "";
 	return (
-		<ListItem data-testid="article-list-item" {...rest}>
-			{/* if */}
-			{useAvatar && (
-				<ListItemAvatar>
-					{/* Avatar Variant */}
-					<ArticleAvatar alt={title} img={img} src={src} size={avatarSize} />
-					{/* Icon */}
-					{/* Logo */}
-				</ListItemAvatar>
+		<ListItem ref={ref} data-testid="article-list-item" {...rest}>
+			{inView && (
+				<>
+					{useAvatar && (
+						<ListItemAvatar>
+							{/* Avatar Variant */}
+							<ArticleAvatar
+								alt={title}
+								img={img}
+								src={src}
+								size={avatarSize}
+							/>
+							{/* Icon */}
+							{/* Logo */}
+						</ListItemAvatar>
+					)}
+					<ListItemText
+						disableTypography
+						sx={{
+							// Should be passing this in
+							display: "flex",
+							flexDirection: direction,
+							justifyContent: "space-between",
+							margin: 0,
+						}}
+						primary={<ContentTitle title={title} maxLines={titleMaxLines} />}
+						secondary={
+							<Stack margin={0} padding={0}>
+								{/* if show */}
+								{showDescription && (
+									<Description
+										description={description}
+										maxLines={descriptionMaxLines}
+									/>
+								)}
+								{/* very wrong - probably choose one to show - published as default */}
+								{(showAuthor || showPublished || showPublisher) && (
+									<DetailsComponent
+										details={details}
+										showAuthors={showAuthor}
+										showPublished={showPublished}
+										showpublishers={showPublisher}
+										showCategories={false}
+									/>
+								)}
+							</Stack>
+						}
+					/>
+				</>
 			)}
-			<ListItemText
-				disableTypography
-				sx={{
-					// Should be passing this in
-					display: "flex",
-					flexDirection: direction,
-					justifyContent: "space-between",
-					margin: 0,
-				}}
-				primary={<ContentTitle title={title} maxLines={titleMaxLines} />}
-				secondary={
-					<Stack margin={0} padding={0}>
-						{/* if show */}
-						{showDescription && (
-							<Description
-								description={description}
-								maxLines={descriptionMaxLines}
-							/>
-						)}
-						{/* very wrong - probably choose one to show - published as default */}
-						{(showAuthor || showPublished || showPublisher) && (
-							<DetailsComponent
-								details={details}
-								showAuthors={showAuthor}
-								showPublished={showPublished}
-								showpublishers={showPublisher}
-								showCategories={false}
-							/>
-						)}
-					</Stack>
-				}
-			/>
 		</ListItem>
 	);
 };

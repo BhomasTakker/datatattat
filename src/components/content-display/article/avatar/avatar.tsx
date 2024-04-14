@@ -1,6 +1,7 @@
 import { Avatar } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useMeta } from "../items/hooks/useMeta";
+import PersonIcon from "@mui/icons-material/Person";
 
 export type AvatarSize = "sm" | "md" | "lg";
 const sizes = {
@@ -29,12 +30,12 @@ export const ArticleAvatar = ({
 	const avatarSize = sizes[size];
 
 	useEffect(() => {
-		if (!img && !meta) {
+		if (!img && !meta && !error) {
 			if (src) {
 				setShouldLoadMeta(true);
 			}
 		}
-	}, [img, meta, src]);
+	}, [img, meta, src, error]);
 
 	return (
 		<Avatar
@@ -42,6 +43,8 @@ export const ArticleAvatar = ({
 			src={img || meta?.image || ""}
 			sx={{ width: avatarSize, height: avatarSize }}
 			data-testid="avatar"
-		/>
+		>
+			{error && <PersonIcon />}
+		</Avatar>
 	);
 };

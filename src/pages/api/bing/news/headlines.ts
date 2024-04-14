@@ -6,6 +6,7 @@ import {
 import { redisDataFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next";
 import { fetchAPI } from "@/src/queries/data/api/fetch-api";
+import { fetchRedis } from "@/src/lib/redis/fetch-redis";
 
 const options = HEADERS;
 // is this used?
@@ -22,12 +23,16 @@ async function headlines(req: NextApiRequest, res: NextApiResponse) {
 		endpoint.searchParams.set(param, query[param] as string);
 	}
 
+	// call fetch redis api route here
+
 	//Cache both api response object and the response object structure?
 	const result = await redisDataFetch({
 		endpoint: endpoint.toString(),
 		options,
 		getResult: fetchAPI,
 	});
+
+	// const result = await fetchRedis({ url: endpoint, fetchId: "fetch" });
 
 	res.status(200).json(result);
 }

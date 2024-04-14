@@ -30,11 +30,11 @@ export const BackGroundImage = ({
 	useEffect(() => {
 		// if meta return
 		if (!image || !image.src) {
-			if (src) {
+			if (src && !error) {
 				setShouldLoadMeta(true);
 			}
 		}
-	}, [image, src]);
+	}, [image, src, error]);
 
 	// Can we just use an image?
 	// set by props

@@ -44,11 +44,11 @@ export const ArticleImage = ({
 	useEffect(() => {
 		// if meta return
 		if (!image || !image.src) {
-			if (src) {
+			if (src && !error) {
 				setShouldLoadMeta(true);
 			}
 		}
-	}, [image, src]);
+	}, [image, src, error]);
 	/////////////////////////////////////////////////
 
 	return (
