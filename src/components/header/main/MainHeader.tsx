@@ -15,6 +15,9 @@ import { SubHeadersList } from "../sub/SubHeadersList";
 import link from "next/link";
 import Link from "next/link";
 
+import HomeIcon from "@mui/icons-material/Home";
+import { useFeatureToggle } from "@/src/hooks/useFeatureToggle";
+
 //Question perhaps in should we use context
 //doesn't quite seem required yet
 export const MainHeader = ({ headerData }: any) => {
@@ -22,10 +25,18 @@ export const MainHeader = ({ headerData }: any) => {
 	const { nav } = mainHeader;
 
 	const { data: session, status } = useSession();
+	const [isEnabled] = useFeatureToggle();
+	const isLogin = isEnabled("membership-enabled");
+
 	const isAuthenticated = status === "authenticated";
 
 	//probably call a function from elsewheres same with generating postfix
 	const menuPrefix = () => {
+		return [
+			<Link href={"/"} key={"Home"}>
+				<HomeIcon />
+			</Link>,
+		];
 		return [
 			// Goto 'home' if logo exists
 			<Link href={"/"} key={"Logo"}>
@@ -35,6 +46,10 @@ export const MainHeader = ({ headerData }: any) => {
 		];
 	};
 	const menuPostfix = () => {
+		console.log("999111", { isLogin, isEnabled });
+		if (!isLogin) {
+			return <></>;
+		}
 		return !isAuthenticated ? <LogInButton /> : <UserButton />;
 	};
 
