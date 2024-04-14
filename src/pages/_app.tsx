@@ -18,6 +18,7 @@ import { alpha, createTheme, ThemeProvider } from "@mui/material/styles";
 import { orange } from "@mui/material/colors";
 import { CssBaseline } from "@mui/material";
 import { theme } from "../theme/theme";
+import { FeatureContextProvider } from "../context/feature-context";
 interface highlightsColor {
 	main: string;
 	light?: string;
@@ -59,9 +60,16 @@ function App({ Component, pageProps }: AppProps) {
 								{/* You could well argue that we should use a context here */}
 								{/* Then body, header, and footer can all have access to page data without props */}
 								{/* Or render props for each */}
-								<Layout renderHeader={renderHeader} renderFooter={renderFooter}>
-									<Component {...pageProps} />
-								</Layout>
+								<FeatureContextProvider
+								// value={{ enabledFeatures: ["sign-in", "edit"] }}
+								>
+									<Layout
+										renderHeader={renderHeader}
+										renderFooter={renderFooter}
+									>
+										<Component {...pageProps} />
+									</Layout>
+								</FeatureContextProvider>
 							</ThemeProvider>
 						</LocaleProvider>
 					</ScreenController>

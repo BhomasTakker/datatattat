@@ -14,8 +14,7 @@ const COPYRIGHT_MESSAGE =
 	"Datatattat is not responsible for the content of external sites.";
 const EDITORIAL_GUIDELINES_TEXT =
 	"Read about our approach to external linking.";
-const EDITORIAL_GUIDELINES_LINK =
-	"https://www.bbc.co.uk/editorialguidelines/guidance/feeds-and-links";
+const EDITORIAL_GUIDELINES_LINK = "#";
 
 //Split to component proper
 const Copyright = () => {
