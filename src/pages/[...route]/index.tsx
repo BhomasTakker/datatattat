@@ -24,15 +24,17 @@ type ContextParams = {
 };
 
 export async function getStaticPaths() {
-	//
+	// how do we populate route with paths?
+	// config / env.vars
 	return {
-		paths: [
-			{
-				params: {
-					route: ["news"],
-				},
-			},
-		],
+		// paths: [
+		// 	{
+		// 		params: {
+		// 			route: ["news"],
+		// 		},
+		// 	},
+		// ],
+		paths: [],
 		fallback: true,
 	};
 }

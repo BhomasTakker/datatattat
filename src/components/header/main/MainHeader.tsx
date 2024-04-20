@@ -22,7 +22,7 @@ import { useFeatureToggle } from "@/src/hooks/useFeatureToggle";
 //doesn't quite seem required yet
 export const MainHeader = ({ headerData }: any) => {
 	const [mainHeader, subnav] = headerData;
-	const { nav } = mainHeader;
+	const { nav = [] } = mainHeader || {};
 
 	const { data: session, status } = useSession();
 	const [isEnabled] = useFeatureToggle();

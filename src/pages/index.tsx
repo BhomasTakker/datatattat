@@ -28,9 +28,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 	//lean() strips any function stuff because we just want data but we will need to jsonify it to pass as porps
 	const pageData = await Page.findOne({ route: "/" }).lean();
 
-	//Why can't I populate!!!
-	// const headerData = await Header.findById(pageData.header.id).lean();
-	const footerData = await Footer.findById(pageData.footer.id).lean();
+	// If no page data we need to provide default
 
 	//This feels unneccessary as we'll be calling this on sign in etc, and it will rarely change
 	//It's a dynamic site / unless you want full SSR you have to or load clientside
@@ -38,10 +36,15 @@ export async function getStaticProps({ locale }: { locale: string }) {
 	//but then maybe you wan't different options etc???
 	const headerData = await getMainHeader();
 
+	// What here?
 	if (!pageData) {
 		//would actually go with something like throw createError(error.id)
 		// console.log("ERROR");
 	}
+
+	//Why can't I populate!!!
+	// const headerData = await Header.findById(pageData.header.id).lean();
+	const footerData = (await Footer.findById(pageData?.footer?.id).lean()) || {};
 
 	// const pageData = { data: "Hello World!" };
 

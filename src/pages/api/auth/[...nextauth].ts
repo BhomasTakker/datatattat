@@ -10,6 +10,11 @@ import mongooseConnect from "@/lib/mongoose-connection";
 // We need to go over all of this
 // Complete redo
 
+// CredentialsProvider is dicouraged.
+// We should be using EmailProvider?
+// We should offer sig ins from several - Google etc
+// Then select username
+
 export const authOptions: NextAuthOptions = {
 	session: {
 		strategy: "jwt",

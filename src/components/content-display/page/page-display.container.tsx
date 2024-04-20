@@ -9,6 +9,9 @@ interface PageDisplayContainerProps {
 export const PageDisplayContainer = ({
 	pageData,
 }: PageDisplayContainerProps) => {
+	if (!pageData) {
+		return null;
+	}
 	return (
 		<PageDisplayContextProvider value={{ pageData }}>
 			<PageDisplay />
