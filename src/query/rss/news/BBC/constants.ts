@@ -15,6 +15,7 @@ const BASE_URL = "http://feeds.bbci.co.uk/news";
 const POSTFIX = "/rss.xml";
 
 const TOP_STORIES = "";
+const WORLD = "/world";
 const UKRAINE_WAR = "/world-60525350";
 const CLIMATE = "/science-environment-56837908";
 const BUSINESS = "/business";
@@ -101,6 +102,10 @@ export const BBC_CREATORS = [
 	[
 		"bbc_top_stories",
 		returnBasicCreator(`${BASE_URL}${TOP_STORIES}${POSTFIX}`),
+	],
+	[
+		"bbc_news_world_headlines",
+		returnBasicCreator(`${BASE_URL}${WORLD}${POSTFIX}`),
 	],
 	[
 		"bbc_news_ukraine_war",
