@@ -3,9 +3,6 @@
 import { NextApiRequest, NextApiResponse } from "next/types";
 
 const getFeatures = (req: NextApiRequest, res: NextApiResponse) => {
-	console.log("999111", {
-		FLAG_MEMBERSHIP_ENABLED: process.env.FLAG_MEMBERSHIP_ENABLED,
-	});
 	res.status(200).json([
 		...new Set([
 			// Your environment variables are available within the `process.env` object.
