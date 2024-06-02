@@ -36,7 +36,7 @@ export const PageHead = ({ headData }: Props) => {
 		twitterCard = {},
 		twitterCardShow = false,
 		openGraphShow = false,
-	} = headData;
+	} = headData || {};
 
 	console.log("2342 PageHead", { headData, openGraph, twitterCard, favIcons });
 
