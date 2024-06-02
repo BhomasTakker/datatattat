@@ -13,6 +13,7 @@ import { D3BubbleMap } from "@/src/components/content-display/data-visualization
 import { D3ChoroplethMap } from "@/src/components/content-display/data-visualization/d3/maps/choropleth/choropleth-map";
 import { D3Map } from "@/src/components/content-display/data-visualization/d3/maps/map.interface";
 import { Dummy } from "@/src/components/content-display/dummy/dummy";
+import { ExternalObject } from "@/src/components/content-display/external-object/external-object";
 import { OLMapController } from "@/src/components/content-display/geo/open-layers/controllers/ol-map.controller";
 import { DataTable } from "@/src/components/content-display/tabular/tanstack-table/controllers/data-table.controller";
 
@@ -48,4 +49,7 @@ export const COMPONENTS_MAP = new Map<string, any>([
 	["MapChart", D3Map],
 	["D3BubbleMap", D3BubbleMap],
 	["D3ChoroplethMap", D3ChoroplethMap],
+
+	//
+	["ExternalObject", ExternalObject],
 ]);

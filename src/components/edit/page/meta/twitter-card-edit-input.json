@@ -1,0 +1,58 @@
+{
+	"id": "twitterCardShow",
+	"type": "show",
+	"label": "Create Twitter Card",
+	"info": "Create Twitter Card Data",
+	"inputs": [
+		{
+			"id": "twitterCard",
+			"type": "input-list",
+			"label": "Twitter Card",
+			"info": "The Twitter Card Object data",
+			"inputs": [
+				{
+					"id": "twitter:card",
+					"type": "text",
+					"label": "Card",
+					"info": "Page display card id."
+				},
+				{
+					"id": "twitter:creator",
+					"type": "text",
+					"label": "Creator",
+					"info": "Page creator."
+				},
+				{
+					"id": "twitter:description",
+					"type": "text",
+					"label": "Description",
+					"info": "Page description."
+				},
+				{
+					"id": "twitter:image:src",
+					"type": "text",
+					"label": "Image Source",
+					"info": "Page image."
+				},
+				{
+					"id": "twitter:image:alt",
+					"type": "text",
+					"label": "Image Alt",
+					"info": "Page image alt text."
+				},
+				{
+					"id": "twitter:site",
+					"type": "text",
+					"label": "Site",
+					"info": "Site name."
+				},
+				{
+					"id": "twitter:title",
+					"type": "text",
+					"label": "Title",
+					"info": "Title of the page content."
+				}
+			]
+		}
+	]
+}

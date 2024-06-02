@@ -34,6 +34,7 @@ export const ContentComponent = () => {
 				propsId={propsId}
 				resetComponent={componentTypeFormId}
 			/>
+			{/* Need to be able to not include */}
 			<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
 				{/* May well need to have a selection available & not all */}
 				<SelectInput

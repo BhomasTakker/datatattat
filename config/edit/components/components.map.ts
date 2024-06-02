@@ -14,6 +14,8 @@ import { D3_MAP_CHART } from "@/src/components/content-display/data-visualizatio
 import { D3_HISTOGRAM_CHART } from "@/src/components/content-display/data-visualization/d3/charts/interfaces/histogram/histogram.edit.config";
 import { D3_BUBBLE_MAP_CHART } from "@/src/components/content-display/data-visualization/d3/maps/bubble/bubble-map.edit.config";
 import { D3_CHOROPLETH_MAP_CHART } from "@/src/components/content-display/data-visualization/d3/maps/choropleth/choropleth-map.edit.config";
+import ExternalObjectData from "../../../src/components/content-display/external-object/external-object.edit.config.json";
+
 // we should be using Maps as standard no?
 // Better name for what these are 100%
 // Will need to compose these as they will get huge
@@ -40,6 +42,9 @@ export const CONTENT_COMPONENTS = {
 	SimpleStack: SIMPLE_STACK,
 
 	OpenLayersMap: OLMAP,
+
+	//
+	ExternalObject: ExternalObjectData,
 	// rem below
 	SimpleList: SIMPLE_LIST,
 } as const;

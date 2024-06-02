@@ -36,10 +36,10 @@ const ArrayInputControl = () => {
 
 		return inputs.map((value, index: number) => {
 			const name = `${id}.${index}`;
-
+			console.log("4563:ArrayInputControl", { name });
 			// const inputProps = { ...input, id: name, name: name };
-
-			const { info, label, type } = input;
+			// const { id: inputId, info, label, type, ...rest } = input;
+			const { info, label, type, ...rest } = input;
 
 			// console.log("ADD:INPUT:HERE", { info, label, id, type, name });
 			console.log("0004:ArrayInputControl", { value });
@@ -53,7 +53,14 @@ const ArrayInputControl = () => {
 				>
 					{/* <InputFactory data={inputProps} /> */}
 					<Box width="100%">
-						<Component info={info} label={label} id={name} name={name} />
+						<Component
+							// id and name have to come after rest spread because we are building the object key
+							{...rest}
+							info={info}
+							label={label}
+							id={name}
+							name={name}
+						/>
 					</Box>
 
 					<ArrayControls
@@ -76,6 +83,7 @@ const ArrayInputControl = () => {
 
 export const ArrayInput = ({ id, input }: ArrayInput) => {
 	const { label } = input;
+	console.log("4563 array", { id, input });
 	return (
 		<ArrayInputContextProvider value={{ id, input }}>
 			<Title text={label} variant={TitleVariant.EDIT_COMPONENT} />

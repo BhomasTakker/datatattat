@@ -1,0 +1,64 @@
+{
+	"id": "openGraphShow",
+	"type": "show",
+	"label": "Create Open Graph",
+	"info": "Create Open Graph Data",
+	"inputs": [
+		{
+			"id": "openGraph",
+			"type": "input-list",
+			"label": "Open Graph",
+			"info": "The Open Graph Object data",
+			"inputs": [
+				{
+					"id": "og:description",
+					"type": "text",
+					"label": "Description",
+					"info": "Page description."
+				},
+				{
+					"id": "og:image",
+					"type": "text",
+					"label": "Image",
+					"info": "Page image."
+				},
+				{
+					"id": "og:image:alt",
+					"type": "text",
+					"label": "Image Alt",
+					"info": "Page image alt text."
+				},
+				{
+					"id": "og:locale",
+					"type": "text",
+					"label": "Locale",
+					"info": "Page locale - this should be a select input."
+				},
+				{
+					"id": "og:site_name",
+					"type": "text",
+					"label": "Site Name",
+					"info": "Name of the Site associated with the content."
+				},
+				{
+					"id": "og:title",
+					"type": "text",
+					"label": "Title",
+					"info": "Page title."
+				},
+				{
+					"id": "og:type",
+					"type": "text",
+					"label": "Type",
+					"info": "Type of the page content - should be select."
+				},
+				{
+					"id": "og:url",
+					"type": "text",
+					"label": "Url",
+					"info": "Url of page source - where to find this content."
+				}
+			]
+		}
+	]
+}

@@ -10,7 +10,7 @@ export const DTAHead = () => {
 			<title>{t(Common.pageTitle)}</title>
 			<meta name="description" content="First rendition" />
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
-			<link rel="icon" href="/favicon.ico" />
+			{/* <link rel="icon" href="/favicon.ico" /> */}
 			{/* <script async src="//cdn.iframe.ly/embed.js"></script> */}
 			{/* <script
 				async

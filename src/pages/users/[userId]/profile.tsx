@@ -51,7 +51,7 @@ function UserProfile({ user }: any) {
 				<title>Datatattat</title>
 				<meta name="description" content="First rendition" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<link rel="icon" href="/favicon.ico" />
+				{/* <link rel="icon" href="/favicon.ico" /> */}
 			</Head>
 			<main>
 				<Typography variant="h1">{`@${username} Profile Page`}</Typography>

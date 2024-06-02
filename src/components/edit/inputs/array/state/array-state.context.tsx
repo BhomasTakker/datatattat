@@ -58,17 +58,17 @@ export const ArrayInputContextProvider = ({
 			...input,
 			id: `${id}.${inputs.length}`,
 		};
-		console.log("ADD:INPUT:1", { inputs, id, newInput });
+		// console.log("ADD:INPUT:1", { inputs, id, newInput });
 		// setValue(`${FORM_ID}.${nav.length}`, newLink);
 
 		const updateInputs = cloneDeep(inputs);
 		updateInputs.push("");
 
-		console.log("ADD:INPUT:2", { updateInputs });
+		// console.log("ADD:INPUT:2", { updateInputs });
 
 		unregister(id);
 		setValue(id, updateInputs);
-		console.log("ADD:INPUT:3", { updateInputs });
+		// console.log("ADD:INPUT:3", { updateInputs });
 	}, [getValues, id, input, setValue, unregister]);
 
 	const deleteInput = useCallback(
@@ -91,13 +91,13 @@ export const ArrayInputContextProvider = ({
 		(dir: number, i: number) => {
 			const inputs = getValues(id);
 
-			console.log("0004:MOVE:INPUT", { inputs });
+			// console.log("0004:MOVE:INPUT", { inputs });
 
 			if (inputs.length === 0) {
 				return;
 			}
 
-			console.log("0004:MOVE:INPUT", { i, dir });
+			// console.log("0004:MOVE:INPUT", { i, dir });
 
 			if (i === 0 && dir === -1) {
 				//no up / I mean do better though right
@@ -108,7 +108,7 @@ export const ArrayInputContextProvider = ({
 			const movedInput = updateInputs.splice(i, 1);
 			updateInputs.splice(i + dir, 0, ...movedInput);
 
-			console.log("0004:MOVE:INPUT", { updateInputs });
+			// console.log("0004:MOVE:INPUT", { updateInputs });
 
 			// unregister(conversionsFormId);
 			setValue(id, updateInputs);
