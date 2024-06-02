@@ -1,4 +1,9 @@
-type FavIcon = {};
+type FavIcon = {
+	rel: string;
+	type: string;
+	sizes: string;
+	href: string;
+};
 
 interface FavIcons {
 	icons: FavIcon[];
