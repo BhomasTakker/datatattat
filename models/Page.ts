@@ -80,6 +80,16 @@ const PageSchema = new Schema({
 	//   ref: 'User',
 	//   required: true,
 	// }
+	meta: {
+		type: Object,
+		required: false,
+	},
+
+	profile: {
+		type: Object,
+		required: false,
+	},
+
 	route: {
 		type: String,
 		required: true,

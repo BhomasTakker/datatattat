@@ -34,6 +34,7 @@ export const PageFormContextProvider = ({
 			return;
 		}
 		const { _id } = user;
+		console.log("5678 submit", { data });
 		const pageData = {
 			...data,
 			creator: _id,

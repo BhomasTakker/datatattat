@@ -1,13 +1,13 @@
-import { ConversionsContainer } from "../query/conversion/conversions-container";
 import { ArrayInput } from "./array/array-input";
-import { ColorInput, ColorInputWithControl } from "./color/color-input";
+import { ColorInputWithControl } from "./color/color-input";
 import { ConversionsInput } from "./conversions/conversions-input";
 import { InputIndent } from "./indent/input-indent";
+import { InputList } from "./input-list/input-list";
 import { NumberInputWithControl } from "./number-input";
 import { ObjectSelectInput } from "./object-select/object-select-input";
 import { SelectInput } from "./select/select-input";
 import { ShowInput } from "./show/show-input";
-import { NewSwitchInput, SwitchInput } from "./switch/switch-input";
+import { NewSwitchInput } from "./switch/switch-input";
 import { TextInput } from "./text/text-input";
 import { TextToggleInput } from "./text/text-toggle-input";
 import { InputTitle } from "./title/input-title";
@@ -39,6 +39,7 @@ export const inputMap = new Map<string, any>([
 
 	//////////
 	["array", ArrayInput],
+	["input-list", InputList],
 
 	// Okay let's play / this can - seemingly easily be used for client side filtering and sorting
 	// Would work - can see adding Query etc easily enough

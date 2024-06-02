@@ -35,8 +35,6 @@ export const FeatureContextProvider = ({
 		processFeatures();
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	console.log("999111", { enabledFeatures });
-
 	return (
 		// Would you always spread given value here?
 		<FeatureContext.Provider value={{ ...value, enabledFeatures }}>

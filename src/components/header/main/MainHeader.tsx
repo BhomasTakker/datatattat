@@ -46,7 +46,6 @@ export const MainHeader = ({ headerData }: any) => {
 		];
 	};
 	const menuPostfix = () => {
-		console.log("999111", { isLogin, isEnabled });
 		if (!isLogin) {
 			return <></>;
 		}

@@ -1,0 +1,25 @@
+{
+	"id": "external-object",
+	"info": "ExternalObject",
+	"title": "External Object",
+
+	"props": [
+		{
+			"type": "title",
+			"title": "External Object Properties"
+		},
+		{
+			"id": "type",
+			"type": "select",
+			"options": ["application/pdf", "video/mp4"],
+			"label": "Type",
+			"info": "External Object Type"
+		},
+		{
+			"id": "data",
+			"type": "text",
+			"label": "Data",
+			"info": "External Object Data"
+		}
+	]
+}
