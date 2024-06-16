@@ -1,0 +1,358 @@
+$text-color: #444;
+$text-color-light: #eee;
+
+* {
+	// Home.module.css is the culprit - I think - but why do I have this?
+	line-height: 0;
+}
+
+.root {
+	width: 100%;
+	background: #fefefe;
+	overflow: hidden;
+
+	.contentContainer {
+		color: $text-color;
+	}
+
+	container: container-bg / inline-size;
+}
+
+.display {
+	.displayContainer {
+		position: relative;
+	}
+
+	.contentContainer {
+		position: absolute;
+		color: $text-color-light;
+		text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
+			0px 18px 23px rgba(0, 0, 0, 0.1);
+		width: 100%;
+		height: 50%;
+	}
+
+	&.xs {
+		max-width: 450px;
+	}
+	&.sm {
+		max-width: 600px;
+	}
+	&.md {
+		max-width: 750px;
+	}
+	&.lg {
+		max-width: 900px;
+	}
+	&.xl {
+		max-width: 900px;
+	}
+
+	&.align-top {
+		.contentContainer {
+			top: 0;
+			background: linear-gradient(0deg, rgb(0, 0, 0, 0), rgba(0, 0, 0, 0.76));
+		}
+	}
+
+	&.align-bottom {
+		.contentContainer {
+			bottom: 0;
+			background: linear-gradient(180deg, rgb(0, 0, 0, 0), rgba(0, 0, 0, 0.76));
+		}
+	}
+
+	&.align-middle {
+		.contentContainer {
+			top: 50%;
+			background: linear-gradient(180deg, rgb(0, 0, 0, 0), rgba(0, 0, 0, 0.76));
+		}
+	}
+
+	&.justify-start {
+		.contentContainer {
+			left: 0;
+		}
+	}
+	&.justify-end {
+		.contentContainer {
+			right: 0;
+		}
+	}
+	&.justify-center {
+		.contentContainer {
+		}
+	}
+	&.justify-middle-start {
+		.contentContainer {
+			right: 50%;
+			width: 50%;
+			background: none;
+		}
+	}
+	&.justify-middle-end {
+		.contentContainer {
+			left: 50%;
+			width: 50%;
+			background: none;
+		}
+	}
+}
+
+// extra small etc is about max and min sizes etc
+// That way we can specify but they will still flex
+// AND we won't need 100 variations
+.card {
+	.displayContainer {
+		display: flex;
+	}
+
+	&.t2b {
+		.displayContainer {
+			flex-direction: column;
+		}
+	}
+	&.b2t {
+		.displayContainer {
+			flex-direction: column-reverse;
+		}
+	}
+	&.l2r {
+		.displayContainer {
+			flex-direction: row;
+		}
+	}
+	&.r2l {
+		.displayContainer {
+			flex-direction: row-reverse;
+		}
+	}
+	&.l2r,
+	&.r2l {
+		.articleImage {
+			width: 50%;
+			height: auto;
+		}
+		.contentContainer {
+			width: 50%;
+		}
+		// I would like a responsive image size
+		// from 50% down to 30% say
+		&.xs {
+			max-width: 450px;
+		}
+		&.sm {
+			max-width: 600px;
+		}
+		&.md {
+			max-width: 750px;
+		}
+		&.lg {
+			max-width: 900px;
+		}
+		&.xl {
+			max-width: none;
+		}
+	}
+	&.t2b,
+	&.b2t {
+		&.xs {
+			max-width: 450px;
+		}
+		&.sm {
+			max-width: 600px;
+		}
+		&.md {
+			max-width: 750px;
+		}
+		&.lg {
+			max-width: 900px;
+		}
+		&.xl {
+			max-width: 900px;
+		}
+	}
+}
+
+.listItem {
+	.displayContainer {
+		display: flex;
+
+		&.one-zero-line {
+			align-items: center;
+		}
+	}
+	.articleImage {
+		&.one-zero-line {
+			height: clamp(1rem, 6cqi, 2rem);
+			width: auto;
+		}
+		&.one-one-line {
+			height: clamp(2.5rem, 11cqi, 4rem);
+			width: auto;
+		}
+		&.one-two-line {
+			height: clamp(3.5rem, 15cqi, 6rem);
+			width: auto;
+		}
+		&.three-zero-line {
+			height: clamp(3.5rem, 13cqi, 6rem);
+			width: auto;
+		}
+		&.three-one-line {
+			height: clamp(4.5rem, 16cqi, 8rem);
+			width: auto;
+		}
+		&.three-two-line {
+			height: clamp(5.3rem, 19cqi, 9.5rem);
+			width: auto;
+		}
+		&.five-zero-line {
+			height: clamp(5.5rem, 17cqi, 9rem);
+			width: auto;
+		}
+		&.free-zero {
+			display: none;
+		}
+	}
+	// title and description don't work here?
+	.contentContainer {
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		padding-left: 0.5rem;
+		&.one-zero-line,
+		&.five-zero-line,
+		&.three-zero-line {
+			gap: 0;
+		}
+	}
+
+	&.xs {
+		max-width: 450px;
+	}
+	&.sm {
+		max-width: 600px;
+	}
+	&.md {
+		max-width: 750px;
+	}
+	&.lg {
+		max-width: 900px;
+	}
+	&.xl {
+		max-width: 900px;
+	}
+}
+
+.title {
+	&.display {
+		:first-child {
+			font-size: clamp(1.2rem, 6cqi, 3.5rem);
+			line-height: clamp(1.4rem, 6.2cqi, 3.7rem);
+		}
+	}
+	&.card {
+		:first-child {
+			font-size: clamp(1rem, 8cqi, 3.5rem);
+			line-height: clamp(1.1rem, 8.2cqi, 3.7rem);
+		}
+	}
+	&.listItem {
+		:first-child {
+			font-size: clamp(1rem, 4.5cqi, 1.5rem);
+			line-height: clamp(1rem, 4.7cqi, 1.6rem);
+		}
+		&.one-zero-line,
+		&.one-one-line,
+		&.one-two-line {
+			:first-child {
+				-webkit-line-clamp: 1; /* number of lines to show */
+				line-clamp: 1;
+			}
+		}
+		&.three-zero-line,
+		&.three-one-line,
+		&.three-two-line {
+			:first-child {
+				-webkit-line-clamp: 3;
+				line-clamp: 3;
+			}
+		}
+		&.five-zero-line {
+			:first-child {
+				-webkit-line-clamp: 5;
+				line-clamp: 5;
+			}
+		}
+		// prob rid
+		&.free-zero {
+			:first-child {
+				-webkit-line-clamp: unset;
+				line-clamp: unset;
+			}
+		}
+	}
+}
+
+.description {
+	container: description-bg / inline-size;
+	&.display {
+		// Would prefer not having to reference by element
+		:first-child {
+			font-size: clamp(0.8rem, 4cqi, 2rem);
+			line-height: clamp(0.8rem, 4cqi, 2rem);
+			// letter-spacing: -0.3px;
+
+			@container description-bg (inline-size > 400px) {
+				-webkit-line-clamp: 3;
+				line-clamp: 3;
+			}
+		}
+	}
+	&.listItem {
+		:first-child {
+			font-size: clamp(1rem, 4.5cqi, 1.5rem);
+			line-height: clamp(1rem, 4.7cqi, 1.6rem);
+		}
+		&.one-zero-line,
+		&.three-zero-line,
+		&.five-zero-line,
+		&.free-zero {
+			:first-child {
+				display: none;
+			}
+		}
+		&.one-one-line,
+		&.three-one-line {
+			:first-child {
+				-webkit-line-clamp: 1;
+				line-clamp: 1;
+			}
+		}
+		&.one-two-line,
+		&.three-two-line {
+			:first-child {
+				-webkit-line-clamp: 2;
+				line-clamp: 2;
+			}
+		}
+	}
+
+	&.card {
+		:first-child {
+			font-size: clamp(1rem, 5cqi, 2.3rem);
+			line-height: clamp(1rem, 5cqi, 2.3rem);
+			// letter-spacing: -0.3px;
+
+			@container description-bg (inline-size > 400px) {
+				-webkit-line-clamp: 3;
+				line-clamp: 3;
+			}
+			@container description-bg (inline-size > 540px) {
+				-webkit-line-clamp: 4;
+				line-clamp: 4;
+			}
+		}
+	}
+}

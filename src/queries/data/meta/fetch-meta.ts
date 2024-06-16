@@ -3,6 +3,7 @@ import puppeteer from "puppeteer";
 
 const getOGMetaDataFromHTML = (document: Document) => {
 	return {
+		// or use description
 		description: document.head
 			?.querySelector('meta[property="og:description"]')
 			?.getAttribute("content"),
@@ -18,6 +19,7 @@ const getOGMetaDataFromHTML = (document: Document) => {
 		site_name: document.head
 			?.querySelector('meta[property="og:site_name"]')
 			?.getAttribute("content"),
+		// or use title
 		title: document.head
 			?.querySelector('meta[property="og:title"]')
 			?.getAttribute("content"),

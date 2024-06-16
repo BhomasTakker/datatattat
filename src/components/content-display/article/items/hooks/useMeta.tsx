@@ -6,6 +6,8 @@ const METADATA_API_PATH = "api/query/html/meta/get";
 
 interface Meta {
 	image: string;
+	title: string;
+	description: string;
 }
 
 // There is almost certainly a better way of getting meta data

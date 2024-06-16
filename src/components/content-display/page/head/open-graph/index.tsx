@@ -61,6 +61,7 @@ const DEFAULT = [
 	></meta>,
 ];
 
+// og:type is the 'type' of page/content
 export const renderOpenGraphMeta = ({ data }: OpenGraph) => {
 	console.log("678678 OpenGraph", data);
 
