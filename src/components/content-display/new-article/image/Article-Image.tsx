@@ -1,6 +1,5 @@
 import { useCssClasses } from "../hooks/useCssClasses";
 import { ArticleType, Size, Style } from "../types";
-import { addCssClass, addCssClasses } from "../utils";
 import styles from "./Article-Image.module.scss";
 
 interface ArticleImage {

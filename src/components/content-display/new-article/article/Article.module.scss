@@ -1,15 +1,16 @@
 $text-color: #444;
 $text-color-light: #eee;
 
-* {
-	// Home.module.css is the culprit - I think - but why do I have this?
-	line-height: 0;
-}
+// * {
+// 	// Home.module.css is the culprit - I think - but why do I have this?
+// 	line-height: 0;
+// }
 
 .root {
 	width: 100%;
 	background: #fefefe;
 	overflow: hidden;
+	margin: auto;
 
 	.contentContainer {
 		color: $text-color;
@@ -30,6 +31,7 @@ $text-color-light: #eee;
 			0px 18px 23px rgba(0, 0, 0, 0.1);
 		width: 100%;
 		height: 50%;
+		padding: 1rem;
 	}
 
 	&.xs {
@@ -45,7 +47,7 @@ $text-color-light: #eee;
 		max-width: 900px;
 	}
 	&.xl {
-		max-width: 900px;
+		max-width: none;
 	}
 
 	&.align-top {
@@ -129,6 +131,9 @@ $text-color-light: #eee;
 	}
 	&.l2r,
 	&.r2l {
+		.contentContainer {
+			padding: 0 1rem;
+		}
 		.articleImage {
 			width: 50%;
 			height: auto;
@@ -156,6 +161,9 @@ $text-color-light: #eee;
 	}
 	&.t2b,
 	&.b2t {
+		.contentContainer {
+			padding: 1rem 0;
+		}
 		&.xs {
 			max-width: 450px;
 		}

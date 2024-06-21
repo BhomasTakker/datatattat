@@ -5,7 +5,6 @@ import { getEnvVar } from "@/src/utils/env";
 import { NextApiRequest, NextApiResponse } from "next/types";
 import { convertResponse } from "@/src/query/conversions/response-conversion";
 import { fetchAPI } from "@/src/queries/data/api/fetch-api";
-import { fetchRedis } from "@/src/lib/redis/fetch-redis";
 
 const IFRAMELY_URL = "https://iframe.ly/api/iframely";
 

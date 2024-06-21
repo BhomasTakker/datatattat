@@ -4,13 +4,8 @@ import { useCssClasses } from "../hooks/useCssClasses";
 import { ArticleImage } from "../image/Article-Image";
 import { ArticleTitle } from "../title/ArticleTitle";
 import { Align, As, ClassName, Direction, Size, Style } from "../types";
-import {
-	ArticleComponent,
-	Display as DisplayType,
-	Card,
-	ListItem,
-} from "../types/display-types";
-import styles from "./display.module.scss";
+import { Display as DisplayType, Card, ListItem } from "../types/display-types";
+import styles from "./Article.module.scss";
 
 ////////////////////////////////////////////////////
 // Rename me / Display is one instantiation
@@ -18,7 +13,7 @@ import styles from "./display.module.scss";
 // Published date or time ago
 // Author, collection, etc
 // We need interaction for users - save, fav, like, etc
-export const Display = (props: DisplayType | Card | ListItem) => {
+export const Article = (props: DisplayType | Card | ListItem) => {
 	const {
 		meta,
 		size = "md",
@@ -48,6 +43,8 @@ export const Display = (props: DisplayType | Card | ListItem) => {
 			break;
 	}
 
+	// Separate to a function to return the objects
+	// I don't need to see this
 	const root = useCssClasses(
 		styles.root,
 		styles[type],
@@ -90,8 +87,8 @@ export const Display = (props: DisplayType | Card | ListItem) => {
 		// this needs to be a generic component so we can have a li
 		// except in THAT instance you would be better off mapping children in ul
 		// and wrapping each in a li
-		<As className={root}>
-			<div className={styles.displayContainer}>
+		<As className={`${root}`}>
+			<div className={`${styles.displayContainer}`}>
 				{/* eslint-disable-next-line @next/next/no-img-element */}
 				{showImage && (
 					<ArticleImage

@@ -1,3 +1,10 @@
+export * from "./collection-types";
+export * from "./display-types";
+
+export type Media = "article" | "video" | "audio";
+
+export type UnknownObject = { [key: string | number]: unknown };
+
 export type As = "div" | "li";
 
 export type Size = "xs" | "sm" | "md" | "lg" | "xl";

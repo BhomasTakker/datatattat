@@ -40,7 +40,7 @@ export const ObjectSelectInput = ({
 	// We really need an inputs type of all available inputs
 	const renderChildren = useCallback(
 		(inputs: UnknownObject[] | undefined) => {
-			console.log("0001:D3:RENDER", { id, value });
+			// console.log("0001:D3:RENDER", { id, value });
 			if (!inputs) {
 				return null;
 			}
@@ -48,11 +48,11 @@ export const ObjectSelectInput = ({
 			const idAsArray = id.split(".");
 			const newIdAsArray = idAsArray.splice(0, idAsArray.length - 1);
 			const newId = `${newIdAsArray.join(".")}.${optionId}`;
-			console.log("0001:D3:RENDER", { newId });
+
 			return inputs.map((input) => {
 				const { id: inputId, info, label, type, ...rest } = input;
 				const Component = inputMap.get(type) || <></>;
-				console.log("0001:D3:RENDER", { input });
+
 				return (
 					<Component
 						key={inputId}

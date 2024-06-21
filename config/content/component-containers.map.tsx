@@ -15,10 +15,15 @@ import { D3Map } from "@/src/components/content-display/data-visualization/d3/ma
 import { Dummy } from "@/src/components/content-display/dummy/dummy";
 import { ExternalObject } from "@/src/components/content-display/external-object/external-object";
 import { OLMapController } from "@/src/components/content-display/geo/open-layers/controllers/ol-map.controller";
+import { ArticleCollection } from "@/src/components/content-display/new-article/collection/Collection";
 import { DataTable } from "@/src/components/content-display/tabular/tanstack-table/controllers/data-table.controller";
 
 // 100% change to ArticleList
 export const COMPONENTS_MAP = new Map<string, any>([
+	// NEW
+	["ArticleCollection", ArticleCollection],
+
+	// OLD
 	["ArticleList", ArticleListController],
 	["ArticleStack", ArticleDisplayStack],
 	["ArticleGrid", ArticleGridController],

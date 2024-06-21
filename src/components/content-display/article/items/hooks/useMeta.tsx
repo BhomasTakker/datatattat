@@ -26,7 +26,7 @@ export const useMeta = (src: string, load: boolean = false) => {
 					url: METADATA_API_PATH,
 					searchParams: { url: src },
 				})) as Meta;
-				console.log("999", { meta });
+				// console.log("999", { meta });
 				setLoading(false);
 				setMeta(meta);
 			} catch (err) {

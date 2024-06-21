@@ -5,6 +5,7 @@ import {
 	Direction,
 	Justify,
 	ListItemStyle,
+	Media,
 	Size,
 } from ".";
 
@@ -16,6 +17,7 @@ interface HtmlMeta {
 }
 
 type Base = {
+	media: Media;
 	meta: HtmlMeta;
 	size: Size;
 	type: ArticleType;

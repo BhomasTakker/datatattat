@@ -15,6 +15,7 @@ import { D3_HISTOGRAM_CHART } from "@/src/components/content-display/data-visual
 import { D3_BUBBLE_MAP_CHART } from "@/src/components/content-display/data-visualization/d3/maps/bubble/bubble-map.edit.config";
 import { D3_CHOROPLETH_MAP_CHART } from "@/src/components/content-display/data-visualization/d3/maps/choropleth/choropleth-map.edit.config";
 import ExternalObjectData from "../../../src/components/content-display/external-object/external-object.edit.config.json";
+import { ARTICLE_COLLECTION } from "@/src/components/content-display/new-article/collection/article-collection.edit.config";
 
 // we should be using Maps as standard no?
 // Better name for what these are 100%
@@ -22,6 +23,11 @@ import ExternalObjectData from "../../../src/components/content-display/external
 // Currently these are all shown as available options
 // This may not be appropriate in all circumstances??
 export const CONTENT_COMPONENTS = {
+	// NEW
+	ArticleCollection: ARTICLE_COLLECTION,
+
+	// OLD
+
 	ArticleList: ARTICLE_LIST,
 	ArticleStack: ARTICLE_DISPLAY_STACK,
 	ArticleGrid: ARTICLE_GRID_STACK,
