@@ -25,6 +25,23 @@ import { InputTitle } from "./title/input-title";
 // We want multi-input?
 // i.e. I need two numbers for max / min
 // Or replace string - match & replace
+
+export enum EditInputs {
+	text = "text",
+	switch = "switch",
+	number = "number",
+	textToggle = "text-toggle",
+	select = "select",
+	color = "color",
+	objectSelect = "object-select",
+	show = "show",
+	array = "array",
+	inputList = "input-list",
+	conversions = "conversions",
+	title = "title",
+	indent = "indent",
+}
+
 export const inputMap = new Map<string, any>([
 	["text", TextInput],
 	["switch", NewSwitchInput],

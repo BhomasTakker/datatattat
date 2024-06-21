@@ -6,7 +6,6 @@ import {
 import { redisDataFetch } from "@/src/lib/redis";
 import { NextApiRequest, NextApiResponse } from "next";
 import { fetchAPI } from "@/src/queries/data/api/fetch-api";
-import { fetchRedis } from "@/src/lib/redis/fetch-redis";
 
 //We should initially form the data into a 'shape' we want?
 //We might do further on the client side but we should

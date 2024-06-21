@@ -62,6 +62,6 @@ export const EDIT_WITH: any = {
 		// We would just need to pass in a url
 		providerLabel: "Select Resource",
 		providerInfo: "IframelyOIembedResourceProviderInfo",
-		configList: IFRAMELY_OEMBED_CONFIG_LIST,
+		configList: IFRAMELY_OEMBED_CONFIG_LIST, // wut? / just unused I guess
 	}),
 };

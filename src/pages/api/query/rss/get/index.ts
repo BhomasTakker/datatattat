@@ -1,15 +1,10 @@
-import {
-	API_CREATOR_MAP,
-	API_REQUEST_TYPE,
-	QueryCreator,
-} from "@/src/query/api/api-map";
+import { QueryCreator } from "@/src/query/api/api-map";
 import { redisDataFetch } from "@/src/lib/redis";
 import { RSS_CREATOR_MAP } from "@/src/query/rss/rss-map";
 import { NextApiRequest, NextApiResponse } from "next/types";
 import { convertResponse } from "@/src/query/conversions/response-conversion";
 import { fetchRSS } from "@/src/queries/data/rss/fetch-rss";
 import { RedisCacheTime } from "@/src/lib/redis/types";
-import { fetchRedis } from "@/src/lib/redis/fetch-redis";
 
 type QueryId = string | string[];
 type QueryData = {

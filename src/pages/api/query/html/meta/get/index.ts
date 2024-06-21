@@ -1,5 +1,4 @@
 import { redisDataFetch } from "@/src/lib/redis";
-import { fetchRedis } from "@/src/lib/redis/fetch-redis";
 import { fetchMetaFromHTML } from "@/src/queries/data/meta/fetch-meta";
 import { NextApiRequest, NextApiResponse } from "next";
 

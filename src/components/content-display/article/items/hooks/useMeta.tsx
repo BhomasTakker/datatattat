@@ -6,6 +6,8 @@ const METADATA_API_PATH = "api/query/html/meta/get";
 
 interface Meta {
 	image: string;
+	title: string;
+	description: string;
 }
 
 // There is almost certainly a better way of getting meta data
@@ -24,7 +26,7 @@ export const useMeta = (src: string, load: boolean = false) => {
 					url: METADATA_API_PATH,
 					searchParams: { url: src },
 				})) as Meta;
-				console.log("999", { meta });
+				// console.log("999", { meta });
 				setLoading(false);
 				setMeta(meta);
 			} catch (err) {

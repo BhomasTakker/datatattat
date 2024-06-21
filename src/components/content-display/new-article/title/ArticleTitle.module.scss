@@ -1,0 +1,47 @@
+.root {
+	// container-type: inline-size;
+	// container-name: article-card;
+	container: title-bg / inline-size;
+	.title {
+		margin: 0;
+		// font-family: times, Times New Roman, times-roman, georgia, serif;
+		// removed ReithSerif, - we do not have it - BBC Font
+		font-family: Helvetica, Arial, freesans, sans-serif;
+		font-size: clamp(1rem, 7cqi, 3.5rem);
+		// letter-spacing: -2px;
+		font-weight: bold;
+
+		// lines
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2; /* number of lines to show */
+		line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+}
+
+// .display {
+// 	.title {
+// 		font-size: clamp(1.2rem, 6cqi, 3.5rem);
+// 		line-height: clamp(1.4rem, 6.2cqi, 3.7rem);
+// 	}
+// }
+
+// .card {
+// 	.title {
+// 		font-size: clamp(1rem, 8cqi, 3.5rem);
+// 		line-height: clamp(1.1rem, 8.2cqi, 3.7rem);
+// 		// letter-spacing: clamp(-1px, 2cqi, -2px);
+// 	}
+// }
+
+// .listItem {
+// 	.title {
+// 		font-size: clamp(1rem, 4.5cqi, 1.5rem);
+// 		line-height: clamp(1rem, 4.7cqi, 1.6rem);
+// 		// letter-spacing: clamp(-1px, 2cqi, -2px);
+// 		-webkit-line-clamp: 1; /* number of lines to show */
+// 		line-clamp: 1;
+// 	}
+// }

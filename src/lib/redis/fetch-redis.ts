@@ -10,12 +10,9 @@ export const fetchRedis = async ({ url, fetchId }: FetchRedis) => {
 	const endpoint = `endpoint=${url.href}`;
 	const fetcher = `fetchId=${fetchId}`;
 	try {
-		console.log("What the fudge 1");
 		const result = await fetch(
 			`${baseUrl}/${REDIS_ENDPOINT}?${endpoint}&${fetcher}`
 		);
-
-		console.log("What the fudge 2", { result });
 
 		const returnData = await result.json();
 		return returnData;

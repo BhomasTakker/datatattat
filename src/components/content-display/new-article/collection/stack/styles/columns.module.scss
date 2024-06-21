@@ -1,0 +1,183 @@
+$display-columns: 100%;
+$lg-columns: 20%;
+$md-columns: 30%;
+$sm-columns: 45%;
+$xs-columns: 100%;
+
+// should be root?
+.columns {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+
+	&.xl,
+	&.lg {
+		gap: 1rem;
+		// almost crtainly a better way
+		&.columns-4 {
+			> div {
+				flex: 1 1 20%;
+			}
+		}
+		&.columns-3 {
+			> div {
+				flex: 1 1 30%;
+			}
+		}
+		&.columns-2 {
+			> div {
+				flex: 1 1 45%;
+			}
+		}
+		&.columns-1 {
+			> div {
+				flex: 1 1 100%;
+			}
+		}
+	}
+	&.md {
+		gap: 1rem;
+		&.columns-4,
+		&.columns-3 {
+			> div {
+				flex: 1 1 30%;
+			}
+		}
+		&.columns-2 {
+			> div {
+				flex: 1 1 45%;
+			}
+		}
+		&.columns-1 {
+			> div {
+				flex: 1 1 100%;
+			}
+		}
+	}
+
+	&.sm {
+		gap: 0.5rem;
+		&.columns-4,
+		&.columns-3,
+		&.columns-2 {
+			> div {
+				flex: 1 1 45%;
+			}
+		}
+		&.columns-1 {
+			> div {
+				flex: 1 1 100%;
+			}
+		}
+	}
+
+	&.xs {
+		gap: 0.5rem;
+		&.columns-4,
+		&.columns-3,
+		&.columns-2,
+		&.columns-1 {
+			> div {
+				flex: 1 1 100%;
+			}
+		}
+	}
+
+	&.display {
+		> div {
+			&:first-child {
+				flex: 1 1 $display-columns;
+			}
+		}
+	}
+}
+
+.card-l2r,
+.card-r2l {
+	&.columns {
+		&.xl {
+			gap: 1rem;
+			&.columns-4 {
+				> div {
+					flex: 1 1 20%;
+				}
+			}
+			&.columns-3 {
+				> div {
+					flex: 1 1 30%;
+				}
+			}
+			&.columns-2 {
+				> div {
+					flex: 1 1 45%;
+				}
+			}
+			&.columns-1 {
+				> div {
+					flex: 1 1 100%;
+				}
+			}
+		}
+		&.lg {
+			gap: 1rem;
+			&.columns-4,
+			&.columns-3 {
+				> div {
+					flex: 1 1 30%;
+				}
+			}
+			&.columns-2 {
+				> div {
+					flex: 1 1 45%;
+				}
+			}
+			&.columns-1 {
+				> div {
+					flex: 1 1 100%;
+				}
+			}
+		}
+		&.md {
+			gap: 0.5rem;
+			&.columns-4,
+			&.columns-3,
+			&.columns-2 {
+				> div {
+					flex: 1 1 45%;
+				}
+			}
+			&.columns-1 {
+				> div {
+					flex: 1 1 100%;
+				}
+			}
+		}
+
+		&.xs,
+		&.sm {
+			gap: 0.5rem;
+			&.columns-4,
+			&.columns-3,
+			&.columns-2,
+			&.columns-1 {
+				> div {
+					flex: 1 1 100%;
+				}
+			}
+		}
+
+		// Also need to reduce font size
+		// reduce image width(proportions) at lower sizes
+		// was overwritten
+		// css is a little cumbersome
+		&.display {
+			> div {
+				&:first-child {
+					flex: 1 1 $display-columns;
+				}
+			}
+		}
+	}
+}
