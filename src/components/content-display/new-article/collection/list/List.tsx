@@ -1,15 +1,23 @@
-import { PropsWithChildren, ReactElement } from "react";
+import { ReactElement } from "react";
 import styles from "./List.module.scss";
+import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
+import { useCssClasses } from "../../hooks/useCssClasses";
 
 type ArticleList = {
 	as?: "ul" | "ol";
-	articles: ReactElement[];
+	classes?: string;
+	articles: CollectionItem[];
+	renderList: (items: CollectionItem[]) => ReactElement[];
 };
 
-export const ArticleList = ({ as = "ol", articles = [] }: ArticleList) => {
+export const ArticleList = ({
+	as = "ol",
+	articles = [],
+	renderList,
+	classes,
+}: ArticleList) => {
 	const As = as;
-	const renderArticles = articles.map((article) => (
-		<li key={article.key}>{article}</li>
-	));
-	return <As className={styles.root}>{renderArticles}</As>;
+	const root = useCssClasses(styles.root, classes);
+
+	return <As className={root}>{renderList(articles)}</As>;
 };

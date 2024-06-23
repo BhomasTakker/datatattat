@@ -8,11 +8,9 @@ import {
 } from "../configs/article-components";
 import { addCssClasses } from "../../../utils";
 
-const config = {};
-
 const renderStack =
 	(
-		config: any,
+		// config: any,
 		size: ScreenWidth,
 		showDisplay: boolean,
 		card: ArticleComponentOptions = "card-display"
@@ -40,8 +38,8 @@ type Props = {
 export const getColumnsRenderObject = (size: ScreenWidth, props: Props) => {
 	const { display = false, columns = 4, card = "card-t2b" } = props || {};
 	return {
-		config,
-		renderList: renderStack(config, size, display, card),
+		// config,
+		renderList: renderStack(size, display, card),
 		renderFunction: undefined,
 		styles: addCssClasses(
 			styles.columns,

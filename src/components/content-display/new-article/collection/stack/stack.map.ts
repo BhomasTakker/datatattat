@@ -1,10 +1,6 @@
-import { getDisplayHeaderRenderObject } from "./source-objects/display-header";
-import { getColumnsRenderObject } from "./source-objects/duel-columns";
+import { getColumnsRenderObject } from "./source-objects/columns";
 
 export const stackMap = new Map([
-	// delete me / columns does it better
-	["stack-displayHeader", getDisplayHeaderRenderObject],
-
 	// We can add in a stack-carousel
 	["stack-columns", getColumnsRenderObject],
 ]);
