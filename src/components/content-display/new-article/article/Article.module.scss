@@ -249,7 +249,7 @@ $text-color-light: #eee;
 		max-width: 900px;
 	}
 	&.xl {
-		max-width: 900px;
+		max-width: none;
 	}
 }
 
@@ -262,14 +262,14 @@ $text-color-light: #eee;
 	}
 	&.card {
 		:first-child {
-			font-size: clamp(1rem, 8cqi, 3.5rem);
-			line-height: clamp(1.1rem, 8.2cqi, 3.7rem);
+			font-size: clamp(1rem, 7cqi, 3.5rem);
+			line-height: clamp(1.1rem, 7.2cqi, 3.7rem);
 		}
 	}
 	&.listItem {
 		:first-child {
-			font-size: clamp(1rem, 4.5cqi, 1.5rem);
-			line-height: clamp(1rem, 4.7cqi, 1.6rem);
+			font-size: clamp(0.8rem, 4cqi, 1.3rem);
+			line-height: clamp(0.8rem, 4.1cqi, 1.4rem);
 		}
 		&.one-zero-line,
 		&.one-one-line,

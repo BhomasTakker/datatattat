@@ -3,7 +3,7 @@ import { ArticleDescription } from "../description/ArticleDescription";
 import { useCssClasses } from "../hooks/useCssClasses";
 import { ArticleImage } from "../image/Article-Image";
 import { ArticleTitle } from "../title/ArticleTitle";
-import { Align, As, ClassName, Direction, Size, Style } from "../types";
+import { ClassName } from "../types";
 import { Display as DisplayType, Card, ListItem } from "../types/display-types";
 import styles from "./Article.module.scss";
 

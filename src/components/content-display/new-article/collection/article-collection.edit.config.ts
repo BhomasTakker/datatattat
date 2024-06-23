@@ -13,7 +13,7 @@ const gridVariantOptions = [
 		id: "variantType",
 		type: EditInputs.select,
 		// input array from somewhere
-		options: ["stack-columns"],
+		options: ["add-me"],
 		label: "Stack Variant",
 		info: "ArticleStackVariant",
 	},
@@ -27,15 +27,65 @@ const stackVariantOptions = [
 		label: "Stack Variant",
 		info: "ArticleStackVariant",
 	},
+	{
+		id: "card",
+		type: EditInputs.select,
+		options: ArticleComponentOptions,
+		label: "Display Component",
+		info: "Show a 'Display' component as the first item.",
+	},
+	{
+		id: "display",
+		type: EditInputs.switch,
+		label: "Display Component",
+		info: "Show a 'Display' component as the first item.",
+	},
+	{
+		id: "columns",
+		type: EditInputs.number,
+		max: 4,
+		min: 1,
+		label: "Max number of columns",
+		info: "Number of stack columns when full screen.",
+	},
 ];
 const listVariantOptions = [
 	{
 		id: "variantType",
 		type: EditInputs.select,
 		// input array from somewhere
-		options: ["stack-columns"],
-		label: "Stack Variant",
-		info: "ArticleStackVariant",
+		options: ["list-standrd"],
+		label: "List Variant",
+		info: "ArticleListVariant",
+	},
+	{
+		id: "listStyle",
+		type: EditInputs.select,
+		// input array from somewhere
+		options: ["standard", "topN"],
+		label: "List Style",
+		info: "ArticleListStyleVariant",
+	},
+	{
+		id: "columns",
+		type: EditInputs.number,
+		max: 4,
+		min: 1,
+		label: "Max number of columns",
+		info: "Number of stack columns when full screen.",
+	},
+	{
+		id: "limit",
+		type: EditInputs.number,
+		min: 0,
+		label: "Max Articles",
+		info: "Number of articles in the list. 0 is all.",
+	},
+	{
+		id: "display",
+		type: EditInputs.switch,
+		label: "Display Component",
+		info: "Show a 'Display' component as the first item.",
 	},
 ];
 const carouselVariantOptions = [
@@ -43,7 +93,7 @@ const carouselVariantOptions = [
 		id: "variantType",
 		type: EditInputs.select,
 		// input array from somewhere
-		options: ["stack-columns"],
+		options: ["add-me"],
 		label: "Stack Variant",
 		info: "ArticleStackVariant",
 	},
@@ -73,14 +123,6 @@ export const ARTICLE_COLLECTION = {
 			type: EditInputs.title,
 			title: "Collection Props",
 		},
-		// {
-		// 	id: "variant",
-		// 	type: EditInputs.select,
-		// 	// input array from somewhere
-		// 	options: ["grid", "list", "stack", "carousel"],
-		// 	label: "Collection Variant",
-		// 	info: "ArticleCollectionVariant",
-		// },
 		{
 			id: "variant",
 			type: EditInputs.objectSelect,
@@ -90,27 +132,6 @@ export const ARTICLE_COLLECTION = {
 			label: "Collection Variant",
 			info: "ArticleCollectionVariant",
 			optionsMap: articleVariantMap,
-		},
-		{
-			id: "card",
-			type: EditInputs.select,
-			options: ArticleComponentOptions,
-			label: "Display Component",
-			info: "Show a 'Display' component as the first item.",
-		},
-		{
-			id: "display",
-			type: EditInputs.switch,
-			label: "Display Component",
-			info: "Show a 'Display' component as the first item.",
-		},
-		{
-			id: "columns",
-			type: EditInputs.number,
-			max: 4,
-			min: 1,
-			label: "Max number of columns",
-			info: "Number of stack columns when full screen.",
 		},
 	],
 };

@@ -29,10 +29,13 @@ export const ArticleCollection = ({
 		return null;
 	}
 
-	const { renderFunction, renderList, styles, config } = renderObject(
-		screenWidth,
-		rest
-	);
+	console.log("HEREHERE ", { variant, variantType });
+
+	const { renderFunction, renderList, styles } = renderObject(screenWidth, {
+		...rest,
+		...variantTypeObject,
+	});
+	// Aside from the switch it looks like variant isn't actually required
 	// remove switch we can just build a component
 	// We can just build a component for stack, grid, and list
 	// Carousel - has buttons to interact
@@ -46,12 +49,21 @@ export const ArticleCollection = ({
 				<ArticleStack
 					articles={articles}
 					renderList={renderList}
+					// feels useless to me?
 					renderFunction={renderFunction}
 					classes={styles}
 				/>
 			);
 		case "list":
-			return <ArticleList articles={[]} />;
+			return (
+				<ArticleList
+					articles={articles}
+					renderList={renderList}
+					classes={styles}
+					// We should be getting this from variant etc
+					as={"ol"}
+				/>
+			);
 		case "carousel":
 			return <ArticleCarousel>{[]}</ArticleCarousel>;
 	}

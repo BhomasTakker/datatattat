@@ -1,0 +1,111 @@
+.root {
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.25rem;
+	// justify-content: center;
+
+	li + li {
+		// if one line this is incorrect
+		// margin-top: 0.25rem;
+	}
+
+	// flex / columns / n
+	// li {
+	// 	flex: 1 1 45%;
+
+	// 	max-width: 50%;
+	// }
+}
+
+.columns-1 {
+	display: unset;
+	li {
+		max-width: 100%;
+	}
+	li + li {
+		margin-top: 0.25rem;
+	}
+}
+
+.columns-2 {
+	li {
+		flex: 1 1 45%;
+		max-width: 45%;
+	}
+	&.xs,
+	&.sm {
+		.li {
+			flex: 1 1 100%;
+			max-width: 100%;
+		}
+	}
+}
+.columns-3 {
+	li {
+		flex: 1 1 30%;
+		max-width: 30%;
+	}
+	&.md {
+		li {
+			flex: 1 1 45%;
+			max-width: 50%;
+		}
+	}
+	&.xs,
+	&.sm {
+		li {
+			flex: 1 1 100%;
+			max-width: 100%;
+		}
+	}
+}
+.columns-4 {
+	li {
+		flex: 1 1 20%;
+		max-width: 25%;
+	}
+	&.lg {
+		li {
+			flex: 1 1 33%;
+			max-width: 50%;
+		}
+	}
+	&.md {
+		li {
+			flex: 1 1 45%;
+			max-width: 50%;
+		}
+	}
+	&.xs,
+	&.sm {
+		li {
+			flex: 1 1 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+.topN {
+	list-style-type: decimal;
+	// list-style-position: inside;
+	li {
+		margin-left: 2rem;
+		// margin: auto 0 auto 2rem;
+	}
+	li::marker {
+		// display: inline;
+		color: red;
+		// font-size: 2rem;
+	}
+}
+
+.display {
+	> div {
+		&:first-child {
+			flex: 1 1 100%;
+		}
+	}
+}
