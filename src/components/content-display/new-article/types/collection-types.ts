@@ -1,5 +1,7 @@
 import { Collection } from "@/src/types/data-structures/collection/collection";
 import { type ArticleComponentOptions } from "../collection/stack/configs/article-components";
+import { ElementType } from "react";
+import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 
 type Variant = "stack" | "list" | "grid" | "carousel";
 type StackVariantType = "stack-columns";
@@ -43,3 +45,9 @@ export type ArticleCollection =
 	| ListCollection
 	| GridCollection
 	| CarouselCollection;
+
+export type RenderObjectReturn<T extends ElementType> = {
+	renderList: (articles: CollectionItem[]) => JSX.Element[];
+	styles: string;
+	as: T;
+};

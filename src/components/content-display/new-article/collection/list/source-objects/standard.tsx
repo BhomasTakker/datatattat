@@ -1,7 +1,7 @@
 import { ScreenWidth } from "@/src/hooks/useWidth";
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import { ArticleContainer } from "../../../article/ArticleContainer";
-import { Display, ListItem } from "../../../types";
+import { Display, ListItem, RenderObjectReturn } from "../../../types";
 import { addCssClasses } from "../../../utils";
 
 import styles from "../styles/standard-list.module.scss";
@@ -77,7 +77,7 @@ const renderList =
 export const getStandardListRenderObject = (
 	size: ScreenWidth,
 	props: Props
-) => {
+): RenderObjectReturn<"ol"> => {
 	const {
 		columns = 4,
 		listStyle = "topN",
@@ -89,7 +89,6 @@ export const getStandardListRenderObject = (
 		// config,
 		// We need to properly check and convert string to number
 		renderList: renderList(+limit, display),
-		renderFunction: undefined,
 		// config determines style and article props data
 		// That way we can create dynamic without having multiple of these files
 		// jus for styles changes
@@ -100,5 +99,6 @@ export const getStandardListRenderObject = (
 			styles[listStyle],
 			display ? styles.display : ""
 		),
+		as: "ol",
 	};
 };

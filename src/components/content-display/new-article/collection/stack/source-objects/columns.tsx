@@ -7,6 +7,8 @@ import {
 	getComponent,
 } from "../configs/article-components";
 import { addCssClasses } from "../../../utils";
+import { ElementType, ReactElement } from "react";
+import { RenderObjectReturn } from "../../../types";
 
 const renderStack =
 	(
@@ -34,13 +36,21 @@ type Props = {
 	columns?: number;
 	card?: ArticleComponentOptions;
 };
+type Test = {
+	size: string;
+	display: boolean;
+	card: string;
+};
 
-export const getColumnsRenderObject = (size: ScreenWidth, props: Props) => {
+export const getColumnsRenderObject = (
+	size: ScreenWidth,
+	props: Props
+): RenderObjectReturn<"div"> => {
 	const { display = false, columns = 4, card = "card-t2b" } = props || {};
 	return {
 		// config,
 		renderList: renderStack(size, display, card),
-		renderFunction: undefined,
+		// renderFunction: undefined,
 		styles: addCssClasses(
 			styles.columns,
 			styles[size],
@@ -48,5 +58,6 @@ export const getColumnsRenderObject = (size: ScreenWidth, props: Props) => {
 			styles["columns-" + columns],
 			styles[card]
 		),
+		as: "div",
 	};
 };
