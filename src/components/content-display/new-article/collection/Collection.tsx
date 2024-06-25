@@ -1,5 +1,3 @@
-//@ts-ignore
-
 import { ElementType, PropsWithChildren, useMemo } from "react";
 import { type ArticleCollection as ArticleCollectionProps } from "../types";
 
@@ -27,6 +25,7 @@ const CollectionComponent = <T extends ElementType>({
 	const As = as;
 	return (
 		// Fix this issue - we'll need to ts-ignore
+		// @ts-ignore
 		<As className={classes} articles={articles} styleSheet={styleSheet}>
 			{children}
 		</As>
