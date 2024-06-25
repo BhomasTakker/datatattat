@@ -93,9 +93,16 @@ const carouselVariantOptions = [
 		id: "variantType",
 		type: EditInputs.select,
 		// input array from somewhere
-		options: ["add-me"],
-		label: "Stack Variant",
-		info: "ArticleStackVariant",
+		options: ["carousel-display"],
+		label: "Carousel Variant",
+		info: "ArticleCarouselVariant",
+	},
+	{
+		id: "limit",
+		type: EditInputs.number,
+		min: 0,
+		label: "Max Articles",
+		info: "Number of articles in the list. 0 is all.",
 	},
 ];
 

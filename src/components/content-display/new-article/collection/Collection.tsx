@@ -1,13 +1,38 @@
-import { useMemo } from "react";
+// @ts-nocheck
+
+import { ElementType, PropsWithChildren, useMemo } from "react";
 import { type ArticleCollection as ArticleCollectionProps } from "../types";
-import { ArticleStack } from "./stack/Stack";
-import { ArticleList } from "./list/List";
-import { ArticleGrid } from "./grid/Grid";
-import { ArticleCarousel } from "./carousel/Carousel";
 
 import { useWidth } from "@/src/hooks/useWidth";
 import getArticleCollection from "./article-collection.map";
 import { ArticleVariant } from "./stack/configs/article-components";
+import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
+
+interface CollectionComponent<T extends ElementType> {
+	articles: CollectionItem[];
+	classes: string;
+	as: T;
+	styleSheet: {
+		readonly [key: string]: string;
+	} | null;
+}
+
+const CollectionComponent = <T extends ElementType>({
+	articles,
+	classes,
+	as,
+	children,
+	styleSheet,
+}: PropsWithChildren<CollectionComponent<T>>) => {
+	const As = as;
+	return (
+		// Fix this issue - we'll need to ts-ignore
+		// @ts-ignore
+		<As className={classes} articles={articles} styleSheet={styleSheet}>
+			{children}
+		</As>
+	);
+};
 
 export const ArticleCollection = ({
 	data,
@@ -29,42 +54,26 @@ export const ArticleCollection = ({
 		return null;
 	}
 
-	console.log("HEREHERE ", { variant, variantType });
-
-	const { renderFunction, renderList, styles } = renderObject(screenWidth, {
+	const {
+		renderList,
+		styles,
+		styleSheet,
+		as = "div",
+	} = renderObject(screenWidth, {
 		...rest,
 		...variantTypeObject,
 	});
-	// Aside from the switch it looks like variant isn't actually required
-	// remove switch we can just build a component
-	// We can just build a component for stack, grid, and list
-	// Carousel - has buttons to interact
-	// We almost certainly want to create an actual component
-	switch (variant) {
-		case "grid":
-			return <ArticleGrid></ArticleGrid>;
-		case "stack":
-			// Remove
-			return (
-				<ArticleStack
-					articles={articles}
-					renderList={renderList}
-					// feels useless to me?
-					renderFunction={renderFunction}
-					classes={styles}
-				/>
-			);
-		case "list":
-			return (
-				<ArticleList
-					articles={articles}
-					renderList={renderList}
-					classes={styles}
-					// We should be getting this from variant etc
-					as={"ol"}
-				/>
-			);
-		case "carousel":
-			return <ArticleCarousel>{[]}</ArticleCarousel>;
-	}
+
+	const As = as;
+
+	return (
+		<CollectionComponent
+			classes={styles}
+			articles={articles}
+			as={as}
+			styleSheet={styleSheet}
+		>
+			{renderList(articles)}
+		</CollectionComponent>
+	);
 };

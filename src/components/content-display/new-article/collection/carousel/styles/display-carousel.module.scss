@@ -1,0 +1,84 @@
+.root {
+	position: relative;
+
+	.container {
+		display: flex;
+		overflow: hidden;
+		> div {
+			flex: 1 0 100%;
+			transition: translate 300ms ease-in-out;
+		}
+	}
+
+	.button {
+		// all: unset;
+		background: none;
+		border: none;
+		display: block;
+		top: 0;
+		bottom: 0;
+		padding: 1rem;
+		cursor: pointer;
+		transition: background-color 100ms ease-in-out;
+		position: absolute;
+
+		&:hover,
+		&:focus-visible {
+			background-color: rgba(0, 0, 0, 0.2);
+		}
+
+		& > * {
+			stroke: white;
+			color: #eee;
+			width: 3rem;
+			height: 3rem;
+		}
+
+		&:hover,
+		&:focus-visible {
+			& > * {
+				animation: squish 200ms ease-in-out;
+			}
+		}
+
+		&.prev {
+		}
+		&.next {
+			right: 0;
+		}
+
+		@keyframes squish {
+			50% {
+				scale: 1.4 0.6;
+			}
+		}
+	}
+
+	.navigation {
+		position: absolute;
+		display: flex;
+		bottom: 0.5rem;
+		left: 50%;
+		translate: -50%;
+		gap: 0.25rem;
+		// background-color: rgba(0, 0, 0, 0.2);
+
+		.navigationBtn {
+			background: none;
+			border: none;
+			display: block;
+			cursor: pointer;
+			transition: background-color 100ms ease-in-out;
+
+			& > * {
+				stroke: white;
+				color: #eee;
+
+				&:hover,
+				&:focus-visible {
+					scale: 1.2;
+				}
+			}
+		}
+	}
+}
