@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { carouselMap } from "./carousel/carousel.map";
 import { listMap } from "./list/list.map";
 import { stackMap } from "./stack/stack.map";

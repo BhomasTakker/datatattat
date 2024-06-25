@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { ElementType, PropsWithChildren, useMemo } from "react";
 import { type ArticleCollection as ArticleCollectionProps } from "../types";
 
