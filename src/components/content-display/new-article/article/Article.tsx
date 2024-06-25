@@ -55,6 +55,8 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 	// Example use
 	const titleClasses = useCssClasses(
 		styles.title,
+		// we shouldn't need to pass all to all
+		// go over css - and reference carousel, etc
 		styles[type],
 		styles[style],
 		styles[size],

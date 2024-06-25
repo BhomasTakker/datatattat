@@ -58,6 +58,7 @@ export const getColumnsRenderObject = (
 			styles["columns-" + columns],
 			styles[card]
 		),
+		styleSheet: null,
 		as: "div",
 	};
 };

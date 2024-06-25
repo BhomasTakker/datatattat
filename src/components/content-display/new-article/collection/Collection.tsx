@@ -12,6 +12,9 @@ interface CollectionComponent<T extends ElementType> {
 	articles: CollectionItem[];
 	classes: string;
 	as: T;
+	styleSheet: {
+		readonly [key: string]: string;
+	} | null;
 }
 
 const CollectionComponent = <T extends ElementType>({
@@ -19,11 +22,12 @@ const CollectionComponent = <T extends ElementType>({
 	classes,
 	as,
 	children,
+	styleSheet,
 }: PropsWithChildren<CollectionComponent<T>>) => {
 	const As = as;
 	return (
 		// Fix this issue - we'll need to ts-ignore
-		<As className={classes} articles={articles}>
+		<As className={classes} articles={articles} styleSheet={styleSheet}>
 			{children}
 		</As>
 	);
@@ -52,6 +56,7 @@ export const ArticleCollection = ({
 	const {
 		renderList,
 		styles,
+		styleSheet,
 		as = "div",
 	} = renderObject(screenWidth, {
 		...rest,
@@ -61,7 +66,12 @@ export const ArticleCollection = ({
 	const As = as;
 
 	return (
-		<CollectionComponent classes={styles} articles={articles} as={as}>
+		<CollectionComponent
+			classes={styles}
+			articles={articles}
+			as={as}
+			styleSheet={styleSheet}
+		>
 			{renderList(articles)}
 		</CollectionComponent>
 	);

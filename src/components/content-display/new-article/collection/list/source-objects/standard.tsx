@@ -68,6 +68,8 @@ const renderList =
 			// think we don't want props object but actualt values
 			return (
 				<li key={src}>
+					{/* We can pass styleSheet trick here
+					Then we can really mod */}
 					<ArticleContainer src={src} props={props} />
 				</li>
 			);
@@ -99,6 +101,7 @@ export const getStandardListRenderObject = (
 			styles[listStyle],
 			display ? styles.display : ""
 		),
+		styleSheet: null,
 		as: "ol",
 	};
 };

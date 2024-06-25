@@ -49,5 +49,8 @@ export type ArticleCollection =
 export type RenderObjectReturn<T extends ElementType> = {
 	renderList: (articles: CollectionItem[]) => JSX.Element[];
 	styles: string;
+	styleSheet: {
+		readonly [key: string]: string;
+	} | null;
 	as: T;
 };
