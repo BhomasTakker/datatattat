@@ -11,6 +11,8 @@ import {
 import { addCssClasses } from "../../../utils";
 
 import styles from "../styles/standard-list.module.scss";
+import { displayItemStandard } from "../../../config/article-items/display";
+import { listItemOneZero } from "../../../config/article-items/list-item";
 
 type ListStyle = "none" | "bullets" | "numbered" | "";
 
@@ -21,32 +23,6 @@ type Props = {
 	listStyle?: "standard" | "topN";
 	limit?: number;
 	display?: boolean;
-};
-
-const listItem: ListProps = {
-	type: "listItem",
-	style: "one-zero-line",
-	media: "article",
-	showDescription: false,
-	showImage: false,
-	size: "xl",
-	styleSheet: {},
-
-	as: "article",
-};
-
-const displayItem: DisplayProps = {
-	type: "display",
-	media: "article",
-	style: "",
-	align: "align-top",
-	justify: "justify-start",
-	showDescription: true,
-	showImage: true,
-	size: "xl",
-	styleSheet: {},
-
-	as: "article",
 };
 
 const renderList =
@@ -64,10 +40,12 @@ const renderList =
 		// We should also have just links in lists
 
 		return returnArticles.map(({ src }, index) => {
-			let props = listItem;
+			let props = listItemOneZero;
 
 			if (display && index === 0) {
-				return <ArticleContainer key={src} src={src} props={displayItem} />;
+				return (
+					<ArticleContainer key={src} src={src} props={displayItemStandard} />
+				);
 			}
 
 			// think we don't want props object but actualt values

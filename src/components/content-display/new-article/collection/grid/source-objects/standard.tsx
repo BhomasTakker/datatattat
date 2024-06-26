@@ -5,29 +5,16 @@ import { addCssClasses } from "../../../utils";
 import { ArticleContainer } from "../../../article/ArticleContainer";
 
 import styles from "../styles/standard-grid.module.scss";
+import { displayItemStandard } from "../../../config/article-items/display";
 
 type Props = {};
-
-const displayItem: DisplayProps = {
-	type: "display",
-	media: "article",
-	style: "",
-	align: "align-top",
-	justify: "justify-start",
-	showDescription: true,
-	showImage: true,
-	size: "xl",
-	styleSheet: {},
-
-	as: "article",
-};
 
 const renderList = () => (articles: CollectionItem[]) => {
 	// number of grid things
 	return articles.map(({ src }, index) => {
 		return (
 			<div key={src}>
-				<ArticleContainer src={src} props={displayItem} />
+				<ArticleContainer src={src} props={displayItemStandard} />
 			</div>
 		);
 	});

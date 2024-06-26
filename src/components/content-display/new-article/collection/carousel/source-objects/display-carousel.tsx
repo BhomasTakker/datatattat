@@ -4,23 +4,10 @@ import { ArticleCarousel } from "../ArticleCarousel";
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import { ArticleContainer } from "../../../article/ArticleContainer";
 import styles from "../styles/display-carousel.module.scss";
+import { displayItemStandard } from "../../../config/article-items/display";
 
 type Props = {
 	limit?: number;
-};
-
-const displayItem: DisplayProps = {
-	type: "display",
-	media: "article",
-	style: "",
-	align: "align-top",
-	justify: "justify-start",
-	showDescription: true,
-	showImage: true,
-	size: "xl",
-	styleSheet: {},
-
-	as: "article",
 };
 
 const renderList = (limit: number) => (articles: CollectionItem[]) => {
@@ -30,7 +17,9 @@ const renderList = (limit: number) => (articles: CollectionItem[]) => {
 	}
 
 	return returnArticles.map(({ src }, index) => {
-		return <ArticleContainer key={index} src={src} props={displayItem} />;
+		return (
+			<ArticleContainer key={index} src={src} props={displayItemStandard} />
+		);
 	});
 };
 
