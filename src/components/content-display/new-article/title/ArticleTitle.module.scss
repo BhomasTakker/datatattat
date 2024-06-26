@@ -12,7 +12,7 @@
 		font-weight: bold;
 
 		// lines
-		overflow: hidden;
+		overflow: clip;
 		text-overflow: ellipsis;
 		display: -webkit-box;
 		-webkit-line-clamp: 2; /* number of lines to show */

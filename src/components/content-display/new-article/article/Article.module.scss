@@ -9,7 +9,7 @@ $text-color-light: #eee;
 .root {
 	width: 100%;
 	background: #fefefe;
-	overflow: hidden;
+	overflow: clip;
 	margin: auto;
 
 	.contentContainer {
