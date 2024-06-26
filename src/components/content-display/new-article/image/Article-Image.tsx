@@ -2,6 +2,8 @@ import { useCssClasses } from "../hooks/useCssClasses";
 import { ArticleType, Size, Style } from "../types";
 import styles from "./Article-Image.module.scss";
 
+type Aspect = "16/9";
+
 interface ArticleImage {
 	image: string;
 	imageAlt: string;
@@ -9,6 +11,7 @@ interface ArticleImage {
 	style?: Style;
 	type?: ArticleType;
 	size?: Size;
+	aspect?: Aspect;
 }
 
 export const ArticleImage = ({
@@ -18,7 +21,9 @@ export const ArticleImage = ({
 	style = "display",
 	size = "md",
 	classes = "",
+	aspect = "16/9",
 }: ArticleImage) => {
+	// would using
 	const root = useCssClasses(
 		styles.root,
 		styles[type],
@@ -29,6 +34,6 @@ export const ArticleImage = ({
 
 	return (
 		// eslint-disable-next-line @next/next/no-img-element
-		<img src={image} alt={imageAlt} className={root} />
+		<img src={image} alt={imageAlt} className={root} data-aspect={aspect} />
 	);
 };
