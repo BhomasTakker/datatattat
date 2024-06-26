@@ -1,5 +1,5 @@
 import { ScreenWidth } from "@/src/hooks/useWidth";
-import { Display, RenderObjectReturn } from "../../../types";
+import { Display, DisplayProps, RenderObjectReturn } from "../../../types";
 import { ArticleCarousel } from "../ArticleCarousel";
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import { ArticleContainer } from "../../../article/ArticleContainer";
@@ -8,8 +8,6 @@ import styles from "../styles/display-carousel.module.scss";
 type Props = {
 	limit?: number;
 };
-
-type DisplayProps = Omit<Display, "meta">;
 
 const displayItem: DisplayProps = {
 	type: "display",
@@ -21,7 +19,7 @@ const displayItem: DisplayProps = {
 	showImage: true,
 	size: "xl",
 
-	as: "div",
+	as: "article",
 };
 
 const renderList = (limit: number) => (articles: CollectionItem[]) => {

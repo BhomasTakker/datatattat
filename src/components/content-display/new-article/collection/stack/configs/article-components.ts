@@ -1,7 +1,4 @@
-import { Card, Display } from "../../../types";
-
-type CardProps = Omit<Card, "meta">;
-type DisplayProps = Omit<Display, "meta">;
+import { Card, CardProps, DisplayProps } from "../../../types";
 
 const baseCard: Omit<Card, "meta"> = {
 	type: "card",
@@ -12,7 +9,7 @@ const baseCard: Omit<Card, "meta"> = {
 	showImage: true,
 	size: "xl",
 
-	as: "div",
+	as: "article",
 };
 
 const t2b: CardProps = {
@@ -45,7 +42,7 @@ const display: DisplayProps = {
 	showImage: true,
 	size: "xl",
 
-	as: "div",
+	as: "article",
 };
 
 export const ArticleComponentOptions = [

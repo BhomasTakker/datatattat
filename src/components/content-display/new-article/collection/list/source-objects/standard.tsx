@@ -1,7 +1,13 @@
 import { ScreenWidth } from "@/src/hooks/useWidth";
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import { ArticleContainer } from "../../../article/ArticleContainer";
-import { Display, ListItem, RenderObjectReturn } from "../../../types";
+import {
+	Display,
+	DisplayProps,
+	ListItem,
+	ListProps,
+	RenderObjectReturn,
+} from "../../../types";
 import { addCssClasses } from "../../../utils";
 
 import styles from "../styles/standard-list.module.scss";
@@ -17,9 +23,6 @@ type Props = {
 	display?: boolean;
 };
 
-type ListProps = Omit<ListItem, "meta">;
-type DisplayProps = Omit<Display, "meta">;
-
 const listItem: ListProps = {
 	type: "listItem",
 	style: "one-zero-line",
@@ -28,7 +31,7 @@ const listItem: ListProps = {
 	showImage: false,
 	size: "xl",
 
-	as: "div",
+	as: "article",
 };
 
 const displayItem: DisplayProps = {
@@ -41,7 +44,7 @@ const displayItem: DisplayProps = {
 	showImage: true,
 	size: "xl",
 
-	as: "div",
+	as: "article",
 };
 
 const renderList =

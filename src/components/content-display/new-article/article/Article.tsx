@@ -21,7 +21,7 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		type = "display",
 		showDescription = true,
 		showImage = true,
-		as = "div",
+		as = "article",
 		style = "",
 	} = props;
 	const { image, title, description, imageAlt } = meta;
@@ -86,9 +86,7 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 	const As = as;
 
 	return (
-		// this needs to be a generic component so we can have a li
-		// except in THAT instance you would be better off mapping children in ul
-		// and wrapping each in a li
+		// this should be an article component
 		<As className={`${root}`}>
 			<div className={`${styles.displayContainer}`}>
 				{/* eslint-disable-next-line @next/next/no-img-element */}

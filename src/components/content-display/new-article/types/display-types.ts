@@ -47,3 +47,7 @@ export interface ListItem extends Base {
 	style: ListItemStyle;
 }
 export type ArticleComponent = Display | Card | ListItem;
+
+export type ListProps = Omit<ListItem, "meta">;
+export type DisplayProps = Omit<Display, "meta">;
+export type CardProps = Omit<Card, "meta">;
