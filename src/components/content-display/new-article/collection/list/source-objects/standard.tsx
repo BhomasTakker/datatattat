@@ -30,6 +30,7 @@ const listItem: ListProps = {
 	showDescription: false,
 	showImage: false,
 	size: "xl",
+	styleSheet: {},
 
 	as: "article",
 };
@@ -43,6 +44,7 @@ const displayItem: DisplayProps = {
 	showDescription: true,
 	showImage: true,
 	size: "xl",
+	styleSheet: {},
 
 	as: "article",
 };

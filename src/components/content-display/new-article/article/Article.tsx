@@ -23,6 +23,7 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		showImage = true,
 		as = "article",
 		style = "",
+		styleSheet,
 	} = props;
 	const { image, title, description, imageAlt } = meta;
 
@@ -50,37 +51,32 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		styles[type],
 		styles[style],
 		styles[size],
+		styleSheet.root,
+		styleSheet[type],
+		styleSheet[style],
+		styleSheet[size],
+
 		...typeClasses
 	);
-	// Example use
+	// Example use / we definately should not be passing all classes to each sub class...
 	const titleClasses = useCssClasses(
 		styles.title,
-		// we shouldn't need to pass all to all
-		// go over css - and reference carousel, etc
-		styles[type],
-		styles[style],
-		styles[size],
+		styleSheet.title,
 		...typeClasses
 	);
 	const descriptionClasses = useCssClasses(
 		styles.description,
-		styles[type],
-		styles[style],
-		styles[size],
+		styleSheet.description,
 		...typeClasses
 	);
 	const containerClasses = useCssClasses(
 		styles.contentContainer,
-		styles[type],
-		styles[style],
-		styles[size],
+		styleSheet.contentContainer,
 		...typeClasses
 	);
 	const imageClasses = useCssClasses(
 		styles.articleImage,
-		styles[type],
-		styles[style],
-		styles[size],
+		styleSheet.articleImage,
 		...typeClasses
 	);
 	const As = as;

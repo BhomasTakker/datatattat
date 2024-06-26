@@ -8,6 +8,7 @@ const baseCard: Omit<Card, "meta"> = {
 	showDescription: true,
 	showImage: true,
 	size: "xl",
+	styleSheet: {},
 
 	as: "article",
 };
@@ -41,6 +42,7 @@ const display: DisplayProps = {
 	showDescription: true,
 	showImage: true,
 	size: "xl",
+	styleSheet: {},
 
 	as: "article",
 };

@@ -7,6 +7,7 @@ import {
 	ListItemStyle,
 	Media,
 	Size,
+	Styles,
 } from ".";
 
 interface HtmlMeta {
@@ -17,6 +18,7 @@ interface HtmlMeta {
 }
 
 type Base = {
+	styleSheet: Styles;
 	media: Media;
 	meta: HtmlMeta;
 	size: Size;

@@ -18,6 +18,7 @@ const displayItem: DisplayProps = {
 	showDescription: true,
 	showImage: true,
 	size: "xl",
+	styleSheet: {},
 
 	as: "article",
 };

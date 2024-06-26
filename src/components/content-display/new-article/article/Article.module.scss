@@ -17,6 +17,10 @@ $text-color-light: #eee;
 	}
 
 	container: container-bg / inline-size;
+
+	.description {
+		container: description-bg / inline-size;
+	}
 }
 
 .display {
@@ -32,6 +36,25 @@ $text-color-light: #eee;
 		width: 100%;
 		height: 50%;
 		padding: 1rem;
+	}
+
+	.title {
+		:first-child {
+			font-size: clamp(1.2rem, 6cqi, 3.5rem);
+			line-height: clamp(1.4rem, 6.2cqi, 3.7rem);
+		}
+	}
+
+	.description {
+		:first-child {
+			font-size: clamp(0.8rem, 4cqi, 2rem);
+			line-height: clamp(0.8rem, 4cqi, 2rem);
+
+			@container description-bg (inline-size > 400px) {
+				-webkit-line-clamp: 3;
+				line-clamp: 3;
+			}
+		}
 	}
 
 	&.xs {
@@ -107,6 +130,30 @@ $text-color-light: #eee;
 .card {
 	.displayContainer {
 		display: flex;
+	}
+
+	.title {
+		:first-child {
+			font-size: clamp(1rem, 7cqi, 3.5rem);
+			line-height: clamp(1.1rem, 7.2cqi, 3.7rem);
+		}
+	}
+
+	.description {
+		:first-child {
+			font-size: clamp(1rem, 5cqi, 2.3rem);
+			line-height: clamp(1rem, 5cqi, 2.3rem);
+			// letter-spacing: -0.3px;
+
+			@container description-bg (inline-size > 400px) {
+				-webkit-line-clamp: 3;
+				line-clamp: 3;
+			}
+			@container description-bg (inline-size > 540px) {
+				-webkit-line-clamp: 4;
+				line-clamp: 4;
+			}
+		}
 	}
 
 	&.t2b {
@@ -190,6 +237,71 @@ $text-color-light: #eee;
 			align-items: center;
 		}
 	}
+
+	.title {
+		:first-child {
+			font-size: clamp(0.8rem, 4cqi, 1.3rem);
+			line-height: clamp(0.8rem, 4.1cqi, 1.4rem);
+		}
+	}
+	.description {
+		:first-child {
+			font-size: clamp(1rem, 4.5cqi, 1.5rem);
+			line-height: clamp(1rem, 4.7cqi, 1.6rem);
+		}
+		&.one-zero-line,
+		&.three-zero-line,
+		&.five-zero-line,
+		&.free-zero {
+			:first-child {
+				display: none;
+			}
+		}
+		&.one-one-line,
+		&.three-one-line {
+			:first-child {
+				-webkit-line-clamp: 1;
+				line-clamp: 1;
+			}
+		}
+		&.one-two-line,
+		&.three-two-line {
+			:first-child {
+				-webkit-line-clamp: 2;
+				line-clamp: 2;
+			}
+		}
+	}
+	&.one-zero-line,
+	&.one-one-line,
+	&.one-two-line {
+		:first-child {
+			-webkit-line-clamp: 1; /* number of lines to show */
+			line-clamp: 1;
+		}
+	}
+	&.three-zero-line,
+	&.three-one-line,
+	&.three-two-line {
+		:first-child {
+			-webkit-line-clamp: 3;
+			line-clamp: 3;
+		}
+	}
+	&.five-zero-line {
+		:first-child {
+			-webkit-line-clamp: 5;
+			line-clamp: 5;
+		}
+	}
+	// prob rid
+	&.free-zero {
+		:first-child {
+			-webkit-line-clamp: unset;
+			line-clamp: unset;
+		}
+	}
+
 	.articleImage {
 		&.one-zero-line {
 			height: clamp(1rem, 6cqi, 2rem);
@@ -253,114 +365,64 @@ $text-color-light: #eee;
 	}
 }
 
-.title {
-	&.display {
-		:first-child {
-			font-size: clamp(1.2rem, 6cqi, 3.5rem);
-			line-height: clamp(1.4rem, 6.2cqi, 3.7rem);
-		}
-	}
-	&.card {
-		:first-child {
-			font-size: clamp(1rem, 7cqi, 3.5rem);
-			line-height: clamp(1.1rem, 7.2cqi, 3.7rem);
-		}
-	}
-	&.listItem {
-		:first-child {
-			font-size: clamp(0.8rem, 4cqi, 1.3rem);
-			line-height: clamp(0.8rem, 4.1cqi, 1.4rem);
-		}
-		&.one-zero-line,
-		&.one-one-line,
-		&.one-two-line {
-			:first-child {
-				-webkit-line-clamp: 1; /* number of lines to show */
-				line-clamp: 1;
-			}
-		}
-		&.three-zero-line,
-		&.three-one-line,
-		&.three-two-line {
-			:first-child {
-				-webkit-line-clamp: 3;
-				line-clamp: 3;
-			}
-		}
-		&.five-zero-line {
-			:first-child {
-				-webkit-line-clamp: 5;
-				line-clamp: 5;
-			}
-		}
-		// prob rid
-		&.free-zero {
-			:first-child {
-				-webkit-line-clamp: unset;
-				line-clamp: unset;
-			}
-		}
-	}
-}
-
 .description {
-	container: description-bg / inline-size;
-	&.display {
-		// Would prefer not having to reference by element
-		:first-child {
-			font-size: clamp(0.8rem, 4cqi, 2rem);
-			line-height: clamp(0.8rem, 4cqi, 2rem);
-			// letter-spacing: -0.3px;
+	// container: description-bg / inline-size;
+	// &.display {
+	// 	// Would prefer not having to reference by element
+	// 	:first-child {
+	// 		font-size: clamp(0.8rem, 4cqi, 2rem);
+	// 		line-height: clamp(0.8rem, 4cqi, 2rem);
+	// 		// letter-spacing: -0.3px;
 
-			@container description-bg (inline-size > 400px) {
-				-webkit-line-clamp: 3;
-				line-clamp: 3;
-			}
-		}
-	}
-	&.listItem {
-		:first-child {
-			font-size: clamp(1rem, 4.5cqi, 1.5rem);
-			line-height: clamp(1rem, 4.7cqi, 1.6rem);
-		}
-		&.one-zero-line,
-		&.three-zero-line,
-		&.five-zero-line,
-		&.free-zero {
-			:first-child {
-				display: none;
-			}
-		}
-		&.one-one-line,
-		&.three-one-line {
-			:first-child {
-				-webkit-line-clamp: 1;
-				line-clamp: 1;
-			}
-		}
-		&.one-two-line,
-		&.three-two-line {
-			:first-child {
-				-webkit-line-clamp: 2;
-				line-clamp: 2;
-			}
-		}
-	}
+	// 		@container description-bg (inline-size > 400px) {
+	// 			-webkit-line-clamp: 3;
+	// 			line-clamp: 3;
+	// 		}
+	// 	}
+	// }
+	// &.listItem {
+	// 	:first-child {
+	// 		font-size: clamp(1rem, 4.5cqi, 1.5rem);
+	// 		line-height: clamp(1rem, 4.7cqi, 1.6rem);
+	// 	}
+	// 	&.one-zero-line,
+	// 	&.three-zero-line,
+	// 	&.five-zero-line,
+	// 	&.free-zero {
+	// 		:first-child {
+	// 			display: none;
+	// 		}
+	// 	}
+	// 	&.one-one-line,
+	// 	&.three-one-line {
+	// 		:first-child {
+	// 			-webkit-line-clamp: 1;
+	// 			line-clamp: 1;
+	// 		}
+	// 	}
+	// 	&.one-two-line,
+	// 	&.three-two-line {
+	// 		:first-child {
+	// 			-webkit-line-clamp: 2;
+	// 			line-clamp: 2;
+	// 		}
+	// 	}
+	// }
 
-	&.card {
-		:first-child {
-			font-size: clamp(1rem, 5cqi, 2.3rem);
-			line-height: clamp(1rem, 5cqi, 2.3rem);
-			// letter-spacing: -0.3px;
+	// &.card {
+	// 	:first-child {
+	// 		font-size: clamp(1rem, 5cqi, 2.3rem);
+	// 		line-height: clamp(1rem, 5cqi, 2.3rem);
+	// 		// letter-spacing: -0.3px;
 
-			@container description-bg (inline-size > 400px) {
-				-webkit-line-clamp: 3;
-				line-clamp: 3;
-			}
-			@container description-bg (inline-size > 540px) {
-				-webkit-line-clamp: 4;
-				line-clamp: 4;
-			}
-		}
-	}
+	// 		@container description-bg (inline-size > 400px) {
+	// 			-webkit-line-clamp: 3;
+	// 			line-clamp: 3;
+	// 		}
+	// 		@container description-bg (inline-size > 540px) {
+	// 			-webkit-line-clamp: 4;
+	// 			line-clamp: 4;
+	// 		}
+	// 	}
+	// }
 }
