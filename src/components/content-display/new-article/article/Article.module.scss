@@ -13,6 +13,7 @@ $text-color-light: #eee;
 		cursor: pointer;
 		&:hover,
 		:focus-visible {
+			background-color: rgba(95, 196, 224, 0.05);
 			.title {
 				text-decoration: underline;
 			}
