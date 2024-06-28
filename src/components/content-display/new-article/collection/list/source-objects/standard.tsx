@@ -40,11 +40,15 @@ const renderList =
 		// We should also have just links in lists
 
 		return returnArticles.map(({ src }, index) => {
-			let props = listItemOneZero;
+			let props = { ...listItemOneZero, src };
 
 			if (display && index === 0) {
 				return (
-					<ArticleContainer key={src} src={src} props={displayItemStandard} />
+					<ArticleContainer
+						key={src}
+						src={src}
+						props={{ ...displayItemStandard, src }}
+					/>
 				);
 			}
 

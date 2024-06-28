@@ -50,7 +50,7 @@ export const redisDataFetch = async ({
 
 	const resultString = JSON.stringify(result);
 
-	console.log("Result String", { resultString });
+	// console.log("Result String", { resultString });
 
 	if (!resultString || resultString === "{}") {
 		// cheap and dirty check

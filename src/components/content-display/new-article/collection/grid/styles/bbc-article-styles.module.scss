@@ -1,0 +1,37 @@
+.root {
+	.contentContainer {
+		// aspect-ratio: 16/9;
+	}
+
+	&.fullText {
+		.description {
+			:first-child {
+				-webkit-line-clamp: 3;
+				line-clamp: 3;
+			}
+		}
+
+		.title {
+			:first-child {
+				-webkit-line-clamp: 3;
+				line-clamp: 3;
+			}
+		}
+	}
+
+	&.threeByThree {
+		.description {
+			:first-child {
+				-webkit-line-clamp: unset;
+				line-clamp: unset;
+			}
+		}
+
+		.title {
+			:first-child {
+				-webkit-line-clamp: unset;
+				line-clamp: unset;
+			}
+		}
+	}
+}

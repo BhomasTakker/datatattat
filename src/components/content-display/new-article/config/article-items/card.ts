@@ -5,10 +5,12 @@ export const baseCard: CardProps = {
 	style: "",
 	media: "article",
 	direction: "t2b",
+	// we need to be able to add classes
 	showDescription: true,
 	showImage: true,
 	size: "xl",
 	styleSheet: {},
+	classes: "",
 
 	as: "article",
 };

@@ -18,7 +18,9 @@ interface HtmlMeta {
 }
 
 type Base = {
+	src: string;
 	styleSheet: Styles;
+	classes: string;
 	media: Media;
 	meta: HtmlMeta;
 	size: Size;
@@ -50,6 +52,8 @@ export interface ListItem extends Base {
 }
 export type ArticleComponent = Display | Card | ListItem;
 
-export type ListProps = Omit<ListItem, "meta">;
-export type DisplayProps = Omit<Display, "meta">;
-export type CardProps = Omit<Card, "meta">;
+export type ListProps = Omit<ListItem, "meta" | "src">;
+export type DisplayProps = Omit<Display, "meta" | "src">;
+export type CardProps = Omit<Card, "meta" | "src">;
+
+export type ArticleProps = ListProps | DisplayProps | CardProps;

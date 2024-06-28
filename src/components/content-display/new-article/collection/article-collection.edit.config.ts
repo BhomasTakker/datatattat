@@ -13,9 +13,16 @@ const gridVariantOptions = [
 		id: "variantType",
 		type: EditInputs.select,
 		// input array from somewhere
-		options: ["add-me"],
-		label: "Stack Variant",
-		info: "ArticleStackVariant",
+		options: ["grid-standard"],
+		label: "Grid Variant",
+		info: "ArticleGridVariant",
+	},
+	{
+		id: "gridType",
+		type: EditInputs.select,
+		options: ["bbc-style"],
+		label: "Display Component",
+		info: "Test grid",
 	},
 ];
 const stackVariantOptions = [
@@ -32,7 +39,7 @@ const stackVariantOptions = [
 		type: EditInputs.select,
 		options: ArticleComponentOptions,
 		label: "Display Component",
-		info: "Show a 'Display' component as the first item.",
+		info: "The card type.",
 	},
 	{
 		id: "display",
@@ -54,7 +61,7 @@ const listVariantOptions = [
 		id: "variantType",
 		type: EditInputs.select,
 		// input array from somewhere
-		options: ["list-standrd"],
+		options: ["list-standard"],
 		label: "List Variant",
 		info: "ArticleListVariant",
 	},

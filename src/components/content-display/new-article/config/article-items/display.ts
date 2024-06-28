@@ -12,6 +12,7 @@ export const displayItemStandard: DisplayProps = {
 	showImage: true,
 	size: "xl",
 	styleSheet: {},
+	classes: "",
 
 	as: "article",
 };

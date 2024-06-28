@@ -22,7 +22,8 @@ export const ArticleImage = ({
 	size = "md",
 	classes = "",
 	aspect = "16/9",
-}: ArticleImage) => {
+}: // take in effect - i.e. greyscale
+ArticleImage) => {
 	// would using
 	const root = useCssClasses(
 		styles.root,

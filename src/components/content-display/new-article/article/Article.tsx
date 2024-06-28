@@ -7,6 +7,8 @@ import { ClassName } from "../types";
 import { Display as DisplayType, Card, ListItem } from "../types/display-types";
 import styles from "./Article.module.scss";
 
+import { useRouter } from "next/navigation";
+
 ////////////////////////////////////////////////////
 // Rename me / Display is one instantiation
 // We could also pass extra information here
@@ -14,6 +16,7 @@ import styles from "./Article.module.scss";
 // Author, collection, etc
 // We need interaction for users - save, fav, like, etc
 export const Article = (props: DisplayType | Card | ListItem) => {
+	const router = useRouter();
 	const {
 		meta,
 		size = "md",
@@ -23,7 +26,9 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		showImage = true,
 		as = "article",
 		style = "",
-		styleSheet,
+		styleSheet = {},
+		classes = "",
+		src,
 	} = props;
 	const { image, title, description, imageAlt } = meta;
 
@@ -51,41 +56,52 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		styles[type],
 		styles[style],
 		styles[size],
-		styleSheet.root,
+		styleSheet?.root,
 		styleSheet[type],
 		styleSheet[style],
 		styleSheet[size],
 
+		classes,
+
 		...typeClasses
+	);
+	const displayContainerClasses = useCssClasses(
+		styles.displayContainer,
+		styleSheet?.displayContainer
 	);
 	// Example use / we definately should not be passing all classes to each sub class...
 	const titleClasses = useCssClasses(
 		styles.title,
-		styleSheet.title,
+		styleSheet?.title,
 		...typeClasses
 	);
 	const descriptionClasses = useCssClasses(
 		styles.description,
-		styleSheet.description,
+		styleSheet?.description,
 		...typeClasses
 	);
 	const containerClasses = useCssClasses(
 		styles.contentContainer,
-		styleSheet.contentContainer,
+		styleSheet?.contentContainer,
 		...typeClasses
 	);
 	const imageClasses = useCssClasses(
 		styles.articleImage,
-		styleSheet.articleImage,
+		styleSheet?.articleImage,
 		...typeClasses
 	);
+
+	const onClickHandler = () => {
+		console.log("CLICKED!!!");
+		router.push(src);
+	};
+
 	const As = as;
 
 	return (
 		// this should be an article component
-		<As className={`${root}`}>
-			<div className={`${styles.displayContainer}`}>
-				{/* eslint-disable-next-line @next/next/no-img-element */}
+		<As className={`${root}`} onClick={onClickHandler}>
+			<div className={displayContainerClasses}>
 				{showImage && (
 					<ArticleImage
 						image={image}

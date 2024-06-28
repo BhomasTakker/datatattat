@@ -1,35 +1,54 @@
 import { ScreenWidth } from "@/src/hooks/useWidth";
-import { DisplayProps, RenderObjectReturn } from "../../../types";
+import { RenderObjectReturn } from "../../../types";
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import { addCssClasses } from "../../../utils";
 import { ArticleContainer } from "../../../article/ArticleContainer";
 
-import styles from "../styles/standard-grid.module.scss";
-import { displayItemStandard } from "../../../config/article-items/display";
+import {
+	getArticlesFilter,
+	getGridItemStyle,
+	getGridStyles,
+} from "../config/standard";
 
-type Props = {};
+type GridTypes = "bbc-style";
 
-const renderList = () => (articles: CollectionItem[]) => {
-	// number of grid things
-	return articles.map(({ src }, index) => {
-		return (
-			<div key={src}>
-				<ArticleContainer src={src} props={displayItemStandard} />
-			</div>
-		);
-	});
+type Props = {
+	gridType: GridTypes;
 };
+
+const renderList =
+	(gridId: string, size: ScreenWidth) => (articles: CollectionItem[]) => {
+		let filteredArticles = getArticlesFilter(gridId)(articles);
+		const gridItemStyleFunction = getGridItemStyle(gridId);
+
+		return filteredArticles.map(({ src }, index) => {
+			const { gridItemStyle, card } = gridItemStyleFunction(index, size);
+			return (
+				<div key={src} className={gridItemStyle}>
+					<ArticleContainer src={src} props={{ ...card, src }} />
+				</div>
+			);
+		});
+	};
 
 export const getStandardGridRenderObject = (
 	size: ScreenWidth,
 	props: Props
-	// It 'could' be a section BUT section may e abetter at the 'stack' level
+	// It 'could' be a section BUT section may be better at the 'stack' level
 ): RenderObjectReturn<"section"> => {
-	const {} = props || {};
+	const { gridType } = props || {};
+
+	console.log("9898 getStandardGridRenderObject", { props, size });
+
+	const gridStyle = getGridStyles(gridType);
+
+	// get article props and styles from config per index etc
 
 	return {
-		renderList: renderList(),
-		styles: addCssClasses(styles.root, styles[size]),
+		// pass config
+		renderList: renderList(gridType, size),
+		// get styles from config
+		styles: addCssClasses(gridStyle.root, gridStyle[size]),
 		styleSheet: null,
 		as: "section",
 	};

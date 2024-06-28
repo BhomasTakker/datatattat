@@ -16,9 +16,16 @@ const renderList = (limit: number) => (articles: CollectionItem[]) => {
 		returnArticles = articles.slice(0, limit);
 	}
 
+	// We may need to format props
+	// we need to add src...
+
 	return returnArticles.map(({ src }, index) => {
 		return (
-			<ArticleContainer key={index} src={src} props={displayItemStandard} />
+			<ArticleContainer
+				key={index}
+				src={src}
+				props={{ ...displayItemStandard, src }}
+			/>
 		);
 	});
 };

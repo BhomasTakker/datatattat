@@ -1,16 +1,23 @@
 $text-color: #444;
 $text-color-light: #eee;
 
-// * {
-// 	// Home.module.css is the culprit - I think - but why do I have this?
-// 	line-height: 0;
-// }
-
 .root {
 	width: 100%;
 	background: #fefefe;
 	overflow: clip;
 	margin: auto;
+	// a reset for some mui
+	line-height: 0;
+
+	.displayContainer {
+		cursor: pointer;
+		&:hover,
+		:focus-visible {
+			.title {
+				text-decoration: underline;
+			}
+		}
+	}
 
 	.contentContainer {
 		color: $text-color;

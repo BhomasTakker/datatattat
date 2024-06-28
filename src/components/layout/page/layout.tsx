@@ -1,7 +1,5 @@
 import React, { ReactElement, ReactNode } from "react";
 import styles from "./layout.module.css";
-import { MainFooter } from "@/components/footer/MainFooter";
-import { MainHeader } from "@/components/header/main/MainHeader";
 import { Box, Container } from "@mui/material";
 
 import { Notification } from "@/components/layout/notifications/Notification";
