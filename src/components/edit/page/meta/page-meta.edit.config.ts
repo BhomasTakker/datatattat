@@ -1,7 +1,8 @@
+import { EditInputs } from "../../inputs/input.map";
 import OpenGraphEditObject from "./open-graph-edit-input.json";
 import TwitterCardEditObject from "./twitter-card-edit-input.json";
 
-// should just be a json
+// should just be a json?
 export const META_CONFIG = {
 	id: "Meta",
 	info: "Meta",
@@ -9,18 +10,18 @@ export const META_CONFIG = {
 
 	props: [
 		{
-			type: "title",
+			type: EditInputs.title,
 			title: "Meta Properties",
 		},
 		{
 			id: "pageTitle",
-			type: "text",
+			type: EditInputs.text,
 			label: "Page Title",
 			info: "The title used in the tab of the web page. Also used and displayed in search engines. See wesdrfghjk for more.",
 		},
 		{
 			id: "favIcons",
-			type: "array",
+			type: EditInputs.array,
 			label: "FavIcons",
 			info: "Array of av icons for sizes etc",
 			title: "Add Fav Icon",
@@ -28,13 +29,13 @@ export const META_CONFIG = {
 			// an input-list and a 'props' array
 			input: {
 				id: "favIcons",
-				type: "input-list",
+				type: EditInputs.inputList,
 				label: "Fav Icons",
 				info: "The page tab icon",
 				inputs: [
 					{
 						id: "rel",
-						type: "select",
+						type: EditInputs.select,
 						label: "Rel",
 						info: "icon or apple-touch-icon-precomposed",
 						defaultValue: "icon",
@@ -42,7 +43,7 @@ export const META_CONFIG = {
 					},
 					{
 						id: "type",
-						type: "select",
+						type: EditInputs.select,
 						label: "Source type",
 						info: "image/png",
 						defaultValue: "image/png",
@@ -50,13 +51,13 @@ export const META_CONFIG = {
 					},
 					{
 						id: "href",
-						type: "text",
+						type: EditInputs.text,
 						label: "href",
 						info: "The asset url.  The path to the asset",
 					},
 					{
 						id: "sizes",
-						type: "select",
+						type: EditInputs.select,
 						label: "Sizes",
 						info: "Different Image for each required size - select any to use one size for all.",
 						defaultValue: "any",

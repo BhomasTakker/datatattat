@@ -23,6 +23,7 @@ export const COMPONENTS_MAP = new Map<string, any>([
 	// NEW
 	["ArticleCollection", ArticleCollection],
 
+	// Remove once homepage converted
 	// OLD
 	["ArticleList", ArticleListController],
 	["ArticleStack", ArticleDisplayStack],

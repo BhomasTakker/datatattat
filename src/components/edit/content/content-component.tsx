@@ -28,7 +28,7 @@ export const ContentComponent = () => {
 
 	return (
 		<Stack gap={MARGINS.SMALL}>
-			<h2>You are here</h2>
+			{/* Stack Component Props */}
 			<ComponentPropsContainer
 				props={props}
 				propsId={propsId}

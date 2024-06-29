@@ -1,16 +1,26 @@
 import { withFactory } from "@/src/factories/with-factory";
 import { COMPONENTS_MAP } from "config/content/component-containers.map";
+import { UnknownObject } from "../../new-article/types";
 
 //////////////////////////////////
 // Could stand to clean this up //
 //////////////////////////////////
-export const FactoryComponent = ({ data }: { data: any }) => {
+
+export interface FactoryData {
+	componentType: string;
+	componentProps: UnknownObject;
+	_with: UnknownObject;
+}
+export interface FactoryComponent {
+	data: FactoryData;
+}
+export const FactoryComponent = ({ data }: FactoryComponent) => {
 	const { componentType, componentProps, _with = {} } = data;
 	const Component = COMPONENTS_MAP.get(componentType);
 
 	if (!Component) {
 		// Return error and blank component
-		return <>Error Component</>;
+		return null;
 	}
 
 	const componentObject = {
