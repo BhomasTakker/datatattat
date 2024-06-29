@@ -7,7 +7,6 @@ import {
 	getComponent,
 } from "../configs/article-components";
 import { addCssClasses } from "../../../utils";
-import { ElementType, ReactElement } from "react";
 import { RenderObjectReturn } from "../../../types";
 
 const renderStack =
@@ -27,7 +26,7 @@ const renderStack =
 			}
 
 			// think we don't want props object but actualt values
-			return <ArticleContainer key={src} src={src} props={props} />;
+			return <ArticleContainer key={src} src={src} props={{ ...props, src }} />;
 		});
 	};
 

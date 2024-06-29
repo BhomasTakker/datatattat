@@ -1,7 +1,9 @@
 .root {
 	width: 100%;
 	height: auto;
+}
+
+// Not 100% sure wht we couldn't nest
+.root[data-aspect="16/9"] {
 	aspect-ratio: 16/9;
-	// max-width: inherit;
-	// max-height: inherit;
 }

@@ -7,6 +7,8 @@ import { ClassName } from "../types";
 import { Display as DisplayType, Card, ListItem } from "../types/display-types";
 import styles from "./Article.module.scss";
 
+import { useRouter } from "next/navigation";
+
 ////////////////////////////////////////////////////
 // Rename me / Display is one instantiation
 // We could also pass extra information here
@@ -14,6 +16,7 @@ import styles from "./Article.module.scss";
 // Author, collection, etc
 // We need interaction for users - save, fav, like, etc
 export const Article = (props: DisplayType | Card | ListItem) => {
+	const router = useRouter();
 	const {
 		meta,
 		size = "md",
@@ -21,8 +24,11 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		type = "display",
 		showDescription = true,
 		showImage = true,
-		as = "div",
+		as = "article",
 		style = "",
+		styleSheet = {},
+		classes = "",
+		src,
 	} = props;
 	const { image, title, description, imageAlt } = meta;
 
@@ -50,48 +56,52 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		styles[type],
 		styles[style],
 		styles[size],
+		styleSheet?.root,
+		styleSheet[type],
+		styleSheet[style],
+		styleSheet[size],
+
+		classes,
+
 		...typeClasses
 	);
-	// Example use
+	const displayContainerClasses = useCssClasses(
+		styles.displayContainer,
+		styleSheet?.displayContainer
+	);
+	// Example use / we definately should not be passing all classes to each sub class...
 	const titleClasses = useCssClasses(
 		styles.title,
-		// we shouldn't need to pass all to all
-		// go over css - and reference carousel, etc
-		styles[type],
-		styles[style],
-		styles[size],
+		styleSheet?.title,
 		...typeClasses
 	);
 	const descriptionClasses = useCssClasses(
 		styles.description,
-		styles[type],
-		styles[style],
-		styles[size],
+		styleSheet?.description,
 		...typeClasses
 	);
 	const containerClasses = useCssClasses(
 		styles.contentContainer,
-		styles[type],
-		styles[style],
-		styles[size],
+		styleSheet?.contentContainer,
 		...typeClasses
 	);
 	const imageClasses = useCssClasses(
 		styles.articleImage,
-		styles[type],
-		styles[style],
-		styles[size],
+		styleSheet?.articleImage,
 		...typeClasses
 	);
+
+	const onClickHandler = () => {
+		console.log("CLICKED!!!");
+		router.push(src);
+	};
+
 	const As = as;
 
 	return (
-		// this needs to be a generic component so we can have a li
-		// except in THAT instance you would be better off mapping children in ul
-		// and wrapping each in a li
-		<As className={`${root}`}>
-			<div className={`${styles.displayContainer}`}>
-				{/* eslint-disable-next-line @next/next/no-img-element */}
+		// this should be an article component
+		<As className={`${root}`} onClick={onClickHandler}>
+			<div className={displayContainerClasses}>
 				{showImage && (
 					<ArticleImage
 						image={image}

@@ -2,7 +2,7 @@
 	width: 100%;
 	margin: auto;
 	background-color: white;
-	overflow: hidden;
+	overflow: clip;
 
 	max-height: 0;
 	transition: all 0.5s cubic-bezier(0, 1, 0, 1);

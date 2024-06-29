@@ -64,8 +64,6 @@ export const ArticleCollection = ({
 		...variantTypeObject,
 	});
 
-	const As = as;
-
 	return (
 		<CollectionComponent
 			classes={styles}

@@ -1,0 +1,9 @@
+// this works but - we need to work with it and see
+.root {
+	// only passed to the required cards
+	// we are also assuming that the image aspect-ratio hasn't been updated
+	// but we could change it here anyway
+	.contentContainer {
+		aspect-ratio: 16/9;
+	}
+}

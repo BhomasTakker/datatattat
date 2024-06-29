@@ -1,3 +1,5 @@
+import { ElementType } from "react";
+
 export * from "./collection-types";
 export * from "./display-types";
 
@@ -5,7 +7,9 @@ export type Media = "article" | "video" | "audio";
 
 export type UnknownObject = { [key: string | number]: unknown };
 
-export type As = "div" | "li";
+// do properly
+export type As = ElementType;
+export type Styles = { readonly [key: string]: string };
 
 export type Size = "xs" | "sm" | "md" | "lg" | "xl";
 export type Direction = "l2r" | "r2l" | "t2b" | "b2t";

@@ -3,7 +3,7 @@
 
 	.container {
 		display: flex;
-		overflow: hidden;
+		overflow: clip;
 		> div {
 			flex: 1 0 100%;
 			transition: translate 300ms ease-in-out;
