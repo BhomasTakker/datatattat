@@ -4,9 +4,11 @@ import { displayItemStandard } from "../../../config/article-items/display";
 import standardStyles from "../styles/standard-grid.module.scss";
 
 import cardStyle from "../styles/test.module.scss";
-import { bbcGridFilter, bbcGridItemStyle, bbcGridStyles } from "./bbc-style";
+import { bbcGridItemStyle, bbcGridStyles } from "./bbc-style";
 import { ScreenWidth } from "@/src/hooks/useWidth";
 import { ArticleProps } from "../../../types";
+import { multiples } from "../filter";
+import { oneTwoFourGridItemStyle, oneTwoFourGridStyles } from "./oneTwoFour";
 
 ///// Create functions / generics for each grid variation
 
@@ -34,14 +36,21 @@ const fallbackFilter = (articles: CollectionItem[]) => articles;
 
 const fallbackGridStyle = standardStyles;
 
-const getStyleMap = new Map([["bbc-style", bbcGridStyles]]);
+const getStyleMap = new Map([
+	["bbc-style", bbcGridStyles],
+	["oneTwoFour", oneTwoFourGridStyles],
+]);
 
 const filteredArticlesMap = new Map([
 	["none", fallbackFilter],
-	["bbc-style", bbcGridFilter],
+	["bbc-style", multiples(7)],
+	["oneTwoFour", multiples(7)],
 ]);
 
-const gridStyleMap = new Map([["bbc-style", bbcGridItemStyle]]);
+const gridStyleMap = new Map([
+	["bbc-style", bbcGridItemStyle],
+	["oneTwoFour", oneTwoFourGridItemStyle],
+]);
 
 export const getArticlesFilter = (gridId: string) => {
 	return filteredArticlesMap.get(gridId) || fallbackFilter;

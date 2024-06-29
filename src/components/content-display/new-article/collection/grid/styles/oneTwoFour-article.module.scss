@@ -1,0 +1,42 @@
+.root {
+	&.contentAspect {
+		.contentContainer {
+			// aspect-ratio: 16/9;
+		}
+	}
+
+	&.thinner {
+		max-width: none;
+		.articleImage {
+			// pixels cannot be okay here
+			height: 100px;
+			width: auto;
+		}
+
+		.contentContainer {
+			width: 100%;
+		}
+	}
+
+	&.fatter {
+		max-width: none;
+
+		.contentContainer {
+			width: 100%;
+		}
+
+		.description {
+			:first-child {
+				-webkit-line-clamp: 3;
+				line-clamp: 3;
+			}
+		}
+
+		.title {
+			:first-child {
+				-webkit-line-clamp: 3;
+				line-clamp: 3;
+			}
+		}
+	}
+}

@@ -5,11 +5,11 @@ import { card_l2r, card_t2b } from "../../../config/article-items/card";
 import { ScreenWidth } from "@/src/hooks/useWidth";
 
 // It ain't bbc - it's just a thing
-export const bbcGridFilter = (articles: CollectionItem[]) => {
-	const { length } = articles;
-	const remainder = length % 7;
-	return articles.slice(0, length - remainder);
-};
+// export const bbcGridFilter = (articles: CollectionItem[]) => {
+// 	const { length } = articles;
+// 	const remainder = length % 7;
+// 	return articles.slice(0, length - remainder);
+// };
 
 const defaultArticle = {
 	card: card_t2b,

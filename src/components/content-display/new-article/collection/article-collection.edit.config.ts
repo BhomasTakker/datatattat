@@ -20,7 +20,7 @@ const gridVariantOptions = [
 	{
 		id: "gridType",
 		type: EditInputs.select,
-		options: ["bbc-style"],
+		options: ["bbc-style", "oneTwoFour"],
 		label: "Display Component",
 		info: "Test grid",
 	},

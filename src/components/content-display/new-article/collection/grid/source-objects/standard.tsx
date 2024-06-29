@@ -10,7 +10,7 @@ import {
 	getGridStyles,
 } from "../config/standard";
 
-type GridTypes = "bbc-style";
+type GridTypes = "bbc-style" | "oneTwoFour";
 
 type Props = {
 	gridType: GridTypes;
@@ -38,16 +38,10 @@ export const getStandardGridRenderObject = (
 ): RenderObjectReturn<"section"> => {
 	const { gridType } = props || {};
 
-	console.log("9898 getStandardGridRenderObject", { props, size });
-
 	const gridStyle = getGridStyles(gridType);
 
-	// get article props and styles from config per index etc
-
 	return {
-		// pass config
 		renderList: renderList(gridType, size),
-		// get styles from config
 		styles: addCssClasses(gridStyle.root, gridStyle[size]),
 		styleSheet: null,
 		as: "section",
