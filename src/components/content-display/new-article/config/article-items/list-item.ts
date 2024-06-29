@@ -8,6 +8,7 @@ export const listItemOneZero: ListProps = {
 	showImage: false,
 	size: "xl",
 	styleSheet: {},
+	classes: "",
 
 	as: "article",
 };
