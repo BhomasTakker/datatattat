@@ -16,7 +16,7 @@ interface PageProfile {
 
 export const PageProfile = ({ profile }: PageProfile) => {
 	const { pageTitle, showPageTitle, pageDescription, showPageDescription } =
-		profile;
+		profile || {};
 	return (
 		<div className={styles.root}>
 			{showPageTitle && pageTitle && (

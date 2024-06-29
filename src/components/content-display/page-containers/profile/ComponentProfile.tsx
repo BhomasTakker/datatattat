@@ -23,7 +23,7 @@ export const ComponentProfile = ({ profile }: ComponentProfile) => {
 		componentTitleLink,
 		componentDescription,
 		showComponentDescription,
-	} = profile;
+	} = profile || {};
 
 	const titleComponent = <h2 className={styles.title}>{componentTitle}</h2>;
 	const titleComponentToRender = componentTitleLink ? (
