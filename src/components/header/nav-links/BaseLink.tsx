@@ -10,10 +10,15 @@ export type BaseLinkData = {
 	color?: string;
 };
 
+// Link and a button is making accessibility play up it's tabbing both the link AND button
 export const BaseLink = ({ link, label, color = "inherit" }: BaseLinkData) => {
 	return (
 		<Link href={link}>
-			<Button className={styles.link} sx={{ color }}>
+			<Button
+				className={styles.link}
+				color="inherit"
+				sx={{ padding: "1rem 0", color }}
+			>
 				{label}
 			</Button>
 		</Link>

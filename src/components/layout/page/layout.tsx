@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from "react";
-import styles from "./layout.module.css";
+import styles from "./layout.module.scss";
 import { Box, Container } from "@mui/material";
 
 import { Notification } from "@/components/layout/notifications/Notification";

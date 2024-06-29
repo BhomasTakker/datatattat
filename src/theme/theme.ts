@@ -2,7 +2,7 @@
 //Need use theme augmentation
 
 import { alpha, createTheme, ThemeProvider } from "@mui/material/styles";
-import { orange } from "@mui/material/colors";
+import { orange, common, pink } from "@mui/material/colors";
 // import { Acme, Roboto } from "@next/font/google";
 import { Roboto, Risque, Poppins } from "@next/font/google";
 // https://mui.com/material-ui/customization/theming/#custom-variables
@@ -35,7 +35,7 @@ export const theme = createTheme({
 	},
 	palette: {
 		primary: {
-			main: orange[500],
+			main: common.white,
 			light: orange[300],
 		},
 		// @ts-ignore think it's a chore to sort out

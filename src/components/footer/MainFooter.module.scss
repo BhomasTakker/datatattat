@@ -1,9 +1,14 @@
+.root {
+}
+
 .footer {
 	display: flex;
 	height: 100px;
 }
 
 .content {
+	border-top: 1px solid rgb(0, 0, 0, 0.1);
+	padding: 1rem 0;
 	color: black;
 	text-align: left;
 	margin: auto;

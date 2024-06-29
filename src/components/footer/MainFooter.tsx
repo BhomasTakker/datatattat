@@ -36,10 +36,13 @@ const Copyright = () => {
 export const MainFooter = ({ footerData }: any) => {
 	// // console.log({ footerData });
 	return (
-		<footer>
+		<footer className={styles.root}>
 			<Box className={footer} bgcolor={"primary.main"}>
-				<Container className={content}>
-					<Copyright />
+				{/* in header content etc we have a double container or margin added ... */}
+				<Container>
+					<Container className={content}>
+						<Copyright />
+					</Container>
 				</Container>
 			</Box>
 		</footer>
