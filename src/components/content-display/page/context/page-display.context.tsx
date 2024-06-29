@@ -11,6 +11,7 @@ type PageDisplayInterface = {
 	props: any;
 	content: any;
 	components: any[];
+	profile: object;
 };
 
 const initialState: PageDisplayState & PageDisplayInterface = {
@@ -20,6 +21,7 @@ const initialState: PageDisplayState & PageDisplayInterface = {
 	container: { type: "" },
 	props: {},
 	components: [],
+	profile: {},
 };
 
 export const PageDisplayContextProvider = ({
@@ -30,12 +32,12 @@ export const PageDisplayContextProvider = ({
 	children: ReactNode;
 }) => {
 	const { pageData } = value;
-	const { content, meta } = pageData || {};
+	const { content, meta, profile } = pageData || {};
 	const { container, props, components } = content || {};
 	return (
 		// Would you always spread given value here?
 		<PageDisplayContext.Provider
-			value={{ ...value, content, meta, container, props, components }}
+			value={{ ...value, content, meta, container, props, components, profile }}
 		>
 			{children}
 		</PageDisplayContext.Provider>

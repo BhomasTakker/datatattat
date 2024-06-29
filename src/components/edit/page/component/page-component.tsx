@@ -35,6 +35,8 @@ export const PageComponent = () => {
 			<WithInfo infoId={info}>
 				<Title variant={TitleVariant.EDIT_COMPONENT} text={title} />
 			</WithInfo>
+			{/* This is terribly convoluted for what it is  */}
+			{/* Page Component Props */}
 			<ComponentPropsContainer
 				props={props}
 				propsId={pagePropsId}

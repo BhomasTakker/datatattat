@@ -21,7 +21,6 @@ interface Props {
 }
 
 export const EditInputList = ({ inputs, objectKey }: Props) => {
-	console.log("4563", { objectKey });
 	return (
 		// Need to pass
 		// marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}
@@ -29,7 +28,7 @@ export const EditInputList = ({ inputs, objectKey }: Props) => {
 			{inputs.map((input) => {
 				const { id } = input;
 				const inputFormId = `${objectKey}.${id}`;
-				console.log("4563", { inputFormId });
+
 				const inputProps = { ...input, id: inputFormId, name: inputFormId };
 				return <InputFactory key={id} data={inputProps} />;
 			})}

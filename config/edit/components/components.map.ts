@@ -28,29 +28,29 @@ export const CONTENT_COMPONENTS = {
 
 	// OLD
 
-	ArticleList: ARTICLE_LIST,
-	ArticleStack: ARTICLE_DISPLAY_STACK,
-	ArticleGrid: ARTICLE_GRID_STACK,
+	// ArticleList: ARTICLE_LIST,
+	// ArticleStack: ARTICLE_DISPLAY_STACK,
+	// ArticleGrid: ARTICLE_GRID_STACK,
 
-	DataTable: DATA_TABLE,
-	Dummy: DUMMY,
+	// DataTable: DATA_TABLE,
+	// Dummy: DUMMY,
 
-	BarChart: D3_BAR_CHART,
-	ScatterChart: D3_SCATTER_CHART,
-	LineChart: D3_LINE_CHART,
-	HistogramChart: D3_HISTOGRAM_CHART,
+	// BarChart: D3_BAR_CHART,
+	// ScatterChart: D3_SCATTER_CHART,
+	// LineChart: D3_LINE_CHART,
+	// HistogramChart: D3_HISTOGRAM_CHART,
 
-	MapChart: D3_MAP_CHART,
-	D3BubbleMap: D3_BUBBLE_MAP_CHART,
-	D3ChoroplethMap: D3_CHOROPLETH_MAP_CHART,
+	// MapChart: D3_MAP_CHART,
+	// D3BubbleMap: D3_BUBBLE_MAP_CHART,
+	// D3ChoroplethMap: D3_CHOROPLETH_MAP_CHART,
 
-	SimpleArticleList: SIMPLE_ARTICLE_LIST,
-	SimpleStack: SIMPLE_STACK,
+	// SimpleArticleList: SIMPLE_ARTICLE_LIST,
+	// SimpleStack: SIMPLE_STACK,
 
-	OpenLayersMap: OLMAP,
+	// OpenLayersMap: OLMAP,
 
-	//
-	ExternalObject: ExternalObjectData,
-	// rem below
-	SimpleList: SIMPLE_LIST,
+	// //
+	// ExternalObject: ExternalObjectData,
+	// // rem below
+	// SimpleList: SIMPLE_LIST,
 } as const;

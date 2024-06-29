@@ -1,7 +1,7 @@
-import { GRID, STACK, DISPLAY } from "./page-components.config";
+import { STACK } from "./page-components.config";
 
 export const PAGE_COMPONENTS = {
-	Grid: GRID,
+	// Grid: GRID,
 	Stack: STACK,
-	Display: DISPLAY,
+	// Display: DISPLAY,
 } as const;
