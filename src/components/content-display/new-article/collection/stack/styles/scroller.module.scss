@@ -1,0 +1,69 @@
+.root {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	overflow-x: auto;
+	gap: 1rem;
+
+	-webkit-overflow-scrolling: touch;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	// do by size
+	& > * {
+		flex: 1 1 100%;
+		min-width: 20rem;
+		// height: 100px;
+	}
+
+	&.card-sm {
+		> * {
+			min-width: 12.5rem;
+			&.card-r2l,
+			&.card-l2r {
+				min-width: 25rem;
+			}
+		}
+	}
+
+	&.card-sm {
+		&.card-r2l,
+		&.card-l2r {
+			> * {
+				min-width: 30rem;
+			}
+		}
+	}
+
+	&.card-md {
+		> * {
+			min-width: 20rem;
+		}
+	}
+
+	&.card-md {
+		&.card-r2l,
+		&.card-l2r {
+			> * {
+				min-width: 45rem;
+			}
+		}
+	}
+
+	&.card-lg {
+		> * {
+			min-width: 30rem;
+		}
+	}
+
+	&.card-lg {
+		&.card-r2l,
+		&.card-l2r {
+			> * {
+				min-width: 70rem;
+			}
+		}
+	}
+}

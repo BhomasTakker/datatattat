@@ -8,6 +8,70 @@ import {
 } from "./stack/configs/article-components";
 import { EditInputs } from "@/src/components/edit/inputs/input.map";
 
+// We need to split this file up!!!
+export enum StackVariant {
+	columns = "stack-columns",
+	scroller = "stack-scroller",
+}
+
+const stackColumnsVariantOptions = [
+	{
+		id: "card",
+		type: EditInputs.select,
+		options: ArticleComponentOptions,
+		label: "Display Component",
+		info: "The card type.",
+	},
+	// dependent upon type
+	{
+		id: "display",
+		type: EditInputs.switch,
+		label: "Display Component",
+		info: "Show a 'Display' component as the first item.",
+	},
+	{
+		id: "columns",
+		type: EditInputs.number,
+		max: 4,
+		min: 1,
+		label: "Max number of columns",
+		info: "Number of stack columns when full screen.",
+	},
+];
+const stackScrollerVariantOptions = [
+	{
+		id: "card",
+		type: EditInputs.select,
+		options: ArticleComponentOptions,
+		label: "Card",
+		info: "The card type to use`.",
+	},
+	// dependent upon type
+	{
+		id: "cardSize",
+		type: EditInputs.select,
+		options: ["sm", "md", "lg"],
+		label: "Card Size",
+		info: "The minimum size that each card should be.",
+	},
+	{
+		id: "limit",
+		type: EditInputs.number,
+		min: 0,
+		label: "Max articles",
+		info: "Number of articles to show - 0 means all",
+	},
+];
+
+type StackVariantProps =
+	| typeof stackColumnsVariantOptions
+	| typeof stackScrollerVariantOptions;
+
+const stackVariantMap = new Map<string, StackVariantProps>([
+	[StackVariant.scroller, stackScrollerVariantOptions],
+	[StackVariant.columns, stackColumnsVariantOptions],
+]);
+
 const gridVariantOptions = [
 	{
 		id: "variantType",
@@ -28,33 +92,22 @@ const gridVariantOptions = [
 const stackVariantOptions = [
 	{
 		id: "variantType",
-		type: EditInputs.select,
-		// input array from somewhere
-		options: ["stack-columns"],
+		type: EditInputs.objectSelect,
+		// get from somewhere
+		options: ["stack-columns", "stack-scroller"],
+		optionId: "stackVariantObject",
 		label: "Stack Variant",
 		info: "ArticleStackVariant",
+		optionsMap: stackVariantMap,
 	},
-	{
-		id: "card",
-		type: EditInputs.select,
-		options: ArticleComponentOptions,
-		label: "Display Component",
-		info: "The card type.",
-	},
-	{
-		id: "display",
-		type: EditInputs.switch,
-		label: "Display Component",
-		info: "Show a 'Display' component as the first item.",
-	},
-	{
-		id: "columns",
-		type: EditInputs.number,
-		max: 4,
-		min: 1,
-		label: "Max number of columns",
-		info: "Number of stack columns when full screen.",
-	},
+	// {
+	// 	id: "variantType",
+	// 	type: EditInputs.select,
+	// 	// input array from somewhere
+	// 	options: ["stack-columns", "stack-scroller"],
+	// 	label: "Stack Variant",
+	// 	info: "ArticleStackVariant",
+	// },
 ];
 const listVariantOptions = [
 	{

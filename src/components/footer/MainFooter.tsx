@@ -20,7 +20,7 @@ const EDITORIAL_GUIDELINES_LINK = "#";
 const Copyright = () => {
 	return (
 		<p>
-			<strong>{COPYRIGHT_NOTICE}</strong>
+			<strong>{COPYRIGHT_NOTICE} </strong>
 			{COPYRIGHT_MESSAGE}
 			{/* Pass in styles */}
 			<BaseLink

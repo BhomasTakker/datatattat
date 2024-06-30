@@ -23,7 +23,7 @@ export const COMPONENT_DETAILS = [
 			{
 				id: "componentTitleLink",
 				type: EditInputs.text,
-				label: "Component Title",
+				label: "Title Link",
 				info: "ArticleListtTitle",
 			},
 		],
