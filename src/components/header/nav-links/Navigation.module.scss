@@ -1,0 +1,12 @@
+.root {
+	display: flex;
+	gap: 0.5rem;
+	overflow-x: auto;
+
+	// check this it might be old and unneccesary / or just incorrect
+	-webkit-overflow-scrolling: touch;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}

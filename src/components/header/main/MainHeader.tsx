@@ -5,18 +5,16 @@ import React from "react";
 //https://mui.com/material-ui/transitions/
 ////////////////////////////////////////////////////////////////////
 import { useSession } from "next-auth/react";
-import styles from "./main-header.module.css";
-import { DTALogo } from "@/components/layout/logo/DTALogo";
+import styles from "./main-header.module.scss";
 import { LogInButton } from "@/components/header/auth/LogInButton";
-import { SearchButton } from "@/components/header/search/SearchButton";
 import { UserButton } from "@/components/header/user/UserButton";
 import { NavigationMenu } from "../navigation-menu/NavigationMenu";
 import { SubHeadersList } from "../sub/SubHeadersList";
-import link from "next/link";
 import Link from "next/link";
 
 import HomeIcon from "@mui/icons-material/Home";
 import { useFeatureToggle } from "@/src/hooks/useFeatureToggle";
+import { IconButton } from "@mui/material";
 
 //Question perhaps in should we use context
 //doesn't quite seem required yet
@@ -33,16 +31,12 @@ export const MainHeader = ({ headerData }: any) => {
 	//probably call a function from elsewheres same with generating postfix
 	const menuPrefix = () => {
 		return [
+			// button AND link is wildly wrong
 			<Link href={"/"} key={"Home"}>
-				<HomeIcon />
+				<IconButton color="inherit" aria-label="Home">
+					<HomeIcon />
+				</IconButton>
 			</Link>,
-		];
-		return [
-			// Goto 'home' if logo exists
-			<Link href={"/"} key={"Logo"}>
-				<DTALogo />
-			</Link>,
-			<SearchButton key={"Search"} />,
 		];
 	};
 	const menuPostfix = () => {

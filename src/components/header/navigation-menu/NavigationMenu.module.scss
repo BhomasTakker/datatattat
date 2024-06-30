@@ -1,6 +1,17 @@
+.root {
+	.logoContainer {
+		width: 100%;
+		margin: auto;
+		text-align: center;
+		.logo {
+			// color: red;
+		}
+	}
+}
+
 .toolbar {
 	padding-left: 0;
 	padding-right: 0;
-	display: flex;
-	justify-content: center;
+	// display: flex;
+	// justify-content: center;
 }
