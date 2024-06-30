@@ -4,7 +4,7 @@ import { ElementType } from "react";
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 
 type Variant = "stack" | "list" | "grid" | "carousel";
-type StackVariantType = "stack-columns";
+type StackVariantType = "stack-columns" | "stack-scroller";
 type ListVariantType = "";
 type GridVariantType = "";
 type CarouselVariantType = "";
