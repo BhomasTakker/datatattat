@@ -6,7 +6,7 @@ export const PageForm = () => {
 		<Box>
 			<PageContent />
 			<Box>
-				<Button type="submit" variant="contained" color="primary">
+				<Button type="submit" variant="contained" color="secondary">
 					Save Page
 				</Button>
 			</Box>

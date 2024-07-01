@@ -74,7 +74,7 @@ const ArrayInputControl = () => {
 	return (
 		<Stack gap={MARGINS.SMALL} marginBottom={MARGINS.LARGE}>
 			{renderInputs()}
-			<Button onClick={addInput} startIcon={<AddIcon />}>
+			<Button color="secondary" onClick={addInput} startIcon={<AddIcon />}>
 				Add Input
 			</Button>
 		</Stack>

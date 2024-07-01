@@ -7,10 +7,10 @@ export const HeaderControls = () => {
 	const { addLink } = useContext(HeaderStateContext);
 	return (
 		<Stack maxWidth={"20rem"}>
-			<Button onClick={addLink} startIcon={<AddIcon />}>
+			<Button color="secondary" onClick={addLink} startIcon={<AddIcon />}>
 				Add Link
 			</Button>
-			<Button type="submit" variant="contained" color="primary">
+			<Button type="submit" variant="contained" color="secondary">
 				Save Header
 			</Button>
 		</Stack>

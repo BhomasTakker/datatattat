@@ -24,11 +24,7 @@ export const HeaderNavigationLinkInput = ({
 
 	return (
 		<Stack direction="row">
-			<Box
-				paddingLeft={MARGINS.SMALL}
-				width="100%"
-				bgcolor={"highlights.light"}
-			>
+			<Box paddingLeft={MARGINS.SMALL} width="100%">
 				<TextInputWithControl
 					key={routeToShow}
 					inputProps={{
@@ -38,12 +34,7 @@ export const HeaderNavigationLinkInput = ({
 					defaultValue={label}
 				/>
 			</Box>
-			<Box
-				width="100%"
-				bgcolor={"highlights.light"}
-				marginLeft={MARGINS.SMALL}
-				paddingLeft={MARGINS.SMALL}
-			>
+			<Box width="100%" marginLeft={MARGINS.SMALL} paddingLeft={MARGINS.SMALL}>
 				<TextInputWithControl
 					key={routeToShow}
 					name={`${name}.route`}
