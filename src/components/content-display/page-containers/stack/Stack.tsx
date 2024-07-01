@@ -32,7 +32,6 @@ const StackComponent = ({ component }: { component: FactoryData }) => {
 		componentTitleLink,
 	} = (componentProps as Profile) || {};
 	// we seem to render too many times
-	console.log("5656", { component });
 	return (
 		<section ref={ref}>
 			<ComponentProfile

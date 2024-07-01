@@ -16,7 +16,11 @@ export const PagePreviewModal = () => {
 	const page = getValues(pageFormId);
 
 	if (!isVisible) {
-		return <Button onClick={() => setIsVisiible(true)}>Open modal</Button>;
+		return (
+			<Button onClick={() => setIsVisiible(true)} color="secondary">
+				Open modal
+			</Button>
+		);
 	}
 
 	return (

@@ -1,15 +1,12 @@
-// .label {
-// 	display: inline-block;
-// 	white-space: nowrap;
-// 	min-width: 10rem;
-// }
-
+// Definately wrong....
+// We want to move away from mui but currently we're tied in
+// use a variable
 .textfield {
 	//255, 183, 77
-	background-color: rgba(255, 183, 77, 0.1);
+	background-color: rgb(0, 0, 0, 0.1);
 }
 
 .textfield:hover {
 	//255, 183, 77
-	background-color: rgba(255, 183, 77, 0.3);
+	background-color: rgb(0, 0, 0, 0.3);
 }

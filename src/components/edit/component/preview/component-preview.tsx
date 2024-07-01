@@ -11,7 +11,11 @@ export const ComponentPreviewModal = () => {
 	const { getValues } = useFormContext();
 
 	if (!isVisible) {
-		return <Button onClick={() => setIsVisiible(true)}>Open modal</Button>;
+		return (
+			<Button onClick={() => setIsVisiible(true)} color="secondary">
+				Open modal
+			</Button>
+		);
 	}
 
 	const component = getValues(objectKey);

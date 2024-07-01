@@ -1,0 +1,17 @@
+.root {
+	display: flex;
+	.label {
+		display: inline-block;
+	}
+	.container {
+		display: inline-block;
+		background-color: #e0e0e0;
+		border-radius: 5%;
+		min-width: 10rem;
+		margin-left: 0.5rem;
+		padding-left: 0.5rem;
+		.endpoint {
+			font-weight: bold;
+		}
+	}
+}

@@ -14,14 +14,22 @@ export const EditComponents = () => {
 	const components = getValues(componentsFormId) || [];
 	return (
 		<Box paddingTop={MARGINS.MIDSMALL} paddingBottom={MARGINS.MIDSMALL}>
-			<Button onClick={() => addComponent("", true)} startIcon={<AddIcon />}>
+			<Button
+				onClick={() => addComponent("", true)}
+				startIcon={<AddIcon />}
+				color="secondary"
+			>
 				{LABEL}
 			</Button>
 			<ComponentsStack />
 
 			{/* If no components - don't show second button */}
 			{components.length > 0 ? (
-				<Button onClick={() => addComponent("")} startIcon={<AddIcon />}>
+				<Button
+					onClick={() => addComponent("")}
+					startIcon={<AddIcon />}
+					color="secondary"
+				>
 					{LABEL}
 				</Button>
 			) : (

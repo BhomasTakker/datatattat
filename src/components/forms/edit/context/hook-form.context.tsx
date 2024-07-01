@@ -47,7 +47,13 @@ export const HookFormContextProvider = ({
 				<form onSubmit={methods.handleSubmit((data) => submit(data))}>
 					{children}
 				</form>
-				{debug ? <Button onClick={debugHandler}>Debug</Button> : <></>}
+				{debug ? (
+					<Button onClick={debugHandler} color="secondary">
+						Debug
+					</Button>
+				) : (
+					<></>
+				)}
 			</FormProvider>
 		</HookFormContext.Provider>
 	);
