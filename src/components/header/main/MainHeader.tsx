@@ -32,11 +32,18 @@ export const MainHeader = ({ headerData }: any) => {
 	const menuPrefix = () => {
 		return [
 			// button AND link is wildly wrong
-			<Link href={"/"} key={"Home"}>
-				<IconButton color="inherit" aria-label="Home">
-					<HomeIcon />
-				</IconButton>
-			</Link>,
+			// <Link href={"/"} key={"Home"}>
+			// Works but background is skewed
+			<IconButton
+				color="inherit"
+				aria-label="Home"
+				LinkComponent={Link}
+				href="/"
+				key="home"
+			>
+				<HomeIcon />
+			</IconButton>,
+			// </Link>,
 		];
 	};
 	const menuPostfix = () => {
