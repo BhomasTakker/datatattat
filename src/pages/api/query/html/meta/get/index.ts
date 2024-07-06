@@ -17,7 +17,7 @@ async function metaQuery(req: NextApiRequest, res: NextApiResponse) {
 	const { query } = req;
 	const { url } = query;
 
-	if (!url || typeof url !== "string") {
+	if (!url || typeof url !== "string" || url === "undefined") {
 		return res.status(404);
 	}
 

@@ -1,3 +1,5 @@
+import { log } from "@/src/lib/logger";
+import { stringIsAValidUrl } from "@/src/utils/url";
 import jsdom from "jsdom";
 import puppeteer from "puppeteer";
 
@@ -37,6 +39,21 @@ export const fetchMetaFromHTML = async (
 	options: RequestInit
 ) => {
 	const { JSDOM } = jsdom;
+
+	const isValid = stringIsAValidUrl(endpoint);
+
+	if (!isValid) {
+		log(
+			{
+				code: "0000",
+				context: "Fetch Meta",
+				message: "ERROR: Endpoint is not valid URL",
+			},
+			{ endpoint }
+		);
+		return {};
+	}
+
 	const response = await fetch(endpoint, options);
 	//Probably not here unless? / keep as is - we can specify return type or none
 	const result = await response.text();
