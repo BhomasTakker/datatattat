@@ -71,12 +71,12 @@ export const SignInForm = () => {
 							<AuthInputs />
 
 							<Stack spacing={3}>
-								<Button variant="contained" color="primary" type="submit">
+								<Button variant="contained" color="secondary" type="submit">
 									{t(Auth.login)}
 								</Button>
 								<Button
 									variant="text"
-									color="primary"
+									color="secondary"
 									onClick={switchAuthModeHandler}
 								>
 									{t(Auth.createNewAccount)}

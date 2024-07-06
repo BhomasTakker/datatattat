@@ -63,7 +63,7 @@ export const DeleteAccountForm = () => {
 							<AuthInputs confirmPassword />
 
 							<Stack spacing={3}>
-								<Button variant="contained" color="primary" type="submit">
+								<Button variant="contained" color="secondary" type="submit">
 									{t(Auth.deleteAccountButton)}
 								</Button>
 							</Stack>

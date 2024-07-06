@@ -16,3 +16,37 @@ export enum RedisCacheTime {
 	DAY_5 = 60 * 60 * 24 * 5,
 	WEEK = 60 * 60 * 24 * 7,
 }
+
+export const RedisCacheTimeMap = new Map([
+	["10 seconds", RedisCacheTime.SECONDS_10],
+	["30 seconds", RedisCacheTime.SECONDS_30],
+	["1 minute", RedisCacheTime.MINUTE],
+	["5 minutes", RedisCacheTime.MINUTE_5],
+	["10 minutes", RedisCacheTime.MINUTE_10],
+	["30 minutes", RedisCacheTime.MINUTE_30],
+	["1 hour", RedisCacheTime.HOUR],
+	["2 hours", RedisCacheTime.HOUR_2],
+	["6 hours", RedisCacheTime.HOUR_6],
+	["12 hours", RedisCacheTime.HOUR_12],
+	["1 day", RedisCacheTime.DAY],
+	["2 days", RedisCacheTime.DAY_2],
+	["5 days", RedisCacheTime.DAY_5],
+	["1 week", RedisCacheTime.WEEK],
+]);
+
+export const RedisCacheTimeOptions = [
+	"10 seconds",
+	"30 seconds",
+	"1 minute",
+	"5 minutes",
+	"10 minutes",
+	"30 minutes",
+	"1 hour",
+	"2 hours",
+	"6 hours",
+	"12 hours",
+	"1 day",
+	"2 days",
+	"5 days",
+	"1 week",
+];

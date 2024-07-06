@@ -64,7 +64,7 @@ const WithInfo = ({
 					<IconButton
 						aria-label="Info"
 						onClick={() => onClickHandler()}
-						color="primary"
+						color="secondary"
 					>
 						<InfoIcon />
 					</IconButton>

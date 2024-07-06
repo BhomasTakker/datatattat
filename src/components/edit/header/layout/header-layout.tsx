@@ -37,7 +37,7 @@ const CreateHeader = () => {
 	const { createHeader } = useContext(HeaderStateContext);
 
 	return !currentHeader ? (
-		<Button variant="contained" color="primary" onClick={createHeader}>
+		<Button variant="contained" color="secondary" onClick={createHeader}>
 			Create Header
 		</Button>
 	) : (
