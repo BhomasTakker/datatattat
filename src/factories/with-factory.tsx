@@ -82,7 +82,6 @@ export const withFactory = (componentObject: any, withObject: any) => {
 				createQueryObject(withObject.query, NEW_RSS_PATH)
 			);
 		case "custom-data":
-			console.log("9090", { withObject });
 			//Update this to make more sense in the context!
 			const { query } = withObject || {};
 			const { params } = query || {};
