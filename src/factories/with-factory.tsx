@@ -2,6 +2,7 @@
 // dynamic imports https://www.youtube.com/watch?v=ddVm53j80vc
 
 import { clientsideFetch } from "../api/clientside-fetch";
+import { withData } from "../hoc/query/withData";
 import { withQuery } from "../hoc/query/withQuery";
 import { EDIT_WITH } from "./with";
 
@@ -25,10 +26,6 @@ const createQueryObject = (queryObject: any, queryPath: string) => {
 		options,
 		conversions = [],
 	} = queryObject;
-	// conversionId needs to be string | string[] -> reducer or reducer[]
-
-	// console.log({ CONVERSION: conversion });
-	// console.log({ CONVERSIONS_ARRAY: conversions });
 
 	const url = queryPath;
 	// this feels a little dutty for some reason
@@ -84,6 +81,12 @@ export const withFactory = (componentObject: any, withObject: any) => {
 				componentObject,
 				createQueryObject(withObject.query, NEW_RSS_PATH)
 			);
+		case "custom-data":
+			console.log("9090", { withObject });
+			//Update this to make more sense in the context!
+			const { query } = withObject || {};
+			const { params } = query || {};
+			return withData(componentObject, params);
 		case "api-query":
 			return withQuery(
 				componentObject,

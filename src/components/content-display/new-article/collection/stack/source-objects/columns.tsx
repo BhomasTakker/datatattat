@@ -11,7 +11,6 @@ import { RenderObjectReturn } from "../../../types";
 
 const renderStack =
 	(
-		// config: any,
 		size: ScreenWidth,
 		showDisplay: boolean,
 		card: ArticleComponentOptions = "card-display"
@@ -26,30 +25,34 @@ const renderStack =
 			}
 
 			// think we don't want props object but actualt values
+			// True - but how possible is this?
 			return <ArticleContainer key={src} src={src} props={{ ...props, src }} />;
 		});
 	};
 
-type Props = {
+type StackVariantObject = {
 	display?: boolean;
 	columns?: number;
 	card?: ArticleComponentOptions;
 };
-type Test = {
-	size: string;
-	display: boolean;
-	card: string;
+
+type Props = {
+	stackVariantObject: StackVariantObject;
 };
 
 export const getColumnsRenderObject = (
 	size: ScreenWidth,
 	props: Props
 ): RenderObjectReturn<"div"> => {
-	const { display = false, columns = 4, card = "card-t2b" } = props || {};
+	const { stackVariantObject } = props;
+	const {
+		card = "card-t2b",
+		display = false,
+		columns = 4,
+	} = stackVariantObject || {};
+
 	return {
-		// config,
 		renderList: renderStack(size, display, card),
-		// renderFunction: undefined,
 		styles: addCssClasses(
 			styles.columns,
 			styles[size],

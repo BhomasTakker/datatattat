@@ -1,13 +1,6 @@
 import { EditInputs } from "@/src/components/edit/inputs/input.map";
-import { RedisCacheTime, RedisCacheTimeOptions } from "@/src/lib/redis/types";
+import { RedisCacheTimeOptions } from "@/src/lib/redis/types";
 import { baseRSSConversion } from "@/src/query/rss/rss-feed.config";
-
-const urlInput = {
-	type: EditInputs.text,
-	id: "url",
-	label: "url",
-	info: "The Rss URL",
-};
 
 const urlsInput = {
 	id: "urls",
@@ -16,6 +9,7 @@ const urlsInput = {
 	info: "URLs array",
 	title: "Select URLs",
 	// We need to allow an object 'shape'
+	// This just saves an array and not an array of objects
 	input: {
 		type: EditInputs.text,
 		id: "url",

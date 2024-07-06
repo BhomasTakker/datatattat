@@ -1,3 +1,4 @@
+import { log } from "@/src/lib/logger";
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { useState } from "react";
 
@@ -44,9 +45,14 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 
 	//loading / error / etc
 	if (!data) {
-		// // console.log("NO DATA??", { queryId });
-		// // console.log("NO DATA??", { queryState });
-		// // console.log("NO DATA??", { options });
+		log(
+			{
+				code: "0000",
+				context: "WithQuery",
+				message: "WARNING: No Component Data",
+			},
+			queryId
+		);
 		return <></>;
 	}
 

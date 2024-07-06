@@ -4,6 +4,7 @@ import { API_CONFIG_LIST } from "../query/api";
 import { IFRAMELY_OEMBED_CONFIG_LIST } from "../query/oembed";
 import { XLSX_CONFIG_LIST } from "../query/xlsx";
 import { FILE_CONFIG_LIST } from "../query/file";
+import { CUSTOM_DATA_CONFIG_LIST } from "../query/customData";
 
 export const EDIT_WITH: any = {
 	//these in a config etc
@@ -20,6 +21,16 @@ export const EDIT_WITH: any = {
 		providerLabel: "Select RSS Provider",
 		providerInfo: "RSSProviderInfo",
 		configList: NEW_RSS_CONFIG_LIST,
+	}),
+	// Should just be an input?
+	// Query selector would not be correct in this instance
+	// Currently we have fudged to work but should update
+	["custom-data"]: QuerySelector({
+		title: "Custom Data",
+		titleInfo: "CustomDataTitleInfo",
+		providerLabel: "Select Data Type",
+		providerInfo: "ThinkThisIsVoid",
+		configList: CUSTOM_DATA_CONFIG_LIST,
 	}),
 	["api-query"]: QuerySelector({
 		title: "API Query",
