@@ -12,6 +12,9 @@ type QueryData = {
 };
 
 // not an acurate name
+// Overly complicated - this was for generic apis
+// We don't need that - we fetch an rss given a valid URL
+// There should be no real variation
 const getQueryConfig = (queryId: QueryId, quearyData: QueryData) => {
 	// pass creatorMap in
 	const getConfigObject = RSS_CREATOR_MAP.get(queryId.toString()) as (
@@ -21,8 +24,6 @@ const getQueryConfig = (queryId: QueryId, quearyData: QueryData) => {
 	// Return only if we got the object otherwise?
 	return getConfigObject ? getConfigObject(quearyData) : null;
 };
-
-const createQuery = () => {};
 
 // This needs massively cleaning up
 // As most thins we've done do
@@ -47,8 +48,7 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 	delete quearyData.queryId;
 	delete quearyData.conversion;
 
-	// // console.log("apiQuery 2", { quearyData });
-
+	// this is really only for specific
 	// pass / get list by type
 	const queryConfig = getQueryConfig(queryId, quearyData);
 
@@ -57,6 +57,8 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 		return res.status(404).json("Bad request");
 	}
 
+	// We only need url and possibly headers
+	// We are passed one and the othe rshouldn't be variable
 	const { url, headers, returns, queryParams } = queryConfig;
 
 	const queryUrl = new URL(url);
@@ -71,26 +73,9 @@ async function rssQuery(req: NextApiRequest, res: NextApiResponse) {
 		endpoint: queryUrl.toString(),
 		options: { ...headers },
 		getResult: fetchRSS,
+		// We need set this
 		cacheExpire: RedisCacheTime.DAY,
 	});
-
-	// Make a fetchRedis function and pass in xyz
-	// const result = await fetch(`${baseUrl}/api/redis?endpoint=${queryUrl.href}`);
-	// const resultToo = await result.json();
-
-	// const result = await fetchRedis({ url: queryUrl, fetchId: "fetchRSS" });
-	// const result = await fetch(`/api/redis`);
-	// put result through transducers here
-	// ultimately if a good enough member
-
-	// // console.log({ BING: result });
-	// // console.log("apiQuery  ", { parsedConversion });
-
-	/////////////////////////////////////////////////
-	// pass conversion object into a function and return result
-	// wrap api call so we have user or whatever
-	// check has the chops
-	// run data through transducers
 
 	const newResponse = convertResponse(result, parsedConversions);
 	return res.status(200).json(newResponse);

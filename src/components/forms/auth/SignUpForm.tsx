@@ -97,12 +97,12 @@ export const SignUpForm = () => {
 							<AuthInputs confirmPassword />
 							{/* buttons the same but for labels and onClick */}
 							<Stack spacing={3}>
-								<Button variant="contained" color="primary" type="submit">
+								<Button variant="contained" color="secondary" type="submit">
 									{t(Auth.createAccount)}
 								</Button>
 								<Button
 									variant="text"
-									color="primary"
+									color="secondary"
 									onClick={switchAuthModeHandler}
 								>
 									{t(Auth.loginWithExisting)}

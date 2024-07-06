@@ -1,3 +1,4 @@
+import { CUSTOM_RSS_RSS_CREATOR } from "./custom/constants";
 import { BBC_CREATORS } from "./news/BBC/constants";
 import { GOOGLE_CREATORS } from "./news/Google/creators";
 import { SKY_NEWS_RSS_CREATOR } from "./news/Sky/constants";
@@ -14,4 +15,6 @@ export const RSS_CREATOR_MAP = new Map<string, object>([
 	...BBC_CREATORS,
 	...GBNEWS_CREATORS,
 	...NYTIMES_CREATORS,
+
+	["customRss", CUSTOM_RSS_RSS_CREATOR],
 ]);

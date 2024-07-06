@@ -1,5 +1,5 @@
 import { QuerySelector } from "../components/edit/query/query-select";
-import { RSS_CONFIG_LIST } from "../query/rss";
+import { NEW_RSS_CONFIG_LIST, RSS_CONFIG_LIST } from "../query/rss";
 import { API_CONFIG_LIST } from "../query/api";
 import { IFRAMELY_OEMBED_CONFIG_LIST } from "../query/oembed";
 import { XLSX_CONFIG_LIST } from "../query/xlsx";
@@ -13,6 +13,13 @@ export const EDIT_WITH: any = {
 		providerLabel: "Select RSS Provider",
 		providerInfo: "RSSProviderInfo",
 		configList: RSS_CONFIG_LIST,
+	}),
+	["new-rss-query"]: QuerySelector({
+		title: "RSS Query",
+		titleInfo: "RSSTitleInfo",
+		providerLabel: "Select RSS Provider",
+		providerInfo: "RSSProviderInfo",
+		configList: NEW_RSS_CONFIG_LIST,
 	}),
 	["api-query"]: QuerySelector({
 		title: "API Query",

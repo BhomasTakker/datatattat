@@ -6,6 +6,7 @@ import { withQuery } from "../hoc/query/withQuery";
 import { EDIT_WITH } from "./with";
 
 const API_PATH = "api/query/get";
+const NEW_RSS_PATH = "api/query/new-rss/get";
 const RSS_PATH = "api/query/rss/get";
 const XLSX_PATH = "api/query/xlsx/get";
 const FILE_PATH = "api/query/file/get";
@@ -77,6 +78,11 @@ export const withFactory = (componentObject: any, withObject: any) => {
 			return withQuery(
 				componentObject,
 				createQueryObject(withObject.query, RSS_PATH)
+			);
+		case "new-rss-query":
+			return withQuery(
+				componentObject,
+				createQueryObject(withObject.query, NEW_RSS_PATH)
 			);
 		case "api-query":
 			return withQuery(
