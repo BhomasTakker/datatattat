@@ -82,3 +82,35 @@
 		}
 	}
 }
+
+.scroller {
+	.container {
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: 90%;
+
+		scroll-snap-type: inline mandatory; //proximity
+
+		overscroll-behavior-inline: contain;
+
+		overflow-x: auto;
+
+		-webkit-overflow-scrolling: touch;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		> div {
+			scroll-snap-align: start;
+		}
+	}
+
+	.button {
+		display: none;
+	}
+
+	.navigation {
+		display: none;
+	}
+}

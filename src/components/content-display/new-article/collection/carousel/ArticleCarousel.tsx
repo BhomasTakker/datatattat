@@ -50,53 +50,8 @@ export const ArticleCarousel = ({
 	);
 	const childArray = Children.toArray(children);
 
-	console.log("classname", { className });
-
-	// make a hook
-	// const touchStart = useRef<number | null>(null);
-	// const touchEnd = useRef<number | null>(null);
-	// const minSwipeDistance = 50;
-	// const minDragDistance = 6;
-
 	if (!articles) return null;
 	if (!children) return null;
-
-	// const onTouchStart = (e: React.TouchEvent) => {
-	// 	touchEnd.current = null;
-	// 	touchStart.current = e.targetTouches[0].clientX;
-	// };
-	// const onMouseDown = (e: React.MouseEvent) => {
-	// 	touchEnd.current = null;
-	// 	touchStart.current = e.clientX;
-	// };
-
-	// const onTouchMove = (e: React.TouchEvent) => {
-	// 	touchEnd.current = e.targetTouches[0].clientX;
-	// };
-	// const onMouseMove = (e: React.MouseEvent) => {
-	// 	touchEnd.current = e.clientX;
-	// };
-	// const onTouchEnd = () => {
-	// 	if (!touchStart.current || !touchEnd.current) return;
-	// 	const distance = touchStart.current - touchEnd.current;
-	// 	const isLeftSwipe = distance > minSwipeDistance;
-	// 	const isRightSwipe = distance < -minSwipeDistance;
-	// 	if (isLeftSwipe || isRightSwipe) {
-	// 		console.log("swipe", isLeftSwipe ? "left" : "right");
-	// 		isLeftSwipe ? showPrevHandler() : showNextHandler();
-	// 	}
-	// 	// add your conditional logic here
-	// };
-	// const onMouseUp = () => {
-	// 	if (!touchStart.current || !touchEnd.current) return;
-	// 	const distance = touchStart.current - touchEnd.current;
-	// 	const isLeftSwipe = distance > minDragDistance;
-	// 	const isRightSwipe = distance < -minDragDistance;
-	// 	if (isLeftSwipe || isRightSwipe) {
-	// 		console.log("swipe", isLeftSwipe ? "left" : "right");
-	// 		isLeftSwipe ? showPrevHandler() : showNextHandler();
-	// 	}
-	// };
 
 	const showNextHandler = () => {
 		setArticleIndex((index) => {
@@ -111,21 +66,9 @@ export const ArticleCarousel = ({
 		});
 	};
 
-	console.log("WOMPS", { childArray });
-
 	return (
 		<section aria-label="Article carousel" className={classes}>
-			{/* {childArray[articleIndex]} */}
-			<div
-				className={containerClasses}
-				// should be done but not now
-				// onTouchStart={onTouchStart}
-				// onTouchEnd={onTouchEnd}
-				// onTouchMove={onTouchMove}
-				// onMouseDown={onMouseDown}
-				// onMouseMove={onMouseMove}
-				// onMouseUp={onMouseUp}
-			>
+			<div className={containerClasses}>
 				{childArray.map((child, index) => (
 					<div
 						key={index}
