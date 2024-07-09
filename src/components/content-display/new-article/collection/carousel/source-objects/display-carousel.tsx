@@ -6,8 +6,13 @@ import { ArticleContainer } from "../../../article/ArticleContainer";
 import styles from "../styles/display-carousel.module.scss";
 import { displayItemStandard } from "../../../config/article-items/display";
 
+type CarouselVariantObject = {
+	carouselType: "scroller" | "buttons";
+};
+
 type Props = {
 	limit?: number;
+	carouselVariantObject: CarouselVariantObject;
 };
 
 const renderList = (limit: number) => (articles: CollectionItem[]) => {
@@ -30,19 +35,22 @@ const renderList = (limit: number) => (articles: CollectionItem[]) => {
 	});
 };
 
+// You could - curry this function and pass in styles, styleSheet, even component
+// giving you more life out of one??
+// BUT - we should absolutely be consistent lol
 export const getDisplayCarouselRenderObject = (
 	size: ScreenWidth,
 	props: Props
 ): RenderObjectReturn<typeof ArticleCarousel> => {
-	const { limit = 0 } = props || {};
-	console.log("LIST ", { props });
+	const { limit = 0, carouselVariantObject } = props || {};
+	const { carouselType } = carouselVariantObject;
 
 	return {
 		renderList: renderList(+limit),
 		// problem here - we can't just replace css file
 		// we have issues referencing class elements
 		// unless you pass the whole file
-		styles: "",
+		styles: styles[carouselType],
 		styleSheet: styles,
 		as: ArticleCarousel,
 	};

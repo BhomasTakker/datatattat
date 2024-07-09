@@ -14,6 +14,10 @@ export enum StackVariant {
 	scroller = "stack-scroller",
 }
 
+export enum CarouselVariant {
+	standard = "carousel-display",
+}
+
 const stackColumnsVariantOptions = [
 	{
 		id: "card",
@@ -63,6 +67,16 @@ const stackScrollerVariantOptions = [
 	},
 ];
 
+const carouselStandardVariantOptions = [
+	{
+		id: "carouselType",
+		type: EditInputs.select,
+		options: ["scroller", "buttons"],
+		label: "Carousel Style",
+		info: "The type of carousel.",
+	},
+];
+// From here effectvely - create stack, grid, etc edit files
 type StackVariantProps =
 	| typeof stackColumnsVariantOptions
 	| typeof stackScrollerVariantOptions;
@@ -70,6 +84,12 @@ type StackVariantProps =
 const stackVariantMap = new Map<string, StackVariantProps>([
 	[StackVariant.scroller, stackScrollerVariantOptions],
 	[StackVariant.columns, stackColumnsVariantOptions],
+]);
+
+type CarouselVariantProps = typeof carouselStandardVariantOptions;
+
+const carouselVariantMap = new Map<string, CarouselVariantProps>([
+	[CarouselVariant.standard, carouselStandardVariantOptions],
 ]);
 
 const gridVariantOptions = [
@@ -88,26 +108,6 @@ const gridVariantOptions = [
 		label: "Display Component",
 		info: "Test grid",
 	},
-];
-const stackVariantOptions = [
-	{
-		id: "variantType",
-		type: EditInputs.objectSelect,
-		// get from somewhere
-		options: ["stack-columns", "stack-scroller"],
-		optionId: "stackVariantObject",
-		label: "Stack Variant",
-		info: "ArticleStackVariant",
-		optionsMap: stackVariantMap,
-	},
-	// {
-	// 	id: "variantType",
-	// 	type: EditInputs.select,
-	// 	// input array from somewhere
-	// 	options: ["stack-columns", "stack-scroller"],
-	// 	label: "Stack Variant",
-	// 	info: "ArticleStackVariant",
-	// },
 ];
 const listVariantOptions = [
 	{
@@ -148,14 +148,29 @@ const listVariantOptions = [
 		info: "Show a 'Display' component as the first item.",
 	},
 ];
+const stackVariantOptions = [
+	{
+		id: "variantType",
+		type: EditInputs.objectSelect,
+		// get from somewhere
+		options: ["stack-columns", "stack-scroller"],
+		optionId: "stackVariantObject",
+		label: "Stack Variant",
+		info: "ArticleStackVariant",
+		optionsMap: stackVariantMap,
+	},
+];
 const carouselVariantOptions = [
 	{
 		id: "variantType",
-		type: EditInputs.select,
+		type: EditInputs.objectSelect,
 		// input array from somewhere
 		options: ["carousel-display"],
+		// if no option id we should just add to the current object? / also just call variantObject no
+		optionId: "carouselVariantObject",
 		label: "Carousel Variant",
 		info: "ArticleCarouselVariant",
+		optionsMap: carouselVariantMap,
 	},
 	{
 		id: "limit",
