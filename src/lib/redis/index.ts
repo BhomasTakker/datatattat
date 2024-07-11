@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { RedisCacheTime } from "./types";
+import { RedisCacheTypes } from "./types";
 import redis from "./create-redis-connection";
 // import redis from "./global-redis";
 
@@ -49,7 +49,7 @@ export const redisDataFetch = async ({
 	// No data is returned or due to rate limiting an empty object is returned
 
 	if (cachedValue && JSON.stringify(cachedValue) != "{}") {
-		if (cacheExpire && cacheExpire !== RedisCacheTime.NO_DELETE) {
+		if (cacheExpire && cacheExpire !== RedisCacheTypes.NO_DELETE) {
 			// don't overwrite a lower cache
 			await redis.expire(endpoint.toString(), cacheExpire, "lt");
 		}
@@ -77,7 +77,7 @@ export const redisDataFetch = async ({
 
 	///////////////////////////////
 	// If no caching return without
-	if (defaultCacheExpire === RedisCacheTime.NO_CACHE) {
+	if (defaultCacheExpire === RedisCacheTypes.NO_CACHE) {
 		// Do not cache
 		return result;
 	}
@@ -87,11 +87,11 @@ export const redisDataFetch = async ({
 	// Set and cache
 	await redis.set(endpoint.toString(), resultString);
 
-	if (defaultCacheExpire && defaultCacheExpire !== RedisCacheTime.NO_DELETE) {
+	if (defaultCacheExpire && defaultCacheExpire !== RedisCacheTypes.NO_DELETE) {
 		await redis.expire(endpoint.toString(), cacheExpire, "lt");
 	}
 
-	if (cacheExpire !== RedisCacheTime.NO_DELETE) {
+	if (cacheExpire !== RedisCacheTypes.NO_DELETE) {
 		// if this expiry is less than any already set then set it!
 		await redis.expire(endpoint.toString(), cacheExpire, "lt");
 	}
