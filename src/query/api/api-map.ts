@@ -1,3 +1,4 @@
+import { RedisCacheTime } from "@/src/lib/redis/types";
 import { BING_NEWS_API_CREATORS } from "./bing/news/constants";
 import { POLICE_DATA_UK_API_CREATORS } from "./data/gov/uk/police/crime/constants";
 import { FOOTBALL_DATA_ORG_API_CREATORS } from "./data/sport/football/football-data.org/constants";
@@ -14,6 +15,7 @@ export type QueryCreator = {
 	headers: object;
 	returns: Function;
 	queryParams: any;
+	cacheExpiry?: RedisCacheTime;
 };
 
 // This feels wrong?

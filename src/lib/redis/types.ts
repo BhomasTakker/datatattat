@@ -17,7 +17,19 @@ export enum RedisCacheTime {
 	WEEK = 60 * 60 * 24 * 7,
 }
 
-export const RedisCacheTimeMap = new Map([
+//////////////////////////////////////////////////////////////////////////////////
+// Perhaps not an ideal workaround - but innocent atmo
+// Type error: Computed values are not permitted in an enum with string valued members.
+export enum RedisCacheTypes {
+	NO_DELETE = "NO:DELETE",
+	NO_CACHE = "NO:CACHE",
+}
+
+export const RedisCacheTimeMap = new Map<
+	string,
+	RedisCacheTypes | RedisCacheTime
+>([
+	["no cache", RedisCacheTypes.NO_CACHE],
 	["10 seconds", RedisCacheTime.SECONDS_10],
 	["30 seconds", RedisCacheTime.SECONDS_30],
 	["1 minute", RedisCacheTime.MINUTE],
@@ -32,9 +44,12 @@ export const RedisCacheTimeMap = new Map([
 	["2 days", RedisCacheTime.DAY_2],
 	["5 days", RedisCacheTime.DAY_5],
 	["1 week", RedisCacheTime.WEEK],
+	["no delete", RedisCacheTypes.NO_DELETE],
 ]);
 
+// You wouldn't just give access to these
 export const RedisCacheTimeOptions = [
+	"no cache",
 	"10 seconds",
 	"30 seconds",
 	"1 minute",
@@ -49,4 +64,5 @@ export const RedisCacheTimeOptions = [
 	"2 days",
 	"5 days",
 	"1 week",
+	"no delete",
 ];
