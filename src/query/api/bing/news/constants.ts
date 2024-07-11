@@ -1,3 +1,4 @@
+import { RedisCacheTime } from "@/src/lib/redis/types";
 import { returns } from "./returns";
 
 // these should be deprecated
@@ -30,18 +31,21 @@ const search = (queryParams: any) => ({
 	headers: HEADERS,
 	returns, // <- this needs a big work
 	queryParams,
+	cacheExpire: RedisCacheTime.NO_CACHE,
 });
 const trending = (queryParams: any) => ({
 	url: `${BASE_URL}${ENDPOINTS.TRENDING}`,
 	headers: HEADERS,
 	returns, // <- this needs a big work
 	queryParams,
+	cacheExpire: RedisCacheTime.NO_CACHE,
 });
 const headlines = (queryParams: any) => ({
 	url: `${BASE_URL}${ENDPOINTS.HEADLINES}`,
 	headers: HEADERS,
 	returns, // <- this needs a big work
 	queryParams,
+	cacheExpire: RedisCacheTime.NO_CACHE,
 });
 
 export const BING_NEWS_API_CREATORS = {

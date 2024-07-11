@@ -1,3 +1,4 @@
+import { RedisCacheTime } from "@/src/lib/redis/types";
 import { stringIsAValidUrl } from "@/src/utils/url";
 
 export const CUSTOM_RSS_RSS_CREATOR = (queryParams: any) => {
@@ -15,5 +16,6 @@ export const CUSTOM_RSS_RSS_CREATOR = (queryParams: any) => {
 		headers: {},
 		returns: (data: any) => {}, // <- this needs a big work / this is void
 		queryParams: {},
+		cacheExpire: RedisCacheTime.DAY,
 	};
 };

@@ -42,7 +42,7 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 		return res.status(404).json("Bad request");
 	}
 
-	const { url, headers, returns, queryParams } = queryConfig;
+	const { url, headers, returns, queryParams, cacheExpiry } = queryConfig;
 
 	const queryUrl = new URL(url);
 
@@ -59,6 +59,7 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 			endpoint: queryUrl.toString(),
 			options: { ...headers },
 			getResult: fetchAPI,
+			defaultCacheExpire: cacheExpiry,
 		});
 		const newResponse = convertResponse(result, parsedConversions);
 		return res.status(200).json(newResponse);
