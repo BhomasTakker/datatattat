@@ -73,8 +73,7 @@ export const ArticleCard = ({
 		threshold: 0,
 		triggerOnce: true,
 	});
-	const { title, avatar, src, description, guid, variant, details, media } =
-		item;
+	const { title, avatar, src, description, guid, variant, details } = item;
 	const actionIcons: any[] = [];
 
 	return (
