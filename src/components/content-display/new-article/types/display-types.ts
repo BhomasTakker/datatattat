@@ -1,3 +1,4 @@
+import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import {
 	Align,
 	ArticleType,
@@ -9,6 +10,8 @@ import {
 	Size,
 	Styles,
 } from ".";
+import { ArticleMetaData } from "../metadata/ArticleMetaData";
+import { BaseInfo } from "@/src/types/data-structures/base";
 
 interface HtmlMeta {
 	title: string;
@@ -18,7 +21,6 @@ interface HtmlMeta {
 }
 
 type Base = {
-	src: string;
 	styleSheet: Styles;
 	classes: string;
 	media: Media;
@@ -28,8 +30,17 @@ type Base = {
 	showDescription: boolean;
 	showImage: boolean;
 
+	showDetails?: boolean;
+	// Probably better in an object
+	showPublished?: boolean;
+	showAuthors?: boolean;
+	showCategories?: boolean;
+	showPublishers?: boolean;
+	// think delete - we need to go through these types
+	detailsProps?: ArticleMetaData;
+
 	as: As;
-};
+} & CollectionItem;
 
 export interface Display extends Base {
 	type: "display";
@@ -52,8 +63,38 @@ export interface ListItem extends Base {
 }
 export type ArticleComponent = Display | Card | ListItem;
 
-export type ListProps = Omit<ListItem, "meta" | "src">;
-export type DisplayProps = Omit<Display, "meta" | "src">;
-export type CardProps = Omit<Card, "meta" | "src">;
+export type ListProps = Omit<
+	ListItem,
+	| "meta"
+	| "src"
+	| "title"
+	| "description"
+	| "guid"
+	| "variant"
+	| "showDetails"
+	| "detailsProps"
+>;
+export type DisplayProps = Omit<
+	Display,
+	| "meta"
+	| "src"
+	| "title"
+	| "description"
+	| "guid"
+	| "variant"
+	| "showDetails"
+	| "detailsProps"
+>;
+export type CardProps = Omit<
+	Card,
+	| "meta"
+	| "src"
+	| "title"
+	| "description"
+	| "guid"
+	| "variant"
+	| "showDetails"
+	| "detailsProps"
+>;
 
 export type ArticleProps = ListProps | DisplayProps | CardProps;

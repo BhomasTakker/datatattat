@@ -67,7 +67,7 @@ export const toArticleList = (props: any) =>
 			items: data.value,
 		};
 	});
-
+// go over
 const toArticle = (props: any) =>
 	map((data: BingNewsArticle) => {
 		// console.log("TO ARTICLE");

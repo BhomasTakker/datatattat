@@ -37,8 +37,7 @@ export const ArticleListItem = ({
 	showAuthor,
 	showPublisher,
 }: ArticleListItemProps) => {
-	const { title, avatar, src, description, guid, variant, details, media } =
-		item;
+	const { title, avatar, src, description, guid, variant, details } = item;
 
 	// const maxLines = 3;
 

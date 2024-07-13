@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck / renderObject
 
 import { ElementType, PropsWithChildren, useMemo } from "react";
 import { type ArticleCollection as ArticleCollectionProps } from "../types";
@@ -26,8 +26,7 @@ const CollectionComponent = <T extends ElementType>({
 }: PropsWithChildren<CollectionComponent<T>>) => {
 	const As = as;
 	return (
-		// Fix this issue - we'll need to ts-ignore
-		// @ts-ignore
+		// Perhaps props
 		<As className={classes} articles={articles} styleSheet={styleSheet}>
 			{children}
 		</As>

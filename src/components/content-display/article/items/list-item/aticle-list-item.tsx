@@ -40,8 +40,7 @@ export const ArticleListItem = ({
 		threshold: 0,
 		triggerOnce: true,
 	});
-	const { title, avatar, src, description, guid, variant, details, media } =
-		item;
+	const { title, avatar, src, description, guid, variant, details } = item;
 
 	const img = avatar?.src || "";
 	return (

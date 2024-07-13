@@ -2,6 +2,7 @@ import { ContentContainer } from "../container/ContentContainer";
 import { ArticleDescription } from "../description/ArticleDescription";
 import { useCssClasses } from "../hooks/useCssClasses";
 import { ArticleImage } from "../image/Article-Image";
+import { ArticleMetaData } from "../metadata/ArticleMetaData";
 import { ArticleTitle } from "../title/ArticleTitle";
 import { ClassName } from "../types";
 import { Display as DisplayType, Card, ListItem } from "../types/display-types";
@@ -23,14 +24,44 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		// should be type / style is style of display etc
 		type = "display",
 		showDescription = true,
+		showDetails = false,
+		showPublished = false,
+		showAuthors = false,
+		showCategories = false,
+		showPublishers = false,
+		detailsProps = {},
 		showImage = true,
 		as = "article",
 		style = "",
 		styleSheet = {},
 		classes = "",
 		src,
+		//
+		variant,
+		avatar: propsImage,
+		details,
+		guid,
+		title: propsTitle,
+		description: propsDescription,
 	} = props;
-	const { image, title, description, imageAlt } = meta;
+
+	const {
+		image: metaImage,
+		title: metaTitle,
+		description: metaDescription,
+		imageAlt: metaImageAlt,
+	} = meta;
+
+	const title = metaTitle || propsTitle;
+	const description = metaDescription || propsDescription;
+
+	// incorrect - could become disjointed
+	// if meta use meta for both vice versa
+	const image = metaImage || propsImage?.src;
+	const imageAlt = metaImageAlt || propsImage?.alt || "";
+
+	const { docs, categories, authors, published, publishers, modified } =
+		details || {};
 
 	// don't do this here and perhaps do something different but okay
 	let typeClasses: ClassName[] = [];
@@ -102,7 +133,7 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		// this should be an article component
 		<As className={`${root}`} onClick={onClickHandler}>
 			<div className={displayContainerClasses}>
-				{showImage && (
+				{showImage && image && (
 					<ArticleImage
 						image={image}
 						imageAlt={imageAlt}
@@ -129,6 +160,21 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 							style={style}
 							type={type}
 							size={size}
+						/>
+					)}
+					{/* show metadata, style */}
+					{showDetails && details && (
+						<ArticleMetaData
+							docs={docs}
+							categories={categories}
+							authors={authors}
+							published={published}
+							publishers={publishers}
+							modified={modified}
+							showAuthors={showAuthors}
+							showCategories={showCategories}
+							showPublished={showPublished}
+							showPublishers={showPublishers}
 						/>
 					)}
 				</ContentContainer>

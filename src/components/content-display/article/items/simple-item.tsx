@@ -17,7 +17,7 @@ import { stripHTML } from "@/src/utils/html";
 import { useInView } from "react-intersection-observer";
 
 export const SimpleArticle = (collectionItem: CollectionItem) => {
-	const { title, avatar, src, description, guid, variant, details, media } =
+	const { title, avatar, src, description, guid, variant, details } =
 		collectionItem;
 	// hack for BING article
 	// need update BING

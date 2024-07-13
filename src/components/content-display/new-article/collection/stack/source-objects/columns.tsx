@@ -7,27 +7,50 @@ import {
 	getComponent,
 } from "../configs/article-components";
 import { addCssClasses } from "../../../utils";
-import { RenderObjectReturn } from "../../../types";
+import { RenderObjectReturn, UnknownObject } from "../../../types";
 
 const renderStack =
 	(
 		size: ScreenWidth,
 		showDisplay: boolean,
-		card: ArticleComponentOptions = "card-display"
+		card: ArticleComponentOptions = "card-display",
+		args: UnknownObject
 	) =>
 	(articles: CollectionItem[]) => {
-		return articles.map(({ src }, index) => {
-			let props;
-			if (showDisplay && index === 0) {
-				props = getComponent("card-display");
-			} else {
-				props = getComponent(card);
-			}
+		return articles.map(
+			(
+				{ src, variant, avatar, details, description, guid, title, ...rest },
+				index
+			) => {
+				let props;
+				if (showDisplay && index === 0) {
+					props = getComponent("card-display");
+				} else {
+					props = getComponent(card);
+				}
 
-			// think we don't want props object but actualt values
-			// True - but how possible is this?
-			return <ArticleContainer key={src} src={src} props={{ ...props, src }} />;
-		});
+				// think we don't want props object but actualt values
+				// True - but how possible is this?
+				return (
+					<ArticleContainer
+						key={src}
+						src={src}
+						props={{
+							...props,
+							src,
+							variant,
+							avatar,
+							description,
+							details,
+							guid,
+							title,
+							...rest,
+							...args,
+						}}
+					/>
+				);
+			}
+		);
 	};
 
 type StackVariantObject = {
@@ -44,7 +67,7 @@ export const getColumnsRenderObject = (
 	size: ScreenWidth,
 	props: Props
 ): RenderObjectReturn<"div"> => {
-	const { stackVariantObject } = props;
+	const { stackVariantObject, ...rest } = props;
 	const {
 		card = "card-t2b",
 		display = false,
@@ -52,7 +75,7 @@ export const getColumnsRenderObject = (
 	} = stackVariantObject || {};
 
 	return {
-		renderList: renderStack(size, display, card),
+		renderList: renderStack(size, display, card, rest),
 		styles: addCssClasses(
 			styles.columns,
 			styles[size],

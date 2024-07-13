@@ -7,7 +7,7 @@ import {
 import { ArticleContainer } from "../../../article/ArticleContainer";
 import { addCssClasses } from "../../../utils";
 import styles from "../styles/scroller.module.scss";
-import { RenderObjectReturn } from "../../../types";
+import { RenderObjectReturn, UnknownObject } from "../../../types";
 
 type CardSize = "sm" | "md" | "lg";
 type Options = {
@@ -24,7 +24,8 @@ const renderStack =
 		size: ScreenWidth,
 		limit: number,
 		card: ArticleComponentOptions,
-		cardSize: CardSize
+		cardSize: CardSize,
+		args: UnknownObject
 	) =>
 	(articles: CollectionItem[]) => {
 		// make a function of me!
@@ -32,15 +33,32 @@ const renderStack =
 		if (limit) {
 			returnArticles = articles.slice(0, limit);
 		}
-		return returnArticles.map(({ src }, index) => {
-			return (
-				<ArticleContainer
-					key={src}
-					src={src}
-					props={{ ...getComponent(card), src }}
-				/>
-			);
-		});
+		return returnArticles.map(
+			(
+				{ src, variant, avatar, details, description, guid, title, ...rest },
+				index
+			) => {
+				return (
+					<ArticleContainer
+						key={src}
+						src={src}
+						props={{
+							...getComponent(card),
+							src,
+							variant,
+							avatar,
+							description,
+							details,
+							guid,
+							title,
+							//
+							...rest,
+							...args,
+						}}
+					/>
+				);
+			}
+		);
 	};
 
 export const getScrollerRenderObject = (
@@ -48,7 +66,7 @@ export const getScrollerRenderObject = (
 	props: Props
 ): RenderObjectReturn<"div"> => {
 	// Not a fan - we may want to revisit this
-	const { stackVariantObject } = props;
+	const { stackVariantObject, ...rest } = props;
 	const {
 		limit = 0,
 		card = "card-t2b",
@@ -57,7 +75,7 @@ export const getScrollerRenderObject = (
 	console.log("7867", { props });
 	return {
 		// config,
-		renderList: renderStack(size, limit, card, cardSize),
+		renderList: renderStack(size, limit, card, cardSize, rest),
 		// renderFunction: undefined,
 		styles: addCssClasses(
 			styles.root,
