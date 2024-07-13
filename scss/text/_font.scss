@@ -1,0 +1,14 @@
+$title-font: Helvetica, Arial, freesans, sans-serif;
+$text-font: Helvetica, Arial, freesans, sans-serif;
+
+$title-font-weight: bold;
+$text-font-weight: medium;
+
+@mixin maxLines($lines) {
+	overflow: clip;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: $lines; /* number of lines to show */
+	line-clamp: $lines;
+	-webkit-box-orient: vertical;
+}

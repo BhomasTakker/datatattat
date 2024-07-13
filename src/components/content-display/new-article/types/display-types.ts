@@ -1,3 +1,4 @@
+import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import {
 	Align,
 	ArticleType,
@@ -9,6 +10,7 @@ import {
 	Size,
 	Styles,
 } from ".";
+import { ArticleMetaData } from "../metadata/ArticleMetaData";
 
 interface HtmlMeta {
 	title: string;
@@ -18,7 +20,6 @@ interface HtmlMeta {
 }
 
 type Base = {
-	src: string;
 	styleSheet: Styles;
 	classes: string;
 	media: Media;
@@ -28,8 +29,16 @@ type Base = {
 	showDescription: boolean;
 	showImage: boolean;
 
+	showDetails: boolean;
+	// Probably better in an object
+	showPublished?: boolean;
+	showAuthors?: boolean;
+	showCategories?: boolean;
+	showPublishers?: boolean;
+	detailsProps: ArticleMetaData;
+
 	as: As;
-};
+} & CollectionItem;
 
 export interface Display extends Base {
 	type: "display";

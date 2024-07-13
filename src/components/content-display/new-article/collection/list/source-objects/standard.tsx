@@ -7,6 +7,7 @@ import {
 	ListItem,
 	ListProps,
 	RenderObjectReturn,
+	UnknownObject,
 } from "../../../types";
 import { addCssClasses } from "../../../utils";
 
@@ -26,7 +27,8 @@ type Props = {
 };
 
 const renderList =
-	(limit: number, display: boolean) => (articles: CollectionItem[]) => {
+	(limit: number, display: boolean, args: UnknownObject) =>
+	(articles: CollectionItem[]) => {
 		let returnArticles = articles;
 		if (limit) {
 			// zero is all
@@ -39,28 +41,57 @@ const renderList =
 		// i.e. - also read - and that can link somewhere
 		// We should also have just links in lists
 
-		return returnArticles.map(({ src }, index) => {
-			let props = { ...listItemOneZero, src };
+		return returnArticles.map(
+			(
+				{ src, variant, avatar, details, description, guid, title, ...rest },
+				index
+			) => {
+				let props = { ...listItemOneZero, src };
 
-			if (display && index === 0) {
+				if (display && index === 0) {
+					return (
+						<ArticleContainer
+							key={src}
+							src={src}
+							props={{
+								...displayItemStandard,
+								src,
+								variant,
+								avatar,
+								description,
+								details,
+								guid,
+								title,
+								...rest,
+								...args,
+							}}
+						/>
+					);
+				}
+
+				// think we don't want props object but actualt values
 				return (
-					<ArticleContainer
-						key={src}
-						src={src}
-						props={{ ...displayItemStandard, src }}
-					/>
+					<li key={src}>
+						{/* We can pass styleSheet trick here
+					Then we can really mod */}
+						<ArticleContainer
+							src={src}
+							props={{
+								...props,
+								src,
+								variant,
+								avatar,
+								description,
+								details,
+								guid,
+								title,
+								...rest,
+							}}
+						/>
+					</li>
 				);
 			}
-
-			// think we don't want props object but actualt values
-			return (
-				<li key={src}>
-					{/* We can pass styleSheet trick here
-					Then we can really mod */}
-					<ArticleContainer src={src} props={props} />
-				</li>
-			);
-		});
+		);
 	};
 
 export const getStandardListRenderObject = (
@@ -72,12 +103,13 @@ export const getStandardListRenderObject = (
 		listStyle = "topN",
 		limit = 0,
 		display = true,
+		...rest
 	} = props || {};
 	console.log("LIST ", { props });
 	return {
 		// config,
 		// We need to properly check and convert string to number
-		renderList: renderList(+limit, display),
+		renderList: renderList(+limit, display, rest),
 		// config determines style and article props data
 		// That way we can create dynamic without having multiple of these files
 		// jus for styles changes

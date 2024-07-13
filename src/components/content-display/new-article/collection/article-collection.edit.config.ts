@@ -215,5 +215,38 @@ export const ARTICLE_COLLECTION = {
 			info: "ArticleCollectionVariant",
 			optionsMap: articleVariantMap,
 		},
+		// add from base
+		{
+			id: "showDetails",
+			type: EditInputs.show,
+			label: "Show Details",
+			info: "Show details object",
+			inputs: [
+				{
+					id: "showPublished",
+					type: EditInputs.switch,
+					label: "Show Published",
+					info: "Show when the article was published.",
+				},
+				{
+					id: "showPublishers",
+					type: EditInputs.switch,
+					label: "Show Publishers",
+					info: "The publishers of the article.",
+				},
+				{
+					id: "showAuthors",
+					type: EditInputs.switch,
+					label: "Show Authors",
+					info: "The authors of the article.",
+				},
+				{
+					id: "showCategories",
+					type: EditInputs.switch,
+					label: "Show Categories",
+					info: "The categories of the article.",
+				},
+			],
+		},
 	],
 };

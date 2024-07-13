@@ -24,15 +24,30 @@ const renderList = (limit: number) => (articles: CollectionItem[]) => {
 	// We may need to format props
 	// we need to add src...
 
-	return returnArticles.map(({ src }, index) => {
-		return (
-			<ArticleContainer
-				key={index}
-				src={src}
-				props={{ ...displayItemStandard, src }}
-			/>
-		);
-	});
+	return returnArticles.map(
+		(
+			{ src, variant, avatar, details, description, guid, title, ...rest },
+			index
+		) => {
+			return (
+				<ArticleContainer
+					key={index}
+					src={src}
+					props={{
+						...displayItemStandard,
+						src,
+						variant,
+						avatar,
+						description,
+						details,
+						guid,
+						title,
+						...rest,
+					}}
+				/>
+			);
+		}
+	);
 };
 
 // You could - curry this function and pass in styles, styleSheet, even component

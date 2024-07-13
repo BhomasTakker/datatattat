@@ -1,14 +1,11 @@
+@use "../../../../../scss/text" as text;
+
 .root {
 	.description {
-		font-family: Helvetica, Arial, freesans, sans-serif;
+		font-family: text.$text-font;
 		margin: 0;
-		font-weight: medium;
+		font-weight: text.$text-font-weight;
 
-		overflow: clip;
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-line-clamp: 2; /* number of lines to show */
-		line-clamp: 2;
-		-webkit-box-orient: vertical;
+		@include text.maxLines(2);
 	}
 }

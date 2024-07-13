@@ -1,0 +1,24 @@
+@use "../../../../../scss/text" as text;
+
+.root {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 0.25rem 0;
+
+	font-family: text.$text-font;
+	font-weight: text.$text-font-weight;
+	font-size: 0.8rem;
+	line-height: 0.8rem;
+	font-style: italic;
+
+	&.start {
+		justify-content: start;
+	}
+	&.end {
+		justify-content: end;
+	}
+	&.split {
+		justify-content: space-between;
+	}
+}
