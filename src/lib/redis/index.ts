@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { RedisCacheTypes } from "./types";
+import { RedisCacheTypes, RedisCacheTime } from "./types";
 import redis from "./create-redis-connection";
 // import redis from "./global-redis";
 
