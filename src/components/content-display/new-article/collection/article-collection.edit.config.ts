@@ -7,6 +7,8 @@ import {
 	ArticleVariantOptions,
 } from "./stack/configs/article-components";
 import { EditInputs } from "@/src/components/edit/inputs/input.map";
+import { EDIT_WITH } from "@/src/factories/with";
+import { filterObjectByKeys } from "@/src/utils/object";
 
 // We need to split this file up!!!
 export enum StackVariant {
@@ -194,10 +196,14 @@ const articleVariantMap = new Map<string, ArticleVariantProps>([
 	[ArticleVariant.carousel, carouselVariantOptions],
 ]);
 
+const acceptedValues = ["new-rss-query", "api-query"];
+// This level the data shape is different
+// We can say what 'with' objects are available
 export const ARTICLE_COLLECTION = {
 	id: "ArticleCllection",
 	info: "ArticleCllection",
 	title: "Article Collection",
+	withObject: filterObjectByKeys(EDIT_WITH, acceptedValues),
 
 	props: [
 		...COMPONENT_DETAILS,

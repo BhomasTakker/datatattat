@@ -1,4 +1,5 @@
 import { ArrayInput } from "./array/array-input";
+import { InputAssign } from "./assign/input-assign";
 import { ColorInputWithControl } from "./color/color-input";
 import { ConversionsInput } from "./conversions/conversions-input";
 import { InputIndent } from "./indent/input-indent";
@@ -40,6 +41,7 @@ export enum EditInputs {
 	conversions = "conversions",
 	title = "title",
 	indent = "indent",
+	assign = "assign",
 }
 
 export const inputMap = new Map<string, any>([
@@ -65,4 +67,6 @@ export const inputMap = new Map<string, any>([
 	/////////////Not an input but a title element
 	["title", InputTitle],
 	["indent", InputIndent],
+
+	["assign", InputAssign],
 ]);

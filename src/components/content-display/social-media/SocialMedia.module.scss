@@ -1,0 +1,13 @@
+.root {
+	width: 100%;
+	overflow-y: auto;
+	display: flex;
+	justify-content: center;
+	// container-type: inline-size;
+	// container-name: content-bg;
+
+	.content {
+		// width: clamp(210px, 90cqi, 1600px);
+		// height: clamp(0px, 100%, 800px);
+	}
+}

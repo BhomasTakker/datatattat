@@ -1,3 +1,5 @@
+import { UnknownObject } from "@/src/components/content-display/new-article/types";
+
 /**
  * Clone using json parse & stringify
  *
@@ -74,21 +76,11 @@ export const destructureChildObjects = (obj: any) => {
 	return { ...newObject };
 };
 
-// export const destructureChildObjectsInArrays = (obj: any) => {
-// 	let newObject = {};
-// 	for (const prop in obj) {
-// 		if (isObject(obj[prop])) {
-// 			newObject = { ...newObject, ...destructureChildObjects(obj[prop]) };
-// 		} else if (isArray(obj[prop])) {
-// 			newObject = {
-// 				...newObject,
-// 				[prop]: obj[prop].map((obj) => destructureChildObjects(obj)),
-// 			};
-// 			// newObject = { ...newObject, ...destructureChildObjects(obj[prop]) };
-// 		} else {
-// 			newObject = { ...newObject, [prop]: obj[prop] };
-// 		}
-// 	}
+type Accumulator = UnknownObject;
 
-// 	return { ...newObject };
-// };
+export const filterObjectByKeys = (obj: UnknownObject, values: string[]) => {
+	return Object.keys(obj).reduce((acc, val) => {
+		if (values.includes(val)) acc[val] = obj[val];
+		return acc;
+	}, {} as Accumulator);
+};

@@ -35,7 +35,8 @@ export const useMeta = (src: string, load: boolean = false) => {
 				// fallback ?
 			}
 		};
-		if (load && !loading && !meta) getMeta();
-	}, [load, loading, meta, setMeta, src]);
+		// if we return null we could loop?
+		if (load && !loading && !meta && !error) getMeta();
+	}, [load, loading, meta, setMeta, src, error]);
 	return { meta, loading, error };
 };

@@ -1,12 +1,28 @@
 import { QuerySelector } from "../components/edit/query/query-select";
 import { NEW_RSS_CONFIG_LIST, RSS_CONFIG_LIST } from "../query/rss";
 import { API_CONFIG_LIST } from "../query/api";
-import { IFRAMELY_OEMBED_CONFIG_LIST } from "../query/oembed";
 import { XLSX_CONFIG_LIST } from "../query/xlsx";
 import { FILE_CONFIG_LIST } from "../query/file";
 import { CUSTOM_DATA_CONFIG_LIST } from "../query/customData";
 
 export const EDIT_WITH: any = {
+	["new-rss-query"]: QuerySelector({
+		title: "RSS Query",
+		titleInfo: "RSSTitleInfo",
+		providerLabel: "Select RSS Provider",
+		providerInfo: "RSSProviderInfo",
+		configList: NEW_RSS_CONFIG_LIST,
+	}),
+	// ["oembed-query"]: QuerySelector({
+	// 	title: "Oembed Resource",
+	// 	// Pass info object no?
+	// 	titleInfo: "OembedTitleInfo",
+	// 	providerLabel: "Select Oembed ",
+	// 	providerInfo: "OembedResourceProviderInfo",
+	// 	configList: OEMBED_CONFIG_LIST,
+	// }),
+	/////////////////////////////////////////////////
+
 	//these in a config etc
 	["rss-query"]: QuerySelector({
 		title: "RSS Query",
@@ -15,13 +31,7 @@ export const EDIT_WITH: any = {
 		providerInfo: "RSSProviderInfo",
 		configList: RSS_CONFIG_LIST,
 	}),
-	["new-rss-query"]: QuerySelector({
-		title: "RSS Query",
-		titleInfo: "RSSTitleInfo",
-		providerLabel: "Select RSS Provider",
-		providerInfo: "RSSProviderInfo",
-		configList: NEW_RSS_CONFIG_LIST,
-	}),
+
 	// Should just be an input?
 	// Query selector would not be correct in this instance
 	// Currently we have fudged to work but should update
@@ -39,14 +49,14 @@ export const EDIT_WITH: any = {
 		providerInfo: "APIProviderInfo",
 		configList: API_CONFIG_LIST,
 	}),
-	["iframely-oembed-query"]: QuerySelector({
-		title: "Oembed Resource",
-		// Pass info object no?
-		titleInfo: "IframelyOembedTitleInfo",
-		providerLabel: "Select Resource",
-		providerInfo: "IframelyOIembedResourceProviderInfo",
-		configList: IFRAMELY_OEMBED_CONFIG_LIST,
-	}),
+	// ["iframely-oembed-query"]: QuerySelector({
+	// 	title: "Oembed Resource",
+	// 	// Pass info object no?
+	// 	titleInfo: "IframelyOembedTitleInfo",
+	// 	providerLabel: "Select Resource",
+	// 	providerInfo: "IframelyOIembedResourceProviderInfo",
+	// 	configList: IFRAMELY_OEMBED_CONFIG_LIST,
+	// }),
 	///////////////////////////////////////
 	["xlsx-query"]: QuerySelector({
 		title: "XLSX Query",
@@ -79,7 +89,7 @@ export const EDIT_WITH: any = {
 		titleInfo: "HTMLMetaTitleInfo",
 		// We would just need to pass in a url
 		providerLabel: "Select Resource",
-		providerInfo: "IframelyOIembedResourceProviderInfo",
-		configList: IFRAMELY_OEMBED_CONFIG_LIST, // wut? / just unused I guess
+		providerInfo: "HTMLMetaQueryInfo",
+		configList: new Map([]), // wut? / just unused I guess
 	}),
 };

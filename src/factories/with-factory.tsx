@@ -8,6 +8,8 @@ import { EDIT_WITH } from "./with";
 
 const API_PATH = "api/query/get";
 const NEW_RSS_PATH = "api/query/new-rss/get";
+const NEW_OEMBED_PATH = "api/query/new-oembed/get";
+/////////////////////////////////
 const RSS_PATH = "api/query/rss/get";
 const XLSX_PATH = "api/query/xlsx/get";
 const FILE_PATH = "api/query/file/get";
@@ -71,25 +73,34 @@ const createQueryObject = (queryObject: any, queryPath: string) => {
 // you can basic type componentObject
 export const withFactory = (componentObject: any, withObject: any) => {
 	switch (withObject.type) {
-		case "rss-query":
-			return withQuery(
-				componentObject,
-				createQueryObject(withObject.query, RSS_PATH)
-			);
 		case "new-rss-query":
 			return withQuery(
 				componentObject,
 				createQueryObject(withObject.query, NEW_RSS_PATH)
 			);
+		case "api-query":
+			return withQuery(
+				componentObject,
+				createQueryObject(withObject.query, API_PATH)
+			);
+
+		case "oembed-query":
+			return withQuery(
+				componentObject,
+				createQueryObject(withObject.query, NEW_OEMBED_PATH)
+			);
+		default:
 		case "custom-data":
 			//Update this to make more sense in the context!
 			const { query } = withObject || {};
 			const { params } = query || {};
 			return withData(componentObject, params);
-		case "api-query":
+
+		////////////////////////////////////
+		case "rss-query":
 			return withQuery(
 				componentObject,
-				createQueryObject(withObject.query, API_PATH)
+				createQueryObject(withObject.query, RSS_PATH)
 			);
 
 		// get rid
@@ -98,6 +109,7 @@ export const withFactory = (componentObject: any, withObject: any) => {
 				componentObject,
 				createQueryObject(withObject.query, OEMBED_PATH)
 			);
+
 		// go over - we can load an article with just this
 		// meta to article conversion
 		case "html-meta-query":
@@ -118,9 +130,9 @@ export const withFactory = (componentObject: any, withObject: any) => {
 				createQueryObject(withObject.query, FILE_PATH)
 			);
 
-		default:
-			const { component: Component, props } = componentObject;
-			return Component;
+		// default:
+		// 	const { component: Component, props } = componentObject;
+		// 	return Component;
 	}
 };
 
