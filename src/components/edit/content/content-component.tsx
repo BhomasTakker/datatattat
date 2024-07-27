@@ -17,34 +17,33 @@ export const ContentComponent = () => {
 	} = useContext(ContentComponentContext);
 	const { componentTypeFormId, objectKey } = useContext(EditComponentContext);
 
-	const { title, info, props } = config;
-	//////////////////////////////////////////////////////////
-	// At this moment in time all we need is componentProps //
-	// && _with behaviour ////////////////////////////////////
-	//////////////////////////////////////////////////////////
+	const { title, info, props, withObject = EDIT_WITH } = config;
 
-	// here create WITH component
-	// probably a copy and dump
+	// show with object input IF we have an array of available inputs
+	// i.e we can override this to include less options or zero options
+	// like so - filterObjectByKeys(EDIT_WITH, acceptedValues),
+	const showWith = !!withObject?.length;
 
 	return (
 		<Stack gap={MARGINS.SMALL}>
-			{/* Stack Component Props */}
 			<ComponentPropsContainer
 				props={props}
 				propsId={propsId}
 				resetComponent={componentTypeFormId}
 			/>
-			{/* Need to be able to not include */}
-			<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
-				{/* May well need to have a selection available & not all */}
-				<SelectInput
-					info="withBehaviour"
-					label="With Behaviour"
-					id={withFormTypeId}
-					options={EDIT_WITH}
-				/>
-			</Box>
-			<WithComponentFactory />
+			{showWith && (
+				<>
+					<Box paddingLeft={MARGINS.LARGE} width={"100%"}>
+						<SelectInput
+							info="withBehaviour"
+							label="With Behaviour"
+							id={withFormTypeId}
+							options={withObject}
+						/>
+					</Box>
+					<WithComponentFactory />
+				</>
+			)}
 		</Stack>
 	);
 };

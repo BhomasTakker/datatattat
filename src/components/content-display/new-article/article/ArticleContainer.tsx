@@ -1,5 +1,5 @@
 import { Article } from "./Article";
-import { InView } from "../ui/InView";
+import { InView } from "../../../ui/InView";
 import { WithMeta } from "../ui/WithMeta";
 import { ArticleComponent } from "../types";
 

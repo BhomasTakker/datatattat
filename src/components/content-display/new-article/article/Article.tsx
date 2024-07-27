@@ -122,6 +122,7 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		...typeClasses
 	);
 
+	// Just a handler we may have several
 	const onClickHandler = () => {
 		console.log("CLICKED!!!");
 		router.push(src);

@@ -9,6 +9,7 @@ interface EditComponentProps {
 	id: string;
 }
 
+// this seems an abstraction too far no?
 // Simple as but clean up
 // container is
 export const EditFactoryComponent = ({
