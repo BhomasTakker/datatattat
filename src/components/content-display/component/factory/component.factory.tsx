@@ -1,6 +1,6 @@
 import { withFactory } from "@/src/factories/with-factory";
+import { UnknownObject } from "@/src/types";
 import { COMPONENTS_MAP } from "config/content/component-containers.map";
-import { UnknownObject } from "../../new-article/types";
 
 //////////////////////////////////
 // Could stand to clean this up //

@@ -3,10 +3,9 @@ import {
 	FactoryComponent,
 	FactoryData,
 } from "../../component/factory/component.factory";
-import { UnknownObject } from "../../new-article/types";
 import styles from "./PageStack.module.scss";
 import { ComponentProfile, Profile } from "../profile/ComponentProfile";
-
+import { UnknownObject } from "@/src/types";
 interface ComponentProfile {
 	profile: Profile;
 }

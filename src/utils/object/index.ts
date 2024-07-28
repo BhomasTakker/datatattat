@@ -1,4 +1,4 @@
-import { UnknownObject } from "@/src/components/content-display/new-article/types";
+import { UnknownObject } from "@/src/types";
 
 /**
  * Clone using json parse & stringify

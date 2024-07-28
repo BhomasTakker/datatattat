@@ -1,5 +1,5 @@
 import Script from "next/script";
-import { UnknownObject } from "../../new-article/types";
+import { UnknownObject } from "@/src/types";
 import { soundCloudConfig } from "./sound-cloud.config";
 
 interface OembedObject {

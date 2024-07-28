@@ -1,4 +1,4 @@
-import { UnknownObject } from "@/src/components/content-display/new-article/types";
+import { UnknownObject } from "@/src/types";
 import {
 	TIKTOK_OEMBED_MAP,
 	// TIKTOK_VIDEO_OEMBED_CREATOR,

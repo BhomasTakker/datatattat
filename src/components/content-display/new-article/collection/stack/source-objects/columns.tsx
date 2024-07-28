@@ -7,7 +7,8 @@ import {
 	getComponent,
 } from "../configs/article-components";
 import { addCssClasses } from "../../../utils";
-import { RenderObjectReturn, UnknownObject } from "../../../types";
+import { RenderObjectReturn } from "../../../types";
+import { UnknownObject } from "@/src/types";
 
 const renderStack =
 	(

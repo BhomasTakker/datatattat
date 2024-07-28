@@ -1,5 +1,5 @@
 import { ScreenWidth } from "@/src/hooks/useWidth";
-import { RenderObjectReturn, UnknownObject } from "../../../types";
+import { RenderObjectReturn } from "../../../types";
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
 import { addCssClasses } from "../../../utils";
 import { ArticleContainer } from "../../../article/ArticleContainer";
@@ -9,6 +9,7 @@ import {
 	getGridItemStyle,
 	getGridStyles,
 } from "../config/standard";
+import { UnknownObject } from "@/src/types";
 
 type GridTypes = "bbc-style" | "oneTwoFour";
 

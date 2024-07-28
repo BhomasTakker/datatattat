@@ -7,10 +7,9 @@ import {
 	ListItem,
 	ListProps,
 	RenderObjectReturn,
-	UnknownObject,
 } from "../../../types";
 import { addCssClasses } from "../../../utils";
-
+import { UnknownObject } from "@/src/types";
 import styles from "../styles/standard-list.module.scss";
 import { displayItemStandard } from "../../../config/article-items/display";
 import { listItemOneZero } from "../../../config/article-items/list-item";

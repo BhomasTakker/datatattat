@@ -1,6 +1,6 @@
 import { clientsideFetch } from "@/src/api/clientside-fetch";
 import { useEffect, useState } from "react";
-import { UnknownObject } from "../../new-article/types";
+import { UnknownObject } from "@/src/types";
 
 // from config
 const OEMBED_API_PATH = "api/query/new-oembed/get";

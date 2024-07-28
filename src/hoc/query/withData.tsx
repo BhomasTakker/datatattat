@@ -1,4 +1,4 @@
-import { UnknownObject } from "@/src/components/content-display/new-article/types";
+import { UnknownObject } from "@/src/types";
 import { log } from "@/src/lib/logger";
 import { type ElementType } from "react";
 

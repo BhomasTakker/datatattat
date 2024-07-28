@@ -7,7 +7,8 @@ import {
 import { ArticleContainer } from "../../../article/ArticleContainer";
 import { addCssClasses } from "../../../utils";
 import styles from "../styles/scroller.module.scss";
-import { RenderObjectReturn, UnknownObject } from "../../../types";
+import { RenderObjectReturn } from "../../../types";
+import { UnknownObject } from "@/src/types";
 
 type CardSize = "sm" | "md" | "lg";
 type Options = {

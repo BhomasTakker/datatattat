@@ -1,6 +1,4 @@
-import Script from "next/script";
-import { UnknownObject } from "../../new-article/types";
-import { audioMackConfig } from "./audio-mack.config";
+import { UnknownObject } from "@/src/types";
 
 interface OembedObject {
 	searchParams: UnknownObject;
