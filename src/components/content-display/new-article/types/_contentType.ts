@@ -1,8 +1,8 @@
 type ContentType = "video" | "audio" | "article";
 
 type BaseContentType = {
-	contentType: ContentType;
-	mediaPlayer: undefined;
+	contentType?: ContentType;
+	mediaPlayer?: undefined;
 };
 
 type VideoContentType = {

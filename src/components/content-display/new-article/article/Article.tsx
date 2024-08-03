@@ -92,11 +92,8 @@ export const Article = (props: ArticleProps) => {
 		guid,
 		title: propsTitle,
 		description: propsDescription,
-		// We are just addingthings
-		// how could we actually manage this?
-		// IF we are this type - we have these props
-		// discriminating union types
-		interaction,
+		// default to this for now
+		interaction = "navigate",
 		// not used
 		media,
 

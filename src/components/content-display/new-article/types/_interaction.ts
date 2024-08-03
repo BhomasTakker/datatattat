@@ -4,8 +4,8 @@
 type InteractionType = "display" | "play" | "navigate";
 
 type InteractionBase = {
-	interaction: InteractionType;
-	displayId: undefined;
+	interaction?: InteractionType;
+	displayId?: undefined;
 };
 
 type DisplayInteraction = {
