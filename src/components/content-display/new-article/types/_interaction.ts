@@ -18,7 +18,7 @@ type PlayInteraction = {
 } & InteractionBase;
 
 type NavigateInteraction = {
-	interaction: "navigate";
+	interaction?: "navigate";
 } & InteractionBase;
 
 type Interaction = DisplayInteraction | PlayInteraction | NavigateInteraction;

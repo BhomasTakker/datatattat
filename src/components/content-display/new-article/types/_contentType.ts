@@ -7,6 +7,7 @@ type BaseContentType = {
 
 type VideoContentType = {
 	contentType: "video";
+	mediaPlayer: boolean;
 } & BaseContentType;
 
 type AudioContentType = {
@@ -15,8 +16,7 @@ type AudioContentType = {
 } & BaseContentType;
 
 type ArticleContentType = {
-	contentType: "article";
-	mediaPlayer: boolean;
+	contentType?: "article";
 } & BaseContentType;
 
 type ContentTypeInterface =
