@@ -17,6 +17,7 @@ import {
 import styles from "./Article.module.scss";
 import { ArticleMediaPlayer } from "../media-player/Article-media-player";
 import { ArticleContextProvider } from "../context/article.context";
+import { ContentType } from "../types/_contentType";
 
 interface ArticleMedia {
 	image?: string;

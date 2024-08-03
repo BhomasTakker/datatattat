@@ -11,6 +11,8 @@ import {
 } from ".";
 import { ArticleMetaData } from "../metadata/ArticleMetaData";
 import { Styles } from "@/src/types/scss";
+import { ContentTypeInterface } from "./_contentType";
+import { Interaction } from "./_interaction";
 
 interface HtmlMeta {
 	title: string;

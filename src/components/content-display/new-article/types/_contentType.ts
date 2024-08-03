@@ -1,4 +1,4 @@
-type ContentType = "video" | "audio" | "article";
+export type ContentType = "video" | "audio" | "article";
 
 type BaseContentType = {
 	contentType?: ContentType;
@@ -19,7 +19,7 @@ type ArticleContentType = {
 	contentType?: "article";
 } & BaseContentType;
 
-type ContentTypeInterface =
+export type ContentTypeInterface =
 	| VideoContentType
 	| AudioContentType
 	| ArticleContentType;

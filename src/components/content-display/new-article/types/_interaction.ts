@@ -21,4 +21,7 @@ type NavigateInteraction = {
 	interaction?: "navigate";
 } & InteractionBase;
 
-type Interaction = DisplayInteraction | PlayInteraction | NavigateInteraction;
+export type Interaction =
+	| DisplayInteraction
+	| PlayInteraction
+	| NavigateInteraction;
