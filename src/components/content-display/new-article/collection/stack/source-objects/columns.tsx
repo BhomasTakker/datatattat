@@ -46,6 +46,7 @@ const renderStack =
 							guid,
 							title,
 							...rest,
+							// jeez / what were we doing?
 							...args,
 						}}
 					/>
@@ -69,6 +70,8 @@ export const getColumnsRenderObject = (
 	props: Props
 ): RenderObjectReturn<"div"> => {
 	const { stackVariantObject, ...rest } = props;
+	// rest contains query data etc.
+	// seems to be a mistake getting, taking, using, here
 	const {
 		card = "card-t2b",
 		display = false,

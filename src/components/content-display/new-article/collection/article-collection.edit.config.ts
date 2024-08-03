@@ -5,6 +5,7 @@ import {
 	ArticleComponentOptions,
 	ArticleVariant,
 	ArticleVariantOptions,
+	InteractionVariant,
 } from "./stack/configs/article-components";
 import { EditInputs } from "@/src/components/edit/inputs/input.map";
 import { EDIT_WITH } from "@/src/factories/with";
@@ -183,6 +184,22 @@ const carouselVariantOptions = [
 	},
 ];
 
+const playVariantOptions: any[] = [];
+const navigationVariantOptions: any[] = [];
+const displayVariantOptions = [
+	{
+		id: "displayId",
+		type: EditInputs.text,
+		label: "Display Id",
+		info: "Id of the display you want to play/show the content",
+	},
+];
+
+type InteractionVariantProps =
+	| typeof navigationVariantOptions
+	| typeof displayVariantOptions
+	| typeof playVariantOptions;
+
 type ArticleVariantProps =
 	| typeof gridVariantOptions
 	| typeof stackVariantOptions
@@ -195,6 +212,64 @@ const articleVariantMap = new Map<string, ArticleVariantProps>([
 	[ArticleVariant.list, listVariantOptions],
 	[ArticleVariant.carousel, carouselVariantOptions],
 ]);
+
+const articleInteractionsMap = new Map<string, InteractionVariantProps>([
+	[InteractionVariant.navigation, navigationVariantOptions],
+]);
+
+const mediaInteractionMap = new Map<string, InteractionVariantProps>([
+	[InteractionVariant.display, displayVariantOptions],
+	[InteractionVariant.play, playVariantOptions],
+]);
+
+const mediaPlayerInput = {
+	id: "mediaPlayer",
+	type: EditInputs.switch,
+	label: "Use Media Player",
+	info: "Use a media player in place of image.",
+};
+
+const articleInteractions = {
+	id: "interaction",
+	type: EditInputs.objectSelect,
+	// we want different options for article/video etc
+	options: ["navigation"],
+	label: "Interaction Type",
+	info: "On click what do you want to happen?",
+	optionsMap: articleInteractionsMap,
+};
+const mediaInteractions = {
+	id: "interaction",
+	type: EditInputs.objectSelect,
+	// we want different options for article/video etc
+	options: ["display", "play"],
+	label: "Interaction Type",
+	info: "On click what do you want to happen?",
+	optionsMap: mediaInteractionMap,
+};
+const articleTypeOptions = [articleInteractions];
+const videoTypeOptions = [mediaInteractions, mediaPlayerInput];
+const audioTypeOptions = [mediaInteractions, mediaPlayerInput];
+
+type ContentType =
+	| typeof articleTypeOptions
+	| typeof videoTypeOptions
+	| typeof audioTypeOptions;
+
+const contentTypeMap = new Map<string, ContentType>([
+	["article", articleTypeOptions],
+	["video", videoTypeOptions],
+	["audio", audioTypeOptions],
+]);
+
+const contentType = {
+	type: EditInputs.objectSelect,
+	id: "contentType",
+	label: "Content type",
+	options: ["article", "video", "audio"],
+	info: "The Content Type.",
+	optionsMap: contentTypeMap,
+};
 
 const acceptedValues = ["new-rss-query", "api-query"];
 // This level the data shape is different
@@ -221,6 +296,8 @@ export const ARTICLE_COLLECTION = {
 			info: "ArticleCollectionVariant",
 			optionsMap: articleVariantMap,
 		},
+		// add select type here?
+		contentType,
 		// add from base
 		{
 			id: "showDetails",

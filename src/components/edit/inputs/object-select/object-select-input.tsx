@@ -18,7 +18,7 @@ const renderChildren = (
 	optionId: string
 ) => {
 	if (!inputs) {
-		return null;
+		return []; // null;
 	}
 	const idAsArray = id.split(".");
 	const newIdAsArray = idAsArray.splice(0, idAsArray.length - 1);
@@ -28,9 +28,14 @@ const renderChildren = (
 		? `${newIdAsArray.join(".")}.${optionId}`
 		: `${newIdAsArray.join(".")}`;
 
+	// filter rather than map
 	return inputs.map((input) => {
 		const { id: inputId, info, label, type, ...rest } = input;
-		const Component = inputMap.get(type as string) || <></>;
+		const Component = inputMap.get(type as string) || null;
+
+		if (!Component) {
+			return null;
+		}
 
 		return (
 			<Component
@@ -55,7 +60,7 @@ export const ObjectSelectInput = ({
 	optionsMap,
 	children,
 }: ObjectSelectInput) => {
-	const [components, setComponents] = useState<JSX.Element[] | null>(null);
+	const [components, setComponents] = useState<(JSX.Element | null)[]>([]);
 	const { setValue } = useFormContext();
 	const value: string = useWatch({
 		name: id,

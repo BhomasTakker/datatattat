@@ -6,7 +6,7 @@ import standardStyles from "../styles/standard-grid.module.scss";
 import cardStyle from "../styles/test.module.scss";
 import { bbcGridItemStyle, bbcGridStyles } from "./bbc-style";
 import { ScreenWidth } from "@/src/hooks/useWidth";
-import { ArticleProps } from "../../../types";
+import { FilteredArticleProps } from "../../../types";
 import { multiples } from "../filter";
 import { oneTwoFourGridItemStyle, oneTwoFourGridStyles } from "./oneTwoFour";
 
@@ -15,7 +15,7 @@ import { oneTwoFourGridItemStyle, oneTwoFourGridStyles } from "./oneTwoFour";
 // take in size
 const fallbackGridItemStyle = (index: number, size: ScreenWidth) => {
 	let gridItemStyle = standardStyles.gridItemBase;
-	let card: ArticleProps = { ...card_t2b, styleSheet: cardStyle };
+	let card: FilteredArticleProps = { ...card_t2b, styleSheet: cardStyle };
 
 	// gridMap this index === this/these style
 	if (index === 0 || index == 3) {

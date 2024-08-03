@@ -15,6 +15,8 @@ import { D3Map } from "@/src/components/content-display/data-visualization/d3/ma
 import { Dummy } from "@/src/components/content-display/dummy/dummy";
 import { ExternalObject } from "@/src/components/content-display/external-object/external-object";
 import { OLMapController } from "@/src/components/content-display/geo/open-layers/controllers/ol-map.controller";
+import { DisplayPlayer } from "@/src/components/content-display/media-player/display/DisplayPlayer";
+import { Player } from "@/src/components/content-display/media-player/Player";
 import { ArticleCollection } from "@/src/components/content-display/new-article/collection/Collection";
 import { SocialMedia } from "@/src/components/content-display/social-media/Social-Media";
 import { DataTable } from "@/src/components/content-display/tabular/tanstack-table/controllers/data-table.controller";
@@ -24,6 +26,8 @@ export const COMPONENTS_MAP = new Map<string, any>([
 	// NEW
 	["ArticleCollection", ArticleCollection],
 	["ContentOembed", SocialMedia],
+	["MediaPlayer", Player],
+	["DisplayPlayer", DisplayPlayer],
 
 	// Remove once homepage converted
 	// OLD

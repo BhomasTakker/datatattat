@@ -5,6 +5,7 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import screenReducer from "./screen/screenSlice";
 import notificationReducer from "./notifications/notificationSlice";
 import localeSlice from "./locale/localeSlice";
+import displaySlice from "./media-display/displaySlice";
 
 export function makeStore() {
 	return configureStore({
@@ -12,6 +13,7 @@ export function makeStore() {
 			screen: screenReducer,
 			notification: notificationReducer,
 			locale: localeSlice,
+			display: displaySlice,
 		},
 	});
 }

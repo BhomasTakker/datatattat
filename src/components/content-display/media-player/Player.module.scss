@@ -1,0 +1,5 @@
+@use "../../../../scss/layout" as aspect;
+
+.root {
+	aspect-ratio: aspect.$standardAspect;
+}

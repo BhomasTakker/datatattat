@@ -42,7 +42,8 @@ async function apiQuery(req: NextApiRequest, res: NextApiResponse) {
 		return res.status(404).json("Bad request");
 	}
 
-	const { url, headers, returns, queryParams, cacheExpiry } = queryConfig;
+	const { url, headers, returns, queryParams, cacheExpiry, ...rest } =
+		queryConfig;
 
 	const queryUrl = new URL(url);
 

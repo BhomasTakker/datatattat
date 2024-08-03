@@ -8,10 +8,9 @@ import {
 	ListItemStyle,
 	Media,
 	Size,
-	Styles,
 } from ".";
 import { ArticleMetaData } from "../metadata/ArticleMetaData";
-import { BaseInfo } from "@/src/types/data-structures/base";
+import { Styles } from "@/src/types/scss";
 
 interface HtmlMeta {
 	title: string;
@@ -39,28 +38,37 @@ type Base = {
 	// think delete - we need to go through these types
 	detailsProps?: ArticleMetaData;
 
+	// if interaction type display
+	// we need a display id
+	// We need to create a discriminating union
+	// displayId?: string;
+
 	as: As;
 } & CollectionItem;
 
-export interface Display extends Base {
+// This is one way we can build an article out of discriminating unions
+type ArticleMixins = Base & Interaction & ContentTypeInterface;
+
+export type Display = {
 	type: "display";
 	style: "";
 
 	align: Align;
 	justify: Justify;
-}
+} & ArticleMixins;
 
-export interface Card extends Base {
+export type Card = {
 	type: "card";
 	style: "";
 
 	direction: Direction;
-}
+} & ArticleMixins;
 
-export interface ListItem extends Base {
+export type ListItem = {
 	type: "listItem";
 	style: ListItemStyle;
-}
+} & ArticleMixins;
+
 export type ArticleComponent = Display | Card | ListItem;
 
 export type ListProps = Omit<
@@ -97,4 +105,6 @@ export type CardProps = Omit<
 	| "detailsProps"
 >;
 
-export type ArticleProps = ListProps | DisplayProps | CardProps;
+export type ArticleProps = Display | Card | ListItem;
+// rename and why the two?
+export type FilteredArticleProps = ListProps | DisplayProps | CardProps;

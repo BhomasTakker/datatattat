@@ -43,6 +43,7 @@ const renderList =
 								guid,
 								title,
 								...rest,
+								// should not need
 								...args,
 							}}
 						/>

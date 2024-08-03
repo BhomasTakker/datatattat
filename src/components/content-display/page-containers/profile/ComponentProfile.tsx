@@ -7,6 +7,8 @@ export interface Profile {
 	showComponentTitle?: boolean;
 	componentTitleLink?: string;
 
+	style?: string;
+
 	componentDescription?: string;
 	componentDescriptionVariant?: string; //union
 	showComponentDescription?: boolean;
@@ -25,12 +27,20 @@ export const ComponentProfile = ({ profile }: ComponentProfile) => {
 		showComponentDescription,
 	} = profile || {};
 
+	// Sort this out / we need to offer titles
+	// at least flesh it out a little
 	const titleComponent = <h2 className={styles.title}>{componentTitle}</h2>;
 	const titleComponentToRender = componentTitleLink ? (
 		<Link href={componentTitleLink}>{titleComponent}</Link>
 	) : (
 		titleComponent
 	);
+
+	const showPageDetails = showComponentTitle || showComponentDescription;
+
+	if (!showPageDetails) {
+		return <></>;
+	}
 
 	return (
 		<div className={styles.root}>

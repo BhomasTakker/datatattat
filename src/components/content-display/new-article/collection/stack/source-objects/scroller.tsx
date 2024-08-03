@@ -52,8 +52,8 @@ const renderStack =
 							details,
 							guid,
 							title,
-							//
 							...rest,
+							// should not need this
 							...args,
 						}}
 					/>

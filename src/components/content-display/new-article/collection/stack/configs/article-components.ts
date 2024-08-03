@@ -29,6 +29,20 @@ export enum ArticleVariant {
 	carousel = "carousel",
 }
 
+export enum InteractionVariant {
+	navigation = "navigation",
+	display = "display",
+	play = "play",
+}
+
+export const InteractionVariantOptions = [
+	"navigation",
+	"display",
+	"play",
+] as const;
+
+export type InteractionVariantOptions = "navigation" | "display" | "play";
+
 export const ArticleVariantOptions = [
 	"grid",
 	"stack",
