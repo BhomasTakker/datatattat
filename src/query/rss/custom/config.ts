@@ -18,14 +18,6 @@ const urlsInput = {
 	},
 };
 
-const typeSelect = {
-	type: EditInputs.select,
-	id: "contentType",
-	label: "Content type",
-	options: ["article"],
-	info: "The Content Type.",
-};
-
 const cacheExpiry = {
 	type: EditInputs.select,
 	id: "cacheExpiry",
@@ -52,7 +44,7 @@ export const CUSTOM_RSS_CONFIG_OBJECT = {
 	queryId: "customRss",
 
 	/** Available parameters for this endpoint */
-	params: [urlsInput, typeSelect, cacheExpiry], // required? / yes
+	params: [urlsInput, cacheExpiry], // required? / yes
 
 	/** Unused - The info string / md text */
 	info: "id or explanation - or just an explanation",

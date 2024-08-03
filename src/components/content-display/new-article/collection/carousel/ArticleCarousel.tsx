@@ -1,6 +1,6 @@
 // https://www.youtube.com/watch?v=Kx8XlKRBZx8
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
-import { Children, PropsWithChildren, useRef, useState } from "react";
+import { Children, PropsWithChildren, useState } from "react";
 import { useCssClasses } from "../../hooks/useCssClasses";
 import styles from "./ArticleCarousel.module.scss";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIosNew";

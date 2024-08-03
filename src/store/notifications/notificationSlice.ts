@@ -15,7 +15,7 @@ export type Notification = {
 	type: notificationTypes;
 	i18n: string;
 };
-
+// ?
 export interface NavigationState {
 	notifications: Notification[];
 	activeNotification: Notification | null;

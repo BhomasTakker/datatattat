@@ -1,3 +1,4 @@
+import { UnknownObject } from "@/src/types";
 import { log } from "@/src/lib/logger";
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { useState } from "react";
@@ -26,7 +27,7 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 	const { queryFn, queryId, state, options } = queryObject;
 
 	//pass generic for state object type
-	const [queryState, setQueryState] = useState<unknown>(state);
+	const [queryState, setQueryState] = useState<UnknownObject>(state);
 
 	// // console.log({ WITH_query: queryObject });
 
@@ -79,9 +80,15 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 			// That would make it a query component or something
 			queryData={data} // deprecated
 			data={data}
-			//withPaginatedQuery?
-			queryState={queryState}
+			// We over thought this and haven't used this yet
 			onPageUpdate={setQueryState}
+			//withPaginatedQuery?
+			// we may want to spread query state?
+			queryState={queryState}
+			// this isn't really okay - we need to redo this whole area
+			// BUT - the component needs to just receive it's data or it fallback
+			// IT doesn't care
+			// {...queryState}
 			//pass in
 			// manualPagination={true}
 

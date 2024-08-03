@@ -1,6 +1,4 @@
-import Script from "next/script";
-import { UnknownObject } from "../../new-article/types";
-import { codeSandBoxConfig } from "./CodeSandBox.config";
+import { UnknownObject } from "@/src/types";
 
 interface OembedObject {
 	searchParams: UnknownObject;

@@ -1,6 +1,5 @@
 import { ElementType, PropsWithChildren } from "react";
 import { useMeta } from "../../article/items/hooks/useMeta";
-import { UnknownObject } from "../types";
 
 type WithMeta = {
 	src: string;

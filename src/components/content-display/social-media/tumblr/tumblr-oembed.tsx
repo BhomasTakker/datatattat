@@ -1,5 +1,5 @@
 import Script from "next/script";
-import { UnknownObject } from "../../new-article/types";
+import { UnknownObject } from "@/src/types";
 import { tumblrConfig } from "./tumblr.config";
 
 // A number of these are actually identical

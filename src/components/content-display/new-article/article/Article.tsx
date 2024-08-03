@@ -1,23 +1,71 @@
+import { UnknownObject } from "@/src/types";
 import { ContentContainer } from "../container/ContentContainer";
 import { ArticleDescription } from "../description/ArticleDescription";
+import { routeHandler } from "../handlers/router";
+import { WithHandler } from "../handlers/WithHandler";
 import { useCssClasses } from "../hooks/useCssClasses";
 import { ArticleImage } from "../image/Article-Image";
 import { ArticleMetaData } from "../metadata/ArticleMetaData";
 import { ArticleTitle } from "../title/ArticleTitle";
-import { ClassName } from "../types";
-import { Display as DisplayType, Card, ListItem } from "../types/display-types";
+import { ArticleType, ClassName, Size, Style } from "../types";
+import {
+	Display as DisplayType,
+	Card,
+	ListItem,
+	ArticleProps,
+} from "../types/display-types";
 import styles from "./Article.module.scss";
+import { ArticleMediaPlayer } from "../media-player/Article-media-player";
+import { ArticleContextProvider } from "../context/article.context";
+import { ContentType } from "../types/_contentType";
 
-import { useRouter } from "next/navigation";
+interface ArticleMedia {
+	image?: string;
+	imageAlt: string;
+	classes: string;
+	style: Style;
+	type: ArticleType;
+	size: Size;
+	src: string;
+	useMedia: boolean;
+	contentType: ContentType;
+}
 
-////////////////////////////////////////////////////
-// Rename me / Display is one instantiation
-// We could also pass extra information here
-// Published date or time ago
-// Author, collection, etc
-// We need interaction for users - save, fav, like, etc
-export const Article = (props: DisplayType | Card | ListItem) => {
-	const router = useRouter();
+const ArticleMedia = ({
+	image,
+	imageAlt,
+	classes,
+	style,
+	type,
+	size,
+	src,
+	useMedia,
+	contentType,
+}: ArticleMedia) => {
+	const isMedia = contentType === "video" || contentType === "audio";
+
+	if (isMedia && useMedia && src) {
+		return <ArticleMediaPlayer src={src} />;
+	}
+	return (
+		<>
+			{image && (
+				<ArticleImage
+					image={image}
+					imageAlt={imageAlt}
+					classes={classes}
+					style={style}
+					type={type}
+					size={size}
+				/>
+			)}
+		</>
+	);
+};
+
+// we need to go through props
+// Add to / build
+export const Article = (props: ArticleProps) => {
 	const {
 		meta,
 		size = "md",
@@ -36,13 +84,22 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		styleSheet = {},
 		classes = "",
 		src,
-		//
+
+		contentType = "article",
+
 		variant,
 		avatar: propsImage,
 		details,
 		guid,
 		title: propsTitle,
 		description: propsDescription,
+		// default to this for now
+		interaction = "navigate",
+		// not used
+		media,
+
+		mediaPlayer = false,
+		...rest
 	} = props;
 
 	const {
@@ -63,6 +120,7 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 	const { docs, categories, authors, published, publishers, modified } =
 		details || {};
 
+	// there's probably a reducer here
 	// don't do this here and perhaps do something different but okay
 	let typeClasses: ClassName[] = [];
 	switch (type) {
@@ -87,6 +145,7 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		styles[type],
 		styles[style],
 		styles[size],
+		// these will addundefined...?
 		styleSheet?.root,
 		styleSheet[type],
 		styleSheet[style],
@@ -122,64 +181,65 @@ export const Article = (props: DisplayType | Card | ListItem) => {
 		...typeClasses
 	);
 
-	// Just a handler we may have several
-	const onClickHandler = () => {
-		console.log("CLICKED!!!");
-		router.push(src);
-	};
-
 	const As = as;
 
 	return (
 		// this should be an article component
-		<As className={`${root}`} onClick={onClickHandler}>
-			<div className={displayContainerClasses}>
-				{showImage && image && (
-					<ArticleImage
-						image={image}
-						imageAlt={imageAlt}
-						classes={imageClasses}
-						style={style}
-						type={type}
-						size={size}
-					/>
-				)}
-				<ContentContainer as="div" classes={containerClasses}>
-					{title && (
-						<ArticleTitle
-							title={title}
-							classes={titleClasses}
-							style={style}
-							type={type}
-							size={size}
-						/>
-					)}
-					{description && showDescription && (
-						<ArticleDescription
-							description={description}
-							classes={descriptionClasses}
-							style={style}
-							type={type}
-							size={size}
-						/>
-					)}
-					{/* show metadata, style */}
-					{showDetails && details && (
-						<ArticleMetaData
-							docs={docs}
-							categories={categories}
-							authors={authors}
-							published={published}
-							publishers={publishers}
-							modified={modified}
-							showAuthors={showAuthors}
-							showCategories={showCategories}
-							showPublished={showPublished}
-							showPublishers={showPublishers}
-						/>
-					)}
-				</ContentContainer>
-			</div>
+		<As className={`${root}`}>
+			<ArticleContextProvider value={{ props }}>
+				<WithHandler handlerProps={props}>
+					<div className={displayContainerClasses}>
+						{showImage && (
+							<ArticleMedia
+								contentType={contentType}
+								image={image}
+								imageAlt={imageAlt}
+								classes={imageClasses}
+								style={style}
+								type={type}
+								size={size}
+								useMedia={mediaPlayer}
+								src={src}
+							/>
+						)}
+						<ContentContainer as="div" classes={containerClasses}>
+							{title && (
+								<ArticleTitle
+									title={title}
+									classes={titleClasses}
+									style={style}
+									type={type}
+									size={size}
+								/>
+							)}
+							{description && showDescription && (
+								<ArticleDescription
+									description={description}
+									classes={descriptionClasses}
+									style={style}
+									type={type}
+									size={size}
+								/>
+							)}
+							{/* show metadata, style */}
+							{showDetails && details && (
+								<ArticleMetaData
+									docs={docs}
+									categories={categories}
+									authors={authors}
+									published={published}
+									publishers={publishers}
+									modified={modified}
+									showAuthors={showAuthors}
+									showCategories={showCategories}
+									showPublished={showPublished}
+									showPublishers={showPublishers}
+								/>
+							)}
+						</ContentContainer>
+					</div>
+				</WithHandler>
+			</ArticleContextProvider>
 		</As>
 	);
 };

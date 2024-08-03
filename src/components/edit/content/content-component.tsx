@@ -22,7 +22,9 @@ export const ContentComponent = () => {
 	// show with object input IF we have an array of available inputs
 	// i.e we can override this to include less options or zero options
 	// like so - filterObjectByKeys(EDIT_WITH, acceptedValues),
-	const showWith = !!withObject?.length;
+
+	const withObjectKeys = Object.keys(withObject);
+	const showWith = !!withObjectKeys.length;
 
 	return (
 		<Stack gap={MARGINS.SMALL}>

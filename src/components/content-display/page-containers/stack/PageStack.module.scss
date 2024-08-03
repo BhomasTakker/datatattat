@@ -1,3 +1,5 @@
+@use "../../../../../scss/colours" as colours;
+
 .root {
 	// shouldn't need to add a width??
 	width: 100%;
@@ -6,5 +8,16 @@
 	justify-content: center;
 
 	gap: 2rem;
-	padding-bottom: 2rem;
+}
+
+.sticky {
+	position: sticky;
+	// use padding instead of top so we keep a background
+	// padding-top: 1rem;
+	top: 0px;
+	// get from somewhere...
+	background-color: colours.$backgroundMain;
+	// better way?
+	// can only think of column-reverse
+	z-index: 1;
 }

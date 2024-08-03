@@ -15,8 +15,14 @@ async function rssRequest(req: NextApiRequest, res: NextApiResponse) {
 	}
 
 	const { query } = req;
-	const { url = "", cacheExpiry = "", urls = "" } = query;
-	const { queryId = "", conversions = "[]" } = query;
+	const {
+		url = "",
+		cacheExpiry = "",
+		urls = "",
+		queryId = "",
+		conversions = "[]",
+		...rest
+	} = query;
 
 	if (!urls || typeof urls !== "string") {
 		return res.status(404).json("Misformed url");

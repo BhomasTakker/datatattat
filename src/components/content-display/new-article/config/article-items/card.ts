@@ -4,6 +4,7 @@ export const baseCard: CardProps = {
 	type: "card",
 	style: "",
 	media: "article",
+
 	direction: "t2b",
 	// we need to be able to add classes
 	showDescription: true,

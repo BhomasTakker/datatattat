@@ -7,7 +7,8 @@ import {
 	getComponent,
 } from "../configs/article-components";
 import { addCssClasses } from "../../../utils";
-import { RenderObjectReturn, UnknownObject } from "../../../types";
+import { RenderObjectReturn } from "../../../types";
+import { UnknownObject } from "@/src/types";
 
 const renderStack =
 	(
@@ -45,6 +46,7 @@ const renderStack =
 							guid,
 							title,
 							...rest,
+							// jeez / what were we doing?
 							...args,
 						}}
 					/>
@@ -68,6 +70,8 @@ export const getColumnsRenderObject = (
 	props: Props
 ): RenderObjectReturn<"div"> => {
 	const { stackVariantObject, ...rest } = props;
+	// rest contains query data etc.
+	// seems to be a mistake getting, taking, using, here
 	const {
 		card = "card-t2b",
 		display = false,

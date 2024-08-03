@@ -1,4 +1,4 @@
-import { UnknownObject } from "../new-article/types";
+import { UnknownObject } from "@/src/types";
 import { getSocialMediaProvider } from "./social.map";
 import { xOembedObject } from "./x/x-oembed";
 

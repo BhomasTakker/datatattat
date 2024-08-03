@@ -1,4 +1,4 @@
-import { UnknownObject } from "@/src/components/content-display/new-article/types";
+import { UnknownObject } from "@/src/types";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
