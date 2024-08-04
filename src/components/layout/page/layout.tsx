@@ -46,7 +46,9 @@ export const Layout = ({
 			>
 				{/* Could pass a style etc for header */}
 				<MainHeader headerData={headerData} />
-				<Component {...pageProps} />
+				<div className={styles.component}>
+					<Component {...pageProps} />
+				</div>
 				<Notification />
 				<MainFooter />
 			</Container>

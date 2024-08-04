@@ -2,4 +2,16 @@
 
 .root {
 	background-color: colours.$backgroundMain;
+
+	// not sure why this did not work
+	.container {
+		// min-height: 89dvh;
+		// display: grid;
+		// grid-template-rows: auto 1fr auto;
+	}
+
+	// absolutely ridiculous concept
+	.component {
+		min-height: 71.7dvh;
+	}
 }
