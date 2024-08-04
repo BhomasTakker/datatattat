@@ -19,7 +19,7 @@ import { IconButton } from "@mui/material";
 //Question perhaps in should we use context
 //doesn't quite seem required yet
 export const MainHeader = ({ headerData }: any) => {
-	const [mainHeader, subnav] = headerData;
+	const [mainHeader, subnav] = headerData || [null, null];
 	const { nav = [] } = mainHeader || {};
 
 	const { data: session, status } = useSession();
@@ -61,7 +61,7 @@ export const MainHeader = ({ headerData }: any) => {
 				postfix={menuPostfix}
 				styles={styles}
 			/>
-			<SubHeadersList headersArray={subnav} />
+			{subnav && <SubHeadersList headersArray={subnav} />}
 		</header>
 	);
 };

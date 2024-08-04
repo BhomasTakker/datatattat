@@ -85,6 +85,11 @@ const PageSchema = new Schema({
 		required: false,
 	},
 
+	style: {
+		type: Object,
+		required: false,
+	},
+
 	profile: {
 		type: Object,
 		required: false,

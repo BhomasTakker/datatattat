@@ -1,27 +1,57 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { ElementType, ReactElement } from "react";
 import styles from "./layout.module.scss";
-import { Box, Container } from "@mui/material";
 
 import { Notification } from "@/components/layout/notifications/Notification";
+import { MainHeader } from "../../header/main/MainHeader";
+import { UnknownObject } from "@/src/types";
+import { MainFooter } from "../../footer/MainFooter";
+import { Container } from "@mui/material";
+
+type Style = {
+	size: "xs" | "sm" | "md" | "lg" | "xl" | false;
+};
+
+type PageData = {
+	style: Style;
+};
+
+type PageProps = {
+	headerData: UnknownObject;
+	pageData: PageData;
+};
 
 type Props = {
-	children: ReactNode;
-	renderHeader: () => ReactElement;
-	renderFooter: () => ReactElement;
+	component: ElementType;
+	pageProps: PageProps;
 };
 
 export const Layout = ({
-	children,
-	renderHeader = () => <></>,
-	renderFooter = () => <></>,
+	pageProps,
+	component: Component,
 }: Props): ReactElement => {
+	const { headerData, pageData } = pageProps;
+	// I don't like doing this / or relying on it
+	const { style } = pageData || {};
+	const { size = "full" } = style || {};
+	const maxWidth = size === "full" ? false : size;
+
+	const disableGutters = false;
+
 	return (
-		<Box className={styles.page}>
-			<Box className={styles.header}>{renderHeader()}</Box>
-			<Container className={styles.content}>{children}</Container>
-			<Notification />
-			{/* Footer is currently after content potentially change to 'bottom' if content height <= vh*/}
-			<Box className={styles.footer}>{renderFooter()}</Box>
-		</Box>
+		<div className={styles.root}>
+			<Container
+				className={styles.container}
+				maxWidth={maxWidth}
+				disableGutters={disableGutters}
+			>
+				{/* Could pass a style etc for header */}
+				<MainHeader headerData={headerData} />
+				<div className={styles.component}>
+					<Component {...pageProps} />
+				</div>
+				<Notification />
+				<MainFooter />
+			</Container>
+		</div>
 	);
 };

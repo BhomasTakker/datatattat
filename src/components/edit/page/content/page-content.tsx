@@ -3,24 +3,22 @@ import { PageStateContext } from "../context/state/page-state.context";
 import { CONFIG } from "config/edit/page/base-page.config";
 import { PageContainerContainer } from "../container/page-container.container";
 import { PagePreviewModal } from "../preview/page-preview";
-import { PageMeta } from "../meta/page-meta";
-import { PageProfile } from "../profile/page-profile";
+import { InputList } from "../input-list/input-list";
+import { META_CONFIG } from "../meta/page-meta.edit.config";
+import { PROFILE_CONFIG } from "../profile/page-profile.edit.config";
+import { STYLE_CONFIG } from "../style/page-style.edit.config";
 
 export const PageContent = () => {
-	const { pageContainerId, pageMetaId, pageProfileId } =
+	const { pageContainerId, pageMetaId, pageProfileId, pageStyleId } =
 		useContext(PageStateContext);
 
 	return (
-		<>
+		<div>
 			<PagePreviewModal />
-			{/* FEATURE:555 META:COMPONENT - technically meta would be before variant but?  */}
-			<PageMeta objectKey={pageMetaId} />
-			<PageProfile objectKey={pageProfileId} />
-			{/* <h3>Add page heading and any blurb?</h3> */}
-			{/* Argument to be made to render components here  */}
-			{/* Certainly a better place 'logically' for FEATURE:555 META ?? */}
-			{/* Why passing the prop when can get ourselves - justify this */}
+			<InputList objectKey={pageMetaId} config={META_CONFIG} />
+			<InputList objectKey={pageStyleId} config={STYLE_CONFIG} />
+			<InputList objectKey={pageProfileId} config={PROFILE_CONFIG} />
 			<PageContainerContainer objectKey={pageContainerId} config={CONFIG} />
-		</>
+		</div>
 	);
 };

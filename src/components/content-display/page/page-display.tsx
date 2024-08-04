@@ -6,6 +6,8 @@ import { PageDisplayContext } from "./context/page-display.context";
 import { PageHead } from "./head/PageHead";
 import { PageProfile } from "./profile/PageProfile";
 
+// redoing this to use redux for page data would remove a lot of guff
+// Then can implement a little data management for specific areas
 export const PageDisplay = () => {
 	const { content, meta, profile, ...andTheRest } =
 		useContext(PageDisplayContext);
@@ -14,7 +16,7 @@ export const PageDisplay = () => {
 		<div>
 			<DTAHead />
 			{/* Remove styling - or some of it */}
-			<main className={styles.main}>
+			<main>
 				{/* Remove title from here */}
 				{/* <h1>Page Display - set this from somewhere</h1> */}
 				<PageHead headData={meta} />

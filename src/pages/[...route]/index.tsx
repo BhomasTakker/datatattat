@@ -7,11 +7,10 @@ import { getHeaders } from "@/src/headers/get-headers";
 import { useTranslation } from "next-i18next";
 import { PageDisplayContainer } from "@/src/components/content-display/page/page-display.container";
 
-//type input - this needs to change
 function ContentPage({ pageData }: any) {
 	//this jazz is all largely shared between homepage, this content page, and user pages
 	//Really could just be a content page
-	const { t } = useTranslation();
+	// const { t } = useTranslation();
 	if (!pageData) {
 		return <div>Loading...</div>;
 	}
@@ -23,9 +22,9 @@ type ContextParams = {
 	route: string[];
 };
 
+// preload pages
+// get from db
 export async function getStaticPaths() {
-	// how do we populate route with paths?
-	// config / env.vars
 	return {
 		// paths: [
 		// 	{
@@ -51,12 +50,7 @@ export async function getStaticProps({
 	//this will be an array ['news', 'world', 'Europe']
 
 	const pageRoute = `/${route.join("/")}`;
-
-	// console.log({ route });
-
 	const page = await Page.findOne({ route: pageRoute }).lean();
-
-	// console.log({ page });
 
 	if (!page) {
 		return {
@@ -67,8 +61,6 @@ export async function getStaticProps({
 	}
 
 	const headerAndSubHeader = await getHeaders(pageRoute);
-
-	// console.log("We are here");
 
 	return {
 		props: {

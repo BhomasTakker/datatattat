@@ -1,19 +1,17 @@
-.page {
-	background-color: white;
-}
+@use "../../../../scss/colours/" as colours;
 
-.header {
-	/* position: absolute; */
-	/* width: 100vw; */
-}
+.root {
+	background-color: colours.$backgroundMain;
 
-.content {
-	padding-top: 2rem;
-	min-height: 89vh;
-	/* height: 89vh; */
-}
+	// not sure why this did not work
+	.container {
+		// min-height: 89dvh;
+		// display: grid;
+		// grid-template-rows: auto 1fr auto;
+	}
 
-.footer {
-	/* position: relative; */
-	/* top: -100px; */
+	// absolutely ridiculous concept
+	.component {
+		min-height: 71.7dvh;
+	}
 }

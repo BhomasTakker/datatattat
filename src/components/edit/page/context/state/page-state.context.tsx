@@ -2,7 +2,6 @@ import { ReactNode, createContext, useContext, useEffect } from "react";
 import { PageQueryContext } from "../query/page-query.context";
 import { useFormContext } from "react-hook-form";
 import { EditContext } from "@/src/context/edit-context";
-import { profile } from "console";
 
 /////////////////////////////////////////////////////////////
 // What is setting the rest - this seems off
@@ -16,11 +15,13 @@ const COMPONENTS_ID = "components";
 
 const META_ID = "meta";
 const PROFILE_ID = "profile";
+const STYLE_ID = "style";
 
 // Meta and form are top level
 const pageFormId = FORM_ID;
 const pageMetaId = `${META_ID}`;
 const pageProfileId = `${PROFILE_ID}`;
+const pageStyleId = `${STYLE_ID}`;
 
 const pageContainerId = `${FORM_ID}.${CONTAINER_ID}`;
 const pagePropsId = `${FORM_ID}.${PROPS_ID}`;
@@ -31,6 +32,7 @@ type PageStateState = {};
 type PageStateInterface = {
 	pageFormId: string;
 	pageMetaId: string;
+	pageStyleId: string;
 	pageProfileId: string;
 	pageContainerId: string;
 	pagePropsId: string;
@@ -41,6 +43,7 @@ const initialState: PageStateState & PageStateInterface = {
 	pageFormId: FORM_ID,
 	pageProfileId: `${PROFILE_ID}`,
 	pageMetaId: `${META_ID}`,
+	pageStyleId: STYLE_ID,
 	pageContainerId: `${FORM_ID}.${CONTAINER_ID}`,
 	pagePropsId: `${FORM_ID}.${PROPS_ID}`,
 	pageComponentsId: `${FORM_ID}.${COMPONENTS_ID}`,
@@ -65,6 +68,7 @@ export const PageStateContextProvider = ({
 	useEffect(() => {
 		unregister("content", { keepValue: false });
 		unregister("meta", { keepValue: false });
+		unregister(STYLE_ID, { keepValue: false });
 		unregister("profile", { keepValue: false });
 		setValue("route", currentPage);
 	}, [currentPage, setValue, unregister]);
@@ -81,19 +85,20 @@ export const PageStateContextProvider = ({
 			// I think we made the change thinking it was safer
 			unregister("content", { keepValue: false });
 			unregister("meta", { keepValue: false });
+			unregister(STYLE_ID, { keepValue: false });
 			unregister("profile", { keepValue: false });
 			return;
 		}
-		const { content, meta, profile } = page || {};
-
-		console.log("5678 useEffect", { page });
-
-		console.log("5678", { content, meta, profile });
+		const { content, meta, profile, style } = page || {};
 
 		setValue("content", content, {
 			shouldValidate: true,
 		});
 		setValue("meta", meta, {
+			shouldValidate: true,
+		});
+
+		setValue(STYLE_ID, style, {
 			shouldValidate: true,
 		});
 		setValue("profile", profile, {
@@ -107,6 +112,7 @@ export const PageStateContextProvider = ({
 			value={{
 				pageFormId,
 				pageMetaId,
+				pageStyleId,
 				pageProfileId,
 				pageComponentsId,
 				pageContainerId,

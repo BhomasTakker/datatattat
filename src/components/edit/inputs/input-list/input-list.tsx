@@ -1,5 +1,5 @@
 import { UnknownObject } from "@/src/components/content-display/data-visualization/d3/types";
-import { EditInputList } from "../../page/meta/input-list";
+import { EditInputList } from "../../page/input-list/input-list";
 
 type Props = {
 	id: string;
