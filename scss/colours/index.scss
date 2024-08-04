@@ -1,1 +1,4 @@
-$backgroundMain: white;
+@use "greyscale";
+@forward "greyscale";
+
+$backgroundMain: greyscale.$whiteSmoke;
