@@ -1,19 +1,5 @@
-.page {
-	background-color: white;
-}
+@use "../../../../scss/colours/" as colours;
 
-.header {
-	/* position: absolute; */
-	/* width: 100vw; */
-}
-
-.content {
-	padding-top: 2rem;
-	min-height: 89vh;
-	/* height: 89vh; */
-}
-
-.footer {
-	/* position: relative; */
-	/* top: -100px; */
+.root {
+	background-color: colours.$backgroundMain;
 }

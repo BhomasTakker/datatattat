@@ -1,15 +1,12 @@
 .root {
-}
+	padding: 2rem 0;
 
-.footer {
-	display: flex;
-	height: 100px;
-}
+	.container {
+		border-top: 1px solid rgb(0, 0, 0, 0.1);
+		text-align: left;
 
-.content {
-	border-top: 1px solid rgb(0, 0, 0, 0.1);
-	padding: 1rem 0;
-	color: black;
-	text-align: left;
-	margin: auto;
+		.copyright {
+			padding: 2rem 0;
+		}
+	}
 }

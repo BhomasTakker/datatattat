@@ -11,8 +11,10 @@ export const NavigationMenu = ({
 	postfix = () => <></>,
 	styles = classes,
 }: NavigationMenuProps) => {
+	const showNav = !!navigationItems?.length;
+
 	return (
-		<Container className={classes.root}>
+		<div className={classes.root}>
 			<nav className={styles.topBar}>
 				<Stack direction="row">{prefix()}</Stack>
 				<div className={classes.logoContainer}>
@@ -24,13 +26,15 @@ export const NavigationMenu = ({
 					{postfix()}
 				</Stack>
 			</nav>
-			<nav>
-				<Toolbar className={styles.toolbar}>
-					<Box sx={{ overflow: "hidden" }}>
-						<Navigation navLinks={navigationItems} />
-					</Box>
-				</Toolbar>
-			</nav>
-		</Container>
+			{showNav && (
+				<nav>
+					<Toolbar className={styles.toolbar}>
+						<Box sx={{ overflow: "hidden" }}>
+							<Navigation navLinks={navigationItems} />
+						</Box>
+					</Toolbar>
+				</nav>
+			)}
+		</div>
 	);
 };

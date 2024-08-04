@@ -6,8 +6,8 @@
 // probably need to unregister form value
 
 import { Stack } from "@mui/material";
-import { MARGINS } from "config/styles/styles.config";
 import { InputFactory } from "../../inputs/factory/input.factory";
+import { UnknownObject } from "@/src/types";
 
 // We want Inputs of any type?
 // Or any Inputs of any or set types etc
@@ -20,10 +20,22 @@ interface Props {
 	objectKey: string;
 }
 
+type Config = {
+	props: UnknownObject[];
+};
+
+type InputList = {
+	objectKey: string;
+	config: Config;
+};
+
+export const InputList = ({ objectKey, config }: InputList) => {
+	const { props } = config;
+	return <EditInputList objectKey={objectKey} inputs={props} />;
+};
+
 export const EditInputList = ({ inputs, objectKey }: Props) => {
 	return (
-		// Need to pass
-		// marginLeft={MARGINS.LARGE} gap={MARGINS.SMALL}
 		<Stack>
 			{inputs.map((input) => {
 				const { id } = input;

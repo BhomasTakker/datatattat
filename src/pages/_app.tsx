@@ -12,29 +12,16 @@ import { ScreenController } from "@/components/layout/screen/ScreenController";
 import { appWithTranslation } from "next-i18next";
 import { LocaleProvider } from "@/components/layout/locale/LocaleProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { MainHeader } from "../components/header/main/MainHeader";
-import { MainFooter } from "../components/footer/MainFooter";
-import { alpha, createTheme, ThemeProvider } from "@mui/material/styles";
-import { orange } from "@mui/material/colors";
+import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { theme } from "../theme/theme";
 import { FeatureContextProvider } from "../context/feature-context";
-interface highlightsColor {
-	main: string;
-	light?: string;
-	dark?: string;
-}
 
 //Create a Controller
 const queryClient = new QueryClient();
 
 function App({ Component, pageProps }: AppProps) {
-	const { session, pageData, headerData, footerData } = pageProps;
-
-	//Why have we done this?
-	const renderHeader = () =>
-		headerData ? <MainHeader headerData={headerData} /> : <></>;
-	const renderFooter = () => <MainFooter footerData={footerData} />;
+	const { session } = pageProps;
 
 	return (
 		<SessionProvider
@@ -42,6 +29,7 @@ function App({ Component, pageProps }: AppProps) {
 			// Re-fetch session every 5 minutes
 			//This is what resets our edit periodically
 			//Would it be any component that is using useUser and you just don't notice elsewhere?
+			// Why would you set this here...
 			refetchInterval={5 * 60}
 			// Re-fetches session when window is focused
 			refetchOnWindowFocus={true}
@@ -63,12 +51,7 @@ function App({ Component, pageProps }: AppProps) {
 								<FeatureContextProvider
 								// value={{ enabledFeatures: ["sign-in", "edit"] }}
 								>
-									<Layout
-										renderHeader={renderHeader}
-										renderFooter={renderFooter}
-									>
-										<Component {...pageProps} />
-									</Layout>
+									<Layout component={Component} pageProps={pageProps} />
 								</FeatureContextProvider>
 							</ThemeProvider>
 						</LocaleProvider>

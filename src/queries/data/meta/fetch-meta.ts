@@ -54,11 +54,18 @@ export const fetchMetaFromHTML = async (
 		return {};
 	}
 
-	const response = await fetch(endpoint, options);
-	//Probably not here unless? / keep as is - we can specify return type or none
-	const result = await response.text();
-	const dom = new JSDOM(result);
-	return getOGMetaDataFromHTML(dom.window.document);
+	try {
+		// seems wrong
+		const response = await fetch(endpoint, options);
+		//Probably not here unless? / keep as is - we can specify return type or none
+		const result = await response.text();
+		const dom = new JSDOM(result);
+		return getOGMetaDataFromHTML(dom.window.document);
+	} catch (error) {
+		return {
+			error,
+		};
+	}
 };
 
 const getOGMetaData = () => {
