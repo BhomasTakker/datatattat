@@ -1,0 +1,11 @@
+@use "../../../../scss/colours/" as colours;
+
+.root {
+	color: colours.$darkGrey;
+
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+
+	padding-top: 2rem;
+}

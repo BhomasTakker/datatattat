@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./MainFooter.module.scss";
-import Link from "next/link";
+import { Icons } from "./social-media-icons/icons";
 
 const year = new Date(Date.now()).getFullYear();
 const COPYRIGHT_NOTICE = `Copyright © ${year} Datatattat.`;
@@ -16,7 +16,7 @@ const Copyright = () => {
 		<p className={styles.copyright}>
 			<strong>{COPYRIGHT_NOTICE} </strong>
 			{COPYRIGHT_MESSAGE}
-			<Link href={EDITORIAL_GUIDELINES_LINK}>{EDITORIAL_GUIDELINES_TEXT}</Link>
+			{/* <Link href={EDITORIAL_GUIDELINES_LINK}>{EDITORIAL_GUIDELINES_TEXT}</Link> */}
 		</p>
 	);
 };
@@ -27,6 +27,7 @@ export const MainFooter = ({}: any) => {
 			<div className={styles.container}>
 				{/* Add sitemap links here */}
 				{/* Add Social Media links here */}
+				<Icons />
 				<Copyright />
 			</div>
 		</footer>

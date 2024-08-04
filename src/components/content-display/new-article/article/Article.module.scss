@@ -1,9 +1,11 @@
-$text-color: #444;
-$text-color-light: #eee;
+@use "../../../../../scss/colours/" as colours;
+
+$text-color: colours.$darkGrey;
+$text-color-light: colours.$gainsboro;
 
 .root {
 	width: 100%;
-	background: #fefefe;
+	background: colours.$whiteSmoke;
 	overflow: clip;
 	margin: auto;
 	// a reset for some mui
