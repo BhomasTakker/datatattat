@@ -1,6 +1,9 @@
 import { EditInputs } from "@/src/components/edit/inputs/input.map";
 import { COMPONENT_DETAILS } from "config/edit/components/component-details.config";
 
+// Add in full width
+// to bypass any set content Size
+// And take up the full width / full width with fade/etc
 enum MediDisplayStyles {
 	default = "default",
 	sticky = "sticky",

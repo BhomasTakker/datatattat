@@ -1,17 +1,14 @@
-.root {
-	.logoContainer {
-		width: 100%;
-		margin: auto;
-		text-align: center;
-		.logo {
-			// color: red;
-		}
-	}
-}
+@use "../../../../scss/colours/" as colours;
+@use "../../../../scss/ui/" as ui;
 
-.toolbar {
-	padding-left: 0;
-	padding-right: 0;
-	// display: flex;
-	// justify-content: center;
+.root {
+	.toolbar {
+		padding: 0;
+		margin: 0;
+
+		border-bottom: ui.$divider;
+
+		display: flex;
+		justify-content: center;
+	}
 }

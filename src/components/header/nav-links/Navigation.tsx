@@ -1,14 +1,13 @@
-//https://newdevzone.com/posts/how-to-get-a-react-components-size-heightwidth-before-render
 import React from "react";
 import { NavLink, NavLinkData } from "./NavLink";
 import styles from "./Navigation.module.scss";
 
 type NavigationProps = {
 	navLinks: NavLinkData[];
-	// onMenuUpdate: (menuList: NavLinkData[]) => void;
 };
 
-//dynamic list from props
+// Potentially an abstract too far
+// We aren't adding much more than a div
 export const Navigation = ({ navLinks }: NavigationProps) => {
 	const drawNavLinks = (links: NavLinkData[]) => {
 		return links.map((link) => {
@@ -23,5 +22,6 @@ export const Navigation = ({ navLinks }: NavigationProps) => {
 		});
 	};
 
+	// Double div so we can center the nav
 	return <div className={styles.root}>{drawNavLinks(navLinks)}</div>;
 };

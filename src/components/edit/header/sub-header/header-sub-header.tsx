@@ -3,12 +3,13 @@ import classes from "./header-sub-header.module.scss";
 import { useContext } from "react";
 import { HeaderStateContext } from "../context/form/state/header-state.context";
 import { HeaderNavigation } from "../navigation/header-navigation";
+import { COLOURS } from "scss/colours/colours.config";
 
 const BackButton = () => {
 	const { backPage } = useContext(HeaderStateContext);
 	return (
 		<Button
-			sx={{ color: "black" }}
+			sx={{ color: COLOURS.textColourDark }}
 			onClick={backPage}
 			key={"NavigationEditBackButton"}
 		>

@@ -26,6 +26,9 @@ export const ArticleMetaData = ({
 	// A bit cheap - we should perhaps have if more than one then split else user set
 	const num = +showAuthors + +showCategories + +showPublished + +showPublishers;
 	const root = useCssClasses(styles.root, num === 1 ? styles.end : "");
+
+	const leftBlock = useCssClasses(styles.container, styles.left);
+	const rightBlock = useCssClasses(styles.container, styles.right);
 	// if no values then return null
 
 	// We need a better check / check actual content
@@ -35,12 +38,17 @@ export const ArticleMetaData = ({
 
 	return (
 		<div className={root}>
-			{showAuthors && authors && <p>{authors?.join(" ")}</p>}
-			{showCategories && categories && <p>{categories?.join(" ")}</p>}
-			{showPublishers && publishers && <p>{publishers?.join(" ")}</p>}
-			{showPublished && published && (
-				<Time time={published} variant="age" prefix="" postfix=" ago" />
-			)}
+			<div className={leftBlock}>
+				{showAuthors && authors && <p>{authors?.join(" ")}</p>}
+				{showCategories && categories && <p>{categories?.join(" ")}</p>}
+			</div>
+
+			<div className={rightBlock}>
+				{showPublishers && publishers && <p>{publishers?.join(" ")}</p>}
+				{showPublished && published && (
+					<Time time={published} variant="age" prefix="" postfix=" ago" />
+				)}
+			</div>
 		</div>
 	);
 };

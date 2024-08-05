@@ -1,0 +1,18 @@
+@use "../../../../scss/ui/" as ui;
+@use "../../../../scss/colours/" as colours;
+
+.root {
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem 0;
+
+	border-bottom: ui.$divider;
+
+	.logoContainer {
+		margin: auto;
+		text-align: center;
+		.logo {
+			color: colours.$textColourDark;
+		}
+	}
+}

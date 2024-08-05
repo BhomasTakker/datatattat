@@ -1,12 +1,12 @@
-//component width
-//https://newdevzone.com/posts/how-to-get-a-react-components-size-heightwidth-before-render
-
 import React, { useContext } from "react";
-import { BaseLink } from "./BaseLink";
 
 import { EditContext } from "@/src/context/edit-context";
 import { Button } from "@mui/material";
 import { useUser } from "@/src/hooks/useUser";
+import { COLOURS } from "scss/colours/colours.config";
+import Link from "next/link";
+
+import styles from "./NavLink.module.scss";
 
 export type NavLinkData = {
 	route: string;
@@ -21,8 +21,8 @@ export const NavLink = ({ route, label }: NavLinkProps) => {
 	const { user } = useUser();
 	const username = user?.username || "";
 
+	// HACK for edit - should just diverge
 	const editClickHandler = (route: string) => {
-		// console.log("Clicked " + route);
 		//temporary alert - you will lose any unsaved information
 		//Or if route does not == currentRoute?
 		//repeat need to outsource the function
@@ -32,6 +32,7 @@ export const NavLink = ({ route, label }: NavLinkProps) => {
 		}
 	};
 
+	//////////////// HACK /////////////////////////
 	//If Edit Context exists replace BaseLink with an EditLink
 	//That just passes route to context
 	//Not the greatest thing to do but it is the simplest
@@ -40,15 +41,21 @@ export const NavLink = ({ route, label }: NavLinkProps) => {
 	if (editCtx.currentPage) {
 		return (
 			<Button
-				color="inherit"
-				sx={{ color: "black" }}
+				sx={{ color: COLOURS.textColourDark }}
 				onClick={() => editClickHandler(route)}
 				key={label}
 			>
-				{label}
+				<div>{label}</div>
 			</Button>
 		);
 	}
 	//////////////////////////////////
-	return <BaseLink link={route} label={label} />;
+	// return <BaseLink link={route} label={label} />;
+	return (
+		<div className={styles.root}>
+			<Link className={styles.link} href={route}>
+				<div className={styles.padding}>{label}</div>
+			</Link>
+		</div>
+	);
 };
