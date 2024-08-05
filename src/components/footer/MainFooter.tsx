@@ -24,12 +24,12 @@ const Copyright = () => {
 export const MainFooter = ({}: any) => {
 	return (
 		<footer className={styles.root}>
-			<div className={styles.container}>
-				{/* Add sitemap links here */}
-				{/* Add Social Media links here */}
-				<Icons />
-				<Copyright />
-			</div>
+			<div className={styles.divider} />
+			{/* Add sitemap links here */}
+			{/* Add Social Media links here */}
+			<Icons />
+			<div className={styles.divider} />
+			<Copyright />
 		</footer>
 	);
 };

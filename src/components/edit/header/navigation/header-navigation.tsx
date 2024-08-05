@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { HeaderStateContext } from "../context/form/state/header-state.context";
 import { useWatch } from "react-hook-form";
 import { NavLinkData } from "@/src/components/header/nav-links/NavLink";
+import { COLOURS } from "scss/colours/colours.config";
 
 /**
  *
@@ -22,7 +23,7 @@ export const HeaderNavigation = () => {
 
 			return (
 				<Button
-					sx={{ color: "black" }}
+					sx={{ color: COLOURS.textColourDark }}
 					onClick={() => setRoute(route)}
 					key={`${label}`}
 				>

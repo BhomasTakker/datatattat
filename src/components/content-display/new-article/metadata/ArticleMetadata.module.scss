@@ -1,10 +1,17 @@
 @use "../../../../../scss/text" as text;
+@use "../../../../../scss/ui/" as ui;
 
 .root {
+	// to position us at the bottom
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+
 	display: flex;
-	flex-wrap: wrap;
+	// flex-wrap: wrap;
 	justify-content: space-between;
 	margin: 0.25rem 0;
+	padding: 1rem 0 0;
 
 	font-family: text.$text-font;
 	font-weight: text.$text-font-weight;
@@ -12,13 +19,28 @@
 	line-height: 0.8rem;
 	font-style: italic;
 
-	&.start {
-		justify-content: start;
-	}
-	&.end {
-		justify-content: end;
-	}
-	&.split {
-		justify-content: space-between;
-	}
+	border-top: ui.$divider;
+
+	// Removed - we have our way
+	// &.start {
+	// 	justify-content: start;
+	// }
+	// &.end {
+	// 	justify-content: end;
+	// }
+	// &.split {
+	// 	justify-content: space-between;
+	// }
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+}
+.left {
+	align-items: start;
+}
+
+.right {
+	align-items: end;
 }

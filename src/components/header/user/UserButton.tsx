@@ -7,16 +7,18 @@ import { logout } from "@/lib/auth";
 import { useRouter } from "next/router";
 import { useUser } from "@/src/hooks/useUser";
 
-export const UserButton = () => {
+type UserButtonProps = {
+	isDisabled: boolean;
+};
+
+export const UserButton = ({ isDisabled }: UserButtonProps) => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const router = useRouter();
 	const { user, isLoading } = useUser();
-	// const {pathname, query} = router;
-
-	// // console.log({ USER: user });
 
 	const open = Boolean(anchorEl);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+		if (isDisabled) return;
 		setAnchorEl(event.currentTarget);
 	};
 	const handleClose = () => {
@@ -27,11 +29,10 @@ export const UserButton = () => {
 		handleClose(); //no wait just close?
 	};
 
-	//list should be elsewhere perhaps
 	return (
 		<Box>
 			<IconButton
-				color="inherit"
+				disabled={isDisabled}
 				aria-label="user"
 				onClick={handleClick}
 				aria-controls={open ? "demo-customized-menu" : undefined}

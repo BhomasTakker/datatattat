@@ -16,6 +16,7 @@ import {
 	ProprtionalColor,
 	ProportionalSize,
 } from "../../types/open-layers.types";
+import { Style } from "ol/style";
 
 // proportional size
 // graduant color

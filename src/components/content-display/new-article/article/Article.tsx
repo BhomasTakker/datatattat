@@ -223,18 +223,20 @@ export const Article = (props: ArticleProps) => {
 							)}
 							{/* show metadata, style */}
 							{showDetails && details && (
-								<ArticleMetaData
-									docs={docs}
-									categories={categories}
-									authors={authors}
-									published={published}
-									publishers={publishers}
-									modified={modified}
-									showAuthors={showAuthors}
-									showCategories={showCategories}
-									showPublished={showPublished}
-									showPublishers={showPublishers}
-								/>
+								<div className={styles.metadata}>
+									<ArticleMetaData
+										docs={docs}
+										categories={categories}
+										authors={authors}
+										published={published}
+										publishers={publishers}
+										modified={modified}
+										showAuthors={showAuthors}
+										showCategories={showCategories}
+										showPublished={showPublished}
+										showPublishers={showPublishers}
+									/>
+								</div>
 							)}
 						</ContentContainer>
 					</div>

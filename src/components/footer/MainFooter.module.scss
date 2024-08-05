@@ -1,15 +1,17 @@
 @use "../../../scss/text/" as text;
+@use "../../../scss/ui/" as ui;
 
 .root {
 	padding: 2rem 0;
 	font-family: text.$text-font;
 
 	.container {
-		border-top: 1px solid rgb(0, 0, 0, 0.1);
 		text-align: left;
-
-		.copyright {
-			padding-top: 2rem;
-		}
+	}
+	.copyright {
+		padding: 2rem 0;
+	}
+	.divider {
+		border-top: ui.$divider;
 	}
 }

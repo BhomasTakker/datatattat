@@ -4,21 +4,30 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useAppSelector } from "@/store/hooks";
 import { screenSize, ScreenWidth } from "@/store/screen/screenSlice";
+import styles from "./LoginButton.module.scss";
+import { COLOURS } from "scss/colours/colours.config";
 
-export const LogInButton = () => {
+type LoginProps = {
+	isDisabled: boolean;
+};
+
+export const LogInButton = ({ isDisabled }: LoginProps) => {
 	const { push } = useRouter();
 	const size = useAppSelector(screenSize);
 
 	const loginHandler = () => {
+		if (isDisabled) return;
 		push("/auth/signin");
 	};
 
-	// Check the rerenders on this thing
-	// // console.log({ size });
-
-	if (size === ScreenWidth.XS) {
+	if (size === ScreenWidth.XS || size === ScreenWidth.SM) {
 		return (
-			<IconButton color="inherit" aria-label="sign in" onClick={loginHandler}>
+			<IconButton
+				sx={{ color: COLOURS.textColourDark }}
+				aria-label="sign in"
+				onClick={loginHandler}
+				disabled={isDisabled}
+			>
 				<PersonIcon />
 			</IconButton>
 		);
@@ -26,10 +35,11 @@ export const LogInButton = () => {
 
 	return (
 		<Button
+			sx={{ color: COLOURS.textColourDark }}
 			startIcon={<PersonIcon />}
-			color="inherit"
 			onClick={loginHandler}
-			className="Login"
+			className={styles.root}
+			disabled={isDisabled}
 		>
 			Sign in
 		</Button>
