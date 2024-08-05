@@ -58,7 +58,7 @@ export const getDisplayCarouselRenderObject = (
 	props: Props
 ): RenderObjectReturn<typeof ArticleCarousel> => {
 	const { limit = 0, carouselVariantObject } = props || {};
-	const { carouselType } = carouselVariantObject;
+	const { carouselType } = carouselVariantObject || {};
 
 	return {
 		renderList: renderList(+limit),
