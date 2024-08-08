@@ -31,7 +31,6 @@ const renderList =
 		let returnArticles = articles;
 		if (limit) {
 			// zero is all
-			console.log("909", { limit });
 			returnArticles = articles.slice(0, limit);
 		}
 
@@ -105,7 +104,7 @@ export const getStandardListRenderObject = (
 		display = true,
 		...rest
 	} = props || {};
-	console.log("LIST ", { props });
+
 	return {
 		// config,
 		// We need to properly check and convert string to number

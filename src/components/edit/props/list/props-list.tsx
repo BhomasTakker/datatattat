@@ -3,7 +3,6 @@ import { PageComponentPropsContext } from "../context/component-props.context";
 import { Stack } from "@mui/material";
 import { MARGINS } from "config/styles/styles.config";
 import { InputFactory } from "@/src/components/edit/inputs/factory/input.factory";
-import { PageStateContext } from "../../page/context/state/page-state.context";
 import { log } from "@/src/lib/logger";
 
 export const PropsList = () => {

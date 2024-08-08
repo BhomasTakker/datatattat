@@ -15,7 +15,6 @@ const initialState: PageComponentPropsState & PageComponentPropsInterface = {
 	props: [],
 	propsId: "",
 	resetComponent: null,
-	// propsFormId: "",
 };
 
 export const ComponentPropsContextProvider = ({
@@ -25,28 +24,19 @@ export const ComponentPropsContextProvider = ({
 	value: PageComponentPropsState;
 	children: ReactNode;
 }) => {
-	// const { pagePropsId } = useContext(PageStateContext);
-	// This may need to chage
-	// const { container } = useContext(PageContainerContext);
 	const { unregister } = useFormContext();
 
-	const { resetComponent, propsId } = value;
+	const { resetComponent, propsId, props } = value;
 
-	// pass in what to to reset on
+	// If propsId changes remove any stored value
 	useEffect(() => {
-		// set props to empty / no need to reset value?
-		// perhaps reset would be better but damn simple
 		unregister(propsId);
 	}, [resetComponent, propsId, unregister]);
 
-	// We are just passing props at the moment
-	// no need to watch props
-	// if there is a saved value it will be shown - or it should be
-	// might need to come up with something if using default values
-	// check / test form / container changes etc
 	return (
-		// Would you always spread given value here?
-		<PageComponentPropsContext.Provider value={{ ...value }}>
+		<PageComponentPropsContext.Provider
+			value={{ resetComponent, propsId, props }}
+		>
 			{children}
 		</PageComponentPropsContext.Provider>
 	);

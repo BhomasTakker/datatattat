@@ -42,7 +42,7 @@ export const setDangerously = (
 		ALLOWED_TAGS: ["iframe"],
 		ADD_ATTR: ["allow", "allowfullscreen", "frameborder", "scrolling"],
 	});
-	console.log("sanitizedHTML", { sanitizedHTML });
+
 	return {
 		__html: sanitizedHTML,
 	};

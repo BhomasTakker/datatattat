@@ -73,7 +73,7 @@ export const getScrollerRenderObject = (
 		card = "card-t2b",
 		cardSize = "lg",
 	} = stackVariantObject || {};
-	console.log("7867", { props });
+
 	return {
 		// config,
 		renderList: renderStack(size, limit, card, cardSize, rest),

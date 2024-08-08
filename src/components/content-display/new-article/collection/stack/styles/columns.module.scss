@@ -17,6 +17,8 @@ $xs-columns: 100%;
 		gap: 1rem;
 		// almost crtainly a better way
 		&.columns-4 {
+			// ooh not okay
+			// select firstChild at least
 			> div {
 				flex: 1 1 20%;
 			}

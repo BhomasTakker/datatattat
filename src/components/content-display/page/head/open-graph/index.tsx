@@ -77,7 +77,6 @@ export const renderOpenGraphMeta = ({ data }: OpenGraph) => {
 		);
 	}
 
-	console.log("678678:og", { metadata });
 	const {} = data;
 	// could run through a map/set using/assuming names/ids are accurate
 	// overwrite a default array

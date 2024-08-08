@@ -1,5 +1,7 @@
 import { RedisCacheTypes, RedisCacheTime } from "./types";
 import redis from "./create-redis-connection";
+import { fetchFeatures } from "@/src/services/features/feature-toggle";
+import { FEATURES } from "@/src/pages/api/features";
 // import redis from "./global-redis";
 
 type Result = any;
@@ -25,6 +27,7 @@ interface RedisDataFetch {
  * meta: src\queries\data\meta\fetch-meta.ts
  */
 // clean this up
+
 export const redisDataFetch = async ({
 	endpoint,
 	options,
@@ -32,17 +35,45 @@ export const redisDataFetch = async ({
 	cacheExpire = RedisCacheTime.WEEK,
 	getResult,
 }: RedisDataFetch) => {
-	if (!redis) {
-		throw new Error("Redis not instantiated");
-	}
+	// we need a better way to do features
+	const isRedisEnabled = process.env.FEATURE_REDIS_CACHING;
+
+	console.log("isRedisEnabled", { isRedisEnabled });
+
 	// We should be sure this is a string post refactor
 	const url = endpoint.toString();
+
+	// We may want - in testing / dev
+	// To completely avoid caching
+	// We will hit limits more regularly
+	// OR we should have dev and prod accounts
+	// this being only for react components is a trip - fix this or redo
+	// const isRedisEnabled = isEnabled(FEATURES.redis);
+	if (!isRedisEnabled) {
+		console.log("isRedisEnabled return", { isRedisEnabled });
+		return await getResult(url, options);
+	}
+
+	if (!redis) {
+		// return data
+		// don't die
+		throw new Error("Redis not instantiated");
+	}
 
 	///////////////////////////////////////////////
 	// Get/Check cache, update expiry, and return
 	///////////////////////////////////////////////
-	const cachedValue = await redis.get(url);
+	let cachedValue;
 
+	try {
+		cachedValue = await redis.get(url);
+	} catch (error) {
+		// Cheap and dirty
+		// When we hit our redis limit
+		// or other error just don't use caching...
+		const result = await getResult(url, options);
+		return result;
+	}
 	// There is an issue with articles somewhere.
 	// When originally loading we are perhaps timing out etc
 	// No data is returned or due to rate limiting an empty object is returned

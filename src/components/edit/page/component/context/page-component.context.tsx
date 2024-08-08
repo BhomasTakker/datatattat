@@ -10,10 +10,6 @@ type PageComponentState = {
 type PageComponentInterface = PageContainerConfig & {};
 
 const initialState: PageComponentInterface = {
-	// config: {
-	// 	props: {},
-	// 	components: [],
-	// },
 	id: "",
 	info: "",
 	title: "",
