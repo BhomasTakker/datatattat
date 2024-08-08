@@ -4,7 +4,7 @@ export const getFileSizeFromJson = (file: File) => {
 	// const fileSize = JSON.stringify(file).length;
 	// const fileSize = file.toString().length;
 	const fileSize = JSON.stringify(file).length;
-	console.log({ fileSize: fileSize / 1024 });
+	// console.log({ fileSize: fileSize / 1024 });
 	return {
 		type: "kb",
 		size: fileSize / 1024,

@@ -1,4 +1,4 @@
-import { STACK } from "./page-components.config";
+import { STACK } from "./stack/page-stack.edit.config";
 
 export const PAGE_COMPONENTS = {
 	// Grid: GRID,

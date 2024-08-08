@@ -25,29 +25,22 @@ export const useOembed = (
 	// useElementOnScreen perhaps?
 	useEffect(() => {
 		const getOembedData = async () => {
-			console.log("7878 getOembed");
 			if (loading || error || oembedData) return;
-			console.log("7878 getOembed2", { loading, error, oembedData });
 			setLoading(true);
 			try {
-				// generic the function
-				console.log("7878 fetch");
 				const fetchedOembedData = (await clientsideFetch({
 					url: OEMBED_API_PATH,
 					searchParams,
 				})) as Oembed;
-				console.log("7878", { fetchedOembedData });
 				setLoading(false);
 				setOembedData(fetchedOembedData);
 			} catch (err) {
 				setLoading(false);
 				setError(err as Error);
-				console.log("7878 ERROR");
-				// fallback ?
 			}
 		};
 		if (load && !loading && !oembedData && !error) getOembedData();
 	}, [load, loading, oembedData, setOembedData, error, searchParams]);
-	console.log("7878 done", { load, loading, error });
+
 	return { oembedData, loading, error };
 };

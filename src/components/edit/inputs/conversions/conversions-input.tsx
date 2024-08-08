@@ -38,7 +38,6 @@ const defaultConversion = {
 
 type ConversionsInput = { info: string; label: string; id: string };
 export const ConversionsInput = ({ id }: { id: string }) => {
-	console.log("We did get here", { id });
 	return (
 		<WithInfo>
 			<ConversionsContainer objectKey={id} conversion={defaultConversion} />

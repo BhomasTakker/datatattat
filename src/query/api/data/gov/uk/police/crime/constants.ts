@@ -59,8 +59,6 @@ const uk_police_crime_data = (queryParams: QueryParameters) => {
 
 	const params = `?lat=${lat}&lng=${lon}${date}`;
 
-	console.log({ date, params });
-
 	return {
 		url: `${BASE_URL}/${crime}${params}`,
 		headers: "",

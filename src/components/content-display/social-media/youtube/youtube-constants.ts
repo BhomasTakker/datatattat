@@ -62,7 +62,6 @@ export const YOUTUBE_ROOT_OEMBED_CREATOR = (queryParams: any) => {
 				maxheight,
 			};
 	}
-	console.log("YOUTUBE", { url, BASE_URL, format: "json", queryParams });
 
 	return {
 		headers: {},

@@ -7,19 +7,35 @@ import styles from "./PageStack.module.scss";
 import { ComponentProfile, Profile } from "../profile/ComponentProfile";
 import { UnknownObject } from "@/src/types";
 import { useCssClasses } from "../../new-article/hooks/useCssClasses";
+import { useWidth } from "@/src/hooks/useWidth";
+import { useCallback, useEffect, useState } from "react";
 
 // ///////////////////////////////////////////
 // Go Over
 // We need to go over pages
 // /////////////////////////////////////
 
+// Clean this thing up
+
 interface ComponentProfile {
 	profile: Profile;
 }
 
+type ColumnProps = {
+	direction: "column";
+};
+type RowProps = {
+	direction: "row";
+	columns_xs: number;
+	columns_sm: number;
+	columns_md: number;
+	columns_lg: number;
+	columns_xl: number;
+};
+type Props = ColumnProps | RowProps;
 interface PageDisplayStack {
 	data: {
-		props: UnknownObject;
+		props: Props;
 		components: FactoryData[];
 	};
 }
@@ -27,9 +43,11 @@ interface PageDisplayStack {
 // FactoryData needs to be a generic type WE know what we expect - or at partially
 const StackComponent = ({
 	component,
+	className,
 	index,
 }: {
 	component: FactoryData;
+	className?: string;
 	index: number;
 }) => {
 	const { ref, inView } = useInView({
@@ -38,7 +56,7 @@ const StackComponent = ({
 	});
 
 	const { componentProps } = component;
-	// Partial?
+	// Wrap the component in a Profile component
 	const {
 		showComponentTitle,
 		componentTitle,
@@ -48,7 +66,7 @@ const StackComponent = ({
 		style = "",
 	} = (componentProps as Profile) || {};
 
-	const root = useCssClasses(styles.root, styles[style] || "");
+	const root = useCssClasses(styles.componentRoot, styles[style] || "");
 
 	return (
 		// add styles select?
@@ -69,18 +87,35 @@ const StackComponent = ({
 };
 
 export const PageDisplayStack = ({ data }: PageDisplayStack) => {
+	const [className, setClassName] = useState("");
 	const { props, components } = data;
-	// take style etc from props
-	// We would like i.e. menu / quick links for each section of content
-	return (
-		<div className={styles.root}>
-			{components.map((component, index) => {
-				// We need to start providing ids
-				// Would we ever want to rearrange etc
-				return (
-					<StackComponent key={index} index={index} component={component} />
-				);
-			})}
-		</div>
+	const { direction = "column" } = props || {};
+
+	// This feels like we re render too much
+	const screenWidth = useWidth();
+
+	useEffect(() => {
+		if (direction === "row") {
+			const columns = (props as RowProps)[`columns_${screenWidth}`];
+			const numberOfComponents = components.length;
+			const useColumns =
+				numberOfComponents < columns ? numberOfComponents : columns;
+
+			setClassName(styles[`columns-${useColumns}`]);
+		}
+	}, [components.length, direction, props, screenWidth]);
+
+	const root = useCssClasses(
+		styles.root,
+		styles[direction || "column"],
+		className
 	);
+
+	const renderComponents = useCallback(() => {
+		return components.map((component, index) => {
+			return <StackComponent key={index} index={index} component={component} />;
+		});
+	}, [components]);
+
+	return <div className={root}>{renderComponents()}</div>;
 };

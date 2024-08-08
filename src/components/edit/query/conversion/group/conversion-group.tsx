@@ -124,7 +124,11 @@ ConversionGroupProps) => {
 			/>
 			{/* <Stack gap={MARGINS.SMALL}>{conversionComponents}</Stack> */}
 			<Box paddingTop={MARGINS.MIDSMALL} paddingBottom={MARGINS.MIDSMALL}>
-				<Button onClick={addConversionHandler} startIcon={<AddIcon />}>
+				<Button
+					onClick={addConversionHandler}
+					startIcon={<AddIcon />}
+					sx={{ color: "black" }}
+				>
 					Add Conversion
 				</Button>
 			</Box>

@@ -26,7 +26,6 @@ const ArrayInputControl = () => {
 	const { getValues } = useFormContext();
 	const renderInputs = useCallback(() => {
 		const inputs = (getValues(id) as (typeof input)[]) || [];
-		console.log("0004:ArrayInputControl", { inputs });
 
 		if (!Array.isArray(inputs)) {
 			return [];
@@ -36,22 +35,11 @@ const ArrayInputControl = () => {
 
 		return inputs.map((value, index: number) => {
 			const name = `${id}.${index}`;
-			console.log("4563:ArrayInputControl", { name });
-			// const inputProps = { ...input, id: name, name: name };
-			// const { id: inputId, info, label, type, ...rest } = input;
 			const { info, label, type, ...rest } = input;
-
-			// console.log("ADD:INPUT:HERE", { info, label, id, type, name });
-			console.log("0004:ArrayInputControl", { value });
 			const Component = inputMap.get(type);
 
 			return (
-				<Stack
-					key={uniqueNumber()}
-					direction="row"
-					// justifyContent="space-between"
-				>
-					{/* <InputFactory data={inputProps} /> */}
+				<Stack key={uniqueNumber()} direction="row">
 					<Box width="100%">
 						<Component
 							// id and name have to come after rest spread because we are building the object key
@@ -83,7 +71,7 @@ const ArrayInputControl = () => {
 
 export const ArrayInput = ({ id, input }: ArrayInput) => {
 	const { label } = input;
-	console.log("4563 array", { id, input });
+
 	return (
 		<ArrayInputContextProvider value={{ id, input }}>
 			<Title text={label} variant={TitleVariant.EDIT_COMPONENT} />

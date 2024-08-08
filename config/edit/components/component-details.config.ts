@@ -13,13 +13,13 @@ export const COMPONENT_DETAILS = [
 				label: "Component Title",
 				info: "ArticleListtTitle",
 			},
-			{
-				id: "componentTitleVariant",
-				type: EditInputs.select,
-				options: ["Primary", "Secondary"],
-				label: "Component Title Variant",
-				info: "ComponentTitleVariant",
-			},
+			// {
+			// 	id: "componentTitleVariant",
+			// 	type: EditInputs.select,
+			// 	options: ["Primary", "Secondary"],
+			// 	label: "Component Title Variant",
+			// 	info: "ComponentTitleVariant",
+			// },
 			{
 				id: "componentTitleLink",
 				type: EditInputs.text,
@@ -36,13 +36,13 @@ export const COMPONENT_DETAILS = [
 		inputs: [
 			{
 				id: "componentDescription",
-				type: "text",
+				type: EditInputs.text,
 				label: "Component Description",
 				info: "ArticleListDescription",
 			},
 			{
 				id: "componentDescriptionVariant",
-				type: "select",
+				type: EditInputs.select,
 				options: ["Primary", "Secondary"],
 				label: "Component Description Variant",
 				info: "DescriptionVariant",

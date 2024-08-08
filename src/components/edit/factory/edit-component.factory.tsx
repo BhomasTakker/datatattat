@@ -10,7 +10,8 @@ interface EditComponentProps {
 }
 
 // this seems an abstraction too far no?
-// Simple as but clean up
+// We only have/need page and content components we don't need a factory
+// It's concise but over complicated
 // container is
 export const EditFactoryComponent = ({
 	type,
