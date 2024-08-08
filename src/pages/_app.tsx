@@ -16,7 +16,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { theme } from "../theme/theme";
 import { FeatureContextProvider } from "../context/feature-context";
-import { Tracking } from "../analytics/tracking";
+import { Tracking } from "../analytics/Tracking";
 
 //Create a Controller
 const queryClient = new QueryClient();
