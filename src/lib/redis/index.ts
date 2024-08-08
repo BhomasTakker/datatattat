@@ -38,8 +38,6 @@ export const redisDataFetch = async ({
 	// we need a better way to do features
 	const isRedisEnabled = process.env.FEATURE_REDIS_CACHING;
 
-	console.log("isRedisEnabled", { isRedisEnabled });
-
 	// We should be sure this is a string post refactor
 	const url = endpoint.toString();
 
@@ -50,7 +48,6 @@ export const redisDataFetch = async ({
 	// this being only for react components is a trip - fix this or redo
 	// const isRedisEnabled = isEnabled(FEATURES.redis);
 	if (!isRedisEnabled) {
-		console.log("isRedisEnabled return", { isRedisEnabled });
 		return await getResult(url, options);
 	}
 
