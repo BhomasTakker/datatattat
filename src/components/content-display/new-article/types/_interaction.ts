@@ -1,7 +1,17 @@
 // We need to add all possible to Base as undefined
 // that way we can filter to all for type safety
 // there is probably a better way of doing this
-type InteractionType = "display" | "play" | "navigate";
+
+export enum InteractionTypes {
+	DISPLAY = "display",
+	PLAY = "play",
+	NAVIGATE = "navigation",
+}
+
+type InteractionType =
+	| InteractionTypes.DISPLAY
+	| InteractionTypes.NAVIGATE
+	| InteractionTypes.PLAY;
 
 type InteractionBase = {
 	interaction?: InteractionType;
@@ -9,16 +19,16 @@ type InteractionBase = {
 };
 
 type DisplayInteraction = {
-	interaction: "display";
+	interaction: InteractionTypes.DISPLAY;
 	displayId: string;
 } & InteractionBase;
 
 type PlayInteraction = {
-	interaction: "play";
+	interaction: InteractionTypes.PLAY;
 } & InteractionBase;
 
 type NavigateInteraction = {
-	interaction?: "navigate";
+	interaction?: InteractionTypes.NAVIGATE;
 } & InteractionBase;
 
 export type Interaction =

@@ -11,9 +11,10 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/src/store/hooks";
 import { getHandler } from "../handlers";
 import { PlayerControls } from "../media-player/Article-media-player";
+import { InteractionTypes } from "../types/_interaction";
 
 type ArticleState = {
-	props?: ArticleProps;
+	props: ArticleProps | null;
 };
 
 type ArticleInterface = {
@@ -23,13 +24,18 @@ type ArticleInterface = {
 	) => void;
 	setPlayerControls: Dispatch<SetStateAction<PlayerControls | null>>;
 	playerControls: PlayerControls | null;
+	isLink: boolean;
 };
 
 const initialState: ArticleState & ArticleInterface = {
 	onClickHandler: () => {},
 	setPlayerControls: () => {},
 	playerControls: null,
+	isLink: false,
+	props: null,
 };
+
+const defaultInteractionType = InteractionTypes.NAVIGATE;
 
 // This may just be handler context
 export const ArticleContextProvider = ({
@@ -45,7 +51,10 @@ export const ArticleContextProvider = ({
 		null
 	);
 	const { props } = value;
-	const { interaction = "" } = props || {};
+	const { interaction = defaultInteractionType } = props || {};
+
+	// better but something like this / what about new tab?
+	const isLink = interaction === InteractionTypes.NAVIGATE;
 
 	/////////////////////////////////////
 	// on creation
@@ -65,6 +74,8 @@ export const ArticleContextProvider = ({
 				onClickHandler: handler,
 				setPlayerControls,
 				playerControls,
+				isLink,
+				props,
 			}}
 		>
 			{children}
