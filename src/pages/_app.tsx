@@ -16,7 +16,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { theme } from "../theme/theme";
 import { FeatureContextProvider } from "../context/feature-context";
-import { Analytics } from "@vercel/analytics/react";
+import { Tracking } from "../analytics/Tracking";
 
 //Create a Controller
 const queryClient = new QueryClient();
@@ -36,7 +36,7 @@ function App({ Component, pageProps }: AppProps) {
 			refetchOnWindowFocus={true}
 		>
 			<QueryClientProvider client={queryClient}>
-				<Analytics />
+				<Tracking />
 				<Provider store={store}>
 					{/* Layout or behaviours etc */}
 					{/* Have a behaviours and a layout so we don't end up with 100s of nesting? */}
