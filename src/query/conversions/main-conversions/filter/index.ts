@@ -1,8 +1,8 @@
-// @ts-nocheck / FIX ME
 // rxjs operators
 // https://app.pluralsight.com/course-player?clipId=0558ef44-e83b-4c8d-aca0-eafd8ae2d16b
 
-import { UnknownObject } from "@/src/components/content-display/data-visualization/d3/types";
+import { UnknownNumber, UnknownObject, UnknownString } from "@/src/types";
+import { getNestedValue } from "@/src/utils/object";
 import {
 	distinct as rxjsDistinct,
 	first as rxjsFirst,
@@ -66,14 +66,15 @@ export const distinctKey = ({ key }: any) => {
 	// does this match this
 	// we would need to pass a function to determine distintness / or just create a bunch
 	// i.e. distinct((data) => props[props.key])
-	return rxjsDistinct((data: any) => data[`${key}`]);
+	return rxjsDistinct((data: any) => getNestedValue<number>(key, data));
 };
 
 // I guess split these up into sensible groupings
 export const includes = ({ values, key }: { values: string; key: string }) => {
-	return filter((value: any) => {
+	return filter((value: UnknownString) => {
+		const val = getNestedValue<string>(key, value);
 		// console.log("WOMP - react query done us!", { key, val: value[key] });
-		return values.split(",").includes(value[key]);
+		return values.split(",").includes(val);
 	});
 };
 
@@ -86,13 +87,13 @@ type NumericalConditional = {
  * @returns rxjs transducer
  */
 export const greaterThan = ({ key, n }: NumericalConditional) => {
-	return filter((value: UnknownObject) => {
-		// console.log("WOMP!", { n, key, val: value[key] });
-		if (value[key] && typeof +value[key] !== "number") {
+	return filter((value: UnknownNumber) => {
+		const val = getNestedValue<number>(key, value);
+		if (val && typeof +val !== "number") {
 			return false;
 		}
-		// console.log("WOMP2!", { n, key, val: value[key] });
-		return +value[key] > n;
+
+		return val > n;
 	});
 };
 
@@ -101,11 +102,12 @@ export const greaterThan = ({ key, n }: NumericalConditional) => {
  * @returns rxjs transducer
  */
 export const lessThan = ({ key, n }: NumericalConditional) => {
-	return filter((value: UnknownObject) => {
-		if (value[key] && typeof +value[key] !== "number") {
+	return filter((value: UnknownNumber) => {
+		const val = getNestedValue<number>(key, value);
+		if (val && typeof +val !== "number") {
 			return false;
 		}
-		return +value[key] < n;
+		return val < n;
 	});
 };
 
@@ -115,10 +117,11 @@ export const lessThan = ({ key, n }: NumericalConditional) => {
  */
 export const equals = ({ key, n }: NumericalConditional) => {
 	return filter((value: UnknownObject) => {
-		if (value[key] && typeof +value[key] !== "number") {
+		const val = getNestedValue<number>(key, value);
+		if (val && typeof +val !== "number") {
 			return false;
 		}
-		return +value[key] === +n;
+		return val === +n;
 	});
 };
 

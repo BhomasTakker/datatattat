@@ -1,14 +1,15 @@
-// export const SORT_MAP = new Map<string, string>([
-// 	// ["bing", BING_NEWS_API_OBJECT],
-// 	["alphanumeric", "alphanumericSort"],
-// 	["testSort1", "testSort1"],
-// 	["testSort2", "testSort2"],
-// 	["testSort3", "testSort3"],
-// 	["testSort4", "testSort4"],
-// ]);
+export enum SortOptions {
+	alphanumeric = "alphanumeric",
+	numericAscending = "numericAscending",
+	numericDescending = "numericDescending",
+	dateTimeAscending = "dateTimeAscending",
+	dateTimeDescending = "dateTimeDescending",
+}
 export const SORT_MAP = {
 	// should be alpha ascending and descending
-	alphanumeric: "alphanumeric",
-	numericAscending: "numericAscending",
-	numericDescending: "numericDescending",
+	alphanumeric: SortOptions.alphanumeric,
+	numericAscending: SortOptions.numericAscending,
+	numericDescending: SortOptions.numericDescending,
+	dateTimeAscending: SortOptions.dateTimeAscending,
+	dateTimeDescending: SortOptions.dateTimeDescending,
 } as const;

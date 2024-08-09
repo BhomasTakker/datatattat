@@ -1,3 +1,4 @@
+import { SortOptions } from "@/src/components/conversions/sort/sort-map";
 import { testBin } from "./bin";
 import {
 	distinct,
@@ -14,28 +15,32 @@ import {
 import { testGroup } from "./group";
 import { simpleNumberSort } from "./sort";
 import { testSummarize } from "./summarize";
+import { FilterOptions } from "@/src/components/conversions/filter/filter-map";
 
 export const CONVERSION_PROPS_MAP = new Map<string, object>([
 	// SAMPLE
-	["first", first],
-	["last", last],
-	["topN", topN],
-	["lastN", lastN],
-	["skipN", skipN],
+	[FilterOptions.first, first],
+	[FilterOptions.last, last],
+	[FilterOptions.topN, topN],
+	[FilterOptions.lastN, lastN],
+	[FilterOptions.skipN, skipN],
 
-	["skipLastN", skipLastN],
+	[FilterOptions.skipLastN, skipLastN],
 
 	// FILTER
-	["distinct", distinct],
-	["distinctKey", distinctKey],
-	["includes", includes],
-	["greaterThan", numberConditional],
-	["lessThan", numberConditional],
-	["equals", numberConditional],
+	[FilterOptions.distinct, distinct],
+	[FilterOptions.distinctKey, distinctKey],
+	[FilterOptions.includes, includes],
+	[FilterOptions.lessThan, numberConditional],
+	[FilterOptions.greaterThan, numberConditional],
+	[FilterOptions.equals, numberConditional],
 
 	// SORT
-	["numericAscending", simpleNumberSort],
-	["numericDescending", simpleNumberSort],
+	[SortOptions.numericAscending, simpleNumberSort],
+	[SortOptions.numericDescending, simpleNumberSort],
+	// need update - this object is just a key input and dumb text at that
+	[SortOptions.dateTimeAscending, simpleNumberSort],
+	[SortOptions.dateTimeDescending, simpleNumberSort],
 
 	// GROUP
 	["testGroup", testGroup],
