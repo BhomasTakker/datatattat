@@ -1,5 +1,5 @@
-// @ts-nocheck / FIX ME
-import { UnknownObject } from "@/src/components/content-display/data-visualization/d3/types";
+import { UnknownNumber, UnknownString } from "@/src/types";
+import { getNestedValue } from "@/src/utils/object";
 import { map } from "rxjs";
 
 // LOOK AT d3 sorting
@@ -9,15 +9,47 @@ import { map } from "rxjs";
 // i.e create counts, and a bunch of shit
 // https://d3js.org/d3-array/summarize
 
-// jesus what?, pass key etc
-export const alphanumeric = ({}: any) => {
-	return map((arr) => arr.sort((a, b) => a["2020_1"] - b["2020_1"]));
+type Dud = {
+	["2020_1"]: number;
+};
+// whatever tis was remove and do properly
+export const alphanumeric = ({ key }: { key: string }) => {
+	return map((arr: Dud[]) => arr.sort((a, b) => a["2020_1"] - b["2020_1"]));
 };
 
 // I think this can almost certainly be done better with rxjs reduce?
-export const numericAscending = ({ key }: any) => {
-	return map((arr: UnknownObject[]) => arr.sort((a, b) => a[key] - b[key]));
+export const numericAscending = ({ key }: { key: string }) => {
+	return map((arr: UnknownNumber[]) =>
+		arr.sort(
+			(a, b) => getNestedValue<number>(key, a) - getNestedValue<number>(key, b)
+		)
+	);
 };
-export const numericDescending = ({ key }: any) => {
-	return map((arr: UnknownObject[]) => arr.sort((a, b) => b[key] - a[key]));
+export const numericDescending = ({ key }: { key: string }) => {
+	return map((arr: UnknownNumber[]) =>
+		arr.sort(
+			(a, b) => getNestedValue<number>(key, b) - getNestedValue<number>(key, a)
+		)
+	);
+};
+
+export const dateTimeAscending = ({ key }: { key: string }) => {
+	return map((arr: UnknownString[]) =>
+		arr.sort((a, b) => {
+			return (
+				new Date(getNestedValue<string>(key, a)).getTime() -
+				new Date(getNestedValue<string>(key, b)).getTime()
+			);
+		})
+	);
+};
+export const dateTimeDescending = ({ key }: { key: string }) => {
+	return map((arr: UnknownString[]) =>
+		arr.sort((a, b) => {
+			return (
+				new Date(getNestedValue<string>(key, b)).getTime() -
+				new Date(getNestedValue<string>(key, a)).getTime()
+			);
+		})
+	);
 };

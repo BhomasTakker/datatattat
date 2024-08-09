@@ -1,3 +1,4 @@
+import { SortOptions } from "@/src/components/conversions/sort/sort-map";
 import { testBin } from "./bin";
 import {
 	distinct,
@@ -14,36 +15,46 @@ import {
 	topN,
 } from "./filter";
 import { testGroup } from "./group";
-import { alphanumeric, numericDescending, numericAscending } from "./sort";
+import {
+	alphanumeric,
+	numericDescending,
+	numericAscending,
+	dateTimeDescending,
+	dateTimeAscending,
+} from "./sort";
 import { testSummarize } from "./summarize";
+import { FilterOptions } from "@/src/components/conversions/filter/filter-map";
 
 // back end functions list
 export const TRANSFORM = new Map<string, object>([]);
 
 export const SORT = new Map<string, object>([
-	["alphanumeric", alphanumeric],
-	["numericDescending", numericDescending],
-	["numericAscending", numericAscending],
+	// this one needs updating....
+	[SortOptions.alphanumeric, alphanumeric],
+	[SortOptions.numericDescending, numericDescending],
+	[SortOptions.numericAscending, numericAscending],
+	[SortOptions.dateTimeDescending, dateTimeDescending],
+	[SortOptions.dateTimeAscending, dateTimeAscending],
 ]);
 
 export const FILTER = new Map<string, object>([
 	// ["top5", top5],
 	// These should be SAMPLE - called at end of filters and sorts etc
-	["first", first],
-	["last", last],
-	["topN", topN],
-	["lastN", lastN],
-	["skipN", skipN],
-	["skipLastN", skipLastN],
+	[FilterOptions.first, first],
+	[FilterOptions.last, last],
+	[FilterOptions.topN, topN],
+	[FilterOptions.lastN, lastN],
+	[FilterOptions.skipN, skipN],
+	[FilterOptions.skipLastN, skipLastN],
 
 	//
-	["distinct", distinct],
-	["distinctKey", distinctKey],
+	[FilterOptions.distinct, distinct],
+	[FilterOptions.distinctKey, distinctKey],
 	////////////////////////////
-	["includes", includes],
-	["greaterThan", greaterThan],
-	["lessThan", lessThan],
-	["equals", equals],
+	[FilterOptions.includes, includes],
+	[FilterOptions.greaterThan, greaterThan],
+	[FilterOptions.lessThan, lessThan],
+	[FilterOptions.equals, equals],
 ]);
 
 export const GROUP = new Map<string, object>([["testGroup", testGroup]]);

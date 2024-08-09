@@ -84,3 +84,30 @@ export const filterObjectByKeys = (obj: UnknownObject, values: string[]) => {
 		return acc;
 	}, {} as Accumulator);
 };
+
+/**
+ * Object Utils: get nested value
+ ****
+ * @param key - The nested object key using dot notation
+ ****
+ * @param obj - The object
+ * @returns Object key value
+ ****
+ */
+export const getNestedValue = <T>(
+	key: string,
+	object: any,
+	delim: string = "."
+) => {
+	if (!object) return object;
+
+	const nestedKeys = key.split(delim);
+	let value = object;
+	const len = nestedKeys.length;
+	for (let i = 0; i < len; i++) {
+		value = value[nestedKeys[i]] || value;
+	}
+	// This is a bit hacky
+	// return could be given object
+	return value as T;
+};
