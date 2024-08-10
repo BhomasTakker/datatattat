@@ -62,13 +62,14 @@ const StackComponent = ({
 		componentTitle,
 		componentTitleVariant,
 		componentTitleLink,
-
+		align = "left",
 		style = "",
 	} = (componentProps as Profile) || {};
 
 	const root = useCssClasses(styles.componentRoot, styles[style] || "");
 
 	return (
+		// Big argument for wrapper - With Profile or whatever
 		// add styles select?
 		// add borders, shadow, margins, sticky?
 		// componentStyle, componentWrapper
@@ -79,6 +80,7 @@ const StackComponent = ({
 					componentTitle,
 					componentTitleVariant,
 					componentTitleLink,
+					align,
 				}}
 			/>
 			{inView && <FactoryComponent data={component} />}
@@ -92,6 +94,8 @@ export const PageDisplayStack = ({ data }: PageDisplayStack) => {
 	const { direction = "column" } = props || {};
 
 	// This feels like we re render too much
+	// on resize this is jarring
+	// We could get from a context
 	const screenWidth = useWidth();
 
 	useEffect(() => {
@@ -105,6 +109,7 @@ export const PageDisplayStack = ({ data }: PageDisplayStack) => {
 		}
 	}, [components.length, direction, props, screenWidth]);
 
+	// I feel like root changes causing re-render
 	const root = useCssClasses(
 		styles.root,
 		styles[direction || "column"],

@@ -1,17 +1,15 @@
 import Link from "next/link";
 import styles from "./ComponentProfile.module.scss";
+import { useCssClasses } from "../../new-article/hooks/useCssClasses";
 
 export interface Profile {
 	componentTitle?: string;
 	componentTitleVariant?: string; //union
 	showComponentTitle?: boolean;
 	componentTitleLink?: string;
+	align?: "left" | "center" | "right";
 
 	style?: string;
-
-	componentDescription?: string;
-	componentDescriptionVariant?: string; //union
-	showComponentDescription?: boolean;
 }
 
 interface ComponentProfile {
@@ -23,12 +21,10 @@ export const ComponentProfile = ({ profile }: ComponentProfile) => {
 		componentTitle,
 		showComponentTitle,
 		componentTitleLink,
-		componentDescription,
-		showComponentDescription,
+		align = "left",
 	} = profile || {};
+	const root = useCssClasses(styles.root, styles[align]);
 
-	// Sort this out / we need to offer titles
-	// at least flesh it out a little
 	const titleComponent = <h2 className={styles.title}>{componentTitle}</h2>;
 	const titleComponentToRender = componentTitleLink ? (
 		<Link href={componentTitleLink}>{titleComponent}</Link>
@@ -36,18 +32,15 @@ export const ComponentProfile = ({ profile }: ComponentProfile) => {
 		titleComponent
 	);
 
-	const showPageDetails = showComponentTitle || showComponentDescription;
+	const showPageDetails = showComponentTitle;
 
 	if (!showPageDetails) {
 		return <></>;
 	}
 
 	return (
-		<div className={styles.root}>
+		<div className={root}>
 			{showComponentTitle && componentTitle && titleComponentToRender}
-			{showComponentDescription && componentDescription && (
-				<p className={styles.description}>{componentDescription}</p>
-			)}
 		</div>
 	);
 };

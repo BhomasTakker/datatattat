@@ -1,6 +1,7 @@
 import { EditInputs } from "../../inputs/input.map";
 
 export const PROFILE_CONFIG = {
+	// This isn't meta...
 	id: "Meta",
 	info: "Meta",
 	title: "Meta",
@@ -23,30 +24,11 @@ export const PROFILE_CONFIG = {
 					info: "The title used in the tab of the web page. Also used and displayed in search engines. See wesdrfghjk for more.",
 				},
 				{
-					id: "pageTitleVariant",
-					type: EditInputs.text,
-					label: "Title Style",
-					info: "The title used in the tab of the web page. Also used and displayed in search engines. See wesdrfghjk for more.",
-				},
-			],
-		},
-		{
-			id: "showPageDescription",
-			type: EditInputs.show,
-			label: "Show Page Description",
-			info: "Create Page Data",
-			inputs: [
-				{
-					id: "pageDescription",
-					type: EditInputs.text,
-					label: "Page Description",
-					info: "The description used on the page itself.",
-				},
-				{
-					id: "pageDescriptionStyle",
-					type: EditInputs.text,
-					label: "Description Style",
-					info: "The description style.",
+					id: "align",
+					type: EditInputs.select,
+					label: "Align",
+					options: ["left", "center", "right"],
+					info: "Title alignment.",
 				},
 			],
 		},

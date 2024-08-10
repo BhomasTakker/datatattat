@@ -1,8 +1,26 @@
+@use "../../../../../scss/text/" as text;
+@use "../../../../../scss/colours/" as colours;
+
 .root {
+	display: flex;
+
 	.title {
-		margin-bottom: 2rem;
+		margin: 2rem 0 1rem;
+		font-size: text.$page-title-sm;
+		font-family: text.$page-title-font;
+		color: colours.$titleColourDark;
+
+		@media screen and (min-width: 600px) {
+			font-size: text.$page-title-lg;
+		}
 	}
-	.description {
-		margin: 2rem 0;
-	}
+}
+.left {
+	justify-content: left;
+}
+.right {
+	justify-content: right;
+}
+.center {
+	justify-content: center;
 }
