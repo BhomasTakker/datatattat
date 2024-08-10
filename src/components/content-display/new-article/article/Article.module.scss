@@ -24,6 +24,8 @@ $text-color-light: colours.$gainsboro;
 
 	.contentContainer {
 		color: $text-color;
+		display: flex;
+		justify-content: space-between;
 	}
 
 	// unused / we are or might be using the cgi value
@@ -32,11 +34,6 @@ $text-color-light: colours.$gainsboro;
 	.description {
 		container: description-bg / inline-size;
 	}
-}
-
-.metadata {
-	position: relative;
-	height: 100%;
 }
 
 .display {

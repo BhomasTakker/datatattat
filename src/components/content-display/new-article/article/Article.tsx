@@ -203,40 +203,40 @@ export const Article = (props: ArticleProps) => {
 							/>
 						)}
 						<ContentContainer as="div" classes={containerClasses}>
-							{title && (
-								<ArticleTitle
-									title={title}
-									classes={titleClasses}
-									style={style}
-									type={type}
-									size={size}
-								/>
-							)}
-							{description && showDescription && (
-								<ArticleDescription
-									description={description}
-									classes={descriptionClasses}
-									style={style}
-									type={type}
-									size={size}
-								/>
-							)}
+							<div>
+								{title && (
+									<ArticleTitle
+										title={title}
+										classes={titleClasses}
+										style={style}
+										type={type}
+										size={size}
+									/>
+								)}
+								{description && showDescription && (
+									<ArticleDescription
+										description={description}
+										classes={descriptionClasses}
+										style={style}
+										type={type}
+										size={size}
+									/>
+								)}
+							</div>
 							{/* show metadata, style */}
 							{showDetails && details && (
-								<div className={styles.metadata}>
-									<ArticleMetaData
-										docs={docs}
-										categories={categories}
-										authors={authors}
-										published={published}
-										publishers={publishers}
-										modified={modified}
-										showAuthors={showAuthors}
-										showCategories={showCategories}
-										showPublished={showPublished}
-										showPublishers={showPublishers}
-									/>
-								</div>
+								<ArticleMetaData
+									docs={docs}
+									categories={categories}
+									authors={authors}
+									published={published}
+									publishers={publishers}
+									modified={modified}
+									showAuthors={showAuthors}
+									showCategories={showCategories}
+									showPublished={showPublished}
+									showPublishers={showPublishers}
+								/>
 							)}
 						</ContentContainer>
 					</div>
