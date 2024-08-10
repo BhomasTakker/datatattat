@@ -1,13 +1,11 @@
+import { useCssClasses } from "../../new-article/hooks/useCssClasses";
 import styles from "./PageProfile.module.scss";
 
 interface Profile {
 	pageTitle?: string;
 	pageTitleVariant?: string; //union
 	showPageTitle?: boolean;
-
-	pageDescription?: string;
-	pageDescriptionVariant?: string; //union
-	showPageDescription?: boolean;
+	align?: "left" | "center" | "right";
 }
 
 interface PageProfile {
@@ -15,15 +13,14 @@ interface PageProfile {
 }
 
 export const PageProfile = ({ profile }: PageProfile) => {
-	const { pageTitle, showPageTitle, pageDescription, showPageDescription } =
-		profile || {};
+	const { pageTitle, showPageTitle, align = "left" } = profile || {};
+	const root = useCssClasses(styles.root, styles[align]);
+
 	return (
-		<div className={styles.root}>
+		// Same component and styles (almost) as component
+		<div className={root}>
 			{showPageTitle && pageTitle && (
 				<h1 className={styles.title}>{pageTitle}</h1>
-			)}
-			{showPageDescription && pageDescription && (
-				<p className={styles.description}>{pageDescription}</p>
 			)}
 		</div>
 	);
