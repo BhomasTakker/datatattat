@@ -74,7 +74,7 @@ export const STACK = {
 	info: "stack",
 	title: "Stack",
 	// if used then type it etc
-	components: "CONTENT:COMPONENTS",
+	// components: "CONTENT:COMPONENTS",
 	props: [
 		{
 			type: EditInputs.objectSelect,
