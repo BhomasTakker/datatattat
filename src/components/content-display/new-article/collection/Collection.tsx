@@ -26,7 +26,10 @@ const CollectionComponent = <T extends ElementType>({
 }: PropsWithChildren<CollectionComponent<T>>) => {
 	const As = as;
 	return (
-		// Perhaps props
+		// ISSUE:0001
+		// Perhaps props / we are adding articles as a prop where it may not be a valid prop / why?
+		// Likely carousel or something / it is just for carousel at the moment
+		// We should be able to test and apply if required / but yeah just for carousel this is not worth it
 		<As className={classes} articles={articles} styleSheet={styleSheet}>
 			{children}
 		</As>
@@ -41,6 +44,8 @@ export const ArticleCollection = ({
 }: ArticleCollectionProps) => {
 	const { items: articles } = data;
 
+	// Whereever possible do not use this
+	// And for this we should be using container queries
 	const screenWidth = useWidth();
 
 	const { variantType } = variantTypeObject || {};

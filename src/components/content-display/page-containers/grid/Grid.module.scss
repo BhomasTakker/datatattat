@@ -1,2 +1,34 @@
+@use "../../../../../scss/ui/" as ui;
+
 .root {
+	display: grid;
+	gap: 1rem;
+}
+
+// This would be a content display 1 or something
+// We need a think about all of this
+// It would be good to stack a component like this
+
+// display 1 or whatever
+// this will be more files etc but simpler individually
+.display {
+	grid-template-columns: 1fr;
+
+	& > *:last-child {
+		height: 50vh;
+
+		@include ui.scrollYNoScroller();
+	}
+
+	@media screen and (min-width: 1200px) {
+		grid-template-columns: 2fr 1fr;
+
+		& > *:last-child {
+			height: 0;
+			min-height: 100%;
+			// works the same but new and I don't proper get it
+			// contain: size;
+			@include ui.scrollYNoScroller();
+		}
+	}
 }

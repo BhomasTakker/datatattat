@@ -1,3 +1,5 @@
+@use "../../../../../../../scss/ui/" as ui;
+
 .root {
 	display: flex;
 	flex-direction: row;
@@ -5,11 +7,8 @@
 	overflow-x: auto;
 	gap: 1rem;
 
-	-webkit-overflow-scrolling: touch;
-
-	&::-webkit-scrollbar {
-		display: none;
-	}
+	// technically could be either way?
+	@include ui.scrollXNoScroller();
 
 	// do by size
 	& > * {

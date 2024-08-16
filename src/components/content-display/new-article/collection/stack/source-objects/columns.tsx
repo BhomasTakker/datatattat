@@ -24,6 +24,7 @@ const renderStack =
 				index
 			) => {
 				let props;
+				// don't like
 				if (showDisplay && index === 0) {
 					props = getComponent("card-display");
 				} else {

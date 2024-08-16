@@ -9,9 +9,10 @@ import { useCssClasses } from "../../new-article/hooks/useCssClasses";
 
 interface GridItem {
 	component: FactoryData;
+	className: string;
 }
 
-export const GridItem = ({ component }: GridItem) => {
+export const GridItem = ({ component, className }: GridItem) => {
 	const { ref, inView } = useInView({
 		threshold: 0,
 		triggerOnce: true,
@@ -29,13 +30,9 @@ export const GridItem = ({ component }: GridItem) => {
 		style = "",
 	} = (componentProps as Profile) || {};
 
-	const root = useCssClasses(styles.componentRoot);
+	const root = useCssClasses(styles.componentRoot, className);
 
 	return (
-		// Big argument for wrapper - With Profile or whatever
-		// add styles select?
-		// add borders, shadow, margins, sticky?
-		// componentStyle, componentWrapper
 		<section ref={ref} className={root}>
 			<ComponentProfile
 				profile={{
