@@ -29,9 +29,13 @@ export const clientsideFetch = async ({
 	}
 
 	const isProd = isProduction();
+	///////////////////////////////////////////////////////////
 	// BUG:0000 / fix me
 	// I might currently break on production - almost certainly will
 	// This cannot be okay / update me / fix me / protect
+	//////////////////////////////////////////////////////////
+	// For staging - we would need actual url - we can't hard code that
+	//////////////////////////////////////////////////////////////
 	const path = isProd
 		? `${url}${endpoint.search}`
 		: `${process.env.NEXT_PUBLIC_API_PATH}/${url}${endpoint.search}`;
