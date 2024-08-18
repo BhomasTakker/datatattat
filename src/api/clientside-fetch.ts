@@ -1,4 +1,4 @@
-import { isProduction } from "../utils/env";
+import { isDevelopment, isProduction } from "../utils/env";
 
 // We need to go over this
 // It needs upgrading at the very least
@@ -28,7 +28,8 @@ export const clientsideFetch = async ({
 		endpoint.searchParams.set(param, searchParams[param]);
 	}
 
-	const isProd = isProduction();
+	// Looks like this doesn't work on production...
+	const isDev = isDevelopment();
 	///////////////////////////////////////////////////////////
 	// BUG:0000 / fix me
 	// I might currently break on production - almost certainly will
@@ -36,10 +37,9 @@ export const clientsideFetch = async ({
 	//////////////////////////////////////////////////////////
 	// For staging - we would need actual url - we can't hard code that
 	//////////////////////////////////////////////////////////////
-	const path = isProd
-		? `${url}${endpoint.search}`
-		: `${process.env.NEXT_PUBLIC_API_PATH}/${url}${endpoint.search}`;
-
+	const path = isDev
+		? `${process.env.NEXT_PUBLIC_API_PATH}/${url}${endpoint.search}`
+		: `${url}${endpoint.search}`;
 	//try catch
 	//absolute path should not be required / seemes to work fine?
 	// ${process.env.NEXT_PUBLIC_API_PATH}/
