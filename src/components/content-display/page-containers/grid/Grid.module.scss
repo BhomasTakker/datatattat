@@ -1,16 +1,26 @@
 @use "../../../../../scss/ui/" as ui;
+@use "../../../../../scss/units/" as units;
 
 .root {
 	display: grid;
 	gap: 1rem;
 }
 
+////////////////////////////////////////////////////
 // This would be a content display 1 or something
 // We need a think about all of this
 // It would be good to stack a component like this
-
+/////////////////////////////////////////////////////
 // display 1 or whatever
 // this will be more files etc but simpler individually
+/////////////////////////////////////////////////////
+// This is way more of a 'stackable' grid sort of component
+// i.e. this as a component - as part of a stack
+// BUT we can also use as a display
+// Create multiple content displays - i.e. main display with columns and rows
+///////////////////////////////////////////////////////
+// Also when small screen we may want scroll sideways
+// Would work better when used as a stack
 .display {
 	grid-template-columns: 1fr;
 
@@ -20,7 +30,7 @@
 		@include ui.scrollYNoScroller();
 	}
 
-	@media screen and (min-width: 1200px) {
+	@media screen and (min-width: units.$screenWidthLg) {
 		grid-template-columns: 2fr 1fr;
 
 		& > *:last-child {

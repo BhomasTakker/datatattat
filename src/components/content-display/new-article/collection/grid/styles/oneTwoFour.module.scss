@@ -1,3 +1,5 @@
+@use "../../../../../../../scss/units/" as units;
+
 .root {
 	display: grid;
 	// grid-template-columns: repeat(5, 1fr);
@@ -5,18 +7,20 @@
 	// grid-template-rows: repeat(2, 1fr);
 	gap: 1rem;
 
-	@media screen and (min-width: 600px) {
+	@media screen and (min-width: units.$screenWidthSm) {
 		grid-template-columns: 1fr;
 	}
 
-	@media screen and (min-width: 900px) {
+	// 960
+	@media screen and (min-width: units.$screenWidthMd) {
 		grid-template-columns: repeat(6, 1fr);
 	}
-	@media screen and (min-width: 1200px) {
+	// 1280
+	@media screen and (min-width: units.$screenWidthLg) {
 		grid-template-columns: repeat(5, 1fr);
 	}
-
-	@media screen and (min-width: 1536px) {
+	// 1920
+	@media screen and (min-width: units.$screenWidthXl) {
 		grid-template-columns: repeat(5, 1fr);
 	}
 }

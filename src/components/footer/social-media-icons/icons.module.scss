@@ -1,11 +1,16 @@
 @use "../../../../scss/colours/" as colours;
+@use "../../../../scss/units/" as units;
 
 .root {
 	color: colours.$darkGrey;
 
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	gap: 2rem;
 
 	padding: 2rem 0;
+
+	@media screen and (min-width: units.$screenWidthMd) {
+	}
 }
