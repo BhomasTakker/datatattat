@@ -1,5 +1,6 @@
 @use "../../../../../scss/text/" as text;
 @use "../../../../../scss/colours/" as colours;
+@use "../../../../../scss/units/" as units;
 
 .root {
 	display: flex;
@@ -10,7 +11,8 @@
 		font-family: text.$component-title-font;
 		color: colours.$titleColourDark;
 
-		@media screen and (min-width: 600px) {
+		// This should be container width
+		@media screen and (min-width: units.$screenWidthMd) {
 			font-size: text.$component-title-lg;
 		}
 	}

@@ -5,7 +5,6 @@ import {
 } from "../../component/factory/component.factory";
 import styles from "./PageStack.module.scss";
 import { ComponentProfile, Profile } from "../profile/ComponentProfile";
-import { UnknownObject } from "@/src/types";
 import { useCssClasses } from "../../new-article/hooks/useCssClasses";
 import { useWidth } from "@/src/hooks/useWidth";
 import { useCallback, useEffect, useState } from "react";

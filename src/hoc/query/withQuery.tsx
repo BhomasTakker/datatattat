@@ -32,15 +32,19 @@ const WithQuery = ({ componentObject, queryObject }: WithQueryParams) => {
 	// // console.log({ WITH_query: queryObject });
 
 	//update query data of id data when pagination changes?
-	const { data } = useQuery([queryId, queryState], () => queryFn(queryState), {
-		...options,
+	const { data, error, ...rest } = useQuery(
+		[queryId, queryState],
+		() => queryFn(queryState),
+		{
+			...options,
 
-		// force refetch to false until we have chaching properly in place
-		refetchInterval: false,
-		refetchOnMount: false,
-		refetchOnWindowFocus: false,
-		refetchOnReconnect: false,
-	});
+			// force refetch to false until we have chaching properly in place
+			refetchInterval: false,
+			refetchOnMount: false,
+			refetchOnWindowFocus: false,
+			refetchOnReconnect: false,
+		}
+	);
 
 	// // console.log("Redraw Query");
 

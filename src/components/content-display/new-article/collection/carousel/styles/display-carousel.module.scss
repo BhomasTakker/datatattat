@@ -1,3 +1,5 @@
+@use "../../../../../../../scss/ui/" as ui;
+
 .root {
 	position: relative;
 
@@ -94,12 +96,7 @@
 		overscroll-behavior-inline: contain;
 
 		overflow-x: auto;
-
-		-webkit-overflow-scrolling: touch;
-
-		&::-webkit-scrollbar {
-			display: none;
-		}
+		@include ui.scrollXNoScroller();
 
 		> div {
 			scroll-snap-align: start;
