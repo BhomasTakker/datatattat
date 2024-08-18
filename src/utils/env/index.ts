@@ -11,3 +11,8 @@ export const isProduction = () => {
 	const env = getEnvVar("NODE_ENV");
 	return env === NODE_ENV.PRODUCTION;
 };
+
+export const isDevelopment = () => {
+	const env = getEnvVar("NODE_ENV");
+	return env === NODE_ENV.DEVELOPMENT;
+};
