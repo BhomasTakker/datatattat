@@ -36,6 +36,7 @@ export const PageQueryProvider = ({
 	value?: PageQueryState;
 	children: ReactNode;
 }) => {
+	// type me
 	const [pageData, setPageData] = useState({});
 
 	const { currentPage } = useContext(EditContext);

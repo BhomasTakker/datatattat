@@ -1,14 +1,11 @@
-// @ts-nocheck / FIX ME
-import {
-	ControlledSwitchInput,
-	SwitchInputWithControl,
-} from "@/src/components/input/SwitchInput";
+import { ControlledSwitchInput } from "@/src/components/input/SwitchInput";
 import { WithInfo } from "../../info/WithInfo";
-import { log } from "@/src/lib/logger";
 import { useFormContext, useWatch } from "react-hook-form";
 import { UnknownObject } from "@/src/components/content-display/data-visualization/d3/types";
 import { inputMap } from "../input.map";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { PageStateContext } from "../../page/context/state/page-state.context";
+import { getParentId } from "@/src/utils/edit";
 
 interface ShowInputProps {
 	info: string;
@@ -18,21 +15,49 @@ interface ShowInputProps {
 	inputs: UnknownObject[];
 }
 
+// Somewhere - we are re-rendering with value as undefined
+// So we do not render children
+// The switch itself is controlled by data
+// So it remains correct
 export const ShowInput = (props: ShowInputProps) => {
 	const { info, id, label, defaultValue = false, inputs = [] } = props;
+	const { getValue: getPageData } = useContext(PageStateContext);
+	const { setValue } = useFormContext();
 	const value = useWatch({
 		name: id,
 	});
 
+	// It's gross but the approach appears to work
+	//////////////////////////////////////////////////
+	// Hack / if unset / undefined / check pageData
+	// Needs testing...
+	// What if just empty string?
+	//////////////////////////////////////////////////
+	useEffect(() => {
+		if (value === undefined) {
+			const val = getPageData(id);
+			if (!val) return;
+
+			setValue(id, val);
+
+			const parentId = getParentId(id);
+
+			// We need to reset our dependents data too
+			inputs.forEach(({ id: inputId }) => {
+				const newInputId = `${parentId}.${inputId}`;
+				const val = getPageData(newInputId);
+				// context should be setting
+				if (val) setValue(newInputId, val);
+			});
+		}
+	}, [getPageData, id, inputs, setValue, value]);
+
 	const renderChildren = () => {
-		// Probably utils
-		const idAsArray = id.split(".");
-		const newIdAsArray = idAsArray.splice(0, idAsArray.length - 1);
-		const newId = newIdAsArray.join(".");
+		const newId = getParentId(id);
 
 		return inputs.map((input) => {
 			const { id: inputId, info, label, type, ...rest } = input;
-			const Component = inputMap.get(type) || <></>;
+			const Component = inputMap.get(type as string) || <></>;
 			return (
 				<Component
 					key={inputId}

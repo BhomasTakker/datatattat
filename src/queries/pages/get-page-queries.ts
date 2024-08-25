@@ -1,3 +1,5 @@
+// TYPE ME !!!!
+
 export async function getPageById(id: string): Promise<any> {
 	const response = await fetch(`/api/page/${id}`);
 	return await response.json();

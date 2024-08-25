@@ -2,6 +2,7 @@ import { ReactNode, createContext, useContext, useEffect } from "react";
 import { PageQueryContext } from "../query/page-query.context";
 import { useFormContext } from "react-hook-form";
 import { EditContext } from "@/src/context/edit-context";
+import { getNestedValue } from "@/src/utils/object";
 
 /////////////////////////////////////////////////////////////
 // What is setting the rest - this seems off
@@ -37,6 +38,7 @@ type PageStateInterface = {
 	pageContainerId: string;
 	pagePropsId: string;
 	pageComponentsId: string;
+	getValue: (id: string) => any;
 };
 
 const initialState: PageStateState & PageStateInterface = {
@@ -47,6 +49,7 @@ const initialState: PageStateState & PageStateInterface = {
 	pageContainerId: `${FORM_ID}.${CONTAINER_ID}`,
 	pagePropsId: `${FORM_ID}.${PROPS_ID}`,
 	pageComponentsId: `${FORM_ID}.${COMPONENTS_ID}`,
+	getValue(id) {},
 };
 
 // BUG, ISSUE, !!!
@@ -61,6 +64,15 @@ export const PageStateContextProvider = ({
 	const { currentPage } = useContext(EditContext);
 	const { setValue, unregister } = useFormContext();
 	const { pageData } = useContext(PageQueryContext);
+
+	// We probably want a dedicated context or store for this?
+	// This is our source of truth / the data we have loaded
+	// We 'should' be reading this for start data
+	const getValue = (id: string) => {
+		const { page } = pageData;
+		const ret = getNestedValue(`${id}`, page);
+		return ret;
+	};
 
 	// Sort out edit state
 	// Seperating seems to have fixed our issue
@@ -117,6 +129,7 @@ export const PageStateContextProvider = ({
 				pageComponentsId,
 				pageContainerId,
 				pagePropsId,
+				getValue,
 			}}
 		>
 			{children}
