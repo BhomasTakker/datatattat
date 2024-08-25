@@ -93,6 +93,7 @@ export const filterObjectByKeys = (obj: UnknownObject, values: string[]) => {
  * @param obj - The object
  * @returns Object key value
  ****
+ * @WARNING returns whole or partial object rather than null if no object key found / UPDATE return null
  */
 export const getNestedValue = <T>(
 	key: string,
@@ -105,7 +106,8 @@ export const getNestedValue = <T>(
 	let value = object;
 	const len = nestedKeys.length;
 	for (let i = 0; i < len; i++) {
-		value = value[nestedKeys[i]] || value;
+		value = value[nestedKeys[i]];
+		if (!value) return null;
 	}
 	// This is a bit hacky
 	// return could be given object
