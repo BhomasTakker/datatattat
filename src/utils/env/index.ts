@@ -7,6 +7,8 @@ enum NODE_ENV {
 //error on unfind
 //get dev if dev - etc
 export const getEnvVar = (id: string) => process.env[id];
+
+// These look like they don't work at all...
 export const isProduction = () => {
 	const env = getEnvVar("NODE_ENV");
 	return env === NODE_ENV.PRODUCTION;

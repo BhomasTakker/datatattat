@@ -1,5 +1,3 @@
-import { isDevelopment, isProduction } from "../utils/env";
-
 // We need to go over this
 // It needs upgrading at the very least
 export type ClientSideFetchType = {
@@ -28,21 +26,13 @@ export const clientsideFetch = async ({
 		endpoint.searchParams.set(param, searchParams[param]);
 	}
 
-	// Looks like this doesn't work on production...
-	const isDev = isDevelopment();
-	///////////////////////////////////////////////////////////
-	// BUG:0000 / fix me
-	// I might currently break on production - almost certainly will
-	// This cannot be okay / update me / fix me / protect
-	//////////////////////////////////////////////////////////
-	// For staging - we would need actual url - we can't hard code that
-	//////////////////////////////////////////////////////////////
-	const path = isDev
-		? `${process.env.NEXT_PUBLIC_API_PATH}/${url}${endpoint.search}`
-		: `${url}${endpoint.search}`;
-	//try catch
-	//absolute path should not be required / seemes to work fine?
-	// ${process.env.NEXT_PUBLIC_API_PATH}/
+	/////////////////////////////
+	// NOTE:- The preceading '/'
+	// Adding / Omitting has major differences
+	// Adding appends to the domain of the url i.e http://datatattat.com
+	// Omitting apeends to the CURRENT url i.e. http://datatattat.com/news/uk/api/blah...!
+	const path = `/${url}${endpoint.search}`;
+
 	const response = await fetch(path);
 	if (!response.ok) {
 		throw new Error("Network response was not ok");
