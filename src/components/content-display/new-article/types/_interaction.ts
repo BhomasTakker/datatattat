@@ -18,7 +18,7 @@ type InteractionBase = {
 	displayId?: undefined;
 };
 
-type DisplayInteraction = {
+export type DisplayInteraction = {
 	interaction: InteractionTypes.DISPLAY;
 	displayId: string;
 } & InteractionBase;

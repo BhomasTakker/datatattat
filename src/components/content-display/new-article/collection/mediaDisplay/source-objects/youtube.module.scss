@@ -1,0 +1,40 @@
+@use "../../../../../../../scss/ui/" as ui;
+@use "../../../../../../../scss/units/" as units;
+
+.root {
+	display: grid;
+	gap: 1rem;
+
+	grid-template-columns: 1fr;
+
+	@media screen and (min-width: units.$screenWidthLg) {
+		grid-template-columns: 2fr 1fr;
+	}
+}
+
+.items {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+	// width: 100%;
+
+	@include ui.scrollXNoScroller();
+
+	& > * {
+		flex: 1 0 80%;
+	}
+
+	@media screen and (min-width: units.$screenWidthLg) {
+		height: 0;
+		min-height: 100%;
+
+		flex-direction: column;
+
+		// this is a reset
+		& > * {
+			flex: 1 1 100%;
+		}
+
+		@include ui.scrollYNoScroller();
+	}
+}

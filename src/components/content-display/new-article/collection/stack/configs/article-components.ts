@@ -27,6 +27,7 @@ export enum ArticleVariant {
 	stack = "stack",
 	list = "list",
 	carousel = "carousel",
+	contentDisplay = "contentDisplay",
 }
 
 export enum InteractionVariant {
@@ -36,21 +37,30 @@ export enum InteractionVariant {
 }
 
 export const InteractionVariantOptions = [
-	"navigation",
-	"display",
-	"play",
+	InteractionVariant.navigation,
+	InteractionVariant.display,
+	InteractionVariant.play,
 ] as const;
 
-export type InteractionVariantOptions = "navigation" | "display" | "play";
+export type InteractionVariantOptions =
+	| InteractionVariant.navigation
+	| InteractionVariant.display
+	| InteractionVariant.play;
 
 export const ArticleVariantOptions = [
-	"grid",
-	"stack",
-	"list",
-	"carousel",
+	ArticleVariant.grid,
+	ArticleVariant.stack,
+	ArticleVariant.list,
+	ArticleVariant.carousel,
+	ArticleVariant.contentDisplay,
 ] as const;
 
-export type ArticleVariantOptions = "grid" | "stack" | "list" | "carousel";
+export type ArticleVariantOptions =
+	| ArticleVariant.grid
+	| ArticleVariant.stack
+	| ArticleVariant.list
+	| ArticleVariant.carousel
+	| ArticleVariant.contentDisplay;
 
 const getComponentMap = new Map<
 	ArticleComponentOptions,
