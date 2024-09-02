@@ -15,6 +15,7 @@ type InteractionType =
 
 type InteractionBase = {
 	interaction?: InteractionType;
+	displayId?: string;
 };
 
 export type DisplayInteraction = {
