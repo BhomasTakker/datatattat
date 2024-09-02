@@ -15,10 +15,10 @@ type InteractionType =
 
 type InteractionBase = {
 	interaction?: InteractionType;
-	displayId?: undefined;
+	displayId?: string;
 };
 
-type DisplayInteraction = {
+export type DisplayInteraction = {
 	interaction: InteractionTypes.DISPLAY;
 	displayId: string;
 } & InteractionBase;

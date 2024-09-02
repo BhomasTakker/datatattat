@@ -21,6 +21,10 @@ export enum CarouselVariant {
 	standard = "carousel-display",
 }
 
+export enum ContentDisplayVariant {
+	youtube = "youtube",
+}
+
 const stackColumnsVariantOptions = [
 	{
 		id: "card",
@@ -79,6 +83,9 @@ const carouselStandardVariantOptions = [
 		info: "The type of carousel.",
 	},
 ];
+
+const contentDisplayYouTubeVariantOptions: any[] = [];
+
 // From here effectvely - create stack, grid, etc edit files
 type StackVariantProps =
 	| typeof stackColumnsVariantOptions
@@ -93,6 +100,12 @@ type CarouselVariantProps = typeof carouselStandardVariantOptions;
 
 const carouselVariantMap = new Map<string, CarouselVariantProps>([
 	[CarouselVariant.standard, carouselStandardVariantOptions],
+]);
+
+type ContentDisplayVariantProps = typeof contentDisplayYouTubeVariantOptions;
+
+const contentDisplayVariantMap = new Map<string, ContentDisplayVariantProps>([
+	[ContentDisplayVariant.youtube, contentDisplayYouTubeVariantOptions],
 ]);
 
 const gridVariantOptions = [
@@ -184,6 +197,20 @@ const carouselVariantOptions = [
 	},
 ];
 
+const contentDisplayVariantOptions = [
+	{
+		id: "variantType",
+		type: EditInputs.objectSelect,
+		// input array from somewhere
+		options: ["youtube"],
+		// if no option id we should just add to the current object? / also just call variantObject no
+		optionId: "variantObject",
+		label: "Content Display Variant",
+		info: "articleContentDisplayVariant",
+		optionsMap: contentDisplayVariantMap,
+	},
+];
+
 const playVariantOptions: any[] = [];
 const navigationVariantOptions: any[] = [];
 const displayVariantOptions = [
@@ -204,13 +231,15 @@ type ArticleVariantProps =
 	| typeof gridVariantOptions
 	| typeof stackVariantOptions
 	| typeof listVariantOptions
-	| typeof carouselVariantOptions;
+	| typeof carouselVariantOptions
+	| typeof contentDisplayVariantOptions;
 
 const articleVariantMap = new Map<string, ArticleVariantProps>([
 	[ArticleVariant.grid, gridVariantOptions],
 	[ArticleVariant.stack, stackVariantOptions],
 	[ArticleVariant.list, listVariantOptions],
 	[ArticleVariant.carousel, carouselVariantOptions],
+	[ArticleVariant.contentDisplay, contentDisplayVariantOptions],
 ]);
 
 const articleInteractionsMap = new Map<string, InteractionVariantProps>([
