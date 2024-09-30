@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { SelectInput, SelectInputProps } from "../select/select-input";
-import { PropsWithChildren, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useWatch, useFormContext } from "react-hook-form";
 import { UnknownObject } from "@/src/components/content-display/data-visualization/d3/types";
 import { inputMap } from "../input.map";
@@ -12,7 +12,7 @@ type OptionsMapProps = {
 	optionId: string;
 };
 
-type ObjectSelectInput = PropsWithChildren<SelectInputProps & OptionsMapProps>;
+type ObjectSelectInput = SelectInputProps & OptionsMapProps;
 
 const createNewId = (id: string, optionId: string) => {
 	const parentId = getParentId(id);
@@ -31,8 +31,6 @@ const renderChildren = (
 	}
 	const newId = createNewId(id, optionId);
 
-	// InputList?
-	// filter rather than map
 	return inputs.map((input) => {
 		const { id: inputId, info, label, type, ...rest } = input;
 		const Component = inputMap.get(type as string) || null;
@@ -62,7 +60,6 @@ export const ObjectSelectInput = ({
 	optionId,
 	defaultValue = undefined,
 	optionsMap,
-	children,
 }: ObjectSelectInput) => {
 	const [components, setComponents] = useState<(JSX.Element | null)[]>([]);
 	const { setValue } = useFormContext();
@@ -71,50 +68,39 @@ export const ObjectSelectInput = ({
 		name: id,
 	});
 
-	console.log("1001:EDIT", { value, id });
-
-	////////////////////////
-	// Hack / Force update
-	// If no data exists / try to get the data
-	// Works for optionId using option selects
-	// Non optionId - might work without further change
-	// Needs further testing
-	// As a rough fix - fine - as a guide for more - fine
-	// Ultimately - we need to redo edit and probably follow this type of approach
-	//////////////////////////////
-	useEffect(() => {
-		if (!value) {
-			// This is really a hack
-			const val = getPageData(id);
-			if (!val) return;
-
-			setValue(id, val);
-
-			const newId = createNewId(id, optionId);
-
-			if (optionId) {
-				const optionData = getPageData(newId);
-				if (!optionData) return;
-
-				setValue(newId, optionData);
-				return;
-			}
-
-			// This may work without further change - we need to test
-			// we also need to get and set values for each sub element / optionId
-			// populateOptions();
-
-			console.log("1001:GOT:VALUE", { id, val });
-		}
-	}, [getPageData, id, optionId, setValue, value]);
-
 	useEffect(() => {
 		if (value) {
-			console.log("1001:EDIT setValue", { value });
 			setValue(id, value);
 			setComponents(renderChildren(optionsMap.get(value), id, optionId));
 		}
 	}, [id, optionId, optionsMap, setValue, value]);
+
+	////////////////////////
+	// Hack / Force update
+	// If no data exists / try to get the data
+	// This is one of our issues
+	// Needs further testing
+	// As a rough fix - fine - as a guide for more - fine
+	// Ultimately - we need to redo edit and probably follow this type of approach
+	// Or, at least, can we create a hook
+	//////////////////////////////
+	useEffect(() => {
+		const val = getPageData(id);
+		if (!val) return;
+
+		setValue(id, val);
+
+		if (!value) {
+			const newId = createNewId(id, optionId);
+			const optionData = getPageData(newId);
+
+			if (!optionData) return;
+
+			setValue(newId, optionData);
+
+			return;
+		}
+	}, [getPageData, id, optionId, setValue, value]);
 
 	return (
 		<Box>
