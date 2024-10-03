@@ -63,10 +63,13 @@ export const ArticleCollection = ({
 		styles,
 		styleSheet,
 		as = "div",
-	} = renderObject(screenWidth, {
-		...rest,
-		...variantTypeObject,
-	});
+	} = renderObject(
+		{ screenWidth },
+		{
+			...rest,
+			...variantTypeObject,
+		}
+	);
 
 	return (
 		<CollectionComponent
