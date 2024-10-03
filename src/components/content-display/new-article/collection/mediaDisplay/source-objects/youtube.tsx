@@ -1,5 +1,10 @@
 import { UnknownObject } from "@/src/types";
-import { ArticleComponent, RenderObjectReturn } from "../../../types";
+import {
+	ArticleComponent,
+	RenderObjectReturn,
+	Size,
+	Card,
+} from "../../../types";
 import { addCssClasses } from "../../../utils";
 import styles from "./youtube.module.scss";
 import { CollectionItem } from "@/src/types/data-structures/collection/item/item";
@@ -9,6 +14,7 @@ import {
 	DisplayInteraction,
 	InteractionTypes,
 } from "../../../types/_interaction";
+import { ScreenWidth } from "@/src/store/screen/screenSlice";
 
 // How would we specify to use a different card
 // When certain sizes without using screen width?
@@ -35,11 +41,11 @@ const card = {
 	// interaction: "display",
 	interaction: InteractionTypes.DISPLAY,
 	as: "article",
-	direction: "l2r",
 };
 
 const renderStack =
-	(args: UnknownObject, id: string) => (articles: CollectionItem[]) => {
+	(screenWidth: ScreenWidth, args: UnknownObject, id: string) =>
+	(articles: CollectionItem[]) => {
 		// if no articles
 		// Create a display component / initialise to first article
 		const article1 = articles[0];
@@ -48,19 +54,22 @@ const renderStack =
 		// const stackDiv = <div></div>;
 		// Create articles and add to stackDiv
 		// Return the two components with css
+
+		const isSmall = screenWidth === "sm" || screenWidth === "xs";
+
 		const articlesComponents = articles.map(
 			(
 				{ src, variant, avatar, details, description, guid, title, ...rest },
 				index
 			) => {
 				// @ts-ignore
-				const containerProps: Omit<ArticleComponent, "meta"> &
-					DisplayInteraction = {
+				const containerProps: Omit<Card, "meta"> & DisplayInteraction = {
 					type: "card",
 					style: "",
 					media: "video",
 					src,
 					variant,
+					direction: isSmall ? "t2b" : "l2r",
 					avatar,
 					description,
 					details,
@@ -72,10 +81,7 @@ const renderStack =
 					// jeez / what were we doing?
 					...args,
 				};
-				return (
-					// eslint-disable-next-line react/jsx-no-undef
-					<ArticleContainer key={src} src={src} props={containerProps} />
-				);
+				return <ArticleContainer key={src} src={src} props={containerProps} />;
 			}
 		);
 
@@ -88,6 +94,7 @@ type VariantObject = {};
 
 type Props = {
 	variantObject: VariantObject;
+	screenWidth: ScreenWidth;
 };
 
 // We have everything - but we can type what we need?
@@ -100,14 +107,14 @@ export const getYouTubeRenderObject = (
 	props: Props,
 	collectionProps: CollectionProps
 ): RenderObjectReturn<"div"> => {
-	const { variantObject, ...rest } = props;
+	const { variantObject, screenWidth, ...rest } = props;
 	// rest contains query data etc.
 	// seems to be a mistake getting, taking, using, here
 	const {} = variantObject || {};
 	const { displayId } = collectionProps;
 
 	return {
-		renderList: renderStack(rest, displayId),
+		renderList: renderStack(screenWidth, rest, displayId),
 		styles: addCssClasses(styles.root),
 		styleSheet: null,
 		as: "div",

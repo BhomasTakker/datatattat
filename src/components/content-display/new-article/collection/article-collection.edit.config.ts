@@ -300,7 +300,7 @@ const contentType = {
 	optionsMap: contentTypeMap,
 };
 
-const acceptedValues = ["new-rss-query", "api-query"];
+const acceptedValues = ["new-rss-query", "api-query", "custom-data"];
 // This level the data shape is different
 // We can say what 'with' objects are available
 export const ARTICLE_COLLECTION = {
