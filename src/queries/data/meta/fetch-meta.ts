@@ -1,7 +1,7 @@
 import { log } from "@/src/lib/logger";
 import { stringIsAValidUrl } from "@/src/utils/url";
 import jsdom from "jsdom";
-import puppeteer from "puppeteer";
+// import puppeteer from "puppeteer";
 
 const getOGMetaDataFromHTML = (document: Document) => {
 	return {
@@ -98,14 +98,14 @@ const getOGMetaData = () => {
 };
 
 /** Fetch Open Graph meta data from src via puppeteer <- don't do this! */
-export const fetchMetaFromPuppeteer = async (
-	endpoint: string,
-	options: RequestInit
-) => {
-	const browser = await puppeteer.launch({ headless: "new" });
-	const page = await browser.newPage();
-	await page.goto(endpoint);
+// export const fetchMetaFromPuppeteer = async (
+// 	endpoint: string,
+// 	options: RequestInit
+// ) => {
+// 	const browser = await puppeteer.launch({ headless: "new" });
+// 	const page = await browser.newPage();
+// 	await page.goto(endpoint);
 
-	await browser.close();
-	return await page.evaluate(getOGMetaData);
-};
+// 	await browser.close();
+// 	return await page.evaluate(getOGMetaData);
+// };

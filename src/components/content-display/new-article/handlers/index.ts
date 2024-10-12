@@ -1,4 +1,3 @@
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 import { ArticleProps } from "../types";
 import { displayHandler } from "./display";
 import { routeHandler } from "./router";
@@ -11,7 +10,7 @@ import { log } from "@/src/lib/logger";
 type Dispatch = typeof store.dispatch;
 
 type HandlerContext = {
-	router: AppRouterInstance;
+	router: any;
 	dispatch: Dispatch;
 	playerControls: PlayerControls | null;
 };

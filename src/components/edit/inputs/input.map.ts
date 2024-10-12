@@ -50,7 +50,8 @@ export const inputMap = new Map<string, any>([
 	["number", NumberInputWithControl],
 	["text-toggle", TextToggleInput],
 	["select", SelectInput],
-	["color", ColorInputWithControl],
+	// Problem with mui color input
+	// ["color", ColorInputWithControl],
 
 	["object-select", ObjectSelectInput],
 
