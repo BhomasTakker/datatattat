@@ -1,8 +1,7 @@
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 import { ArticleProps } from "../types";
 
 export const routeHandler =
-	(router: AppRouterInstance) =>
+	(router: any) =>
 	(e: React.MouseEvent<HTMLElement>, { src }: ArticleProps) => {
 		router.push(src);
 	};
